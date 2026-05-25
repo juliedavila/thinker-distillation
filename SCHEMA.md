@@ -121,9 +121,13 @@ Reading paths: `start_here`, `then_read[]`, `if_you_want_depth`, `if_you_want_br
 
 ### §10 Long Read (optional)
 
-For thinkers with book-length treatments. Ways-of-* book projects fold in here as long-read content at `content/thinkers/{slug}/long-read/{nn-chapter}.md`. Linked from §10 with chapter navigation.
+For thinkers with book-length treatments. Chapters live in a separate `longReadChapters` Astro Content Collection at `src/content/long-read/{thinker_slug}/{nn-chapter}.md` — the chapter_list is *computed* at build time from that collection (filter by `thinker_slug`, sort by `chapter_number`) rather than duplicated in the thinker's frontmatter. §10 on the thinker page renders the long-read `title` + `summary` + a CTA link to `/thinkers/{slug}/long-read`; the index page lists all chapters; per-chapter pages render at `/thinkers/{slug}/long-read/{chapter}` with prev/next navigation.
 
-**Fields:** `title`, `summary` (2–3 paragraphs), `chapter_list[]` (each linked), `source_path`.
+**Thinker frontmatter (`long_read` block):** `title`, `summary` (2–3 paragraphs), `source_path` (path to working files in the local book project).
+
+**Chapter frontmatter:** `thinker_slug` (kebab-case, joins to the thinker), `chapter_number` (non-negative integer; 0 for prefaces / introductions), `title`, `summary` (optional), `last_updated`.
+
+**Rationale for two-collection design (2026-05-25):** keeping the chapter list in one place (the chapter collection, not the thinker frontmatter) prevents drift between the listing and the actual chapter files — adding a new chapter is one new markdown file, no thinker-frontmatter edit needed, and the build catches missing chapters via `getStaticPaths` instead of producing broken links.
 
 ---
 
@@ -363,3 +367,7 @@ Each frame renders with `also_held_by:` cluster underneath at build time. Exampl
 | Q4 | Path 2 — minimal cross-thinker in v1 | `also_held_by[]` affordance added to §4 Named Frames. Full concept-page UI deferred to v2. |
 | Q5 | Path 2 — About-page-as-manifesto | About page does four jobs (mission, lanes, filter discipline, source posture). Small footer link on every thinker page. No per-page colophon. |
 | Q6 | Astro + Netlify, single repo | Cloudflare Pages was overweight given Julie's setup; Netlify is lowest-friction equivalent. Single repo at `~/Camila/thinker-distillation/` with book projects folded in as long-read. |
+
+## v1.1 — Long-read tier wired (2026-05-25)
+
+`chapter_list[]` removed from the thinker `long_read` frontmatter block. Chapters now live in a separate `longReadChapters` Content Collection; the per-thinker chapter list is computed at build time. Cross-references rebuilt: routes added at `/thinkers/[slug]/long-read` (index) and `/thinkers/[slug]/long-read/[chapter]`. First two chapters shipped: Komoroske Part 1 — The Diagnosis; Fowler Chapter 0 — Preface.

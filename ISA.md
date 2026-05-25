@@ -2,7 +2,7 @@
 project: thinker-distillation
 effort: E3
 phase: build
-progress: 26/33
+progress: 28/33
 mode: project
 started: 2026-05-25
 updated: 2026-05-25
@@ -84,7 +84,7 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 
 - [x] ISC-19: Site-level tagline placed in site chrome (Julie's naming call)
 - [x] ISC-20: Footer link `About →` from every thinker page (target page may be placeholder until promotion phase)
-- [ ] ISC-21: Long-read tier wired for Komoroske and Fowler (chapters at `content/thinkers/{slug}/long-read/`)
+- [x] ISC-21: Long-read tier wired for Komoroske and Fowler (chapters at `content/thinkers/{slug}/long-read/`)
 - [x] ISC-22: Live URL probed via curl + Interceptor screenshot showing rendered Komoroske page
 
 **Per-thinker content discipline:**
@@ -105,7 +105,7 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 
 **Working-norm reference:**
 
-- [ ] ISC-33: SCHEMA.md changes tracked in git history (no parallel `acceptance.yaml` / `acceptance.ts` — ISA + SCHEMA are the harness)
+- [x] ISC-33: SCHEMA.md changes tracked in git history (no parallel `acceptance.yaml` / `acceptance.ts` — ISA + SCHEMA are the harness)
 
 ## Test Strategy
 
@@ -146,6 +146,13 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - **2026-05-25 — Node version note.** Astro 6.x requires node ≥v22; nvm default is v20.11.0; system node is v26 at `/opt/homebrew/bin/node`. All `bun` invocations against the Astro tree should prefix `PATH="/opt/homebrew/bin:$PATH"`. Long-term option (deferred): set system node as nvm default, or pin v22+ via `.nvmrc` in the project root.
 
 ## Changelog
+
+### 2026-05-25 — Long-read tier: two-collection design
+
+- **conjectured:** Keep `chapter_list[]` in the thinker frontmatter, with each entry carrying `title` + `href`. The thinker file would be the single source of truth for what chapters exist.
+- **refuted_by:** Two-source-of-truth problem — adding a chapter requires editing the thinker frontmatter AND creating the chapter file, and missing-href / missing-chapter-file drift will not surface until production. Astro Content Collections give us typed `getStaticPaths` for free if chapters are their own collection; missing chapters cause a build failure instead of a 404.
+- **learned:** When two things naturally vary at different cadences (the thinker is the long-lived identity; chapters are the units of writing), they belong in separate collections. The per-thinker chapter list is *computed* at build time from the chapter collection, filtered by `thinker_slug`. The thinker page no longer needs to know which chapters exist.
+- **criterion_now:** `chapter_list[]` removed from the `long_read` schema block. Chapters are their own `longReadChapters` Content Collection. ISC-21 verified by chapters rendering at typed routes; ISC-33 verified by the schema change living in git history.
 
 ### 2026-05-25 — Astro scaffold + Komoroske render
 
@@ -190,6 +197,8 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - **ISC-15 (2026-05-25):** Fowler page (`src/content/thinkers/martin-fowler.md`) ported from `~/Camila/ways-of-fowler/` book project (PREFACE bio, CONCEPT_LATTICE six-arc through-line, all named-frame attribution chains). 7 frames spanning the attribution spectrum (1 co-authored with Beck, 2 extended from Opdyke/Beck and Evans, 4 original including the *bliki* meta-move). Live at https://thinkerdistillery.netlify.app/thinkers/martin-fowler/ — curl 200; Interceptor screenshot at 3420×16194px confirmed full §1–§10 render, all four lanes, Komoroske listed as parallel-edge adjacent in §8. Home page now lists both thinkers in alphabetical order.
 - **ISC-17 (2026-05-25):** Cross-thinker `also_held_by` edges fire honestly in both directions. On Komoroske live page: "Coordination headwind ... also held by: Fred Brooks (origin)". On Brooks live page: "Brooks's Law ... also held by: Alex Komoroske (extension)". Verified via `interceptor text` against production URLs. Cross-link is structural (shared global slug), not graph-special-cased — same affordance will fire for any future shared-concept pair. **Strengthened 2026-05-25 by 3-way resilience cluster** — Woods live page: "Adaptive capacity ... also held by: John Allspaw (extension) · Sidney Dekker (extension)"; "New view of human error ... also held by: Sidney Dekker (extension)". Allspaw and Dekker pages cross-link symmetrically. Cross-link audit on built `dist/`: Komoroske 1 edge, Brooks 1, Allspaw 2, Woods 2, Dekker 3, Fowler 0, Dalio 0 — Fowler and Dalio honestly isolated (no shared Frame slugs with other holders).
 - **ISC-16 (2026-05-25):** Dalio page (`src/content/thinkers/ray-dalio.md`) populated with `principles-distiller` thinker_type — 5 named frames (`principles`, `radical-transparency`, `believability-weighted-decision-making`, `idea-meritocracy`, `pain-plus-reflection-equals-progress`). Live at https://thinkerdistillery.netlify.app/thinkers/ray-dalio/ (curl 200). Validated Discipline Gate 1 (node-type uniformity): the type-extension introduces no new node type, only a property-shape variation on the existing `Thinker` schema. §6 imports the principles-distiller move into security-program design (risk frameworks as live revisable artifacts); §7 names the contested Bridgewater operationalization and Taleb critique honestly.
+- **ISC-21 (2026-05-25):** Long-read tier wired. New `longReadChapters` Content Collection (`thinker_slug`, `chapter_number` non-negative, `title`, `summary`, `last_updated`); chapters live at `src/content/long-read/{thinker_slug}/{nn-chapter}.md`. Routes added: `/thinkers/[slug]/long-read` (index — sorted chapter list) and `/thinkers/[slug]/long-read/[chapter]` (chapter render with prev/next nav). Two chapters live in production: Komoroske *Part 1 — The Diagnosis* (4,860 words, full content from `~/Camila/ways-of-komoroske/01-the-diagnosis.md`) and Fowler *Chapter 0 — Preface* (1,160 words, from `~/Camila/ways-of-fowler/PREFACE.md`). §10 on each thinker page now links to the long-read index instead of rendering an inline chapter list; the `chapter_list[]` field was removed from `long_read` schema. All 4 long-read URLs return 200. Interceptor verified editorial-prose typography on the chapter page (serif body, italic blockquote, H2 dividers, prev/next nav).
+- **ISC-33 (2026-05-25):** SCHEMA.md changes tracked in git history. SCHEMA.md updated to reflect the long-read tier schema change (chapter_list removed, two-collection design documented in §2 §10 with rationale). No parallel `acceptance.yaml` / `acceptance.ts` exist anywhere in the tree; verified via `find . -name "acceptance.*"` returning empty. ISA + SCHEMA + Astro Content Collection Zod schemas are the only acceptance harness; the Zod schema does the per-field type/threshold enforcement (≥4 frames, ≥2 limits, ≥3 adjacent), the ISA tracks ISCs, SCHEMA.md is the human-readable spec. All schema deltas (chapter_list removal, longReadChapters addition, Komoroske coordination-headwind attribution change) are in `git log src/content.config.ts SCHEMA.md src/content/thinkers/alex-komoroske.md`.
 
 ---
 

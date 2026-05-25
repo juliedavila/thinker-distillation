@@ -359,8 +359,5 @@ long_read:
     instrument toward that single argument. The book walks the six argument
     arcs (Economic, Vocabulary, Practice, Boundary, Flow, Modeling) plus the
     cartographer's meta-move (bliki as form, editor/platform as practice).
-  chapter_list:
-    - title: 'Part 1 — The Economic Argument'
-      href: /thinkers/martin-fowler/long-read/01-economic
   source_path: ~/Camila/ways-of-fowler/
 ---

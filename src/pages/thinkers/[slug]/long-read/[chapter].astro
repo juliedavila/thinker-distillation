@@ -1,0 +1,203 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import Base from '../../../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const chapters = await getCollection('longReadChapters');
+  const paths = [] as Array<{
+    params: { slug: string; chapter: string };
+    props: { chapterId: string };
+  }>;
+
+  for (const chapter of chapters) {
+    const chapterSlug = chapter.id.split('/').pop()?.replace(/\.md$/, '');
+    if (!chapterSlug) continue;
+    paths.push({
+      params: { slug: chapter.data.thinker_slug, chapter: chapterSlug },
+      props: { chapterId: chapter.id },
+    });
+  }
+
+  return paths;
+}
+
+const { chapterId } = Astro.props;
+const chapter = await getEntry('longReadChapters', chapterId);
+if (!chapter) throw new Error(`Chapter not found: ${chapterId}`);
+
+const thinker = await getEntry('thinkers', chapter.data.thinker_slug);
+if (!thinker) throw new Error(`Thinker not found: ${chapter.data.thinker_slug}`);
+
+const { Content } = await render(chapter);
+
+const siblings = await getCollection(
+  'longReadChapters',
+  (c) => c.data.thinker_slug === chapter.data.thinker_slug,
+);
+siblings.sort((a, b) => a.data.chapter_number - b.data.chapter_number);
+const currentIndex = siblings.findIndex((c) => c.id === chapter.id);
+const prev = currentIndex > 0 ? siblings[currentIndex - 1] : null;
+const next = currentIndex < siblings.length - 1 ? siblings[currentIndex + 1] : null;
+const prevSlug = prev?.id.split('/').pop()?.replace(/\.md$/, '');
+const nextSlug = next?.id.split('/').pop()?.replace(/\.md$/, '');
+---
+
+<Base title={`${chapter.data.title} — ${thinker.data.name}`}>
+  <article class="long-read-chapter">
+    <p class="meta-up">
+      <a href={`/thinkers/${thinker.data.slug}/long-read`}>← {thinker.data.long_read?.title ?? 'Long read'}</a>
+    </p>
+    <h1>{chapter.data.title}</h1>
+    {chapter.data.summary && <p class="chapter-summary">{chapter.data.summary}</p>}
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <nav class="chapter-nav" aria-label="Chapter navigation">
+      {prev && prevSlug ? (
+        <a class="prev" href={`/thinkers/${thinker.data.slug}/long-read/${prevSlug}`}>
+          <span class="dir">← Previous</span>
+          <span class="t">{prev.data.title}</span>
+        </a>
+      ) : <span />}
+      {next && nextSlug ? (
+        <a class="next" href={`/thinkers/${thinker.data.slug}/long-read/${nextSlug}`}>
+          <span class="dir">Next →</span>
+          <span class="t">{next.data.title}</span>
+        </a>
+      ) : <span />}
+    </nav>
+  </article>
+</Base>
+
+<style>
+  .long-read-chapter {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .meta-up {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    margin: 32px 0 16px;
+  }
+  .meta-up a {
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--ink-muted);
+  }
+  .long-read-chapter h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin: 0 0 12px;
+  }
+  .chapter-summary {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin: 0 0 36px;
+    border-left: 3px solid var(--rule);
+    padding-left: 16px;
+  }
+  .prose {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+  .prose :global(h2) {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: -0.01em;
+    margin: 48px 0 16px;
+    padding-bottom: 0;
+    border-bottom: 0;
+    text-transform: none;
+    color: var(--ink);
+  }
+  .prose :global(h3) {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin: 32px 0 12px;
+  }
+  .prose :global(p) {
+    max-width: 64ch;
+    margin: 0 0 18px;
+  }
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--rule);
+    padding-left: 18px;
+    margin: 24px 0;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+  .prose :global(a) {
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+  }
+  .prose :global(strong) {
+    font-weight: 600;
+  }
+  .prose :global(em) {
+    font-style: italic;
+  }
+  .prose :global(code) {
+    font-family: var(--mono);
+    font-size: 0.92em;
+    background: var(--paper-sunk);
+    padding: 1px 6px;
+    border-radius: 2px;
+  }
+  .prose :global(hr) {
+    border: 0;
+    border-top: 1px solid var(--rule);
+    margin: 48px 0;
+  }
+  .prose :global(ul),
+  .prose :global(ol) {
+    padding-left: 24px;
+  }
+  .prose :global(li) {
+    margin-bottom: 8px;
+  }
+  .chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 64px 0 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+  .chapter-nav a {
+    display: block;
+    font-family: var(--sans);
+    color: var(--ink);
+    text-decoration: none;
+    max-width: 45%;
+  }
+  .chapter-nav .next {
+    text-align: right;
+  }
+  .chapter-nav .dir {
+    display: block;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+    margin-bottom: 4px;
+  }
+  .chapter-nav .t {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+</style>

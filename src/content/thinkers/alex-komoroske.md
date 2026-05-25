@@ -275,8 +275,5 @@ long_read:
     Schelling point), the prescription (gardening conditions, focal-point
     engineering, distributed decision rights), and the limits (regulated
     environments, adversarial actors, jargon collapse).
-  chapter_list:
-    - title: 'Part 1 — The Diagnosis'
-      href: /thinkers/alex-komoroske/long-read/01-diagnosis
   source_path: ~/Camila/ways-of-komoroske/
 ---

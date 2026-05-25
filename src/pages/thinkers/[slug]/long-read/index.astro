@@ -1,0 +1,109 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const thinkers = await getCollection('thinkers', (t) => t.data.has_long_read);
+  return thinkers.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const t = entry.data;
+
+const chapters = await getCollection(
+  'longReadChapters',
+  (c) => c.data.thinker_slug === t.slug,
+);
+chapters.sort((a, b) => a.data.chapter_number - b.data.chapter_number);
+---
+
+<Base title={`${t.long_read?.title ?? 'Long read'} — ${t.name}`}>
+  <section class="hero">
+    <p class="meta-up">
+      <a href={`/thinkers/${t.slug}`}>← {t.name}</a>
+    </p>
+    <h1>{t.long_read?.title ?? 'Long read'}</h1>
+    {t.long_read?.summary && <p class="tagline">{t.long_read.summary}</p>}
+  </section>
+
+  <section>
+    <h2 class="section-h">Chapters</h2>
+    {chapters.length === 0 ? (
+      <p class="empty-note">No chapters published yet. Working files at <code>{t.long_read?.source_path}</code>.</p>
+    ) : (
+      <ol class="chapter-list">
+        {chapters.map((c) => {
+          const chapterSlug = c.id.split('/').pop()?.replace(/\.md$/, '');
+          return (
+            <li>
+              <a href={`/thinkers/${t.slug}/long-read/${chapterSlug}`}>
+                <span class="chapter-title">{c.data.title}</span>
+                {c.data.summary && <span class="chapter-summary">{c.data.summary}</span>}
+              </a>
+            </li>
+          );
+        })}
+      </ol>
+    )}
+  </section>
+</Base>
+
+<style>
+  .meta-up {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    margin: 0 0 16px;
+  }
+  .meta-up a {
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--ink-muted);
+  }
+  .chapter-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .chapter-list li {
+    border-bottom: 1px solid var(--rule);
+  }
+  .chapter-list li:last-child {
+    border-bottom: 0;
+  }
+  .chapter-list a {
+    display: block;
+    padding: 22px 0;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .chapter-list .chapter-title {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+  }
+  .chapter-list .chapter-summary {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .empty-note {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+  }
+  .empty-note code {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    background: var(--paper-sunk);
+    padding: 1px 6px;
+    border-radius: 2px;
+  }
+</style>

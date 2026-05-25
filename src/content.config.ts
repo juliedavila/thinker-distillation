@@ -86,9 +86,6 @@ const adjacentThinker = z.object({
 const longRead = z.object({
   title: z.string(),
   summary: z.string(),
-  chapter_list: z
-    .array(z.object({ title: z.string(), href: z.string() }))
-    .optional(),
   source_path: z.string().optional(),
 });
 
@@ -140,4 +137,15 @@ const thinkers = defineCollection({
   }),
 });
 
-export const collections = { thinkers };
+const longReadChapters = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.md', base: './src/content/long-read' }),
+  schema: z.object({
+    thinker_slug: z.string().regex(/^[a-z0-9-]+$/),
+    chapter_number: z.number().int().nonnegative(),
+    title: z.string(),
+    summary: z.string().optional(),
+    last_updated: z.coerce.date(),
+  }),
+});
+
+export const collections = { thinkers, longReadChapters };

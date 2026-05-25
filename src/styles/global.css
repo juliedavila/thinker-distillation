@@ -508,10 +508,17 @@ blockquote.what-x-says cite {
   max-width: 60ch;
 }
 
-.long-read ol {
-  padding-left: 20px;
+.long-read .long-read-cta {
+  margin: 14px 0 0;
+}
+
+.long-read .long-read-cta a {
   font-family: var(--sans);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink-soft);
 }
 
 /* Index */

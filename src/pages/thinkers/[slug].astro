@@ -182,13 +182,9 @@ const holdersIndex = await buildConceptHoldersIndex();
         <div class="long-read">
           <p class="title">{t.long_read.title}</p>
           <p class="summary">{t.long_read.summary}</p>
-          {t.long_read.chapter_list && t.long_read.chapter_list.length > 0 && (
-            <ol>
-              {t.long_read.chapter_list.map((c) => (
-                <li><a href={c.href}>{c.title}</a></li>
-              ))}
-            </ol>
-          )}
+          <p class="long-read-cta">
+            <a href={`/thinkers/${t.slug}/long-read`}>Read the long version →</a>
+          </p>
         </div>
       </section>
     )}

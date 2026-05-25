@@ -1,9 +1,9 @@
 ---
 project: thinker-distillation
-effort: E3
-phase: complete
-progress: 70/70
-iteration: v2-concept-pages-coordination-headwind
+effort: E4
+phase: execute
+progress: 86/175
+iteration: prose-qa-audit-2026-05-25
 mode: project
 started: 2026-05-25
 updated: 2026-05-25
@@ -174,6 +174,167 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - [x] ISC-69: SCHEMA.md `§9 Concept Pages` section added with frontmatter spec, page-section order, cross-linking contract, and 4 new anti-criteria (Anti-7..10) extending §7
 - [x] ISC-70: Two Changelog entries in canonical conjecture/refutation/learning format — "Concept pages: derived holders vs authored editorial" and "Julie's reading is a scaffolded slot, not a Camila draft"
 
+### Audit iteration — prose-QA against Writing Style System (2026-05-25)
+
+**Intake / rubric:**
+
+- [x] ISC-71: All 7 guideline files Read in full this session
+- [x] ISC-72: Audit rubric internalized — documented as a table in `audit-prose-2026-05-25.md` §Rubric
+- [x] ISC-73: Severity scale defined and documented in `audit-prose-2026-05-25.md` §Severity scale — STRUCTURAL / LOCAL / NIT / KEEP
+- [x] ISC-74: In-scope inventory frozen (10 pieces) and out-of-scope inventory explicit per `audit-prose-2026-05-25.md` §Scope
+
+**All 10 in-scope prose files read:**
+
+- [x] ISC-75: `alex-komoroske.md` Read in full this session
+- [x] ISC-76: `david-woods.md` Read in full this session
+- [x] ISC-77: `fred-brooks.md` Read in full this session
+- [x] ISC-78: `john-allspaw.md` Read in full this session
+- [x] ISC-79: `martin-fowler.md` Read in full this session
+- [x] ISC-80: `ray-dalio.md` Read in full this session
+- [x] ISC-81: `sidney-dekker.md` Read in full this session
+- [x] ISC-82: `coordination-headwind.md` Read in full this session
+- [x] ISC-83: `alex-komoroske/01-the-diagnosis.md` Read in full this session
+- [x] ISC-84: `martin-fowler/00-preface.md` Read in full this session
+- [x] ISC-85: Site chrome — Base.astro tagline + index.astro hero Read during OBSERVE phase
+
+**Per-piece findings (Komoroske):**
+
+- [ ] ISC-86: Komoroske voice alignment graded against WritingStyle (positive patterns observed; anti-patterns flagged with quote + line)
+- [ ] ISC-87: Komoroske rhetorical structure graded against RhetoricalStyle (argumentation arc, opening hook, callbacks, closure)
+- [ ] ISC-88: Komoroske screened against AiWritingPatterns anti-patterns (lecture headers, list-of-three, hedge stacks, paragraph-of-paragraphs, etc.) — each instance quoted with line
+- [ ] ISC-89: Komoroske doctrine register identified (Mode A spine / Mode B handle / Mode C voice) and coherence check across §6 editorial fields
+- [ ] ISC-90: Komoroske persuasion arc graded against PersuasionArchitecture (Track A vs Track B; currency-translation moves; named patterns surfaced)
+- [ ] ISC-91: Komoroske private/public discipline check — nothing surfaces that belongs in private practice
+
+**Per-piece findings (Brooks):**
+
+- [ ] ISC-92: Brooks voice alignment graded against WritingStyle
+- [ ] ISC-93: Brooks rhetorical structure graded against RhetoricalStyle
+- [ ] ISC-94: Brooks screened against AiWritingPatterns anti-patterns
+- [ ] ISC-95: Brooks doctrine register identified + coherence check
+- [ ] ISC-96: Brooks persuasion arc graded against PersuasionArchitecture
+- [ ] ISC-97: Brooks private/public discipline check
+
+**Per-piece findings (Fowler):**
+
+- [ ] ISC-98: Fowler voice alignment graded against WritingStyle
+- [ ] ISC-99: Fowler rhetorical structure graded against RhetoricalStyle
+- [ ] ISC-100: Fowler screened against AiWritingPatterns anti-patterns
+- [ ] ISC-101: Fowler doctrine register identified + coherence check
+- [ ] ISC-102: Fowler persuasion arc graded against PersuasionArchitecture
+- [ ] ISC-103: Fowler private/public discipline check
+
+**Per-piece findings (Dalio):**
+
+- [ ] ISC-104: Dalio voice alignment graded against WritingStyle
+- [ ] ISC-105: Dalio rhetorical structure graded against RhetoricalStyle
+- [ ] ISC-106: Dalio screened against AiWritingPatterns anti-patterns
+- [ ] ISC-107: Dalio doctrine register identified + coherence check (`principles-distiller` type — does the audit-content match the type's claim?)
+- [ ] ISC-108: Dalio persuasion arc graded against PersuasionArchitecture
+- [ ] ISC-109: Dalio private/public discipline check
+
+**Per-piece findings (Allspaw):**
+
+- [ ] ISC-110: Allspaw voice alignment graded against WritingStyle
+- [ ] ISC-111: Allspaw rhetorical structure graded against RhetoricalStyle
+- [ ] ISC-112: Allspaw screened against AiWritingPatterns anti-patterns
+- [ ] ISC-113: Allspaw doctrine register identified + coherence check
+- [ ] ISC-114: Allspaw persuasion arc graded against PersuasionArchitecture
+- [ ] ISC-115: Allspaw private/public discipline check
+
+**Per-piece findings (Woods):**
+
+- [ ] ISC-116: Woods voice alignment graded against WritingStyle
+- [ ] ISC-117: Woods rhetorical structure graded against RhetoricalStyle
+- [ ] ISC-118: Woods screened against AiWritingPatterns anti-patterns
+- [ ] ISC-119: Woods doctrine register identified + coherence check
+- [ ] ISC-120: Woods persuasion arc graded against PersuasionArchitecture
+- [ ] ISC-121: Woods private/public discipline check
+
+**Per-piece findings (Dekker):**
+
+- [ ] ISC-122: Dekker voice alignment graded against WritingStyle
+- [ ] ISC-123: Dekker rhetorical structure graded against RhetoricalStyle
+- [ ] ISC-124: Dekker screened against AiWritingPatterns anti-patterns
+- [ ] ISC-125: Dekker doctrine register identified + coherence check
+- [ ] ISC-126: Dekker persuasion arc graded against PersuasionArchitecture
+- [ ] ISC-127: Dekker private/public discipline check
+
+**Per-piece findings (coordination-headwind concept page):**
+
+- [ ] ISC-128: Concept-page hero + gloss voice alignment graded against WritingStyle
+- [ ] ISC-129: Concept-page genealogy/holders prose voice graded (these are partly derived from frame entries; check the surrounding editorial framing only)
+- [ ] ISC-130: Concept-page limits + still_load_bearing_despite graded against WritingStyle + RhetoricalStyle
+- [ ] ISC-131: Concept-page adjacent_concepts edge_labels screened against AiWritingPatterns anti-patterns
+- [ ] ISC-132: Concept-page doctrine register identified (likely Mode B handle for a concept-level frame)
+- [ ] ISC-133: Concept-page Casey-test (julie_reading slot empty — does the empty-state copy itself meet the guidelines?)
+
+**Per-piece findings (Komoroske long-read ch01 — "The Diagnosis"):**
+
+- [ ] ISC-134: Komoroske ch01 voice alignment graded against WritingStyle
+- [ ] ISC-135: Komoroske ch01 long-form craft graded against LongFormCraft (opening, throughline, signposting, closing, paragraph rhythm)
+- [ ] ISC-136: Komoroske ch01 rhetorical structure graded against RhetoricalStyle
+- [ ] ISC-137: Komoroske ch01 screened against AiWritingPatterns anti-patterns
+- [ ] ISC-138: Komoroske ch01 doctrine register identified + coherence check across the chapter
+- [ ] ISC-139: Komoroske ch01 persuasion arc graded against PersuasionArchitecture
+
+**Per-piece findings (Fowler long-read — preface):**
+
+- [ ] ISC-140: Fowler preface voice alignment graded against WritingStyle
+- [ ] ISC-141: Fowler preface long-form craft graded against LongFormCraft (a preface is a specific shape — opening + frame-setting + handoff to ch01)
+- [ ] ISC-142: Fowler preface rhetorical structure graded against RhetoricalStyle
+- [ ] ISC-143: Fowler preface screened against AiWritingPatterns anti-patterns
+- [ ] ISC-144: Fowler preface doctrine register identified + coherence check
+- [ ] ISC-145: Fowler preface persuasion arc graded against PersuasionArchitecture
+
+**Per-piece findings (site chrome):**
+
+- [ ] ISC-146: Site tagline ("Curated readings of practitioners whose ideas are worth metabolizing.") graded against WritingStyle + AiWritingPatterns
+- [ ] ISC-147: Index hero copy ("Per-practitioner readings of the people whose vocabularies the field now uses to think.") graded against WritingStyle + AiWritingPatterns
+
+**Cross-cutting pattern synthesis:**
+
+- [ ] ISC-148: Site-wide voice patterns IDed — what's working consistently across the 10 pieces (named, with quote evidence)
+- [ ] ISC-149: Site-wide AI-tell patterns IDed — any anti-pattern that appears in ≥3 pieces (named, with all quote citations)
+- [ ] ISC-150: Site-wide doctrine-register coherence assessed — does the site read as one voice operating across Modes A/B/C, or does register fragment?
+- [ ] ISC-151: Site-wide persuasion arc consistency assessed — does each piece earn the same kind of trust, or do approaches collide?
+- [ ] ISC-152: Site-wide structural gaps IDed — fields under-utilized; sections that should have closing beats but don't; cross-references that don't fire
+- [ ] ISC-153: Asymmetry findings IDed — pieces that lag others significantly (where one or two thinker pages drag the site's average down)
+- [ ] ISC-154: ≥3 cross-cutting patterns surfaced (target: 5-8; floor: 3)
+- [ ] ISC-155: For each cross-cutting pattern: severity tagged, disposition proposed (FIX / DEFER / ACCEPT), Julie's review framing explicit
+
+**Output deliverable:**
+
+- [x] ISC-156: `audit-prose-2026-05-25.md` file exists at project root (scaffolded with §1 site-wide findings populated; §2-§5 pending next session)
+- [ ] ISC-157: Audit file contains: scope, methodology, severity scale, per-piece findings, cross-cutting patterns, recommended dispositions
+- [ ] ISC-158: Audit file's per-piece findings are organized by piece (not by guideline) so Julie can read one thinker at a time
+- [ ] ISC-159: Audit file's cross-cutting synthesis is at the top (executive summary pattern) — Julie reads patterns first, then drills into pieces
+- [ ] ISC-160: Audit file uses Julie-voice register itself (not generic-AI register) — applies the same guidelines to itself
+- [ ] ISC-161: Audit file includes ≥1 unambiguous "this prose is working — keep doing this" callout per piece (not just flaw-list)
+- [ ] ISC-162: Audit file ends with a one-paragraph editorial summary in Camila-voice (not bullet list)
+- [ ] ISC-163: Audit file ≤6000 words (audit should be scannable, not exhaustive)
+
+**Anti-criteria:**
+
+- [ ] ISC-164: Anti: Audit must NOT recommend edits be applied without Julie's approval (writing partner discipline; per ISA Decisions earlier)
+- [ ] ISC-165: Anti: Audit must NOT score with stars/grades/numbers (per WritingStyle / RhetoricalStyle — categorical findings only; no false-precision rubric scoring)
+- [ ] ISC-166: Anti: Audit must NOT recommend rewrites for register choices that are *intentional* per the thinker's character (e.g., Dalio's principles-distiller mode warrants different register than Komoroske's essayistic mode)
+- [ ] ISC-167: Anti: Audit must NOT cite guideline rules without quoting the specific guideline file + section (every flag needs an anchor)
+- [ ] ISC-168: Anti: Audit must NOT exceed scope — no SANS, LinkedIn, resume commentary leaks in
+
+**Antecedents:**
+
+- [ ] ISC-169: Antecedent: Writing Style System Buildout at `phase: complete` (verified via WS-buildout ISA frontmatter)
+- [ ] ISC-170: Antecedent: All 7 guideline files exist with substantive content (≥6KB each; verified via `ls -la`)
+
+**Process / artifacts:**
+
+- [ ] ISC-171: ISA Decisions entry logs audit iteration kickoff with methodology + scope
+- [ ] ISC-172: ISA Changelog entry in C/R/L format if structural learning emerges during audit (else marked N/A)
+- [ ] ISC-173: Findings file committed + pushed to GitHub
+- [ ] ISC-174: Per-thinker piece findings include `whatworks:` block AND `whatlands_off:` block — both required (no piece is allowed to be all-praise OR all-criticism)
+- [ ] ISC-175: Advisor call at VERIFY-stage before declaring iteration complete (Rule 2)
+
 ## Test Strategy
 
 | ISC range | Type | Check | Tool |
@@ -237,6 +398,8 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - **2026-05-25 — Advisor flagged §4 cross-link affordance design questions, judged acceptable for v1 of concept-page surface.** Current pattern: single "Open concept page →" link in §4 Named Frames, only when concept page exists. Alternatives advisor surfaced: (a) inline chip at first concept-occurrence in body text + footer "Concepts this thinker touches" block (higher discoverability, more work). (b) Round-trip provenance — concept page linking back to the *specific paragraph* on the thinker page that earned the holder slot (deeper provenance, requires anchor-id discipline on thinker pages). Both deferred to v3+ — current §4 placement is schema-coherent because §4 IS the canonical cross-reference section on thinker pages. Re-evaluate if reader testing shows the cross-link is being missed.
 - **2026-05-25 — Advisor meta-flagged auto-state pulled wrong ISA (writing-style-system-buildout instead of thinker-distillation).** Known issue — Algorithm v6.2.x deferred isa-utils discovery for `<project>/ISA.md` paths. Does not invalidate the substantive review (advisor switched to first-principles review). Track-but-don't-block.
 - **2026-05-25 — Next iteration locked: holistic prose-QA audit of Thinker Distillery published writing against the 7-file Writing Style System.** Scope: per-thinker editorial fields (thirty_second_take, background, why_they_matter_as_a_thinker, thesis, named_frames glosses, body_of_work editorial_notes, what_i_take, where_i_extend, limits, still_load_bearing_despite, adjacent_thinkers edge_labels, further_in) across all 7 live thinkers + concept-page prose on `coordination-headwind` (excluding the empty `julie_reading` slot) + the two long-read chapters (Komoroske ch01, Fowler preface) + site chrome (Base.astro tagline, index.astro hero). Out of scope: SANS keynote (`~/Camila/Sans.md`), LinkedIn waves, resume, conference bio. Guidelines corpus: all 7 files at `~/.claude/PAI/USER/` (WritingStyle, RhetoricalStyle, AiWritingPatterns, LongFormCraft, DoctrineRegister, PersuasionArchitecture, PrivateWritingPractice). Output shape to be decided at next-iteration OBSERVE — likely per-piece findings + cross-cutting pattern synthesis, with reformat-or-flag dispositions Julie approves before any edits land.
+- **2026-05-25 — Audit iteration started; partial-completion save point taken at end of intake + mechanical scan.** Classifier fail-safed to E3; escalated to E4 via conversation-context override (audit of 10 public-artifact prose pieces against 7 guideline files is doctrinally E4-shaped, not E3). All 7 guidelines + all 10 prose pieces Read in full this session. Mechanical scan produced concrete site-wide findings: 237 em-dash instances across all 10 files (Hard No violation, top per-file count is fred-brooks.md at 38, lowest is the long-read chapter at 2); 6 `leverage` instances (mixed disposition — 3 rewrite, 2 KEEP-as-cited, 1 per-Julie); 1 `navigate` metaphorical use; 1 `not just` Hard No construction in Dekker. Audit file scaffolded at project root with §1 findings populated; §2 per-piece deep-dive, §3 cross-cutting synthesis, §4 dispositions, §5 closing editorial paragraph all explicitly marked PENDING for next session. Per-piece ISCs (86-147) and synthesis/output ISCs (148-175) intentionally left `[ ]` so next-session resume is unambiguous about pickup point.
+- **2026-05-25 — Save-point decision: clear context after this commit; next session opens by reading `audit-prose-2026-05-25.md` top-to-bottom and resuming at §2 per-piece deep-dive.** Rationale: keeping 7 guideline files + 10 prose pieces + extensive analytical context in-window for the remainder of the audit would consume budget Julie can spend better in a fresh session. The audit file is the durable system-of-record for what's been found; the ISA links it. Resume is mechanical from the file.
 
 ## Changelog
 

@@ -1,8 +1,9 @@
 ---
 project: thinker-distillation
 effort: E3
-phase: build
-progress: 33/33
+phase: execute
+progress: 33/70
+iteration: v2-concept-pages-coordination-headwind
 mode: project
 started: 2026-05-25
 updated: 2026-05-25
@@ -107,6 +108,72 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 
 - [x] ISC-33: SCHEMA.md changes tracked in git history (no parallel `acceptance.yaml` / `acceptance.ts` — ISA + SCHEMA are the harness)
 
+### v2 iteration — first concept page (coordination-headwind)
+
+**Schema / data layer:**
+
+- [x] ISC-34: `Concept` Content Collection defined in `src/content.config.ts` with Zod schema
+- [x] ISC-35: Concept schema enforces required: `slug` (kebab-case regex), `display_name`, `one_line_gloss`, `last_updated`
+- [x] ISC-36: Concept schema allows optional: `julie_reading`, `julie_reading_prompt`, `limits` (≥2 when present), `still_load_bearing_despite`, `adjacent_concepts` (≥3 when present), `working_uses`, `long_read`
+- [x] ISC-37: `src/content/concepts/coordination-headwind.md` exists (Zod validation deferred to ISC-53 `bun build`)
+- [x] ISC-38: `coordination-headwind.md` has `display_name: "Coordination Headwind"` and a concept-level one-line gloss (not borrowed verbatim from Brooks or Komoroske)
+
+**Graph derivation:**
+
+- [x] ISC-39: `graph.ts` exports `buildConceptHoldersWithAttribution()` returning `Map<concept_slug, ConceptHolder[]>` with frame_display_name + frame_gloss preserved
+- [x] ISC-40: `coordination-headwind` resolves to 2 holders (Brooks + Komoroske) — confirmed by `rg` over `dist/concepts/coordination-headwind/index.html` showing both names under §A Genealogy and §B Holders
+- [x] ISC-41: Each holder entry preserves `attribution_kind` from `frame.attribution_kind` directly (verified by Read of graph.ts:96-102)
+- [x] ISC-42: `buildConceptPageIndex()` exported as `Set<concept_slug>` for thinker-page consumption (renamed from getConceptHasPage for collection-style match)
+
+**Concept page template:**
+
+- [x] ISC-43: `src/pages/concepts/[slug].astro` exists with `getStaticPaths` over all concept entries
+- [x] ISC-44: Concept page renders hero block: `display_name` + `one_line_gloss` (concept-hero CSS landed at global.css:577)
+- [x] ISC-45: Concept page renders §A Genealogy — sorted via `ATTRIBUTION_ORDER` in graph.ts (original first, then extended, popularized, etc.)
+- [x] ISC-46: Concept page renders §B Holders — each thinker `<a href={`/thinkers/${h.thinker_slug}`}>` with attribution_kind tag and frame name (holders-grid CSS at global.css:651)
+- [x] ISC-47: Concept page renders §C Julie's reading — julie-lane.concept-julie with empty-state slot when `julie_reading` empty, dashed border + scaffolded prompt details
+- [x] ISC-48: Concept page renders §D Where This Breaks — limit-card pattern reused from thinker page; `still_load_bearing_despite` closing-beat conditional
+- [x] ISC-49: Concept page renders §E Adjacent concepts — `<a>` when target concept exists, `<span class="pending-concept">` (dotted-underline) otherwise
+
+**Cross-linking (thinker page → concept page):**
+
+- [x] ISC-50: Thinker page §4 conditionally renders `<a class="concept-page-link" href={`/concepts/${frame.concept_slug}`}>Open concept page →</a>` when `hasConceptPage` (additive — preserves v1 also-held inline cluster)
+- [x] ISC-51: Concept-page link is gated on `conceptPages.has(frame.concept_slug)` — when no concept file exists, the link is omitted entirely (v1 behavior preserved exactly)
+- [x] ISC-52: Both Brooks's and Komoroske's rendered HTML contain `<a class="concept-page-link" href="/concepts/coordination-headwind">` — confirmed via `rg` over both `dist/thinkers/{fred-brooks,alex-komoroske}/index.html`; the other 5 thinker pages correctly omit the link
+
+**Build / deploy / verification:**
+
+- [x] ISC-53: `bun build` succeeds with zero type errors — "13 page(s) built in 1.03s, Complete!"
+- [x] ISC-54: `dist/concepts/coordination-headwind/index.html` exists after build (confirmed in build output `generating static routes`)
+- [ ] ISC-55: Live URL `/concepts/coordination-headwind` returns 200 via curl after Netlify deploy
+- [ ] ISC-56: Interceptor screenshot of live concept page shows hero + Genealogy + Holders lanes populated
+- [ ] ISC-57: Interceptor screenshot of Brooks's thinker page shows §4 link to `/concepts/coordination-headwind`
+
+**Content quality (per-concept analogs to ISC-23..27):**
+
+- [x] ISC-58: `julie_reading_prompt` block present in `coordination-headwind.md` frontmatter; renders as scaffolded prompt under empty-slot `<details>` element
+- [x] ISC-59: `julie_reading` schema field is `.optional()`; page renders cleanly with empty-slot lane visible (rg confirmed `Awaiting Julie` in rendered HTML)
+- [x] ISC-60: Genealogy ordering — `kind-original` element appears BEFORE `kind-extended` in rendered HTML (confirmed by rg position; sort enforced by `ATTRIBUTION_ORDER` in graph.ts:30-38)
+- [x] ISC-61: Casey-test — empty Julie-reading slot is rendered as "Awaiting Julie's editorial reading" empty-state, NOT as falsely-attributed editorial content; no claim made on her behalf
+- [x] ISC-62: 4 adjacent concept slugs in `coordination-headwind.md` — `conceptual-integrity`, `slime-mold-organization`, `second-system-effect`, `adaptive-capacity` (exceeds floor; all 4 render as `pending-concept` since no concept pages exist yet — graceful pre-population works)
+
+**Anti-criteria (v2 surface):**
+
+- [x] ISC-63: Anti: Rendered HTML shows `kind-original` AND `kind-extended` (diverse attribution_kinds preserved); not collapsed
+- [x] ISC-64: Anti: `Concepts` Content Collection is an AUTHORING surface for editorial fields on the Frame node — holders/genealogy are derived from existing thinker frontmatter; no new graph node type; ISC-29 invariant held
+- [x] ISC-65: Anti: No `inclusion_rationale` field in concept schema; no curatorial-justification rendered; backstage discipline preserved at concept layer
+- [x] ISC-66: Anti: `julie_reading` is empty in `coordination-headwind.md`; only `julie_reading_prompt` (scaffolded prompt) was authored by Camila. Working_uses initially auto-drafted then stripped mid-EXECUTE on the same principle — Julie writes operational examples herself
+
+**Antecedent:**
+
+- [x] ISC-67: Antecedent pre-cleared at OBSERVE — `rg -n "coordination-headwind" src/content/thinkers/` returned matches in both `alex-komoroske.md:62` and `fred-brooks.md:74` before any template work began
+
+**Process / artifacts:**
+
+- [ ] ISC-68: ISA `## Decisions` logs v2-iteration kickoff with concept-page design decisions (julie_reading as own lane; holders derived from thinker frontmatter; concept page IS the Frame render; same node-type invariant)
+- [ ] ISC-69: SCHEMA.md updated to reflect concept-page locked design (synced with code per ISC-33 working norm)
+- [ ] ISC-70: ISA `## Changelog` entry in conjecture/refutation/learning format when this iteration's structural learning crystallizes (or marked N/A if no structural learning surfaces)
+
 ## Test Strategy
 
 | ISC range | Type | Check | Tool |
@@ -118,6 +185,15 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 | ISC-23..27 | content | Per-thinker content thresholds | Read frontmatter + content |
 | ISC-28..32 | anti/ante | Anti-criteria visibly enforced | Read SCHEMA + Interceptor |
 | ISC-33 | process | Git history; no parallel acceptance docs | Bash `git log` + `find` |
+| ISC-34..38 | schema/data | Concept collection + first concept file passes Zod | Read content.config.ts + `bun build` |
+| ISC-39..42 | graph | Concept derivation helpers exist and resolve correctly | Read graph.ts + synthetic input via `bun run` |
+| ISC-43..49 | render | Concept page template covers required lanes | Interceptor screenshot |
+| ISC-50..52 | cross-link | Thinker→concept links wire up when target exists | Interceptor + `rg` over rendered HTML |
+| ISC-53..57 | build/deploy | Astro build clean, deployed page returns 200, screenshots match | Bash, curl, Interceptor |
+| ISC-58..62 | content | Concept page meets per-concept content floors | Read frontmatter + Casey-test inspection |
+| ISC-63..66 | anti | v2 invariants visibly held | Read SCHEMA + Interceptor + grep |
+| ISC-67 | antecedent | Both thinkers name the concept_slug | `rg coordination-headwind src/content/thinkers/` |
+| ISC-68..70 | process | Decisions + SCHEMA + Changelog updated | Read ISA + SCHEMA + git diff |
 
 ## Features
 
@@ -132,6 +208,14 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 | site-chrome | ISC-19..22 | astro-scaffold | yes with renders |
 | deploy | ISC-11..13, 22 | astro-scaffold | no |
 | about-page (DEFERRED — before-promotion gate) | not in v1 launch criteria | — | yes (deferred) |
+| concept-schema | ISC-34..38 | astro-scaffold | no |
+| concept-graph-derivation | ISC-39..42 | concept-schema | no |
+| concept-page-template | ISC-43..49 | concept-graph-derivation | no |
+| concept-cross-linking | ISC-50..52 | concept-page-template + concept-schema | no |
+| concept-deploy | ISC-53..57 | all of above | no |
+| concept-content (coordination-headwind) | ISC-58..62, ISC-67 | concept-schema | yes (per-concept future) |
+| concept-anti-invariants | ISC-63..66 | concept-page-template | continuous |
+| schema-changelog-sync | ISC-68..70 | concept-deploy | no |
 
 ## Decisions
 
@@ -144,6 +228,10 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - **2026-05-25 — v1 roster expanded to 7.** Resilience-engineering cluster shipped: Allspaw (mixed), Woods (mixed), Dekker (book-author), plus Dalio (principles-distiller — first exercise of the TEI type-extension pattern). All four cleared the inclusion filter cleanly (≥2yr consistent body, vocabulary practitioners actively use). Cross-thinker edges now form a true graph cluster: `adaptive-capacity` held by Woods (origin), Allspaw (extension), Dekker (extension) — 3-way mesh. `new-view-of-human-error` held by Woods + Dekker. `work-as-imagined-vs-work-as-done` held by Allspaw + Dekker (both extended from Hollnagel — Hollnagel not yet on roster but referenced as primary_author honestly). Fowler + Dalio remain graph-isolated by concept (no shared Frame slugs); they connect through §8 editorial edges in voice only. The Dalio `principles-distiller` thinker_type drove no schema change — Discipline Gate 1 (node-type uniformity) held.
 - **2026-05-25 — Astro scaffold + Komoroske render shipped locally.** Astro 6.3.7 (current latest), Content Collections with strict Zod schema, single-page template covering §1–§10, Path-2 visual lanes verified via Interceptor. Komoroske is the only thinker rendered; cross-thinker `also_held_by` affordance code is in place but lights up empty until a second thinker exists (Fowler is next, source material at `~/Camila/ways-of-fowler/`).
 - **2026-05-25 — Node version note.** Astro 6.x requires node ≥v22; nvm default is v20.11.0; system node is v26 at `/opt/homebrew/bin/node`. All `bun` invocations against the Astro tree should prefix `PATH="/opt/homebrew/bin:$PATH"`. Long-term option (deferred): set system node as nvm default, or pin v22+ via `.nvmrc` in the project root.
+- **2026-05-25 — v2 concept-page iteration kicked off. Coordination-headwind chosen as the seed concept.** Rationale: highest-density cross-thinker edge on the site (Brooks `original` 1975, Komoroske `extended` to all coordination work). Resilience cluster (Allspaw/Woods/Dekker) does NOT yet hold `coordination-headwind` directly — they hold `adaptive-capacity`/`new-view-of-human-error` — so the seed concept exercises the simplest meaningful genealogy (2 holders, distinct attribution_kinds) without dragging the resilience cluster into the first concept page. Future concept pages can grow the holder set.
+- **2026-05-25 — Concept page IS the Frame node render — no new node type introduced.** ISC-29 invariant from v1 extends to ISC-64 in v2. A `Concept` Content Collection is the *authoring surface* for editorial content (Julie's reading, limits, adjacent concepts), but the underlying graph still has only Thinker and Frame nodes. Holders are *derived* from thinker frontmatter, not authored on the concept file — single source of truth for genealogy preserved.
+- **2026-05-25 — Julie's editorial reading on concept pages is a scaffolded slot, not a draft.** Per `feedback_feminine_energy_writing.md` + DA-identity collaboration rules: Camila scaffolds the lane (header, prompt block, julie-tint styling, placeholder) and Julie writes the content herself. Anti-criterion ISC-66 binds this — Camila must NOT author `julie_reading` content on `coordination-headwind.md`. The page renders cleanly with the slot empty (ISC-59).
+- **2026-05-25 — Delegation under-floor at E3 with show-your-math.** Forge skipped per `feedback_avoid_kimi_codex.md` (Julie's standing preference: Claude-family inline for E3+ coding). Council not invoked because this is design+implementation, not exec prose iteration. Single-author Astro work with whole-project context already loaded — ISA Skill is the only natural delegation. Advisor call deferred to VERIFY-stage per Rule 2 binding.
 
 ## Changelog
 

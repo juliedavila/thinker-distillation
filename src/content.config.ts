@@ -148,4 +148,35 @@ const longReadChapters = defineCollection({
   }),
 });
 
-export const collections = { thinkers, longReadChapters };
+const adjacentConcept = z.object({
+  target_slug: z.string().regex(/^[a-z0-9-]+$/, 'kebab-case slug'),
+  display_name: z.string(),
+  edge_label: z.string(),
+});
+
+const concepts = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.md', base: './src/content/concepts' }),
+  schema: z.object({
+    slug: z.string().regex(/^[a-z0-9-]+$/),
+    display_name: z.string(),
+    one_line_gloss: z.string(),
+    last_updated: z.coerce.date(),
+
+    julie_reading: z.string().optional(),
+    julie_reading_prompt: z.string().optional(),
+
+    limits: z.array(limit).min(2, 'At least 2 limits per ISC-36 floor').optional(),
+    still_load_bearing_despite: z.string().optional(),
+
+    adjacent_concepts: z
+      .array(adjacentConcept)
+      .min(3, 'At least 3 adjacent concepts per ISC-36 floor')
+      .optional(),
+
+    working_uses: z.array(z.string()).optional(),
+
+    long_read: longRead.optional(),
+  }),
+});
+
+export const collections = { thinkers, longReadChapters, concepts };

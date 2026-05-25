@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { buildConceptHoldersIndex, alsoHeldByFor } from '../../lib/graph';
+import { buildConceptHoldersIndex, alsoHeldByFor, buildConceptPageIndex } from '../../lib/graph';
 
 export async function getStaticPaths() {
   const thinkers = await getCollection('thinkers');
@@ -16,6 +16,7 @@ const t = entry.data;
 const { Content } = await render(entry);
 
 const holdersIndex = await buildConceptHoldersIndex();
+const conceptPages = await buildConceptPageIndex();
 ---
 
 <Base title={`${t.name} — Thinker Distillation`} description={t.tagline}>
@@ -50,6 +51,7 @@ const holdersIndex = await buildConceptHoldersIndex();
       <h2 id="frames" class="section-h">Named Frames</h2>
       {t.named_frames.map((frame) => {
         const alsoHeld = alsoHeldByFor(frame.concept_slug, t.slug, holdersIndex);
+        const hasConceptPage = conceptPages.has(frame.concept_slug);
         return (
           <div class="frame">
             <div class="frame-head">
@@ -68,6 +70,11 @@ const holdersIndex = await buildConceptHoldersIndex();
                   </>
                 ))}
               </p>
+            )}
+            {hasConceptPage && (
+              <a class="concept-page-link" href={`/concepts/${frame.concept_slug}`}>
+                Open concept page →
+              </a>
             )}
           </div>
         );

@@ -550,3 +550,205 @@ blockquote.what-x-says cite {
   color: var(--ink-soft);
   margin: 0;
 }
+
+/* ─── Concept page ─────────────────────────────────────────────────── */
+
+.concept-page > section {
+  margin-top: 2.5rem;
+}
+
+.concept-hero {
+  border-bottom: 1px solid var(--ink-rule, #d6cfba);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.concept-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: var(--julie-accent);
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.concept-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  margin: 0 0 0.6rem;
+  line-height: 1.15;
+}
+
+.concept-gloss {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.12rem;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 56ch;
+}
+
+/* Genealogy lane — ordered list with attribution-kind tint */
+
+.genealogy {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.genealogy-item {
+  background: #faf7ee;
+  border-left: 4px solid var(--julie-rule);
+  padding: 0.85rem 1rem;
+  border-radius: 2px;
+}
+
+.genealogy-item.kind-original {
+  border-left-color: #6b5b2e;
+}
+
+.genealogy-item.kind-extended {
+  border-left-color: #8a7a4a;
+}
+
+.genealogy-item.kind-popularized {
+  border-left-color: #b09e6b;
+}
+
+.genealogy-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin-bottom: 0.35rem;
+}
+
+.genealogy-name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-decoration: none;
+}
+
+.genealogy-name:hover {
+  text-decoration: underline;
+}
+
+.genealogy-frame {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.genealogy-frame em {
+  color: var(--ink, #1f1d18);
+  font-style: italic;
+}
+
+/* Holders grid */
+
+.holders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.85rem;
+}
+
+.holder-card {
+  background: #faf7ee;
+  border-left: 3px solid var(--julie-rule);
+  padding: 0.8rem 0.9rem;
+}
+
+.holder-card.kind-original {
+  border-left-color: #6b5b2e;
+}
+
+.holder-name {
+  font-family: var(--serif);
+  font-weight: 600;
+  margin: 0 0 0.3rem;
+}
+
+.holder-name a {
+  text-decoration: none;
+}
+
+.holder-name a:hover {
+  text-decoration: underline;
+}
+
+.holder-attribution {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--julie-accent);
+  margin: 0 0 0.4rem;
+}
+
+.holder-frame-name {
+  font-style: italic;
+  margin: 0 0 0.4rem;
+  color: var(--ink-soft);
+}
+
+.holder-source {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+/* Julie's reading on concept page — same lane treatment, empty-state aware */
+
+.concept-julie .julie-empty-slot {
+  border: 1px dashed var(--julie-rule);
+  background: transparent;
+  padding: 0.85rem 1rem;
+  border-radius: 2px;
+}
+
+.julie-empty-marker {
+  font-style: italic;
+  color: var(--julie-accent);
+  margin: 0 0 0.5rem;
+}
+
+.concept-julie details {
+  margin-top: 0.5rem;
+  font-size: 0.92rem;
+}
+
+.concept-julie summary {
+  cursor: pointer;
+  color: var(--julie-accent);
+  font-weight: 600;
+}
+
+.prompt-text {
+  margin: 0.55rem 0 0;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* Adjacent concept pending-link styling */
+
+.pending-concept {
+  color: var(--ink-soft);
+  border-bottom: 1px dotted var(--julie-rule);
+  cursor: help;
+}
+
+/* Concept-page link on thinker page §4 */
+
+.concept-page-link {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.88rem;
+  color: var(--julie-accent);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.concept-page-link:hover {
+  text-decoration: underline;
+}

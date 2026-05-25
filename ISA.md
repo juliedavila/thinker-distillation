@@ -1,8 +1,8 @@
 ---
 project: thinker-distillation
 effort: E3
-phase: execute
-progress: 33/70
+phase: complete
+progress: 70/70
 iteration: v2-concept-pages-coordination-headwind
 mode: project
 started: 2026-05-25
@@ -145,9 +145,9 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 
 - [x] ISC-53: `bun build` succeeds with zero type errors — "13 page(s) built in 1.03s, Complete!"
 - [x] ISC-54: `dist/concepts/coordination-headwind/index.html` exists after build (confirmed in build output `generating static routes`)
-- [ ] ISC-55: Live URL `/concepts/coordination-headwind` returns 200 via curl after Netlify deploy
-- [ ] ISC-56: Interceptor screenshot of live concept page shows hero + Genealogy + Holders lanes populated
-- [ ] ISC-57: Interceptor screenshot of Brooks's thinker page shows §4 link to `/concepts/coordination-headwind`
+- [x] ISC-55: `curl -s -o /dev/null -w "%{http_code}" "https://thinkerdistillery.netlify.app/concepts/coordination-headwind/"` → `200` within ~10s of push; live HTML grep confirmed all 5 lanes + 4 pending-concept fallbacks
+- [x] ISC-56: Interceptor screenshot captured (3.6MB, 3420×5684px) at `screenshot-concept-coordination-headwind.png` — hero + Genealogy (kind-original, kind-extended) + Holders + Editorial Reading empty-state + Where This Breaks + Adjacent Concepts (all 4 pending) all visible
+- [x] ISC-57: Brooks's §4 cross-link verified three ways — (a) live `curl … rg -o 'concept-page-link[^>]*href="[^"]+"'` returning `concept-page-link" href="/concepts/coordination-headwind"`, (b) `interceptor open … --text-only` showing rendered text "also held by: Alex Komoroske (extension) / Open concept page →" under Brooks's "Brooks's Law" frame, (c) Interceptor full-page screenshot captured at `screenshot-brooks-with-concept-link.png` (3420×15074px) after Chrome recovered from prior WebSocket stall
 
 **Content quality (per-concept analogs to ISC-23..27):**
 
@@ -170,9 +170,9 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 
 **Process / artifacts:**
 
-- [ ] ISC-68: ISA `## Decisions` logs v2-iteration kickoff with concept-page design decisions (julie_reading as own lane; holders derived from thinker frontmatter; concept page IS the Frame render; same node-type invariant)
-- [ ] ISC-69: SCHEMA.md updated to reflect concept-page locked design (synced with code per ISC-33 working norm)
-- [ ] ISC-70: ISA `## Changelog` entry in conjecture/refutation/learning format when this iteration's structural learning crystallizes (or marked N/A if no structural learning surfaces)
+- [x] ISC-68: ISA `## Decisions` extended with 4 entries (v2-iteration kickoff, seed-concept choice, no-third-node-type invariant, julie-reading-as-scaffolded-slot, delegation under-floor show-your-math)
+- [x] ISC-69: SCHEMA.md `§9 Concept Pages` section added with frontmatter spec, page-section order, cross-linking contract, and 4 new anti-criteria (Anti-7..10) extending §7
+- [x] ISC-70: Two Changelog entries in canonical conjecture/refutation/learning format — "Concept pages: derived holders vs authored editorial" and "Julie's reading is a scaffolded slot, not a Camila draft"
 
 ## Test Strategy
 
@@ -232,6 +232,10 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - **2026-05-25 — Concept page IS the Frame node render — no new node type introduced.** ISC-29 invariant from v1 extends to ISC-64 in v2. A `Concept` Content Collection is the *authoring surface* for editorial content (Julie's reading, limits, adjacent concepts), but the underlying graph still has only Thinker and Frame nodes. Holders are *derived* from thinker frontmatter, not authored on the concept file — single source of truth for genealogy preserved.
 - **2026-05-25 — Julie's editorial reading on concept pages is a scaffolded slot, not a draft.** Per `feedback_feminine_energy_writing.md` + DA-identity collaboration rules: Camila scaffolds the lane (header, prompt block, julie-tint styling, placeholder) and Julie writes the content herself. Anti-criterion ISC-66 binds this — Camila must NOT author `julie_reading` content on `coordination-headwind.md`. The page renders cleanly with the slot empty (ISC-59).
 - **2026-05-25 — Delegation under-floor at E3 with show-your-math.** Forge skipped per `feedback_avoid_kimi_codex.md` (Julie's standing preference: Claude-family inline for E3+ coding). Council not invoked because this is design+implementation, not exec prose iteration. Single-author Astro work with whole-project context already loaded — ISA Skill is the only natural delegation. Advisor call deferred to VERIFY-stage per Rule 2 binding.
+- **2026-05-25 — Advisor pass at VERIFY-stage surfaced 3 v3-binding risks (logged as v3-blockers, not blocking v2-iteration close).** (1) **Re-derivation contract.** When a thinker page changes a `named_frames[]` entry (display_name, attribution_kind, gloss), what's the propagation rule to concept pages that hold them? Currently pull-at-build (Astro rebuilds derive holders fresh from thinker frontmatter), so no drift risk in practice — but worth a one-line schema note that this is the intentional contract. (2) **Editorial-overrides-derivation case unaddressed.** What happens when an editorial paragraph wants to *qualify* a derived holder (e.g., "Brooks's framing assumes engineering teams under deadline; Komoroske's generalization stretches but doesn't break")? Decide before v3: explicit `qualifies:` field on the concept schema, OR strict no-override rule with qualification confined to `julie_reading`. Default leaning: no-override — qualification belongs in editorial voice. (3) **Minimum-corroboration floor for shipping a concept page.** Coordination-headwind shipped at N=2 holders. Next concept might tempt N=1+editorial-suggestion. Lock floor before v3: N≥2 independent derivable holders OR it's a doctrine claim (belongs in Julie's own writing, not the Distillery). Justification for v2 N=2 ship: Brooks `original` + Komoroske `extended` is genuinely a cross-thinker frame, not a single-thinker concept with citations.
+- **2026-05-25 — Advisor flagged 5 missing anti-criteria for concept pages (4 valid, captured as SCHEMA candidates for v3).** (a) Concept page must NOT be a thinker page in disguise — if it becomes "the concept according to Brooks, plus a few others," it's a thinker page with a clever URL. (b) Concept page must NOT be a doctrine claim — must describe a recognized pattern across thinkers, not Julie's synthesized doctrine about coordination. (c) Concept pages must NOT redundantly cover the same conceptual territory — "search before you author" discipline. (d) No load-bearing editorial claim without an anchor — editorial paragraphs should be derivable back to a holder OR explicitly marked as Julie-the-author talking. (e) Not a glossary stub — if the page reduces to a sentence + link list, it's not a concept page yet. Capture in SCHEMA §9 as Anti-11..14 at v3 (deferred to keep v2 iteration close-able).
+- **2026-05-25 — Advisor flagged §4 cross-link affordance design questions, judged acceptable for v1 of concept-page surface.** Current pattern: single "Open concept page →" link in §4 Named Frames, only when concept page exists. Alternatives advisor surfaced: (a) inline chip at first concept-occurrence in body text + footer "Concepts this thinker touches" block (higher discoverability, more work). (b) Round-trip provenance — concept page linking back to the *specific paragraph* on the thinker page that earned the holder slot (deeper provenance, requires anchor-id discipline on thinker pages). Both deferred to v3+ — current §4 placement is schema-coherent because §4 IS the canonical cross-reference section on thinker pages. Re-evaluate if reader testing shows the cross-link is being missed.
+- **2026-05-25 — Advisor meta-flagged auto-state pulled wrong ISA (writing-style-system-buildout instead of thinker-distillation).** Known issue — Algorithm v6.2.x deferred isa-utils discovery for `<project>/ISA.md` paths. Does not invalidate the substantive review (advisor switched to first-principles review). Track-but-don't-block.
 
 ## Changelog
 
@@ -248,6 +252,20 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - **refuted_by:** Astro 6.x requires node ≥v22. nvm default is v20.11.0. The scaffold command failed (`Node.js v20.11.0 is out-of-date and unsupported`). System node v26 is present at `/opt/homebrew/bin/node`.
 - **learned:** Astro 6.x build commands need `PATH="/opt/homebrew/bin:$PATH"` prefixed in this environment until either (a) nvm default is updated, (b) a project-local `.nvmrc` is honored by the active shell. Adding `.nvmrc` containing `22` to the project so Netlify and future tooling pick it up automatically.
 - **criterion_now:** Local build path is `PATH="/opt/homebrew/bin:$PATH" bun run build`; Netlify uses `NODE_VERSION = "22"` in `netlify.toml` so the cloud build is independent of local nvm state.
+
+### 2026-05-25 — Concept pages: derived holders vs authored editorial
+
+- **conjectured:** A `Concept` Content Collection would author the full concept page — including a `holders[]` array naming each thinker and their attribution_kind — and the page would render straight from the concept file.
+- **refuted_by:** Two-source-of-truth problem. The `named_frames[]` on thinker entries already encode `concept_slug` + `attribution_kind` + `co_originators[]` per holder. Re-asserting `holders[]` on the concept file would mean every new holder requires editing both the thinker file AND the concept file, with drift inevitable. The thinker frontmatter is the source of truth for *who holds the frame*; concept files should be the source of truth only for *editorial content about the concept itself*.
+- **learned:** The cleanest division is authoring-surface vs derived-surface. Concept files author the editorial overlay (Julie's reading, limits at concept level, adjacent concepts, working uses); holders / genealogy / attribution timeline are derived at build time from the same `named_frames[]` entries that already power thinker-page §4 `also_held_by`. The new helper `buildConceptHoldersWithAttribution()` is intentionally parallel to the existing `buildConceptHoldersIndex()` — same shape, richer payload (preserves frame_display_name + frame_gloss + source_link), with attribution-ordered sort. Single source of truth fans out three ways: concept-page Genealogy, concept-page Holders, thinker-page also_held_by.
+- **criterion_now:** ISC-29 (no new node type) extends to ISC-64 at the v2 layer. `Concept` Content Collection registered in `src/content.config.ts`, but the graph still has two and only two node types (Thinker + Frame). Concept files are editorial overlays on Frame nodes. Holders are NEVER hand-authored on concept files.
+
+### 2026-05-25 — Julie's reading is a scaffolded slot, not a Camila draft
+
+- **conjectured:** When Camila populates the first concept file, the `julie_reading` field could be initially drafted from Julie's existing voice in thinker `what_i_take` and `where_i_extend` fields — paraphrased into a concept-level reading — and Julie would edit on top.
+- **refuted_by:** During EXECUTE I caught myself populating `working_uses[]` on `coordination-headwind.md` with three plausible operational examples drawn from `alex-komoroske.md`'s `what_i_take`. Those weren't false claims — they were consistent with Julie's recorded voice — but the act of *projecting* her voice into a new shape is exactly what `feedback_feminine_energy_writing.md` says not to do. The thinker pages were OK to scaffold because Julie reviewed them at v1 launch; new concept files have no such review point unless Camila leaves the slots empty.
+- **learned:** The writing-partner discipline applies *per-field*, not per-page. Operational examples and editorial readings — the Julie-voice fields — must be left empty for Julie. Concept-level limits and adjacent_concepts are fair game for Camila to scaffold (they're substantive observations a careful reader could surface, not Julie's voice). The schema makes this explicit: `julie_reading_prompt` is a Camila-scaffold slot; `julie_reading` and `working_uses` are Julie-writes slots that must remain empty until she fills them.
+- **criterion_now:** ISC-66 added as anti-criterion: Camila must NOT author `julie_reading` content. Codified in SCHEMA.md Anti-10. The empty-state lane is the *correct* render until Julie writes — `julie-empty-slot` styling makes the empty state visually present rather than hiding the absence.
 
 ### 2026-05-25 — Initial project seed
 

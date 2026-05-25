@@ -237,6 +237,69 @@ Required v1 artifact. Treated as a real writing piece, not boilerplate.
 
 ---
 
+## 9. Concept Pages (v2 surface — added 2026-05-25 with `coordination-headwind` as the seed concept)
+
+The v2 surface promised by Principle "Graph from day one." Per-concept pages are the canonical render of the Frame node — they exist alongside thinker pages, share the same source of truth, and add NO new node type to the graph.
+
+**Authoring surface vs derived surface.** A `Concept` Content Collection at `src/content/concepts/{slug}.md` is the AUTHORING surface for editorial content about the concept itself. Holders, attribution timeline, and frame glosses are DERIVED from the existing `named_frames[]` entries in `src/content/thinkers/`. There is exactly one source of truth for "who holds this frame": the thinker frontmatter. Discipline Gate 1 (node-type uniformity) holds — Concept files are not graph nodes; they are editorial overlays on the Frame nodes already encoded in thinker entries.
+
+**Concept frontmatter (locked 2026-05-25):**
+
+```yaml
+slug: coordination-headwind              # globally stable; matches concept_slug in thinker frames
+display_name: Coordination Headwind      # concept-level display, not borrowed from any one holder
+one_line_gloss: >                        # concept-level gloss, not borrowed verbatim from holder frame
+  The invisible drag on collaborative work — the cost of every agreement
+  a decision depends on — that grows superlinearly with team size.
+last_updated: 2026-05-25
+
+julie_reading: >                         # OPTIONAL — Julie's editorial reading of the concept itself
+                                         # (distinct from her per-thinker readings of the holders)
+julie_reading_prompt: >                  # OPTIONAL — Camila-scaffolded prompt for Julie to fill
+  ...
+
+limits:                                  # OPTIONAL — when present, ≥2 enforced (per ISC-36)
+  - headline: ...
+    severity: local | structural
+    elaboration: ...
+still_load_bearing_despite: >            # OPTIONAL — closing-beat analog to thinker-page ISC-25
+
+adjacent_concepts:                       # OPTIONAL — when present, ≥3 enforced (per ISC-36)
+  - target_slug: ...                     # kebab-case; target concept page may not yet exist
+    display_name: ...
+    edge_label: ...
+
+working_uses:                            # OPTIONAL — Julie writes these herself (operational examples)
+  - ...
+
+long_read:                               # OPTIONAL — same shape as thinker.long_read
+  ...
+```
+
+**Page sections (order; omitted when empty):**
+
+- **Hero** — `Concept` eyebrow + `display_name` + `one_line_gloss`
+- **§A Genealogy** — holders sorted by `attribution_kind` (`original` first, then `co-authored`, `distributed`, `extended`, `popularized`, `translated`, `community`); each holder rendered with frame display_name + frame gloss
+- **§B Holders** — holders grid (alphabetical within attribution_kind tier); each card links back to `/thinkers/<slug>`; attribution_kind tag + frame name + primary source link
+- **§C Editorial Reading** — julie-lane styling; renders `julie_reading` when populated; renders empty-state slot (dashed border + scaffolded prompt under `<details>`) when not
+- **§D Where This Breaks** — limit-card pattern (same component as thinker page); `still_load_bearing_despite` closing-beat conditional
+- **§E Adjacent Concepts** — links to existing `/concepts/<slug>` pages; pending-concept (dotted-underline) for slugs not yet authored
+- **§F Working Uses** — julie-lane styling; only renders when `working_uses[]` populated (Julie writes; Camila does not)
+- **§Long Read** — same as thinker §10
+
+**Cross-linking (thinker → concept):**
+
+When a concept page exists for a `concept_slug`, the corresponding thinker-page §4 Named Frame renders an additive "Open concept page →" link below the inline `also_held_by` cluster. When no concept page exists, the link is omitted entirely — v1 behavior preserved exactly. The link is gated on `buildConceptPageIndex()` returning the slug; this is a build-time check, never a 404 risk.
+
+**v2-surface anti-criteria (added 2026-05-25 — extend §7):**
+
+- **Anti-7:** Concept page must NOT show all holders with the same `attribution_kind`. Diverse genealogy must be preserved — the IP-honesty discipline that lives on thinker pages extends to concept pages.
+- **Anti-8:** Concept page must NOT introduce a third node type. `Concept` Content Collection is an AUTHORING surface for editorial content on the Frame node; holders are derived. Graph stays Thinker + Frame only. Discipline Gate 1 holds.
+- **Anti-9:** Concept page must NOT render any `inclusion_rationale`-equivalent backstage content. Same discipline as Anti-3, applied at the concept layer.
+- **Anti-10 (writing-partner invariant):** Camila must NOT author `julie_reading` or `working_uses` content on concept files. Scaffold the slot, never write Julie's voice. Per `feedback_feminine_energy_writing.md` and DA-identity collaboration rules.
+
+---
+
 # Pressure-Test: Alex Komoroske (v1 case)
 
 ## §0 Frontmatter

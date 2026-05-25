@@ -25,3 +25,4 @@ pnpm-debug.log*
 
 # Interceptor screenshots (verification artifacts, not source)
 interceptor-screenshot-*.png
+screenshot-*.png

@@ -2,7 +2,7 @@
 project: thinker-distillation
 effort: E3
 phase: build
-progress: 24/33
+progress: 25/33
 mode: project
 started: 2026-05-25
 updated: 2026-05-25
@@ -77,7 +77,7 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - [x] ISC-14: Komoroske page (`content/thinkers/alex-komoroske.md`) renders all populated sections per SCHEMA.md pressure-test
 - [x] ISC-15: Fowler page renders from `~/Camila/ways-of-fowler/` material (CONCEPT_LATTICE, CORPUS, PREFACE)
 - [ ] ISC-16: Dalio page populated and renders (`principles-distiller` thinker_type — first exercise of type-extension)
-- [ ] ISC-17: Cross-thinker `also_held_by` shows real edges (e.g., `coordination-headwind` surfaces "also held by Fred Brooks" when Brooks's page exists)
+- [x] ISC-17: Cross-thinker `also_held_by` shows real edges (e.g., `coordination-headwind` surfaces "also held by Fred Brooks" when Brooks's page exists)
 - [x] ISC-18: Casey-test passes for each shipped thinker (byline reads honestly, not as false claim)
 
 **v1 launch (private-by-obscurity):**
@@ -139,6 +139,8 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - **2026-05-25 — About page reclassified from "required v1 artifact" to "required-before-promotion artifact."** Reasoning: v1 launch is private-by-obscurity (Julie customer-zero, no promotion). The readers who need the About page (curious generalists, power users wanting citation calibration) don't exist yet for the launch audience. Site-level tagline still ships at v1 (for the chrome); full About page deferred until Julie decides to broaden audience. SCHEMA.md text retained as the spec for when it ships.
 - **2026-05-25 — All Q1–Q6 walk-through decisions inherited.** Path C (TEI pattern), Frame-level attribution, three discipline gates, curatorial `page_kind`, Path 2 voice treatments, backstage `inclusion_rationale`, `also_held_by` in v1, About-as-manifesto, Astro+Netlify, single repo. Full reasoning chains live in the v0 task ISA's Changelog section.
 - **2026-05-25 — Inclusion bench locked.** v1 roster: Komoroske, Fowler, Dalio. Recommended additions (clear filter cleanly): Allspaw, Woods, Dekker. Watch list: Nora Jones (v2). Excluded from v1: Casey Rosenthal (v2 concept-page candidate). Working norm: pushback pattern per `feedback_thinker_inclusion_pushback.md`.
+- **2026-05-25 — Brooks added to v1 roster (before Dalio).** Rationale: Brooks is the concrete shared-concept antecedent that makes ISC-17 fire on the Komoroske page. Filter cleared cleanly — *Mythical Man-Month* (1975) + *No Silver Bullet* (1986) are foundational software-engineering vocabulary; ~50 years of consistent body of work; named coordination headwind (as Brooks's Law), conceptual integrity, essential vs accidental complexity, second-system effect, surgical team. Komoroske attributed Brooks throughout the coordination-headwind essay. Brooks's `thinker_type: book-author`.
+- **2026-05-25 — Concept-slug unification for cross-thinker edges.** Brooks and Komoroske share the global slug `coordination-headwind`. Display names differ per thinker (Brooks: "Brooks's Law"; Komoroske: "Coordination headwind") — both are the same Frame, attribution chain captures the lineage (Brooks `original` 1975 engineering-teams, Komoroske `extended` to all coordination work). Removed Komoroske's dangling `derived_from: brooks-law` edge since the unified slug makes the cross-link direct. Pattern to follow when any future thinker shares an existing Frame: unify the slug, vary the `display_name`, set `attribution_kind` honestly per holder.
 - **2026-05-25 — Astro scaffold + Komoroske render shipped locally.** Astro 6.3.7 (current latest), Content Collections with strict Zod schema, single-page template covering §1–§10, Path-2 visual lanes verified via Interceptor. Komoroske is the only thinker rendered; cross-thinker `also_held_by` affordance code is in place but lights up empty until a second thinker exists (Fowler is next, source material at `~/Camila/ways-of-fowler/`).
 - **2026-05-25 — Node version note.** Astro 6.x requires node ≥v22; nvm default is v20.11.0; system node is v26 at `/opt/homebrew/bin/node`. All `bun` invocations against the Astro tree should prefix `PATH="/opt/homebrew/bin:$PATH"`. Long-term option (deferred): set system node as nvm default, or pin v22+ via `.nvmrc` in the project root.
 
@@ -185,6 +187,7 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - **ISC-20 (2026-05-25):** Footer link `About →` present on every page via `src/layouts/Base.astro`; target route deferred to before-promotion gate per the About-page reclassification decision.
 - **ISC-22 (2026-05-25):** Live Komoroske page probed — curl returned 200, content-length 14,759 bytes; Interceptor screenshot at 3420×13506px confirmed all four lanes render identically in production to local build. Project repo: https://github.com/juliedavila/thinker-distillation (private).
 - **ISC-15 (2026-05-25):** Fowler page (`src/content/thinkers/martin-fowler.md`) ported from `~/Camila/ways-of-fowler/` book project (PREFACE bio, CONCEPT_LATTICE six-arc through-line, all named-frame attribution chains). 7 frames spanning the attribution spectrum (1 co-authored with Beck, 2 extended from Opdyke/Beck and Evans, 4 original including the *bliki* meta-move). Live at https://thinkerdistillery.netlify.app/thinkers/martin-fowler/ — curl 200; Interceptor screenshot at 3420×16194px confirmed full §1–§10 render, all four lanes, Komoroske listed as parallel-edge adjacent in §8. Home page now lists both thinkers in alphabetical order.
+- **ISC-17 (2026-05-25):** Cross-thinker `also_held_by` edges fire honestly in both directions. On Komoroske live page: "Coordination headwind ... also held by: Fred Brooks (origin)". On Brooks live page: "Brooks's Law ... also held by: Alex Komoroske (extension)". Verified via `interceptor text` against production URLs. Cross-link is structural (shared global slug), not graph-special-cased — same affordance will fire for any future shared-concept pair.
 
 ---
 

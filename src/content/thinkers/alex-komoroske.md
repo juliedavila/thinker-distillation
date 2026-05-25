@@ -64,9 +64,11 @@ named_frames:
     one_line_gloss: >
       The invisible drag on collaborative work that grows superlinearly with
       headcount; the cost of every agreement a decision depends on.
-    attribution_kind: original
+    attribution_kind: extended
     primary_author: alex-komoroske
-    derived_from: brooks-law
+    co_originators:
+      - slug: fred-brooks
+        role: original 1975 — Brooks's Law (engineering teams under deadline)
     source_link: https://medium.com/@komorama
   - concept_slug: slime-mold
     display_name: The slime mold

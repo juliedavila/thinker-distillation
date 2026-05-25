@@ -144,6 +144,13 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 
 ## Changelog
 
+### 2026-05-25 — Astro scaffold + Komoroske render
+
+- **conjectured:** A clean `bun create astro@latest` would work end-to-end with the toolchain in this environment.
+- **refuted_by:** Astro 6.x requires node ≥v22. nvm default is v20.11.0. The scaffold command failed (`Node.js v20.11.0 is out-of-date and unsupported`). System node v26 is present at `/opt/homebrew/bin/node`.
+- **learned:** Astro 6.x build commands need `PATH="/opt/homebrew/bin:$PATH"` prefixed in this environment until either (a) nvm default is updated, (b) a project-local `.nvmrc` is honored by the active shell. Adding `.nvmrc` containing `22` to the project so Netlify and future tooling pick it up automatically.
+- **criterion_now:** Local build path is `PATH="/opt/homebrew/bin:$PATH" bun run build`; Netlify uses `NODE_VERSION = "22"` in `netlify.toml` so the cloud build is independent of local nvm state.
+
 ### 2026-05-25 — Initial project seed
 
 - **conjectured:** The v0 schema design task and the long-lived project would share a single ISA at `MEMORY/WORK/thinker-distillation-schema-v0/ISA.md`.

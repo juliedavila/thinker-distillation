@@ -57,7 +57,7 @@ why_they_matter_as_a_thinker: >
 thesis: >
   An incident is not a defect to be eliminated; it is a sample drawn
   from your system's actual operating envelope, telling you things
-  about how the work is really done that no design document, runbook,
+  about how the work is done that no design document, runbook,
   or simulation can show you. The way to honor that signal is to set
   up the conditions where engineers will tell you honestly what
   happened, what they thought was happening, what they almost did,
@@ -185,22 +185,21 @@ body_of_work:
       artifact to the Adaptive Capacity Labs case-study work.
 
 what_i_take: >
-  The blameless-postmortem move is the single most useful organizational
-  technology I carry into security incident response. Security incidents
-  fail the learning test for exactly the reasons Allspaw described:
+  Security incident response fails the learning test for exactly the reasons
+  Allspaw described:
   blame culture, the gap between work-as-imagined and work-as-done, the
   habit of reducing the analysis to a root cause that pins the failure
   on the most-junior person whose hands were on the keyboard. The
   Allspaw move (set up conditions where engineers will be honest, treat
-  the human side as the expertise about how the system really works) is
+  the human side as the expertise about how the system works) is
   exactly what security IR needs and almost never gets. Importing the
   resilience-engineering vocabulary into security is one of the
   highest-leverage cultural changes a security org can make.
 where_i_extend: >
-  Allspaw built the model for software ops. I push it into the
-  adversarial layer where security operates. Security incidents have
-  an extra factor (an adversary actively optimizing against the
-  detection-and-response loop) that ops incidents don't. The
+  Allspaw built the model for software ops. Security adds an adversarial
+  layer Allspaw did not model: an opponent actively optimizing against
+  the detection-and-response loop, alongside everything else the ops
+  model already accounts for. The
   blameless framing still works, *above-the-line / below-the-line*
   still works, the work-as-imagined / work-as-done gap is still the
   source of failure. But adaptive capacity has to be sized for an

@@ -188,9 +188,9 @@ what_i_take: >
   robustness to known attacks, is the move I keep coming back to.
 where_i_extend: >
   Woods built the theory for joint cognitive systems where humans and
-  automation share the cognitive work. I push it into systems where
-  some of the joint cognitive work is *adversarial*, where the
-  "automation" includes attacker tooling that is also adapting. The
+  automation share the cognitive work. The security extension is that
+  some of the joint cognitive work is *adversarial*: the "automation"
+  includes attacker tooling that is also adapting. The
   joint cognitive system frame still holds; the adversarial axis means
   adaptive capacity has to be sized for an opponent who is also
   building adaptive capacity. The resilience-engineering instinct

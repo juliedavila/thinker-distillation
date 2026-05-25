@@ -182,9 +182,9 @@ what_i_take: >
   magnitude. Same essay, applied forty years later, still works.
 where_i_extend: >
   Brooks wrote about communication cost inside a single project team.
-  I push it into the multi-org, multi-vendor, agent-mediated security
-  surface that is now standard. The "coordination cost grows
-  superlinearly" claim becomes: *the security cost of integrating systems
+  In the multi-org, multi-vendor, agent-mediated security surface that
+  is now standard, the "coordination cost grows superlinearly" claim
+  becomes: *the security cost of integrating systems
   grows superlinearly with the number of trust boundaries the integration
   crosses.* Brooks's Law in the supply-chain era: adding a vendor to a
   late security program does not accelerate it. The physics is the same;

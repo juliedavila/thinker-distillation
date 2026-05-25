@@ -155,17 +155,17 @@ body_of_work:
       half-finished thoughts that the keystone essays grow out of.
 
 what_i_take: >
-  The coordination-headwind frame is the single most useful thing I carry into
-  security organization design. Most security programs fail not because the
-  threat model is wrong but because the coordination cost of acting on the
-  threat model exceeds the available organizational energy. Once you have the
+  Most security programs fail not because the threat model is wrong but because
+  the coordination cost of acting on the threat model exceeds the available
+  organizational energy. That is the headwind frame, applied; once you see it
+  in security work, you cannot unsee it. Once you have the
   headwind frame, you stop trying to fix slow security work by adding more
   security people; you start trying to reduce the coordination surface that
   the security work has to cross. Structural intervention, not headcount
   intervention.
 where_i_extend: >
-  Komoroske writes about coordination as a general organizational physics. I
-  push it into security specifically: every security control is a coordination
+  Komoroske writes about coordination as a general organizational physics.
+  The security translation is that every security control is itself a coordination
   event with an attached headwind cost, and the right design move is to
   reduce the number of agreements a control depends on. Schelling points show
   up here too: a security culture works when the "secure default" is the

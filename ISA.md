@@ -2,7 +2,7 @@
 project: thinker-distillation
 effort: E3
 phase: build
-progress: 28/33
+progress: 33/33
 mode: project
 started: 2026-05-25
 updated: 2026-05-25
@@ -58,8 +58,8 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - [x] ISC-1: `~/Camila/thinker-distillation/` directory exists
 - [x] ISC-2: Project ISA at `~/Camila/thinker-distillation/ISA.md` exists with E3+ structure
 - [x] ISC-3: SCHEMA.md present at project root
-- [ ] ISC-4: Project listed in `~/.claude/PAI/USER/Projects.md` Active Projects
-- [ ] ISC-5: Task ISA at `MEMORY/WORK/thinker-distillation-schema-v0/ISA.md` notes graduation with pointer to this project ISA
+- [x] ISC-4: Project listed in `~/.claude/PAI/USER/Projects.md` Active Projects
+- [x] ISC-5: Task ISA at `MEMORY/WORK/thinker-distillation-schema-v0/ISA.md` notes graduation with pointer to this project ISA
 
 **Astro scaffold (next phase):**
 
@@ -202,61 +202,80 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 
 ---
 
-## Next Session Pickup (resume point — 2026-05-25)
+## Next Session Pickup (save point — 2026-05-25, v1 complete)
 
-> Save point created at Julie's explicit request so she can clear context and resume cleanly. Fresh-Camila: read this section first when any next prompt references this project.
+> Save point at Julie's explicit request. v1 of Thinker Distillery is shipped, live, and stable. Fresh-Camila: read this section first when any next prompt references this project.
 
-### Status as of save
+### Status at save
 
-Project just graduated from the v0-schema-design task workspace into this project root. v1 schema locked through a six-question walk-through with Julie on 2026-05-24/25. **5/33 ISCs done** — graduation complete; Astro scaffold + first thinker render is the next phase.
+**33/33 v1 ISCs verified.** Site live at https://thinkerdistillery.netlify.app/ — private-by-obscurity (`x-robots-tag: noindex,nofollow` on every page). Repo at https://github.com/juliedavila/thinker-distillation (private). 7 thinkers, 2 long-read chapters, full cross-thinker graph wired. Working tree clean, all commits pushed to `main`. This is genuinely stable — nothing in flight.
+
+### What's live
+
+| Thinker | thinker_type | Cross-edges | Long-read |
+|---------|--------------|-------------|-----------|
+| Alex Komoroske | essay-corpus | ↔ Brooks (`coordination-headwind`) | Part 1 — The Diagnosis |
+| Fred Brooks | book-author | ↔ Komoroske (`coordination-headwind`) | — |
+| Martin Fowler | mixed | (graph-isolated; §8 voice edges only) | Chapter 0 — Preface |
+| John Allspaw | mixed | ↔ Woods + Dekker (`adaptive-capacity`, `work-as-imagined-vs-work-as-done`) | — |
+| David Woods | mixed | ↔ Allspaw + Dekker (`adaptive-capacity`, `new-view-of-human-error`) | — |
+| Sidney Dekker | book-author | ↔ Woods + Allspaw (`adaptive-capacity`, `new-view-of-human-error`, `work-as-imagined-vs-work-as-done`) | — |
+| Ray Dalio | principles-distiller | (graph-isolated; §8 voice edges only) | — |
+
+Resilience-engineering cluster (Allspaw / Woods / Dekker) is the strongest graph signal — three-way `adaptive-capacity` mesh, multiple shared concepts. Brooks ↔ Komoroske is the second working pair. Fowler and Dalio honestly stand alone by concept slug; they connect through §8 editorial-voice edges to the rest of the roster but don't share Frame slugs.
 
 ### One-paragraph orientation for cold-start
 
-Per-practitioner web app (Brain Pickings × Greptalks shape) distilling thinkers whose bodies of work produced vocabularies the field uses to think. Julie is customer-zero through MVP — site will be live but unpromoted; About page deferred to a before-promotion gate. v1 schema uses the **TEI pattern** (core schema + Frame-level attribution + named optional type-extensions) with **three hard discipline gates** (node-type uniformity, Frame-level attribution from v0, Casey-test acceptance gate). Komoroske is populated to spec inside `SCHEMA.md`; Fowler and Dalio are the next two to render. Casey Rosenthal explicitly excluded from v1 (v2 concept-page candidate).
+Per-practitioner web app (Brain Pickings × Greptalks shape) distilling thinkers whose bodies of work produced vocabularies the field uses to think. Julie is customer-zero; site is live but unpromoted; About page deferred to a before-promotion gate. v1 schema is locked (TEI pattern, three discipline gates: node-type uniformity, Frame-level attribution, Casey-test). The locked spec is `SCHEMA.md` at project root; the running implementation is the Astro Content Collection Zod schemas in `src/content.config.ts` (which are stricter than SCHEMA.md — they enforce ≥4 frames, ≥2 limits, ≥3 adjacent at build time). Casey Rosenthal explicitly excluded from v1 (v2 concept-page candidate).
 
-### Immediate next move at user prompt
+### Open lanes for next prompt
 
-**Astro scaffold + Komoroske render.** Eight concrete steps:
+There is no required next move — v1 is done. When Julie picks the project up again, these are the natural lanes:
 
-1. `bun create astro@latest` inside `~/Camila/thinker-distillation/` (TypeScript strict, minimal template; check current Astro version — likely 5.x by now)
-2. Define Content Collections schema matching `SCHEMA.md` frontmatter (Zod, typed at build)
-3. Build `src/pages/thinkers/[slug].astro` rendering §1–§10 with the four-lane visual treatments (Q2 Path 2 — same family for §6 and §7, distinguishable accent, closing-beat treatment for `still_load_bearing_despite`)
-4. Wire up the `also_held_by` build-time query (compute from Concept-node `holders[]` minus current thinker)
-5. Port the Komoroske case from `SCHEMA.md` pressure-test section into `content/thinkers/alex-komoroske.md`
-6. `bun run build` → fix any type/render errors
-7. Connect to Netlify, deploy, get a stable URL
-8. Verify with Interceptor screenshot at the live URL
+1. **More thinkers in the resilience cluster.** Hollnagel, Cook, Reason all clear the filter cleanly and would extend the existing `adaptive-capacity` / `new-view-of-human-error` mesh. Hollnagel adds `safety-I-vs-safety-II`. Cook adds `how-complex-systems-fail`. Reason adds `swiss-cheese-model`.
+2. **More long-read chapters.** `~/Camila/ways-of-komoroske/` only has Part 1 drafted; PLAN.md outlines the rest. `~/Camila/ways-of-fowler/` has the conceptual mapping and corpus done but no Part-1+ draft yet. Both book projects are independent writing efforts that fold into this site as chapters when chapters get written.
+3. **Site-level naming.** The tagline "Curated readings of practitioners whose ideas are worth metabolizing." is a placeholder. Julie's naming instinct earns the final call before promotion.
+4. **Before-promotion gate.** When Julie decides to broaden audience, the deferred items unlock: About page (full editorial mission, lanes explainer, filter discipline, source posture), site-name finalization, removal of `x-robots-tag: noindex`, custom domain if she wants one.
+5. **v2 concept pages.** Casey Rosenthal is the standing v2 concept-page candidate (Netflix Chaos team frames — not individually-portable vocabulary). Could also be the home for thinkers whose work emerged from communities (DORA team, Chaos Mesh team, etc.).
 
-**Realistic time:** 30–60 min on Camila's side, depending on Astro content-collections cleanness.
+### How to read the codebase
 
-**Open question at pickup:** Julie hasn't decided whether to start scaffold immediately on resume, run it in background, or schedule a focused session. If she just says "go" — default foreground so she can react to design choices. Confirm before starting if there's ambiguity.
-
-### What to read first (priority order)
-
-1. **This ISA** (you're here) — long-lived system of record for the project.
-2. **`SCHEMA.md`** at project root — locked v1 spec, ~600 lines. The Komoroske pressure-test at the bottom is the concrete v1 first-page target.
-3. `~/.claude/PAI/MEMORY/WORK/thinker-distillation-schema-v0/ISA.md` — historical v0-design task ISA with full Changelog (conjecture/refutation/learning entries) explaining the why behind each decision. Read only when you need to understand a specific design call.
-4. `~/.claude/PAI/MEMORY/COUNCIL/thinker-schema-pathA-vs-pathB/transcript.md` — 3-round Council debate that produced Path C. Read only if Julie references "the council" or pushes back on a schema decision.
+| Path | What it is |
+|------|------------|
+| `ISA.md` | This file — long-lived system of record |
+| `SCHEMA.md` | Locked v1 spec (human-readable). Updated whenever schema evolves. |
+| `src/content.config.ts` | Running Zod schemas — the enforcement harness for ISCs 23-26 |
+| `src/content/thinkers/{slug}.md` | One file per thinker; frontmatter-only (body usually empty) |
+| `src/content/long-read/{thinker-slug}/{nn-chapter}.md` | One file per chapter; frontmatter + prose body |
+| `src/pages/thinkers/[slug].astro` | Thinker page template (§1–§10) |
+| `src/pages/thinkers/[slug]/long-read/{index,[chapter]}.astro` | Long-read routes |
+| `src/lib/graph.ts` | Build-time `also_held_by` computation |
+| `src/styles/global.css` | Four-lane visual treatments + chapter typography |
+| `netlify.toml` | Build command, NODE_VERSION=22, noindex headers |
 
 ### Working norms in effect
 
 - **`feedback_thinker_inclusion_pushback.md`** — when Julie proposes a borderline thinker, push back on filter fit + surface 1–3 same-neighborhood alternatives that clear cleanly. Apply automatically without asking.
 - **Node-type uniformity is invariant.** Only `Thinker` and `Frame` as primary graph nodes. New `thinker_type` values add property shapes and optional edges; never new node types.
-- **Casey Rosenthal is excluded from v1** as a thinker page; he's a v2 concept-page candidate. Don't re-propose him without explicit conversation.
-- **`inclusion_rationale` is backstage** — stays in frontmatter, never rendered on thinker pages. The site-level tagline + (eventual) About page carry the kind-of-object work.
-- **About page is DEFERRED** to a before-promotion gate, not before-launch. Don't propose building it as part of v1 unless Julie says promotion is on the horizon.
+- **Casey Rosenthal is excluded from v1.** v2 concept-page candidate. Don't re-propose him without explicit conversation.
+- **`inclusion_rationale` is backstage** — stays in frontmatter, never rendered. Site-level tagline + (eventual) About page carry kind-of-object work.
+- **About page is DEFERRED** to before-promotion. Don't propose it as v1 unless promotion is on the horizon.
+- **Concept-slug unification for cross-edges.** When a new thinker shares an existing Frame, unify the slug; vary the `display_name` per holder; set `attribution_kind` honestly. Pattern: Brooks "Brooks's Law" + Komoroske "Coordination headwind" both hold `coordination-headwind`.
+- **Long-read chapters are their own collection.** Chapter list is computed at build time from the `longReadChapters` collection, never duplicated in thinker frontmatter.
 
-### Source material locations for the first three thinker pages
+### Build / deploy operational notes
 
-- **Komoroske:** `~/Camila/ways-of-komoroske/01-the-diagnosis.md` (rich draft of Part 1) + `PLAN.md`. Knowledge entries in `~/.claude/PAI/MEMORY/KNOWLEDGE/Ideas/` may help.
-- **Fowler:** `~/Camila/ways-of-fowler/{CONCEPT_LATTICE,CORPUS,PREFACE,ISA,PLAN}.md`. Knowledge entry at `~/.claude/PAI/MEMORY/KNOWLEDGE/Ideas/fowler-cartographer-move.md`.
-- **Dalio:** No existing source material in PAI. Will need to be assembled from his public corpus (*Principles* book, BridgewaterPrinciples site, talks). Use the `principles-distiller` `thinker_type` — first exercise of the type-extension pattern.
+- **Node version:** Astro 6.x requires node ≥v22. nvm default is v20. Use `PATH="/opt/homebrew/bin:$PATH" bun run build|dev|preview` to pick up system node v26. `.nvmrc` is set to `22` so `nvm use` works. Netlify uses `NODE_VERSION = "22"` from `netlify.toml`.
+- **Auto-commit:** `~/Camila` is in `checkpoint-repos.txt`; nested `thinker-distillation/` repo is git-ignored at the parent level so its commits stay clean of career-transition material. Push manually after ISA updates; Netlify auto-deploys main branch.
+- **Verification pattern:** `bun run build` → `bun run preview` locally on `:4321` → `interceptor open <url>` + `interceptor text|screenshot` for visual confirmation → push → poll for Netlify deploy → re-verify production URL.
+- **GitHub auth via gh:** `gh auth setup-git` already run; pushes work via the gh credential helper without prompting.
 
-### Long-read fold-in pattern
+### Where source material lives
 
-Ways-of-Komoroske and Ways-of-Fowler book projects fold in under each respective thinker as `content/thinkers/{slug}/long-read/{nn-chapter}.md`. Working files stay at `~/Camila/ways-of-{thinker}/`; published chapters get content-collection-shaped versions in the site repo.
+- **Komoroske:** `~/Camila/ways-of-komoroske/01-the-diagnosis.md` (drafted), `PLAN.md` (chapter outline for Parts 2+). Knowledge entries in `~/.claude/PAI/MEMORY/KNOWLEDGE/Ideas/`.
+- **Fowler:** `~/Camila/ways-of-fowler/{CONCEPT_LATTICE,CORPUS,PREFACE,ISA,PLAN}.md`. PREFACE.md is the only piece currently shipped as a chapter. Knowledge entry at `KNOWLEDGE/Ideas/fowler-cartographer-move.md`.
+- **Brooks, Allspaw, Woods, Dekker, Dalio:** No PAI source material — assembled from public corpus when writing. References live in the thinker frontmatter's `body_of_work` and `further_in` fields.
 
-### Operational notes
+### Classifier note
 
-- **Auto-commit:** `~/Camila` is in `checkpoint-repos.txt`. Every ISC `[ ]→[x]` transition auto-commits via `CheckpointPerISC.hook.ts`. Inspect via `bun ~/.claude/PAI/TOOLS/Checkpoint.ts list thinker-distillation` (slug derived from project name when surfacing checkpoints).
-- **Classifier behavior in the session that produced this:** the prompt classifier timed out repeatedly and defaulted to ALGORITHM E3 fail-safe. Work proceeded fine; flagging only so fresh-Camila doesn't treat repeat fail-safes as a signal.
+During this session the prompt classifier occasionally timed out / failed JSON parse, defaulting to ALGORITHM E3. Work proceeded cleanly. Repeated fail-safes in the next session are not a signal of project state; carry on.

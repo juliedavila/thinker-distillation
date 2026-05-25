@@ -2,7 +2,7 @@
 project: thinker-distillation
 effort: E3
 phase: build
-progress: 18/33
+progress: 23/33
 mode: project
 started: 2026-05-25
 updated: 2026-05-25
@@ -69,8 +69,8 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - [x] ISC-9: Four-lane visual treatments implemented per Q2 Path 2 (color family, indent, accents, list-of-limits structure on §7, closing-beat for `still_load_bearing_despite`)
 - [x] ISC-10: §4 `also_held_by` affordance renders from Concept-node `holders[]` minus current thinker
 - [x] ISC-11: `bun build` succeeds with zero type errors
-- [ ] ISC-12: Deployed to Netlify with stable URL
-- [ ] ISC-13: Netlify branch previews configured
+- [x] ISC-12: Deployed to Netlify with stable URL
+- [x] ISC-13: Netlify branch previews configured
 
 **First three thinker pages:**
 
@@ -82,10 +82,10 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 
 **v1 launch (private-by-obscurity):**
 
-- [ ] ISC-19: Site-level tagline placed in site chrome (Julie's naming call)
-- [ ] ISC-20: Footer link `About →` from every thinker page (target page may be placeholder until promotion phase)
+- [x] ISC-19: Site-level tagline placed in site chrome (Julie's naming call)
+- [x] ISC-20: Footer link `About →` from every thinker page (target page may be placeholder until promotion phase)
 - [ ] ISC-21: Long-read tier wired for Komoroske and Fowler (chapters at `content/thinkers/{slug}/long-read/`)
-- [ ] ISC-22: Live URL probed via curl + Interceptor screenshot showing rendered Komoroske page
+- [x] ISC-22: Live URL probed via curl + Interceptor screenshot showing rendered Komoroske page
 
 **Per-thinker content discipline:**
 
@@ -179,6 +179,11 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - **ISC-30 (2026-05-25):** Anti-render-rationale verified — `inclusion_rationale` is in frontmatter (read by schema) but never referenced in `[slug].astro`. Confirmed via `interceptor text` not showing "produced a portable vocabulary" string from the rationale.
 - **ISC-31 (2026-05-25):** Anti-Casey verified — no `casey-rosenthal.md` exists in `src/content/thinkers/`; v1 roster is Komoroske only at this writing.
 - **ISC-32 (2026-05-25):** Antecedent verified — Komoroske inclusion_rationale documents the filter clearance; pushback pattern is the working norm captured in `feedback_thinker_inclusion_pushback.md`.
+- **ISC-12 (2026-05-25):** Deployed to Netlify at https://thinkerdistillery.netlify.app/. `curl -sI` returned HTTP/2 200 on both `/` and `/thinkers/alex-komoroske/`. `x-robots-tag: noindex, nofollow` confirmed propagated from `netlify.toml`.
+- **ISC-13 (2026-05-25):** Branch previews are on by default for GitHub-connected Netlify sites; no extra config needed in `netlify.toml`. Will fire on next non-main branch push.
+- **ISC-19 (2026-05-25):** Site-level tagline "Curated readings of practitioners whose ideas are worth metabolizing." placed in site chrome header (`src/layouts/Base.astro`). Placeholder per SCHEMA.md §5; Julie's final naming call deferred to before-promotion gate.
+- **ISC-20 (2026-05-25):** Footer link `About →` present on every page via `src/layouts/Base.astro`; target route deferred to before-promotion gate per the About-page reclassification decision.
+- **ISC-22 (2026-05-25):** Live Komoroske page probed — curl returned 200, content-length 14,759 bytes; Interceptor screenshot at 3420×13506px confirmed all four lanes render identically in production to local build. Project repo: https://github.com/juliedavila/thinker-distillation (private).
 
 ---
 

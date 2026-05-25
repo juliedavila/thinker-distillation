@@ -1,0 +1,202 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { buildConceptHoldersIndex, alsoHeldByFor } from '../../lib/graph';
+
+export async function getStaticPaths() {
+  const thinkers = await getCollection('thinkers');
+  return thinkers.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const t = entry.data;
+const { Content } = await render(entry);
+
+const holdersIndex = await buildConceptHoldersIndex();
+---
+
+<Base title={`${t.name} — Thinker Distillation`} description={t.tagline}>
+  <article>
+    <section class="hero">
+      <h1>{t.name}</h1>
+      <p class="tagline">{t.tagline}</p>
+      <div class="domain-badges">
+        {t.primary_domains.map((d) => <span>{d}</span>)}
+      </div>
+      <p class="thirty-second">{t.thirty_second_take}</p>
+    </section>
+
+    <section aria-labelledby="who">
+      <h2 id="who" class="section-h">Who They Are</h2>
+      <p>{t.background}</p>
+      <p>{t.why_they_matter_as_a_thinker}</p>
+    </section>
+
+    <section aria-labelledby="pov">
+      <h2 id="pov" class="section-h">Core POV</h2>
+      <p>{t.thesis}</p>
+      {t.working_line && (
+        <blockquote class="what-x-says">
+          <p>{t.working_line}</p>
+          <cite>— {t.name}, paraphrased</cite>
+        </blockquote>
+      )}
+    </section>
+
+    <section aria-labelledby="frames">
+      <h2 id="frames" class="section-h">Named Frames</h2>
+      {t.named_frames.map((frame) => {
+        const alsoHeld = alsoHeldByFor(frame.concept_slug, t.slug, holdersIndex);
+        return (
+          <div class="frame">
+            <div class="frame-head">
+              <span class="display-name">{frame.display_name}</span>
+              <span class="attribution-kind">{frame.attribution_kind}</span>
+            </div>
+            <p class="gloss">{frame.one_line_gloss}</p>
+            {alsoHeld.length > 0 && (
+              <p class="also-held">
+                <strong>also held by:</strong>{' '}
+                {alsoHeld.map((h, i) => (
+                  <>
+                    {i > 0 && ' · '}
+                    <a href={`/thinkers/${h.thinker_slug}`}>{h.display_name}</a>{' '}
+                    <span class="edge-label">({h.edge_label})</span>
+                  </>
+                ))}
+              </p>
+            )}
+          </div>
+        );
+      })}
+    </section>
+
+    <section aria-labelledby="body-of-work">
+      <h2 id="body-of-work" class="section-h">Body of Work</h2>
+      <ul class="body-of-work">
+        {t.body_of_work.map((item) => (
+          <li>
+            <div class="title-line">
+              {item.link ? <a href={item.link}>{item.title}</a> : item.title}
+              <span class="meta">{item.type}{item.year ? ` · ${item.year}` : ''}</span>
+              {item.read_first && <span class="tag">read first</span>}
+              {item.canonical && <span class="tag">canonical</span>}
+            </div>
+            {item.editorial_note && <p class="editorial-note">{item.editorial_note}</p>}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section aria-labelledby="editorial">
+      <h2 id="editorial" class="section-h">Editorial Reading</h2>
+      <div class="julie-lane">
+        <p class="lane-mark">From Julie's reading</p>
+        <h3>What I take</h3>
+        <p>{t.what_i_take}</p>
+        <h3>Where I extend</h3>
+        <p>{t.where_i_extend}</p>
+        {t.working_uses && t.working_uses.length > 0 && (
+          <>
+            <h3>Working uses</h3>
+            <ul>
+              {t.working_uses.map((use) => <li>{use}</li>)}
+            </ul>
+          </>
+        )}
+      </div>
+    </section>
+
+    <section aria-labelledby="breaks">
+      <h2 id="breaks" class="section-h">Where This Breaks</h2>
+      <div class="julie-lane breaks">
+        <p class="lane-mark">Where I think this breaks</p>
+        {t.limits.map((limit) => (
+          <div class="limit-card">
+            <div class="limit-head">
+              <span class="headline">{limit.headline}</span>
+              <span class={`severity ${limit.severity}`}>{limit.severity}</span>
+            </div>
+            <p class="elaboration">{limit.elaboration}</p>
+          </div>
+        ))}
+      </div>
+      <div class="still-load-bearing">
+        <p class="lane-mark">Still load-bearing, despite</p>
+        <p>{t.still_load_bearing_despite}</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="adjacent">
+      <h2 id="adjacent" class="section-h">Adjacent Thinkers</h2>
+      <div class="adjacents">
+        {t.adjacent_thinkers.map((adj) => (
+          <div class="adjacent-card">
+            <p class="who">{adj.display_name}</p>
+            <div class="edge-tags">
+              <span class="edge-tag">{adj.edge_type}</span>
+              <span class="edge-tag">{adj.strength}</span>
+            </div>
+            <p class="edge-label">{adj.edge_label}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section aria-labelledby="further-in">
+      <h2 id="further-in" class="section-h">Further In</h2>
+      <dl class="further-in">
+        <dt>Start here</dt>
+        <dd>{t.further_in.start_here}</dd>
+        {t.further_in.then_read && t.further_in.then_read.length > 0 && (
+          <>
+            <dt>Then read</dt>
+            <dd>
+              <ol>
+                {t.further_in.then_read.map((tr) => <li>{tr}</li>)}
+              </ol>
+            </dd>
+          </>
+        )}
+        {t.further_in.if_you_want_depth && (
+          <>
+            <dt>If you want depth</dt>
+            <dd>{t.further_in.if_you_want_depth}</dd>
+          </>
+        )}
+        {t.further_in.if_you_want_breadth && (
+          <>
+            <dt>If you want breadth</dt>
+            <dd>{t.further_in.if_you_want_breadth}</dd>
+          </>
+        )}
+      </dl>
+    </section>
+
+    {t.long_read && (
+      <section aria-labelledby="long-read">
+        <h2 id="long-read" class="section-h">Long Read</h2>
+        <div class="long-read">
+          <p class="title">{t.long_read.title}</p>
+          <p class="summary">{t.long_read.summary}</p>
+          {t.long_read.chapter_list && t.long_read.chapter_list.length > 0 && (
+            <ol>
+              {t.long_read.chapter_list.map((c) => (
+                <li><a href={c.href}>{c.title}</a></li>
+              ))}
+            </ol>
+          )}
+        </div>
+      </section>
+    )}
+
+    {Content && (
+      <section aria-labelledby="notes">
+        <Content />
+      </section>
+    )}
+  </article>
+</Base>

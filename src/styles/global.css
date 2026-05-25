@@ -1,0 +1,545 @@
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --ink-muted: #6b6b6b;
+  --paper: #fbfaf6;
+  --paper-sunk: #f3f1e8;
+  --rule: #d6d2c2;
+
+  --julie-tint: #f1ede0;
+  --julie-accent: #6b5b2e;
+  --julie-rule: #c6b88a;
+
+  --frame-tint: #eef2f4;
+  --frame-accent: #2e4d5b;
+
+  --quote-tint: #f6f0ea;
+  --quote-rule: #8c6f4f;
+
+  --break-accent: #8a3a2e;
+
+  --max: 720px;
+  --gutter: clamp(16px, 4vw, 32px);
+
+  --serif: 'Iowan Old Style', 'Hoefler Text', 'Georgia', 'Cambria', 'Times New Roman', serif;
+  --sans: -apple-system, 'SF Pro Text', 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+  --mono: 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.55;
+}
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--gutter);
+}
+
+.chrome {
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+
+.chrome .wrap {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.chrome .site-name {
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.chrome .tagline {
+  font-style: italic;
+}
+
+footer.chrome .wrap {
+  border-top: 1px solid var(--rule);
+  border-bottom: 0;
+  margin-top: 64px;
+}
+
+footer.chrome a {
+  color: var(--ink-muted);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--ink-muted);
+}
+
+.hero {
+  margin: 32px 0 48px;
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.1rem, 4.5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0 0 12px;
+}
+
+.hero .tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  margin: 0 0 20px;
+  max-width: 56ch;
+}
+
+.domain-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 24px;
+}
+
+.domain-badges span {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  background: var(--paper-sunk);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 4px 12px;
+}
+
+.thirty-second {
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 60ch;
+  border-left: 3px solid var(--rule);
+  padding-left: 18px;
+  margin: 0;
+}
+
+section {
+  margin: 56px 0;
+}
+
+h2.section-h {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-muted);
+  margin: 0 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+
+p {
+  max-width: 64ch;
+}
+
+/* Lane: "What X says" — neutral body prose with optional pull-quote */
+blockquote.what-x-says {
+  margin: 24px 0;
+  padding: 18px 22px;
+  background: var(--quote-tint);
+  border-left: 4px solid var(--quote-rule);
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+blockquote.what-x-says cite {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+}
+
+/* Lane: Editorial Reading (§6) — Julie voice */
+.julie-lane {
+  background: var(--julie-tint);
+  border-left: 4px solid var(--julie-rule);
+  padding: 22px 26px;
+  margin: 24px 0;
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.julie-lane .lane-mark {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--julie-accent);
+  margin: 0 0 10px;
+}
+
+.julie-lane p,
+.julie-lane ul {
+  margin: 0 0 14px;
+  color: var(--ink);
+}
+
+.julie-lane h3 {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--julie-accent);
+  margin: 18px 0 6px;
+  text-transform: none;
+}
+
+/* Lane: Where This Breaks (§7) — same family + list-of-limits + accent */
+.julie-lane.breaks {
+  border-left-color: var(--break-accent);
+}
+
+.julie-lane.breaks .lane-mark {
+  color: var(--break-accent);
+}
+
+.limit-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--break-accent);
+  padding: 14px 18px;
+  margin: 12px 0;
+  border-radius: 2px;
+}
+
+.limit-card .limit-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.limit-card .headline {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.limit-card .severity {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+}
+
+.limit-card .severity.structural {
+  color: var(--break-accent);
+}
+
+.limit-card .elaboration {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* Closing beat — same family as julie-lane, no list, no accent */
+.still-load-bearing {
+  background: var(--julie-tint);
+  border-left: 4px solid var(--julie-rule);
+  padding: 18px 26px;
+  margin: 18px 0 0;
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.still-load-bearing .lane-mark {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--julie-accent);
+  margin: 0 0 8px;
+}
+
+.still-load-bearing p {
+  margin: 0;
+}
+
+/* Lane: Named Frames (§4) */
+.frame {
+  background: var(--frame-tint);
+  border-left: 4px solid var(--frame-accent);
+  padding: 18px 22px;
+  margin: 16px 0;
+}
+
+.frame .frame-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.frame .display-name {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: var(--ink);
+}
+
+.frame .attribution-kind {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--frame-accent);
+  background: rgba(46, 77, 91, 0.08);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+
+.frame .gloss {
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.frame .also-held {
+  margin: 10px 0 0;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+}
+
+.frame .also-held strong {
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.frame .also-held a {
+  color: var(--frame-accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--frame-accent);
+}
+
+.frame .also-held .edge-label {
+  font-style: italic;
+  color: var(--ink-muted);
+}
+
+/* Body of work list */
+.body-of-work {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.body-of-work li {
+  padding: 14px 0;
+  border-bottom: 1px dotted var(--rule);
+}
+
+.body-of-work li:last-child {
+  border-bottom: 0;
+}
+
+.body-of-work .title-line {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.body-of-work .title-line a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+
+.body-of-work .meta {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  margin-left: 8px;
+}
+
+.body-of-work .editorial-note {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 4px 0 0;
+}
+
+.body-of-work .tag {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--paper-sunk);
+  color: var(--ink-muted);
+  padding: 1px 8px;
+  border-radius: 999px;
+  margin-left: 6px;
+}
+
+/* Adjacent thinkers cards */
+.adjacents {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.adjacent-card {
+  background: var(--paper-sunk);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 16px 18px;
+}
+
+.adjacent-card .who {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ink);
+  margin: 0;
+}
+
+.adjacent-card .edge-tags {
+  display: flex;
+  gap: 6px;
+  margin: 4px 0 8px;
+}
+
+.adjacent-card .edge-tag {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 1px 8px;
+}
+
+.adjacent-card .edge-label {
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin: 0;
+  font-style: italic;
+}
+
+/* Further in */
+.further-in {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+}
+
+.further-in dt {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  margin-top: 14px;
+}
+
+.further-in dd {
+  margin: 4px 0 0;
+  color: var(--ink);
+}
+
+/* Long read */
+.long-read {
+  background: var(--paper-sunk);
+  border: 1px solid var(--rule);
+  padding: 22px 26px;
+}
+
+.long-read .title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin: 0 0 6px;
+}
+
+.long-read .summary {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+  max-width: 60ch;
+}
+
+.long-read ol {
+  padding-left: 20px;
+  font-family: var(--sans);
+  font-size: 0.92rem;
+}
+
+/* Index */
+.thinker-index {
+  list-style: none;
+  padding: 0;
+}
+
+.thinker-index li {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.thinker-index a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.thinker-index .name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin: 0 0 4px;
+}
+
+.thinker-index .tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-soft);
+  margin: 0;
+}

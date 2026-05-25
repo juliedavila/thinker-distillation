@@ -1,0 +1,42 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const tagline = 'Curated readings of practitioners whose ideas are worth metabolizing.';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="noindex,nofollow" />
+    {description && <meta name="description" content={description} />}
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="chrome">
+      <div class="wrap">
+        <a href="/" class="site-name">Thinker Distillation</a>
+        <span class="tagline">{tagline}</span>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <slot />
+    </main>
+
+    <footer class="chrome">
+      <div class="wrap">
+        <span>Curated by Julie Davila.</span>
+        <a href="/about">About →</a>
+      </div>
+    </footer>
+  </body>
+</html>

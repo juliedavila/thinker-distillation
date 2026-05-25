@@ -16,25 +16,25 @@ inclusion_rationale: >
   *believability-weighted decision-making*, *idea meritocracy*, and
   *pain + reflection = progress* are the named frames. The argument is
   contested, the operationalization is contested, the management
-  practices are contested — but the vocabulary moved, and the
+  practices are contested, but the vocabulary moved, and the
   cartographer move of writing an entire operating philosophy down as
   numbered principles is itself the contribution.
 thinker_type: principles-distiller
 has_long_read: false
 last_updated: 2026-05-25
 
-tagline: The hedge fund founder who turned his entire operating philosophy into numbered, public, contestable principles — and asked his industry to do the same.
+tagline: The hedge fund founder who turned his entire operating philosophy into numbered, public, contestable principles, and asked his industry to do the same.
 thirty_second_take: >
   Dalio's contribution is not the investing record, though that is what
   bought him the platform. The contribution is the *principles-distiller*
-  move — write your decision algorithm down, number it, expose it to
+  move: write your decision algorithm down, number it, expose it to
   critique, run your organization on the document, and let the document
   evolve under public revision. *Principles* (2017) is the corpus.
   *Radical transparency* is the working method; *believability-weighted
   decision-making* is the aggregation rule; *idea meritocracy* is the
   cultural target; *pain + reflection = progress* is the personal
   algorithm. The frame is contested and the Bridgewater operationalization
-  is contested, but the cartographer move — public, numbered, revisable —
+  is contested, but the cartographer move (public, numbered, revisable)
   is unusual enough that the vocabulary moved into the broader
   decision-making conversation.
 
@@ -57,13 +57,13 @@ why_they_matter_as_a_thinker: >
   Bridgewater culture they produced, the genre choice is what carried.
   Engineering orgs writing public engineering principles, security
   orgs writing public risk-acceptance frameworks, families writing
-  family operating agreements — the move that they're making is the
+  family operating agreements: the move they're making is the
   Dalio move.
 
 thesis: >
   Most consequential mistakes are made because the decision algorithm
   was tacit, contradictory, or unexamined. The fix is to write the
-  algorithm down — as numbered principles — expose it to critique
+  algorithm down (as numbered principles), expose it to critique
   from anyone willing to engage seriously, weight people's input by
   their *demonstrated* track record on the question at hand, and
   treat painful evidence that the algorithm is wrong as the primary
@@ -72,7 +72,7 @@ thesis: >
   the disagreements honestly. Therefore most organizations make
   systematic mistakes they could have avoided.
 working_line: >
-  Pain + reflection = progress. (*Principles*, 2017 — the personal
+  Pain + reflection = progress. (*Principles*, 2017; the personal
   algorithm in three terms.)
 
 named_frames:
@@ -80,7 +80,7 @@ named_frames:
     display_name: Principles
     one_line_gloss: >
       Numbered, written-down, publicly-defensible decision rules that
-      a person or organization commits to — and that evolve under
+      a person or organization commits to, and that evolve under
       revision when they produce bad outcomes. The genre is the
       contribution.
     attribution_kind: original
@@ -90,7 +90,7 @@ named_frames:
     display_name: Radical transparency
     one_line_gloss: >
       The institutional posture of making all meetings, evaluations,
-      and decision rationales available to all participants — with the
+      and decision rationales available to all participants, with the
       argument that information asymmetry is the largest contributor
       to organizational pathology.
     attribution_kind: original
@@ -99,7 +99,7 @@ named_frames:
   - concept_slug: believability-weighted-decision-making
     display_name: Believability-weighted decision-making
     one_line_gloss: >
-      An aggregation rule for collective decisions — weight each
+      An aggregation rule for collective decisions: weight each
       participant's input by their demonstrated track record on this
       *kind* of question, not by their position in the org chart.
     attribution_kind: original
@@ -108,7 +108,7 @@ named_frames:
   - concept_slug: idea-meritocracy
     display_name: Idea meritocracy
     one_line_gloss: >
-      The cultural target — an organization where the best argument
+      The cultural target: an organization where the best argument
       wins regardless of who is making it, sustained through radical
       transparency and believability weighting.
     attribution_kind: original
@@ -117,7 +117,7 @@ named_frames:
   - concept_slug: pain-plus-reflection-equals-progress
     display_name: Pain + reflection = progress
     one_line_gloss: >
-      The personal algorithm — painful experience is the primary
+      The personal algorithm: painful experience is the primary
       learning signal, and the work is to reflect on it disciplinedly
       rather than to suppress or rationalize it. The personal version
       of post-incident learning.
@@ -151,7 +151,7 @@ body_of_work:
     year: 2018
     editorial_note: >
       The professional reference. His macro analytical method
-      written down as numbered principles — the genre applied to
+      written down as numbered principles. The genre applied to
       his own expertise rather than to general life-and-work.
     canonical: true
   - title: 'How the Economic Machine Works (animated explanation)'
@@ -168,39 +168,39 @@ body_of_work:
     link: https://www.principles.com
     editorial_note: >
       The ongoing publishing surface. The platform is itself part of
-      the corpus — the principles-distiller move requires a venue
+      the corpus. The principles-distiller move requires a venue
       that hosts the revisions in public.
 
 what_i_take: >
   The principles-distiller move is the most useful import I carry into
   security-program design. Most security organizations operate on
-  tacit principles — "we don't accept that risk class," "we always
+  tacit principles: "we don't accept that risk class," "we always
   require two-person review for these changes," "we don't allow X
-  unless Y" — that are never written down, never examined, and
+  unless Y", that are never written down, never examined, and
   therefore never improved. Dalio's move is to *write the algorithm
   down* and treat the document as both the operating procedure and
   the artifact under continuous revision. The risk register, the
   acceptable-use policy, the security-architecture principles
-  document — these become live artifacts in the Dalio frame, not
+  document. These become live artifacts in the Dalio frame, not
   compliance theater. Whether or not Bridgewater's specific
   operationalization was good, the genre is right.
 where_i_extend: >
   Dalio built the principles-distiller move for a single-leader
   organization with an unusual tolerance for radical transparency.
   I push it into security organizations operating inside larger
-  enterprises that cannot tolerate radical transparency at scale —
+  enterprises that cannot tolerate radical transparency at scale:
   the risk surface is too public, the regulatory environment too
   punitive. The fix is to keep the principles-distiller form
   (numbered, written, revisable) while replacing radical transparency
-  with *scoped transparency* — full disclosure inside the security
+  with *scoped transparency*: full disclosure inside the security
   org and to leadership, edited disclosure to the broader company,
   minimal disclosure externally. The argument that "the form is
   the contribution" survives this adaptation; the specific
   Bridgewater transparency norms don't.
 working_uses:
-  - Security principles documents — written down, numbered, revisable
-  - Risk-acceptance frameworks — explicit decision algorithm, not tacit
-  - Cordon framework — software-quality principles as a peer dimension
+  - Security principles documents (written down, numbered, revisable)
+  - Risk-acceptance frameworks (explicit decision algorithm, not tacit)
+  - Cordon framework (software-quality principles as a peer dimension)
 
 limits:
   - headline: The Bridgewater operationalization is contested
@@ -232,13 +232,13 @@ limits:
       audit-defense rather than operating doctrine, the form
       survives but the substance evaporates. The Dalio move
       requires the org be able to publicly admit a principle was
-      wrong — most organizations cannot.
+      wrong; most organizations cannot.
 
 still_load_bearing_despite: >
   Even with the Bridgewater operationalization complications, the
-  principles-distiller move is durable. The genre — writing your
+  principles-distiller move is durable. The genre (writing your
   decision algorithm down as numbered, public, contestable
-  principles and running your organization against the document —
+  principles and running your organization against the document)
   works at the personal scale (the *Principles* book's first
   chapters), at the team scale (engineering principles documents),
   and at the program scale (security risk frameworks). Carrying
@@ -262,7 +262,7 @@ adjacent_thinkers:
     edge_label: >
       Both are cartographers of organizational complexity, but from
       opposite ends. Komoroske argues *don't centralize the
-      algorithm — garden the conditions*; Dalio argues *centralize
+      algorithm, garden the conditions*; Dalio argues *centralize
       the algorithm, publish it, run the org against it*. Honest
       readers carry both and choose by context.
     strength: secondary
@@ -270,7 +270,7 @@ adjacent_thinkers:
     display_name: Charlie Munger
     edge_type: parallel
     edge_label: >
-      Same genre at adjacent contents — Munger's *Poor Charlie's
+      Same genre at adjacent contents. Munger's *Poor Charlie's
       Almanack* is the principles-distiller move applied to
       Berkshire Hathaway-style investing and life rationality.
       Different temperament; same form.
@@ -288,13 +288,13 @@ adjacent_thinkers:
 
 further_in:
   start_here: >
-    *Principles: Life and Work* (2017) — Part 1 (personal arc) and
+    *Principles: Life and Work* (2017). Part 1 (personal arc) and
     Part 2 (life principles) before the work-principles catalog.
     The principles-distiller move is most legible in the first
     half.
   then_read:
-    - '*Principles for Navigating Big Debt Crises* — the form applied to a professional discipline'
-    - '*How the Economic Machine Works* (animated, 30 minutes) — the macro model in distilled form'
+    - '*Principles for Navigating Big Debt Crises* (the form applied to a professional discipline)'
+    - '*How the Economic Machine Works* (animated, 30 minutes; the macro model in distilled form)'
   if_you_want_breadth: >
     Read Munger's *Poor Charlie's Almanack*, Taleb's *Antifragile*,
     and Kahneman's *Thinking, Fast and Slow* as the working

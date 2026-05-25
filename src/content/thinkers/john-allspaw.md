@@ -11,7 +11,7 @@ status: alive-active
 inclusion_rationale: >
   Took the academic resilience-engineering tradition (Hollnagel, Woods,
   Cook) and translated it into working ops vocabulary the industry now
-  uses — *blameless postmortem*, *above-the-line / below-the-line*,
+  uses: *blameless postmortem*, *above-the-line / below-the-line*,
   *dark debt*. Co-founded Adaptive Capacity Labs with Richard Cook and
   David Woods (2017) as the bridge between the field and practice. The
   industry's most reliable carrier of the new-view safety lens into the
@@ -23,7 +23,7 @@ last_updated: 2026-05-25
 tagline: The translator who turned resilience engineering from an academic field into the working ops vocabulary the industry now uses to learn from incidents.
 thirty_second_take: >
   Allspaw's career has been a sustained argument that *incidents are the
-  most important learning artifact a sociotechnical system produces* —
+  most important learning artifact a sociotechnical system produces*,
   and that the standard postmortem culture (find the human, find the
   cause, write the action items, close the ticket) actively destroys the
   learning. The Etsy 2012 blameless postmortem essay is the keystone. The
@@ -44,8 +44,8 @@ background: >
   with Richard Cook and David Woods in 2017. Hosts the *Learning From
   Incidents* community alongside Nora Jones.
 why_they_matter_as_a_thinker: >
-  Without Allspaw, the resilience-engineering tradition — Hollnagel,
-  Woods, Cook, Dekker — would still be a body of work the software
+  Without Allspaw, the resilience-engineering tradition (Hollnagel,
+  Woods, Cook, Dekker) would still be a body of work the software
   industry occasionally glanced at and otherwise ignored. He is the
   reason your engineering org has a "blameless" prefix on the
   postmortem template, the reason "dark debt" is a phrase senior staff
@@ -55,7 +55,7 @@ why_they_matter_as_a_thinker: >
   spent a decade moving it.
 
 thesis: >
-  An incident is not a defect to be eliminated — it is a sample drawn
+  An incident is not a defect to be eliminated; it is a sample drawn
   from your system's actual operating envelope, telling you things
   about how the work is really done that no design document, runbook,
   or simulation can show you. The way to honor that signal is to set
@@ -72,7 +72,7 @@ named_frames:
   - concept_slug: blameless-postmortem
     display_name: Blameless postmortem
     one_line_gloss: >
-      An incident review whose stated goal is learning, not accountability —
+      An incident review whose stated goal is learning, not accountability,
       conducted under conditions where engineers can be honest about what
       they thought, did, and decided without career risk.
     attribution_kind: popularized
@@ -87,9 +87,9 @@ named_frames:
     display_name: Above the line / below the line
     one_line_gloss: >
       A distinction between the visible artifacts of a system (code,
-      configs, dashboards — *below the line*) and the cognitive work that
+      configs, dashboards: *below the line*) and the cognitive work that
       goes into operating it (mental models, attention, sensemaking, team
-      coordination — *above the line*). Most postmortems only document
+      coordination: *above the line*). Most postmortems only document
       below; the learning is mostly above.
     attribution_kind: co-authored
     primary_author: john-allspaw
@@ -100,8 +100,8 @@ named_frames:
   - concept_slug: dark-debt
     display_name: Dark debt
     one_line_gloss: >
-      Latent failure modes that exist in complex systems' interactions —
-      unknown until an incident reveals them — and that are not
+      Latent failure modes that exist in complex systems' interactions,
+      unknown until an incident reveals them, and that are not
       discoverable by inspection of any individual component. Different
       from tech debt; closer to "unknown unknowns" as a structural class.
     attribution_kind: co-authored
@@ -115,7 +115,7 @@ named_frames:
   - concept_slug: adaptive-capacity
     display_name: Adaptive capacity
     one_line_gloss: >
-      A system's ability to absorb disturbances and continue functioning —
+      A system's ability to absorb disturbances and continue functioning,
       not by being robust to known threats, but by having human and
       organizational reserves that can recognize and respond to novel
       ones. The resilience-engineering core concept.
@@ -123,7 +123,7 @@ named_frames:
     primary_author: david-woods
     co_originators:
       - slug: david-woods
-        role: original — resilience-engineering theory
+        role: original resilience-engineering theory
       - slug: john-allspaw
         role: applied to software operations
     source_link: https://www.adaptivecapacitylabs.com
@@ -133,7 +133,7 @@ named_frames:
       The distinction between how leadership / documentation / design
       thinks the work happens (imagined) and how it actually happens
       under real conditions (done). The gap is where adaptive capacity
-      lives — and where incidents originate.
+      lives, and where incidents originate.
     attribution_kind: extended
     primary_author: erik-hollnagel
     co_originators:
@@ -159,7 +159,7 @@ body_of_work:
     link: https://www.oreilly.com/library/view/web-operations/9781449377465/
     editorial_note: >
       Edited with Jesse Robbins. Pre-resilience-engineering Allspaw, but
-      the seeds of the later argument are visible — operating at scale as
+      the seeds of the later argument are visible: operating at scale as
       a sociotechnical discipline.
     canonical: true
   - title: 'SNAFUcatchers: STELLA Report from the SNAFUcatchers Workshop on Coping With Complexity'
@@ -175,10 +175,10 @@ body_of_work:
     type: blog-series
     link: https://www.adaptivecapacitylabs.com
     editorial_note: >
-      The ongoing corpus — incident-analysis case studies, methodology
+      The ongoing corpus: incident-analysis case studies, methodology
       writeups, the *Howie* guide to incident analysis (co-authored with
       Nora Jones).
-  - title: '*The Verica Open Incident Database (VOID)* — annual reports'
+  - title: '*The Verica Open Incident Database (VOID)*: annual reports'
     type: paper
     editorial_note: >
       Industry-scale aggregate of public incident reports. Companion
@@ -191,27 +191,27 @@ what_i_take: >
   blame culture, the gap between work-as-imagined and work-as-done, the
   habit of reducing the analysis to a root cause that pins the failure
   on the most-junior person whose hands were on the keyboard. The
-  Allspaw move — set up conditions where engineers will be honest, treat
-  the human side as the expertise about how the system really works — is
+  Allspaw move (set up conditions where engineers will be honest, treat
+  the human side as the expertise about how the system really works) is
   exactly what security IR needs and almost never gets. Importing the
   resilience-engineering vocabulary into security is one of the
   highest-leverage cultural changes a security org can make.
 where_i_extend: >
   Allspaw built the model for software ops. I push it into the
   adversarial layer where security operates. Security incidents have
-  an extra factor — an adversary actively optimizing against the
-  detection-and-response loop — that ops incidents don't. The
+  an extra factor (an adversary actively optimizing against the
+  detection-and-response loop) that ops incidents don't. The
   blameless framing still works, *above-the-line / below-the-line*
   still works, the work-as-imagined / work-as-done gap is still the
   source of failure. But adaptive capacity has to be sized for an
   adversary who is also adaptive. The resilience-engineering frame
   needs an explicit adversarial-modeling axis added when ported to
-  security work — otherwise you end up with a calm, blameless,
+  security work; otherwise you end up with a calm, blameless,
   thoroughly documented system getting reliably owned.
 working_uses:
-  - Security incident response — blameless framing applied to breach analysis
-  - '"Boring Seams" keynote — the work-as-imagined / work-as-done gap in security architecture'
-  - Cordon framework — adaptive capacity as a peer dimension among software-quality concerns
+  - Security incident response (blameless framing applied to breach analysis)
+  - '"Boring Seams" keynote (the work-as-imagined / work-as-done gap in security architecture)'
+  - Cordon framework (adaptive capacity as a peer dimension among software-quality concerns)
 
 limits:
   - headline: The "blameless" label gets misapplied
@@ -219,7 +219,7 @@ limits:
     elaboration: >
       Allspaw's blameless framing is about creating the conditions for
       honest learning, not about removing accountability. The industry has
-      partially adopted the label without the discipline — "blameless"
+      partially adopted the label without the discipline. "Blameless"
       becomes a euphemism for "no consequences," which produces a
       different failure mode: incidents recur because no one feels
       ownership. The argument is harder than the label.
@@ -228,8 +228,8 @@ limits:
     elaboration: >
       The Allspaw move works when leadership wants to learn from
       incidents. In organizations where incidents are treated as
-      reputation events — public companies under regulatory pressure,
-      vendors fighting churn, security orgs measured on incident count —
+      reputation events (public companies under regulatory pressure,
+      vendors fighting churn, security orgs measured on incident count),
       the conditions for blameless analysis cannot be created from the
       bottom. The framework has no story for getting executives to
       tolerate the truth the framework would surface.
@@ -302,14 +302,14 @@ adjacent_thinkers:
 further_in:
   start_here: >
     The Etsy 2012 *Blameless Postmortems and a Just Culture* essay
-    (twelve pages) — the keystone, still the right starting point.
+    (twelve pages). The keystone, still the right starting point.
   then_read:
-    - 'The 2017 SNAFUcatchers STELLA Report — where dark debt and above/below the line enter the literature'
+    - 'The 2017 SNAFUcatchers STELLA Report (where dark debt and above/below the line enter the literature)'
     - 'The *Howie* incident-analysis guide (with Nora Jones)'
     - 'Adaptive Capacity Labs case studies (adaptivecapacitylabs.com)'
   if_you_want_breadth: >
     Read Woods on graceful extensibility, Dekker's *Field Guide to
     Understanding Human Error*, and Cook's *How Complex Systems Fail*
-    alongside Allspaw — they're the foundation his applied work rests
+    alongside Allspaw; they're the foundation his applied work rests
     on.
 ---

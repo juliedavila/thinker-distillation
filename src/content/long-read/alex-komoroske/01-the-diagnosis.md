@@ -1,10 +1,10 @@
 ---
 thinker_slug: alex-komoroske
 chapter_number: 1
-title: 'Part 1 — The Diagnosis'
+title: 'Part 1: The Diagnosis'
 summary: >
   The slime mold, coordination headwind, the Schelling point underneath,
-  and the heroics smell. The four pieces of the diagnostic stance —
+  and the heroics smell. The four pieces of the diagnostic stance,
   enough to ask the right question about why your organization moves
   slower the bigger it gets.
 last_updated: 2026-05-23

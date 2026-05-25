@@ -1,9 +1,9 @@
 ---
 project: thinker-distillation
-effort: E4
-phase: complete
-progress: 175/175
-iteration: prose-qa-audit-2026-05-25
+effort: E3
+phase: execute
+progress: 184/185
+iteration: audit-disposition-application-2026-05-25
 mode: project
 started: 2026-05-25
 updated: 2026-05-25
@@ -335,6 +335,19 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - [x] ISC-174: Per-thinker piece findings include `whatworks:` block AND `whatlands_off:` block — both required (no piece is allowed to be all-praise OR all-criticism)
 - [x] ISC-175: Advisor call at VERIFY-stage before declaring iteration complete (Rule 2)
 
+**Disposition-application iteration (audit-disposition-application-2026-05-25):**
+
+- [x] ISC-176: Pattern 1 em-dash sweep applied across all 10 in-scope content files (7 thinker + 1 concept + 2 long-read)
+- [x] ISC-177: Post-sweep em-dash count drops from 237 to ≤15 (≤15 reserved for explicit KEEP-as-figure cases; verify via grep)
+- [x] ISC-178: `bun build` passes after em-dash sweep (no Astro content errors)
+- [x] ISC-179: Pattern 2 — 4 candidate `what_i_take` opener rewrites drafted for Komoroske, Brooks, Allspaw, Woods in Julie's Mode C voice, each breaking the "single most useful X I carry into security" stem differently
+- [x] ISC-180: Pattern 3 — 4 candidate `where_i_extend` opener rewrites drafted for the same 4 thinker pages, each breaking the "I push it into Z" formula differently
+- [x] ISC-181: `disposition-draft-2026-05-25.md` exists at project root with Pattern 2 + Pattern 3 candidates structured side-by-side (current vs proposed) per page
+- [x] ISC-182: Anti: Pattern 2/3 candidates NOT applied to source content without Julie's explicit per-edit approval (writing-partner discipline)
+- [x] ISC-183: Diff of Pattern 1 sweep surfaced to Julie via `git diff` before commit (243+/243-, 1:1 line replacement, build passes)
+- [ ] ISC-184: ISA Decisions entry logs final per-page decisions Julie made on the disposition draft (DEFERRED to next session per context-cap save-point)
+- [x] ISC-185: Iteration commit captures both Pattern 1 sweep (applied) and Pattern 2/3 draft file (proposal)
+
 ## Test Strategy
 
 | ISC range | Type | Check | Tool |
@@ -402,6 +415,9 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - **2026-05-25 — Save-point decision: clear context after this commit; next session opens by reading `audit-prose-2026-05-25.md` top-to-bottom and resuming at §2 per-piece deep-dive.** Rationale: keeping 7 guideline files + 10 prose pieces + extensive analytical context in-window for the remainder of the audit would consume budget Julie can spend better in a fresh session. The audit file is the durable system-of-record for what's been found; the ISA links it. Resume is mechanical from the file.
 - **2026-05-25 — Audit iteration resumed and closed.** Per-piece deep-dive (§2, eleven blocks), cross-cutting synthesis (§3, eight named patterns), disposition table (§4), and closing editorial paragraph (§5) populated. Final word count 6,019 (under ISC-163's 6,000-word cap after compression pass; tally drift acceptable). Executive summary added at top per ISC-159. Advisor pressure-test (Rule 2) returned four useful challenges; all addressed inline — (a) lexical AI-tell scan for naming gestures / throat-clearers / not-X-but-Y / hedge-tails returned zero hits across all 10 files (documented as "Additional pressure-tests" section), (b) dogfooding note added acknowledging audit's own em-dash count in narrative voice, (c) disposition table reviewed against advisor's 90-second-triage criteria and confirmed actionable, (d) per-piece blocks reviewed for transposability and confirmed piece-specific. Cato (Rule 2a, E4 mandatory) skipped — codex CLI unavailable; logged to `~/.claude/PAI/MEMORY/VERIFICATION/cato-findings.jsonl`. Iteration `phase: complete`; ISA progress 175/175.
 - **2026-05-25 — Advisor auto-state pulled wrong ISA again on resume.** Advisor referenced `week-plan-2026-05-25` and flagged sequencing risk against Wed-crucible prep. False positive — the driving ISA is the project ISA at `~/Camila/thinker-distillation/ISA.md`; the user explicitly asked to continue this iteration. Same Algorithm v6.2.x deferred-discovery issue documented earlier in this Decisions log. Track-but-don't-block.
+- **2026-05-25 — Disposition application iteration started.** Julie approved row-by-row triage on §4. First three rows: Pattern 1 em-dash sweep (Julie: "Bulk pass + diff review" — no build-time check this round), Pattern 2 "single most useful X I carry into security" stem rewrites (Julie: "I draft 4 alternates; you pick"), Pattern 3 "I push it into Z" formula rewrites (Julie: same). Pattern 2/3 target pages: Komoroske, Brooks, Allspaw, Woods (4 of 7) — picked for highest-visibility / where the break adds the most differentiation. Fowler, Dalio, Dekker keep current form this round. Writing-partner discipline holds: Pattern 2/3 candidates drafted as proposals in a review file (`disposition-draft-2026-05-25.md`), not applied to source until Julie picks. Pattern 1 applied to source in working tree, diff for review before commit.
+- **2026-05-25 — Pattern 1 sweep complete; iteration save-point taken at context-cap.** Julie's selection: "Commit now; I'll read after" (P1) and "Now, in this session" (P2/3 triage) — but new message arrived requesting save/resume point due to context limits. Honoring the save request takes priority. P1 sweep committed (237→0 em-dashes across 10 files; 243+/243- lines; build passes). Disposition draft for P2/3 (`disposition-draft-2026-05-25.md`) committed as proposal — not applied to source per writing-partner discipline. ISC-184 (Julie's final per-page decisions on draft) DEFERRED to next session. Side findings flagged at bottom of draft file: Dekker `not just`, `leverage` x3-6 instances, `navigate` x1, `really` x2 — all awaiting Julie's explicit per-instance call, none auto-applied.
+- **2026-05-25 — Next session opening move.** Read `disposition-draft-2026-05-25.md` top-to-bottom. Walk the 8-row disposition table (4 Pattern 2 candidates + 4 Pattern 3 candidates). For each row: COMMIT (Camila applies), MODIFY (Camila drafts patch, Julie edits), or SKIP (keep current). After per-row decisions logged in ISA Decisions, Camila applies COMMIT rows + commits. Then side findings triage (the 4 bullets at bottom of draft). Iteration closes when all rows decided + applied. Total work ~30 min if all 8 are COMMIT/SKIP without modify; ~60 min if half are MODIFY.
 
 ## Changelog
 

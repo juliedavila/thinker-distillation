@@ -9,8 +9,8 @@ primary_domains:
   - just-culture
 status: alive-active
 inclusion_rationale: >
-  Built the working version of the *new view of human error* — the
-  argument that human error is a symptom, not a cause — and translated
+  Built the working version of the *new view of human error*, the
+  argument that human error is a symptom, not a cause, and translated
   it from academic safety science into the vocabulary that aviation,
   medicine, and (via Allspaw and others) software ops actually use.
   Author of *The Field Guide to Understanding Human Error*, *Drift Into
@@ -38,7 +38,7 @@ background: >
   Dutch safety scientist. Professor at Griffith University in
   Queensland, Australia; previously Chair of Human Factors and System
   Safety at Lund University in Sweden, where he advised John Allspaw's
-  PhD work. Active commercial airline pilot — Boeing 737 ratings — kept
+  PhD work. Active commercial airline pilot (Boeing 737 ratings) kept
   current through his academic career. Author of more than a dozen
   books since 2002. The most-translated and most-cited writer on
   safety culture working today.
@@ -47,7 +47,7 @@ why_they_matter_as_a_thinker: >
   they are speaking Dekker. His prose is the medium through which the
   resilience-engineering frame entered the wider professional world.
   Investigators in aviation, surgeons running mortality conferences,
-  software-ops engineers running incident reviews — when they reach
+  software-ops engineers running incident reviews: when they reach
   for a vocabulary that lets them honor the operator's experience
   while still asking hard questions about the system, they are
   reaching for Dekker. The carry is broad enough that it now reads
@@ -57,7 +57,7 @@ why_they_matter_as_a_thinker: >
 thesis: >
   Treat human error as a *consequence*, not a cause. The investigator's
   job is not to determine what someone failed to do, but to reconstruct
-  how the situation made sense to them at the time — because if it made
+  how the situation made sense to them at the time, because if it made
   sense, it will make sense again, and the next operator in that
   position will make the same choice. *Just culture* names the
   institutional posture that makes this kind of investigation possible.
@@ -67,7 +67,7 @@ thesis: >
   invest in human adaptive capacity, not procedural compliance.
 working_line: >
   Underneath every simple, obvious story about an "error," there is a
-  deeper, second story — the one where you actually have to do the
+  deeper, second story: the one where you actually have to do the
   thinking. (Paraphrased from *The Field Guide to Understanding Human
   Error*.)
 
@@ -110,7 +110,7 @@ named_frames:
   - concept_slug: safety-differently
     display_name: Safety differently
     one_line_gloss: >
-      An alternative to compliance-centric safety — invest in human
+      An alternative to compliance-centric safety: invest in human
       adaptive capacity, build the conditions where workers can do
       their jobs well, and treat the front line as the source of
       safety rather than the source of risk.
@@ -142,7 +142,7 @@ named_frames:
     primary_author: david-woods
     co_originators:
       - slug: david-woods
-        role: original — resilience-engineering theory
+        role: original resilience-engineering theory
       - slug: sidney-dekker
         role: carried into safety-culture writing
 
@@ -153,7 +153,7 @@ body_of_work:
     link: https://sidneydekker.com/field-guide-human-error/
     editorial_note: >
       The keystone book. Third edition 2014. If you only read one
-      Dekker, this is it — the operating manual for investigating
+      Dekker, this is it: the operating manual for investigating
       incidents under the new view. Sized to be handed to working
       investigators, not academics.
     read_first: true
@@ -192,8 +192,8 @@ body_of_work:
       edges and the prescription is sharper.
 
 what_i_take: >
-  The *just culture* distinction — accountable for willful violations,
-  not for honest mistakes — is the move I keep importing into security
+  The *just culture* distinction (accountable for willful violations,
+  not for honest mistakes) is the move I keep importing into security
   conversations about engineer behavior. Security cultures default to
   punitive responses for engineer "errors" (clicked the phishing email,
   pushed the credential to GitHub, misconfigured the IAM policy) without
@@ -207,16 +207,16 @@ where_i_extend: >
   Dekker built the safety-culture frame for industries where the
   primary disturbance is nature, accident, or organizational drift.
   I push it into the security space where some of the disturbance is
-  adversarial intent. The framework still holds — engineer
-  "failures" under security pressure are mostly system-induced — but
+  adversarial intent. The framework still holds: engineer
+  "failures" under security pressure are mostly system-induced, but
   the just-culture model needs an explicit adversarial axis. The
   attacker is also exploiting the work-as-imagined / work-as-done
   gap; the gap is therefore a security defect, not just a safety
   defect. The two frames need to meet, and Dekker is most of the way.
 working_uses:
-  - Security incident response — just-culture framing for engineer-error analysis
-  - '"Boring Seams" keynote — drift-into-failure applied to security architecture'
-  - Cordon framework — safety-differently as a peer dimension among software quality concerns
+  - Security incident response (just-culture framing for engineer-error analysis)
+  - '"Boring Seams" keynote (drift-into-failure applied to security architecture)'
+  - Cordon framework (safety-differently as a peer dimension among software quality concerns)
 
 limits:
   - headline: The frame's silence on adversaries shows under security pressure
@@ -233,7 +233,7 @@ limits:
     elaboration: >
       Applied loosely, "drift into failure" can be invoked to explain
       every incident as the inevitable product of organizational
-      pressure — which then forecloses the question of what specific
+      pressure, which then forecloses the question of what specific
       decisions could have been made differently. The frame is best
       when used surgically, not as a default story.
   - headline: Safety-differently's "trust the front line" assumes alignment
@@ -241,9 +241,9 @@ limits:
     elaboration: >
       Dekker's prescription works when front-line workers and the
       organization share goals. In organizations with severe goal
-      misalignment — bonus structures rewarding incident suppression,
+      misalignment (bonus structures rewarding incident suppression,
       ops teams under headcount cuts, security orgs measured on
-      counter-productive metrics — "investing in adaptive capacity"
+      counter-productive metrics), "investing in adaptive capacity"
       gets reinterpreted into something it isn't. The framework has
       no story for getting management to want what the framework wants.
 
@@ -251,7 +251,7 @@ still_load_bearing_despite: >
   Dekker is the most-translated safety-culture writer of the last
   twenty-five years for a reason. *The Field Guide to Understanding
   Human Error* is the manual that anyone running real incident
-  investigations — across aviation, medicine, or software — keeps
+  investigations, across aviation, medicine, or software, keeps
   coming back to. Every "blameless postmortem" in the software
   industry is downstream of a chain that runs through Dekker. The
   vocabulary moved because the prose was clear and the argument was
@@ -264,7 +264,7 @@ adjacent_thinkers:
     edge_label: >
       Co-builder of the new view of human error. Woods is the
       cognitive-systems-engineering side; Dekker is the
-      safety-culture side. Read them together — Woods for the
+      safety-culture side. Read them together: Woods for the
       theory, Dekker for the application.
     strength: primary
   - target_slug: john-allspaw
@@ -304,12 +304,12 @@ adjacent_thinkers:
 
 further_in:
   start_here: >
-    *The Field Guide to Understanding Human Error* (3rd ed, 2014) —
-    the working manual. Read it cover-to-cover; it's compact.
+    *The Field Guide to Understanding Human Error* (3rd ed, 2014).
+    The working manual. Read it cover-to-cover; it's compact.
   then_read:
-    - '*Just Culture* — the institutional precondition'
-    - '*Drift Into Failure* — the slow-motion-disaster framing'
-    - '*Safety Differently* — the prescription'
+    - '*Just Culture* (the institutional precondition)'
+    - '*Drift Into Failure* (the slow-motion-disaster framing)'
+    - '*Safety Differently* (the prescription)'
   if_you_want_breadth: >
     Read Reason's *Human Error*, Woods's *Behind Human Error*, and
     Cook's *How Complex Systems Fail* as the foundation Dekker is

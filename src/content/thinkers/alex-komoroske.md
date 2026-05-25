@@ -27,17 +27,17 @@ thirty_second_take: >
   headwind is the named cost. Schelling-point engineering is the leverage.
 
 background: >
-  Komoroske spent his career inside platforms — Google (Chrome, Salesforce
-  platforms), Stripe (Climate, identity) — with a long arc of writing on Medium
+  Komoroske spent his career inside platforms (Google Chrome and Salesforce
+  platforms, Stripe Climate and identity) with a long arc of writing on Medium
   that runs parallel to the institutional work. Platforms thinker first,
   org-design thinker second, but the two collapse into each other: a platform
   is just an organization in code, and an organization is a platform of humans.
   His instinct is to treat large social systems as physics problems with hidden
   conservation laws.
 why_they_matter_as_a_thinker: >
-  What makes him portable as a thinker is the vocabulary. He names things —
+  What makes him portable as a thinker is the vocabulary. He names things:
   coordination headwind, the slime mold, the gardener, the bramble, the
-  Schelling point, adjacent possible — and the names lodge. Practitioners
+  Schelling point, adjacent possible. The names lodge. Practitioners
   reach for the words when they're diagnosing their own organizations, which
   is the test of a working frame.
 
@@ -46,8 +46,8 @@ thesis: >
   leader's job is not to plan the optimal answer and propagate it downward;
   the leader's job is to make defensible answers focal enough that local
   actors converge on them without being told. Organizations that ignore this
-  pay a tax that grows faster than they expect, sooner than they expect —
-  coordination headwind — and the standard responses (more meetings, more
+  pay a tax that grows faster than they expect, sooner than they expect.
+  This is coordination headwind. The standard responses (more meetings, more
   reorgs, more hiring) make it worse. The fix is to push decisions to where
   local information lives, accept the messiness, and trust that recovery time
   in a self-correcting system is faster than freeze-up time in a centralized
@@ -68,13 +68,13 @@ named_frames:
     primary_author: alex-komoroske
     co_originators:
       - slug: fred-brooks
-        role: original 1975 — Brooks's Law (engineering teams under deadline)
+        role: original 1975 (Brooks's Law for engineering teams under deadline)
     source_link: https://medium.com/@komorama
   - concept_slug: slime-mold
     display_name: The slime mold
     one_line_gloss: >
-      The working metaphor for distributed, locally-informed decision-making —
-      no central planner, recovery faster than freeze.
+      The working metaphor for distributed, locally-informed decision-making.
+      No central planner; recovery faster than freeze.
     attribution_kind: popularized
     primary_author: alex-komoroske
     co_originators:
@@ -85,7 +85,7 @@ named_frames:
     display_name: Schelling-point organizations
     one_line_gloss: >
       Convergence engineered through focal-point design rather than directive
-      planning — make the secure default the obvious one.
+      planning. Make the secure default the obvious one.
     attribution_kind: extended
     primary_author: alex-komoroske
     co_originators:
@@ -95,7 +95,7 @@ named_frames:
   - concept_slug: gardener-vs-architect
     display_name: Gardener vs. architect
     one_line_gloss: >
-      Two opposing leadership stances — set conditions and prune (gardener)
+      Two opposing leadership stances: set conditions and prune (gardener)
       vs. plan and propagate (architect).
     attribution_kind: original
     primary_author: alex-komoroske
@@ -103,7 +103,7 @@ named_frames:
   - concept_slug: heroics-smell
     display_name: The heroics smell
     one_line_gloss: >
-      A diagnostic, not a solution — if your system requires heroes to keep
+      A diagnostic, not a solution. If your system requires heroes to keep
       working, your system is broken.
     attribution_kind: original
     primary_author: alex-komoroske
@@ -111,8 +111,8 @@ named_frames:
   - concept_slug: adjacent-possible
     display_name: Adjacent possible
     one_line_gloss: >
-      The space of next moves that are reachable from the current configuration
-      — what an organization can plausibly become from where it is now.
+      The space of next moves reachable from the current configuration:
+      what an organization can plausibly become from where it is now.
     attribution_kind: extended
     primary_author: alex-komoroske
     co_originators:
@@ -127,7 +127,7 @@ body_of_work:
     type: essay
     year: 2018
     editorial_note: >
-      The keystone. If you only read one Komoroske piece, this is it — names
+      The keystone. If you only read one Komoroske piece, this is it. Names
       the cost, derives the dynamic, sets up everything else.
     read_first: true
     canonical: true
@@ -135,7 +135,7 @@ body_of_work:
     type: essay
     year: 2019
     editorial_note: >
-      The hidden-physics piece. Pairs with the headwind essay — gives you the
+      The hidden-physics piece. Pairs with the headwind essay; gives you the
       leverage move once you have the diagnosis.
     canonical: true
   - title: The Bramble / Slime Mold Essay
@@ -168,13 +168,13 @@ where_i_extend: >
   push it into security specifically: every security control is a coordination
   event with an attached headwind cost, and the right design move is to
   reduce the number of agreements a control depends on. Schelling points show
-  up here too — a security culture works when the "secure default" is the
+  up here too: a security culture works when the "secure default" is the
   focal one, the one nobody has to defend choosing. Straight Komoroske,
   applied to threat surface.
 working_uses:
   - '"Boring Seams" keynote (SANS AI Cybersecurity Summit 2026)'
-  - Cordon framework — software-quality ontology
-  - Tinkerers community sizing — engagement-tier design
+  - Cordon framework (software-quality ontology)
+  - Tinkerers community sizing (engagement-tier design)
 
 limits:
   - headline: Regulated environments shorten the recovery-time advantage
@@ -192,14 +192,14 @@ limits:
       A garden assumes the plants are not trying to kill you. Security, fraud,
       political work all involve adversaries who exploit the gardener's
       tolerance. The framework's silence on this shows up the minute you try
-      to apply it where some actors are optimizing against you — and it is
+      to apply it where some actors are optimizing against you, and it is
       not a small omission, because the gardening stance becomes a liability
       in the face of an attacker.
   - headline: "'Push decisions to where local information lives' assumes shared goals"
     severity: local
     elaboration: >
       In organizations with misaligned incentives, pushing decisions local
-      doesn't reduce coordination cost — it relocates it inside a single team
+      doesn't reduce coordination cost; it relocates it inside a single team
       or person. The headwind sublimates into individual stress rather than
       disappearing. The fix is upstream of Komoroske's frame.
   - headline: The vocabulary becomes its own jargon
@@ -207,12 +207,12 @@ limits:
     elaboration: >
       Once a team has "coordination headwind" in their lexicon, every slow
       meeting gets blamed on it. The frame becomes a thought-terminator if
-      not held carefully — a way to label the problem without analyzing it.
+      not held carefully: a way to label the problem without analyzing it.
 
 still_load_bearing_despite: >
   The diagnostic power of the headwind frame is enormous even with these
   limits. You can apply it to your own organization and immediately see costs
-  you were paying invisibly. That's what a good framework does — makes the
+  you were paying invisibly. That's what a good framework does: makes the
   invisible legible. The limits are reasons to combine Komoroske with other
   frames (Reason on safety-critical systems, Dekker on adversarial /
   failure-prone systems), not reasons to ignore the headwind frame.
@@ -257,13 +257,13 @@ adjacent_thinkers:
     strength: secondary
 
 further_in:
-  start_here: The Coordination Headwind Essay (2018) — the keystone.
+  start_here: The Coordination Headwind Essay (2018). The keystone.
   then_read:
     - On Schelling Points in Organizations
     - The Bramble / Slime Mold Essay
   if_you_want_depth: /thinkers/alex-komoroske/long-read (*Ways of Komoroske*)
   if_you_want_breadth: >
-    Brooks's *Mythical Man-Month* (Ch. 2 — Brooks's Law) and Senge's *Fifth
+    Brooks's *Mythical Man-Month* (Ch. 2, Brooks's Law) and Senge's *Fifth
     Discipline* (Ch. 3–5).
 
 long_read:

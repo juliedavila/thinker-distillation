@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const concepts = await getCollection('concepts');
+concepts.sort((a, b) => a.data.display_name.localeCompare(b.data.display_name));
+---
+
+<Base title="Concepts — Thinker Distillation">
+  <section class="hero">
+    <h1>The concepts</h1>
+    <p class="tagline">
+      Frames that show up across multiple thinkers. Each page traces genealogy, holders, and where the frame breaks.
+    </p>
+  </section>
+
+  <ul class="thinker-index">
+    {concepts.map((c) => (
+      <li>
+        <a href={`/concepts/${c.data.slug}`}>
+          <p class="name">{c.data.display_name}</p>
+          <p class="tagline">{c.data.one_line_gloss}</p>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Base>

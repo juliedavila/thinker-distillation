@@ -2,7 +2,7 @@
 project: thinker-distillation
 effort: E4
 phase: build
-progress: 418/437
+progress: 419/437
 iteration: iter-5-steps-1-3-2026-05-26
 mode: project
 started: 2026-05-25
@@ -389,20 +389,20 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - [x] ISC-416: `blockquote.what-x-says` updated — paper-warm bg, tierra 4px border-left
 - [x] ISC-417: `blockquote.what-x-says cite` updated — JetBrains Mono 0.82rem stone-500
 - [x] ISC-418: `bun run build` passes after typography cascade — "14 page(s) built in 2.10s, Complete!" exit 0
-- [ ] ISC-419: Step 2 commit lands separately (commit message names "typography cascade")
+- [x] ISC-419: Step 2 commit lands separately — commit d5fe642 "Iter-5 step 2: typography cascade (18px/1.62, Cardo headers, link affordance, focus, pull-quotes)"
 
 **Step 3 — Chrome rework (11 ISCs):**
 
-- [ ] ISC-420: `Base.astro` chrome restructured to three-line block — site name (line 1), tagline (line 2), nav row (line 3)
-- [ ] ISC-421: Tagline placeholder set to **"Thinking through the shoulders of giants"** (Julie's working draft from design-spec §10) — scaffolded slot, Julie can refine in one Edit
-- [ ] ISC-422: Nav row contains "Thinkers · Concepts · About" wrapped in `<nav aria-label="primary">` landmark (audit F18 P1 resolved)
-- [ ] ISC-423: Skip-to-content link `<a class="skip-to-main" href="#main">Skip to content</a>` placed immediately after `<body>` (audit F17 P1 resolved)
-- [ ] ISC-424: `<main>` element gets `id="main"` to receive skip-link target
-- [ ] ISC-425: Chrome CSS rewritten — `.site-name` Cardo weight-500 size 1.15rem color ink; `.tagline` Source Serif italic 0.95rem stone-700 max-width 40ch; nav row with azul top-rule
-- [ ] ISC-426: Skip-link CSS — `position: absolute; top: -40px; left: 0; background: var(--azul); color: var(--paper)`; on `:focus` top: 0 with z-index
-- [ ] ISC-427: Chrome scroll-collapse — small inline script in Base.astro toggles `.scrolled` class above y-offset 80px
-- [ ] ISC-428: `.scrolled` CSS hides tagline at small breakpoints OR collapses chrome to two-line via `display: none` on `.tagline`; `prefers-reduced-motion: reduce` honored (no transition)
-- [ ] ISC-429: `bun run build` passes after chrome rework
+- [x] ISC-420: `Base.astro` chrome restructured to three-line block — `<a.site-name>` + `<p.tagline>` + `<nav.chrome-nav>` confirmed in rendered HTML
+- [x] ISC-421: Tagline set to **"Thinking through the shoulders of giants"** (Julie's working draft) — grep confirmed in dist/index.html; scaffolded slot, Julie can refine
+- [x] ISC-422: Nav row contains "Thinkers · Concepts · About" wrapped in `<nav aria-label="primary">` — grep confirmed (audit F18 P1 resolved); concepts index stubbed at `src/pages/concepts/index.astro` listing both shipped concepts (F3 P0 resolved)
+- [x] ISC-423: Skip-to-content link `<a class="skip-to-main" href="#main">Skip to content</a>` placed immediately after `<body>` — grep confirmed (audit F17 P1 resolved)
+- [x] ISC-424: `<main>` element gets `id="main"` — grep confirmed in rendered HTML
+- [x] ISC-425: Chrome CSS rewritten — `.site-name` Cardo weight-500 1.15rem ink; `.tagline` Source Serif italic 0.95rem stone-700 max-width 44ch; `.chrome-nav` with 1px azul top-rule, 22px gap
+- [x] ISC-426: Skip-link CSS — `position: absolute; top: -40px; background: var(--azul); color: var(--paper); z-index: 1000`; on `:focus` and `:focus-visible` top: 0
+- [x] ISC-427: Chrome scroll-collapse — inline `<script is:inline>` in Base.astro toggles `.scrolled` class on `window.scrollY > 80` via `requestAnimationFrame` (passive scroll listener)
+- [x] ISC-428: `.site-chrome.scrolled .tagline { display: none }` collapses to two-line above scroll; `@media (prefers-reduced-motion: no-preference)` gates the transition
+- [x] ISC-429: `bun run build` passes after chrome rework — "15 page(s) built in 988ms, Complete!" (added concepts/index)
 - [ ] ISC-430: Step 3 commit lands separately (commit message names "chrome rework")
 
 **Verification (4 ISCs):**

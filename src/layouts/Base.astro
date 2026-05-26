@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
-const tagline = 'Curated readings of practitioners whose ideas are worth metabolizing.';
+const tagline = 'Thinking through the shoulders of giants';
 ---
 
 <!doctype html>
@@ -27,14 +27,21 @@ const tagline = 'Curated readings of practitioners whose ideas are worth metabol
     <title>{title}</title>
   </head>
   <body>
-    <header class="chrome">
+    <a class="skip-to-main" href="#main">Skip to content</a>
+
+    <header class="chrome site-chrome">
       <div class="wrap">
         <a href="/" class="site-name">Thinker Distillation</a>
-        <span class="tagline">{tagline}</span>
+        <p class="tagline">{tagline}</p>
+        <nav aria-label="primary" class="chrome-nav">
+          <a href="/">Thinkers</a>
+          <a href="/concepts/">Concepts</a>
+          <a href="/about">About</a>
+        </nav>
       </div>
     </header>
 
-    <main class="wrap">
+    <main id="main" class="wrap">
       <slot />
     </main>
 
@@ -44,5 +51,30 @@ const tagline = 'Curated readings of practitioners whose ideas are worth metabol
         <a href="/about">About →</a>
       </div>
     </footer>
+
+    <script is:inline>
+      // Chrome scroll-collapse — design-spec §3.1 mitigation
+      // Honors prefers-reduced-motion (no transition; class still toggles).
+      (() => {
+        const chrome = document.querySelector('.site-chrome');
+        if (!chrome) return;
+        const threshold = 80;
+        let ticking = false;
+        const update = () => {
+          chrome.classList.toggle('scrolled', window.scrollY > threshold);
+          ticking = false;
+        };
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (!ticking) {
+              requestAnimationFrame(update);
+              ticking = true;
+            }
+          },
+          { passive: true }
+        );
+      })();
+    </script>
   </body>
 </html>

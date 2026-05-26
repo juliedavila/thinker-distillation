@@ -291,12 +291,29 @@ long_read:                               # OPTIONAL — same shape as thinker.lo
 
 When a concept page exists for a `concept_slug`, the corresponding thinker-page §4 Named Frame renders an additive "Open concept page →" link below the inline `also_held_by` cluster. When no concept page exists, the link is omitted entirely — v1 behavior preserved exactly. The link is gated on `buildConceptPageIndex()` returning the slug; this is a build-time check, never a 404 risk.
 
+**Derivation contract (locked 2026-05-26 per v3-blocker 1A resolution):**
+
+Holders on concept pages are derived at build time from thinker `named_frames[]` entries. Concept pages NEVER author holders in their own frontmatter. To add a holder, edit the upstream thinker's `named_frames[]` array — not the concept file. The `Concept` Content Collection schema deliberately has no `holders[]` field; if a future contributor reaches for one, the answer is "edit the thinker." This contract is what makes the IP-firewall mechanical: the source of truth is upstream of the editorial overlay. Astro rebuilds derive holders fresh from thinker frontmatter on every build, so the concept page is auto-fresh — there is no snapshot step and no manual sync.
+
+**Editorial-overrides-derivation (locked 2026-05-26 per v3-blocker 2B resolution):**
+
+When editorial voice wants to qualify a derived holder ("Brooks's framing assumes engineering teams under deadline; Komoroske's generalization stretches but doesn't break"), the qualification lives in editorial voice — `julie_reading` (Mode C) or concept-level editorial sections in Camila handle voice (Mode B). The concept schema deliberately has no per-holder `qualifies:` field. Three reasons: (a) preserving derivation purity per the contract above, (b) qualifications are interpretation, not fact, so structuring them in schema reads as derived when they are authored, (c) Mode A/B/C register lanes are visually distinct and load-bearing — qualification in editorial voice keeps the lanes from blurring.
+
+**Minimum-corroboration floor (locked 2026-05-26 per v3-blocker 3A resolution):**
+
+A concept page requires N≥2 independent derivable holders to ship. Below that, the candidate is either a doctrine claim (belongs in Julie's own writing, not the Distillery) or a single-thinker concept (lives on that thinker's page as a `named_frames[]` entry, possibly with editorial expansion in `what_i_take` / `where_i_extend`). No doctrine-claim exception with explicit attribution: the Distillery is per-thinker editorial readings with cross-thinker concept pages as the second-class entities — single-author concept pages drift toward doctrine even with author labeling, and Anti-12 below is supposed to prevent that.
+
 **v2-surface anti-criteria (added 2026-05-25 — extend §7):**
 
 - **Anti-7:** Concept page must NOT show all holders with the same `attribution_kind`. Diverse genealogy must be preserved — the IP-honesty discipline that lives on thinker pages extends to concept pages.
 - **Anti-8:** Concept page must NOT introduce a third node type. `Concept` Content Collection is an AUTHORING surface for editorial content on the Frame node; holders are derived. Graph stays Thinker + Frame only. Discipline Gate 1 holds.
 - **Anti-9:** Concept page must NOT render any `inclusion_rationale`-equivalent backstage content. Same discipline as Anti-3, applied at the concept layer.
 - **Anti-10 (writing-partner invariant):** Camila must NOT author `julie_reading` or `working_uses` content on concept files. Scaffold the slot, never write Julie's voice. Per `feedback_feminine_energy_writing.md` and DA-identity collaboration rules.
+- **Anti-11 (added 2026-05-26):** Concept page must NOT read as a thinker page in disguise. If you could swap the URL prefix `/concepts/<slug>/` → `/thinkers/<dominant-holder>/` and the page would read as a defensible thinker page, it IS a thinker page in disguise — restructure or downgrade to a `named_frames[]` entry on the dominant holder. (Casey-test extension at pre-publication.)
+- **Anti-12 (added 2026-05-26):** Concept page must NOT be a doctrine claim. The page must describe a recognized cross-thinker pattern, not Julie's synthesized doctrine about a topic with thinker citations as decoration. Strip-the-holders test at pre-publication: if removing the holder list leaves the editorial intact, the editorial IS the page and the holders are decoration — that is doctrine, and it belongs in Julie's own writing rather than the Distillery.
+- **Anti-13 (added 2026-05-26):** No load-bearing editorial claim without an anchor. Every claim either (a) attributes to a holder via derivation, (b) lives in `julie_reading` as explicitly Julie's voice (Mode C), or (c) is bracketed in Camila handle voice (Mode B) as editorial commentary in `limits` / `still_load_bearing_despite` / `adjacent_concepts` edge labels. Mostly enforced by existing field design; the rule constrains FUTURE schema additions — new editorial fields must declare register lane up-front.
+- **Anti-14 (added 2026-05-26):** Concept page must NOT reduce to a glossary stub. Minimum required content at ship: ≥2 entries in `limits`, `still_load_bearing_despite` populated, ≥3 entries in `adjacent_concepts` (the schema's existing soft floors, here reaffirmed as the hard publication gate). Empty `julie_reading` does NOT count against this — writing-partner discipline holds the slot.
+- **Anti-15 (added 2026-05-26):** Concept page must NOT redundantly cover the same conceptual territory as an existing concept page. "Search before you author" discipline: walk existing concept pages before scaffolding; confirm no substantial territory overlap. When two candidates share territory, resolve to one page with sub-sections OR one page that names the other as an `adjacent_concept`. Distinct from Anti-12 and Blocker 3's N≥2 floor: a concept can clear those gates and still redundantly cover another concept's territory.
 
 ---
 

@@ -211,7 +211,7 @@ where_i_extend: >
   "failures" under security pressure are mostly system-induced, but
   the just-culture model needs an explicit adversarial axis. The
   attacker is also exploiting the work-as-imagined / work-as-done
-  gap; the gap is therefore a security defect, not just a safety
+  gap; the gap is therefore both a security defect and a safety
   defect. The two frames need to meet, and Dekker is most of the way.
 working_uses:
   - Security incident response (just-culture framing for engineer-error analysis)

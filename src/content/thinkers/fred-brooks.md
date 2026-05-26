@@ -170,12 +170,11 @@ body_of_work:
       thinking.
 
 what_i_take: >
-  Brooks's no-silver-bullet frame is the most useful argument I carry into
-  every AI-security and tooling conversation. Vendors sell silver bullets
-  constantly. Every quarter brings a new tool that will "transform"
-  security posture, "eliminate" risk classes, "solve" the AI-supply-chain
-  problem. Brooks's frame lets me ask the disciplined question: is this
-  attacking essential complexity or accidental? If accidental, fine: that
+  Vendors sell silver bullets constantly. Every quarter brings a new tool
+  that will "transform" security posture, "eliminate" risk classes,
+  "solve" the AI-supply-chain problem. The Brooks question (is this
+  attacking essential complexity or accidental?) separates the real
+  from the rhetorical fast. If accidental, fine: that
   is where order-of-magnitude wins are real. If essential (the underlying
   problem of threat modeling, blast-radius reasoning, identity-and-access
   decisions, adversarial dynamics), no tool will deliver an order of

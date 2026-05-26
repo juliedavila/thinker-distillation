@@ -24,7 +24,7 @@ thirty_second_take: >
   an invisible drag that grows faster than headcount, and the leadership move
   is to garden the conditions where local decisions can happen rather than to
   centralize control. The slime mold is the working metaphor. Coordination
-  headwind is the named cost. Schelling-point engineering is the leverage.
+  headwind is the named cost. Schelling-point engineering is the lever.
 
 background: >
   Komoroske spent his career inside platforms (Google Chrome and Salesforce
@@ -136,7 +136,7 @@ body_of_work:
     year: 2019
     editorial_note: >
       The hidden-physics piece. Pairs with the headwind essay; gives you the
-      leverage move once you have the diagnosis.
+      prescription once you have the diagnosis.
     canonical: true
   - title: The Bramble / Slime Mold Essay
     type: essay

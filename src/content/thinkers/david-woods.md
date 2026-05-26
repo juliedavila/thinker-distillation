@@ -51,8 +51,8 @@ why_they_matter_as_a_thinker: >
   reading Woods, you have the practice without the substrate. The
   *adaptive capacity* concept, the *graceful extensibility* property,
   the *Law of Stretched Systems*, the *joint cognitive system* framing.
-  These are the architectural claims that the software-ops community
-  has been using to navigate the last decade of complex-system failure.
+  These are the architectural claims behind how the software-ops
+  community has read the last decade of complex-system failure.
   Carrying Woods's vocabulary forward is how the field stays connected
   to the safety-science tradition it inherited.
 
@@ -175,17 +175,16 @@ body_of_work:
       resilience-engineering frame into industry.
 
 what_i_take: >
-  The *Law of Stretched Systems* is the single most underused frame in
-  security architecture. Security work consistently operates at the
-  edge of its envelope: controls tuned for known threats, response
-  capacity sized for normal incident volume, the people who actually
-  understand the system spread thin across too many programs. Every
-  efficiency push makes this worse and the security org reads as
-  "lean" right up until the moment a real surprise arrives. Woods's
-  argument is that the slack is not waste; it is the adaptive capacity
-  the org will need when the threat model doesn't match the threat.
-  Designing security programs around graceful extensibility, not
-  robustness to known attacks, is the move I keep coming back to.
+  Security architecture work consistently operates at the edge of its
+  envelope. Controls are tuned for known threats, response capacity sized
+  for normal incident volume, the people who actually understand the
+  system spread thin across too many programs. Woods's *Law of Stretched
+  Systems* names this. The slack we cut as inefficiency is the adaptive
+  capacity we will need when the threat model breaks. Every efficiency
+  push makes this worse and the security org reads as "lean" right up
+  until the moment a real surprise arrives. Designing security programs
+  around graceful extensibility, not robustness to known attacks, is the
+  move I keep coming back to.
 where_i_extend: >
   Woods built the theory for joint cognitive systems where humans and
   automation share the cognitive work. The security extension is that

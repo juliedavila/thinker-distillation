@@ -120,7 +120,7 @@ The next chapter is what to do when the diagnosis is accepted and the work still
 
 ## Companion sidebar: the murmuration
 
-The slime mold is the most viral image Komoroske uses, but it is not the only system that makes the point. The starling murmuration makes the same point with different leverage.
+The slime mold is the most viral image Komoroske uses, but it is not the only system that makes the point. The starling murmuration makes the same point from a different angle.
 
 If the slime mold is the case for decentralized *problem-solving*, the murmuration is the case for decentralized *coordination*, and coordination is the harder sell because what managers cannot picture is real-time alignment without a coordinator. A flock of starlings turns together because each bird is reading its seven nearest neighbors and following three local rules: stay close, match direction, avoid collision. No bird sees the flock. The flock is a property that emerges from the watching. When you are trying to convince a leadership team that decentralization can produce alignment, this is the image to reach for.
 

@@ -19,7 +19,12 @@
   --max: 720px;
   --gutter: clamp(16px, 4vw, 32px);
 
-  /* ─── Legacy aliases (unwind during typography cascade) ────────────── */
+  /* ─── Legacy aliases — DEPRECATED ──────────────────────────────────── */
+  /* TODO(iter-6): Sweep all call sites to direct tokens and delete this block.
+     Aliases shipped in Iter-5 step 1 (commit c938e52) to avoid touching every
+     component CSS rule in one pass. Owner: next sub-iteration of Iter-5.
+     Risk if left: contributors add new code against alias names and the
+     unwind quietly stops being possible. */
   --serif: var(--body);
   --sans: var(--body);
   --ink-soft: var(--stone-700);

@@ -54,14 +54,25 @@ const tagline = 'Thinking through the shoulders of giants';
 
     <script is:inline>
       // Chrome scroll-collapse — design-spec §3.1 mitigation
+      // Hysteresis: collapse above 80px, uncollapse below 40px (prevents
+      // flicker oscillation when user lingers near the boundary).
       // Honors prefers-reduced-motion (no transition; class still toggles).
       (() => {
         const chrome = document.querySelector('.site-chrome');
         if (!chrome) return;
-        const threshold = 80;
+        const collapseAt = 80;
+        const expandAt = 40;
         let ticking = false;
+        let isCollapsed = false;
         const update = () => {
-          chrome.classList.toggle('scrolled', window.scrollY > threshold);
+          const y = window.scrollY;
+          if (!isCollapsed && y > collapseAt) {
+            chrome.classList.add('scrolled');
+            isCollapsed = true;
+          } else if (isCollapsed && y < expandAt) {
+            chrome.classList.remove('scrolled');
+            isCollapsed = false;
+          }
           ticking = false;
         };
         window.addEventListener(

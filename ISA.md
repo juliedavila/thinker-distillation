@@ -1,8 +1,8 @@
 ---
 project: thinker-distillation
 effort: E4
-phase: build
-progress: 419/437
+phase: complete
+progress: 437/437
 iteration: iter-5-steps-1-3-2026-05-26
 mode: project
 started: 2026-05-25
@@ -11,16 +11,17 @@ updated: 2026-05-26
 
 ## Save Point — 2026-05-26 (cold-start resume here)
 
-**Status:** Iter-1 v1 launch · Iter-2 v2 concept-page (first-shipped) · Iter-3 v2 audit-prose · Iter-4 UI-audit arc launched and ran through four sub-iterations: research-pass → UI-audit → design-spec → all closed. Iter-5 (prototype implementation) is next; F-OPS GitLab Pages migration runs in parallel on Julie's schedule.
+**Status:** Iter-1 v1 launch · Iter-2 v2 concept-page (first-shipped) · Iter-3 v2 audit-prose · Iter-4 UI-audit arc (research → audit → design-spec all closed) · **Iter-5 steps 1-3 of 10 shipped 2026-05-26**: token layer + typography cascade + chrome rework (4 commits c938e52 / d5fe642 / 56c8883 / f5ad343, build green 15 pages). Iter-5 steps 4-10 are next; F-OPS GitLab Pages migration runs in parallel on Julie's schedule.
 
-**One-paragraph orientation for cold-start:** This project is the Thinker Distillery — per-practitioner editorial readings of practitioners worth metabolizing (Komoroske, Fowler, Brooks, Allspaw, Woods, Dekker, Dalio currently live), with a v2 concept-page surface that derives cross-thinker holders from thinker frontmatter as the single source of truth. The site lives at `~/Camila/thinker-distillation/` and was live at `https://thinkerdistillery.netlify.app/` (currently 503'd — Netlify usage exceeded; GitLab Pages migration plan ready at `gitlab-migration-plan.md`). On 2026-05-26 we ran a four-iteration UI audit + redesign arc: Iter-2 research (academic + reference-site, output `research-ui-2026-05-26.md`), Iter-3 audit (4 P0 → 3 P0 + 9 P1 after advisor recalibration, output `audit-ui-2026-05-26.md`), Iter-4 design spec aligning Distillery to Camila Hub's Mexican-modernist token system but holding English-only chrome (output `design-spec-2026-05-26.md`). Julie locked 14 per-decision picks; tagline working draft is "Thinking through the shoulders of giants" (her phrasing). Brand-foundation framing: these decisions propagate beyond Distillery to future projects.
+**One-paragraph orientation for cold-start:** This project is the Thinker Distillery — per-practitioner editorial readings of practitioners worth metabolizing (Komoroske, Fowler, Brooks, Allspaw, Woods, Dekker, Dalio currently live), with a v2 concept-page surface that derives cross-thinker holders from thinker frontmatter as the single source of truth. The site lives at `~/Camila/thinker-distillation/` and was live at `https://thinkerdistillery.netlify.app/` (currently 503'd — Netlify usage exceeded; GitLab Pages migration plan ready at `gitlab-migration-plan.md`). On 2026-05-26 we (1) closed a four-iteration UI audit + redesign arc with `design-spec-2026-05-26.md` (14 locked decisions, brand-foundation framing aligning Distillery to Camila Hub's Mexican-modernist token system but holding English-only chrome), and (2) shipped Iter-5 steps 1-3 (token layer + typography cascade + chrome rework). The site now renders in the Mexican-modernist palette with Cardo-500 azul section headers (no uppercase), three-line chrome with tagline + nav landmark + skip-link, and a concepts/index stub wiring Concepts into nav (resolves F3 P0). Screenshots saved at `iter5-screenshots/{idx,komoroske,concept}-after.png`. Tagline working draft "Thinking through the shoulders of giants" shipped as Julie's scaffolded slot (her phrasing).
 
 **What to read first (in order):**
-1. `~/Camila/thinker-distillation/design-spec-2026-05-26.md` — §10 has the locked decisions table; §8 has the 10-step Iter-5 implementation order
-2. `~/Camila/thinker-distillation/audit-ui-2026-05-26.md` — for context on what Iter-5 is fixing (3 P0, 9 P1, F-OPS sibling)
-3. `~/Camila/thinker-distillation/research-ui-2026-05-26.md` — for the academic citations behind the criteria
-4. `~/Camila/thinker-distillation/gitlab-migration-plan.md` — parallel F-OPS work, 8 open questions for Julie
-5. This ISA's `## Decisions` section, newest-first, walks the iteration history with reasoning
+1. This ISA's `### Iter-5 prototype — Steps 1-3 (2026-05-26)` block (in `## Criteria`) — current state: 35/35 ISCs closed, iter-6 follow-ups + steps 4-10 listed
+2. `~/Camila/thinker-distillation/design-spec-2026-05-26.md` — §8 implementation order (10 steps; 1-3 done, 4-10 next), §10 locked decisions
+3. `~/Camila/thinker-distillation/iter5-screenshots/` — `idx-after.png`, `komoroske-after.png`, `concept-after.png` from the polish commit
+4. `~/Camila/thinker-distillation/audit-ui-2026-05-26.md` — for context on what Iter-5 is fixing (3 P0, 9 P1, F-OPS sibling)
+5. `~/Camila/thinker-distillation/gitlab-migration-plan.md` — parallel F-OPS work, 8 open questions for Julie
+6. This ISA's `## Decisions` section, newest-first, walks the iteration history with reasoning
 
 **14 decisions locked 2026-05-26 (full table in design-spec §10):**
 
@@ -37,9 +38,10 @@ Author picks:
 **Carve-outs preserved:** C23 bilingual chrome OUT for Distillery · AC10 `julie_reading` Camila never authors · `working_uses` carve-out (Camila auto-records joint work) · AC7 anti-essentialism guard
 
 **Next iteration on resume:**
-- Iter-5 prototype, E4-E5, 12-20 hours across 10 sequenced commits per design-spec §8 — token layer first, typography cascade, chrome rework, focus styles, portrait pairing, etc.
-- Parallel: F-OPS GitLab Pages migration when Julie wants to action it (8 open questions in the plan first)
-- Camila owes: 5 tagline alternatives if Julie wants to re-explore (already delivered once, Julie countered with her own working draft)
+- **Iter-5 steps 4-10** per design-spec §8 — focus-styles keyboard pass (step 4; the CSS landed in step 2), index portrait pairing with monogram fallback (step 5), thinker page hero with portrait (step 6), long-read concept-glossary sidebar + chapter-of-N (step 7), genealogy mini-diagrams SVG component (step 8), concept-page holder-card portraits (step 9), full audit re-run against rubric (step 10). Estimated 8-14 remaining hours.
+- **Iter-6 advisor follow-ups** (parked from polish commit): WCAG AA contrast check on oro-on-paper-warm visited links, mobile viewport (375/414) screenshot pass on three-line chrome, self-hosted-vs-Google-Fonts decision, `aria-label="primary"` redundancy review, `<cite>` markup spec-conformance, `p {max-width: 62ch}` collateral with `figure/pre/table`, **legacy-alias sweep** (delete the `:root` alias block after rewriting call sites to direct tokens — owns the tombstone left in commit f5ad343).
+- **Parallel: F-OPS GitLab Pages migration** when Julie wants to action it (8 open questions in `gitlab-migration-plan.md` first); production site still 503'd.
+- **Camila owes:** 5 tagline alternatives if Julie wants to re-explore (already delivered once; she countered with her own working draft, which is what shipped).
 
 **Working norms in effect this project:**
 - `feedback_writing_partner_per_field.md` with `working_uses` carve-out
@@ -403,23 +405,41 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - [x] ISC-427: Chrome scroll-collapse — inline `<script is:inline>` in Base.astro toggles `.scrolled` class on `window.scrollY > 80` via `requestAnimationFrame` (passive scroll listener)
 - [x] ISC-428: `.site-chrome.scrolled .tagline { display: none }` collapses to two-line above scroll; `@media (prefers-reduced-motion: no-preference)` gates the transition
 - [x] ISC-429: `bun run build` passes after chrome rework — "15 page(s) built in 988ms, Complete!" (added concepts/index)
-- [ ] ISC-430: Step 3 commit lands separately (commit message names "chrome rework")
+- [x] ISC-430: Step 3 commit lands separately — commit 56c8883 "Iter-5 step 3: chrome rework (three-line + nav landmark + skip-link + scroll-collapse)"
 
 **Verification (4 ISCs):**
 
-- [ ] ISC-431: `bun run preview` starts on port 4321 and serves the rebuilt site
-- [ ] ISC-432: Interceptor screenshot of `http://localhost:4321/` shows new palette (paper background, azul section accents)
-- [ ] ISC-433: Interceptor screenshot of `http://localhost:4321/thinkers/alex-komoroske/` shows Cardo 500 azul section headers (no uppercase) + underline-cascade links
-- [ ] ISC-434: Advisor pass via `bun ~/.claude/PAI/TOOLS/Inference.ts --mode advisor` before `phase: complete` (Rule 2 commitment-boundary)
+- [x] ISC-431: `bun run preview` started on port 4321 and serves the rebuilt site — `curl -sI` confirmed 200 on /, /thinkers/alex-komoroske/, /concepts/, /concepts/coordination-headwind/
+- [x] ISC-432: Interceptor screenshot of `http://localhost:4321/` saved to `iter5-screenshots/idx-after.png` (1.9MB) — confirms new palette (paper #F4EFE6 background), three-line chrome with Cardo site name + italic tagline "Thinking through the shoulders of giants" + Thinkers·Concepts·About nav, azul rule under chrome
+- [x] ISC-433: Interceptor screenshot of `/concepts/coordination-headwind/` saved to `iter5-screenshots/concept-after.png` (4.5MB) — confirms Cardo 500 azul section headers (Genealogy / Who Holds / Editorial / Where This Breaks / Adjacent), no uppercase, weight-500 softened; underline-cascade links visible (primary source · ); tierra accent on limit cards; oro accent on Julie-lane empty-state
+- [x] ISC-434: Advisor pass via `bun ~/.claude/PAI/TOOLS/Inference.ts --mode advisor --auto-state` returned substantive review — none-blocker findings on (a) alias tombstone, (b) scroll hysteresis, (c) concepts/index editorial frame, (d) blind spots (contrast / mobile / font hosting / aria-label / cite markup / bisectability / p-max-width collateral). Three of four primary findings folded into polish commit f5ad343; remainder logged as iter-6 follow-ups below
 
 **Anti-criteria + antecedent (4 ISCs):**
 
-- [ ] ISC-435: Anti: No content (thinker frontmatter, concept frontmatter, portrait paths) edited this iteration
-- [ ] ISC-436: Anti: No Forge / Anvil / Cato spawned (`feedback_avoid_kimi_codex` applied)
-- [ ] ISC-437: Anti: No Spanish chrome added (P7 English-only carve-out preserved)
-- [ ] ISC-438: Antecedent: Design-spec §10 14 picks confirmed locked before any code edit (verified via Read of design-spec lines 449-487)
+- [x] ISC-435: Anti: No content edited — `git diff main HEAD --stat src/content/` shows zero changes; thinker frontmatter, concept frontmatter, portrait paths untouched
+- [x] ISC-436: Anti: No Forge / Anvil / Cato spawned — `feedback_avoid_kimi_codex` applied; only Advisor (Claude-family) invoked at VERIFY
+- [x] ISC-437: Anti: No Spanish chrome added — `grep -i "español\|cenefa\|saludos"` in src/layouts and src/pages returns no matches; P7 English-only carve-out preserved
+- [x] ISC-438: Antecedent: Design-spec §10 14 picks confirmed locked before code edit — verified via Read of design-spec lines 449-487 at OBSERVE; all decisions present and named
 
-**Iter-5 steps 1-3 progress: 0/35 ISCs at build-phase entry. Steps 4-10 deferred to next session.**
+**Iter-5 steps 1-3 progress: 35/35 ISCs complete. Steps 4-10 deferred to next session.**
+
+**Deferred to iter-6 (advisor follow-ups not folded into polish commit f5ad343):**
+- Verify oro-on-paper-warm visited-link contrast against WCAG AA (4.5:1 floor) using a contrast calculator
+- Mobile viewport (375px / 414px) screenshot pass for three-line chrome — verify no wrap/crowd
+- Decide self-hosted fonts vs Google Fonts (privacy/perf delta; Mexican-modernist editorial register typically pairs with self-hosted)
+- `aria-label="primary"` redundancy review — current site has one nav landmark; either drop label or add labeled secondary (footer in-page TOC)
+- `<cite>` markup spec-conformance — verify thinker/concept page Astro components emit `<cite>` as child of `<blockquote>`, not as attribution-only sibling
+- `p { max-width: 62ch }` collateral — verify `figure`, `pre`, `table` inside content break out of the measure constraint
+- Unwind legacy aliases (`--serif`, `--sans`, etc.) — sweep call sites in components/pages and delete the alias block from `:root`
+
+**Next sub-iteration (steps 4-10 per design-spec §8):**
+- Step 4: Focus styles already landed in step 2 (ISC-415) — verify via keyboard tab through four page-types
+- Step 5: Index page portrait pairing with monogram fallback (§3.3)
+- Step 6: Thinker page hero with portrait (§3.4)
+- Step 7: Long-read concept-glossary sidebar + chapter-of-N (§3.6)
+- Step 8: Genealogy mini-diagrams SVG component (§3.4 + §3.5)
+- Step 9: Concept-page holder cards with portrait thumbnails (§3.5)
+- Step 10: Verify + full audit re-run against rubric
 
 ### UI Audit iteration — Iteration 3 (2026-05-26)
 
@@ -784,6 +804,16 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 
 ## Decisions
 
+- **2026-05-26 — Iter-5 steps 1-3 shipped in one push (token + typography + chrome).** Three sequential commits + polish commit:
+  - `c938e52` — token layer: Mexican-modernist palette (paper/paper-warm/ink/stone-700/stone-500/stone-300/azul/tierra/oro) + type stack (Cardo/Source Serif 4/JetBrains Mono) aligned with Camila Hub; 14 legacy aliases preserved as `var(--new-token)` redirects so existing component CSS keeps rendering without sweeping every selector
+  - `d5fe642` — typography cascade: 18px/1.62 body, `font-optical-sizing: auto` for Source Serif 4 variable opsz, `p {max-width: 62ch}` Bringhurst measure, `h2.section-h` Cardo-500 azul (no uppercase, no border-bottom) resolving audit F6, bare `a` rule with azul→tierra→oro underline cascade resolving F19, site-wide `:focus-visible` 2px azul resolving F16 (P0)
+  - `56c8883` — chrome rework: three-line header (site-name Cardo-500 1.15rem / italic tagline / nav row with azul top-rule), tagline = "Thinking through the shoulders of giants" (Julie's working draft as scaffolded slot), `<nav aria-label="primary">` landmark resolving F18 (P1), skip-to-main link + `<main id="main">` resolving F17 (P1), scroll-collapse via inline `<script is:inline>` + `prefers-reduced-motion` guard. Also stubbed `/concepts/` index page listing both shipped concept pages — wires Concepts into chrome nav, resolving F3 (P0).
+  - `f5ad343` — polish from advisor pass: alias tombstone comment naming iter-6 unwind, hysteresis on scroll-collapse (collapse at 80, uncollapse at 40 — prevents flicker), editorial intro paragraph on concepts/index naming what "concept" means in this site's register. Build green 15 pages between every commit.
+- **2026-05-26 — Legacy-alias migration approach: aliases now, sweep in iter-6.** Direct-token rewrite of every component selector in step 1 would have been a single-commit-large diff with high regression risk. Aliases let step 1 be additive — every existing selector keeps working, palette swaps invisibly. Tradeoff logged: aliases that outlive the migration become invisible debt (contributors add new code against alias names; unwind quietly stops being possible). Mitigation: tombstone comment with named owning iteration (iter-6) added in polish commit. If iter-6 doesn't ship the sweep, escalate to a hard issue in the project tracker.
+- **2026-05-26 — Tagline shipped as Julie's working draft, not a Camila draft.** Per `feedback_writing_partner_per_field.md` the tagline is a Julie-slot. Carve-out: she already typed "Thinking through the shoulders of giants" in design-spec §10 as her working draft, so Camila shipping that exact text is *transcription*, not authorship. Two micro-decisions left open (case+punctuation; explicit-"I"-vs-gerund) — refinable in one Edit by Julie. Note: gerund form ships by default since that's what she wrote.
+- **2026-05-26 — Skipped Cato cross-vendor audit at E4 VERIFY despite Rule 2a binding.** Per `feedback_avoid_kimi_codex.md` standing preference: skip Anvil/Forge/Cato unless Julie names them. Show-your-math: advisor pass returned substantive findings (alias tombstone, scroll hysteresis, concepts/index editorial frame, 7+ deferred items) — same surface Cato would have probed (Anthropic-family blind spots on doctrine/architectural choices). Net result: Rule 2 honored; Rule 2a explicitly waived per standing memory.
+- **2026-05-26 — Effort tier set to E4 via context-override; ISC count at E3 floor with show-your-math.** Classifier defaulted to E3 (JSON parse failure → fail-safe). Conversation context (Iter-5 steps 1-3 per design-spec §8, 4-6h budget) made the work clearly E4. Set `effort_source: context-override`. ISC count for this iteration = 35 (6+10+11+4+4) — meets E3 floor ≥32, below E4 floor ≥128. Show-your-math: granularity rule produces ~35 atomic probes naturally for 3 focused CSS commits; padding to 128 would require artificial decomposition (e.g., one ISC per CSS property change) that loses signal. Thinking floor MET at E4: 6 capabilities invoked (ApertureOscillation, FeedbackMemoryConsult, IterativeDepth, ReReadCheck, Advisor, ISA). Delegation: Interceptor + Advisor = 2, meets E4 soft floor.
+
 - **2026-05-25 — Project graduated from `MEMORY/WORK/thinker-distillation-schema-v0/` to `~/Camila/thinker-distillation/`.** Task ISA at the old location stays as the v0-design-task record; this file is the long-lived project system of record. SCHEMA.md copied to project root as the active living spec.
 - **2026-05-25 — About page reclassified from "required v1 artifact" to "required-before-promotion artifact."** Reasoning: v1 launch is private-by-obscurity (Julie customer-zero, no promotion). The readers who need the About page (curious generalists, power users wanting citation calibration) don't exist yet for the launch audience. Site-level tagline still ships at v1 (for the chrome); full About page deferred until Julie decides to broaden audience. SCHEMA.md text retained as the spec for when it ships.
 - **2026-05-25 — All Q1–Q6 walk-through decisions inherited.** Path C (TEI pattern), Frame-level attribution, three discipline gates, curatorial `page_kind`, Path 2 voice treatments, backstage `inclusion_rationale`, `also_held_by` in v1, About-as-manifesto, Astro+Netlify, single repo. Full reasoning chains live in the v0 task ISA's Changelog section.
@@ -815,6 +845,16 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - **2026-05-25 — Disposition application closed.** Julie ran the 8 disposition rows + 4 side-finding bullets and confirmed. **COMMIT (6 source rows applied to working tree):** Komoroske P2 (`what_i_take` opener — drops "single most useful thing I carry" stem; promotes the observation, adds "That is the headwind frame, applied; once you see it in security work, you cannot unsee it"); Allspaw P2 (`what_i_take` — stem sentence deleted, second-sentence-becomes-opener with subject change to "Security incident response"); Komoroske P3 (`where_i_extend` — verb-push "I push it into" → "The security translation is that...itself"); Brooks P3 (`where_i_extend` — two sentences collapsed to one); Allspaw P3 (`where_i_extend` — "I push it into the adversarial layer" → "Security adds an adversarial layer Allspaw did not model" + folded sentence-three); Woods P3 (`where_i_extend` — verb-push → "The security extension is that"). **COMMIT (1 side-finding row):** Allspaw `really` ×2 removed at L60 (thesis) and L195 (what_i_take tail) — filler-word removal, no semantic load. **MODIFY (5 rows drafted at `modify-pack-2026-05-25.md` for Julie to finalize):** Row 1 Brooks P2 (em-dash treatment options A1-A4 + downstream trim options B1-B3 to remove the redundant "Brooks's frame lets me ask the disciplined question" sentence); Row 2 Woods P2 (third-sentence split options C1-C4 — Camila lean C4, preserves Julie's existing "slack is not waste" sentence verbatim); Row 3 Dekker L214 not-just Hard No (phrasing options D1-D5 — Camila lean D1 or D5); Row 4 `leverage` four sub-instances (Komoroske thirty_second_take E1a-E4a Camila lean E1a; Komoroske editorial_note E1b-E4b Camila lean E2b/E3b; long-read L123 E1c-E4c Camila lean E3c; Allspaw compound F1d-F4d Camila lean F1d KEEP); Row 5 Woods L55 `navigate` metaphor (options G1-G5 Camila lean G3/G5). **SKIP: zero rows.** All 8 + 4 had a disposition. **Verification:** `bun build` passed (Node 22 via nvm; 13 pages built; zero type errors); inline grep verified each COMMIT new-string present and each old-string absent; `really` count on Allspaw page = 0. **Writing-partner discipline held:** modify-pack is explicitly draft-for-Julie-to-finalize per row, Camila leans flagged as leans not prescriptions, none applied without per-row Julie pick. Iteration `phase: complete`; ISA progress 185/185. **Next:** Julie picks per-row on modify-pack; Camila applies as a second follow-up commit when picks are in.
 
 ## Changelog
+
+### 2026-05-26 — Iteration 5 (steps 1-3) — token + typography + chrome shipped
+
+**conjectured:** Direct-token rewrite of every component CSS selector in step 1 was the canonical-cleanliness path — replace `var(--ink-muted)` with `var(--stone-500)` at every site, etc. — to avoid leaving alias residue.
+
+**refuted_by:** Surface area math made direct-rewrite untenable in a single commit: ~25 var names × ~50 selectors averaged = ~1,250 inspection points to verify nothing broke. Step 1's value was *the palette swap working everywhere immediately*, not the migration being final. Aliases let the swap be additive and verifiable in one screenshot pass; the unwind becomes a separate iteration's surface area to think about.
+
+**learned:** Token migrations on a non-trivial component CSS surface should ship in two iterations — palette/alias swap first (verifies the new tokens work), call-site sweep second (deletes the aliases). The tombstone comment becomes the load-bearing artifact connecting the two iterations; without it, aliases drift into permanent infrastructure and the migration silently stops being a migration. Pattern applicable beyond CSS — any rename of widely-referenced symbols (env var names, function signatures, schema fields) benefits from the same alias-then-sweep shape.
+
+**criterion_now:** Token-migration ISCs should include a "tombstone comment naming the deletion-by iteration" criterion alongside the rename ISC. ISC-406 form: "Legacy aliases preserve every existing var name AND carry a TODO(iter-N) tombstone comment owning the unwind."
 
 ### 2026-05-26 — Iteration 4 (Design Spec) closed + F-OPS plan delivered in parallel
 

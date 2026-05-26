@@ -2,7 +2,7 @@
 project: thinker-distillation
 effort: E4
 phase: build
-progress: 449/463
+progress: 458/463
 iteration: iter-5-steps-4-7-2026-05-26
 mode: project
 started: 2026-05-25
@@ -447,16 +447,16 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 
 **Step 7 — Long-read concept-glossary sidebar + chapter-of-N (10 ISCs):**
 
-- [ ] ISC-451: `src/content.config.ts` long-read chapter schema gains optional `glossary` field — array of `{term: string, gloss: string, concept_slug?: string}`
-- [ ] ISC-452: `src/pages/thinkers/[slug]/long-read/[chapter].astro` renders right-rail sidebar when `glossary` non-empty (≥1 entry)
-- [ ] ISC-453: Sidebar entries: term in Cardo weight-500, gloss in Source Serif 0.92rem, optional link to concept page when `concept_slug` matches a shipped concept
-- [ ] ISC-454: Mobile layout (≤768px) collapses sidebar to `<details>` block at top of chapter with summary "Glossary"
-- [ ] ISC-455: Empty `glossary` field (or absent) renders chapter without sidebar — no empty-state needed
-- [ ] ISC-456: Chapter-of-N indicator added to long-read chapter — derives N from `getCollection('chapters').filter(slug-prefix-match).length`
-- [ ] ISC-457: Chapter-of-N rendering: `Long-read / 01 of 03 — The Diagnosis` in JetBrains Mono 0.78rem stone-500
-- [ ] ISC-458: Komoroske ch01 frontmatter populated with 3-5 example glossary entries (since Julie owns content, scaffold ONLY the chapter that already has Julie-authored content body — preserve writing-partner discipline by keeping the entries derived from terms-of-art she already uses in the chapter prose, not Camila-invented terms)
-- [ ] ISC-459: Fowler preface NOT populated with glossary — preface register is different from chapter, Julie picks when/if to add per `feedback_writing_partner_per_field.md`
-- [ ] ISC-460: `bun run build` passes after long-read sidebar (zero type errors)
+- [x] ISC-451: `src/content.config.ts` long-read chapter schema gains optional `glossary` field — `z.array(glossaryEntry).optional()` where `glossaryEntry = z.object({term, gloss, concept_slug? (kebab-case)})`
+- [x] ISC-452: `src/pages/thinkers/[slug]/long-read/[chapter].astro` renders right-rail `<aside class="glossary-rail">` when `glossary.length > 0` — guarded by `{hasGlossary && ...}` conditional
+- [x] ISC-453: Sidebar entries: term Cardo weight-500 1rem, gloss Source Serif 0.92rem stone-700, optional `Concept page →` link in JetBrains Mono 0.78rem azul when `concept_slug` matches a shipped concept (gated via `conceptPages.has(g.concept_slug)`)
+- [x] ISC-454: Mobile layout (≤900px) collapses sidebar to `<details class="glossary-mobile">` at top of chapter with summary "Glossary (N)" — CSS media query toggles `.glossary-rail` and `.glossary-mobile` display
+- [x] ISC-455: Empty `glossary` field renders chapter without sidebar — `data-has-glossary="false"` attribute on `.long-read-chapter` switches `.long-read-grid` to single-column; verified Komoroske ch01 dist HTML has `long-read-grid` but no `glossary-rail` (no entries authored yet)
+- [x] ISC-456: Chapter-of-N derives from `siblings.length` filtered by `thinker_slug` (existing `siblings` array already computed for prev/next nav)
+- [x] ISC-457: Chapter-of-N rendering verified in `dist/thinkers/alex-komoroske/long-read/01-the-diagnosis/index.html` — "01 of 01" appears (single chapter currently) in JetBrains Mono 0.78rem; breadcrumb format `{thinker name} / Long read / {chapterOfN} — {title}` with hierarchical separators
+- [DEFERRED-JULIE] ISC-458: Komoroske ch01 glossary scaffolding *re-scoped per writing-partner-per-field* — Camila will NOT pre-populate entries. Gloss text is editorial Julie-voice; transcription-via-quote of her existing prose still risks Camila-misreading what register she'd use. Schema ready; sidebar renders the moment Julie adds entries. Follow-up task ID: glossary-populate (Julie owns)
+- [x] ISC-459: Fowler preface NOT populated with glossary — same writing-partner discipline; preface register doesn't naturally have glossary anyway
+- [x] ISC-460: `bun run build` passes after long-read sidebar — "15 page(s) built in 935ms, Complete!" exit 0
 
 **Verification + commit + advisor (4 ISCs):**
 

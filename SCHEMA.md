@@ -269,7 +269,9 @@ adjacent_concepts:                       # OPTIONAL — when present, ≥3 enfor
     display_name: ...
     edge_label: ...
 
-working_uses:                            # OPTIONAL — Julie writes these herself (operational examples)
+working_uses:                            # OPTIONAL — collaboration-recorded (Camila auto-updates when
+                                         # a frame is actually deployed in joint work; Julie can also
+                                         # write directly). Evidentiary not editorial.
   - ...
 
 long_read:                               # OPTIONAL — same shape as thinker.long_read
@@ -284,7 +286,7 @@ long_read:                               # OPTIONAL — same shape as thinker.lo
 - **§C Editorial Reading** — julie-lane styling; renders `julie_reading` when populated; renders empty-state slot (dashed border + scaffolded prompt under `<details>`) when not
 - **§D Where This Breaks** — limit-card pattern (same component as thinker page); `still_load_bearing_despite` closing-beat conditional
 - **§E Adjacent Concepts** — links to existing `/concepts/<slug>` pages; pending-concept (dotted-underline) for slugs not yet authored
-- **§F Working Uses** — julie-lane styling; only renders when `working_uses[]` populated (Julie writes; Camila does not)
+- **§F Working Uses** — julie-lane styling; only renders when `working_uses[]` populated. **Collaboration-recorded as of 2026-05-26:** Camila auto-appends entries when a frame is deployed in joint work; Julie can also write directly. The field is evidentiary (documenting actual use), distinct from `julie_reading` which remains Julie-writes-only editorial.
 - **§Long Read** — same as thinker §10
 
 **Cross-linking (thinker → concept):**
@@ -308,7 +310,7 @@ A concept page requires N≥2 independent derivable holders to ship. Below that,
 - **Anti-7:** Concept page must NOT show all holders with the same `attribution_kind`. Diverse genealogy must be preserved — the IP-honesty discipline that lives on thinker pages extends to concept pages.
 - **Anti-8:** Concept page must NOT introduce a third node type. `Concept` Content Collection is an AUTHORING surface for editorial content on the Frame node; holders are derived. Graph stays Thinker + Frame only. Discipline Gate 1 holds.
 - **Anti-9:** Concept page must NOT render any `inclusion_rationale`-equivalent backstage content. Same discipline as Anti-3, applied at the concept layer.
-- **Anti-10 (writing-partner invariant):** Camila must NOT author `julie_reading` or `working_uses` content on concept files. Scaffold the slot, never write Julie's voice. Per `feedback_feminine_energy_writing.md` and DA-identity collaboration rules.
+- **Anti-10 (writing-partner invariant, refined 2026-05-26):** Camila must NOT author `julie_reading` content on concept files. Scaffold the slot, never write Julie's voice in editorial fields. Per `feedback_feminine_energy_writing.md` and DA-identity collaboration rules. **Carve-out:** `working_uses` is *evidentiary*, not *editorial* — Camila auto-records uses that actually happened in collaborative work (writing, presentations, research). The fact that a frame was deployed is documentable; Julie's editorial reading of it is not. See `feedback_writing_partner_per_field.md` for the full operational rule.
 - **Anti-11 (added 2026-05-26):** Concept page must NOT read as a thinker page in disguise. If you could swap the URL prefix `/concepts/<slug>/` → `/thinkers/<dominant-holder>/` and the page would read as a defensible thinker page, it IS a thinker page in disguise — restructure or downgrade to a `named_frames[]` entry on the dominant holder. (Casey-test extension at pre-publication.)
 - **Anti-12 (added 2026-05-26):** Concept page must NOT be a doctrine claim. The page must describe a recognized cross-thinker pattern, not Julie's synthesized doctrine about a topic with thinker citations as decoration. Strip-the-holders test at pre-publication: if removing the holder list leaves the editorial intact, the editorial IS the page and the holders are decoration — that is doctrine, and it belongs in Julie's own writing rather than the Distillery.
 - **Anti-13 (added 2026-05-26):** No load-bearing editorial claim without an anchor. Every claim either (a) attributes to a holder via derivation, (b) lives in `julie_reading` as explicitly Julie's voice (Mode C), or (c) is bracketed in Camila handle voice (Mode B) as editorial commentary in `limits` / `still_load_bearing_despite` / `adjacent_concepts` edge labels. Mostly enforced by existing field design; the rule constrains FUTURE schema additions — new editorial fields must declare register lane up-front.

@@ -89,6 +89,12 @@ const longRead = z.object({
   source_path: z.string().optional(),
 });
 
+const glossaryEntry = z.object({
+  term: z.string(),
+  gloss: z.string(),
+  concept_slug: z.string().regex(/^[a-z0-9-]+$/).optional(),
+});
+
 const thinkers = defineCollection({
   loader: glob({ pattern: '**/[^_]*.md', base: './src/content/thinkers' }),
   schema: z.object({
@@ -103,6 +109,8 @@ const thinkers = defineCollection({
     has_long_read: z.boolean().default(false),
     long_read_path: z.string().optional(),
     last_updated: z.coerce.date(),
+
+    portrait: z.string().optional(),
 
     tagline: z.string(),
     thirty_second_take: z.string(),
@@ -144,6 +152,8 @@ const longReadChapters = defineCollection({
     chapter_number: z.number().int().nonnegative(),
     title: z.string(),
     summary: z.string().optional(),
+    intro: z.string().optional(),
+    glossary: z.array(glossaryEntry).optional(),
     last_updated: z.coerce.date(),
   }),
 });

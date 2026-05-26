@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import Monogram from '../../components/Monogram.astro';
 import { buildConceptHoldersIndex, alsoHeldByFor, buildConceptPageIndex } from '../../lib/graph';
 
 export async function getStaticPaths() {
@@ -21,11 +22,20 @@ const conceptPages = await buildConceptPageIndex();
 
 <Base title={`${t.name} — Thinker Distillation`} description={t.tagline}>
   <article>
-    <section class="hero">
-      <h1>{t.name}</h1>
-      <p class="tagline">{t.tagline}</p>
-      <div class="domain-badges">
-        {t.primary_domains.map((d) => <span>{d}</span>)}
+    <section class="hero thinker-hero">
+      <div class="thinker-hero-portrait">
+        {t.portrait ? (
+          <img src={t.portrait} alt={`Portrait of ${t.name}`} width="160" height="160" />
+        ) : (
+          <Monogram name={t.name} size={160} />
+        )}
+      </div>
+      <div class="thinker-hero-text">
+        <h1>{t.name}</h1>
+        <p class="tagline">{t.tagline}</p>
+        <div class="domain-badges">
+          {t.primary_domains.map((d) => <span>{d}</span>)}
+        </div>
       </div>
       <p class="thirty-second">{t.thirty_second_take}</p>
     </section>

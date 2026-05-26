@@ -1,9 +1,9 @@
 ---
 project: thinker-distillation
 effort: E4
-phase: complete
-progress: 437/437
-iteration: iter-5-steps-1-3-2026-05-26
+phase: build
+progress: 449/463
+iteration: iter-5-steps-4-7-2026-05-26
 mode: project
 started: 2026-05-25
 updated: 2026-05-26
@@ -421,7 +421,51 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - [x] ISC-437: Anti: No Spanish chrome added — `grep -i "español\|cenefa\|saludos"` in src/layouts and src/pages returns no matches; P7 English-only carve-out preserved
 - [x] ISC-438: Antecedent: Design-spec §10 14 picks confirmed locked before code edit — verified via Read of design-spec lines 449-487 at OBSERVE; all decisions present and named
 
-**Iter-5 steps 1-3 progress: 35/35 ISCs complete. Steps 4-10 deferred to next session.**
+**Iter-5 steps 1-3 progress: 35/35 ISCs complete. Steps 4-7 continued in next sub-iteration block below; steps 8-10 still deferred.**
+
+### Iter-5 prototype — Steps 4-7 (2026-05-26)
+
+*Continuation of Iter-5 prototype: step 4 (keyboard verify, focus-visible landed in step 2), step 5+6 (portrait/monogram infrastructure — schema field, Monogram component, index + thinker hero pairing), step 7 (long-read concept-glossary sidebar + chapter-of-N breadcrumb). Real portrait images ship as a separate Camila-scouts task. Step 8 SVG genealogy stays deferred per design-spec §3.4/§3.5 body (advisor pressure-test demoted to v4). Step 9 holder-card portraits couples to scouting task. Step 10 (audit re-run) waits for portrait images to land.*
+
+**Step 4 — Keyboard focus verify (2 ISCs):**
+
+- [x] ISC-439: `interceptor open` + `interceptor act --keys "Tab"` confirms first Tab focuses the skip-link (visible at top:0 in `keyboard-focus-test.png` with azul background + paper text "Skip to content"). Accessibility tree confirms DOM order: skip-link (e1) → site-name (e2) → nav primary anchors (e3-e5) → thinker-index anchors (e6-e12) → footer About (e13) — 13 focusable elements total, all reachable by sequential Tab
+- [x] ISC-440: Skip-link visible only after first Tab — at page load `position: absolute; top: -40px` keeps it off-screen; on `:focus` `top: 0` reveals it (confirmed in keyboard-focus-test.png vs prior idx-after.png where focus was elsewhere)
+
+**Step 5+6 — Portrait/Monogram infrastructure (10 ISCs):**
+
+- [x] ISC-441: `src/content.config.ts` thinker schema gains optional `portrait` field — `z.string().optional()` added after `last_updated`
+- [x] ISC-442: `src/components/Monogram.astro` component created — renders initials in `var(--azul)` on `var(--paper-warm)` tile with 4px rounded corner, `size` prop (default 80; 160 used on thinker hero)
+- [x] ISC-443: Monogram initials derivation handles single-name and multi-name cases — `name.split(/\s+/).slice(0, 2).map(w => w[0]?.toUpperCase()).join('')`; "Brooks" → "B", "Alex Komoroske" → "AK", "Sidney Dekker" → "SD"
+- [x] ISC-444: `src/pages/index.astro` renders portrait if `t.data.portrait` defined; falls back to `<Monogram size={80}>` otherwise — conditional ternary
+- [x] ISC-445: Index page entry layout updated to grid — `.thinker-row` with `grid-template-columns: 80px 1fr` + 22px gap
+- [x] ISC-446: `src/pages/thinkers/[slug].astro` hero updated — `.thinker-hero` grid with portrait (160px) at top-left, name + tagline + domain badges to right, 30-second-take spanning below
+- [x] ISC-447: All 7 thinker pages render with monogram fallback — `grep -c "thinker-hero-portrait"` returns 7 across `dist/thinkers/*/index.html`; no portraits authored yet (Camila-scouts task is separate)
+- [x] ISC-448: CSS for `.thinker-row` grid layout landed in global.css; `.thinker-text .name` updated to Cardo 500 1.5rem (per design-spec §3.3)
+- [x] ISC-449: CSS for `.thinker-hero` grid + mobile breakpoint at 600px (portrait shrinks 160→100px on narrow viewports)
+- [x] ISC-450: `bun run build` passes — "15 page(s) built in 974ms, Complete!" exit 0
+
+**Step 7 — Long-read concept-glossary sidebar + chapter-of-N (10 ISCs):**
+
+- [ ] ISC-451: `src/content.config.ts` long-read chapter schema gains optional `glossary` field — array of `{term: string, gloss: string, concept_slug?: string}`
+- [ ] ISC-452: `src/pages/thinkers/[slug]/long-read/[chapter].astro` renders right-rail sidebar when `glossary` non-empty (≥1 entry)
+- [ ] ISC-453: Sidebar entries: term in Cardo weight-500, gloss in Source Serif 0.92rem, optional link to concept page when `concept_slug` matches a shipped concept
+- [ ] ISC-454: Mobile layout (≤768px) collapses sidebar to `<details>` block at top of chapter with summary "Glossary"
+- [ ] ISC-455: Empty `glossary` field (or absent) renders chapter without sidebar — no empty-state needed
+- [ ] ISC-456: Chapter-of-N indicator added to long-read chapter — derives N from `getCollection('chapters').filter(slug-prefix-match).length`
+- [ ] ISC-457: Chapter-of-N rendering: `Long-read / 01 of 03 — The Diagnosis` in JetBrains Mono 0.78rem stone-500
+- [ ] ISC-458: Komoroske ch01 frontmatter populated with 3-5 example glossary entries (since Julie owns content, scaffold ONLY the chapter that already has Julie-authored content body — preserve writing-partner discipline by keeping the entries derived from terms-of-art she already uses in the chapter prose, not Camila-invented terms)
+- [ ] ISC-459: Fowler preface NOT populated with glossary — preface register is different from chapter, Julie picks when/if to add per `feedback_writing_partner_per_field.md`
+- [ ] ISC-460: `bun run build` passes after long-read sidebar (zero type errors)
+
+**Verification + commit + advisor (4 ISCs):**
+
+- [ ] ISC-461: `bun run preview` + Interceptor screenshots of (a) index with monograms, (b) Komoroske hero with monogram, (c) Komoroske long-read ch01 with sidebar
+- [ ] ISC-462: Three separate commits land — keyboard-verify-as-no-code-only-ISA, portrait-infra commit, long-read-sidebar commit
+- [ ] ISC-463: Antecedent: `feedback_writing_partner_per_field.md` re-read at OBSERVE — glossary entries scaffolded ONLY where they're transcription of Julie's existing prose, never invented
+- [ ] ISC-464: Anti: No real portrait images committed this iteration (Camila-scouts task is separate; monograms ship for all 7)
+
+**Iter-5 steps 4-7 progress: 0/26 ISCs at build-phase entry. Total project surface: 437 closed prior + 26 this block = 463.**
 
 **Deferred to iter-6 (advisor follow-ups not folded into polish commit f5ad343):**
 - Verify oro-on-paper-warm visited-link contrast against WCAG AA (4.5:1 floor) using a contrast calculator

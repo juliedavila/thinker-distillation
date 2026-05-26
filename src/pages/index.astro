@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import Monogram from '../components/Monogram.astro';
 
 const thinkers = await getCollection('thinkers');
 thinkers.sort((a, b) => a.data.name.localeCompare(b.data.name));
@@ -17,9 +18,18 @@ thinkers.sort((a, b) => a.data.name.localeCompare(b.data.name));
   <ul class="thinker-index">
     {thinkers.map((t) => (
       <li>
-        <a href={`/thinkers/${t.data.slug}`}>
-          <p class="name">{t.data.name}</p>
-          <p class="tagline">{t.data.tagline}</p>
+        <a href={`/thinkers/${t.data.slug}`} class="thinker-row">
+          <div class="thinker-portrait">
+            {t.data.portrait ? (
+              <img src={t.data.portrait} alt={`Portrait of ${t.data.name}`} width="80" height="80" />
+            ) : (
+              <Monogram name={t.data.name} size={80} />
+            )}
+          </div>
+          <div class="thinker-text">
+            <p class="name">{t.data.name}</p>
+            <p class="tagline">{t.data.tagline}</p>
+          </div>
         </a>
       </li>
     ))}

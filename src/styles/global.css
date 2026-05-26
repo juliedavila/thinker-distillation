@@ -1,29 +1,39 @@
 :root {
-  --ink: #1a1a1a;
-  --ink-soft: #3a3a3a;
-  --ink-muted: #6b6b6b;
-  --paper: #fbfaf6;
-  --paper-sunk: #f3f1e8;
-  --rule: #d6d2c2;
+  /* ─── Mexican-modernist palette (aligned with Camila Hub) ──────────── */
+  --paper: #F4EFE6;
+  --paper-warm: #EDE6D7;
+  --ink: #2A2520;
+  --stone-700: #4E4842;
+  --stone-500: #8B8275;
+  --stone-300: #D9D1C2;
+  --azul: #2C4A6B;
+  --tierra: #A04A2C;
+  --oro: #B8956A;
 
-  --julie-tint: #f1ede0;
-  --julie-accent: #6b5b2e;
-  --julie-rule: #c6b88a;
+  /* ─── Type stack — Cardo / Source Serif 4 / JetBrains Mono ─────────── */
+  --display: Cardo, 'Iowan Old Style', 'Hoefler Text', Georgia, Cambria, 'Times New Roman', serif;
+  --body: 'Source Serif 4', 'Source Serif Pro', 'Iowan Old Style', Georgia, Cambria, serif;
+  --mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
 
-  --frame-tint: #eef2f4;
-  --frame-accent: #2e4d5b;
-
-  --quote-tint: #f6f0ea;
-  --quote-rule: #8c6f4f;
-
-  --break-accent: #8a3a2e;
-
+  /* ─── Layout ───────────────────────────────────────────────────────── */
   --max: 720px;
   --gutter: clamp(16px, 4vw, 32px);
 
-  --serif: 'Iowan Old Style', 'Hoefler Text', 'Georgia', 'Cambria', 'Times New Roman', serif;
-  --sans: -apple-system, 'SF Pro Text', 'Inter', 'Helvetica Neue', system-ui, sans-serif;
-  --mono: 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+  /* ─── Legacy aliases (unwind during typography cascade) ────────────── */
+  --serif: var(--body);
+  --sans: var(--body);
+  --ink-soft: var(--stone-700);
+  --ink-muted: var(--stone-500);
+  --rule: var(--stone-300);
+  --paper-sunk: var(--paper-warm);
+  --julie-tint: var(--paper-warm);
+  --julie-accent: var(--oro);
+  --julie-rule: var(--oro);
+  --frame-tint: var(--paper-warm);
+  --frame-accent: var(--azul);
+  --quote-tint: var(--paper-warm);
+  --quote-rule: var(--tierra);
+  --break-accent: var(--tierra);
 }
 
 * {

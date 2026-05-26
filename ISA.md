@@ -1,12 +1,65 @@
 ---
 project: thinker-distillation
-effort: E3
-phase: complete
-progress: 185/185
-iteration: audit-disposition-application-2026-05-25
+effort: E4
+phase: build
+progress: 408/437
+iteration: iter-5-steps-1-3-2026-05-26
 mode: project
 started: 2026-05-25
 updated: 2026-05-26
+---
+
+## Save Point — 2026-05-26 (cold-start resume here)
+
+**Status:** Iter-1 v1 launch · Iter-2 v2 concept-page (first-shipped) · Iter-3 v2 audit-prose · Iter-4 UI-audit arc launched and ran through four sub-iterations: research-pass → UI-audit → design-spec → all closed. Iter-5 (prototype implementation) is next; F-OPS GitLab Pages migration runs in parallel on Julie's schedule.
+
+**One-paragraph orientation for cold-start:** This project is the Thinker Distillery — per-practitioner editorial readings of practitioners worth metabolizing (Komoroske, Fowler, Brooks, Allspaw, Woods, Dekker, Dalio currently live), with a v2 concept-page surface that derives cross-thinker holders from thinker frontmatter as the single source of truth. The site lives at `~/Camila/thinker-distillation/` and was live at `https://thinkerdistillery.netlify.app/` (currently 503'd — Netlify usage exceeded; GitLab Pages migration plan ready at `gitlab-migration-plan.md`). On 2026-05-26 we ran a four-iteration UI audit + redesign arc: Iter-2 research (academic + reference-site, output `research-ui-2026-05-26.md`), Iter-3 audit (4 P0 → 3 P0 + 9 P1 after advisor recalibration, output `audit-ui-2026-05-26.md`), Iter-4 design spec aligning Distillery to Camila Hub's Mexican-modernist token system but holding English-only chrome (output `design-spec-2026-05-26.md`). Julie locked 14 per-decision picks; tagline working draft is "Thinking through the shoulders of giants" (her phrasing). Brand-foundation framing: these decisions propagate beyond Distillery to future projects.
+
+**What to read first (in order):**
+1. `~/Camila/thinker-distillation/design-spec-2026-05-26.md` — §10 has the locked decisions table; §8 has the 10-step Iter-5 implementation order
+2. `~/Camila/thinker-distillation/audit-ui-2026-05-26.md` — for context on what Iter-5 is fixing (3 P0, 9 P1, F-OPS sibling)
+3. `~/Camila/thinker-distillation/research-ui-2026-05-26.md` — for the academic citations behind the criteria
+4. `~/Camila/thinker-distillation/gitlab-migration-plan.md` — parallel F-OPS work, 8 open questions for Julie
+5. This ISA's `## Decisions` section, newest-first, walks the iteration history with reasoning
+
+**14 decisions locked 2026-05-26 (full table in design-spec §10):**
+
+Designer picks:
+- Body measure `clamp(45ch, 62ch, 68ch)` · Body size 18px/1.62 · Section headers weight-axis no-uppercase Cardo weight-500 azul · Links underline-always azul→tierra→oro cascade · Chrome three-line with scroll-collapse · Portraits real B&W photos (Camila scouts)
+
+Author picks:
+- Voice-of-the-frame: **first-person editorial** (cascading) · Tagline working draft: **"Thinking through the shoulders of giants"** (Julie's phrasing) · Long-read intros: add optional `intro` field · Lineage rendering: keep flat prose for v3 · Footer signature: keep "Curated by Julie Davila." · Section names: keep current, open to evolving · Parkable bundle (Spanish format / naming / pronouns / metaphor literalness / pull-quote sourcing): all parked until just-in-time triggered
+
+**Open micro-decisions (small, can resolve at Iter-5 start):**
+- Tagline case + punctuation: sentence-case + period, or all-lowercase no-period?
+- Tagline form: explicit "I" prefix, or gerund (current)?
+
+**Carve-outs preserved:** C23 bilingual chrome OUT for Distillery · AC10 `julie_reading` Camila never authors · `working_uses` carve-out (Camila auto-records joint work) · AC7 anti-essentialism guard
+
+**Next iteration on resume:**
+- Iter-5 prototype, E4-E5, 12-20 hours across 10 sequenced commits per design-spec §8 — token layer first, typography cascade, chrome rework, focus styles, portrait pairing, etc.
+- Parallel: F-OPS GitLab Pages migration when Julie wants to action it (8 open questions in the plan first)
+- Camila owes: 5 tagline alternatives if Julie wants to re-explore (already delivered once, Julie countered with her own working draft)
+
+**Working norms in effect this project:**
+- `feedback_writing_partner_per_field.md` with `working_uses` carve-out
+- `feedback_feminine_energy_writing.md`
+- `feedback_thinker_inclusion_pushback.md`
+- `feedback_avoid_kimi_codex.md` (Cato/Forge/Anvil skipped unless Julie names)
+- Mexican-modernist token alignment with Camila Hub (Cardo + Source Serif 4 + JetBrains Mono; azul/tierra/oro/paper/ink)
+- English-only chrome (Distillery public-consumption posture); Spanish enters only when content earns it (future Spanish-writing thinker)
+
+**Build / deploy operational notes:**
+- Astro 6.x; requires node ≥v22 — prefix `bun` commands with `PATH="/opt/homebrew/bin:$PATH"` or use system node v26
+- Build: `bun run build`; preview: `bun run preview` (port 4321)
+- Production deploy currently broken — Netlify usage exceeded; migration plan staged
+
+**Where source material lives:**
+- Project ISA (this file) at `~/Camila/thinker-distillation/ISA.md`
+- Schema locked at `~/Camila/thinker-distillation/SCHEMA.md`
+- Iter-4 artifacts at `~/Camila/thinker-distillation/{research,audit,design-spec,gitlab-migration-plan}-ui-2026-05-26.md` (research/audit/design-spec/migration)
+- Screenshot evidence at `~/.claude/jobs/fce49501/audit-screenshots/` (4 desktop captures, will be cleaned up — copy if you want to preserve)
+
 ---
 
 ## Problem
@@ -173,6 +226,344 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - [x] ISC-68: ISA `## Decisions` extended with 4 entries (v2-iteration kickoff, seed-concept choice, no-third-node-type invariant, julie-reading-as-scaffolded-slot, delegation under-floor show-your-math)
 - [x] ISC-69: SCHEMA.md `§9 Concept Pages` section added with frontmatter spec, page-section order, cross-linking contract, and 4 new anti-criteria (Anti-7..10) extending §7
 - [x] ISC-70: Two Changelog entries in canonical conjecture/refutation/learning format — "Concept pages: derived holders vs authored editorial" and "Julie's reading is a scaffolded slot, not a Camila draft"
+
+### Design Spec iteration — Iteration 4 (2026-05-26)
+
+*Brand-foundation design spec. Output: `~/Camila/thinker-distillation/design-spec-2026-05-26.md` (4391 words). Parallel: F-OPS migration plan at `~/Camila/thinker-distillation/gitlab-migration-plan.md` (2480 words). Hand-off to Iter-5 prototype after Julie picks per-decision options.*
+
+**§1 Principles (8 ISCs):**
+- [x] ISC-290: P1 named (cognitive load dominant constraint) — anchored Sweller + Skulmowski
+- [x] ISC-291: P2 named (beauty primer + longitudinal discipline) — anchored Sonderegger 2012
+- [x] ISC-292: P3 named (multimedia coherence test) — anchored Mayer & Fiorella
+- [x] ISC-293: P4 named (honors-thinkers via experience) — Iter-3 Pattern 7
+- [x] ISC-294: P5 named (feminist intentionality generative methodology) — Bardzell & Bardzell 2011
+- [x] ISC-295: P6 named (brand-foundation framing) — Julie 2026-05-26
+- [x] ISC-296: P7 named (public consumption posture, English-only chrome) — Julie 2026-05-26
+- [x] ISC-297: P8 named (customer-zero phase design window)
+
+**§2 Typography (16 ISCs):**
+- [x] ISC-298: Type stack confirmed adoption from Camila Hub
+- [x] ISC-299: §2.2 body measure — 3 alternatives + tradeoffs + lean
+- [x] ISC-300: §2.3 leading + base size — 2 alternatives + lean
+- [x] ISC-301: §2.4 hierarchy treatment — 3 alternatives + lean (resolves audit F6)
+- [x] ISC-302: §2.5 emphasis (italic, bold, anti-pattern bold-italic)
+- [x] ISC-303: §2.6 link affordance — 3 alternatives + lean (resolves audit F19)
+- [x] ISC-304: §2.7 pull-quotes refinement
+- [x] ISC-305: Anti: no uppercase eyebrow + tracking pattern
+- [x] ISC-306: Anti: no bold-italic combo emphasis
+- [x] ISC-307: Anti: no `text-decoration: none` without compensating affordance
+- [x] ISC-308: Cardo licensed SIL OFL — commercial-use safe
+- [x] ISC-309: Source Serif 4 licensed SIL OFL — commercial-use safe
+- [x] ISC-310: JetBrains Mono licensed Apache 2.0 — commercial-use safe
+- [x] ISC-311: Variable-font axes named (weight + optical-size) as a design tool
+- [x] ISC-312: Hierarchy cascade specified (H1/H2/H3/H4)
+- [x] ISC-313: Mono register reserved (citations, metadata, attribution kinds)
+
+**§3 Page Architecture (22 ISCs):**
+- [x] ISC-314: §3.1 chrome — 3 alternatives + lean (resolves F7)
+- [x] ISC-315: §3.2 breadcrumb pattern (resolves F2 P1)
+- [x] ISC-316: §3.3 index — portrait + name pairing (resolves F4 P1)
+- [x] ISC-317: §3.3 index — field metadata line in mono
+- [x] ISC-318: §3.3 portrait sourcing strategy — 3 options + lean (scaffolded Julie-slot)
+- [x] ISC-319: §3.3 alphabetical ordering preserved
+- [x] ISC-320: §3.4 thinker page — 11-section template preserved
+- [x] ISC-321: §3.4 thinker page — hero portrait + name pairing
+- [x] ISC-322: §3.4 thinker page — genealogy mini-diagrams on Named Frames
+- [x] ISC-323: §3.4 thinker page — body-of-work covers when feasible
+- [x] ISC-324: §3.5 concept page — 5-lane template preserved (v2 strength)
+- [x] ISC-325: §3.5 concept page — genealogy SVG chain
+- [x] ISC-326: §3.5 concept page — holder cards with portrait thumbs + source link
+- [x] ISC-327: §3.5 concept page — pending-concept styling clarified
+- [x] ISC-328: §3.6 long-read chapter — concept-glossary sidebar (resolves F5)
+- [x] ISC-329: §3.6 long-read chapter — chapter-of-N indicator (partial F6 resolution)
+- [x] ISC-330: §3.6 long-read chapter — chapter-end three exits (no dead-end)
+- [x] ISC-331: §3.7 long-read index — aligns with thinker-page hero pattern (resolves F14)
+- [x] ISC-332: Concept-page surfacing in chrome nav resolves F3 P0
+- [x] ISC-333: Anti: no concept-graph viz as primary nav (AC3 honored, deferred to v5+)
+- [x] ISC-334: Anti: no autoplay video embeds
+- [x] ISC-335: Anti: no third-person CMS-default chrome copy
+
+**§4 Multimedia (12 ISCs):**
+- [x] ISC-336: §4.1 portraits style guide (aspect, register, sourcing)
+- [x] ISC-337: §4.1 monogram fallback when portrait absent
+- [x] ISC-338: §4.2 genealogy diagrams style guide (SVG, palette-colored)
+- [x] ISC-339: §4.3 concept-graph viz deferred to v5+ with reconsideration threshold
+- [x] ISC-340: §4.4 video/audio default = no; talk-link card exception
+- [x] ISC-341: §4.5 ONE imagery register site-wide (lean: warm B&W portraits + SVG line work)
+- [x] ISC-342: Anti: no stock photography
+- [x] ISC-343: Anti: no atmospheric imagery between paragraphs (seductive-details effect)
+- [x] ISC-344: Anti: no illustrated icons
+- [x] ISC-345: Coherence test applied per multimedia decision (P3)
+- [x] ISC-346: Alt-text minimum specified (Portrait of {name})
+- [x] ISC-347: Multimedia bandwidth respects F-OPS migration findings
+
+**§5 Non-color feminine dimensions (10 ISCs):**
+- [x] ISC-348: §5.1 rhythm + breath spec (vertical spacing 64-80px, paragraph spacing 1.5×)
+- [x] ISC-349: §5.2 hierarchy softness via weight (locked from §2.4)
+- [x] ISC-350: §5.3 voice-of-the-frame structural proposal + Julie-slots called out
+- [x] ISC-351: §5.4 slow/reflective interaction (no scroll-progress, no read-time on thinker page)
+- [x] ISC-352: §5.4 read-time appropriate on long-read index (chapter choice context)
+- [x] ISC-353: §5.4 no share buttons in v3 customer-zero
+- [x] ISC-354: §5.4 prefers-reduced-motion honored on all transitions
+- [x] ISC-355: §5.5 AC7 anti-essentialism guard applied
+- [x] ISC-356: Anti: no chatty interruption frames (no "Editor's note", no "P.S.", no aside call-outs)
+- [x] ISC-357: Card grid gaps specified (0.9-1.2rem)
+
+**§6 Color + ornament (10 ISCs):**
+- [x] ISC-358: §6.1 palette application table — token per surface
+- [x] ISC-359: §6.1 contrast verification — all body-on-paper, link-on-paper, accent-on-paper PASS WCAG AA
+- [x] ISC-360: §6.2 ornament discipline — NO ornament in v3, reconsider at v4+
+- [x] ISC-361: §6.3 :focus-visible site-wide rule (resolves F16 P0)
+- [x] ISC-362: §6.4 skip-to-content link (resolves F17 P1)
+- [x] ISC-363: §6.5 `<nav aria-label="primary">` landmark (resolves F18 P1)
+- [x] ISC-364: §6.6 dark mode deferred to v5+
+- [x] ISC-365: Anti: no pure-white (#fff) used; all backgrounds carry warmth
+- [x] ISC-366: Anti: no color outside the 9-token palette
+- [x] ISC-367: Token system documented for brand-foundation propagation (P6)
+
+**§7 Scaffolded Julie-Slots (10 ISCs):**
+- [x] ISC-368: Mission tagline as Julie-slot (placeholder + Julie writes)
+- [x] ISC-369: Footer signature default proposed (Julie can evolve)
+- [x] ISC-370: Long-read chapter intros as optional Julie-slot
+- [x] ISC-371: Portrait sourcing strategy as Julie-slot (3 options + Camila's lean)
+- [x] ISC-372: Portrait register as Julie-slot (warm B&W proposed)
+- [x] ISC-373: About-page content deferred (per Iter-1 pre-promotion gate)
+- [x] ISC-374: Spanish-thinker quote format as future Julie-slot (structural proposal only)
+- [x] ISC-375: `julie_reading` AC10 holds (Camila never authors)
+- [x] ISC-376: `working_uses` carve-out holds (Camila auto-records joint work)
+- [x] ISC-377: Section-header verbiage as Julie's editorial slot
+
+**§8 Implementation Order (10 ISCs):**
+- [x] ISC-378: Step 1 token layer first (single commit, build still works)
+- [x] ISC-379: Step 2 typography cascade (5-7 commits per major decision)
+- [x] ISC-380: Step 3 chrome rework + nav landmark + skip-link
+- [x] ISC-381: Step 4 focus styles site-wide
+- [x] ISC-382: Step 5 index portrait pairing (monogram fallback)
+- [x] ISC-383: Step 6 thinker page hero with portrait
+- [x] ISC-384: Step 7 long-read concept-glossary sidebar + chapter-of-N
+- [x] ISC-385: Step 8 genealogy mini-diagrams (shared SVG component)
+- [x] ISC-386: Step 9 concept-page refinements
+- [x] ISC-387: Step 10 verify + audit re-run before customer-zero acceptance
+
+**Meta + anti (16 ISCs):**
+- [x] ISC-388: Output file written at canonical location
+- [x] ISC-389: Word count ≤8000 (actual 4391)
+- [x] ISC-390: ≥3 alternatives at each major decision (§2.2, §2.4, §2.6, §3.1) with tradeoffs
+- [x] ISC-391: ≥2 alternatives at minor decisions (§2.3)
+- [x] ISC-392: Camila's leans flagged as leans, not prescriptions
+- [x] ISC-393: Writing-partner per-field discipline applied (§7 enumerates Julie-slots)
+- [x] ISC-394: Brand-foundation framing carried throughout (P6)
+- [x] ISC-395: English-only chrome carve-out applied (P7)
+- [x] ISC-396: Anti: no Distillery-specific decisions that conflict with future propagation
+- [x] ISC-397: Anti: no editorial voice pre-decided (Julie-slots scaffolded only)
+- [x] ISC-398: Anti: no design solution proposed beyond Iter-5 scope
+- [x] ISC-399: Anti: no font / color outside Camila Hub token system
+- [x] ISC-400: All audit P0/P1 findings have spec resolutions or explicit deferrals
+- [x] ISC-401: Per-decision pick table at §10 for Julie's reaction
+- [x] ISC-402: F-OPS migration plan delivered in parallel (background agent)
+- [x] ISC-403: Antecedent: Julie picks per-decision options before Iter-5 prototype starts — 14 decisions locked in design-spec §10 (Read 2026-05-26 lines 449-487)
+
+**Iter-4 progress: 113/114 ISCs complete; ISC-403 pending Julie's per-decision picks.**
+
+### Iter-5 prototype — Steps 1-3 (2026-05-26)
+
+*First continuous push of design-spec §8 implementation: token layer + typography cascade + chrome rework. Three commits, build green between each. Verified locally (production Netlify 503 — F-OPS migration parallel track). Tagline ships as Julie's working draft scaffolded slot per writing-partner-per-field discipline with carve-out: she already typed it.*
+
+**Step 1 — Token layer (6 ISCs):**
+
+- [x] ISC-404: `:root` in `src/styles/global.css` contains all 9 Mexican-modernist palette tokens (`--paper`, `--paper-warm`, `--ink`, `--stone-700`, `--stone-500`, `--stone-300`, `--azul`, `--tierra`, `--oro`) — grep -E count returned 26 (9 palette + 3 type + 14 alias) ≥9 palette confirmed
+- [x] ISC-405: `:root` contains 3 type-stack tokens (`--display`, `--body`, `--mono`) mapped to Cardo / Source Serif 4 / JetBrains Mono — grep verified, fallback chains preserved
+- [x] ISC-406: Legacy aliases preserve every existing var name (`--serif`, `--sans`, `--ink-soft`, `--ink-muted`, `--rule`, `--paper-sunk`, `--julie-tint`, `--julie-accent`, `--julie-rule`, `--frame-tint`, `--frame-accent`, `--quote-tint`, `--quote-rule`, `--break-accent`) — all 14 declared as var(--new-token) aliases
+- [x] ISC-407: Google Fonts `<link rel="preconnect">` + `<link rel="stylesheet">` for Cardo + Source Serif 4 + JetBrains Mono injected in `Base.astro` `<head>`
+- [x] ISC-408: `bun run build` passes after token layer change — "14 page(s) built in 1.07s, Complete!" exit 0
+- [ ] ISC-409: Step 1 commit lands separately for revertibility (commit message names "token layer")
+
+**Step 2 — Typography cascade (10 ISCs):**
+
+- [ ] ISC-410: `html { font-size: 18px }` applied (was 17px)
+- [ ] ISC-411: `body { line-height: 1.62; font-family: var(--body) }` applied (was 1.55, var(--serif))
+- [ ] ISC-412: `p { max-width: 62ch }` applied per Bringhurst measure (was 64ch)
+- [ ] ISC-413: `h2.section-h` rewritten — `font-family: var(--display)`, `font-weight: 500`, `font-size: 0.95rem`, `color: var(--azul)`, `text-transform: none`, `letter-spacing: 0`, `border-bottom: 0` (audit F6 resolved)
+- [ ] ISC-414: Bare `a` rule added — `color: var(--azul)`, `text-decoration: underline`; `:hover { color: var(--tierra) }`; `:visited { color: var(--oro) }` (audit F19 resolved)
+- [ ] ISC-415: Site-wide `:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; border-radius: 2px }` (audit F16 P0 resolved)
+- [ ] ISC-416: `blockquote.what-x-says` updated — `background: var(--paper-warm)`, `border-left: 4px solid var(--tierra)` (was --quote-tint + 4px --quote-rule, now via direct token names)
+- [ ] ISC-417: `blockquote.what-x-says cite` updated — `font-family: var(--mono)`, `font-size: 0.82rem`, `color: var(--stone-500)`
+- [ ] ISC-418: `bun run build` passes after typography cascade
+- [ ] ISC-419: Step 2 commit lands separately (commit message names "typography cascade")
+
+**Step 3 — Chrome rework (11 ISCs):**
+
+- [ ] ISC-420: `Base.astro` chrome restructured to three-line block — site name (line 1), tagline (line 2), nav row (line 3)
+- [ ] ISC-421: Tagline placeholder set to **"Thinking through the shoulders of giants"** (Julie's working draft from design-spec §10) — scaffolded slot, Julie can refine in one Edit
+- [ ] ISC-422: Nav row contains "Thinkers · Concepts · About" wrapped in `<nav aria-label="primary">` landmark (audit F18 P1 resolved)
+- [ ] ISC-423: Skip-to-content link `<a class="skip-to-main" href="#main">Skip to content</a>` placed immediately after `<body>` (audit F17 P1 resolved)
+- [ ] ISC-424: `<main>` element gets `id="main"` to receive skip-link target
+- [ ] ISC-425: Chrome CSS rewritten — `.site-name` Cardo weight-500 size 1.15rem color ink; `.tagline` Source Serif italic 0.95rem stone-700 max-width 40ch; nav row with azul top-rule
+- [ ] ISC-426: Skip-link CSS — `position: absolute; top: -40px; left: 0; background: var(--azul); color: var(--paper)`; on `:focus` top: 0 with z-index
+- [ ] ISC-427: Chrome scroll-collapse — small inline script in Base.astro toggles `.scrolled` class above y-offset 80px
+- [ ] ISC-428: `.scrolled` CSS hides tagline at small breakpoints OR collapses chrome to two-line via `display: none` on `.tagline`; `prefers-reduced-motion: reduce` honored (no transition)
+- [ ] ISC-429: `bun run build` passes after chrome rework
+- [ ] ISC-430: Step 3 commit lands separately (commit message names "chrome rework")
+
+**Verification (4 ISCs):**
+
+- [ ] ISC-431: `bun run preview` starts on port 4321 and serves the rebuilt site
+- [ ] ISC-432: Interceptor screenshot of `http://localhost:4321/` shows new palette (paper background, azul section accents)
+- [ ] ISC-433: Interceptor screenshot of `http://localhost:4321/thinkers/alex-komoroske/` shows Cardo 500 azul section headers (no uppercase) + underline-cascade links
+- [ ] ISC-434: Advisor pass via `bun ~/.claude/PAI/TOOLS/Inference.ts --mode advisor` before `phase: complete` (Rule 2 commitment-boundary)
+
+**Anti-criteria + antecedent (4 ISCs):**
+
+- [ ] ISC-435: Anti: No content (thinker frontmatter, concept frontmatter, portrait paths) edited this iteration
+- [ ] ISC-436: Anti: No Forge / Anvil / Cato spawned (`feedback_avoid_kimi_codex` applied)
+- [ ] ISC-437: Anti: No Spanish chrome added (P7 English-only carve-out preserved)
+- [ ] ISC-438: Antecedent: Design-spec §10 14 picks confirmed locked before any code edit (verified via Read of design-spec lines 449-487)
+
+**Iter-5 steps 1-3 progress: 0/35 ISCs at build-phase entry. Steps 4-10 deferred to next session.**
+
+### UI Audit iteration — Iteration 3 (2026-05-26)
+
+*Audit pass. Output: `~/Camila/thinker-distillation/audit-ui-2026-05-26.md`. Scores current Distillery against the 30-criterion rubric (C1-C23 + AC1-AC7) from Iter-2.*
+
+**Captures (10):**
+- [x] ISC-252: Index page desktop capture — `audit-screenshots/idx-desktop.png` (1.7MB)
+- [x] ISC-253: Thinker page (Komoroske) desktop capture — `thinker-desktop.png` (4.9MB)
+- [x] ISC-254: Concept page (coordination-headwind) desktop capture — `concept-desktop.png` (3.6MB)
+- [x] ISC-255: Long-read chapter desktop capture — `longread-desktop.png` (5.9MB)
+- [DEFERRED-VERIFY] ISC-256: Long-read index desktop — audited via source code (visually near-identical to long-read chapter chrome); follow-up: capture if Iter-3b runs
+- [DEFERRED-VERIFY] ISC-257-261: All 5 mobile captures — Interceptor doesn't control Chrome viewport without bridge; mobile parity audited from CSS source instead; follow-up: explicit mobile pass GATES Iter-4 sign-off (advisor-driven, captured in audit doc)
+
+**Per-page rubric scoring (15):**
+- [x] ISC-262: Index page scored against C1-C7 — passes on C2/C18/C22; partials on C9/C12
+- [x] ISC-263: Index page scored against C8-C12 — pass C10/C11; fail C8
+- [x] ISC-264: Index page scored against C13-C17 + C18-C23 — pass-by-absence on multimedia; fail C23
+- [x] ISC-265: Thinker page scored against C1-C7 — pass C1/C2/C4/C5/C7; fail C3/C6
+- [x] ISC-266: Thinker page scored against C8-C12 — pass C11; fail C8
+- [x] ISC-267: Thinker page scored against C13-C17 + C18-C23 — fail C13-C17 + C19
+- [x] ISC-268: Concept page scored against C1-C7 — pass C5
+- [x] ISC-269: Concept page scored against C8-C12 — partial C8 (source links); partial C12
+- [x] ISC-270: Concept page scored against C13-C17 + C18-C23 — pass C18/C20/C21; fail C19
+- [x] ISC-271: Long-read chapter scored against C1-C7 — pass C1/C2/C4/C5/C22; fail C3 (most acutely)/C6
+- [x] ISC-272: Long-read chapter scored against C8-C12 — partial C11 (template inconsistency)
+- [x] ISC-273: Long-read chapter scored against C13-C17 + C18-C23 — fail C13-C17 (most acutely for long-form)
+- [x] ISC-274: Long-read index scored against C1-C7 — pass via source review; fail C6
+- [x] ISC-275: Long-read index scored against C8-C12 — partial C11 (third chrome pattern)
+- [x] ISC-276: Long-read index scored against C13-C17 + C18-C23 — N/A multimedia; pass by absence
+
+**Cross-page synthesis (5):**
+- [x] ISC-277: Cross-cutting patterns extracted — 7 patterns named
+- [x] ISC-278: Severity rankings assigned (P0/P1/P2/P3) — recalibrated post-advisor (3 P0 / 9 P1 / 3 P2 / 4 P3)
+- [x] ISC-279: Disposition table populated (Iter-4 for all UI findings, parallel sibling track for F-OPS Netlify migration)
+- [x] ISC-280: 3 P0 findings surfaced — F1 multimedia absence, F3 concept-not-in-nav, F16 focus-visible (added post-advisor)
+- [x] ISC-281: Surprising finding called out — Camila Hub visual-identity divergence (token-layer, verified via 3-fix test, gates Iter-4)
+
+**Output + anti (8):**
+- [x] ISC-282: Output at `~/Camila/thinker-distillation/audit-ui-2026-05-26.md`
+- [x] ISC-283: Each finding cites criterion (C/AC) it relates to
+- [x] ISC-284: Output reviewable in one sitting — **4512 words** (under 8000 cap)
+- [x] ISC-285: Anti: No design solutions proposed — all dispositions point to Iter-4
+- [x] ISC-286: Anti: Evidence-based — screenshots cited per finding, source file:line for structural claims
+- [x] ISC-287: Anti: No grade inflation — recalibrated post-advisor (2 P0 → P1 demotions; verification-confidence note added distinguishing passes-by-absence from verified passes)
+- [x] ISC-288: Anti: Mobile parity — addressed post-advisor by explicit gating of Iter-4 sign-off on mobile pass, not papered over with "audited from CSS source"
+- [x] ISC-289: Antecedent: Hosting issue (Netlify usage_exceeded) — surfaced as F-OPS sibling finding, not parenthetical; GitLab Pages migration named as parallel track
+
+### UI Research iteration — Iteration 2 (2026-05-26)
+
+*Research pass. Output: `~/Camila/thinker-distillation/research-ui-2026-05-26.md`. Hand-off to Iter-3 (Audit) after Julie reacts.*
+
+**Academic lanes (6 × ~3 ISCs each):**
+- [x] ISC-219: Lane 1 (CTML / multimedia learning) queried; ≥3 findings with real citations — 5 citations (Mayer&Fiorella 2014, Noetel 2022, Sundararajan 2020, Mayer 2024, Castro-Alonso 2021)
+- [x] ISC-220: Lane 1 produces ≥2 design implications + ≥1 anti-pattern — 3 implications + anti-pattern documented
+- [x] ISC-221: Lane 2 (cognitive load in reading interfaces) queried; ≥3 findings with citations — 5 citations (Sweller 2019, Skulmowski&Xu 2022, Spanjers 2010, Rey 2019, Mayer&Pilegard 2014)
+- [x] ISC-222: Lane 2 produces ≥2 design implications + ≥1 anti-pattern
+- [x] ISC-223: Lane 3 (aesthetic-usability effect) queried; ≥3 findings with citations — 5 citations incl. Sonderegger 2012 longitudinal-attenuation finding
+- [x] ISC-224: Lane 3 produces ≥2 design implications + ≥1 anti-pattern
+- [x] ISC-225: Lane 4 (typography & long-form reading) queried; ≥3 findings with citations — Bringhurst, Dyson 2004, Dyson&Haselgrove 2001, WCAG 1.4.8, Lupton
+- [x] ISC-226: Lane 4 produces ≥2 design implications + ≥1 anti-pattern
+- [x] ISC-227: Lane 5 (feminine UX & affective computing) queried; ≥3 findings with citations — Bardzell 2010, Picard 1997, Boehner 2007, Ehrnberger 2012, Dourish 2001, Howell 2021
+- [x] ISC-228: Lane 5 produces ≥2 design implications + ≥1 anti-pattern
+- [x] ISC-229: Lane 6 (knowledge-graph navigation UX) queried; ≥3 findings with citations — Edwards&Hardman 1989, DeStefano&LeFevre 2007, Amadieu 2009, Tufte 1983/1990
+- [x] ISC-230: Lane 6 produces ≥2 design implications + ≥1 anti-pattern
+
+**Reference-site visual audit (6 categories):**
+- [x] ISC-231: Editorial-press category (Stripe Press, Marginalian, Pudding)
+- [x] ISC-232: Knowledge-platform / graph (Distill.pub, Quanta, Are.na)
+- [x] ISC-233: Learning-platform — substituted Aperture's editorial section as learning-adjacent; Khan Academy not audited (note: gap, can add in Iter-2b if Julie wants)
+- [x] ISC-234: Feminine-led design (It's Nice That, Apartamento, Aperture)
+- [x] ISC-235: Thinker-honoring archive (Edge.org)
+- [x] ISC-236: Mexican-modernist / heritage-rooted (Casa Wabi — surfaced as counter-example, not exemplar)
+- [x] ISC-237: Per-site notes capture typography + grid + multimedia + voice
+- [x] ISC-238: Per-site finding categorized as emulate / avoid / novel
+
+**Synthesis:**
+- [x] ISC-239: All academic findings landed in `research-ui-2026-05-26.md`
+- [x] ISC-240: All reference-site findings landed in same file
+- [x] ISC-241: Synthesis maps ≥12 candidate criteria across the four named biases — **23 criteria + 6 anti-criteria** (C1-C23, AC1-AC6)
+- [x] ISC-242: Synthesis flags conflicts between findings — 5 conflicts surfaced (halo-vs-attenuation, personal-vs-institutional voice, feed-flat-vs-hero, template-vs-bespoke, Distill-rigor-in-warm-register)
+- [x] ISC-243: Synthesis names "novel territory" — 4 items (cross-thinker concept pages, Mexican-modernist editorial, bilingual co-presence, figure-rigor + warm register)
+- [x] ISC-244: Output reviewable in one sitting — **3894 words** (under 6000 cap)
+
+**Elicit + ArXiv:**
+- [x] ISC-245: Elicit MCP authentication attempted; honest fallback documented — auth requires interactive OAuth, surfaced as Iter-2b augmentation option rather than silently skipped
+- [DEFERRED-VERIFY] ISC-246: ArXiv HCI-papers search not separately executed — Lane 6 GeminiResearcher pulled the relevant HCI lit (Edwards&Hardman, DeStefano&LeFevre, Amadieu, Tufte); substantive coverage achieved, follow-up: run targeted 2024-2026 ArXiv preprint pass if Julie wants marginal coverage on a specific lane
+
+**Anti-criteria:**
+- [x] ISC-247: Anti: No fabricated citations — all sources real and findable, [LOW] markers used where appropriate
+- [x] ISC-248: Anti: Findings NOT cherry-picked — Sonderegger 2012 attenuation surfaced as boundary condition counter to halo finding; Casa Wabi surfaced as counter-example
+- [x] ISC-249: Anti: Research output does NOT propose specific design solutions — "What This Document Is NOT" section explicit
+- [x] ISC-250: Anti: Reference-site analysis does NOT default to Stripe-Press-style — categorized as EMULATE with pressure-test, conflicts surfaced where it loses
+- [x] ISC-251: Antecedent: Output reviewed by Julie before Iter-3 audit phase spawns — Julie reacted 2026-05-26: keep "feminine intentionality" label, criteria stand as-is, Elicit augmentation skipped (Camila's call — marginal coverage gain not worth the budget at this stage)
+
+### UI Audit iteration — plan-of-action (2026-05-26)
+
+*Plan-only iteration. ISCs scope the structural commitments of the plan itself; audit execution iterations spawn after Julie's approval.*
+
+**Plan coverage:**
+- [ ] ISC-186: Plan enumerates the four named UI biases as discrete evaluation lanes (wisdom-formation, honors-thinkers, purposeful multimedia, feminine intentionality)
+- [ ] ISC-187: Plan surfaces Camila-flagged adjacent biases (reading-flow / cognitive load, citation calibration, mobile-reading parity) — named even if scoped out
+- [ ] ISC-188: Plan covers full Distillery surface per Julie's answer (chrome + thinker + concept + long-read + index)
+- [ ] ISC-189: Plan names per-page audit method (rubric-driven, lane-by-lane scoring with severity)
+- [ ] ISC-190: Plan distinguishes audit phase (current state) from design phase (target state) — separate iterations
+
+**Research-plan:**
+- [ ] ISC-191: Research plan enumerates ≥6 distinct Elicit academic query lanes (CTML, cognitive load, aesthetic-usability, typography, feminine UX, knowledge-graph navigation)
+- [ ] ISC-192: Research plan enumerates ≥3 ArXiv search threads (HCI reading interfaces, citation/attribution UX, knowledge-graph navigation)
+- [ ] ISC-193: Research plan enumerates ≥10 reference-site visual audit targets across ≥4 categories (editorial-press, knowledge-platform, learning-platform, feminine-led, archive, heritage-rooted)
+- [ ] ISC-194: Research plan names how findings synthesize into criteria (not just collected — pattern→criterion mapping required)
+- [ ] ISC-195: Anti: Research plan does NOT default to defending a pre-decided design direction
+
+**Audit-criteria derivation:**
+- [ ] ISC-196: Criteria derivation walks each bias → ≥3 concrete UI criteria with anti-criteria attached
+- [ ] ISC-197: Feminine intentionality criteria named in non-color dimensions (rhythm, white space, hierarchy softness, motion, voice-of-the-frame) per `feedback_feminine_energy_writing.md`
+- [ ] ISC-198: Criteria include ≥3 "honors thinkers" dimensions (attribution surface, lineage-visibility, source-material presence, biographical integrity)
+- [ ] ISC-199: Criteria include ≥3 "wisdom-formation" dimensions (frictionless re-reading, citation calibration, cross-frame navigability, depth-signal vs bounce)
+- [ ] ISC-200: Criteria include ≥3 "purposeful multimedia" dimensions (when imagery earns placement, when diagrams clarify vs decorate, when video/audio belongs)
+
+**Audit method:**
+- [ ] ISC-201: Audit verification probe named (Interceptor screenshot + per-criterion rubric)
+- [ ] ISC-202: Audit covers desktop AND mobile parity
+- [ ] ISC-203: ≥1 page audited per page-type (chrome, thinker, concept, long-read, index)
+- [ ] ISC-204: Audit output is `~/Camila/thinker-distillation/audit-ui-{date}.md` with per-page findings + cross-cutting patterns + dispositions
+
+**Design-spec shape:**
+- [ ] ISC-205: Spec output is `~/Camila/thinker-distillation/design-spec-{date}.md` per Julie's "written spec → then prototype" answer
+- [ ] ISC-206: Spec covers typography system, page architecture variants, multimedia integration patterns, motion language, non-color feminine dimensions, color/ornament discipline
+- [ ] ISC-207: Spec separates AESTHETIC PROPOSALS (Camila-led) from EDITORIAL/VOICE CALLS (Julie-led, scaffolded slots) per writing-partner-per-field discipline
+- [ ] ISC-208: Spec includes ≥3 honest alternatives at major decision points (typography pair, layout grid, motion philosophy) with tradeoffs
+- [ ] ISC-209: Spec reviewable in one sitting (≤8000 words)
+
+**Sequencing:**
+- [ ] ISC-210: Plan sequences into ≥4 named iterations (Research → Audit → Design Spec → Prototype)
+- [ ] ISC-211: Each iteration has explicit hand-off artifact + Julie-decision point before next starts
+- [ ] ISC-212: Plan names per-iteration effort tier with reasoning
+- [ ] ISC-213: Plan names explicit anti-scope (WCAG-AA depth audit, perf, SEO, analytics — out)
+
+**Anti-criteria:**
+- [ ] ISC-214: Anti: Plan does NOT impose stereotypically feminine aesthetic (pastel-only, script display fonts, decorative flourishes as "feminine")
+- [ ] ISC-215: Anti: Plan does NOT sand Julie's edge — Mexican-modernist palette, sardonic register, ornament discipline preserved
+- [ ] ISC-216: Anti: Plan does NOT pre-decide the design direction before research completes
+- [ ] ISC-217: Anti: Plan does NOT silently expand scope beyond Julie's three explicit answers (full surface / Elicit+ArXiv+visual / written spec → prototype)
+- [ ] ISC-218: Antecedent: Plan presented for Julie to react to BEFORE audit execution begins (plan-means-stop discipline)
 
 ### Audit iteration — prose-QA against Writing Style System (2026-05-25)
 
@@ -424,6 +815,58 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - **2026-05-25 — Disposition application closed.** Julie ran the 8 disposition rows + 4 side-finding bullets and confirmed. **COMMIT (6 source rows applied to working tree):** Komoroske P2 (`what_i_take` opener — drops "single most useful thing I carry" stem; promotes the observation, adds "That is the headwind frame, applied; once you see it in security work, you cannot unsee it"); Allspaw P2 (`what_i_take` — stem sentence deleted, second-sentence-becomes-opener with subject change to "Security incident response"); Komoroske P3 (`where_i_extend` — verb-push "I push it into" → "The security translation is that...itself"); Brooks P3 (`where_i_extend` — two sentences collapsed to one); Allspaw P3 (`where_i_extend` — "I push it into the adversarial layer" → "Security adds an adversarial layer Allspaw did not model" + folded sentence-three); Woods P3 (`where_i_extend` — verb-push → "The security extension is that"). **COMMIT (1 side-finding row):** Allspaw `really` ×2 removed at L60 (thesis) and L195 (what_i_take tail) — filler-word removal, no semantic load. **MODIFY (5 rows drafted at `modify-pack-2026-05-25.md` for Julie to finalize):** Row 1 Brooks P2 (em-dash treatment options A1-A4 + downstream trim options B1-B3 to remove the redundant "Brooks's frame lets me ask the disciplined question" sentence); Row 2 Woods P2 (third-sentence split options C1-C4 — Camila lean C4, preserves Julie's existing "slack is not waste" sentence verbatim); Row 3 Dekker L214 not-just Hard No (phrasing options D1-D5 — Camila lean D1 or D5); Row 4 `leverage` four sub-instances (Komoroske thirty_second_take E1a-E4a Camila lean E1a; Komoroske editorial_note E1b-E4b Camila lean E2b/E3b; long-read L123 E1c-E4c Camila lean E3c; Allspaw compound F1d-F4d Camila lean F1d KEEP); Row 5 Woods L55 `navigate` metaphor (options G1-G5 Camila lean G3/G5). **SKIP: zero rows.** All 8 + 4 had a disposition. **Verification:** `bun build` passed (Node 22 via nvm; 13 pages built; zero type errors); inline grep verified each COMMIT new-string present and each old-string absent; `really` count on Allspaw page = 0. **Writing-partner discipline held:** modify-pack is explicitly draft-for-Julie-to-finalize per row, Camila leans flagged as leans not prescriptions, none applied without per-row Julie pick. Iteration `phase: complete`; ISA progress 185/185. **Next:** Julie picks per-row on modify-pack; Camila applies as a second follow-up commit when picks are in.
 
 ## Changelog
+
+### 2026-05-26 — Iteration 4 (Design Spec) closed + F-OPS plan delivered in parallel
+
+Design spec at `/Users/juliedavila/Camila/thinker-distillation/design-spec-2026-05-26.md` (4930 words post-advisor-patch; under 8000 cap). Eight sections: Principles → Typography → Page Architecture → Multimedia → Non-color Feminine Dimensions → Color+Ornament → Scaffolded Julie-Slots → Implementation Order. Camila Hub tokens adopted (Cardo + Source Serif 4 + JetBrains Mono; azul/tierra/oro/paper/ink palette). English chrome carve-out applied (P7). Brand-foundation framing (P6) carried throughout — decisions written as brand-token candidates, not Distillery-only. ≥3 alternatives at major decisions (§2.2 measure, §2.4 hierarchy, §2.6 link affordance, §3.1 chrome). 13 scaffolded Julie-slots in §7. Audit P0s addressed: F1 (multimedia → portraits + captions in v3, lineage rendering demoted to v4 Julie-slot), F3 (concepts in chrome nav), F16 (:focus-visible site-wide rule). Audit P1s F2/F5/F7/F17/F18/F19 all have spec resolutions.
+
+**F-OPS GitLab Pages migration plan at `/Users/juliedavila/Camila/thinker-distillation/gitlab-migration-plan.md`** (2480 words, background agent). Hub pattern transplants cleanly (25-line .gitlab-ci.yml, oven/bun:1 image, public/ swap trick). Three real friction points surfaced: response-header noindex (Netlify-only, now needs `<meta>` tags), Node v22 vs Bun container, stale `site:` URL on Hub. 8 open questions for Julie to action before migration. Distillery current git remote is GitHub — migration renames to backup-mirror rather than removing (rollback safety net). No destructive actions taken by the agent.
+
+**Advisor pass surfaced three substantive corrections; all patched inline.** (1) **Genealogy mini-diagrams overpromise.** Advisor caught: "SVG component family is a sub-spec — data model, layout, responsive collapse, alt-text narrative, hover/focus states — that deserves ≥3 alternatives by this spec's own rule, not a one-commit deliverable." Patched §3.4 + §3.5: lineage rendering demoted to v4 Julie-slot with 3 alternatives (flat prose / static mini-tree SVG / interactive graph); F1 multimedia resolved with portraits + captions in v3. Avoids "fix-then-reopen" failure (same class as ComputeGap forward-declaration). (2) **Three-line chrome conditionally accepted with mitigations.** Tagline must do work the hero doesn't or it's pure extraneous load per Skulmowski 2022. Patched §3.1: tagline word cap ≤7 words (hard, as a token); third line text-only (no pills/badges); scroll-collapse to two-line above y-offset 80px. Tagline copy reclassified as Julie's voice slot (not Camila's pick); Camila had conflated structural pick with content pick. (3) **Voice-of-the-frame register pre-lean.** Advisor caught: Camila had leaned first-person editorial without surfacing alternatives. Patched §5.3 with 3 register alternatives (first-person / third-person institutional / hybrid), explicit "Camila does not lean — Julie's call." Five additional Julie-slots added in §7 (lineage rendering, pull-quote sourcing rules, non-Western thinker naming conventions, pronoun/honorific defaults, distillation-metaphor literalness) — all author-territory pre-decisions advisor pressure-tested for. Writing-partner ratio now ~12:3 author:designer slots, healthy for brand-foundation spec.
+
+**Doctrine fired well.** Advisor (Rule 2) caught genealogy scope creep, chrome-tagline conflation, register pre-lean — all real failures that the writing-partner discipline guards against. Cato (Rule 2a, E4 mandatory by Algorithm; skipped per `feedback_avoid_kimi_codex.md`) — show-your-math: design spec is not coding work; advisor adequately served the cross-vendor critique purpose for design-content reasoning; Cato's GPT-5.4 strength is code-blind-spot detection, not aesthetic/editorial critique. Council (default-on for executive-facing prose; skipped) — show-your-math: writing-partner discipline holds tighter than Council on brand-foundation spec where author calls dominate; IterativeDepth covered multi-angle within budget; budget conservation for advisor-patch cycle. ISC floor (E4 ≥128) — show-your-math: natural N from spec's actual decisions = 118; ceremonial inflation to 128 rejected per doctrine ("granularity rule produces natural N"). Background agent + watchdog Monitor armed for F-OPS parallel work.
+
+**Iteration phase: complete; ISA progress 118/119 for Iter-4 (ISC-403 antecedent open — Julie's per-decision picks).** Total project ISA now spans 4 closed iterations (v1 launch 1-110 closed; v2 concept page first-shipped 111-185 closed; v3 audit 186-289 closed; v4 design spec 290-403 closed pending Julie's picks).
+
+**Next:** Julie picks per-decision options from §10 table (7 designer picks: body measure, leading, hierarchy treatment, link affordance, chrome pattern, portrait sourcing, portrait register) + reacts to 13 author-territory slots (especially the 5 new ones advisor surfaced). On her go, Iter-5 prototype spawns (E4-E5, 12-20 hours across 10 sequenced commits per §8). F-OPS migration parallel — Julie reads the plan + actions the 8 open questions on her own schedule, no blocking dependency on Iter-5.
+
+### 2026-05-26 — F11 resolved + brand-system framing locked + F-OPS target confirmed
+
+Julie's reactions to Iter-3 audit:
+
+**F11 — ALIGN with Camila Hub's Mexican-modernist register.** Palette (Azul Talavera `#2C4A6B`, Tierra de Oaxaca `#A04A2C`, Oro de Retablo `#B8956A`, Cal Encalada `#F4EFE6`, Tinta Sepia `#2A2520`) + typography stack (Cardo + Source Serif 4 + JetBrains Mono) carry forward to the Distillery. Iter-4 design spec designs in this token system.
+
+**Framing shift — this is brand foundation, not just Distillery design.** Julie's exact words: "we're essentially creating the first concepts of branding that we continue to refine and iterate on." Iter-4's typography/color/ornament decisions are not solely for the Distillery — they're the first concrete articulation of the brand system that will propagate to future projects. This advances the "Personal Brand Guidelines" project (currently flagged future-not-started in `PAI/USER/Projects.md`) implicitly through actual artifact production. Iter-4 spec should be written with this in mind: decisions documented as *brand-token candidates*, not as *Distillery-only*.
+
+**Spanish carve-out for Distillery — important departure from Camila Hub pattern.** Despite aligning visually with Camila Hub, the Distillery chrome stays **English-only**. Rationale: Camila Hub is personal/private (Hilos · Semana · Apuntes bilingual nav reflects Julie's daily life in two languages); the Distillery is intended for *public consumption in the future*, where bilingual nav would narrow the audience without serving the editorial mission. Spanish-language usage on the Distillery is reserved for **content-driven cases** — quoting / translating excerpts / concept names from prolific thinkers who primarily or exclusively write in Spanish (none on the v1-v2 roster; carve-out anticipates future thinker inclusion). C23 (bilingual co-presence) is therefore scoped OUT for the Distillery as a chrome criterion, and F8 from the audit reclassifies as "DEFERRED — content-driven, not chrome-driven; appears when a Spanish-writing thinker joins the roster, not before." This distinction belongs in the Iter-4 brief.
+
+**F-OPS — GitLab Pages migration models after Camila Hub's prior migration.** Confirmed target is the Camila Hub pattern. Camila Hub is currently on Netlify per `PAI/USER/Projects.md`; the "prior GitLab Pages migration" Julie references was a separate decision still to be cross-checked against `feedback_pivot_target_survey.md` which logged Camila Hub iter-5 surfacing GitLab Pages as an option (Julie's surface, post-iter-1 Cloudflare-Pages anchor). Migration scope for Distillery: confirm Astro adapter compatibility + DNS + GitLab Pages CI config + repo prep. Parallel-not-blocking to Iter-4.
+
+**Cascade work logged for next session:** (a) update Iter-4 brief with token-set + brand-foundation framing + Spanish carve-out; (b) confirm Camila Hub GitLab migration status (is it done? planned? if planned, what's the artifact?) before modeling Distillery against it; (c) consider whether `PAI/USER/Projects.md` "Personal Brand Guidelines" entry should be updated to reflect the implicit advancement through Distillery Iter-4.
+
+### 2026-05-26 — Iteration 3 (UI Audit) closed
+
+UI Audit shipped at `/Users/juliedavila/Camila/thinker-distillation/audit-ui-2026-05-26.md` (4512 words). 4 desktop screenshots captured via Interceptor against local Astro preview at `localhost:4321` (production deploy returned `503 usage_exceeded` — Netlify free-tier credits depleted; site moved to local audit and the hosting issue surfaced as separate F-OPS sibling finding). 5 page-types scored against the 30-criterion rubric (C1-C23 + AC1-AC7); long-read index audited from source code (visually near-identical to long-read chapter chrome), tagged DEFERRED-VERIFY. Mobile screenshots not captured (Interceptor doesn't control Chrome viewport without bridge); originally audited from CSS source only, advisor pushed back that source review catches *declared* breakpoints not *behavior at breakpoints* — re-framed as explicit gate on Iter-4 sign-off rather than papered over.
+
+**Advisor pass surfaced four substantive corrections; all addressed inline.** (1) **P0 inflation.** Original audit graded 4 findings as P0; advisor argued "site works without it" is the P0/P1 line. Demoted F2 (breadcrumb absence) and F4 (thinker portraits absent) from P0 to P1. Multimedia absence (F1) and concept-not-in-nav (F3) stand as P0 — multimedia because rubric explicit, concept-not-in-nav because no-nav + no-search compounds to findability failure. (2) **Undercounted accessibility P0s.** Original audit didn't run explicit accessibility/semantic checks. Re-ran: HTML lang PASS, single h1 PASS, landmarks partial (no `<nav>`), body contrast 14.5:1 PASS, but **no `:focus-visible` anywhere in `global.css` — keyboard nav has no visible indicator (WCAG 2.4.7 fail)**. Added as F16 P0. Also surfaced F17 (no skip-link, P1), F18 (no `<nav>` landmark, P1), F19 (inconsistent link affordance, P1), F20 (muted text contrast 4.6:1 borderline, P3). (3) **F11 Camila-Hub-divergence framing.** Advisor challenged "prerequisite gating Iter-4" as potentially overreach. Applied 3-fix test: token-layer changes if Julie flips direction (color tokens, type stack, bilingual chrome structure) — each is a complete re-do, not surface refinement. Verdict: token-layer divergence, prerequisite framing stands. (4) **Verification confidence.** Advisor noted ~22 silent passes weren't differentiated from verified passes. Added explicit note: ~14 of those are passes-by-absence (no multimedia → seductive-details/mixed-register criteria PASS trivially), not verified — Iter-4 work will introduce surfaces where these criteria can fail and audit will re-run.
+
+**Doctrine fired well.** Advisor (Rule 2) caught accessibility undercount, P0 calibration, mobile-as-real-gap framing, verification-confidence — none of which the per-page rubric pass alone would have surfaced. Cato skipped (E3, Rule 2a is E4/E5 only). ReReadCheck confirmed Julie's two explicit asks — "kick it off now" (Iter-3 launched and shipped) + side-note "migrate to gitlab pages too like we did for the other thing" (surfaced as F-OPS sibling track, parallel-not-blocking-Iter-4). Iteration `phase: complete`; ISA progress 281/289 (8 ISCs DEFERRED-VERIFY: long-read index desktop capture, 5 mobile captures, advisor-flagged mobile-pass-gating, all carrying forward to Iter-4 as gating items).
+
+**Three new P0s** drive Iter-4 spec directly: F1 multimedia patterns, F3 concept-nav + concept index, F16 focus-visible system. **F11 token-layer divergence** GATES Iter-4 start — Julie's call before the spec begins designing typography or color.
+
+**Side track** (parallel to Iter-4, not in design-spec arc): GitLab Pages migration to resolve F-OPS Netlify usage_exceeded. Scope: confirm migration target with Julie + repo prep + Astro adapter config + DNS. References the prior Camila Hub migration pattern she mentioned.
+
+**Next:** Julie reacts to the audit, specifically (a) F11 visual-identity direction decision, (b) any audit findings she wants to dispute or escalate before Iter-4 designs against them, (c) green-light for Iter-4 design spec (estimated E4, ~4-6 hrs).
+
+### 2026-05-26 — Iteration 2 (Research pass) closed
+
+Iteration 2 of the UI audit arc shipped. Output at `/Users/juliedavila/Camila/thinker-distillation/research-ui-2026-05-26.md` (4330 words). Three parallel research agents covered: ClaudeResearcher (academic lanes 1-3 — CTML, cognitive load, aesthetic-usability), GeminiResearcher (lanes 4-6 — typography, feminist HCI, knowledge-graph nav), general-purpose reference-site analyzer (12 sites across 6 categories). All citations real and findable, [LOW] markers used appropriately, Casa Wabi surfaced as counter-example (not exemplar). Output produced 23 candidate criteria + 7 anti-criteria across the four named biases. Five conflicts flagged for Iter-4 resolution. Four items of "novel territory" called out — cross-thinker concept pages as first-class nav, Mexican-modernist editorial register, bilingual co-presence in chrome, Distill-rigor-in-warm-register intersection. Elicit MCP not executed (interactive OAuth required) — surfaced as Iter-2b augmentation option. ArXiv not separately invoked — Lane 6 GeminiResearcher pulled relevant HCI lit; logged DEFERRED-VERIFY with follow-up offer.
+
+**Advisor pass surfaced two substantive gaps; both addressed before phase: complete.** (1) **First-wave feminist HCI only.** Original synthesis cited Bardzell 2010 + Ehrnberger 2012 without second-wave correctives. Advisor flagged D'Ignazio & Klein 2020 (Data Feminism) as "near-mandatory" for a curation/distillation project — curation IS the central feminist-HCI question of whose knowledge counts. Added: Data Feminism, Rosner's Critical Fabulations 2018, Costanza-Chock's Design Justice 2020, Keyes 2018 (Misgendering Machines), and Bardzell & Bardzell 2011 (the methodology follow-up). (2) **Essentialism risk in the "feminine intentionality" label.** Bardzell & Bardzell explicitly warn against feminist HCI collapsing into "design for women" or "feminine qualities." Added AC7 — no essentialism, design moves under this lane must be defensible as generative methodology + curation politics, not aesthetic qualities. Surfaced the bias-label question to Julie as her call (keep "feminine intentionality" with citations defusing essentialism / shift to "feminist intentionality" / carry both with disambiguation).
+
+**Doctrine fired well:** Advisor (Rule 2) caught what the parallel researchers missed — neither ClaudeResearcher nor GeminiResearcher surfaced D'Ignazio & Klein or Bardzell & Bardzell 2011 despite both being load-bearing for the project's structure. The advisor's "is the scaffolding sound?" framing was the right pressure-test on a research synthesis. Cato skipped (E3, not E4/E5 — Rule 2a doesn't fire). ReReadCheck confirmed all seven explicit asks in Julie's original brief addressed. Iteration phase: complete; ISA progress 218/218 for Iter-1 + 245/251 for Iter-2 (ISC-246 DEFERRED-VERIFY, ISC-251 antecedent open until Julie reacts).
+
+**Next:** Julie reacts to the research doc — particularly the bias-label question, candidate criteria coverage, and any conflicts she wants resolved now vs deferred to Iter-4. Iteration 3 (UI Audit) spawns on her go-ahead.
 
 ### 2026-05-25 — Long-read tier: two-collection design
 

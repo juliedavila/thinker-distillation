@@ -41,7 +41,7 @@
 }
 
 html {
-  font-size: 17px;
+  font-size: 18px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -50,8 +50,33 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--serif);
-  line-height: 1.55;
+  font-family: var(--body);
+  font-optical-sizing: auto;
+  line-height: 1.62;
+}
+
+/* ─── Site-wide link affordance (design-spec §2.6 — F19 resolved) ──── */
+a {
+  color: var(--azul);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--tierra);
+  text-decoration-color: var(--tierra);
+}
+
+a:visited {
+  color: var(--oro);
+}
+
+/* ─── Site-wide focus styles (design-spec §6.3 — F16 P0 resolved) ──── */
+:focus-visible {
+  outline: 2px solid var(--azul);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .wrap {
@@ -155,39 +180,40 @@ section {
 }
 
 h2.section-h {
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--ink-muted);
+  font-family: var(--display);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--azul);
   margin: 0 0 20px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 p {
-  max-width: 64ch;
+  max-width: 62ch;
 }
 
-/* Lane: "What X says" — neutral body prose with optional pull-quote */
+/* Lane: "What X says" — neutral body prose with optional pull-quote
+   design-spec §2.7: paper-warm bg, tierra 4px border-left, mono cite */
 blockquote.what-x-says {
   margin: 24px 0;
   padding: 18px 22px;
-  background: var(--quote-tint);
-  border-left: 4px solid var(--quote-rule);
-  font-family: var(--serif);
+  background: var(--paper-warm);
+  border-left: 4px solid var(--tierra);
+  font-family: var(--body);
   font-style: italic;
-  color: var(--ink-soft);
+  color: var(--stone-700);
 }
 
 blockquote.what-x-says cite {
   display: block;
   margin-top: 10px;
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-style: normal;
   font-size: 0.82rem;
-  color: var(--ink-muted);
+  color: var(--stone-500);
 }
 
 /* Lane: Editorial Reading (§6) — Julie voice */

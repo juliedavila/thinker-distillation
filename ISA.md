@@ -2,7 +2,7 @@
 project: thinker-distillation
 effort: E4
 phase: build
-progress: 408/437
+progress: 418/437
 iteration: iter-5-steps-1-3-2026-05-26
 mode: project
 started: 2026-05-25
@@ -376,19 +376,19 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - [x] ISC-406: Legacy aliases preserve every existing var name (`--serif`, `--sans`, `--ink-soft`, `--ink-muted`, `--rule`, `--paper-sunk`, `--julie-tint`, `--julie-accent`, `--julie-rule`, `--frame-tint`, `--frame-accent`, `--quote-tint`, `--quote-rule`, `--break-accent`) — all 14 declared as var(--new-token) aliases
 - [x] ISC-407: Google Fonts `<link rel="preconnect">` + `<link rel="stylesheet">` for Cardo + Source Serif 4 + JetBrains Mono injected in `Base.astro` `<head>`
 - [x] ISC-408: `bun run build` passes after token layer change — "14 page(s) built in 1.07s, Complete!" exit 0
-- [ ] ISC-409: Step 1 commit lands separately for revertibility (commit message names "token layer")
+- [x] ISC-409: Step 1 commit lands separately for revertibility — commit c938e52 "Iter-5 step 1: token layer (Mexican-modernist palette + Cardo/SourceSerif4/JetBrainsMono)"
 
 **Step 2 — Typography cascade (10 ISCs):**
 
-- [ ] ISC-410: `html { font-size: 18px }` applied (was 17px)
-- [ ] ISC-411: `body { line-height: 1.62; font-family: var(--body) }` applied (was 1.55, var(--serif))
-- [ ] ISC-412: `p { max-width: 62ch }` applied per Bringhurst measure (was 64ch)
-- [ ] ISC-413: `h2.section-h` rewritten — `font-family: var(--display)`, `font-weight: 500`, `font-size: 0.95rem`, `color: var(--azul)`, `text-transform: none`, `letter-spacing: 0`, `border-bottom: 0` (audit F6 resolved)
-- [ ] ISC-414: Bare `a` rule added — `color: var(--azul)`, `text-decoration: underline`; `:hover { color: var(--tierra) }`; `:visited { color: var(--oro) }` (audit F19 resolved)
-- [ ] ISC-415: Site-wide `:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; border-radius: 2px }` (audit F16 P0 resolved)
-- [ ] ISC-416: `blockquote.what-x-says` updated — `background: var(--paper-warm)`, `border-left: 4px solid var(--tierra)` (was --quote-tint + 4px --quote-rule, now via direct token names)
-- [ ] ISC-417: `blockquote.what-x-says cite` updated — `font-family: var(--mono)`, `font-size: 0.82rem`, `color: var(--stone-500)`
-- [ ] ISC-418: `bun run build` passes after typography cascade
+- [x] ISC-410: `html { font-size: 18px }` applied — grep confirmed
+- [x] ISC-411: `body { line-height: 1.62; font-family: var(--body) }` applied; `font-optical-sizing: auto` added for Source Serif 4 variable opsz axis
+- [x] ISC-412: `p { max-width: 62ch }` applied per Bringhurst measure
+- [x] ISC-413: `h2.section-h` rewritten — Cardo weight-500 0.95rem azul, text-transform none, letter-spacing 0, border-bottom 0 — grep confirmed all 7 properties (audit F6 resolved)
+- [x] ISC-414: Bare `a` rule added — azul default, tierra hover, oro visited, 1px underline 0.15em offset — grep confirmed (audit F19 resolved)
+- [x] ISC-415: Site-wide `:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; border-radius: 2px }` (audit F16 P0 resolved)
+- [x] ISC-416: `blockquote.what-x-says` updated — paper-warm bg, tierra 4px border-left
+- [x] ISC-417: `blockquote.what-x-says cite` updated — JetBrains Mono 0.82rem stone-500
+- [x] ISC-418: `bun run build` passes after typography cascade — "14 page(s) built in 2.10s, Complete!" exit 0
 - [ ] ISC-419: Step 2 commit lands separately (commit message names "typography cascade")
 
 **Step 3 — Chrome rework (11 ISCs):**

@@ -16,12 +16,18 @@ updated: 2026-05-26
 **One-paragraph orientation for cold-start:** This project is the Thinker Distillery — per-practitioner editorial readings of practitioners worth metabolizing (Komoroske, Fowler, Brooks, Allspaw, Woods, Dekker, Dalio currently live), with a v2 concept-page surface that derives cross-thinker holders from thinker frontmatter as the single source of truth. The site lives at `~/Camila/thinker-distillation/` and was live at `https://thinkerdistillery.netlify.app/` (currently 503'd — Netlify usage exceeded; **glab CLI now authenticated**, GitLab Pages migration plan at `gitlab-migration-plan.md` ready to action). On 2026-05-26 we (1) closed a four-iteration UI audit + redesign arc with `design-spec-2026-05-26.md` (14 locked decisions, brand-foundation framing aligning Distillery to Camila Hub's Mexican-modernist token system but holding English-only chrome), (2) shipped Iter-5 steps 1-3 (token layer + typography cascade + chrome rework), and (3) shipped Iter-5 steps 4-7 (keyboard focus verify + portrait/monogram infrastructure + long-read sidebar + chapter-of-N breadcrumb). The site now renders in the Mexican-modernist palette with Cardo-500 azul section headers, three-line chrome with tagline + nav landmark + skip-link, gallery-feel index with 7 azul-on-paper-warm monograms, thinker page heroes with portrait/monogram pairing, and long-read chapters with sticky glossary sidebar + chapter-of-N eyebrow. Screenshots saved at `iter5-screenshots/`. Tagline "Thinking through the shoulders of giants" shipped as Julie's scaffolded slot. Real portraits + glossary entries are Julie-owned content surfaces waiting on her.
 
 **What to read first (in order):**
-1. This ISA's `### Iter-5 prototype — Steps 1-3 (2026-05-26)` block (in `## Criteria`) — current state: 35/35 ISCs closed, iter-6 follow-ups + steps 4-10 listed
-2. `~/Camila/thinker-distillation/design-spec-2026-05-26.md` — §8 implementation order (10 steps; 1-3 done, 4-10 next), §10 locked decisions
-3. `~/Camila/thinker-distillation/iter5-screenshots/` — `idx-after.png`, `komoroske-after.png`, `concept-after.png` from the polish commit
-4. `~/Camila/thinker-distillation/audit-ui-2026-05-26.md` — for context on what Iter-5 is fixing (3 P0, 9 P1, F-OPS sibling)
-5. `~/Camila/thinker-distillation/gitlab-migration-plan.md` — parallel F-OPS work, 8 open questions for Julie
-6. This ISA's `## Decisions` section, newest-first, walks the iteration history with reasoning
+1. This Save Point block (you're already here) — **Next iteration on resume** below names the load-bearing moves
+2. This ISA's `### Iter-5 prototype — Steps 4-7 (2026-05-26)` block (in `## Criteria`) — newest sub-iteration, 26/26 ISCs closed (one DEFERRED-JULIE)
+3. `~/Camila/thinker-distillation/iter5-screenshots/` — visual evidence at current state:
+   - `idx-with-monograms.png` — gallery-feel index with 7 azul monograms
+   - `komoroske-with-monogram.png` — thinker hero with portrait/monogram pairing
+   - `longread-ch01-after.png` — long-read chapter with breadcrumb + chapter-of-N eyebrow + Cardo h2 azul
+   - `concept-after.png` — concept page after step 1-3 chrome (coordination-headwind)
+   - `keyboard-focus-test.png` — skip-link Tab path verified
+4. `~/Camila/thinker-distillation/design-spec-2026-05-26.md` — §8 implementation order (10 steps; 1-7 done, 8 deferred to v4, 9-10 wait for portraits), §10 the 14 locked decisions
+5. `~/Camila/thinker-distillation/gitlab-migration-plan.md` — F-OPS work now actionable (glab CLI authenticated), 8 open questions for Julie
+6. `~/Camila/thinker-distillation/audit-ui-2026-05-26.md` — only if you need to reverify which audit findings the current commits resolved
+7. This ISA's `## Decisions` and `## Changelog` sections, newest-first — every refinement of working norms (writing-partner sub-cases, monogram-as-placeholder grammar, alias-then-sweep migration pattern) is logged here
 
 **14 decisions locked 2026-05-26 (full table in design-spec §10):**
 
@@ -31,9 +37,10 @@ Designer picks:
 Author picks:
 - Voice-of-the-frame: **first-person editorial** (cascading) · Tagline working draft: **"Thinking through the shoulders of giants"** (Julie's phrasing) · Long-read intros: add optional `intro` field · Lineage rendering: keep flat prose for v3 · Footer signature: keep "Curated by Julie Davila." · Section names: keep current, open to evolving · Parkable bundle (Spanish format / naming / pronouns / metaphor literalness / pull-quote sourcing): all parked until just-in-time triggered
 
-**Open micro-decisions (small, can resolve at Iter-5 start):**
-- Tagline case + punctuation: sentence-case + period, or all-lowercase no-period?
+**Open micro-decisions (Julie's call, can resolve any time):**
+- Tagline case + punctuation: sentence-case + period (current — "Thinking through the shoulders of giants" exactly as she wrote it), or all-lowercase no-period?
 - Tagline form: explicit "I" prefix, or gerund (current)?
+- Glossary entries per long-read chapter: populate via transcription-with-cite (Camila ships safely per refined writing-partner rule) or hold for Julie's interpretive glossing (her call which sub-case applies per chapter)?
 
 **Carve-outs preserved:** C23 bilingual chrome OUT for Distillery · AC10 `julie_reading` Camila never authors · `working_uses` carve-out (Camila auto-records joint work) · AC7 anti-essentialism guard
 
@@ -62,7 +69,10 @@ Author picks:
 **Where source material lives:**
 - Project ISA (this file) at `~/Camila/thinker-distillation/ISA.md`
 - Schema locked at `~/Camila/thinker-distillation/SCHEMA.md`
-- Iter-4 artifacts at `~/Camila/thinker-distillation/{research,audit,design-spec,gitlab-migration-plan}-ui-2026-05-26.md` (research/audit/design-spec/migration)
+- Iter-4 artifacts at `~/Camila/thinker-distillation/{research,audit,design-spec,gitlab-migration-plan}-ui-2026-05-26.md`
+- Iter-5 visual evidence at `~/Camila/thinker-distillation/iter5-screenshots/` (7 captures across steps 1-7)
+- Code surface that changed this session: `src/styles/global.css`, `src/layouts/Base.astro`, `src/content.config.ts`, `src/components/Monogram.astro` (new), `src/pages/index.astro`, `src/pages/thinkers/[slug].astro`, `src/pages/thinkers/[slug]/long-read/[chapter].astro`, `src/pages/concepts/index.astro` (new)
+- Iter-5 commits on `main`: c938e52 → d5fe642 → 56c8883 → f5ad343 → 544546c → 4fda77d → 1981edc → 408a301 → 313d142 (steps 1-3 in first 5 commits, steps 4-7 in next 4)
 - Screenshot evidence at `~/.claude/jobs/fce49501/audit-screenshots/` (4 desktop captures, will be cleaned up — copy if you want to preserve)
 
 ---

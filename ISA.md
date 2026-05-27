@@ -630,7 +630,7 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 
 **Build + commit verification (2 ISCs):**
 - [x] ISC-523: `bun run build` passes after path updates — "15 page(s) built in 1.11s" exit 0
-- [ ] ISC-524: Migration commit created + pushed; pipeline triggers — verified post-commit
+- [x] ISC-524: Migration commit `599d86e` created + pushed; pipeline `#5` (id 2556531862) ran to state `(success)` — verified via one-shot `glab ci list --per-page 2`
 
 **Anti-criteria (4 ISCs):**
 - [x] ISC-525: Anti: `~/Camila/ways-of-fowler/` MUST NOT exist post-migration (verified via `test ! -d`)

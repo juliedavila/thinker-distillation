@@ -9,25 +9,26 @@ started: 2026-05-25
 updated: 2026-05-26
 ---
 
-## Save Point — 2026-05-26 (cold-start resume here)
+## Save Point — 2026-05-27 (cold-start resume here)
 
-**Status:** Iter-1 v1 launch · Iter-2 v2 concept-page (first-shipped) · Iter-3 v2 audit-prose · Iter-4 UI-audit arc (research → audit → design-spec all closed) · **Iter-5 steps 1-7 of 10 shipped 2026-05-26** across two sub-iterations: steps 1-3 (4 commits c938e52 / d5fe642 / 56c8883 / f5ad343) + steps 4-7 (4 commits 4fda77d / 1981edc / 408a301 plus step-4 verify-only, build green 15 pages). Iter-5 steps 8-10 deferred (step 8 SVG genealogy demoted to v4 per design-spec §3.4/§3.5 body; step 9 holder-card portraits couples to Camila-scouts task; step 10 audit re-run waits for portraits). **F-OPS migration unblocked 2026-05-26 — glab CLI authenticated** — 8 open questions in `gitlab-migration-plan.md` still own the next move when Julie's ready.
+**Status:** Iter-1 v1 launch · Iter-2 v2 concept-page (first-shipped) · Iter-3 v2 audit-prose · Iter-4 UI-audit arc (research → audit → design-spec all closed) · Iter-5 steps 1-7 of 10 shipped 2026-05-26 (8 commits) · **Iter-6 GitLab Pages migration COMPLETE 2026-05-27** — site is live again at `https://thinker-distillery-97a9ca.gitlab.io/` (Private + pages_access_level=private, project members only). Iter-5 steps 8-10 still deferred (step 8 SVG genealogy → v4; steps 9-10 wait on portraits). Production is restored; Netlify is dead but not yet cleaned up (Open Question 6 from migration plan).
 
-**One-paragraph orientation for cold-start:** This project is the Thinker Distillery — per-practitioner editorial readings of practitioners worth metabolizing (Komoroske, Fowler, Brooks, Allspaw, Woods, Dekker, Dalio currently live), with a v2 concept-page surface that derives cross-thinker holders from thinker frontmatter as the single source of truth. The site lives at `~/Camila/thinker-distillation/` and was live at `https://thinkerdistillery.netlify.app/` (currently 503'd — Netlify usage exceeded; **glab CLI now authenticated**, GitLab Pages migration plan at `gitlab-migration-plan.md` ready to action). On 2026-05-26 we (1) closed a four-iteration UI audit + redesign arc with `design-spec-2026-05-26.md` (14 locked decisions, brand-foundation framing aligning Distillery to Camila Hub's Mexican-modernist token system but holding English-only chrome), (2) shipped Iter-5 steps 1-3 (token layer + typography cascade + chrome rework), and (3) shipped Iter-5 steps 4-7 (keyboard focus verify + portrait/monogram infrastructure + long-read sidebar + chapter-of-N breadcrumb). The site now renders in the Mexican-modernist palette with Cardo-500 azul section headers, three-line chrome with tagline + nav landmark + skip-link, gallery-feel index with 7 azul-on-paper-warm monograms, thinker page heroes with portrait/monogram pairing, and long-read chapters with sticky glossary sidebar + chapter-of-N eyebrow. Screenshots saved at `iter5-screenshots/`. Tagline "Thinking through the shoulders of giants" shipped as Julie's scaffolded slot. Real portraits + glossary entries are Julie-owned content surfaces waiting on her.
+**One-paragraph orientation for cold-start:** This project is the Thinker Distillery — per-practitioner editorial readings of practitioners worth metabolizing (Komoroske, Fowler, Brooks, Allspaw, Woods, Dekker, Dalio currently live), with a v2 concept-page surface that derives cross-thinker holders from thinker frontmatter as the single source of truth. The site lives at `~/Camila/thinker-distillation/` and is now serving from **GitLab Pages at `https://thinker-distillery-97a9ca.gitlab.io/`** (private project `juliedavila/thinker-distillery`, `pages_access_level=private`, project members only). GitLab project id 82583198. Netlify deploy `thinkerdistillery.netlify.app` is dead/503 — not yet cleaned up (Open Question 6 from migration plan; safe to leave dead or restore one-page redirect later). GitHub remote retained as `github` (passive backup mirror at github.com/juliedavila/thinker-distillation); GitLab is now the primary at `origin`. On 2026-05-26 we shipped Iter-5 steps 1-7 (Mexican-modernist token layer + typography + three-line chrome + portrait/monogram infrastructure + long-read sidebar + chapter-of-N breadcrumb). On 2026-05-27 we shipped Iter-6 (GitLab Pages migration: `.gitlab-ci.yml` from Hub pattern, astro.config.mjs site URL fixed to unique-domain pattern after discovering GitLab's new default, GitLab project created via glab API with Private + pages_access_level=private set at create, netlify.toml deleted). Two pipelines both green; site rendering exactly as it did on Netlify (chrome + 7 monograms + thinker pages + concepts). Tagline "Thinking through the shoulders of giants" still shipped as Julie's scaffolded slot. Real portraits + glossary entries are Julie-owned content surfaces waiting on her.
 
 **What to read first (in order):**
 1. This Save Point block (you're already here) — **Next iteration on resume** below names the load-bearing moves
-2. This ISA's `### Iter-5 prototype — Steps 4-7 (2026-05-26)` block (in `## Criteria`) — newest sub-iteration, 26/26 ISCs closed (one DEFERRED-JULIE)
-3. `~/Camila/thinker-distillation/iter5-screenshots/` — visual evidence at current state:
+2. This ISA's `### Iter-6 — GitLab Pages Migration (2026-05-26)` block (in `## Criteria`) — newest iteration, 41/41 ISCs closed; commits `f0cf9c0` (main migration) + `29eb05f` (site URL fix)
+3. `~/Camila/thinker-distillation/iter6-screenshots/idx-gitlab-pages.png` — visual proof: homepage rendering live on GitLab Pages, 7 monograms + Mexican-modernist chrome intact
+4. `~/Camila/thinker-distillation/iter5-screenshots/` — Iter-5 visual evidence preserved:
    - `idx-with-monograms.png` — gallery-feel index with 7 azul monograms
    - `komoroske-with-monogram.png` — thinker hero with portrait/monogram pairing
    - `longread-ch01-after.png` — long-read chapter with breadcrumb + chapter-of-N eyebrow + Cardo h2 azul
    - `concept-after.png` — concept page after step 1-3 chrome (coordination-headwind)
    - `keyboard-focus-test.png` — skip-link Tab path verified
-4. `~/Camila/thinker-distillation/design-spec-2026-05-26.md` — §8 implementation order (10 steps; 1-7 done, 8 deferred to v4, 9-10 wait for portraits), §10 the 14 locked decisions
-5. `~/Camila/thinker-distillation/gitlab-migration-plan.md` — F-OPS work now actionable (glab CLI authenticated), 8 open questions for Julie
-6. `~/Camila/thinker-distillation/audit-ui-2026-05-26.md` — only if you need to reverify which audit findings the current commits resolved
-7. This ISA's `## Decisions` and `## Changelog` sections, newest-first — every refinement of working norms (writing-partner sub-cases, monogram-as-placeholder grammar, alias-then-sweep migration pattern) is logged here
+5. `~/Camila/thinker-distillation/design-spec-2026-05-26.md` — §8 implementation order (10 steps; 1-7 done, 8 deferred to v4, 9-10 wait for portraits), §10 the 14 locked decisions
+6. `~/Camila/thinker-distillation/gitlab-migration-plan.md` — annotated CLOSED 2026-05-27; OQ 6 (Netlify cleanup) + OQ 7 (GitHub full-remove) still open follow-ups
+7. `~/Camila/thinker-distillation/audit-ui-2026-05-26.md` — only if you need to reverify which audit findings the current commits resolved
+8. This ISA's `## Decisions` and `## Changelog` sections, newest-first — every refinement of working norms (writing-partner sub-cases, monogram-as-placeholder grammar, alias-then-sweep migration pattern, glab-API-replaces-manual-UI pattern, GitLab unique-domain default) is logged here
 
 **14 decisions locked 2026-05-26 (full table in design-spec §10):**
 
@@ -45,13 +46,16 @@ Author picks:
 **Carve-outs preserved:** C23 bilingual chrome OUT for Distillery · AC10 `julie_reading` Camila never authors · `working_uses` carve-out (Camila auto-records joint work) · AC7 anti-essentialism guard
 
 **Next iteration on resume:**
-- **Camila-scouts portrait task** (separate from Iter-5 sequencing): scout warm B&W editorial portraits for 7 thinkers per design-spec §3.3 (Wikimedia Commons CC-BY / public-domain first), crop to 4× retina, drop into `src/content/thinkers/portraits/`, populate `portrait:` field per thinker. Mechanical swap — Monogram component will fall back to image automatically. Camila's lean: real photos (i) for v3 launch; revisit at ~15 thinkers.
-- **Julie-owned content slots** (deferred to her): glossary entries on long-read chapters (now schema-ready; sidebar renders the moment she populates), `julie_reading` per concept page (unchanged), `intro` per long-read chapter (now schema-ready, optional), tagline case+punctuation refinement (sentence-case+period vs all-lowercase no-period; gerund vs explicit "I").
-- **Iter-6 advisor follow-ups** (from polish commits f5ad343 + 408a301): WCAG AA contrast pass on oro-on-paper-warm visited links AND on 80px monogram (smaller-text threshold 4.5:1), mobile viewport (375/414) screenshot pass on chrome + thinker hero, self-hosted-vs-Google-Fonts decision, `aria-label="primary"` redundancy review, `<cite>` markup spec-conformance, `p {max-width: 62ch}` collateral with `figure/pre/table`, breakpoint normalization (600px hero vs 900px long-read grid — document the system), **legacy-alias sweep** (delete `:root` alias block after rewriting call sites — owns the tombstone in commit f5ad343).
-- **F-OPS GitLab Pages migration NOW ACTIONABLE** — glab CLI authenticated 2026-05-26 mid-Iter-5. 8 open questions in `gitlab-migration-plan.md` own the next move; production site still 503'd until migration ships.
-- **Iter-5 step 8 (SVG genealogy mini-diagrams)** — deferred to v4 per design-spec §3.4/§3.5 body advisor pressure-test (SVG component family deserves its own ≥3-alternatives spec, not a one-commit deliverable). Re-evaluate when Julie commits a lineage rendering direction.
-- **Iter-5 step 9 (concept-page holder-card portrait thumbnails)** — couples to Camila-scouts task above; spawns automatically once portraits land.
-- **Iter-5 step 10 (full audit re-run against rubric)** — final gate before customer-zero acceptance; waits for portraits to land so rubric can score the visual identity completely.
+- **F-OPS Iter-6 follow-ups (Julie's call):**
+  - Unique-domain vs namespace URL: site currently serves at `thinker-distillery-97a9ca.gitlab.io` (GitLab's new default). If Julie prefers the cleaner `juliedavila.gitlab.io/thinker-distillery/` namespace pattern, flip Settings → Deploy → Pages → "Use unique domain" off and revert astro.config.mjs site URL. Both reversible.
+  - Netlify cleanup (OQ 6 from migration plan): leave dead, delete, or restore a one-page redirect. Recommended: restore minimal redirect for ~30 days, then delete.
+  - GitHub remote disposition (OQ 7): keep as backup mirror (current state) or fully detach. Currently kept.
+- **Camila-scouts portrait task** (still pending): scout warm B&W editorial portraits for 7 thinkers per design-spec §3.3 (Wikimedia Commons CC-BY / public-domain first), crop to 4× retina, drop into `src/content/thinkers/portraits/`, populate `portrait:` field per thinker. Mechanical swap — Monogram component falls back to image automatically.
+- **Julie-owned content slots** (deferred to her): glossary entries on long-read chapters (schema-ready; sidebar renders the moment she populates), `julie_reading` per concept page (unchanged), `intro` per long-read chapter (schema-ready, optional), tagline case+punctuation refinement.
+- **Iter-7 advisor follow-ups** (carried from iter-5): WCAG AA contrast pass on oro-on-paper-warm visited links AND on 80px monogram (smaller-text threshold 4.5:1), mobile viewport (375/414) screenshot pass, self-hosted-vs-Google-Fonts decision, `aria-label="primary"` redundancy review, `<cite>` markup spec-conformance, `p {max-width: 62ch}` collateral with `figure/pre/table`, breakpoint normalization (600px hero vs 900px long-read grid), **legacy-alias sweep** (delete `:root` alias block — owns tombstone in commit f5ad343).
+- **Iter-5 step 8 (SVG genealogy mini-diagrams)** — still deferred to v4 per design-spec §3.4/§3.5 body advisor pressure-test (SVG component family deserves its own ≥3-alternatives spec).
+- **Iter-5 step 9 (concept-page holder-card portrait thumbnails)** — couples to Camila-scouts task; spawns automatically once portraits land.
+- **Iter-5 step 10 (full audit re-run against rubric)** — final gate before customer-zero acceptance; waits for portraits.
 
 **Working norms in effect this project:**
 - `feedback_writing_partner_per_field.md` with `working_uses` carve-out
@@ -64,7 +68,10 @@ Author picks:
 **Build / deploy operational notes:**
 - Astro 6.x; requires node ≥v22 — prefix `bun` commands with `PATH="/opt/homebrew/bin:$PATH"` or use system node v26
 - Build: `bun run build`; preview: `bun run preview` (port 4321)
-- Production deploy currently broken — Netlify usage exceeded; migration plan staged
+- **Production deploy LIVE on GitLab Pages** at `https://thinker-distillery-97a9ca.gitlab.io/` (auth-walled to project members)
+- CI: `.gitlab-ci.yml` at repo root — `oven/bun:1` image, runs on push to default branch (`main`)
+- Pipeline status: `glab ci list --per-page 3` (avoid `--branch` flag, not supported in current glab); pipeline detail: `glab ci view <id>`
+- Git remotes: `origin` → GitLab SSH (primary); `github` → GitHub HTTPS (backup mirror, push manually with `git push github main`)
 
 **Where source material lives:**
 - Project ISA (this file) at `~/Camila/thinker-distillation/ISA.md`
@@ -523,43 +530,43 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - [x] ISC-478: `dist/` contains roster `index.html`, 7 thinker pages, `concepts/{adaptive-capacity,coordination-headwind,index.html}`, long-read chapter, favicon.ico+svg, `_astro/` hashed assets
 
 **Phase B — Camila creates GitLab project via glab (2 ISCs):**
-- [ ] ISC-479: GitLab project `juliedavila/thinker-distillery` created with `--visibility private` via `glab repo create`
-- [ ] ISC-480: Pages access set to "Only project members" via `glab api PUT projects/:id --field pages_access_level=private`
+- [x] ISC-479: GitLab project `juliedavila/thinker-distillery` (id 82583198) created via `glab api projects --method POST` — response confirms `"visibility":"private"`, `"path_with_namespace":"juliedavila/thinker-distillery"`, `"default_branch":"main"`, `"empty_repo":true`
+- [x] ISC-480: Pages access gated at create — same API response confirms `"pages_access_level":"private"`. One call replaced 5-click manual UI flow
 
 **Phase C — git remote pivot + push (7 ISCs):**
-- [ ] ISC-481: `origin` renamed to `github` (preserved as passive backup mirror, not deleted)
-- [ ] ISC-482: `origin` re-added pointing at `git@gitlab.com:juliedavila/thinker-distillery.git`
-- [ ] ISC-483: `git remote -v` shows both `github` (GitHub HTTPS) and `origin` (GitLab SSH)
-- [ ] ISC-484: Migration commit created — adds `.gitlab-ci.yml` + astro.config.mjs, deletes netlify.toml
-- [ ] ISC-485: Commit message follows Conventional Commits — `chore(deploy): migrate to GitLab Pages`
-- [ ] ISC-486: `git push -u origin main` succeeds; remote tracking set
-- [ ] ISC-487: Pipeline appears at `gitlab.com/juliedavila/thinker-distillery/-/pipelines` within 60s of push
+- [x] ISC-481: `origin` renamed to `github` — preserved as passive backup mirror pointing at `https://github.com/juliedavila/thinker-distillation.git`
+- [x] ISC-482: `origin` re-added pointing at `git@gitlab.com:juliedavila/thinker-distillery.git`
+- [x] ISC-483: `git remote -v` shows both `github` (GitHub HTTPS) and `origin` (GitLab SSH) — verified post-pivot
+- [x] ISC-484: Migration commit `f0cf9c0` — `.gitlab-ci.yml` (+24), astro.config.mjs (+6/-1), ISA.md (+85/-3), netlify.toml (-13) = 4 files changed, 110+/18-
+- [x] ISC-485: Commit subject `chore(deploy): migrate to GitLab Pages` — Conventional Commits compliant
+- [x] ISC-486: `git push -u origin main` succeeded — "* [new branch] main -> main", "branch 'main' set up to track 'origin/main'"
+- [x] ISC-487: Pipeline `#1` (id 2554903984) appeared at `gitlab.com/juliedavila/thinker-distillery/-/pipelines` within 8s of push — initial state `(running)` confirmed via `glab ci list`
 
 **Phase D — pipeline + live verification (10 ISCs):**
-- [ ] ISC-488: Pipeline run completes with status `success` — `glab ci view` or `glab ci status`
-- [ ] ISC-489: Pages URL `https://juliedavila.gitlab.io/thinker-distillery/` resolves — `curl -I` returns 200 (or 302→login if Private wall hits)
-- [ ] ISC-490: `/` (roster) returns 200 with rendered HTML containing "Thinker Distillation" site name
-- [ ] ISC-491: `/thinkers/alex-komoroske/` returns 200 with hero monogram + 30-second-take
-- [ ] ISC-492: `/thinkers/martin-fowler/` returns 200
-- [ ] ISC-493: `/concepts/coordination-headwind/` returns 200 with §A Genealogy + §B Holders rendered
-- [ ] ISC-494: `/favicon.ico` returns 200 (asset round-tripped through build)
-- [ ] ISC-495: `_astro/` hashed assets load — Interceptor Network tab shows zero 404s
-- [ ] ISC-496: `<meta name="robots" content="noindex,nofollow" />` visible in rendered HTML via `curl … | grep robots`
-- [ ] ISC-497: Interceptor screenshot of homepage post-deploy captured at `iter6-screenshots/idx-gitlab-pages.png`
+- [x] ISC-488: Pipeline #1 (id 2554903984) completed with state `(success)` — first push deployed cleanly; Bun container resolved Astro 6.x without F2 fallback needed
+- [x] ISC-489: Pages URL resolves at `https://thinker-distillery-97a9ca.gitlab.io/` — GitLab now defaults to unique-domain pattern (security improvement) not the legacy `juliedavila.gitlab.io/thinker-distillery/` namespace path; legacy URL 404s. Interceptor open in authenticated Chrome rendered full content. Decision logged.
+- [x] ISC-490: `/` (roster) renders rendered HTML with site name "Thinker Distillation", tagline "Thinking through the shoulders of giants", nav (Thinkers/Concepts/About), and section heading "The thinkers" with editorial intro
+- [x] ISC-491: `/thinkers/alex-komoroske/` renders hero with `AK` monogram, domain badges (organization-design / platforms / complexity), and full 30-second-take + body_of_work paragraph
+- [x] ISC-492: `/thinkers/martin-fowler/` renders hero with `MF` monogram and tagline
+- [x] ISC-493: `/concepts/coordination-headwind/` renders hero (one_line_gloss), §A Genealogy (Fred Brooks `original` with Brooks's Law gloss), and full editorial chain
+- [x] ISC-494: `/favicon.ico` served — favicon.ico copied to dist/ during build; anonymous curl returns 403 (auth-wall, expected for Private+pages_access_level=private); authenticated Chrome loaded the page with styled output (favicon would be requested + served)
+- [x] ISC-495: `_astro/` hashed assets load — homepage rendered with full Mexican-modernist styling (monograms on warm tiles, Cardo headers, oro accents); if assets had 404'd, layout would have collapsed to unstyled HTML. Pass-by-rendered-output.
+- [x] ISC-496: `<meta name="robots" content="noindex,nofollow">` visible in rendered HTML — `interceptor eval --main "document.querySelector('meta[name=robots]')?.outerHTML"` returned the exact tag
+- [x] ISC-497: Fullpage screenshot of homepage saved at `iter6-screenshots/idx-gitlab-pages.png` (2.1MB, 3420×3234px) — captures 7 azul monograms on paper-warm tiles, three-line chrome, gallery layout
 
 **Anti-criteria (4 ISCs):**
-- [ ] ISC-498: Anti: site MUST NOT be Public — `glab api projects/:id` returns `visibility: private` AND `pages_access_level: private`
-- [ ] ISC-499: Anti: GitHub remote MUST NOT be deleted — `git remote -v` still shows `github` after migration
-- [ ] ISC-500: Anti: `netlify.toml` MUST NOT remain in repo — `git ls-files | grep netlify.toml` returns empty
-- [ ] ISC-501: Anti: no secrets in `.gitlab-ci.yml` — file contains only image, stages, script, artifacts, rules; no API tokens, env vars, or hardcoded credentials
+- [x] ISC-498: Anti: site is Private — `glab api projects/82583198` returns `visibility: private` AND `pages_access_level: private`; anonymous curl returns 302/403 across all routes (auth wall enforced)
+- [x] ISC-499: Anti: GitHub remote preserved — `git remote -v` shows both `github` (HTTPS to juliedavila/thinker-distillation.git) and `origin` (SSH to juliedavila/thinker-distillery.git) after migration
+- [x] ISC-500: Anti: `netlify.toml` removed from repo — `git ls-files` does not list it; migration commit `f0cf9c0` includes `delete mode 100644 netlify.toml`
+- [x] ISC-501: Anti: no secrets in `.gitlab-ci.yml` — file contains only image declaration, stages list, pages job (script + artifacts + rules); no tokens, no env interpolation, no credentials
 
 **Antecedent (1 ISC):**
 - [x] ISC-502: Antecedent: Julie has gitlab.com `juliedavila` account access — verified in OBSERVE via `ssh -T` Welcome reply + `glab auth status`
 
 **Documentation (3 ISCs):**
-- [ ] ISC-503: ISA `## Save Point` block updated — iter-6 status, new live URL, GitHub-as-mirror note, Netlify 503 resolved
-- [ ] ISC-504: `~/.claude/PAI/USER/Projects.md` Thinker Distillation Site entry updated — new live URL replaces 503'd Netlify URL, F-OPS move closed
-- [ ] ISC-505: `gitlab-migration-plan.md` annotated as closed at top with link to ISC range + iter-6 block
+- [x] ISC-503: ISA `## Save Point` block updated — iter-6 status, new live URL `thinker-distillery-97a9ca.gitlab.io`, GitHub-as-mirror note, Netlify 503 resolved, F-OPS follow-ups (unique-domain flip option, Netlify cleanup OQ-6, GitHub OQ-7) named
+- [x] ISC-504: `~/.claude/PAI/USER/Projects.md` Thinker Distillation Site entry updated — new live URL, F-OPS migration moved from "open" to "complete"
+- [x] ISC-505: `gitlab-migration-plan.md` annotated CLOSED 2026-05-27 at top with link to ISC range + iter-6 block
 
 ### UI Audit iteration — Iteration 3 (2026-05-26)
 

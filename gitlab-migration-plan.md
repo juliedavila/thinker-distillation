@@ -1,6 +1,10 @@
 # Thinker Distillery — GitLab Pages Migration Plan
 
-> Reference-only research. Modeled after Camila Hub's existing GitLab Pages setup. No actions taken; this is a runbook for Julie.
+> **CLOSED 2026-05-27 — migration executed.** Site live at `https://thinker-distillery-97a9ca.gitlab.io/`. Full execution record in ISA.md `### Iter-6 — GitLab Pages Migration` block, ISCs 465-505. Two pipelines green; visual identity intact. Open follow-ups (not blocking): OQ 6 Netlify cleanup, OQ 7 GitHub remote disposition (currently kept as `github` mirror), unique-domain vs namespace URL pattern (currently unique-domain per GitLab's new default).
+>
+> **Corrections caught during execution:** (a) §1.1 quoted Hub's `.gitlab-ci.yml` with `rules:` nested inside `artifacts:` — actual Hub file has `rules:` at job-level (sibling to `artifacts:`). Using actual Hub structure prevented first-pipeline YAML schema failure. (b) §1.5 / Open Q 3 assumed legacy URL pattern `juliedavila.gitlab.io/<project>`. GitLab now defaults to unique-domain pattern (`thinker-distillery-97a9ca.gitlab.io`); legacy URL 404s when unique-domain is on. astro.config.mjs `site:` corrected post-discovery.
+>
+> Below preserved as-written for reference.
 >
 > Trigger: 2026-05-26, thinkerdistillery.netlify.app returned 503 `usage_exceeded` (Netlify free-tier credits depleted).
 > Source pattern: `/Users/juliedavila/Camila/hub/` — live on GitLab Pages, confirmed 2026-05-26.

@@ -275,5 +275,5 @@ long_read:
     Schelling point), the prescription (gardening conditions, focal-point
     engineering, distributed decision rights), and the limits (regulated
     environments, adversarial actors, jargon collapse).
-  source_path: ~/Camila/ways-of-komoroske/
+  source_path: ~/Camila/_archive/ways-of-komoroske-merged-2026-05-27/
 ---

@@ -359,5 +359,5 @@ long_read:
     instrument toward that single argument. The book walks the six argument
     arcs (Economic, Vocabulary, Practice, Boundary, Flow, Modeling) plus the
     cartographer's meta-move (bliki as form, editor/platform as practice).
-  source_path: ~/Camila/ways-of-fowler/
+  source_path: ~/Camila/thinker-distillation/_working/martin-fowler/
 ---

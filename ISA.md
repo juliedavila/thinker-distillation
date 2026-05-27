@@ -3,21 +3,22 @@ project: thinker-distillation
 effort: E3
 phase: complete
 progress: 505/505
-iteration: iter-6-gitlab-pages-migration-2026-05-26
+iteration: iter-6-then-fowler-audit-2026-05-27
 mode: project
 started: 2026-05-25
-updated: 2026-05-26
+updated: 2026-05-27
 ---
 
 ## Save Point — 2026-05-27 (cold-start resume here)
 
-**Status:** Iter-1 v1 launch · Iter-2 v2 concept-page (first-shipped) · Iter-3 v2 audit-prose · Iter-4 UI-audit arc (research → audit → design-spec all closed) · Iter-5 steps 1-7 of 10 shipped 2026-05-26 (8 commits) · **Iter-6 GitLab Pages migration COMPLETE 2026-05-27** — site is live again at `https://thinker-distillery-97a9ca.gitlab.io/` (Private + pages_access_level=private, project members only). Iter-5 steps 8-10 still deferred (step 8 SVG genealogy → v4; steps 9-10 wait on portraits). Production is restored; Netlify is dead but not yet cleaned up (Open Question 6 from migration plan).
+**Status:** Iter-1 v1 launch · Iter-2 v2 concept-page (first-shipped) · Iter-3 v2 audit-prose · Iter-4 UI-audit arc (research → audit → design-spec all closed) · Iter-5 steps 1-7 of 10 shipped 2026-05-26 (8 commits) · **Iter-6 GitLab Pages migration COMPLETE 2026-05-27** — site is live again at `https://thinker-distillery-97a9ca.gitlab.io/` (Private + pages_access_level=private, project members only). Iter-5 steps 8-10 still deferred (step 8 SVG genealogy → v4; steps 9-10 wait on portraits). Production is restored; Netlify is dead but not yet cleaned up (Open Question 6 from migration plan). · **Fowler-fold + system-level open questions logged 2026-05-27 PM** — standalone `ways-of-fowler/` project retired and folded into the distillery (Fowler thinker page + Preface already shipped; long-read working notes migrated 2026-05-27 to `~/Camila/thinker-distillation/_working/martin-fowler/` per Iter-7 step 1 Q6 ratification). Audit surfaced six schema/curation questions affecting every active thinker (frame surfacing depth, adjacency reach + site-internal rule, Live Edge strand, hosted-canon / editor-platform face, named critics from limits to debate edges, long-read working-notes location convention) — logged in this ISA as `## System-Level Open Questions Surfaced 2026-05-27 (Fowler Audit)` for iter-7/iter-8 to absorb. Projects.md updated to fold the standalone "Ways of Fowler" entry into the distillery entry.
 
 **One-paragraph orientation for cold-start:** This project is the Thinker Distillery — per-practitioner editorial readings of practitioners worth metabolizing (Komoroske, Fowler, Brooks, Allspaw, Woods, Dekker, Dalio currently live), with a v2 concept-page surface that derives cross-thinker holders from thinker frontmatter as the single source of truth. The site lives at `~/Camila/thinker-distillation/` and is now serving from **GitLab Pages at `https://thinker-distillery-97a9ca.gitlab.io/`** (private project `juliedavila/thinker-distillery`, `pages_access_level=private`, project members only). GitLab project id 82583198. Netlify deploy `thinkerdistillery.netlify.app` is dead/503 — not yet cleaned up (Open Question 6 from migration plan; safe to leave dead or restore one-page redirect later). GitHub remote retained as `github` (passive backup mirror at github.com/juliedavila/thinker-distillation); GitLab is now the primary at `origin`. On 2026-05-26 we shipped Iter-5 steps 1-7 (Mexican-modernist token layer + typography + three-line chrome + portrait/monogram infrastructure + long-read sidebar + chapter-of-N breadcrumb). On 2026-05-27 we shipped Iter-6 (GitLab Pages migration: `.gitlab-ci.yml` from Hub pattern, astro.config.mjs site URL fixed to unique-domain pattern after discovering GitLab's new default, GitLab project created via glab API with Private + pages_access_level=private set at create, netlify.toml deleted). Two pipelines both green; site rendering exactly as it did on Netlify (chrome + 7 monograms + thinker pages + concepts). Tagline "Thinking through the shoulders of giants" still shipped as Julie's scaffolded slot. Real portraits + glossary entries are Julie-owned content surfaces waiting on her.
 
 **What to read first (in order):**
 1. This Save Point block (you're already here) — **Next iteration on resume** below names the load-bearing moves
-2. This ISA's `### Iter-6 — GitLab Pages Migration (2026-05-26)` block (in `## Criteria`) — newest iteration, 41/41 ISCs closed; commits `f0cf9c0` (main migration) + `29eb05f` (site URL fix)
+2. **This ISA's `## System-Level Open Questions Surfaced 2026-05-27 (Fowler Audit)` section** (right after this Save Point, before `## Problem`) — six schema/curation questions that are iter-7/iter-8 forcing functions; read this BEFORE iterating on any thinker page so per-thinker patches don't get applied against still-open system decisions
+3. This ISA's `### Iter-6 — GitLab Pages Migration (2026-05-26)` block (in `## Criteria`) — previous iteration, 41/41 ISCs closed; commits `f0cf9c0` (main migration) + `29eb05f` (site URL fix)
 3. `~/Camila/thinker-distillation/iter6-screenshots/idx-gitlab-pages.png` — visual proof: homepage rendering live on GitLab Pages, 7 monograms + Mexican-modernist chrome intact
 4. `~/Camila/thinker-distillation/iter5-screenshots/` — Iter-5 visual evidence preserved:
    - `idx-with-monograms.png` — gallery-feel index with 7 azul monograms
@@ -46,6 +47,14 @@ Author picks:
 **Carve-outs preserved:** C23 bilingual chrome OUT for Distillery · AC10 `julie_reading` Camila never authors · `working_uses` carve-out (Camila auto-records joint work) · AC7 anti-essentialism guard
 
 **Next iteration on resume:**
+- **System-level open questions from Fowler audit (2026-05-27) — read full block in `## System-Level Open Questions` section before patching any thinker page:**
+  1. Frame surfacing depth per thinker (cap rule + `thinker_type` scaling)
+  2. Adjacency reach + site-internal adjacency auto-surfacing rule (Brooks ↔ Fowler ↔ Komoroske)
+  3. Live Edge / post-publication-cutoff strand (schema bump candidate: `live_edge:` block)
+  4. Hosted canon / editor-platform face (schema bump candidate: `hosted_work[]` block, or `attribution_kind: hosted` flag)
+  5. Named critics: from `limits` bullets to `edge_type: critiques` adjacencies (couples to Casey-test gate)
+  6. Long-read working-notes location convention (`~/Camila/ways-of-{slug}/` flat vs `_working/{slug}/` cohesive)
+  - Each one earns a Council or Advisor pass before locking. None are blocking the current site state.
 - **F-OPS Iter-6 follow-ups (Julie's call):**
   - Unique-domain vs namespace URL: site currently serves at `thinker-distillery-97a9ca.gitlab.io` (GitLab's new default). If Julie prefers the cleaner `juliedavila.gitlab.io/thinker-distillery/` namespace pattern, flip Settings → Deploy → Pages → "Use unique domain" off and revert astro.config.mjs site URL. Both reversible.
   - Netlify cleanup (OQ 6 from migration plan): leave dead, delete, or restore a one-page redirect. Recommended: restore minimal redirect for ~30 days, then delete.
@@ -81,6 +90,28 @@ Author picks:
 - Code surface that changed this session: `src/styles/global.css`, `src/layouts/Base.astro`, `src/content.config.ts`, `src/components/Monogram.astro` (new), `src/pages/index.astro`, `src/pages/thinkers/[slug].astro`, `src/pages/thinkers/[slug]/long-read/[chapter].astro`, `src/pages/concepts/index.astro` (new)
 - Iter-5 commits on `main`: c938e52 → d5fe642 → 56c8883 → f5ad343 → 544546c → 4fda77d → 1981edc → 408a301 → 313d142 (steps 1-3 in first 5 commits, steps 4-7 in next 4)
 - Screenshot evidence at `~/.claude/jobs/fce49501/audit-screenshots/` (4 desktop captures, will be cleaned up — copy if you want to preserve)
+
+---
+
+## System-Level Open Questions Surfaced 2026-05-27 (Fowler Audit)
+
+> Triggered by audit of `~/Camila/ways-of-fowler/` (long-read working notes) against the shipped Fowler page (`src/content/thinkers/martin-fowler.md` + `src/content/long-read/martin-fowler/00-preface.md`). Each question below is **not Fowler-specific** — it surfaces a schema or curation discipline that affects every active thinker (Komoroske, Brooks, Allspaw, Woods, Dekker, Dalio, Fowler). Consider alongside iter-7 follow-ups; some may earn schema bumps (v1.x), others stay in curatorial discipline. **Do not patch the Fowler page inline against any of these — system-level decision required first.**
+
+1. **Frame surfacing depth per thinker.** Current pattern: ~7 `named_frames` per thinker. Mature corpora carry far more — the Fowler lattice exposes 20+ frames (feature-toggle, conway/inverse-conway, tech-debt-quadrant, ubiquitous-language, two-hard-things, mocks-arent-stubs, anemic-domain-model, uml-as-sketch, polyglot-persistence, branch-by-abstraction, cqrs, event-sourcing, yagni, domain-model-vs-transaction-script-vs-table-module, and more). Question: does the rendered page cap at a "core 5–8" while deeper frames live in long-read chapters? Does the cap scale by `thinker_type` (essay-corpus, book-author, catalog-builder, mixed)? Either way, document the curation rule so it applies uniformly across thinkers.
+
+2. **Adjacency reach + the site-internal adjacency rule.** Current pattern: ~6 `adjacent_thinkers`. Lattices typically expose 15–25. Two sub-questions: (a) what filter discipline picks 6 from 20+? (b) **when a candidate adjacent is *already on the site*** (Brooks ↔ Fowler ↔ Komoroske are mutual neighbors), should that adjacency be **automatically surfaced** as a primary edge? Fowler's lattice names Brooks as an antecedent; the shipped Fowler page does not list Brooks. Site-internal adjacencies are also load-bearing for the v2 cross-thinker concept graph.
+
+3. **Live Edge / post-publication-cutoff strand.** Where does a thinker's *current-era* work live in the schema? Fowler post-2015 alone has *Refactoring* 2e, Data Mesh hosting (Dehghani), *Exploring Gen AI* memo series (Böckeler), the *MaturityModel-is-harmful* late critique, and the ongoing Tech Radar. Options: (a) new `live_edge:` block at thinker-page level; (b) fold into `further_in.if_you_want_breadth`; (c) only in long-read chapters; (d) per-thinker decision via render hint. Schema bump if (a). Affects every alive-active thinker.
+
+4. **Hosted canon / editor-platform face.** Some thinkers carry a *platform* role distinct from authorship — Fowler hosts Dehghani / Böckeler / Lewis / Sadalage; Brooks shaped *Mythical Man-Month* in revision; Komoroske amplifies others through his network. Question: does the schema need a `hosted_work[]` block, or is this absorbed into `body_of_work` with an `attribution_kind: hosted` flag? Affects how the editor-as-practice meta-move is rendered.
+
+5. **Critical voices: from limits to named critics.** `limits` captures "where this breaks." But named critics with substantive bodies of work (DHH on TDD, Joel Spolsky on big rewrites, Joshua Kerievsky on the refactoring catalog form) carry more weight than a limit bullet. Question: do they belong as `edge_type: critiques` adjacencies (current schema supports this), or does a new mechanism honor them as cross-thinker debate edges — especially when the critic is themselves distillery-worthy? Couples to Discipline Gate 3 (Casey-test) and to the v2 concept-graph design.
+
+6. **Long-read working-notes location convention.** ✅ **RESOLVED 2026-05-27 (Iter-7 step 1):** `~/Camila/thinker-distillation/_working/{thinker-slug}/` (workspace-cohesive). Fowler migrated from `~/Camila/ways-of-fowler/` → `_working/martin-fowler/`; Komoroske archive stays at `~/Camila/_archive/ways-of-komoroske-merged-2026-05-27/` (chapter content already in site, working notes frozen). SCHEMA.md §6 + thinker-frontmatter `source_path` + Save Point updated. New long-read working notes for future thinkers land in `_working/{thinker-slug}/`. Rationale per `feedback_named_category_workspace_check.md` — Ways-of-X standalones were the cost of skipping the canonical-home check; the fold-in is now structurally complete.
+
+**Trigger artifacts to read for context (in `~/Camila/ways-of-fowler/`):** `CONCEPT_LATTICE.md` (six argument arcs, cross-arc edges, ~20 frames, ~30 adjacents, Live Edge section), `CORPUS.md` (7 books + 59 named bliki entries + hosted canon strand), `PLAN.md` (long-read book structure — Pass 1 + Parts 0–8 + pedagogy spine + metaphor verdicts), `ISA.md` (project ISA for the long-read effort).
+
+**Action:** these enter the iter-7 / iter-8 backlog as schema-shaped open questions. Each one earns a Council or Advisor pass before locking. None are blocking for the current site state; all are *forcing functions* for the next schema/curation iteration.
 
 ---
 
@@ -568,6 +599,45 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - [x] ISC-504: `~/.claude/PAI/USER/Projects.md` Thinker Distillation Site entry updated — new live URL, F-OPS migration moved from "open" to "complete"
 - [x] ISC-505: `gitlab-migration-plan.md` annotated CLOSED 2026-05-27 at top with link to ISC range + iter-6 block
 
+### Iter-7 step 1 — Q6 working-notes location convention ratified (2026-05-27)
+
+*First of the six Fowler-audit Open Questions resolved. Workspace-cohesive convention chosen: `~/Camila/thinker-distillation/_working/{thinker-slug}/`. Per `feedback_named_category_workspace_check.md`, the Ways-of-X standalones were the cost of skipping the canonical-home check; this migration makes the Fowler fold-in structurally complete. Komoroske working notes already archived at `~/Camila/_archive/ways-of-komoroske-merged-2026-05-27/` (chapter content already merged into the site, working notes frozen).*
+
+**Pre-flight (3 ISCs):**
+- [x] ISC-506: `~/Camila/ways-of-fowler/` exists with 5 files (CONCEPT_LATTICE, CORPUS, ISA, PLAN, PREFACE) and is NOT a git repo — clean to move
+- [x] ISC-507: `~/Camila/ways-of-komoroske/` does NOT exist at canonical path; working notes archived at `~/Camila/_archive/ways-of-komoroske-merged-2026-05-27/` (2 files: PLAN.md + 01-the-diagnosis.md, chapter content already in site)
+- [x] ISC-508: Path-reference sweep — 5 files reference old paths (SCHEMA.md, ISA.md, both thinker frontmatters, Projects.md)
+
+**Migration (4 ISCs):**
+- [x] ISC-509: `~/Camila/thinker-distillation/_working/` directory created
+- [x] ISC-510: `ways-of-fowler/` moved to `_working/martin-fowler/` via single `mv`
+- [x] ISC-511: Source `~/Camila/ways-of-fowler/` no longer exists (`test ! -d` returns 0)
+- [x] ISC-512: `_working/martin-fowler/` contains all 5 expected files (CONCEPT_LATTICE, CORPUS, ISA, PLAN, PREFACE) — verified via `ls`
+
+**Path reference updates (5 ISCs):**
+- [x] ISC-513: `src/content/thinkers/martin-fowler.md:362` `source_path` updated to `~/Camila/thinker-distillation/_working/martin-fowler/`
+- [x] ISC-514: `src/content/thinkers/alex-komoroske.md:278` `source_path` updated to archive path `~/Camila/_archive/ways-of-komoroske-merged-2026-05-27/`
+- [x] ISC-515: SCHEMA.md "Book projects" bullet rewritten as "Long-read working notes" with the new convention, date-stamped Iter-7 step 1 2026-05-27, cross-references retired Ways-of-X
+- [x] ISC-516: SCHEMA.md "Host" bullet updated from Netlify to GitLab Pages (drive-by per `feedback_no_netlify.md`; was stale post-iter-6)
+- [x] ISC-517: SCHEMA.md §10 Long Read Komoroske chapter_list + source_path updated to point at archive path
+
+**ISA + cross-doc updates (5 ISCs):**
+- [x] ISC-518: ISA Save Point Fowler-fold paragraph updated to new path
+- [x] ISC-519: ISA §System-Level Open Questions Q6 marked ✅ RESOLVED with new convention inline
+- [x] ISC-520: ISA `## Decisions` entry added (this iteration, see Decisions)
+- [x] ISC-521: ISA `## Changelog` C/R/L entry added (this iteration, see Changelog)
+- [x] ISC-522: `~/.claude/PAI/USER/Projects.md` Fowler entry updated with new working-notes path + Q6 RESOLVED inline
+
+**Build + commit verification (2 ISCs):**
+- [x] ISC-523: `bun run build` passes after path updates — "15 page(s) built in 1.11s" exit 0
+- [ ] ISC-524: Migration commit created + pushed; pipeline triggers — verified post-commit
+
+**Anti-criteria (4 ISCs):**
+- [x] ISC-525: Anti: `~/Camila/ways-of-fowler/` MUST NOT exist post-migration (verified via `test ! -d`)
+- [x] ISC-526: Anti: `~/Camila/_archive/ways-of-komoroske-merged-2026-05-27/` MUST NOT be moved (frozen reference; chapter content already in site)
+- [x] ISC-527: Anti: SCHEMA.md MUST reference new convention with date stamp + cross-reference to retired pattern (verified inline)
+- [x] ISC-528: Anti: NO Netlify references in SCHEMA.md after this iteration (cascade-cleanup per `feedback_no_netlify.md` — verified via re-grep)
+
 ### UI Audit iteration — Iteration 3 (2026-05-26)
 
 *Audit pass. Output: `~/Camila/thinker-distillation/audit-ui-2026-05-26.md`. Scores current Distillery against the 30-criterion rubric (C1-C23 + AC1-AC7) from Iter-2.*
@@ -939,6 +1009,8 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 
 ## Decisions
 
+- **2026-05-27 — Iter-7 step 1: long-read working-notes location convention ratified (Q6 from Fowler audit).** Workspace-cohesive path `~/Camila/thinker-distillation/_working/{thinker-slug}/` chosen over workspace-flat `~/Camila/ways-of-{thinker-slug}/`. Per `feedback_named_category_workspace_check.md` (which Julie added 2026-05-27 PM): the Ways-of-X standalones were the cost of skipping the canonical-home check; the Fowler fold-in announced in Projects.md was structurally incomplete until the dir migrated under the distillery project root. Execution: `~/Camila/ways-of-fowler/` (5 files) moved to `~/Camila/thinker-distillation/_working/martin-fowler/`; Komoroske working notes already archived at `~/Camila/_archive/ways-of-komoroske-merged-2026-05-27/` (chapter content already in the site, frozen). Drive-by cascade fix: SCHEMA.md "Host" bullet updated from Netlify → GitLab Pages per `feedback_no_netlify.md` (was stale post-iter-6). Five files touched (2 thinker frontmatters, SCHEMA.md, ISA.md self-update, Projects.md). Build passes (15 pages, same count, no regression). Hybrid Option C (book-shaped under ways-of-X, lighter under _working/) rejected at decision-time: ambiguous boundary, would drift.
+
 - **2026-05-26 — Iter-6 (GitLab Pages migration) kicked off via classifier ALGORITHM E3.** Julie's 4 locked decisions (from `AskUserQuestion` round): Private + "Only project members" + slug `thinker-distillery` + no custom domain + accept-loss on Netlify headers (Base.astro:19 already ships meta robots noindex — header-loss is genuinely cosmetic). Runbook at `gitlab-migration-plan.md` owns sequencing; this iteration executes Steps 1-9 of that plan, deferring Open Questions 6 (Netlify cleanup) and 7 (GitHub full-remove vs mirror) — github remote retained as passive backup mirror per Step 6's renaming strategy.
 - **2026-05-26 — CRITICAL CORRECTION caught in THINK: runbook §1.1 quoted Hub's `.gitlab-ci.yml` with `rules:` NESTED inside `artifacts:`. The actual Hub file at `~/Camila/hub/.gitlab-ci.yml:23-24` has `rules:` at JOB-level (sibling to `artifacts:`).** GitLab CI YAML schema would reject the runbook's quoted structure — `artifacts:` doesn't accept a `rules:` sub-key for run-gating. Using the actual Hub file structure (rules at job-level), not the runbook's misquote. This catch prevents a first-pipeline failure that would have read ambiguously as "Bun/Astro 6 compat" (the noisy assumption) when it was actually a flat YAML schema error.
 - **2026-05-26 — Delegation under-floor at E3 with show-your-math.** No Forge/Anvil/Cato per `feedback_avoid_kimi_codex.md` standing rule. No Engineer agent: migration is 3 mechanical file edits + git remote pivot + curl verification — single-author tractable in <10min, agent spawn-overhead exceeds value. No Council: not exec-prose iteration. Delegation count = 0 (E3 soft floor ≥2). What un-selected delegation would have done: Engineer would have parallelized file edits across worktrees but the files are independent already (parallel tool block achieves same), Forge would have lint-reviewed YAML but `glab ci validate` does this in CI cheaper, Cato would have cross-vendor-audited the runbook against actual GitLab docs but THINK phase already caught the load-bearing schema bug. Thinking floor MET at E3: 5 capabilities (FeedbackMemoryConsult, IterativeDepth, SystemsThinking, Advisor, ReReadCheck) ≥ 4 floor.
@@ -1001,6 +1073,16 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - **2026-05-25 — Disposition application closed.** Julie ran the 8 disposition rows + 4 side-finding bullets and confirmed. **COMMIT (6 source rows applied to working tree):** Komoroske P2 (`what_i_take` opener — drops "single most useful thing I carry" stem; promotes the observation, adds "That is the headwind frame, applied; once you see it in security work, you cannot unsee it"); Allspaw P2 (`what_i_take` — stem sentence deleted, second-sentence-becomes-opener with subject change to "Security incident response"); Komoroske P3 (`where_i_extend` — verb-push "I push it into" → "The security translation is that...itself"); Brooks P3 (`where_i_extend` — two sentences collapsed to one); Allspaw P3 (`where_i_extend` — "I push it into the adversarial layer" → "Security adds an adversarial layer Allspaw did not model" + folded sentence-three); Woods P3 (`where_i_extend` — verb-push → "The security extension is that"). **COMMIT (1 side-finding row):** Allspaw `really` ×2 removed at L60 (thesis) and L195 (what_i_take tail) — filler-word removal, no semantic load. **MODIFY (5 rows drafted at `modify-pack-2026-05-25.md` for Julie to finalize):** Row 1 Brooks P2 (em-dash treatment options A1-A4 + downstream trim options B1-B3 to remove the redundant "Brooks's frame lets me ask the disciplined question" sentence); Row 2 Woods P2 (third-sentence split options C1-C4 — Camila lean C4, preserves Julie's existing "slack is not waste" sentence verbatim); Row 3 Dekker L214 not-just Hard No (phrasing options D1-D5 — Camila lean D1 or D5); Row 4 `leverage` four sub-instances (Komoroske thirty_second_take E1a-E4a Camila lean E1a; Komoroske editorial_note E1b-E4b Camila lean E2b/E3b; long-read L123 E1c-E4c Camila lean E3c; Allspaw compound F1d-F4d Camila lean F1d KEEP); Row 5 Woods L55 `navigate` metaphor (options G1-G5 Camila lean G3/G5). **SKIP: zero rows.** All 8 + 4 had a disposition. **Verification:** `bun build` passed (Node 22 via nvm; 13 pages built; zero type errors); inline grep verified each COMMIT new-string present and each old-string absent; `really` count on Allspaw page = 0. **Writing-partner discipline held:** modify-pack is explicitly draft-for-Julie-to-finalize per row, Camila leans flagged as leans not prescriptions, none applied without per-row Julie pick. Iteration `phase: complete`; ISA progress 185/185. **Next:** Julie picks per-row on modify-pack; Camila applies as a second follow-up commit when picks are in.
 
 ## Changelog
+
+### 2026-05-27 — Iteration 7 step 1 — Long-read working-notes convention ratified (Q6 closed)
+
+**conjectured:** The `~/Camila/ways-of-{thinker-slug}/` workspace-flat convention from the Komoroske + Fowler book-project era should persist post-fold-in. Each "Ways of X" dir reads as a recognizable thinking artifact in its own right; moving them under `_working/` demotes them into "project scaffolding" when they're actually deep editorial work-in-progress. Workspace-flat also has zero migration cost.
+
+**refuted_by:** Julie's own `feedback_named_category_workspace_check.md` (added 2026-05-27 PM) explicitly named the Ways-of-X standalones as "the cost of skipping" the canonical-home check. The fold-in announced in Projects.md was structurally incomplete while the dirs sat sibling to the distillery project root rather than under it. Workspace-cohesive `_working/{slug}/` is the structurally honest answer — naming consistency loses to project cohesion when the standalone is already retired as a project.
+
+**learned:** When a project category is retired-and-folded, the file structure should follow the announcement, not the prior standalone identity. "Ways of X" was a project shape; once it's no longer a project, its artifacts shouldn't carry the shape forward. Generalizable rule: any "fold X into Y" decision implies a corresponding "move X's artifacts under Y's tree" move, not "keep X's dirs as flat siblings with new owners." Hybrid solutions (book-shaped one place, lighter another) drift because the boundary is fuzzy.
+
+**criterion_now:** Future long-read working notes for any thinker land at `~/Camila/thinker-distillation/_working/{thinker-slug}/`, period — the SCHEMA.md "Long-read working notes" bullet is the canonical reference. New thinker scaffolding ISCs must reference this convention. The retired `~/Camila/ways-of-{slug}/` pattern is documented as legacy in SCHEMA.md (cross-referenced from the new bullet) so future-Camila understands why the archive paths exist. Anti-criterion ISC-525: post-migration verification that the source dir no longer exists.
 
 ### 2026-05-27 — Iteration 6 — GitLab Pages migration shipped
 

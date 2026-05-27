@@ -213,10 +213,10 @@ Required v1 artifact. Treated as a real writing piece, not boilerplate.
 
 ## 6. Publishing Surface (Q6 lock)
 
-- **Framework:** Astro 4.x. Content Collections give typed frontmatter; components handle structured sections; islands-of-interactivity available for v2 graph viz without committing to a full app framework.
-- **Host:** Netlify. Lowest-friction setup, branch previews, free tier. Astro build output is portable — migration to Cloudflare Pages later is straightforward if Julie decides to build personal Cloudflare infra.
+- **Framework:** Astro 6.x. Content Collections give typed frontmatter; components handle structured sections; islands-of-interactivity available for v2 graph viz without committing to a full app framework.
+- **Host:** GitLab Pages (`gitlab.com/juliedavila/thinker-distillery`, Private + `pages_access_level=private`, project members only). Bun container CI via `.gitlab-ci.yml`. Migrated from Netlify Iter-6 2026-05-27 after free-tier exhaustion; Astro build output stays portable.
 - **Repo:** Single repo at `~/Camila/thinker-distillation/`. Per-thinker markdown under `content/thinkers/{slug}.md`. Long-read content under `content/thinkers/{slug}/long-read/`.
-- **Book projects:** Ways-of-Komoroske (`~/Camila/ways-of-komoroske/`) and Ways-of-Fowler (`~/Camila/ways-of-fowler/`) fold into the site as long-read content under each respective thinker. Working files stay where they are; published chapters get content-collection-shaped versions in the site repo.
+- **Long-read working notes:** Live at `~/Camila/thinker-distillation/_working/{thinker-slug}/` (workspace-cohesive convention ratified Iter-7 step 1 2026-05-27, resolves Q6 from Fowler audit). Published chapters get content-collection-shaped versions under the long-read content path above. Standalone `~/Camila/ways-of-{slug}/` dirs are the retired legacy convention — Fowler migrated into `_working/martin-fowler/`; Komoroske archived at `~/Camila/_archive/ways-of-komoroske-merged-2026-05-27/` (chapter content already merged into the site).
 
 ---
 
@@ -417,8 +417,8 @@ Each frame renders with `also_held_by:` cluster underneath at build time. Exampl
 
 - **title:** *Ways of Komoroske*
 - **summary:** Power in complex systems is emergent, not authored, so the work at every scale is to garden the conditions and resist the pull of central control. Unpacks the diagnosis (slime mold, coordination headwind, heroics smell, Schelling point), the prescription (gardening conditions, focal-point engineering, distributed decision rights), and the limits (regulated environments, adversarial actors, jargon collapse).
-- **chapter_list:** Part 1 — The Diagnosis [`/long-read/01-diagnosis`]; subsequent chapters per `~/Camila/ways-of-komoroske/PLAN.md`.
-- **source_path:** `~/Camila/ways-of-komoroske/` (working) → `content/thinkers/alex-komoroske/long-read/` (published).
+- **chapter_list:** Part 1 — The Diagnosis [`/long-read/01-diagnosis`]; subsequent chapters per `~/Camila/_archive/ways-of-komoroske-merged-2026-05-27/PLAN.md`.
+- **source_path:** Working notes archived at `~/Camila/_archive/ways-of-komoroske-merged-2026-05-27/`; published chapters at `content/thinkers/alex-komoroske/long-read/`. Note: this thinker's working-notes pre-date the Iter-7 `_working/{slug}/` convention; new long-read working notes for other thinkers follow the convention.
 
 ---
 

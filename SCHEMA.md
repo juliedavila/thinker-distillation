@@ -31,6 +31,8 @@ thinker_type: essay-corpus              # essay-corpus | book-author | principle
 has_long_read: true
 long_read_path: /thinkers/alex-komoroske/long-read
 last_updated: 2026-05-25
+live_edge_visible: false                # v1.2 — opt-in for §11 Live Edge section; defaults false
+# live_edge: { ... }                    # v1.2 — only when live_edge_visible: true; see §11
 ---
 ```
 
@@ -39,6 +41,7 @@ last_updated: 2026-05-25
 - `inclusion_rationale` is **backstage** — read by Julie during curation, not rendered on the reader-facing page. (Q3 lock — Popova pattern: filter is implicit in editorial choice.)
 - `thinker_type` drives render hints only — it never gates which schema fields exist. (Discipline Gate 1.)
 - `canonical_url` is nullable for pre-web thinkers; `active_years` accepts free-text bracketed ranges for ancient or otherwise unusual lifespans.
+- `live_edge_visible` (v1.2) defaults to `false`; curator opts in per-thinker. Requires `status: alive-active`. See §11 Live Edge for full contract.
 
 ---
 
@@ -78,15 +81,18 @@ The portable vocabulary. Each frame is a Concept (`Frame` node) held by this thi
 - `co_originators[]` — array of `{ slug, role }` for multi-author origin frames
 - `source_link` — canonical place this thinker writes about it (or canonical translation, for ancient)
 - `derived_from` — optional edge to an antecedent Frame
+- `render_tier` — `foreground | deep` (defaults to `foreground`). **v1.2 (Q1 lock):** the full lattice lives in frontmatter; only `foreground` entries render inline on the thinker page. `deep` entries surface as a collapsed single-line disclosure ("12 more frames in this thinker's lattice; see long-read") with a build-time check that the count is honest. Cap: **8 foreground frames maximum, 6 typical** — render-time policy constant, no per-`thinker_type` scaling. Catalog-builder thinkers with deeper lattices push spillover to `deep` tier + long-read chapters; they do NOT get a relaxed foreground cap. Future: `thinker_type: catalog-builder` may warrant a v2 catalog-companion-page surface. Selection criterion for `foreground`: frames the thinker is cross-cited by other practitioners for, weighted by Julie's working uses.
 - `also_held_by[]` — **render affordance for v1 (Q4 lock)**: list of `{ thinker_slug, role, edge_label }` for other thinkers who hold this same concept. Computed at build time from the Concept's `holders[]`, minus the current thinker. Rendered as a small "also held by:" link cluster directly beneath each frame on the thinker page.
 
 ### §5 Body of Work
 
 Curated reading list with editorial annotation, not a complete bibliography.
 
-**Per-item fields:** `title`, `type`, `year`, `link`, `editorial_note`, `read_first`, `canonical`.
+**Per-item fields:** `title`, `type`, `year`, `link`, `editorial_note`, `read_first`, `canonical`, `attribution_kind` (optional, v1.2).
 
 `type` enum: `book | essay | talk | blog-series | interview | paper | translation`. For ancient/translated thinkers, items carry an optional `translator`, `edition`, `edition_year` sub-block (translator block — TEI-style extension).
+
+**`attribution_kind` enum (v1.2 — Q4 lock): `authored | hosted`.** Default is `authored` (implicit when omitted). `hosted` entries are **projected at build time from §8 `hosts` edges** — they are NOT independently authored data. Single source of truth: the §8 edge. The §5 render of a `hosted` item MUST display the host-attribution label and the `hosted_on_url` from the edge payload (build-pipeline test fails the render otherwise — see Anti-16). Use case: Fowler hosting Dehghani's Data Mesh series at martinfowler.com appears in Fowler's §5 reading list as a hosted item, with the host-attribution label, while the source-of-truth lives on the §8 edge.
 
 ### §6 Editorial Reading
 
@@ -113,7 +119,30 @@ Julie's honest-limits lane. Required, not optional.
 
 Graph surfaced at page level.
 
-**Per-edge fields:** `target_slug`, `display_name`, `edge_type` (`antecedent | extends | critiques | parallel | synthesizes`), `edge_label` (one-line in editorial voice), `strength` (`primary | secondary`).
+**Per-edge fields:** `target_slug`, `display_name`, `edge_type` (`antecedent | extends | critiques | parallel | synthesizes | hosts`), `edge_label` (one-line in editorial voice), `strength` (`primary | secondary`), `render_tier` (v1.2), `auto_surfaced` (v1.2, computed), `editorial_demote_to` (v1.2, optional), `hosted_items[]` (v1.2, conditional on `edge_type: hosts`).
+
+**v1.2 schema bumps (Q2 + Q4 + Q5 locks):**
+
+- **`edge_type: hosts` (Q4 lock).** Captures the editor-platform face — a thinker who *hosts* others on infrastructure they own (Fowler hosting Dehghani / Böckeler / Lewis / Sadalage / Kua at martinfowler.com). Hosting is categorically distinct from authorship — host doesn't claim the work, just platforms it. The `hosts` edge IS the source of truth for hosted work; §5 `attribution_kind: hosted` entries are projected from these edges at build time. Note: Komoroske-style "amplifies via network" is NOT hosting — no platform Komoroske owns and edits. Use `extends` or `parallel` edges for amplification, not `hosts`.
+
+- **`hosted_items[]` on `hosts` edges (Q4 lock).** Optional payload, only present when `edge_type: hosts`. Subfields per item: `title`, `kind` (`essay | series | talk | interview | translation`), `year`, `hosted_on_url`, `editorial_framing` (the *host's* stated framing of why they hosted this piece — NOT Julie's voice; Julie's reading of the relationship lives in §6 `what_i_take`).
+
+- **`render_tier: foreground | deep` (Q2 lock).** Mirrors the §4 mechanism — full adjacency neighborhood lives in frontmatter, only `foreground` entries render inline on the §8 card grid. Cap: **5 foreground adjacents typical, up to 7 when site-internal mutual edges exist** (site-internal edges exempt from the typical-5 cap). Defaults to `foreground`.
+
+- **`auto_surfaced: boolean` (Q2 lock, build-computed).** Set `true` at build when `target_slug` resolves to a published thinker page. Auto-surfaced edges **auto-promote to `render_tier: foreground` AND default to `strength: primary`** unless explicitly demoted via `editorial_demote_to`. This is what makes Brooks-on-Fowler-page mechanical, not editorial-discretionary.
+
+- **`editorial_demote_to: secondary` (Q2 lock, optional override).** When an auto-surfaced site-internal edge should NOT render as primary (e.g., Komoroske → Senge where the editorial absence is itself the content — Komoroske rarely cites Senge), set this explicitly in frontmatter. The demotion must be visible, not silent.
+
+- **Build-time warning (Q2 lock).** Missing the auto-promote (e.g., Fowler shipping without Brooks listed when Brooks is a published thinker page and Fowler's frontmatter names `brooks-law` as `derived_from`) produces a build-time warning, not a silent omission.
+
+- **Critics live here too (Q5 lock).** `edge_type: critiques` already existed; v1.2 adds the build-computed `critic_has_distillery_page: boolean` property, which drives three-tier render weight:
+  - Critic clears inclusion filter AND has Distillery page → `strength: primary`
+  - Critic clears the named-critique-threshold only → `strength: secondary`
+  - Critic clears neither → omit or optional secondary (editorial discretion)
+  - Named-critique threshold: critic has named the critique in their *own* durable artifact (essay, book chapter, talk transcript) — NOT internet snark, NOT conference Q&A, NOT third-party characterization.
+  - Register lane: critic `edge_label` is **Mode B (Camila-handle voice)**, NOT Mode C (Julie voice). Preserves the writing-partner discipline; Camila can author critic edge_labels because they are editorial commentary on the critic's argument, not Julie's analytical synthesis.
+  - Casey-test coupling: when a critic clears the inclusion filter, the same Casey-test applies — if listing this critic would feel like Julie picking a fight she hasn't earned in her own work, demote to secondary or omit. The gate isn't "is the critic right" — it's "is naming this critic an editorial move Julie has earned the standing to make in this venue."
+  - Working norm: pre-ship, run a 10-minute "who critiques this thinker in durable artifact" search; surface ≥1 critic via `edge_type: critiques` when one exists.
 
 ### §9 Further In
 
@@ -128,6 +157,51 @@ For thinkers with book-length treatments. Chapters live in a separate `longReadC
 **Chapter frontmatter:** `thinker_slug` (kebab-case, joins to the thinker), `chapter_number` (non-negative integer; 0 for prefaces / introductions), `title`, `summary` (optional), `last_updated`.
 
 **Rationale for two-collection design (2026-05-25):** keeping the chapter list in one place (the chapter collection, not the thinker frontmatter) prevents drift between the listing and the actual chapter files — adding a new chapter is one new markdown file, no thinker-frontmatter edit needed, and the build catches missing chapters via `getStaticPaths` instead of producing broken links.
+
+### §11 Live Edge (optional, v1.2 — Q3 lock)
+
+The current-era surface for alive-active thinkers whose continued production needs a home that doesn't pollute curated `body_of_work[]` or stretch `further_in.if_you_want_breadth`. Examples: Fowler post-2015 (Refactoring 2e, Data Mesh hosting, Exploring Gen AI memo series, Tech Radar); Komoroske post-2018 ongoing essays; Dalio post-2017 *Changing World Order*; Saxe-class active LLM-security research.
+
+**Opt-in via frontmatter flag.** Defaults OFF. Curator opts in per-thinker; the section only renders when explicitly enabled. No phantom-empty rendering.
+
+**Frontmatter:**
+
+```yaml
+live_edge_visible: boolean           # default false; curator opts in per-thinker
+live_edge:                            # only present when live_edge_visible: true
+  current_focus: string              # one editorial sentence, present-continuous
+  summary: string                    # prose paragraph, Camila voice, present-continuous tense,
+                                     # names specific work-objects (titles, dates, co-authors); 80–180 words
+  recent_work:                       # optional; only when ≥3 artifacts cluster naturally
+    - title: string
+      year: number
+      kind: string                   # book | essay | talk | series | tool | other
+      with: string                   # optional co-author
+      note: string                   # optional 1-sentence editorial annotation
+  last_observed: YYYY-MM-DD          # MANDATORY when live_edge_visible: true
+```
+
+**Validator rules:**
+- `live_edge_visible: true` requires `status: alive-active` (else build error).
+- `live_edge_visible: true` requires `live_edge.summary` AND `live_edge.last_observed` (else build error).
+- `live_edge.recent_work` is optional; each entry requires `title`, `year`, `kind`.
+- **No `frame_ref` / `frame_id` / link-to-Frame-node fields permitted inside `live_edge`** (validator rejects). Emerging frames may be *mentioned* in prose; they cannot *link* to Frame nodes until those Frames clear the Casey gate. Protects Discipline Gate 2 (Frame-level attribution honesty).
+
+**Render contract:**
+1. Section heading: **Live Edge** (or Spanish-bilingual equivalent if/when the Distillery adopts bilingual section labels).
+2. One-line subtitle: `Last surveyed {last_observed} · {N} days ago` — greyed / de-emphasized when N > 90.
+3. Body: prose paragraph in Camila voice, **present-continuous tense** (not retrospective — same editorial voice as the rest of the page, with tense shifted). Names specific work-objects (titles, dates, co-authors) inline.
+4. Optional: compact `recent_work` inline list (NOT a dated bullet column) — title + year + kind + inline note as aside.
+
+**Render-time behavior:**
+- `live_edge_visible: false` → section does not render. No phantom empty.
+- `live_edge_visible: true` + fresh (`last_observed` within 90 days) → full render, normal styling.
+- `live_edge_visible: true` + stale (`last_observed` > 90 days) → render with greyed-out subtitle + "refresh pending" badge.
+- `live_edge_visible: true` + missing required fields → build fails (validator rejects).
+
+**Maintenance cadence (Q3 lock).** Refresh rides the weekly discovery pass — no separate live-edge cadence. For each thinker with `live_edge_visible: true`, the discovery pass asks: "Has anything new surfaced in the last 90 days?" Yes → update `summary` + `recent_work[]` as needed; bump `last_observed`. No → bump `last_observed` only (signal: still-surveyed, nothing new). 90+ days without a bump → render shows visible-staleness automatically.
+
+**Working norm:** `live_edge.summary` prose is Camila writing-partner lane — present-continuous, hedged where uncertain, names specific work. This entry lives in `feedback_writing_partner_per_field.md`. Schema affords the slot; norms govern the voice.
 
 ---
 
@@ -228,6 +302,16 @@ Required v1 artifact. Treated as a real writing piece, not boilerplate.
 - **Anti-4:** Schema must NOT introduce new node types per `thinker_type` value. New types add property shapes and optional edges only. (Discipline Gate 1.)
 - **Anti-5 (Q5 lock):** Schema must NOT push the IP/attribution explanation into a per-page colophon. The About page does that work once; every thinker page footer links to it.
 - **Anti-6:** Schema must NOT pretend a thinker is the sole originator of frames that emerged from a team or movement. `attribution_kind: distributed` + `co_originators[]` are required for those cases. (Marcus's invariant from Council.)
+
+**v1.2 anti-criteria (Q1–Q5 schema bump locks):**
+
+- **Anti-16 (Q4 lock — hosted-vs-authored firewall).** Schema and renderer must NOT collapse the host-vs-author distinction. `body_of_work[]` items with `attribution_kind: hosted` MUST render with the host-attribution label and `hosted_on_url` link, sourced from the §8 `hosts` edge payload. Build pipeline fails if a `hosted` item renders without the label. Decorative-only attribution (CSS-class-only differentiation) is explicitly insufficient — the structural separation lives in the schema, not the stylesheet.
+- **Anti-17 (Q3 lock — phantom Live Edge).** Schema must NOT render the §11 Live Edge section when `live_edge_visible: false` or when the `live_edge` block is absent. No phantom-empty headers. Opt-in is the curator's affirmative act; default is silence.
+- **Anti-18 (Q3 lock — stale Live Edge masquerading as current).** Schema must NOT render a populated Live Edge section without visible-staleness degradation when `last_observed` is older than 90 days. Honesty about freshness is part of the section's contract — if the page can't show currency, it must show that it can't.
+- **Anti-19 (Q3 lock — Live Edge as Frame-attribution backdoor).** Schema must NOT accept `frame_ref` / `frame_id` / Frame-node-link fields inside `live_edge`. Emerging frames are *mentioned* in prose; they cannot *link* to Frame nodes until those Frames clear the Casey gate. Validator rejects at build.
+- **Anti-20 (Q1 lock — silent foreground/deep mismatch).** Schema must NOT allow a thinker page to ship with `named_frames[]` where the deep-tier disclosure count does not match the actual deep-tier entry count. Build-time validation enforces honest count. If the page says "12 more frames in the lattice," the lattice MUST contain 12 more frames.
+- **Anti-21 (Q2 lock — silent site-internal omission).** Schema must NOT permit a thinker page to ship with an `adjacent_thinkers[]` derived_from edge to a published-on-site thinker that is silently absent from §8. Build emits a warning when (a) a frontmatter `derived_from` or named-frame antecedent points to a slug that resolves to a published thinker page AND (b) that slug is not present in `adjacent_thinkers[]`.
+- **Anti-22 (Q5 lock — critic register collapse).** Schema must NOT permit `edge_type: critiques` edge_labels in Mode C (Julie voice / first-person editorial). Critic edge_labels are Mode B (Camila-handle voice) — editorial commentary on the critic's argument, NOT Julie's analytical synthesis. The §7 `limits[]` lane remains Julie's; §8 critic edges are Camila's.
 
 ---
 
@@ -453,3 +537,32 @@ Each frame renders with `also_held_by:` cluster underneath at build time. Exampl
 ## v1.1 — Long-read tier wired (2026-05-25)
 
 `chapter_list[]` removed from the thinker `long_read` frontmatter block. Chapters now live in a separate `longReadChapters` Content Collection; the per-thinker chapter list is computed at build time. Cross-references rebuilt: routes added at `/thinkers/[slug]/long-read` (index) and `/thinkers/[slug]/long-read/[chapter]`. First two chapters shipped: Komoroske Part 1 — The Diagnosis; Fowler Chapter 0 — Preface.
+
+## v1.2 — Fowler-audit schema bumps (2026-05-27, Q1+Q2+Q3+Q4+Q5 locks)
+
+Iter-7 system-level Q-block resolution. Three Council passes (Q1+Q2+Q5 clustered; Q3 standalone; Q4 standalone) landed five locked decisions, applied as schema bumps below. Transcripts persisted at `~/.claude/PAI/MEMORY/COUNCIL/thinker-distillery-q{1-q2-q5-clustered,q3-live-edge,q4-hosted-canon}-20260527-*/transcript.md`.
+
+| Q | Lock | Schema delta |
+|---|------|--------------|
+| Q1 | Frame surfacing depth — tiered rendering, uniform render contract | ADD `named_frames[].render_tier: foreground \| deep` (default `foreground`). Cap 8 foreground / 6 typical, no per-`thinker_type` scaling. Deep entries collapse to single-line disclosure; build verifies count. |
+| Q2 | Adjacency reach + site-internal auto-surface | ADD `adjacent_thinkers[].render_tier: foreground \| deep` (default `foreground`); ADD `adjacent_thinkers[].auto_surfaced: boolean` (build-computed); ADD `adjacent_thinkers[].editorial_demote_to: secondary` (optional). Site-internal target_slug resolution auto-promotes to `foreground + primary`. Cap 5 typical / up to 7 with site-internal exemption. Build warning on silent omission. |
+| Q3 | Live Edge — opt-in section for alive-active current-era work | NEW §11 Live Edge section. ADD `live_edge_visible: boolean` (default false); ADD `live_edge: { current_focus, summary, recent_work[], last_observed }` block. Validator: requires `status: alive-active`; requires `summary` + `last_observed`; rejects `frame_ref` fields. Render: prose-first, present-continuous, visible-staleness at 90 days. Maintenance rides weekly discovery pass. |
+| Q4 | Hosted canon — editor-platform face | EXTEND `adjacent_thinkers[].edge_type` enum: add `hosts`. ADD optional `adjacent_thinkers[].hosted_items[]` (conditional on `edge_type: hosts`; subfields `title`, `kind`, `year`, `hosted_on_url`, `editorial_framing`). ADD optional `body_of_work[].attribution_kind: authored \| hosted` — `hosted` items are projected from §8 `hosts` edges at build time. Build-pipeline test fails any `hosted` §5 render without host-attribution label. |
+| Q5 | Named critics — three-tier gating via existing `critiques` edge | NO new schema fields. ADD build-computed `adjacent_thinkers[].critic_has_distillery_page: boolean`. Three-tier rendering (primary / secondary / omit). Edge_labels in Mode B (Camila-handle voice). Casey-test gate: "has Julie earned the standing to name this critic in this venue." Working norm: 10-minute critic search per thinker pre-ship. |
+
+**Net schema cost across all five locks:** 6 property additions (2 on `named_frames[]`, 3 on `adjacent_thinkers[]`, 1 on `body_of_work[]`) + 1 new section (§11 Live Edge) + 1 enum extension (`hosts` joins `edge_type`) + 2 frontmatter additions (`live_edge_visible`, `live_edge` block) + 7 new anti-criteria (Anti-16 through Anti-22). **Zero new node types.** Discipline Gate 1 (node-type uniformity) preserved.
+
+**Backfill protocol for existing 7 thinkers (catalog only — done as separate task, NOT inline with schema bump):**
+- All current `named_frames[]` entries default to `render_tier: foreground` — no breaking change. Audit per-thinker for entries to promote to `deep` (Fowler is the dominant case; Komoroske ch01 references additional non-foreground frames that may move).
+- All current `adjacent_thinkers[]` entries default to `render_tier: foreground` — no breaking change. Build will emit auto-surface warnings; resolve each by either adding the missing adjacency, demoting via `editorial_demote_to`, or leaving (warning is informational, not blocking at first).
+- Brooks ↔ Fowler ↔ Komoroske mutual edges are the highest-priority backfill (currently silently missing per the audit that triggered Q2).
+- All thinkers default to `live_edge_visible: false` — no breaking change. Curator opts in per-thinker; Fowler, Saxe, Appleton, Forsgren, Fournier are the obvious starting candidates when those thinker pages reach `live_edge`-worthy state.
+- `body_of_work[]` entries default to `attribution_kind: authored` (implicit) — no breaking change. Fowler's hosted canon (Dehghani / Böckeler / Lewis / Sadalage / Kua) is the v1.2 application target. Build the §8 `hosts` edges first; §5 hosted entries project from them.
+- `edge_type: critiques` entries on existing 7 thinkers: pre-ship critic search per thinker as part of backfill iteration. Most thinkers have ≥1 durable critic; this raises hagiography-drift floor.
+
+**Application order:**
+1. Schema bumps land (THIS COMMIT).
+2. ISA Save Point + Decisions + Changelog updated (next commit).
+3. Build verification (`bun run build`) confirms schema additions are non-breaking.
+4. Backfill iteration scheduled as separate work (NOT this session): per-thinker pass through the 7 live thinkers, surface auto-surface warnings, populate Brooks ↔ Fowler ↔ Komoroske mutual edges, optionally enable Live Edge on Fowler, populate Fowler hosted canon.
+5. Loop activation: 5 candidate thinkers (Saxe / Forsgren / Fournier / Appleton / Hudson) go through inclusion Council under the v1.2 schema.

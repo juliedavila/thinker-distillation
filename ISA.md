@@ -1,9 +1,9 @@
 ---
 project: thinker-distillation
-effort: E4
-phase: complete
-progress: 462/463
-iteration: iter-5-steps-4-7-2026-05-26
+effort: E3
+phase: execute
+progress: 469/505
+iteration: iter-6-gitlab-pages-migration-2026-05-26
 mode: project
 started: 2026-05-25
 updated: 2026-05-26
@@ -498,6 +498,69 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - Step 9: Concept-page holder cards with portrait thumbnails (§3.5)
 - Step 10: Verify + full audit re-run against rubric
 
+### Iter-6 — GitLab Pages Migration (2026-05-26)
+
+*Production site has been 503'd since Netlify free-tier credits depleted earlier on 2026-05-26. Migration to GitLab Pages using the Hub's verified `.gitlab-ci.yml` pattern, with Julie's locked decisions: Private + "Only project members" access, slug `thinker-distillery`, no custom domain, header-loss accepted (Base.astro:19 already ships meta robots noindex). Reference plan: `~/Camila/thinker-distillation/gitlab-migration-plan.md`.*
+
+**Pre-migration baseline (5 ISCs):**
+- [x] ISC-465: Working tree clean — `git status --short` returns empty before any edits begin
+- [x] ISC-466: SSH to gitlab.com works — `ssh -T git@gitlab.com` returns "Welcome to GitLab, @juliedavila!"
+- [x] ISC-467: glab CLI authenticated as juliedavila — `glab auth status` confirms token + SSH protocol
+- [x] ISC-468: Baseline `bun run build` succeeds before config edits — "15 page(s) built in 1.02s" exit 0 (THINK phase)
+- [x] ISC-469: Base.astro line 19 ships `<meta name="robots" content="noindex,nofollow" />` — `rg` confirms; noindex posture already at meta level, header-loss cosmetic
+
+**Phase A — local file edits (7 ISCs):**
+- [x] ISC-470: `.gitlab-ci.yml` created at project root (Hub pattern adapted with Distillery comment header; rules at job-level not artifacts-nested per THINK correction)
+- [x] ISC-471: `.gitlab-ci.yml` uses `image: oven/bun:1` (line 8) — no Node install needed
+- [x] ISC-472: `.gitlab-ci.yml` defines `pages` job with `if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH` rule at job-level (lines 23-24)
+- [x] ISC-473: `.gitlab-ci.yml` script: `bun install --frozen-lockfile` (16), `bun run build` (17), `rm -rf public` (18), `mv dist public` (19); artifact `paths: [public]` (21-22)
+- [x] ISC-474: `astro.config.mjs:6` `site:` set to `https://juliedavila.gitlab.io/thinker-distillery`
+- [x] ISC-475: `astro.config.mjs:7-8` has `output: 'static'` and `trailingSlash: 'always'`
+- [x] ISC-476: `netlify.toml` deleted — `ls netlify.toml` returns "No such file or directory" exit 1
+
+**Phase A verification (2 ISCs):**
+- [x] ISC-477: `bun run build` succeeds with new `astro.config.mjs` — "15 page(s) built in 1.13s" exit 0
+- [x] ISC-478: `dist/` contains roster `index.html`, 7 thinker pages, `concepts/{adaptive-capacity,coordination-headwind,index.html}`, long-read chapter, favicon.ico+svg, `_astro/` hashed assets
+
+**Phase B — Camila creates GitLab project via glab (2 ISCs):**
+- [ ] ISC-479: GitLab project `juliedavila/thinker-distillery` created with `--visibility private` via `glab repo create`
+- [ ] ISC-480: Pages access set to "Only project members" via `glab api PUT projects/:id --field pages_access_level=private`
+
+**Phase C — git remote pivot + push (7 ISCs):**
+- [ ] ISC-481: `origin` renamed to `github` (preserved as passive backup mirror, not deleted)
+- [ ] ISC-482: `origin` re-added pointing at `git@gitlab.com:juliedavila/thinker-distillery.git`
+- [ ] ISC-483: `git remote -v` shows both `github` (GitHub HTTPS) and `origin` (GitLab SSH)
+- [ ] ISC-484: Migration commit created — adds `.gitlab-ci.yml` + astro.config.mjs, deletes netlify.toml
+- [ ] ISC-485: Commit message follows Conventional Commits — `chore(deploy): migrate to GitLab Pages`
+- [ ] ISC-486: `git push -u origin main` succeeds; remote tracking set
+- [ ] ISC-487: Pipeline appears at `gitlab.com/juliedavila/thinker-distillery/-/pipelines` within 60s of push
+
+**Phase D — pipeline + live verification (10 ISCs):**
+- [ ] ISC-488: Pipeline run completes with status `success` — `glab ci view` or `glab ci status`
+- [ ] ISC-489: Pages URL `https://juliedavila.gitlab.io/thinker-distillery/` resolves — `curl -I` returns 200 (or 302→login if Private wall hits)
+- [ ] ISC-490: `/` (roster) returns 200 with rendered HTML containing "Thinker Distillation" site name
+- [ ] ISC-491: `/thinkers/alex-komoroske/` returns 200 with hero monogram + 30-second-take
+- [ ] ISC-492: `/thinkers/martin-fowler/` returns 200
+- [ ] ISC-493: `/concepts/coordination-headwind/` returns 200 with §A Genealogy + §B Holders rendered
+- [ ] ISC-494: `/favicon.ico` returns 200 (asset round-tripped through build)
+- [ ] ISC-495: `_astro/` hashed assets load — Interceptor Network tab shows zero 404s
+- [ ] ISC-496: `<meta name="robots" content="noindex,nofollow" />` visible in rendered HTML via `curl … | grep robots`
+- [ ] ISC-497: Interceptor screenshot of homepage post-deploy captured at `iter6-screenshots/idx-gitlab-pages.png`
+
+**Anti-criteria (4 ISCs):**
+- [ ] ISC-498: Anti: site MUST NOT be Public — `glab api projects/:id` returns `visibility: private` AND `pages_access_level: private`
+- [ ] ISC-499: Anti: GitHub remote MUST NOT be deleted — `git remote -v` still shows `github` after migration
+- [ ] ISC-500: Anti: `netlify.toml` MUST NOT remain in repo — `git ls-files | grep netlify.toml` returns empty
+- [ ] ISC-501: Anti: no secrets in `.gitlab-ci.yml` — file contains only image, stages, script, artifacts, rules; no API tokens, env vars, or hardcoded credentials
+
+**Antecedent (1 ISC):**
+- [x] ISC-502: Antecedent: Julie has gitlab.com `juliedavila` account access — verified in OBSERVE via `ssh -T` Welcome reply + `glab auth status`
+
+**Documentation (3 ISCs):**
+- [ ] ISC-503: ISA `## Save Point` block updated — iter-6 status, new live URL, GitHub-as-mirror note, Netlify 503 resolved
+- [ ] ISC-504: `~/.claude/PAI/USER/Projects.md` Thinker Distillation Site entry updated — new live URL replaces 503'd Netlify URL, F-OPS move closed
+- [ ] ISC-505: `gitlab-migration-plan.md` annotated as closed at top with link to ISC range + iter-6 block
+
 ### UI Audit iteration — Iteration 3 (2026-05-26)
 
 *Audit pass. Output: `~/Camila/thinker-distillation/audit-ui-2026-05-26.md`. Scores current Distillery against the 30-criterion rubric (C1-C23 + AC1-AC7) from Iter-2.*
@@ -858,8 +921,22 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 | concept-content (coordination-headwind) | ISC-58..62, ISC-67 | concept-schema | yes (per-concept future) |
 | concept-anti-invariants | ISC-63..66 | concept-page-template | continuous |
 | schema-changelog-sync | ISC-68..70 | concept-deploy | no |
+| gitlab-pages-config | ISC-470..476 | iter-5 complete | yes (3 file ops independent) |
+| gitlab-pages-verify-local | ISC-477..478 | gitlab-pages-config | no |
+| gitlab-project-create | ISC-479..480 | — | yes with config (independent) |
+| gitlab-remote-pivot | ISC-481..483 | gitlab-project-create | no |
+| gitlab-push-and-pipeline | ISC-484..487 | gitlab-remote-pivot + gitlab-pages-verify-local | no |
+| gitlab-pages-verify-live | ISC-488..497 | gitlab-push-and-pipeline | yes (10 curl probes) |
+| gitlab-anti-verify | ISC-498..501 | gitlab-pages-verify-live | yes (4 independent assertions) |
+| gitlab-doc-sync | ISC-503..505 | all above | yes (3 doc files) |
 
 ## Decisions
+
+- **2026-05-26 — Iter-6 (GitLab Pages migration) kicked off via classifier ALGORITHM E3.** Julie's 4 locked decisions (from `AskUserQuestion` round): Private + "Only project members" + slug `thinker-distillery` + no custom domain + accept-loss on Netlify headers (Base.astro:19 already ships meta robots noindex — header-loss is genuinely cosmetic). Runbook at `gitlab-migration-plan.md` owns sequencing; this iteration executes Steps 1-9 of that plan, deferring Open Questions 6 (Netlify cleanup) and 7 (GitHub full-remove vs mirror) — github remote retained as passive backup mirror per Step 6's renaming strategy.
+- **2026-05-26 — CRITICAL CORRECTION caught in THINK: runbook §1.1 quoted Hub's `.gitlab-ci.yml` with `rules:` NESTED inside `artifacts:`. The actual Hub file at `~/Camila/hub/.gitlab-ci.yml:23-24` has `rules:` at JOB-level (sibling to `artifacts:`).** GitLab CI YAML schema would reject the runbook's quoted structure — `artifacts:` doesn't accept a `rules:` sub-key for run-gating. Using the actual Hub file structure (rules at job-level), not the runbook's misquote. This catch prevents a first-pipeline failure that would have read ambiguously as "Bun/Astro 6 compat" (the noisy assumption) when it was actually a flat YAML schema error.
+- **2026-05-26 — Delegation under-floor at E3 with show-your-math.** No Forge/Anvil/Cato per `feedback_avoid_kimi_codex.md` standing rule. No Engineer agent: migration is 3 mechanical file edits + git remote pivot + curl verification — single-author tractable in <10min, agent spawn-overhead exceeds value. No Council: not exec-prose iteration. Delegation count = 0 (E3 soft floor ≥2). What un-selected delegation would have done: Engineer would have parallelized file edits across worktrees but the files are independent already (parallel tool block achieves same), Forge would have lint-reviewed YAML but `glab ci validate` does this in CI cheaper, Cato would have cross-vendor-audited the runbook against actual GitLab docs but THINK phase already caught the load-bearing schema bug. Thinking floor MET at E3: 5 capabilities (FeedbackMemoryConsult, IterativeDepth, SystemsThinking, Advisor, ReReadCheck) ≥ 4 floor.
+- **2026-05-26 — Container choice: `oven/bun:1` first, fallback to `node:22 + npm i -g bun` if Astro 6 incompat surfaces.** Hub uses `oven/bun:1` on Astro 4.x; Distillery is Astro 6.x with engines `node>=22.12.0`. Bun 1.1+ ships Node-compat layer that should satisfy this. Local baseline build (Astro 6 + Bun 1.x stack) passes in 1.02s — strong signal the container will work. Premortem F2 names the fallback path if first pipeline fails on Bun-side incompat.
+- **2026-05-26 — Camila creates GitLab project via `glab` programmatically, not by handing off to Julie's browser.** Original runbook Step 2 assumed manual UI. glab is authenticated; `glab repo create thinker-distillery --private` + `glab api PUT projects/:id --field pages_access_level=private` collapses 5 manual clicks to 2 CLI commands. Locked decisions (Private, slug, no domain) make the manual confirmation step redundant. Falls back to Julie-clicks-one-button if either glab call fails.
 
 - **2026-05-26 — Iter-5 steps 4-7 shipped in one push (keyboard verify + portrait infra + long-read sidebar).** Three code commits + advisor polish:
   - `4fda77d` — portrait/monogram infrastructure: optional `portrait` field on thinker schema, `Monogram.astro` component (Cardo initials in azul on paper-warm tile, size prop 80/160), index grid layout with portrait/monogram pairing, thinker hero grid with mobile 600px breakpoint. All 7 thinkers ship with monograms; real photos as separate Camila-scouts task. Resolves audit F4 (P1) and F8 catalog-vs-gallery.

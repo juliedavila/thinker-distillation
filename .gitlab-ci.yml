@@ -1,0 +1,24 @@
+# Thinker Distillery — GitLab Pages deploy pipeline
+#
+# Builds the Astro site and publishes the `dist/` output as GitLab Pages.
+# Access control is configured in the GitLab project Settings → Pages
+# ("Only project members") — the pipeline itself doesn't gate access;
+# GitLab serves Pages behind the project visibility rules.
+
+image: oven/bun:1
+
+stages:
+  - deploy
+
+pages:
+  stage: deploy
+  script:
+    - bun install --frozen-lockfile
+    - bun run build
+    - rm -rf public
+    - mv dist public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

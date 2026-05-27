@@ -11,25 +11,27 @@ updated: 2026-05-27
 
 ## Save Point — 2026-05-27 (cold-start resume here)
 
-**Status:** Iter-1 v1 launch · Iter-2 v2 concept-page (first-shipped) · Iter-3 v2 audit-prose · Iter-4 UI-audit arc (research → audit → design-spec all closed) · Iter-5 steps 1-7 of 10 shipped 2026-05-26 (8 commits) · **Iter-6 GitLab Pages migration COMPLETE 2026-05-27** — site is live again at `https://thinker-distillery-97a9ca.gitlab.io/` (Private + pages_access_level=private, project members only). Iter-5 steps 8-10 still deferred (step 8 SVG genealogy → v4; steps 9-10 wait on portraits). Production is restored; Netlify is dead but not yet cleaned up (Open Question 6 from migration plan). · **Fowler-fold + system-level open questions logged 2026-05-27 PM** — standalone `ways-of-fowler/` project retired and folded into the distillery (Fowler thinker page + Preface already shipped; long-read working notes migrated 2026-05-27 to `~/Camila/thinker-distillation/_working/martin-fowler/` per Iter-7 step 1 Q6 ratification). Audit surfaced six schema/curation questions affecting every active thinker (frame surfacing depth, adjacency reach + site-internal rule, Live Edge strand, hosted-canon / editor-platform face, named critics from limits to debate edges, long-read working-notes location convention) — logged in this ISA as `## System-Level Open Questions Surfaced 2026-05-27 (Fowler Audit)` for iter-7/iter-8 to absorb. Projects.md updated to fold the standalone "Ways of Fowler" entry into the distillery entry.
+**Status:** Iter-1 v1 launch · Iter-2 v2 concept-page (first-shipped) · Iter-3 v2 audit-prose · Iter-4 UI-audit arc (research → audit → design-spec all closed) · Iter-5 steps 1-7 of 10 shipped 2026-05-26 (8 commits) · **Iter-6 GitLab Pages migration COMPLETE 2026-05-27** — site live at `https://thinker-distillery-97a9ca.gitlab.io/` (Private + pages_access_level=private, project members only). · **Iter-7 step 1 COMPLETE 2026-05-27** — Q6 from Fowler audit ratified; long-read working-notes convention is now `~/Camila/thinker-distillation/_working/{thinker-slug}/` (Fowler migrated; Komoroske archived at `~/Camila/_archive/ways-of-komoroske-merged-2026-05-27/`). SCHEMA.md updated, Netlify reference scrubbed in same pass per `feedback_no_netlify.md`. Commit `599d86e` + pipeline `#5` green. Iter-5 steps 8-10 still deferred (step 8 SVG genealogy → v4; steps 9-10 wait on portraits). **5 Fowler-audit Qs remain on iter-7/iter-8 backlog** (Q1 frame depth, Q2 adjacency reach, Q3 Live Edge strand, Q4 hosted canon, Q5 named critics — Q6 done). Netlify deploy still dead but not cleaned up (OQ 6 from migration plan).
 
 **One-paragraph orientation for cold-start:** This project is the Thinker Distillery — per-practitioner editorial readings of practitioners worth metabolizing (Komoroske, Fowler, Brooks, Allspaw, Woods, Dekker, Dalio currently live), with a v2 concept-page surface that derives cross-thinker holders from thinker frontmatter as the single source of truth. The site lives at `~/Camila/thinker-distillation/` and is now serving from **GitLab Pages at `https://thinker-distillery-97a9ca.gitlab.io/`** (private project `juliedavila/thinker-distillery`, `pages_access_level=private`, project members only). GitLab project id 82583198. Netlify deploy `thinkerdistillery.netlify.app` is dead/503 — not yet cleaned up (Open Question 6 from migration plan; safe to leave dead or restore one-page redirect later). GitHub remote retained as `github` (passive backup mirror at github.com/juliedavila/thinker-distillation); GitLab is now the primary at `origin`. On 2026-05-26 we shipped Iter-5 steps 1-7 (Mexican-modernist token layer + typography + three-line chrome + portrait/monogram infrastructure + long-read sidebar + chapter-of-N breadcrumb). On 2026-05-27 we shipped Iter-6 (GitLab Pages migration: `.gitlab-ci.yml` from Hub pattern, astro.config.mjs site URL fixed to unique-domain pattern after discovering GitLab's new default, GitLab project created via glab API with Private + pages_access_level=private set at create, netlify.toml deleted). Two pipelines both green; site rendering exactly as it did on Netlify (chrome + 7 monograms + thinker pages + concepts). Tagline "Thinking through the shoulders of giants" still shipped as Julie's scaffolded slot. Real portraits + glossary entries are Julie-owned content surfaces waiting on her.
 
 **What to read first (in order):**
 1. This Save Point block (you're already here) — **Next iteration on resume** below names the load-bearing moves
-2. **This ISA's `## System-Level Open Questions Surfaced 2026-05-27 (Fowler Audit)` section** (right after this Save Point, before `## Problem`) — six schema/curation questions that are iter-7/iter-8 forcing functions; read this BEFORE iterating on any thinker page so per-thinker patches don't get applied against still-open system decisions
-3. This ISA's `### Iter-6 — GitLab Pages Migration (2026-05-26)` block (in `## Criteria`) — previous iteration, 41/41 ISCs closed; commits `f0cf9c0` (main migration) + `29eb05f` (site URL fix)
-3. `~/Camila/thinker-distillation/iter6-screenshots/idx-gitlab-pages.png` — visual proof: homepage rendering live on GitLab Pages, 7 monograms + Mexican-modernist chrome intact
-4. `~/Camila/thinker-distillation/iter5-screenshots/` — Iter-5 visual evidence preserved:
+2. **This ISA's `## System-Level Open Questions Surfaced 2026-05-27 (Fowler Audit)` section** (right after this Save Point, before `## Problem`) — Q6 ✅ RESOLVED inline; 5 remaining Qs are iter-7/iter-8 forcing functions. Read this BEFORE iterating on any thinker page so per-thinker patches don't get applied against still-open system decisions.
+3. This ISA's `### Iter-7 step 1 — Q6 working-notes location convention ratified (2026-05-27)` block (in `## Criteria`) — most recent iteration, 23/23 ISCs closed; commits `599d86e` (migration + path-ref updates) + `fdf8c25` (ISC-524 mark)
+4. This ISA's `### Iter-6 — GitLab Pages Migration (2026-05-26)` block — previous iteration, 41/41 ISCs closed; commits `f0cf9c0` (main migration) + `29eb05f` (site URL fix) + `c5c5c1b` (docs) + `48fb968` (Changelog C/R/L)
+5. `~/Camila/thinker-distillation/iter6-screenshots/idx-gitlab-pages.png` — visual proof: homepage rendering live on GitLab Pages, 7 monograms + Mexican-modernist chrome intact
+6. `~/Camila/thinker-distillation/iter5-screenshots/` — Iter-5 visual evidence preserved:
    - `idx-with-monograms.png` — gallery-feel index with 7 azul monograms
    - `komoroske-with-monogram.png` — thinker hero with portrait/monogram pairing
    - `longread-ch01-after.png` — long-read chapter with breadcrumb + chapter-of-N eyebrow + Cardo h2 azul
    - `concept-after.png` — concept page after step 1-3 chrome (coordination-headwind)
    - `keyboard-focus-test.png` — skip-link Tab path verified
-5. `~/Camila/thinker-distillation/design-spec-2026-05-26.md` — §8 implementation order (10 steps; 1-7 done, 8 deferred to v4, 9-10 wait for portraits), §10 the 14 locked decisions
-6. `~/Camila/thinker-distillation/gitlab-migration-plan.md` — annotated CLOSED 2026-05-27; OQ 6 (Netlify cleanup) + OQ 7 (GitHub full-remove) still open follow-ups
-7. `~/Camila/thinker-distillation/audit-ui-2026-05-26.md` — only if you need to reverify which audit findings the current commits resolved
-8. This ISA's `## Decisions` and `## Changelog` sections, newest-first — every refinement of working norms (writing-partner sub-cases, monogram-as-placeholder grammar, alias-then-sweep migration pattern, glab-API-replaces-manual-UI pattern, GitLab unique-domain default) is logged here
+7. `~/Camila/thinker-distillation/_working/martin-fowler/` — Fowler long-read working notes post-migration (PLAN, CORPUS, CONCEPT_LATTICE, ISA, PREFACE)
+8. `~/Camila/thinker-distillation/design-spec-2026-05-26.md` — §8 implementation order (10 steps; 1-7 done, 8 deferred to v4, 9-10 wait for portraits), §10 the 14 locked decisions
+9. `~/Camila/thinker-distillation/gitlab-migration-plan.md` — annotated CLOSED 2026-05-27; OQ 6 (Netlify cleanup) + OQ 7 (GitHub full-remove) still open follow-ups
+10. `~/Camila/thinker-distillation/audit-ui-2026-05-26.md` — only if you need to reverify which audit findings the current commits resolved
+11. This ISA's `## Decisions` and `## Changelog` sections, newest-first — every refinement of working norms (writing-partner sub-cases, monogram-as-placeholder grammar, alias-then-sweep migration pattern, glab-API-replaces-manual-UI pattern, GitLab unique-domain default, workspace-cohesive working-notes convention) is logged here
 
 **14 decisions locked 2026-05-26 (full table in design-spec §10):**
 
@@ -47,14 +49,14 @@ Author picks:
 **Carve-outs preserved:** C23 bilingual chrome OUT for Distillery · AC10 `julie_reading` Camila never authors · `working_uses` carve-out (Camila auto-records joint work) · AC7 anti-essentialism guard
 
 **Next iteration on resume:**
-- **System-level open questions from Fowler audit (2026-05-27) — read full block in `## System-Level Open Questions` section before patching any thinker page:**
-  1. Frame surfacing depth per thinker (cap rule + `thinker_type` scaling)
-  2. Adjacency reach + site-internal adjacency auto-surfacing rule (Brooks ↔ Fowler ↔ Komoroske)
-  3. Live Edge / post-publication-cutoff strand (schema bump candidate: `live_edge:` block)
-  4. Hosted canon / editor-platform face (schema bump candidate: `hosted_work[]` block, or `attribution_kind: hosted` flag)
-  5. Named critics: from `limits` bullets to `edge_type: critiques` adjacencies (couples to Casey-test gate)
-  6. Long-read working-notes location convention (`~/Camila/ways-of-{slug}/` flat vs `_working/{slug}/` cohesive)
-  - Each one earns a Council or Advisor pass before locking. None are blocking the current site state.
+- **System-level open questions from Fowler audit (2026-05-27) — read full block in `## System-Level Open Questions` section before patching any thinker page. 5 of 6 remain; pick one to drive:**
+  1. **Q1 Frame surfacing depth** per thinker (cap rule + `thinker_type` scaling) — affects every render
+  2. **Q2 Adjacency reach** + site-internal adjacency auto-surfacing rule (Brooks ↔ Fowler ↔ Komoroske) — affects every render
+  3. **Q3 Live Edge** / post-publication-cutoff strand (schema bump candidate: `live_edge:` block) — affects every alive-active thinker
+  4. **Q4 Hosted canon** / editor-platform face (schema bump candidate: `hosted_work[]` block, or `attribution_kind: hosted` flag) — narrower scope, Fowler-shaped
+  5. **Q5 Named critics**: from `limits` bullets to `edge_type: critiques` adjacencies (couples to Casey-test gate) — coupled to Q2
+  6. ~~Q6 Long-read working-notes location convention~~ ✅ **CLOSED 2026-05-27 (Iter-7 step 1)** — `_working/{thinker-slug}/` ratified
+  - Q1+Q2+Q5 are a coupled "how much per page" cluster — Council pass could batch them. Q3 and Q4 are standalone schema-bump candidates — Advisor pass each. None blocking current site state.
 - **F-OPS Iter-6 follow-ups (Julie's call):**
   - Unique-domain vs namespace URL: site currently serves at `thinker-distillery-97a9ca.gitlab.io` (GitLab's new default). If Julie prefers the cleaner `juliedavila.gitlab.io/thinker-distillery/` namespace pattern, flip Settings → Deploy → Pages → "Use unique domain" off and revert astro.config.mjs site URL. Both reversible.
   - Netlify cleanup (OQ 6 from migration plan): leave dead, delete, or restore a one-page redirect. Recommended: restore minimal redirect for ~30 days, then delete.
@@ -89,7 +91,9 @@ Author picks:
 - Iter-5 visual evidence at `~/Camila/thinker-distillation/iter5-screenshots/` (7 captures across steps 1-7)
 - Code surface that changed this session: `src/styles/global.css`, `src/layouts/Base.astro`, `src/content.config.ts`, `src/components/Monogram.astro` (new), `src/pages/index.astro`, `src/pages/thinkers/[slug].astro`, `src/pages/thinkers/[slug]/long-read/[chapter].astro`, `src/pages/concepts/index.astro` (new)
 - Iter-5 commits on `main`: c938e52 → d5fe642 → 56c8883 → f5ad343 → 544546c → 4fda77d → 1981edc → 408a301 → 313d142 (steps 1-3 in first 5 commits, steps 4-7 in next 4)
-- Screenshot evidence at `~/.claude/jobs/fce49501/audit-screenshots/` (4 desktop captures, will be cleaned up — copy if you want to preserve)
+- Iter-6 commits on `main`: `f0cf9c0` (migration core) → `29eb05f` (site URL fix) → `c5c5c1b` (docs + screenshot) → `48fb968` (Changelog C/R/L closeout)
+- Iter-7 step 1 commits on `main`: `599d86e` (migration + path refs + ISA/SCHEMA/Projects.md) → `fdf8c25` (ISC-524 mark post-pipeline-green)
+- Iter-6 visual evidence at `~/Camila/thinker-distillation/iter6-screenshots/idx-gitlab-pages.png` (2.1MB, live GitLab Pages homepage)
 
 ---
 

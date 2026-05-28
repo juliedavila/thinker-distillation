@@ -251,6 +251,10 @@ body_of_work:
       she frames sample frames, regression analyses, and instrument design in
       a public talk is itself an artifact of her empirical commitment.
 
+# NOTE (2026-05-28): §6 (what_i_take + where_i_extend) is Camila-drafted argument
+# from the iter-8 loop run, style-normalized to the voice spec (two em-dashes recast
+# to periods, no words changed). §6 must read as Julie's first-person voice; it still
+# awaits her authorship and sign-off at the Casey-test gate. Not yet Julie-authored.
 what_i_take: >
   The most useful piece of Forsgren for me as a security-and-engineering
   executive is the empirical regularity that throughput and stability do not

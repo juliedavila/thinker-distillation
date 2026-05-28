@@ -13,6 +13,8 @@ updated: 2026-05-28
 
 > ✅ **DONE 2026-05-28 — pending Julie's Casey-test + merge.** A context-clear happened mid-task; the four approved steps below were then executed on branch `candidate/nicole-forsgren` (commit `d89a0e4`, pushed) and MR #1's description was rewritten. The steps below are kept as the executed record. Nothing left for Camila. **What's left for Julie:** (1) Casey-test the four bylines in MR #1; (2) author or sign off §6 in her own first-person voice (currently Camila-drafted, flagged inline in the page source); (3) merge MR #1 to `main`, then flip ISC-548 and close Issue #2. Result detail in the iter-8 criteria block (ISC-529..548, with a provenance banner) and in the Decisions / Changelog entries dated 2026-05-28.
 >
+> ⏭️ **A SECOND THREAD IS NOW OPEN — see "## THREAD 2" immediately below this blockquote.** Julie reviewed the voice-guideline coverage (2026-05-28) and scoped a follow-on: the Thread-1 rewrite used only 2 of the 7 writing-style files, and the Distillery under-leverages the system (especially `DoctrineRegister.md`). Decision: full reconciliation, Council-gated, captured here for clear/resume. The STEP 1-4 lines below are THREAD 1's executed record (historical).
+>
 > **GIT STATE:** This Save Point is committed on `main`. The Forsgren work + the v1.2 `content.config.ts` additions live on branch **`candidate/nicole-forsgren`** (commit `0691a11`). **First action on resume: `cd ~/Camila/thinker-distillation && git checkout candidate/nicole-forsgren`** — the rewrite happens there. (`main`'s `content.config.ts` is the pre-v1.2 version; that's correct — v1.2 schema lands when MR #1 merges.)
 >
 > **STEP 1 — Read the voice system before touching prose.** Read `~/.claude/PAI/USER/WritingStyle.md` (Hard No list — esp. NO em-dashes; banned words include delve/leverage-verb/navigate-metaphor/operationalize/nuanced/it's-worth-noting/crucially/importantly) and `~/.claude/PAI/USER/AiWritingPatterns.md` (P0/P1/P2 sweep). Baseline check: existing pages have **0 em-dashes** (`grep -o '—' src/content/thinkers/alex-komoroske.md | wc -l` → 0). That IS the Distillery voice spec, currently only implicit.
@@ -26,6 +28,53 @@ updated: 2026-05-28
 > **THEN:** rebuild (`PATH="/opt/homebrew/bin:$PATH" bun run build` → expect 16 pages green), commit on the candidate branch, push (`git push origin candidate/nicole-forsgren`), confirm MR #1 reflects the update. Leave Issue #2 at `camila:ready-for-review` for Julie's re-review. Do NOT merge — Julie merges after Casey-test co-author verification.
 >
 > **AFTER the rewrite ships:** the remaining iter-8 candidates (#1 Saxe, #3 Fournier, #4 Appleton, #5 Hudson) are still queued at `camila:candidate`. Their inclusion Councils + drafts must follow the now-explicit voice spec from the start. Recommended next: #3 Fournier.
+
+---
+
+## THREAD 2 — Voice-guideline reconciliation (NEW — scoped 2026-05-28, NOT started, resume here)
+
+**Why this exists.** The Thread-1 Forsgren prose rewrite consulted only 2 of the 7 writing-style files (`WritingStyle.md` + `AiWritingPatterns.md`) because that's all the Save Point and the `feedback_distillery_prose_voice.md` memory named. Julie flagged the gap. All 7 files were read 2026-05-28. Two findings: (a) even the documented 2-file sweep was incomplete — `AiWritingPatterns.md`'s own detection workflow step 6 says to cross-check `RhetoricalStyle.md §4` and that was skipped; (b) **`DoctrineRegister.md` is the Distillery's missing backbone** — the Distillery IS its §1 "recognition test" made into a website, and it already classifies Komoroske (Mode A) and Fowler (Mode A + Mode B handles) with spine + lineage.
+
+**Decision (Julie, 2026-05-28):** full scope — the safe spec/memory updates AND the DoctrineRegister reconciliation. The reconciliation is a schema bump touching all 8 pages → run it **Council-gated**, like the prior v1.2 Q-block bumps. `feedback_avoid_kimi_codex` applies (Council yes; no Forge/Anvil/Cato unless Julie names them).
+
+**Per-file applicability verdict (for Distillery pages):**
+
+| File | Applies? | Scope |
+|---|---|---|
+| `WritingStyle.md` | ✅ used | all prose mechanics |
+| `AiWritingPatterns.md` | ✅ used | all prose — but its §6 cross-check to RhetoricalStyle §4 was skipped |
+| `RhetoricalStyle.md` | ✅ **missed** | §4 figure guardrails (all editorial prose); §2 honesty + §3 disagreement registers (§7 "where this breaks" + §8 critic edges) |
+| `DoctrineRegister.md` | ✅✅ **missed (headline)** | the Distillery's intellectual backbone — see below |
+| `LongFormCraft.md` | ◐ partial | **long-read tier only** (Komoroske/Fowler chapters), not the compact thinker page |
+| `PersuasionArchitecture.md` | ○ marginal | only §5 Currency-Translation grazes §6 |
+| `PrivateWritingPractice.md` | ✗ N/A | public surface, explicitly out |
+
+**The DoctrineRegister ↔ Distillery alignment (already true, never wired together):**
+- Distillery `thesis` = DoctrineRegister **spine**; `named_frames` = **handles**. §3 says keep them separate — the schema already does.
+- The Distillery **Casey-test IS** DoctrineRegister §3's rule: "where my compression is sharper than the source's register, that's my intellectual product, attribute to me not the source." (Same principle as the §6 camouflage flag added in Thread 1.)
+- Two unreconciled ontologies for the same thing: Distillery `thinker_type` (essay-corpus / book-author / principles-distiller / catalog-builder / mixed) vs. DoctrineRegister `Mode A/B/C`.
+- DoctrineRegister §4 wants a lineage parenthetical in spine prose; Distillery frames carry `co_originators` (structured lineage) but the `thesis` prose names no antecedent inline.
+- DoctrineRegister §5 Tier-1 already has spine + lineage for **Komoroske (Mode A)** and **Fowler (Mode A + B handles)**; §5 Tier-2 table has Meadows etc. Distillery theses should match these or deliberately diverge-with-note.
+
+### WORK BREAKDOWN (resume here)
+
+**Recommended sequence: merge MR #1 (Thread 1) FIRST, then run iter-9 = Part A + Part B on `main` so it operates on the merged v1.2 schema + the Forsgren page. This keeps MR #1 a clean minimal prose-fix. (Alternative: fold Part A onto the candidate branch pre-merge if you'd rather Forsgren ship voice-complete — Julie's call on resume.)**
+
+**Part A — safe updates (reversible, no schema change):**
+1. Expand `/Users/juliedavila/Camila/thinker-distillation/SCHEMA.md` §3 "Editorial Voice & Prose Mechanics" to reference the full applicable set WITH per-file scoping (the verdict table above). It currently names only WritingStyle + AiWritingPatterns.
+2. Broaden the feedback memory `/Users/juliedavila/.claude/projects/-Users-juliedavila-Camila/memory/feedback_distillery_prose_voice.md` to the same full set + scoping.
+3. Re-check `/Users/juliedavila/Camila/thinker-distillation/src/content/thinkers/nicole-forsgren.md` against RhetoricalStyle §4 figure guardrails (tricolon delicately / diacope cut / chiasmus ≤1 per piece / polyptoton OK / parenthetical-for-precision OK). Prelim read: the triads on the page are factual framework enumerations (DORA 4 keys, SPACE 5, DevEx 3), NOT rhetorical tricolons → likely no §4 violation; confirm. Add a DoctrineRegister §4 lineage parenthetical to the `thesis` (lean / Goldratt theory-of-constraints antecedent — `further_in.if_you_want_breadth` already cites Poppendieck/Goldratt). Mechanics + lineage only; do NOT touch the §6 argument (still Julie's per `feedback_writing_partner_per_field`).
+
+**Part B — DoctrineRegister reconciliation (schema bump, Council-gated iter-9):**
+1. **Council pass** (compose 4-6 agents per the topic) to decide: add `doctrine_mode: A | B | C` to thinker frontmatter (field vs. render-affordance) and define its relationship to the existing `thinker_type` (coexist, or does one derive the other?). Seed classifications: Komoroske = A, Fowler = A + B-handles, Forsgren = B, Dalio = B (principles-distiller); Brooks / Allspaw / Woods / Dekker = TBD.
+2. Formalize in SCHEMA: `thesis` = spine / `named_frames` = handles / Casey-test = spine-vs-handle attribution discipline, cross-referencing DoctrineRegister §3. (Mostly documenting what's already structurally true.)
+3. Adopt DoctrineRegister §4 lineage-parenthetical as a per-thinker content norm (thesis / §6 carry ≥1 inheritance marker; structured `co_originators` already do half).
+4. **Backfill all 8 pages:** doctrine_mode + lineage parentheticals + a consistency check of each `thesis` against DoctrineRegister's spine statements (Komoroske/Fowler are Tier-1 there — match or diverge-with-note).
+5. Working norms in effect: `feedback_avoid_kimi_codex` (Council yes, Forge/Anvil/Cato no unless named), `feedback_writing_partner_per_field` (§6 stays Julie's), the now-expanded `feedback_distillery_prose_voice` gate.
+
+**Source-of-truth paths:** writing-style system at `/Users/juliedavila/.claude/PAI/USER/{WritingStyle,AiWritingPatterns,RhetoricalStyle,DoctrineRegister,LongFormCraft,PersuasionArchitecture,PrivateWritingPractice}.md`. For Part B the load-bearing sections are DoctrineRegister §2 (modes), §3 (spine/handle), §4 (lineage), §5 (Tier-1 Komoroske/Fowler spine+lineage).
+
+---
 
 **Status:** Iter-1 v1 launch · Iter-2 v2 concept-page · Iter-3 v2 audit-prose · Iter-4 UI-audit arc · Iter-5 steps 1-7 shipped 2026-05-26 · Iter-6 GitLab Pages migration COMPLETE 2026-05-27 (site live at `https://thinker-distillery-97a9ca.gitlab.io/` — Private + project-members only) · Iter-7 step 1 COMPLETE 2026-05-27 (Q6 working-notes convention) · Iter-7 step 2 COMPLETE 2026-05-27 (Q-block resolved → SCHEMA v1.2; vision-scope expansion to inner-work-for-technical-leaders) · **Iter-7 step 3 COMPLETE 2026-05-27 — Loop-activation infrastructure scaffolded on GitLab. 19 labels live under `camila:*` (12) / `julie:*` (7) ownership convention. iter-8 milestone (iid=1) anchors first loop run. 5 candidate Issues filed (#1 Saxe / #2 Forsgren / #3 Fournier / #4 Appleton / #5 Hudson) each with full case write-up + Council prompt sketch + source-reliability cross-check + workflow checklist. Hudson Issue notes scope is settled — inclusion-quality check only. MR-for-everything workflow ready (`.gitlab-ci.yml` already in place). Discovery-cadence implementation deferred (Julie's call on ScheduleWakeup vs CronCreate vs external — non-blocking since iter-8 has 5 explicit candidates queued).** Iter-5 steps 8-10 still deferred (step 8 SVG genealogy → v4; steps 9-10 wait on portraits). All 6 Fowler-audit Qs closed.
 
@@ -1064,6 +1113,8 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 | gitlab-doc-sync | ISC-503..505 | all above | yes (3 doc files) |
 
 ## Decisions
+
+- **2026-05-28 — decided: full voice-guideline reconciliation (incl. DoctrineRegister), Council-gated, captured in Save Point Thread 2 for clear/resume.** After Thread 1 (Forsgren prose fix) shipped, Julie asked whether the other writing-style guidelines should inform the Distillery; she'd noticed only 2 of 7 files were consulted. Investigation (all 7 read) found `RhetoricalStyle.md §4` was a skipped step of the documented AiWritingPatterns sweep, and `DoctrineRegister.md` is the Distillery's missing backbone — the Distillery is its recognition-test made into a site, and it already classifies Komoroske (Mode A) and Fowler (Mode A+B). Per-file applicability: WritingStyle/AiWritingPatterns ✅ (used), RhetoricalStyle ✅ (missed), DoctrineRegister ✅✅ (missed, headline), LongFormCraft ◐ (long-read tier only), PersuasionArchitecture ○ (marginal, §5), PrivateWritingPractice ✗ (public surface). **Julie's call:** do the FULL reconciliation (not just the safe spec/memory expansion), and run the schema-bump portion Council-gated like the prior v1.2 Q-block. **Deferred to a strong Save Point (Thread 2) rather than executed now, at her request.** Recommended sequence: merge MR #1 first, then iter-9 = Part A (spec/memory/page-recheck) + Part B (doctrine_mode field + spine/handle/Casey-test formalization + lineage-parenthetical norm + 8-page backfill). No ISCs scaffolded yet — the resuming session scaffolds them from the Save Point.
 
 - **2026-05-28 — Iter-8 Forsgren prose + MR rewrite (ALGORITHM E3, continuation).** Classifier returned NATIVE then ALGORITHM E3 as the task became the multi-step Save Point execution; executor honored ALGORITHM E3 (context-override). Mid-iteration recovery after a context-clear: jumped to current work, did not re-run earlier phases. **ISA-state provenance (advisor-corrected):** content work happened on `candidate/nicole-forsgren`, whose ISA is still at iter-7 state. Initial plan was to mark iter-8 "done" on `main`; the advisor flagged that as a state-lie (main would assert criteria-met for work it doesn't hold, behind an unmerged Julie-gated branch). Corrected: iter-8 criteria are recorded on `main` under a loud provenance banner stating they are verified against the candidate branch + remote MR, not main's tree, and stay true on main only post-merge. ISC-548 (anti: not-merged) is the gate. **Show-your-math — ISC soft-floor (20 < E3 32):** bounded continuation of a 565-ISC project running four pre-specified, Julie-approved steps; manufacturing 32 ISCs for a prose cleanup is ceremony, not coverage. **Show-your-math — delegation floor (0 < E3 2):** no Forge/Anvil/Cato per `feedback_avoid_kimi_codex.md` and because this is prose, not code; no Council because this is voice-mechanics *compliance* editing of an already-structured page, not new exec-prose generation, and §6 is Julie's to finalize at the Casey-test gate. Thinking floor MET: 5 capabilities (FeedbackMemoryConsult, ISA, IterativeDepth, Advisor, ReReadCheck) ≥ 4.
 

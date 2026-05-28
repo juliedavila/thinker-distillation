@@ -2,7 +2,7 @@
 project: thinker-distillation
 effort: E3
 phase: in-progress
-progress: 565/565
+progress: 585/585
 iteration: iter-8-forsgren-prose-rewrite-2026-05-28
 mode: project
 started: 2026-05-25
@@ -11,7 +11,7 @@ updated: 2026-05-28
 
 ## Save Point — 2026-05-28 (cold-start resume here)
 
-> ⚠️ **ACTIVE WORK ON RESUME — do this first.** A context-clear happened mid-task. Julie reviewed MR #1 (Nicole Forsgren thinker page) and caught two real problems: (1) the page prose and the MR description violate the writing-style system; (2) the MR description is a jargon-dense state-dump no cold reader can parse. She approved the rewrite. The feedback memory is already saved at `feedback_distillery_prose_voice.md`. **Execute the four steps below.**
+> ✅ **DONE 2026-05-28 — pending Julie's Casey-test + merge.** A context-clear happened mid-task; the four approved steps below were then executed on branch `candidate/nicole-forsgren` (commit `d89a0e4`, pushed) and MR #1's description was rewritten. The steps below are kept as the executed record. Nothing left for Camila. **What's left for Julie:** (1) Casey-test the four bylines in MR #1; (2) author or sign off §6 in her own first-person voice (currently Camila-drafted, flagged inline in the page source); (3) merge MR #1 to `main`, then flip ISC-548 and close Issue #2. Result detail in the iter-8 criteria block (ISC-529..548, with a provenance banner) and in the Decisions / Changelog entries dated 2026-05-28.
 >
 > **GIT STATE:** This Save Point is committed on `main`. The Forsgren work + the v1.2 `content.config.ts` additions live on branch **`candidate/nicole-forsgren`** (commit `0691a11`). **First action on resume: `cd ~/Camila/thinker-distillation && git checkout candidate/nicole-forsgren`** — the rewrite happens there. (`main`'s `content.config.ts` is the pre-v1.2 version; that's correct — v1.2 schema lands when MR #1 merges.)
 >
@@ -660,6 +660,40 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - [x] ISC-527: Anti: SCHEMA.md MUST reference new convention with date stamp + cross-reference to retired pattern (verified inline)
 - [x] ISC-528: Anti: NO Netlify references in SCHEMA.md after this iteration (cascade-cleanup per `feedback_no_netlify.md` — verified via re-grep)
 
+### Iter-8 — Forsgren prose + MR rewrite to voice spec (2026-05-28)
+
+> **STATUS BANNER (provenance):** Every criterion below is met **on branch `candidate/nicole-forsgren` @ `d89a0e4` and on the remote MR #1**, NOT on `main`. `main` does not hold the Forsgren page. These ISCs are verified against the candidate branch + remote MR; they become true on `main` only once Julie merges MR #1. Merge is her Casey-test gate, not a Camila deliverable (ISC-548).
+
+*Continuation after a mid-task context-clear. Julie reviewed MR #1 and caught (1) page prose + MR description violating the writing-style system, (2) MR description illegible cold. Four approved Save Point steps executed on the candidate branch. Working norms: `feedback_distillery_prose_voice.md`, `feedback_writing_partner_per_field.md`.*
+
+**Step 2 — page prose to voice spec (7):**
+- [x] ISC-529: `nicole-forsgren.md` em-dash count = 0 (`grep -c '—'` → 0 on candidate @ d89a0e4)
+- [x] ISC-530: zero `operationaliz*` occurrences (`grep -i` → empty)
+- [x] ISC-531: zero other banned words/constructions (delve, leverage-verb, navigate-metaphor, nuanced, multifaceted, "not just X", "not only X", "not a substitute…but")
+- [x] ISC-532: structured data unchanged (concept_slug / attribution_kind / primary_author / co_originators / source_link / render_tier / edge_type / strength / target_slug) — `git diff` token scan returned NONE CHANGED
+- [x] ISC-533: §6 `what_i_take` + `where_i_extend` punctuation-only recast (2 em-dashes → periods, no words changed); argument + first-person register preserved; flagged inline as Camila-drafted awaiting Julie's authorship (advisor catch)
+- [x] ISC-534: nominalization sweep applied where natural (P2 Rule 3); not chased to zero (deployment/organization unavoidable)
+- [x] ISC-535: P0/P1 AI-tell sweep clean (grep throat-clearers / wan intensifiers / "here's the thing" → empty)
+
+**Step 3 — MR #1 description legible cold (5):**
+- [x] ISC-536: MR #1 leads with a plain-English paragraph (what the page is, why it exists, what changed)
+- [x] ISC-537: paragraphs over tables; jargon (Council ACCEPT 6/6, Casey-test, Q2 auto-surface, Mode B) defined or dropped
+- [x] ISC-538: Casey-test co-author-verification checklist retained for Julie (4 byline checks)
+- [x] ISC-539: MR description em-dash count = 0 and banned-word clean (`glab mr view 1` piped to grep)
+- [x] ISC-540: `glab mr view 1` confirms the new description on GitLab
+
+**Step 4 — editorial-voice spec (3):**
+- [x] ISC-541: "Editorial Voice & Prose Mechanics" section added to SCHEMA.md §3 (Hard No list; §6 = Julie Mode C, other sections = Camila Mode B)
+- [x] ISC-542: spec cross-references `~/.claude/PAI/USER/WritingStyle.md` + `AiWritingPatterns.md`
+- [x] ISC-543: spec names the pre-ship gate (AiWritingPatterns P0→P2 sweep + em-dash grep before any page/MR ships)
+
+**Build / commit / push / handoff (5):**
+- [x] ISC-544: `bun run build` → "16 page(s) built", exit 0; Forsgren renders
+- [x] ISC-545: committed on candidate (`b779518` prose+spec, `d89a0e4` §6 flag)
+- [x] ISC-546: pushed to `origin/candidate/nicole-forsgren`
+- [x] ISC-547: MR #1 / Issue #2 remain at `camila:ready-for-review` (handoff to Julie, verified via `glab mr view 1`)
+- [x] ISC-548: Anti: MR #1 NOT merged to `main` — currently satisfied (state: open); stays the gate until Julie merges after her Casey-test
+
 ### UI Audit iteration — Iteration 3 (2026-05-26)
 
 *Audit pass. Output: `~/Camila/thinker-distillation/audit-ui-2026-05-26.md`. Scores current Distillery against the 30-criterion rubric (C1-C23 + AC1-AC7) from Iter-2.*
@@ -1031,6 +1065,10 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 
 ## Decisions
 
+- **2026-05-28 — Iter-8 Forsgren prose + MR rewrite (ALGORITHM E3, continuation).** Classifier returned NATIVE then ALGORITHM E3 as the task became the multi-step Save Point execution; executor honored ALGORITHM E3 (context-override). Mid-iteration recovery after a context-clear: jumped to current work, did not re-run earlier phases. **ISA-state provenance (advisor-corrected):** content work happened on `candidate/nicole-forsgren`, whose ISA is still at iter-7 state. Initial plan was to mark iter-8 "done" on `main`; the advisor flagged that as a state-lie (main would assert criteria-met for work it doesn't hold, behind an unmerged Julie-gated branch). Corrected: iter-8 criteria are recorded on `main` under a loud provenance banner stating they are verified against the candidate branch + remote MR, not main's tree, and stay true on main only post-merge. ISC-548 (anti: not-merged) is the gate. **Show-your-math — ISC soft-floor (20 < E3 32):** bounded continuation of a 565-ISC project running four pre-specified, Julie-approved steps; manufacturing 32 ISCs for a prose cleanup is ceremony, not coverage. **Show-your-math — delegation floor (0 < E3 2):** no Forge/Anvil/Cato per `feedback_avoid_kimi_codex.md` and because this is prose, not code; no Council because this is voice-mechanics *compliance* editing of an already-structured page, not new exec-prose generation, and §6 is Julie's to finalize at the Casey-test gate. Thinking floor MET: 5 capabilities (FeedbackMemoryConsult, ISA, IterativeDepth, Advisor, ReReadCheck) ≥ 4.
+
+- **2026-05-28 — refined: §6 gets punctuation-only cleanup + an explicit Camila-drafted flag, not a strip and not a re-author.** Tension: `feedback_writing_partner_per_field.md` makes §6 (`what_i_take` / `where_i_extend`) Julie-writes-only, but the page shipped (loop run) with §6 already Camila-drafted, and Save Point step 2 directed "§6 must read as Julie's first-person voice." Resolution (advisor-pressure-tested): recast only the two em-dashes in §6 to periods (no words changed), preserving the argument and register, AND add an inline source comment + MR-description note flagging §6 as Camila-drafted argument awaiting Julie's authorship. The advisor's catch: style-normalizing Camila's draft into Julie's register makes the Casey-test *more* likely to rubber-stamp it as her voice by removing the rough-draft friction that would prompt her to actually author it. Stripping §6 empty would have been over-correction (destroys editable substrate, risks build break). The inline flag is the safeguard so polished prose does not silently imply Julie's sign-off.
+
 - **2026-05-27 — Loop-activation infrastructure scaffolded on GitLab (Iter-7 step 3).** Per Julie's locked decisions earlier this session: voice mode = project-scoped override (Camila writes everything except `julie_reading`), cadence = weekly OR trigger on ≥3 candidates + reverb done, MR-for-everything to `main`, discovery sources = Research + Elicit + Substack + Medium with macro-level source-reliability, system Qs handled before loop (now done — SCHEMA v1.2 baked), rejection log = `camila:rejected` label + closed Issue, label namespace = `camila:<label>` / `julie:<label>` ownership convention. **Scaffold delivered:** (a) **19 labels created** — 12 `camila:*` (candidate / in-council / accepted / rejected / drafting / in-reverb / concept-update / schema-bump / gate-failure / ready-for-review / system-level / iter-8) + 7 `julie:*` (input-needed / approved / changes-requested / reject / feedback / priority-high / hold). Ownership rule: `camila:*` is Camila's state machine; `julie:*` is Julie's actions. `julie:input-needed` is the only flow seam — Camila adds when blocked, Julie removes by answering. (b) **iter-8 milestone** (iid=1, `https://gitlab.com/juliedavila/thinker-distillery/-/milestones/1`) — "first loop run" — anchors all Council passes + drafting + reverb work. (c) **5 candidate Issues filed** with full case write-ups under `camila:candidate + camila:iter-8`: #1 Saxe / #2 Forsgren / #3 Fournier / #4 Appleton / #5 Hudson. Each Issue carries a 3-paragraph case + Council prompt sketch + source-reliability cross-check + workflow checklist (Council → drafting → 10-min critic search → reverb → MR → julie:approved → merge). Hudson's Issue carries the explicit scope-note that the scope question is settled today; his is filter-and-manner only. (d) **MR workflow active** — `.gitlab-ci.yml` already in place; feature branches `candidate/<slug>` will land via MRs gated on CI + Julie approval. **What's NOT scaffolded yet (Julie's call):** discovery-pass cadence implementation. Options: (i) `ScheduleWakeup` from within an active Camila session, (ii) PAI `CronCreate` for an out-of-session scheduled trigger, (iii) external GitLab CI scheduled-pipeline triggering a discovery script, (iv) ad-hoc / manual until usage settles. None blocking — iter-8 has 5 explicit candidates queued; discovery cadence becomes load-bearing only when the queue empties.
 
 - **2026-05-27 — Q4 Hosted Canon: Option F (hybrid edge-as-source, projection-to-§5).** 4/4 Council convergence (Inés / Holt / Tomás / Mira) on Q4. The §8 `adjacent_thinkers[]` carries a new `edge_type: hosts` value AND an optional `hosted_items[]` payload on those edges (subfields `title`, `kind`, `year`, `hosted_on_url`, `editorial_framing`). The §5 `body_of_work[]` gains an optional `attribution_kind: authored | hosted` field — `hosted` entries are projected at build time from §8 `hosts` edges, NOT independently authored. Single source of truth, dual surface. Build-pipeline test (Anti-16) fails any §5 hosted render without the host-attribution label + `hosted_on_url`. `editorial_framing` is the *host's* stated framing (Mira's lock); Julie's reading of the relationship lives in §6 `what_i_take`. Affected pages on apply: Fowler (Dehghani / Böckeler / Lewis / Sadalage / Kua). Brooks (self-editing retrospective) and Komoroske (network amplification, no owned platform) are NOT hosting — Brooks stays on Option E prose-only, Komoroske amplification uses `extends`/`parallel` not `hosts`. Net schema cost: 1 enum value + 2 optional fields + 1 build test. Transcript: `~/.claude/PAI/MEMORY/COUNCIL/thinker-distillery-q4-hosted-canon-20260527-204500/transcript.md`.
@@ -1105,6 +1143,16 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - **2026-05-25 — Disposition application closed.** Julie ran the 8 disposition rows + 4 side-finding bullets and confirmed. **COMMIT (6 source rows applied to working tree):** Komoroske P2 (`what_i_take` opener — drops "single most useful thing I carry" stem; promotes the observation, adds "That is the headwind frame, applied; once you see it in security work, you cannot unsee it"); Allspaw P2 (`what_i_take` — stem sentence deleted, second-sentence-becomes-opener with subject change to "Security incident response"); Komoroske P3 (`where_i_extend` — verb-push "I push it into" → "The security translation is that...itself"); Brooks P3 (`where_i_extend` — two sentences collapsed to one); Allspaw P3 (`where_i_extend` — "I push it into the adversarial layer" → "Security adds an adversarial layer Allspaw did not model" + folded sentence-three); Woods P3 (`where_i_extend` — verb-push → "The security extension is that"). **COMMIT (1 side-finding row):** Allspaw `really` ×2 removed at L60 (thesis) and L195 (what_i_take tail) — filler-word removal, no semantic load. **MODIFY (5 rows drafted at `modify-pack-2026-05-25.md` for Julie to finalize):** Row 1 Brooks P2 (em-dash treatment options A1-A4 + downstream trim options B1-B3 to remove the redundant "Brooks's frame lets me ask the disciplined question" sentence); Row 2 Woods P2 (third-sentence split options C1-C4 — Camila lean C4, preserves Julie's existing "slack is not waste" sentence verbatim); Row 3 Dekker L214 not-just Hard No (phrasing options D1-D5 — Camila lean D1 or D5); Row 4 `leverage` four sub-instances (Komoroske thirty_second_take E1a-E4a Camila lean E1a; Komoroske editorial_note E1b-E4b Camila lean E2b/E3b; long-read L123 E1c-E4c Camila lean E3c; Allspaw compound F1d-F4d Camila lean F1d KEEP); Row 5 Woods L55 `navigate` metaphor (options G1-G5 Camila lean G3/G5). **SKIP: zero rows.** All 8 + 4 had a disposition. **Verification:** `bun build` passed (Node 22 via nvm; 13 pages built; zero type errors); inline grep verified each COMMIT new-string present and each old-string absent; `really` count on Allspaw page = 0. **Writing-partner discipline held:** modify-pack is explicitly draft-for-Julie-to-finalize per row, Camila leans flagged as leans not prescriptions, none applied without per-row Julie pick. Iteration `phase: complete`; ISA progress 185/185. **Next:** Julie picks per-row on modify-pack; Camila applies as a second follow-up commit when picks are in.
 
 ## Changelog
+
+### 2026-05-28 — Iter-8: voice-spec gate must be explicit, and loop-drafted Julie-voice fields must be flagged
+
+**conjectured:** Matching the *structure* of an existing thinker page (section shape, frame attribution) was enough for a loop-drafted page to land in the Distillery's voice.
+
+**refuted_by:** The Forsgren page (first loop-drafted page) shipped to MR #1 with 30 em-dashes and 3 banned-word uses while every hand-built page had 0; Julie caught it on review. The implicit voice rule had no enforcement surface, and a Camila-drafted §6 had been style-matched to read as Julie's.
+
+**learned:** Structure-matching is not voice-matching. The no-em-dash / Hard-No-list discipline was real but undocumented, so the loop defaulted to a competent-AI register. Separately, applying the voice spec to a Camila-drafted §6 *camouflages* draft content as Julie-authored (advisor catch) — the polish removes the friction the Casey-test relies on.
+
+**criterion_now:** Distillery voice is an explicit spec (`SCHEMA.md` §3 "Editorial Voice & Prose Mechanics") with a mandatory pre-ship sweep gate (em-dash grep + AiWritingPatterns P0→P2). Loop-drafted Julie-voice fields (§6) carry an inline "Camila-drafted, awaiting Julie" flag until she authors or signs off, and the MR description says so too. Future candidate pages (#1 Saxe, #3 Fournier, #4 Appleton, #5 Hudson) follow the spec from the first draft. Feedback memory `feedback_distillery_prose_voice.md` encodes the gate.
 
 ### 2026-05-27 — Iter-7 step 3: Loop-activation infrastructure scaffolded on GitLab
 

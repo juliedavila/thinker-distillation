@@ -26,17 +26,17 @@ tagline: The lead empirical researcher who turned engineering performance from v
 thirty_second_take: >
   Forsgren's twelve-year corpus is one sustained empirical argument: engineering
   performance is a lawful, measurable phenomenon, and the instruments to prove
-  it are real. Throughput and stability don't trade off — they correlate. Elite
+  it are real. Throughput and stability don't trade off. They correlate. Elite
   teams cluster; the gap between elite and low is structural, not accidental.
   The DORA four-keys, SPACE five-dimensions, and DevEx three-dimensions are
-  successive layers of the same research arc — each one a sharper instrument
+  successive layers of the same research arc, each one a sharper instrument
   for the same underlying claim. The instrument is the gift; the empirical
   anchor is what makes the field's measurement conversation tractable at all.
 
 background: >
   Industrial engineer by training (PhD), with an early career inside operations
-  research at IBM and a stint at Chef Software before founding DORA — DevOps
-  Research and Assessment — in 2014 with Jez Humble and Gene Kim. DORA was
+  research at IBM and a stint at Chef Software before founding DORA (DevOps
+  Research and Assessment) in 2014 with Jez Humble and Gene Kim. DORA was
   acquired by Google in 2018, the same year the team's culminating book
   *Accelerate* shipped from IT Revolution. From there Forsgren went to GitHub
   as VP of Research, then to Microsoft Research where she is now Partner
@@ -45,17 +45,17 @@ background: >
   engineering performance was measurable at all; SPACE (2021) decomposed the
   measurement into five dimensions when single-metric thinking had broken; DevEx
   (2023–present) is consolidating the productivity question around three
-  measurable system properties — feedback loops, cognitive load, flow state.
+  measurable system properties: feedback loops, cognitive load, flow state.
   Each transition is a sharper instrument applied to the same epistemological
   claim.
 why_they_matter_as_a_thinker: >
   If you have argued about engineering measurement in the last five years, you
   have argued downstream of Forsgren whether you noticed or not. The four DORA
-  metrics — deployment frequency, lead time for changes, change failure rate,
-  time to restore service — sit in every engineering-leadership pitch deck,
+  metrics (deployment frequency, lead time for changes, change failure rate,
+  time to restore service) sit in every engineering-leadership pitch deck,
   hiring rubric, and platform-engineering plan from 2020 onward. SPACE's five
   dimensions and DevEx's three dimensions are the post-DORA consolidations.
-  What makes her portable as a *thinker* and not just a researcher is the
+  What makes her portable as a *thinker* and not merely a researcher is the
   epistemological move underneath the instruments: the claim that engineering
   performance is a lawful phenomenon whose regularities can be measured, that
   the survey instrument is a real research tool, and that empirical anchoring
@@ -65,7 +65,7 @@ why_they_matter_as_a_thinker: >
 thesis: >
   Engineering performance is empirically tractable, and the instruments to
   prove it are real. The intuition that good software organizations differ
-  *structurally* from bad ones — not just in degree but in kind — turns out to
+  structurally from bad ones, in kind rather than merely in degree, turns out to
   be testable, and the testing keeps confirming the claim. Throughput and
   stability do not trade off in well-run systems; they correlate. Elite
   performers cluster; the gap between elite and low is not normally
@@ -77,10 +77,10 @@ thesis: >
   underlying argument: engineering work is a system, the system has lawful
   properties, the properties can be measured, and the measurement changes how
   the work gets organized. The cost of skipping the empirical work is that
-  every measurement argument stays a measurement *argument* — instead of a
+  every measurement argument stays a measurement *argument* instead of a
   measurement program.
 working_line: >
-  The high performers were not just doing more — they were doing better. The
+  The high performers were not simply doing more. They were doing better. The
   empirical regularity was that throughput and stability moved together, not
   apart. (Paraphrased from *Accelerate*, Chapter 2.)
 
@@ -89,7 +89,7 @@ named_frames:
     display_name: DORA four key metrics
     one_line_gloss: >
       Deployment frequency, lead time for changes, change failure rate, time to
-      restore service — the four operational measures that empirically
+      restore service: the four operational measures that empirically
       distinguish elite from low-performing software teams. Throughput and
       stability decoupled in measurement, then re-coupled in finding.
     attribution_kind: distributed
@@ -105,7 +105,7 @@ named_frames:
     display_name: SPACE framework
     one_line_gloss: >
       Satisfaction and well-being, Performance, Activity, Communication and
-      collaboration, Efficiency and flow — the five-dimensional decomposition
+      collaboration, Efficiency and flow: the five-dimensional decomposition
       that broke the single-metric trap for developer productivity.
     attribution_kind: co-authored
     primary_author: nicole-forsgren
@@ -125,7 +125,7 @@ named_frames:
   - concept_slug: devex-framework
     display_name: DevEx (Developer Experience)
     one_line_gloss: >
-      Feedback loops, cognitive load, flow state — three measurable system
+      Feedback loops, cognitive load, flow state: three measurable system
       properties that consolidate developer experience into the post-SPACE
       operational layer. The active research frontier; vocabulary still
       hardening.
@@ -141,7 +141,7 @@ named_frames:
   - concept_slug: elite-vs-low-performers
     display_name: Elite vs. low performers
     one_line_gloss: >
-      The empirical regularity: high-performing software teams cluster — they
+      The empirical regularity: high-performing software teams cluster. They
       are not normally distributed across the metrics. The gap between elite
       and low is structural, not accidental, and the structure is reproducible
       across organizations and industries.
@@ -153,7 +153,7 @@ named_frames:
     display_name: Change failure rate as quality proxy
     one_line_gloss: >
       The percentage of changes to production that result in degraded service.
-      A measurement frame, not just a metric — the choice to treat failure-rate
+      A measurement frame rather than a bare metric: the choice to treat failure-rate
       as a system property rather than an incident property.
     attribution_kind: distributed
     primary_author: nicole-forsgren
@@ -183,8 +183,8 @@ named_frames:
     one_line_gloss: >
       The methodological commitment that an instrumented survey, properly
       designed and statistically validated, is a real research tool for
-      sociotechnical systems — not a substitute for telemetry, but the right
-      complement to it.
+      sociotechnical systems, the right complement to telemetry rather than a
+      substitute for it.
     attribution_kind: original
     primary_author: nicole-forsgren
     source_link: https://nicolefv.com
@@ -232,7 +232,7 @@ body_of_work:
     link: https://queue.acm.org/detail.cfm?id=3595878
     editorial_note: >
       The current frontier. Co-authored with Storey and Noda. Consolidates the
-      productivity question around three measurable system properties —
+      productivity question around three measurable system properties:
       feedback loops, cognitive load, flow state. Read after *Accelerate* and
       SPACE; this is the live edge.
     canonical: true
@@ -247,14 +247,14 @@ body_of_work:
   - title: DORA + SPACE + DevEx conference talks
     type: talk
     editorial_note: >
-      Useful for seeing the research method, not just the findings — the way
+      Useful for seeing the research method itself, beyond the findings. The way
       she frames sample frames, regression analyses, and instrument design in
       a public talk is itself an artifact of her empirical commitment.
 
 what_i_take: >
   The most useful piece of Forsgren for me as a security-and-engineering
   executive is the empirical regularity that throughput and stability do not
-  trade off in well-run systems — they correlate. Most "we can't ship faster,
+  trade off in well-run systems. They correlate. Most "we can't ship faster,
   we'd break things" arguments collapse on contact with the data. That changed
   how I evaluate platform-engineering proposals: the question stops being "is
   this safe?" and starts being "does this team have the operational substrate
@@ -263,7 +263,7 @@ what_i_take: >
   precondition for it.
 where_i_extend: >
   Forsgren's frame measures *operational* engineering performance. The security
-  translation is that operational metrics are necessary but insufficient — a
+  translation is that operational metrics are necessary but insufficient. A
   team with elite DORA scores can still ship insecure code at elite velocity.
   The DORA frame gives the security org a vocabulary to talk to engineering
   leadership in their currency, but a complete picture also needs adversarial-
@@ -290,7 +290,7 @@ limits:
     elaboration: >
       DORA tells you whether you're shipping fast and recovering fast; it does
       not tell you whether you are shipping the right thing. Goodhart's law
-      applies — when the measure becomes the target, optimization can shift to
+      applies: when the measure becomes the target, optimization can shift to
       the metric at the expense of the value the metric was meant to track.
       The frame is a measurement spine for engineering operations, not a
       product strategy.
@@ -316,9 +316,9 @@ still_load_bearing_despite: >
   engineering-measurement space defines themselves against this data. Without
   Forsgren's instrumented baseline, the entire "is engineering performance
   measurable" conversation would still be vibe-based assertion. The limits are
-  reasons to combine Forsgren with other frames — Komoroske on the upstream
+  reasons to combine Forsgren with other frames (Komoroske on the upstream
   cause, Allspaw and Woods on resilience as an independent system property,
-  and adversarial-quality measurement on the security substrate — not reasons
+  and adversarial-quality measurement on the security substrate), not reasons
   to ignore the measurement spine she built.
 
 adjacent_thinkers:
@@ -328,7 +328,7 @@ adjacent_thinkers:
     edge_label: >
       Komoroske names coordination headwind as the upstream cause; Forsgren
       names the downstream measurement. The headwind frame predicts what DORA
-      empirically detects — slow lead-time-for-changes is what the headwind
+      empirically detects: slow lead-time-for-changes is what the headwind
       tax looks like when you instrument it.
     strength: primary
   - target_slug: fred-brooks
@@ -336,7 +336,7 @@ adjacent_thinkers:
     edge_type: antecedent
     edge_label: >
       Brooks's Law (1975) anchors the coordination-cost intuition that
-      lead-time-for-changes operationalizes. Forsgren empirically vindicated
+      lead-time-for-changes measures. Forsgren empirically vindicated
       Brooks's structural claim about the cost of growing engineering teams
       under deadline.
     strength: primary
@@ -346,7 +346,7 @@ adjacent_thinkers:
     edge_label: >
       Allspaw's operability work shares the time-to-restore variable with
       DORA's stability axis. Resilience engineering and DORA measurement
-      converge on the same system property — how fast does the team recover —
+      converge on the same system property, how fast the team recovers,
       from different methodological angles.
     strength: primary
   - target_slug: david-woods
@@ -396,7 +396,7 @@ adjacent_thinkers:
     strength: secondary
 
 further_in:
-  start_here: '*Accelerate* (Forsgren, Humble, Kim — 2018). The keystone.'
+  start_here: '*Accelerate* (Forsgren, Humble, Kim, 2018). The keystone.'
   then_read:
     - The SPACE of Developer Productivity (ACM Queue 2021)
     - 'DevEx: What Actually Drives Productivity (ACM Queue 2023)'
@@ -409,17 +409,17 @@ further_in:
 
 live_edge:
   current_focus: >
-    DevEx measurement at Microsoft Research — operationalizing feedback loops,
-    cognitive load, and flow state as instrumented system properties.
+    DevEx measurement at Microsoft Research: turning feedback loops,
+    cognitive load, and flow state into instrumented system properties.
   summary: >
     Forsgren is currently extending the SPACE framework into the DevEx layer
-    at Microsoft Research, with three named instruments — feedback loops,
-    cognitive load, flow state — taking the place of activity and efficiency
+    at Microsoft Research, with three named instruments (feedback loops,
+    cognitive load, flow state) taking the place of activity and efficiency
     as the operational telemetry for developer experience. The 2023 CACM piece
     (with Storey and Noda) lays out the consolidation; the work in 2024–2026
     has been about pressure-testing the dimensions across organizations of
     different sizes and clarifying what counts as a measurable feedback loop.
-    The DevEx Index — a survey instrument operationalizing the dimensions —
+    The DevEx Index, a survey instrument that measures the dimensions,
     is the live edge of the empirical research. Vocabulary is not yet stable;
     we are watching this frame harden in real time.
   recent_work:

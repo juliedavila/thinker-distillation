@@ -2,8 +2,8 @@
 project: thinker-distillation
 effort: E3
 phase: in-progress
-progress: 585/585
-iteration: iter-8-forsgren-prose-rewrite-2026-05-28
+progress: 619/619
+iteration: iter-9-doctrineregister-reconciliation-2026-05-28
 mode: project
 started: 2026-05-25
 updated: 2026-05-28
@@ -31,7 +31,22 @@ updated: 2026-05-28
 
 ---
 
-## THREAD 2 — Voice-guideline reconciliation (NEW — scoped 2026-05-28, NOT started, resume here)
+## THREAD 2 — Voice-guideline reconciliation (iter-9 DESIGN LOCKED 2026-05-28; iter-10 backfill staged on MR #1 merge)
+
+> ✅ **iter-9 DESIGN COMPLETE 2026-05-28.** The Council-gated design decision and the safe (merge-independent) updates shipped: `doctrine_mode` is a single stored backstage enum (`mode-a | mode-b | mode-c`), orthogonal to `thinker_type`, single-valued, never rendered, documented as a capped exception with a kill-criterion. All 8 classifications locked (table in the iter-9 `## Decisions` entry: 6× C, 2× B). The `feedback_distillery_prose_voice.md` memory was broadened to the full applicable file set with per-file scoping. Forsgren passed a read-only RhetoricalStyle §4 recheck (clean). Full design rationale: iter-9 `## Decisions` + `## Changelog` entries; Council transcript at `~/.claude/PAI/MEMORY/COUNCIL/doctrine-mode-schema-decision-20260528-154414/transcript.md`.
+>
+> ⏭️ **iter-10 BACKFILL — STAGED, GATED ON JULIE MERGING MR #1.** Everything below edits `SCHEMA.md` / `content.config.ts` / thinker pages, which all want merged-v1.2 `main` and would conflict with the open MR #1 if done now. The instant MR #1 merges, this is purely mechanical (no new decisions):
+>
+> 1. `cd ~/Camila/thinker-distillation && git checkout main && git pull` (gets the merged v1.2 Zod code + the SCHEMA Editorial-Voice section).
+> 2. **`src/content.config.ts`** — add `const doctrineMode = z.enum(['mode-a','mode-b','mode-c']);` near the other enums; add `doctrine_mode: doctrineMode` to the thinker schema (required is safe — all 8 included thinkers get backfilled in the same commit; the underscore-disabled `_don-norman.md` is excluded from the collection so it will not break the build, but note it must add the field if/when promoted).
+> 3. **Backfill 8 thinker frontmatters** with `doctrine_mode:` per the iter-9 Decisions table (Komoroske/Fowler/Brooks/Allspaw/Woods/Dekker = `mode-c`; Dalio/Forsgren = `mode-b`). Add a one-line frontmatter comment on Brooks recording the 60/40 C-over-B call so it is legible and revisable.
+> 4. **`SCHEMA.md`** — add `doctrine_mode` to the §1 frontmatter spec; add a "Doctrine Mode" subsection documenting: the enum-as-stance (mode-c = manufacture handles around an implicit spine; mode-a = resist manufacturing handles; mode-b = the named artifact IS the doctrine); spine=`thesis` / handles=`named_frames` / Casey-test (Q-E, documentation only); the soft lineage-parenthetical norm (Q-F); the named consumer (the authoring/drafting gate per `feedback_distillery_prose_voice`, NOT the renderer); the capped-exception guardrail; and the concrete kill-criterion ("delete the field if after 5 more thinker pages no `doctrine_mode` value ever changed a drafting decision; owner: Julie, checked at the next quarterly review").
+> 5. **`SCHEMA.md` §3 "Editorial Voice & Prose Mechanics"** (which arrives via MR #1) — broaden it to the full applicable file set with per-file scoping, mirroring the `feedback_distillery_prose_voice.md` table (WritingStyle/AiWritingPatterns always; RhetoricalStyle §4 + §2/§3; DoctrineRegister headline; LongFormCraft long-read-only; PersuasionArchitecture §5 marginal; PrivateWritingPractice N/A). Name the AiWritingPatterns→RhetoricalStyle §4 step-6 cross-check explicitly.
+> 6. **Optional (soft Q-F):** add a lineage parenthetical to each `thesis` only where it strengthens the spine (Camila Mode B lane — OK for `thesis`; §6 `what_i_take`/`where_i_extend` + `julie_reading` stay Julie's per `feedback_writing_partner_per_field`). Forsgren's optional lineage marker: lean / Goldratt theory-of-constraints (its `further_in` already cites Poppendieck/Goldratt).
+> 7. `PATH="/opt/homebrew/bin:$PATH" bun run build` (expect 16 pages green), commit `feat(iter-10): backfill doctrine_mode + formalize spine/handle/lineage in SCHEMA`, push, confirm pipeline green.
+> 8. ISA: flip iter-9 ISC-572 + record an iter-10 completion block; mark the 8 classification ISCs applied-on-disk.
+>
+> **Do NOT** edit DoctrineRegister.md (Julie's identity file — the §2-vs-§5 point is resolved by classifying the reading, no contradiction to fix). **Do NOT** touch `_don-norman.md` (Julie's underscore-disabled draft). **Do NOT** merge MR #1 (Julie's Casey-test gate).
 
 **Why this exists.** The Thread-1 Forsgren prose rewrite consulted only 2 of the 7 writing-style files (`WritingStyle.md` + `AiWritingPatterns.md`) because that's all the Save Point and the `feedback_distillery_prose_voice.md` memory named. Julie flagged the gap. All 7 files were read 2026-05-28. Two findings: (a) even the documented 2-file sweep was incomplete — `AiWritingPatterns.md`'s own detection workflow step 6 says to cross-check `RhetoricalStyle.md §4` and that was skipped; (b) **`DoctrineRegister.md` is the Distillery's missing backbone** — the Distillery IS its §1 "recognition test" made into a website, and it already classifies Komoroske (Mode A) and Fowler (Mode A + Mode B handles) with spine + lineage.
 
@@ -743,6 +758,58 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - [x] ISC-547: MR #1 / Issue #2 remain at `camila:ready-for-review` (handoff to Julie, verified via `glab mr view 1`)
 - [x] ISC-548: Anti: MR #1 NOT merged to `main` — currently satisfied (state: open); stays the gate until Julie merges after her Casey-test
 
+### Iter-9 — DoctrineRegister voice-guideline reconciliation (2026-05-28)
+
+> **SEQUENCING BANNER.** Everything that touches `SCHEMA.md`, `content.config.ts`, or any thinker page wants to land on merged-v1.2 `main` and would conflict with the open MR #1 (Forsgren branch holds the v1.2 Zod code + the SCHEMA Editorial-Voice section). So iter-9 is split: the **design lock + memory + ISA plan** are merge-independent and execute now (ISC-549..571, 573..582); the **file backfill** (`content.config.ts` field + 8-page edits + SCHEMA formalization + SCHEMA §3 broadening) is staged as **iter-10, gated on Julie merging MR #1** (ISC-572). The Council design decision is fully merge-independent — it produces a decision, not a file conflict.
+
+**Council design pass (Part B step 1 — merge-independent):**
+- [x] ISC-549: Council composed 4-6 custom agents per-topic (not generic built-ins) for the doctrine_mode question
+- [x] ISC-550: Council transcript written under `MEMORY/COUNCIL/` AND read in full before synthesis (per `feedback_council_transcript_reading`)
+- [x] ISC-551: Field-vs-render resolved — doctrine_mode is a stored frontmatter field OR build-computed (decision + rationale recorded)
+- [x] ISC-552: doctrine_mode ↔ thinker_type relationship resolved (orthogonal-coexist vs one-derives-the-other) with rationale
+- [x] ISC-553: Single-valued vs multi-valued doctrine_mode resolved (the Fowler "A + B handles" / per-doctrine-claim tension)
+- [x] ISC-554: The DoctrineRegister §2-table-vs-§5-deep-treatment internal tension on Komoroske/Fowler (Mode A vs Mode C) resolved
+- [x] ISC-555: spine=`thesis` / handles=`named_frames` / Casey-test formalization decided, cross-referencing DoctrineRegister §3
+- [x] ISC-556: Lineage-parenthetical norm (DoctrineRegister §4) decided as a per-thinker content norm (≥1 inheritance marker in thesis)
+
+**Per-thinker doctrine_mode classification (8 — the 7 live + Forsgren; merge-independent decision, applied at backfill):**
+- [x] ISC-557: Komoroske classified with 1-line rationale
+- [x] ISC-558: Fowler classified
+- [x] ISC-559: Brooks classified
+- [x] ISC-560: Allspaw classified
+- [x] ISC-561: Woods classified
+- [x] ISC-562: Dekker classified
+- [x] ISC-563: Dalio classified
+- [x] ISC-564: Forsgren classified
+
+**Part A safe updates (memory — merge-independent):**
+- [x] ISC-565: `feedback_distillery_prose_voice.md` broadened to the full applicable set with per-file scoping (WritingStyle/AiWritingPatterns full; RhetoricalStyle §4 + §2/§3; DoctrineRegister headline; LongFormCraft long-read-only; PersuasionArchitecture §5 marginal; PrivateWritingPractice N/A)
+- [x] ISC-566: The skipped AiWritingPatterns→RhetoricalStyle §4 cross-check step named explicitly in the memory
+- [x] ISC-567: RhetoricalStyle §4 figure-guardrail recheck of the Forsgren page done read-only; finding recorded (no edit — lineage edit folds into the iter-10 backfill)
+
+**ISA documentation (merge-independent):**
+- [x] ISC-568: ISA `## Decisions` entry logs the Council outcome + design lock + sequencing rationale
+- [x] ISC-569: ISA `## Changelog` C/R/L entry for the design learning
+- [x] ISC-570: ISA Save Point / Thread 2 updated — design LOCKED, iter-10 backfill staged + gated on MR #1 merge, with exact mechanical steps
+- [x] ISC-571: doctrine_mode classification table recorded in the ISA so the post-merge backfill is purely mechanical
+
+**Staged backfill spec (written, NOT executed — gated on merge):**
+- [x] ISC-572: iter-10 backfill plan enumerated in the Save Point — `content.config.ts` doctrine_mode field, per-page frontmatter edits, lineage parentheticals, SCHEMA formalization, SCHEMA §3 broadening — all explicitly gated on Julie merging MR #1
+
+**Anti-criteria:**
+- [x] ISC-573: Anti: NO edits to `SCHEMA.md`, `src/content.config.ts`, or any thinker page on `main` this session — `git diff` on those paths empty (avoids MR #1 conflict)
+- [x] ISC-574: Anti: MR #1 NOT merged by Camila (Julie's Casey-test gate)
+- [x] ISC-575: Anti: NO new graph node types — doctrine_mode is a property on the existing Thinker node (Discipline Gate 1 holds)
+- [x] ISC-576: Anti: doctrine_mode does NOT replace or collapse `thinker_type` — both axes coexist
+- [x] ISC-577: Anti: §6 `what_i_take`/`where_i_extend` and `julie_reading` NOT authored by Camila (`feedback_writing_partner_per_field`)
+- [x] ISC-578: Anti: NO Forge/Anvil/Cato spawned (`feedback_avoid_kimi_codex`)
+- [x] ISC-579: Anti: the untracked `_don-norman.md` draft NOT modified or committed (Julie's draft, underscore-disabled)
+
+**Antecedents:**
+- [x] ISC-580: Antecedent: MR #1 open/unmerged at session start — verified via `glab mr view 1` (the gate making backfill staged)
+- [x] ISC-581: Antecedent: DoctrineRegister.md + the writing-style files read for applicability scoping before classification
+- [x] ISC-582: Antecedent: Council transcript read before extracting design decisions (`feedback_council_transcript_reading`)
+
 ### UI Audit iteration — Iteration 3 (2026-05-26)
 
 *Audit pass. Output: `~/Camila/thinker-distillation/audit-ui-2026-05-26.md`. Scores current Distillery against the 30-criterion rubric (C1-C23 + AC1-AC7) from Iter-2.*
@@ -1114,6 +1181,34 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 
 ## Decisions
 
+- **2026-05-28 — Iter-9 DESIGN LOCKED via Council: `doctrine_mode` is a single stored backstage enum, orthogonal to `thinker_type` (ALGORITHM E4, context-override).** Five-member custom Council (Sloane minimal-schema architect / Vera doctrine theorist / Maren curatorial editor / Cole pragmatist / Dax value-skeptic) ran a 3-round debate; transcript at `~/.claude/PAI/MEMORY/COUNCIL/doctrine-mode-schema-decision-20260528-154414/transcript.md` (read in full before synthesis per `feedback_council_transcript_reading`). Decisions on the six questions:
+  - **Q-A — STORED, BACKSTAGE.** Single enum on the `Thinker` node (`mode-a | mode-b | mode-c`), never rendered on the public page (Popova discipline, same posture as `inclusion_rationale`). Build-computed rejected: the frame-count+thesis-density heuristic cannot separate Mode B from Mode C (Brooks breaks it), so a hybrid is two code paths plus a fragile heuristic vs. eight string literals.
+  - **Q-B — ORTHOGONAL.** `thinker_type` = form of output; `doctrine_mode` = whether portability is deliberate vs emergent. Brooks (book-author × Mode C) proves independence. Neither derives the other.
+  - **Q-C — SINGLE-VALUED.** Mode C is *defined* as "implicit spine + named handles," so it already absorbs the A+B compound. Array support deferred until a thinker ever carries two genuinely parallel Mode B artifacts on one page (Sunil Yu CDM+DIE shape); none on the roster.
+  - **Q-D — classify the READING, not the corpus.** The Distillery's act of separating spine (`thesis`) from handles (`named_frames`) IS the Mode C discipline, so Komoroske and Fowler are **Mode C** here. DoctrineRegister §5's "Mode A" correctly describes their native corpus shape; the site applies a Mode C *treatment*. No contradiction, so no edit to Julie's DoctrineRegister.md needed (identity file — surface, never auto-edit).
+  - **Q-E — DOCUMENTATION, not schema change.** spine=`thesis` / handles=`named_frames` / Casey-test are already structurally true; write them into SCHEMA.md, add no field.
+  - **Q-F — SOFT NORM.** Lineage parentheticals are a soft authoring-checklist item (name an antecedent inline only when it strengthens the spine, Maren's amendment); `co_originators` stays the structured home so doctrine-purity does not clutter the prose voice. Not build-enforced.
+  - **The enum encodes editorial STANCE, not a taxonomy letter** (Maren): `mode-c` documents as "manufacture portable handles around an implicit spine," `mode-a` as "resist manufacturing handles (a true Mode A reading is falsified by inventing them)," `mode-b` as "the named artifact IS the doctrine." That manufacture-vs-resist instruction is the one decision the field changes that `thesis`+`named_frames` do not already drive, which is what earns its single line.
+  - **Guardrails (Sloane + Dax):** SCHEMA.md note states `doctrine_mode` is a deliberate capped exception that does NOT license future mode-style fields, AND carries a kill-criterion: delete the field if after N more thinkers no page's classification ever changed an editorial decision.
+  - **Honesty correction (Dax, accepted):** the pre-Council "euphoric insight" that the schema already implemented Mode C was motivated reasoning. The four-lane schema built the *containers* (spine lane, handle lane) but not the *editorial intent* (manufacture vs resist). The field is a genuine small addition, not a rediscovery. Euphoric-surprise prediction recalibrated 8 → 7.
+  - **Sequencing:** everything that edits `SCHEMA.md` / `content.config.ts` / a thinker page must land on merged-v1.2 `main`. Doing it now conflicts with the open MR #1 (candidate branch holds the v1.2 Zod code + the SCHEMA Editorial-Voice section). So iter-9 ships the merge-independent design+memory+plan; the file backfill is staged as iter-10, gated on Julie merging MR #1 (ISC-572). Per `feedback_writing_partner_per_field`, the backfill touches `thesis` (Camila Mode B lane) and `doctrine_mode` (backstage), never §6 / `julie_reading`.
+  - **Show-your-math (E4 soft floors):** ISC count 34 (< 128) — granularity produces a natural N for a design+memory+staged-plan iteration; manufacturing 128 atomic probes for a Council decision plus a memory edit plus a staged plan is ceremony, not coverage. Delegation: Council (5 composed members) + Advisor = 2, meets the soft floor. Cato/Forge/Anvil skipped per `feedback_avoid_kimi_codex` and because this is doctrine/design, not code. Thinking floor MET (HARD): 7 capabilities (Council, FeedbackMemoryConsult, SystemsThinking, IterativeDepth, ISA, Advisor, ReReadCheck) ≥ 6. Council ran authored-dialectic (the agent-spawn tool was not exposed in this environment); members were custom-composed via ComposeAgent, the round-by-round friction and persisted transcript contract held.
+
+  **doctrine_mode classification table (locked, applied at iter-10 backfill):**
+
+  | Thinker | thinker_type | doctrine_mode | Rationale (1-line) |
+  |---|---|---|---|
+  | Komoroske | essay-corpus | `mode-c` | implicit gardening spine + deliberately portable handles (coordination-headwind, slime-mold, adjacent-possible) |
+  | Fowler | mixed | `mode-c` | internal-quality-is-speed spine + portable handles (refactoring-catalog, strangler-fig, CI/CD) |
+  | Brooks | book-author | `mode-c` *(60/40 vs B; frontmatter comment records the call, revisable)* | the book is an artifact, but durable value travels as handles (Brooks's-Law, no-silver-bullet, conceptual-integrity) |
+  | Allspaw | mixed | `mode-c` *(light)* | resilience/ops spine + handles, lighter inventory than Woods but still deliberate portability, not pure emergent A |
+  | Woods | mixed | `mode-c` | resilience spine + handles (adaptive-capacity, graceful-extensibility, law-of-stretched-systems) |
+  | Dekker | book-author | `mode-c` | human-error-is-consequence spine + handles (just-culture, new-view, drift-into-failure) |
+  | Dalio | principles-distiller | `mode-b` | the numbered Principles IS the structured artifact |
+  | Forsgren | (MR #1) | `mode-b` | DORA / SPACE / DevEx are named structured research artifacts |
+
+  **refined (advisor pass, 2026-05-28):** five folded refinements. (1) **Named consumer** — a stored-but-never-rendered field rots without a consumer, so the spec names one: `doctrine_mode` is consumed by the *authoring process* (it tells the editor/future-Camila whether a page should manufacture handles, resist them, or treat the artifact as the doctrine), surfaced via the `feedback_distillery_prose_voice` drafting gate, NOT by the renderer. That human-process consumer is the justification for storing it. (2) **Concrete kill-criterion** — the SCHEMA note must state a number and an owner: "if after 5 more thinker pages no `doctrine_mode` value ever changed a drafting decision, delete the field; owner: Julie, checked at the next quarterly review." A kill-criterion no one counts is decoration. (3) **Orthogonality is asserted, not proven** — validated on 8 thinkers (sparse coverage of the 5×3 type×mode space); a constraint matrix is deferred unless a genuinely-forbidden combination surfaces (none has). Documented as an assumption to revisit, not a free pass. (4) **§2-vs-§5 awaits Julie's +1** — even though classify-the-reading resolves it cleanly, the file is Julie's and she is the user, so the reading is surfaced to her for ratification rather than silently encoded; if she reads §5's "Mode A" as a factual call rather than a corpus-description, she may want to adjust her own file. (5) **Single-valued is lossy at Brooks (60/40)** — accepted with the frontmatter-rationale-comment hedge + the array escape hatch named for a future genuine two-parallel-artifact thinker. Advisor also flagged that ISA edits land directly on `main` while site content is MR-gated; that asymmetry is the established, intentional governance here (ISA = constitutional layer committed directly; public site content = MR-gated), not a regression.
+
 - **2026-05-28 — decided: full voice-guideline reconciliation (incl. DoctrineRegister), Council-gated, captured in Save Point Thread 2 for clear/resume.** After Thread 1 (Forsgren prose fix) shipped, Julie asked whether the other writing-style guidelines should inform the Distillery; she'd noticed only 2 of 7 files were consulted. Investigation (all 7 read) found `RhetoricalStyle.md §4` was a skipped step of the documented AiWritingPatterns sweep, and `DoctrineRegister.md` is the Distillery's missing backbone — the Distillery is its recognition-test made into a site, and it already classifies Komoroske (Mode A) and Fowler (Mode A+B). Per-file applicability: WritingStyle/AiWritingPatterns ✅ (used), RhetoricalStyle ✅ (missed), DoctrineRegister ✅✅ (missed, headline), LongFormCraft ◐ (long-read tier only), PersuasionArchitecture ○ (marginal, §5), PrivateWritingPractice ✗ (public surface). **Julie's call:** do the FULL reconciliation (not just the safe spec/memory expansion), and run the schema-bump portion Council-gated like the prior v1.2 Q-block. **Deferred to a strong Save Point (Thread 2) rather than executed now, at her request.** Recommended sequence: merge MR #1 first, then iter-9 = Part A (spec/memory/page-recheck) + Part B (doctrine_mode field + spine/handle/Casey-test formalization + lineage-parenthetical norm + 8-page backfill). No ISCs scaffolded yet — the resuming session scaffolds them from the Save Point.
 
 - **2026-05-28 — Iter-8 Forsgren prose + MR rewrite (ALGORITHM E3, continuation).** Classifier returned NATIVE then ALGORITHM E3 as the task became the multi-step Save Point execution; executor honored ALGORITHM E3 (context-override). Mid-iteration recovery after a context-clear: jumped to current work, did not re-run earlier phases. **ISA-state provenance (advisor-corrected):** content work happened on `candidate/nicole-forsgren`, whose ISA is still at iter-7 state. Initial plan was to mark iter-8 "done" on `main`; the advisor flagged that as a state-lie (main would assert criteria-met for work it doesn't hold, behind an unmerged Julie-gated branch). Corrected: iter-8 criteria are recorded on `main` under a loud provenance banner stating they are verified against the candidate branch + remote MR, not main's tree, and stay true on main only post-merge. ISC-548 (anti: not-merged) is the gate. **Show-your-math — ISC soft-floor (20 < E3 32):** bounded continuation of a 565-ISC project running four pre-specified, Julie-approved steps; manufacturing 32 ISCs for a prose cleanup is ceremony, not coverage. **Show-your-math — delegation floor (0 < E3 2):** no Forge/Anvil/Cato per `feedback_avoid_kimi_codex.md` and because this is prose, not code; no Council because this is voice-mechanics *compliance* editing of an already-structured page, not new exec-prose generation, and §6 is Julie's to finalize at the Casey-test gate. Thinking floor MET: 5 capabilities (FeedbackMemoryConsult, ISA, IterativeDepth, Advisor, ReReadCheck) ≥ 4.
@@ -1194,6 +1289,16 @@ A static site rendering thinker pages per the locked v1 schema (`SCHEMA.md` at p
 - **2026-05-25 — Disposition application closed.** Julie ran the 8 disposition rows + 4 side-finding bullets and confirmed. **COMMIT (6 source rows applied to working tree):** Komoroske P2 (`what_i_take` opener — drops "single most useful thing I carry" stem; promotes the observation, adds "That is the headwind frame, applied; once you see it in security work, you cannot unsee it"); Allspaw P2 (`what_i_take` — stem sentence deleted, second-sentence-becomes-opener with subject change to "Security incident response"); Komoroske P3 (`where_i_extend` — verb-push "I push it into" → "The security translation is that...itself"); Brooks P3 (`where_i_extend` — two sentences collapsed to one); Allspaw P3 (`where_i_extend` — "I push it into the adversarial layer" → "Security adds an adversarial layer Allspaw did not model" + folded sentence-three); Woods P3 (`where_i_extend` — verb-push → "The security extension is that"). **COMMIT (1 side-finding row):** Allspaw `really` ×2 removed at L60 (thesis) and L195 (what_i_take tail) — filler-word removal, no semantic load. **MODIFY (5 rows drafted at `modify-pack-2026-05-25.md` for Julie to finalize):** Row 1 Brooks P2 (em-dash treatment options A1-A4 + downstream trim options B1-B3 to remove the redundant "Brooks's frame lets me ask the disciplined question" sentence); Row 2 Woods P2 (third-sentence split options C1-C4 — Camila lean C4, preserves Julie's existing "slack is not waste" sentence verbatim); Row 3 Dekker L214 not-just Hard No (phrasing options D1-D5 — Camila lean D1 or D5); Row 4 `leverage` four sub-instances (Komoroske thirty_second_take E1a-E4a Camila lean E1a; Komoroske editorial_note E1b-E4b Camila lean E2b/E3b; long-read L123 E1c-E4c Camila lean E3c; Allspaw compound F1d-F4d Camila lean F1d KEEP); Row 5 Woods L55 `navigate` metaphor (options G1-G5 Camila lean G3/G5). **SKIP: zero rows.** All 8 + 4 had a disposition. **Verification:** `bun build` passed (Node 22 via nvm; 13 pages built; zero type errors); inline grep verified each COMMIT new-string present and each old-string absent; `really` count on Allspaw page = 0. **Writing-partner discipline held:** modify-pack is explicitly draft-for-Julie-to-finalize per row, Camila leans flagged as leans not prescriptions, none applied without per-row Julie pick. Iteration `phase: complete`; ISA progress 185/185. **Next:** Julie picks per-row on modify-pack; Camila applies as a second follow-up commit when picks are in.
 
 ## Changelog
+
+### 2026-05-28 — Iter-9: a backstage field earns its place by the action it gates, not the structure it names
+
+**conjectured:** Adding `doctrine_mode` would mostly *name* a structure the four-lane schema already implemented. The euphoric framing was "the Distillery was a Mode C transmission machine all along (thesis = spine lane, named_frames = handle lane); the field just labels what was already there." On that framing the field adds little and the work is light.
+
+**refuted_by:** The Council value-skeptic (Dax) turned the framing against itself: if the structure is already there and correct, the field adds zero capability and should not exist. The escape from that trap was not to defend the framing but to abandon it. The four-lane schema built the *containers* (a spine lane, a handle lane) but never the *editorial intent* about whether to fill the handle container. A true Mode A reading (bell hooks) is falsified by manufacturing handles; a Mode C reading requires manufacturing them; a Mode B reading treats the artifact as the doctrine. `thesis` + `named_frames` cannot encode that manufacture-vs-resist instruction.
+
+**learned:** Naming an axis is only worth a stored field when the name gates an action. "We already built it" is a seductive, motivated-reasoning framing because it feels like discovery, and keeping it would have let the work skip the one part that earns the field: writing the manufacture / resist / artifact-is-doctrine guidance. The honest unit of value is the editorial instruction, not the taxonomy letter, so the enum is documented as a stance, not a label. Generalizable: before adding a derived-looking field, make the skeptic's case that it is pure documentation, and only keep it if you can name the decision it changes.
+
+**criterion_now:** `doctrine_mode` is a single stored backstage enum (`mode-a | mode-b | mode-c`) on the `Thinker` node, orthogonal to `thinker_type`, single-valued, never rendered. It is documented in SCHEMA.md as a capped exception (does not license future mode-style fields) with a kill-criterion (delete if after N thinkers no classification ever changed an editorial decision). The §2-vs-§5 tension in DoctrineRegister is resolved by classifying the editorial *reading* (Mode C treatment) rather than the native corpus (which §5 calls Mode A), so no edit to Julie's identity file is implied. Eight classifications locked (6× C, 2× B); applied at the iter-10 backfill that is gated on MR #1 merging.
 
 ### 2026-05-28 — Iter-8: voice-spec gate must be explicit, and loop-drafted Julie-voice fields must be flagged
 

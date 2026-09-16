@@ -14,9 +14,9 @@ inclusion_rationale: >
   operating system he ran it on into a public, documented body of work.
   *Principles* (2017) is the catalog. *Radical transparency*,
   *believability-weighted decision-making*, *idea meritocracy*, and
-  *pain + reflection = progress* are the named frames. The argument is
-  contested, the operationalization is contested, the management
-  practices are contested, but the vocabulary moved, and the
+  *pain + reflection = progress* are the named frames. The argument, the
+  way Bridgewater put it into practice, and the management practices
+  are all contested, but the vocabulary moved, and the
   cartographer move of writing an entire operating philosophy down as
   numbered principles is itself the contribution.
 thinker_type: principles-distiller
@@ -34,8 +34,8 @@ thirty_second_take: >
   *Radical transparency* is the working method; *believability-weighted
   decision-making* is the aggregation rule; *idea meritocracy* is the
   cultural target; *pain + reflection = progress* is the personal
-  algorithm. The frame is contested and the Bridgewater operationalization
-  is contested, but the cartographer move (public, numbered, revisable)
+  algorithm. The frame is contested and so is the way Bridgewater ran it,
+  but the cartographer move (public, numbered, revisable)
   is unusual enough that the vocabulary moved into the broader
   decision-making conversation.
 
@@ -243,7 +243,7 @@ limits:
       wrong; most organizations cannot.
 
 still_load_bearing_despite: >
-  Even with the Bridgewater operationalization complications, the
+  Even with the problems in how Bridgewater ran it, the
   principles-distiller move is durable. The genre (writing your
   decision algorithm down as numbered, public, contestable
   principles and running your organization against the document)
@@ -307,5 +307,5 @@ further_in:
     Read Munger's *Poor Charlie's Almanack*, Taleb's *Antifragile*,
     and Kahneman's *Thinking, Fast and Slow* as the working
     neighborhood. Add Rob Copeland's *The Fund* (2023) for the
-    Bridgewater-operationalization critique.
+    case against how Bridgewater ran the principles in practice.
 ---

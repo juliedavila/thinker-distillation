@@ -19,15 +19,15 @@ julie_reading_prompt: >
   or Dekker alone, does not?
 
 limits:
-  - headline: The frame's predictive power is asymmetric — invisible until consumed
+  - headline: "The frame's predictive power is asymmetric: invisible until consumed"
     severity: structural
     elaboration: >
       Adaptive capacity exists in the absence of demand. You cannot
       measure it before a surprise arrives, because the reserves only
       become legible at the moment they are drawn upon. By the time
       they are needed, the system is already inside the surprise. This
-      makes the frame's prescription — invest in capacity you cannot
-      currently see being used — structurally hard to argue for at the
+      makes the frame's prescription (invest in capacity you cannot
+      currently see being used) structurally hard to argue for at the
       budget table, where everything that is not currently doing work
       reads as waste. Holders all describe this asymmetry; none of
       them solve the legibility problem the asymmetry creates.
@@ -35,7 +35,7 @@ limits:
     severity: structural
     elaboration: >
       Resilience engineering was built on aviation, healthcare, and
-      nuclear — domains where disturbances are natural, organizational,
+      nuclear, domains where disturbances are natural, organizational,
       or accidental, not optimized against the system by an
       intelligent opponent. Every holder on this concept page extends
       adaptive capacity to their domain by adding an adversarial
@@ -62,9 +62,9 @@ limits:
 
 still_load_bearing_despite: >
   These limits are limits *on application*, not on the frame itself.
-  The underlying claim — that complex systems survive surprises because
+  The underlying claim, that complex systems survive surprises because
   of reserves that are mostly invisible and continuously eroded by
-  efficiency pressure — is the architectural insight under every honest
+  efficiency pressure, is the architectural insight under every honest
   conversation about why high-performing engineering organizations end
   up brittle. A diagnostic frame does not need to model adversaries to
   be load-bearing; it needs to make a hidden cost legible. Adaptive
@@ -80,7 +80,7 @@ adjacent_concepts:
       complexity. Coordination headwind names the cost of every
       agreement; adaptive capacity names the reserve absorbing
       surprises. Read together, they bracket the same physics from
-      two directions — what work costs at steady state, what reserves
+      two directions: what work costs at steady state, what reserves
       cost at non-steady state.
   - target_slug: graceful-extensibility
     display_name: Graceful Extensibility

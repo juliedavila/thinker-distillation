@@ -271,7 +271,7 @@ adjacent_thinkers:
     edge_label: >
       Co-author of *Joint Cognitive Systems* and resilience-engineering
       co-founder. Hollnagel's *Safety-I vs Safety-II* distinction
-      operationalizes the same insight Woods's graceful-extensibility
+      puts into practice the insight Woods's graceful-extensibility
       frame names.
     strength: primary
   - target_slug: richard-cook

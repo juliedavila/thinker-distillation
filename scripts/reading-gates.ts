@@ -38,20 +38,22 @@ if (!t.extension) fail('present', '`extension` is empty');
 for (const [name, raw] of fields) {
   if (!raw) continue;
   const text = oneLine(raw);
-  if (text.includes('—')) fail('em-dash', `${name} contains ${text.split('—').length - 1}`);
-  const b = text.match(BANNED);
+  // Quoted spans are the thinker's own words or terms, so voice checks skip them (SCHEMA.md section 8).
+  const own = text.replace(/"[^"]*"|“[^”]*”/g, '""');
+  if (own.includes('—')) fail('em-dash', `${name} contains ${own.split('—').length - 1}`);
+  const b = own.match(BANNED);
   if (b) fail('banned-word', `${name}: "${b[0]}"`);
-  const w = text.match(CONTEXTUAL);
+  const w = own.match(CONTEXTUAL);
   if (w) console.log(`warn ${name}: "${w[0]}" is banned as a verb or metaphor; confirm usage`);
   for (const re of ANTITHESIS) {
-    const m = text.match(re);
+    const m = own.match(re);
     if (m) fail('antithesis', `${name}: "${m[0]}"`);
   }
   const words = text.split(/\s+/).length;
   if (name !== 'margin_note' && words > MAX_WORDS) fail('length', `${name} is ${words} words (max ${MAX_WORDS})`);
   // The reading speaks as the Distillery. Only Julie's margin note may say "I".
   if (name !== 'margin_note') {
-    const fp = text.match(FIRST_PERSON);
+    const fp = own.match(FIRST_PERSON);
     if (fp) fail('voice', `${name} uses first person ("${fp[0]}")`);
   }
 }
@@ -78,7 +80,7 @@ if (existsSync(packPath) && existsSync(claimsPath)) {
   }
   for (const [name, raw] of fields.slice(0, 2)) {
     if (!raw) continue;
-    const sentences = oneLine(raw).split(/(?<=[.!?])\s+(?=[A-Z*"“])/).filter(Boolean);
+    const sentences = oneLine(raw).split(/(?<=[.!?]["”]?)\s+(?=[A-Z*"“])/).filter(Boolean);
     for (const s of sentences) {
       if (!claimed.has(norm(s))) fail('grounding', `${name} sentence has no claims entry: "${s.slice(0, 60)}"`);
     }

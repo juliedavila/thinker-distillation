@@ -74,13 +74,13 @@ loadLens().forEach((p, i) => item(`P:${i + 1}`, p.replace(/\*\*/g, '')));
 L.push('', '## Neighbor readings (for the novelty check only; do not echo)', '');
 for (const s of oneHop) {
   const n = thinkers.get(s) as Doc | undefined;
-  const r = n?.reading ?? n?.what_i_take;
+  const r = n?.reading;
   if (r) item(`R:${s}`, oneLine(r));
 }
 
-const prior = [t.reading, t.extension, t.what_i_take, t.where_i_extend].filter(Boolean);
+const prior = [t.reading, t.extension].filter(Boolean);
 if (prior.length) {
-  L.push('', '## Prior section 6 draft (input only, not a source; Camila-drafted)', '');
+  L.push('', '## Current reading (input only when redrafting, not a source)', '');
   prior.forEach((p) => L.push(`> ${oneLine(p)}`, ''));
 }
 

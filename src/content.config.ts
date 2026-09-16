@@ -172,15 +172,12 @@ const thinkers = defineCollection({
 
     body_of_work: z.array(bodyOfWorkItem),
 
-    // §6 Path C (iter-11): the Distillery's reading, built by the Reading Protocol. No first person.
-    reading: z.string().optional(),
-    extension: z.string().optional(),
+    // Editorial Reading: the Distillery's reading, built by the Reading Protocol. No first person.
+    reading: z.string(),
+    extension: z.string(),
     reading_review: readingReview.optional(),
     // Julie's own first-person note. Optional, never blocks shipping, never drafted by Camila.
     margin_note: z.string().optional(),
-    // Legacy §6 (pre-iter-11). Camila-drafted, Julie-reviewed at v1. Removed once every page has a reading.
-    what_i_take: z.string().optional(),
-    where_i_extend: z.string().optional(),
     working_uses: z.array(z.string()).optional(),
 
     limits: z.array(limit).min(2, 'At least 2 limits per ISC-25'),
@@ -199,10 +196,7 @@ const thinkers = defineCollection({
 
     live_edge_visible: z.boolean().optional(),
     live_edge: liveEdge.optional(),
-  }).refine(
-    (t) => Boolean(t.reading && t.extension) || Boolean(t.what_i_take && t.where_i_extend),
-    { message: '§6 needs reading + extension (or the legacy what_i_take + where_i_extend pair)' },
-  ),
+  }),
 });
 
 const longReadChapters = defineCollection({

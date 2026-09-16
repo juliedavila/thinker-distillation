@@ -277,8 +277,8 @@ adjacent_thinkers:
     edge_type: extends
     edge_label: >
       Allspaw's PhD advisor at Lund. The "new view of human error" and
-      *just culture* tradition that the blameless-postmortem move
-      operationalizes for software. Same lineage; Dekker is the safety
+      *just culture* tradition that the blameless postmortem puts
+      into practice for software. Same lineage; Dekker is the safety
       side, Allspaw the engineering side.
     strength: primary
   - target_slug: fred-brooks

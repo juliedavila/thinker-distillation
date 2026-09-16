@@ -419,6 +419,8 @@ Every `reading` and `extension` is produced by the steps below, in order, with n
    - *Security-executive reader*: does the extension earn its place for this audience?
    - *Novelty and byline check*: does it repeat neighbors or the previous draft, and could the site's compressed phrasing be mistaken for the thinker's own claim?
 
+   **Batches.** When several pages are converted at once, each reviewer reads every page in the batch and returns a verdict per page. This keeps the review to five reviewers, and it lets the novelty reviewer compare the pages with each other, which is where sameness shows up (repeated openers, the same closing move, the same Lens position everywhere). Before drafting a batch, give each page a different angle and Lens position where the sources allow it.
+
 5. **Revise and re-review.** Any REVISE sends the draft back. Rewrite the fixes yourself under the writing rules (never paste a reviewer's suggested text if it breaks them), rerun step 3, and have only the dissenting reviewers review again. Allow two revision rounds. A third REVISE, or any REJECT, goes to Julie. Use the full three-round Council debate instead of the single quick round for `mode-a` thinkers, or when two or more reviewers REJECT.
 
 6. **Record and ship.** Save the Council transcript to `~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-<slug>-<timestamp>-quick/transcript.md` (a private path on the maintainer's machine). Fill in `reading_review`, setting `dissent: true` if any reviewer stayed below ACCEPT-WITH-EDITS. Run the build, then open a merge request.
@@ -448,7 +450,7 @@ The full rules live in Julie's private writing guides on the maintainer's machin
 - `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/DOCTRINEREGISTER.md`: every thinker page. Covers the thesis-versus-frames split, doctrine mode, and the lineage parenthetical.
 - `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/LONGFORMCRAFT.md`: long-read chapters only.
 - `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/PERSUASIONARCHITECTURE.md`: section 5, only where a reading translates a thinker into security-executive terms.
-- `PRIVATEWRITINGPRACTICE.md` in the same folder does not apply, because the site is public-facing.
+- `PRIVATEWRITINGPRACTICE.md` in the same folder does not apply, because it covers private writing and this site is reader-facing.
 
 **Checklist before anything ships.** This covers thinker pages, concept pages, merge request descriptions, and issue bodies, including content drafted by an automated loop.
 

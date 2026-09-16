@@ -407,6 +407,14 @@ adjacent_thinkers:
       teams optimize the measure instead of the work.
     strength: secondary
 
+  - target_slug: camille-fournier
+    display_name: Camille Fournier
+    edge_type: parallel
+    edge_label: >
+      Both work on how engineering organizations perform. Forsgren measures the
+      outcomes of delivery systems; Fournier describes how to organize the
+      teams and platforms that produce them.
+    strength: secondary
 further_in:
   start_here: '*Accelerate* (Forsgren, Humble, Kim, 2018). The keystone.'
   then_read:

@@ -305,6 +305,15 @@ adjacent_thinkers:
       that software is fundamentally hard.
     strength: secondary
 
+  - target_slug: camille-fournier
+    display_name: Camille Fournier
+    edge_type: extends
+    edge_label: >
+      *Platform Engineering* (with Ian Nowland, 2024) carries the essential
+      and accidental complexity distinction into internal platforms, framing
+      part of the platform team's job as managing "the accidental complexity
+      of human coordination."
+    strength: secondary
 further_in:
   start_here: >
     *No Silver Bullet* (1986, 16 pages). The keystone essay. Read it

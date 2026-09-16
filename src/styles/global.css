@@ -945,3 +945,88 @@ blockquote.what-x-says cite {
 .concept-page-link:hover {
   text-decoration: underline;
 }
+
+/* Collapsed tiers: deep frames and off-site neighbors (SCHEMA 4.7 and 4.11) */
+.deep-frames,
+.deep-neighbors {
+  margin: 16px 0;
+  font-family: var(--sans);
+}
+
+.deep-frames > summary,
+.deep-neighbors > summary {
+  cursor: pointer;
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+}
+
+.deep-frames .frame.deep {
+  border-left-width: 2px;
+  padding: 12px 18px;
+}
+
+.deep-neighbors ul {
+  margin: 10px 0 0;
+  padding-left: 1.2em;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.deep-neighbors li {
+  margin: 6px 0;
+}
+
+/* Neighbors with a page on this site */
+.adjacent-card .who a {
+  color: var(--frame-accent);
+}
+
+.adjacent-card .edge-tag.on-site {
+  color: var(--frame-accent);
+  border-color: var(--frame-accent);
+}
+
+/* Hosted work, generated from hosts edges (SCHEMA 4.8) */
+.hosted-work h3 {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin: 24px 0 8px;
+}
+
+.body-of-work .tag.host-label {
+  color: var(--tierra);
+}
+
+/* Live Edge (SCHEMA 4.14) */
+.live-edge-meta {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+
+.live-edge-meta.stale {
+  opacity: 0.7;
+}
+
+.live-edge-meta .refresh-pending {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--tierra);
+  border: 1px solid var(--tierra);
+  border-radius: 999px;
+  padding: 1px 8px;
+}
+
+.live-edge-focus {
+  font-style: italic;
+}
+
+.live-edge-recent {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}

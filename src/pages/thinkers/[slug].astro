@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Monogram from '../../components/Monogram.astro';
 import { buildConceptHoldersIndex, alsoHeldByFor, buildConceptPageIndex } from '../../lib/graph';
+import { runGraphChecks, orderNeighbors, daysSince } from '../../lib/checks';
 
 export async function getStaticPaths() {
   const thinkers = await getCollection('thinkers');
@@ -16,8 +17,18 @@ const { entry } = Astro.props;
 const t = entry.data;
 const { Content } = await render(entry);
 
+await runGraphChecks();
 const holdersIndex = await buildConceptHoldersIndex();
 const conceptPages = await buildConceptPageIndex();
+const pageSlugs = new Set((await getCollection('thinkers')).map((p) => p.data.slug));
+
+const foregroundFrames = t.named_frames.filter((f) => (f.render_tier ?? 'foreground') === 'foreground');
+const deepFrames = t.named_frames.filter((f) => f.render_tier === 'deep');
+const neighbors = orderNeighbors(t.adjacent_thinkers, pageSlugs);
+const hostsEdges = t.adjacent_thinkers.filter((a) => a.edge_type === 'hosts' && a.hosted_items?.length);
+const liveEdge = t.live_edge_visible ? t.live_edge : undefined;
+const liveEdgeAge = liveEdge ? daysSince(liveEdge.last_observed) : 0;
+const STALE_DAYS = 90;
 ---
 
 <Base title={`${t.name} — Thinker Distillation`} description={t.tagline}>
@@ -59,7 +70,7 @@ const conceptPages = await buildConceptPageIndex();
 
     <section aria-labelledby="frames">
       <h2 id="frames" class="section-h">Named Frames</h2>
-      {t.named_frames.map((frame) => {
+      {foregroundFrames.map((frame) => {
         const alsoHeld = alsoHeldByFor(frame.concept_slug, t.slug, holdersIndex);
         const hasConceptPage = conceptPages.has(frame.concept_slug);
         return (
@@ -89,6 +100,23 @@ const conceptPages = await buildConceptPageIndex();
           </div>
         );
       })}
+      {deepFrames.length > 0 && (
+        <details class="deep-frames">
+          <summary>
+            {deepFrames.length} more {deepFrames.length === 1 ? 'frame' : 'frames'} in this thinker's vocabulary
+            {t.long_read && <> (see also the <a href={`/thinkers/${t.slug}/long-read`}>long read</a>)</>}
+          </summary>
+          {deepFrames.map((frame) => (
+            <div class="frame deep">
+              <div class="frame-head">
+                <span class="display-name">{frame.display_name}</span>
+                <span class="attribution-kind">{frame.attribution_kind}</span>
+              </div>
+              <p class="gloss">{frame.one_line_gloss}</p>
+            </div>
+          ))}
+        </details>
+      )}
     </section>
 
     <section aria-labelledby="body-of-work">
@@ -106,6 +134,23 @@ const conceptPages = await buildConceptPageIndex();
           </li>
         ))}
       </ul>
+      {hostsEdges.map((edge) => (
+        <div class="hosted-work">
+          <h3>Hosted by {t.name}, written by {edge.display_name}</h3>
+          <ul class="body-of-work">
+            {edge.hosted_items!.map((item) => (
+              <li>
+                <div class="title-line">
+                  <a href={item.hosted_on_url}>{item.title}</a>
+                  <span class="meta">{item.kind} · {item.year}</span>
+                  <span class="tag host-label">hosted, not authored by {t.name}</span>
+                </div>
+                {item.editorial_framing && <p class="editorial-note">{item.editorial_framing}</p>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </section>
 
     <section aria-labelledby="editorial">
@@ -156,17 +201,30 @@ const conceptPages = await buildConceptPageIndex();
     <section aria-labelledby="adjacent">
       <h2 id="adjacent" class="section-h">Adjacent Thinkers</h2>
       <div class="adjacents">
-        {t.adjacent_thinkers.map((adj) => (
+        {neighbors.foreground.map((adj) => (
           <div class="adjacent-card">
-            <p class="who">{adj.display_name}</p>
+            <p class="who">
+              {adj.hasPage ? <a href={`/thinkers/${adj.target_slug}`}>{adj.display_name}</a> : adj.display_name}
+            </p>
             <div class="edge-tags">
               <span class="edge-tag">{adj.edge_type}</span>
-              <span class="edge-tag">{adj.strength}</span>
+              <span class="edge-tag">{adj.effectiveStrength}</span>
+              {adj.hasPage && <span class="edge-tag on-site">on this site</span>}
             </div>
             <p class="edge-label">{adj.edge_label}</p>
           </div>
         ))}
       </div>
+      {neighbors.deep.length > 0 && (
+        <details class="deep-neighbors">
+          <summary>{neighbors.deep.length} more {neighbors.deep.length === 1 ? 'neighbor' : 'neighbors'}</summary>
+          <ul>
+            {neighbors.deep.map((adj) => (
+              <li><strong>{adj.display_name}</strong> ({adj.edge_type}): {adj.edge_label}</li>
+            ))}
+          </ul>
+        </details>
+      )}
     </section>
 
     <section aria-labelledby="further-in">
@@ -198,6 +256,27 @@ const conceptPages = await buildConceptPageIndex();
         )}
       </dl>
     </section>
+
+    {liveEdge && (
+      <section aria-labelledby="live-edge">
+        <h2 id="live-edge" class="section-h">Live Edge</h2>
+        <p class:list={['live-edge-meta', { stale: liveEdgeAge > STALE_DAYS }]}>
+          Last surveyed {liveEdge.last_observed.toISOString().slice(0, 10)} · {liveEdgeAge} days ago
+          {liveEdgeAge > STALE_DAYS && <span class="tag refresh-pending">refresh pending</span>}
+        </p>
+        <p class="live-edge-focus">{liveEdge.current_focus}</p>
+        <p>{liveEdge.summary}</p>
+        {liveEdge.recent_work && liveEdge.recent_work.length > 0 && (
+          <ul class="live-edge-recent">
+            {liveEdge.recent_work.map((w) => (
+              <li>
+                <em>{w.title}</em> ({w.year}, {w.kind}{w.with ? `, with ${w.with}` : ''}){w.note && <>: {w.note}</>}
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    )}
 
     {t.long_read && (
       <section aria-labelledby="long-read">

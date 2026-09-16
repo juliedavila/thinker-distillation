@@ -397,6 +397,7 @@ adjacent_thinkers:
       structural seduction for non-engineering leadership. Adjacent to DHH's
       critique but more careful about which measurement uses are legitimate.
     strength: secondary
+    render_tier: deep
   - target_slug: dan-north
     display_name: Dan North
     edge_type: critiques
@@ -406,6 +407,7 @@ adjacent_thinkers:
       version: the metric undermines the practice it was meant to honor when
       teams optimize the measure instead of the work.
     strength: secondary
+    render_tier: deep
 
   - target_slug: camille-fournier
     display_name: Camille Fournier

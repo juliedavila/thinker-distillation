@@ -304,6 +304,7 @@ adjacent_thinkers:
       project-management. Together they bracket the 1970s-era argument
       that software is fundamentally hard.
     strength: secondary
+    render_tier: deep
 
   - target_slug: camille-fournier
     display_name: Camille Fournier
@@ -313,6 +314,18 @@ adjacent_thinkers:
       and accidental complexity distinction into internal platforms, framing
       part of the platform team's job as managing "the accidental complexity
       of human coordination."
+    strength: secondary
+  - target_slug: john-allspaw
+    display_name: John Allspaw
+    edge_type: parallel
+    edge_label: >
+      Allspaw names the physics of running software in production, the operational layer beneath Brooks's project-scale claims.
+    strength: secondary
+  - target_slug: nicole-forsgren
+    display_name: Nicole Forsgren
+    edge_type: extends
+    edge_label: >
+      Forsgren's research gives Brooks's coordination-cost claim an empirical measure, lead time for changes.
     strength: secondary
 further_in:
   start_here: >

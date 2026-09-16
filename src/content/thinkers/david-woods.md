@@ -291,6 +291,12 @@ adjacent_thinkers:
       the antecedent paper.
     strength: secondary
 
+  - target_slug: nicole-forsgren
+    display_name: Nicole Forsgren
+    edge_type: parallel
+    edge_label: >
+      DORA's time to restore measures one operational footprint of the resilience Woods describes structurally.
+    strength: secondary
 further_in:
   start_here: >
     *Four Concepts for Resilience and the Implications for the Future

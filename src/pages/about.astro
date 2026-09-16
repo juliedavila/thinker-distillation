@@ -1,0 +1,93 @@
+---
+// About page (SCHEMA section 9, issue #7). Sections 2 and 3 are editorial voice.
+// Sections 1 and 4 are Julie's own words: they stay empty slots until she writes them.
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="About — Thinker Distillation"
+  description="What the Thinker Distillery is, how its pages are written, and who gets a page."
+>
+  <article class="about-page">
+    <section class="hero">
+      <h1>About</h1>
+      <p class="tagline">
+        Readings of the practitioners whose vocabulary the software, operations, and security fields now use to think.
+      </p>
+    </section>
+
+    <section aria-labelledby="mission">
+      <h2 id="mission" class="section-h">Why this exists</h2>
+      <div class="julie-lane">
+        <div class="julie-empty-slot">
+          <p class="julie-empty-marker">Awaiting Julie's statement of purpose.</p>
+          <details>
+            <summary>Prompt scaffold</summary>
+            <p class="prompt-text">
+              What is this site for, and who is it for? What does it mean to read a thinker well enough to use their
+              frames in your own work? Why build it as a public practice rather than private notes?
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="how">
+      <h2 id="how" class="section-h">How pages are written</h2>
+      <p>
+        Each thinker page is a reading, written for senior engineering and security leaders who want to get oriented in a
+        body of work quickly. It names the thinker's central argument, the named concepts practitioners carry away from
+        their work, where those concepts break, and who the thinker connects to.
+      </p>
+      <p>
+        Every part of a page has one speaker, and the layout shows which. Quotations are the thinker's own words. The
+        Editorial Reading, the limits, and the notes on adjacent thinkers are the site's interpretation. A note marked
+        "Julie's note" is Julie Davila's own first-person view, and she writes those herself.
+      </p>
+      <p>
+        Pages are drafted with an AI editor and checked in stages. Facts are verified against sources before drafting. A
+        panel of AI reviewers decides whether a thinker belongs on the site, and a second panel reviews each page's
+        reading. The reviewers each take one role: whether the thinker would recognize the reading, whether it survives
+        the thinker's critics, whether every claim traces to a source, whether it is useful to this audience, and whether
+        it credits ideas to the right people. Automated checks enforce the writing rules. Julie reads every page where a
+        reviewer disagreed, samples the rest, and approves every change before it goes live.
+      </p>
+      <p>
+        Attribution is recorded for each named concept individually. A concept can be original to the thinker, co-authored,
+        extended from someone earlier, popularized, or shared across a community, and the page says which. When an idea
+        is sharper in the site's wording than in the thinker's, the page must not present that wording as the
+        thinker's claim.
+      </p>
+    </section>
+
+    <section aria-labelledby="who">
+      <h2 id="who" class="section-h">Who gets a page</h2>
+      <p>
+        A thinker gets a page when two things are true: they have done consistent work over years, and they have produced
+        vocabulary that practitioners now use to reason about their own work, often without knowing where it came from.
+        A good book is not enough on its own. The test is whether the ideas travel.
+      </p>
+      <p>
+        These pages are curated readings, with no claim to be complete biographies or the authoritative account of anyone's
+        work. Each one reflects a particular way of reading a body of work, and each one lists the places where that reading,
+        or the thinker's ideas, fall short.
+      </p>
+    </section>
+
+    <section aria-labelledby="stance">
+      <h2 id="stance" class="section-h">Our stance toward the thinkers</h2>
+      <div class="julie-lane">
+        <div class="julie-empty-slot">
+          <p class="julie-empty-marker">Awaiting Julie's statement.</p>
+          <details>
+            <summary>Prompt scaffold</summary>
+            <p class="prompt-text">
+              How should the site treat the people it reads? How does it handle their intellectual property, quotation,
+              and linking back to the source? What would a thinker featured here be right to expect from this site?
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </article>
+</Base>

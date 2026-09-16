@@ -62,7 +62,16 @@ Before writing the draft, choose an angle and a Lens position that no neighborin
 
 Run the five seats with `briefs/review.md`. For a new page, the grounding seat also audits every fact on the page against `sources.md`, and the byline seat audits every attribution.
 
-- All ACCEPT or ACCEPT-WITH-EDITS: apply the edits (re-authored under the writing rules, never pasted when they break them), rerun the gates, and ship. No second round.
+**Pick the round count before launching, and write it in the transcript header.**
+
+- **Three rounds (required)** when the page is `doctrine_mode: mode-a`, or when two or more seats return REJECT in round 1 (SCHEMA section 7, step 5). Use a `-debate` suffix on the transcript folder instead of `-quick`.
+  - **Round 1:** the five seats review independently with `briefs/review.md`.
+  - **Round 2:** apply round 1 edits and rerun the gates. Then each seat reads the full round 1 transcript and the revised page with `briefs/review-round2.md`. It responds to named points from other seats, says whether its own concerns were resolved, and audits the rewrite for new claims.
+  - **Round 3:** apply round 2 edits and rerun the gates. Each seat reads rounds 1 and 2 with `briefs/review-round3.md` and states where the Council agrees, what is still disputed, and a final verdict.
+  - Ship on the round 3 verdicts. Any REVISE or REJECT left after round 3 goes to Julie.
+- **One round** otherwise, with the rules below.
+
+- One-round pages, all ACCEPT or ACCEPT-WITH-EDITS: apply the edits (re-authored under the writing rules, never pasted when they break them), rerun the gates, and ship. No second round.
 - Any REVISE: fix, rerun the gates, and send the revised text to the seats that dissented plus the grounding seat, because rewrites introduce new unsupported claims (it happened on Komoroske).
 - Two revision rounds at most. A third REVISE or any REJECT goes to Julie.
 
@@ -83,7 +92,8 @@ Confirm the build passes, the page renders, and `reading_review` does not appear
 
 ## Cost controls
 
-- Five seats, one round, as the default. Re-review only dissenting seats plus the grounding seat.
+- Five seats, one round, as the default for `mode-b` and `mode-c` pages. `mode-a` pages always get three rounds (stage 6); the rule is never traded away for cost. Batch mode-a pages together to share the rounds.
+- Outside the three-round case, re-review only dissenting seats plus the grounding seat.
 - Reuse `seats.md` and the briefs. Do not recompose seats each run.
 - Batch reviews when several pages are ready: each seat reviews every page in one pass and returns a verdict per page. The novelty seat catches sameness across the batch this way.
 - Research stays in the main session with targeted searches.

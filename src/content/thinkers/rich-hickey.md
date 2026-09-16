@@ -172,7 +172,7 @@ named_frames:
   - concept_slug: value-identity-state-time
     display_name: Value, identity, state and time
     one_line_gloss: >
-      A value is an immutable magnitude; an identity is an entity we associate
+      A value is an immutable magnitude; an identity is an entity associated
       with a series of values over time; state is the value of an identity at
       a moment. Separating them replaces mutable objects. Hickey credits
       Alfred North Whitehead's process philosophy as the inspiration.
@@ -304,17 +304,17 @@ extension: >
   access grants, configuration and policy are stored as current values only, the
   record of who could do what last month is gone when an investigation needs it.
   Keeping those as accumulated facts would put part of that history in the data
-  model itself. The trade-off is the write path: a log kept apart from the
-  application is its own control when the credentials that change a grant cannot
-  also rewrite its history. Teams used to overwriting records also pay the
-  relative cost the talk sets aside. Even a complete fact store proves only that
-  a change happened, so a malicious grant still waits on someone reviewing it to
-  be noticed.
+  model itself, and the history stays honest only if the credentials that write
+  a grant cannot also edit the record of grants. The costs are real: teams used
+  to overwriting records pay the relative cost the talk sets aside, and history
+  that never ages out still needs a retention period. Even a complete fact store
+  proves only that a change happened, so a malicious grant still waits on
+  someone reviewing it to be noticed.
 reading_review:
   protocol: reading-protocol-v1
   date: 2026-09-16
-  verdict: accept-with-edits
-  council_transcript: ~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-rich-hickey-20260916-160900-quick/transcript.md
+  verdict: accept
+  council_transcript: ~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-batch-hickey-fournier-20260916-163706-debate/transcript.md
   grounding_pack: _working/rich-hickey/grounding-pack.md
   claims: _working/rich-hickey/reading-claims.md
   dissent: false
@@ -355,6 +355,18 @@ limits:
       licensing and delivery mechanism, period," drew wide public criticism.
       The coherence of the language and the friction with contributors come
       from the same choice.
+
+  - headline: Permanent history meets retention limits
+    severity: local
+    elaboration: >
+      Accumulating facts instead of overwriting them means old records never
+      age out on their own. Security and access records usually survive
+      erasure requests, since data protection law such as GDPR exempts
+      processing needed for legal obligations and legal claims, and treats
+      network security as a legitimate interest. They still fall under storage limitation, which allows
+      identifiable data to be kept only as long as its purpose requires.
+      Datomic itself ships excision, a way to permanently remove facts for
+      privacy or past a retention period, and keeps a record of each removal.
 
 still_load_bearing_despite: >
   The vocabulary survives its limits because the core observation holds in

@@ -1,6 +1,6 @@
 # Reading claims: Camille Fournier
 
-Protocol v1. One line per sentence of `reading` and `extension`, each with the grounding-pack IDs it rests on.
+One line per sentence of `reading` and `extension`, each with the grounding-pack IDs it rests on.
 
 ## reading
 
@@ -13,8 +13,8 @@ Protocol v1. One line per sentence of `reading` and `extension`, each with the g
 ## extension
 
 - Security organizations often standardize by authority: a policy names the approved tool, and every team is told to comply. [T:working-line]
-- Carried into security, the book's mechanism predicts the result: each team writes its own glue to meet the policy, and the security team inherits the swamp. [F:glue] [F:over-general-swamp]
-- Its alternative comes down to who pays: when the security platform team absorbs the cost of a migration, such as moving every service to a new secrets manager, adoption stops depending on each team's spare capacity. [F:centralizing-migration-costs]
-- Shadow security tooling becomes a signal worth reviewing: a team that builds its own scanner shows where the supported path fell short, and an ungoverned tool carries its own risk. [F:shadow-platforms]
+- The platform book's mechanism holds in security too: each team writes its own glue to meet the policy, and the security team inherits the swamp. [F:glue] [F:over-general-swamp]
+- The remedies assume a funded platform team many organizations lack, and the vocabulary is untested in security work. [L:1] [L:4]
+- Where that team exists, the question is who pays: when it absorbs the cost of a migration, such as moving every service to a new secrets manager, adoption depends less on each team's spare capacity. [F:centralizing-migration-costs]
+- An application team that builds its own scanner shows where the supported path fell short, and the book advises staying aware of such shadow platforms, which in security means knowing what each one can reach. [F:shadow-platforms]
 - A curated security platform earns adoption when it makes the secure path cheaper than the alternative, the same test the book applies to any platform. [F:platform-as-product] [P:2]
-- Two limits apply: it takes a funded platform team that many organizations lack, and the vocabulary is still untested in security work. [L:1] [L:4]

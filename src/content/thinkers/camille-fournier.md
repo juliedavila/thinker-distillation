@@ -273,23 +273,23 @@ reading: >
   authority do not hold.
 extension: >
   Security organizations often standardize by authority: a policy names the
-  approved tool, and every team is told to comply. Carried into security, the
-  book's mechanism predicts the result: each team writes its own glue to meet
-  the policy, and the security team inherits the swamp. Its alternative comes
-  down to who pays: when the security platform team absorbs the cost of a
-  migration, such as moving every service to a new secrets manager, adoption
-  stops depending on each team's spare capacity. Shadow security tooling becomes
-  a signal worth reviewing: a team that builds its own scanner shows where the
-  supported path fell short, and an ungoverned tool carries its own risk. A
-  curated security platform earns adoption when it makes the secure path cheaper
-  than the alternative, the same test the book applies to any platform. Two
-  limits apply: it takes a funded platform team that many organizations lack,
-  and the vocabulary is still untested in security work.
+  approved tool, and every team is told to comply. The platform book's mechanism
+  holds in security too: each team writes its own glue to meet the policy, and
+  the security team inherits the swamp. The remedies assume a funded platform
+  team many organizations lack, and the vocabulary is untested in security work.
+  Where that team exists, the question is who pays: when it absorbs the cost of
+  a migration, such as moving every service to a new secrets manager, adoption
+  depends less on each team's spare capacity. An application team that builds
+  its own scanner shows where the supported path fell short, and the book
+  advises staying aware of such shadow platforms, which in security means
+  knowing what each one can reach. A curated security platform earns adoption
+  when it makes the secure path cheaper than the alternative, the same test the
+  book applies to any platform.
 reading_review:
   protocol: reading-protocol-v1
   date: 2026-09-16
   verdict: accept-with-edits
-  council_transcript: ~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-camille-fournier-20260916-185556-quick/transcript.md
+  council_transcript: ~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-batch-hickey-fournier-20260916-163706-debate/transcript.md
   grounding_pack: _working/camille-fournier/grounding-pack.md
   claims: _working/camille-fournier/reading-claims.md
   dissent: false

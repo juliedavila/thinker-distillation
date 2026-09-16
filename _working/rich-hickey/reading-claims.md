@@ -14,10 +14,9 @@ One line per sentence of `reading` and `extension`, each with the grounding-pack
 
 ## extension
 
-- An audit log that overwrites its own entries fails at its one job. [F:place-oriented-programming] [P:6]
+- An audit log that overwrites its own entries fails at its one job. [F:place-oriented-programming]
 - Applied past the log, the same test reaches the systems the log describes. [F:place-oriented-programming]
 - Where access grants, configuration and policy are stored as current values only, the record of who could do what last month is gone when an investigation needs it. [F:value-identity-state-time] [P:6]
-- Keeping those as accumulated facts would put part of that history in the data model itself. [F:value-identity-state-time] [P:6]
-- The trade-off is the write path: a log kept apart from the application is its own control when the credentials that change a grant cannot also rewrite its history. [P:3]
-- Teams used to overwriting records also pay the relative cost the talk sets aside. [L:3]
+- Keeping those as accumulated facts would put part of that history in the data model itself, and the history stays honest only if the credentials that write a grant cannot also edit the record of grants. [F:value-identity-state-time] [P:6]
+- The costs are real: teams used to overwriting records pay the relative cost the talk sets aside, and history that never ages out still needs a retention period. [L:3] [L:5]
 - Even a complete fact store proves only that a change happened, so a malicious grant still waits on someone reviewing it to be noticed. [F:value-identity-state-time] [P:6]

@@ -115,11 +115,18 @@ Curated reading list with editorial annotation, not a complete bibliography.
 
 ### §6 Editorial Reading
 
-Julie's voice lane — analytical synthesis, what she takes, where she extends, working uses.
+**Path C (iter-11, 2026-09-16, Julie's decision).** §6 is the Distillery's reading, built and reviewed by the Reading Protocol (below), plus an optional first-person note from Julie. It no longer waits on Julie to ship.
 
-**Fields:** `what_i_take`, `where_i_extend`, `working_uses` (optional bullets).
+**Fields:**
 
-**Visual treatment:** indented block, "From Julie's reading:" header, slight color shift, sans-serif at base.
+- `reading` — what the Distillery takes from the thinker. Stays close to the grounding pack. No first person. Max 160 words.
+- `extension` — where the reading extends the thinker, through Julie's published positions (the pack's Lens section). Inference is allowed here and must read as the Distillery's argument, never as the thinker's claim. No first person. Max 160 words.
+- `reading_review` — backstage record of the protocol run: `protocol`, `date`, `verdict`, `council_transcript`, `grounding_pack`, `claims`, `dissent`. Never rendered.
+- `margin_note` — optional. Julie's own first-person note, written by Julie only. Never drafted by Camila, never required, never blocks shipping.
+- `working_uses` — optional bullets, unchanged (collaboration-recorded).
+- `what_i_take` / `where_i_extend` — **legacy**, pre-iter-11. On the original seven pages these were Camila-drafted and Julie-reviewed at v1 launch. A page renders them only until it has a `reading`; the schema accepts either pair. Delete once every page is converted.
+
+**Visual treatment:** indented block, "The Distillery's reading" header (legacy pages keep "From Julie's reading"), slight color shift, sans-serif at base. A `margin_note` renders beneath as "Julie's note."
 
 ### §7 Where This Breaks
 
@@ -231,8 +238,8 @@ Four lanes. Every content block on every thinker page belongs to exactly one. Vi
 | Lane | Content | Attribution | Visual Treatment |
 |------|---------|-------------|------------------|
 | **What X says** | Direct quotation, close paraphrase | Inline attribution every block | Quote block, distinct color/border |
-| **Editorial reading (§6)** | Julie's analytical synthesis | "From Julie's reading:" header | Indented, color shift, sans-serif at base |
-| **Where this breaks (§7)** | Julie's honest-limits critique | "Where I think this breaks:" header | Same family as §6 + list-of-limits structure + subtle accent |
+| **Editorial reading (§6)** | The Distillery's reading, protocol-reviewed; optional Julie margin note | "The Distillery's reading" header; "Julie's note" for the margin note | Indented, color shift, sans-serif at base |
+| **Where this breaks (§7)** | The Distillery's honest-limits critique | "Where this breaks" header (legacy pages: "Where I think this breaks") | Same family as §6 + list-of-limits structure + subtle accent |
 | **Adjacent thinkers (§8)** | Graph edges with editorial labels | Card list with edge-type tags | Card grid, edge labels in editorial voice |
 
 Every thinker page footer carries a small `About →` link to the manifesto.
@@ -243,8 +250,24 @@ Distillery prose is written in Julie's voice register and follows her writing-st
 
 **Lane-to-voice mapping:**
 
-- **§6 Editorial Reading** (`what_i_take`, `where_i_extend`) is Julie's first-person Mode C voice. It must read as her, in the security-and-engineering-executive register. Camila scaffolds the slot but does not author her thinking; Julie finalizes it. See `feedback_writing_partner_per_field.md`.
+- **§6 `reading` and `extension`** are the Distillery's editorial voice, produced by the Reading Protocol. They never say "I." Their register is written for security and engineering leaders, and the extension argues through Julie's published positions without claiming to be her.
+- **§6 `margin_note`** is Julie's first-person voice and hers alone. Camila never drafts it (`feedback_writing_partner_per_field.md` still governs this field and concept-page `julie_reading`).
 - **Every other section** (hero, thirty-second take, background, thesis, frame glosses, body-of-work notes, limits, adjacency edge labels, further-in, live edge) is Camila's Mode B editorial voice.
+
+### Reading Protocol v1 (iter-11, 2026-09-16)
+
+Every `reading` + `extension` ships through these stages, in order. A page cannot skip a stage, and the output of each stage is kept as provenance under `_working/<slug>/`.
+
+1. **Grounding pack.** `bun scripts/grounding-pack.ts <slug>` walks the graph around the thinker and writes `_working/<slug>/grounding-pack.md`: the thinker's thesis, frames, and limits; outbound and inbound edges with neighbor theses; shared concepts; two-hop names; Julie's published positions (the Lens, read from `LIFEOS_DIR` PRINCIPAL_IDENTITY Key Positions); neighbor readings for the novelty check; and any prior §6 draft as input only. Every item carries a citable ID.
+2. **Draft with a claims map.** Write `reading` and `extension` on the page, and `_working/<slug>/reading-claims.md` with one line per sentence and its pack IDs. `reading` stays close to sources. `extension` carries the argument and must cite at least one Lens position (`[P:n]`) or state `lens: none applies`. Read the applicable writing-style files (§3 pre-ship gate) and the thinker's `doctrine_mode` first.
+3. **Automated gates.** `bun scripts/reading-gates.ts <slug>` must exit 0: no em-dashes, no banned words, no antithesis cadence, no first person, 160-word cap, every sentence mapped, every citation resolvable, lens touched. "Leverage" and "navigate" warn instead of fail; confirm usage by hand.
+4. **Council review.** Five custom-composed seats (Council skill, ComposeAgent), each reading the page, pack, and claims map: *Thinker's Advocate* (would the thinker recognize it), *Strongest Critic* (the page's `critiques` edges argue back), *Grounding Auditor* (do the cited items actually support each claim), *Security-Executive Lens* (does the extension earn its place for this audience), *Novelty and Casey Test* (does it repeat neighbors or the prior draft; could compression be mistaken for the thinker's claim). Each returns ACCEPT, ACCEPT-WITH-EDITS, REVISE, or REJECT with exact edits.
+5. **Revise and re-review.** Any REVISE sends the draft back. Re-author fixes under the gates (seat-suggested text is never pasted verbatim when it breaks voice rules), rerun stage 3, then the dissenting seats re-review only. Two revision rounds maximum; a third REVISE or any REJECT escalates to Julie. Use the full 3-round debate instead of the quick round for `mode-a` thinkers or when two or more seats REJECT.
+6. **Record and ship.** Persist the transcript to `~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-<slug>-<timestamp>-quick/transcript.md`, fill `reading_review` (with `dissent: true` if any seat stayed below ACCEPT-WITH-EDITS), build, and open the MR.
+
+**Julie's role is audit, not authorship.** She reads every page where `dissent: true`, plus a random one in four of the rest, and approves through the MR. She may add a `margin_note` whenever she has something to say.
+
+**Known limit.** The graph is small, so early packs lean on a few hub thinkers and neighbor readings still sit in legacy first-person voice. The novelty seat exists to catch the convergence this causes; revisit the seat roster once ten pages carry protocol readings.
 - Both registers obey the same Hard No list. The voice differs; the mechanics do not.
 
 **The mechanics (Julie's Hard No list, abridged):** no em-dashes; no "not just X / not only X / not X but Y" constructions; paragraphs do the heavy lifting, not bullets; tables only for a genuine two-axis comparison; banned words include delve, leverage (verb), navigate (metaphor), operationalize, nuanced, multifaceted, tapestry, "it's worth noting," "crucially," "importantly." Full list and rationale live in `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/WRITINGSTYLE.md` (Hard No list) and `~/.claude/LIFEOS/USER/AI_WRITING_PATTERNS.md` (P0/P1/P2 detection workflow).

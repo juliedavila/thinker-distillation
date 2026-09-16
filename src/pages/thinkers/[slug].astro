@@ -111,11 +111,29 @@ const conceptPages = await buildConceptPageIndex();
     <section aria-labelledby="editorial">
       <h2 id="editorial" class="section-h">Editorial Reading</h2>
       <div class="julie-lane">
-        <p class="lane-mark">From Julie's reading</p>
-        <h3>What I take</h3>
-        <p>{t.what_i_take}</p>
-        <h3>Where I extend</h3>
-        <p>{t.where_i_extend}</p>
+        {t.reading ? (
+          <>
+            <p class="lane-mark">The Distillery's reading</p>
+            <h3>The reading</h3>
+            <p>{t.reading}</p>
+            <h3>Where it extends</h3>
+            <p>{t.extension}</p>
+          </>
+        ) : (
+          <>
+            <p class="lane-mark">From Julie's reading</p>
+            <h3>What I take</h3>
+            <p>{t.what_i_take}</p>
+            <h3>Where I extend</h3>
+            <p>{t.where_i_extend}</p>
+          </>
+        )}
+        {t.margin_note && (
+          <>
+            <h3>Julie's note</h3>
+            <p>{t.margin_note}</p>
+          </>
+        )}
         {t.working_uses && t.working_uses.length > 0 && (
           <>
             <h3>Working uses</h3>
@@ -130,7 +148,7 @@ const conceptPages = await buildConceptPageIndex();
     <section aria-labelledby="breaks">
       <h2 id="breaks" class="section-h">Where This Breaks</h2>
       <div class="julie-lane breaks">
-        <p class="lane-mark">Where I think this breaks</p>
+        <p class="lane-mark">{t.reading ? 'Where this breaks' : 'Where I think this breaks'}</p>
         {t.limits.map((limit) => (
           <div class="limit-card">
             <div class="limit-head">

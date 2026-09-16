@@ -185,29 +185,37 @@ body_of_work:
       Industry-scale aggregate of public incident reports. Companion
       artifact to the Adaptive Capacity Labs case-study work.
 
-what_i_take: >
-  Security incident response fails the learning test for exactly the reasons
-  Allspaw described:
-  blame culture, the gap between work-as-imagined and work-as-done, the
-  habit of reducing the analysis to a root cause that pins the failure
-  on the most-junior person whose hands were on the keyboard. The
-  Allspaw move (set up conditions where engineers will be honest, treat
-  the human side as the expertise about how the system works) is
-  exactly what security IR needs and almost never gets. Importing the
-  resilience-engineering vocabulary into security is one of the
-  highest-leverage cultural changes a security org can make.
-where_i_extend: >
-  Allspaw built the model for software ops. Security adds an adversarial
-  layer Allspaw did not model: an opponent actively optimizing against
-  the detection-and-response loop, alongside everything else the ops
-  model already accounts for. The
-  blameless framing still works, *above-the-line / below-the-line*
-  still works, the work-as-imagined / work-as-done gap is still the
-  source of failure. But adaptive capacity has to be sized for an
-  adversary who is also adaptive. The resilience-engineering frame
-  needs an explicit adversarial-modeling axis added when ported to
-  security work; otherwise you end up with a calm, blameless,
-  thoroughly documented system getting reliably owned.
+reading: >
+  Allspaw treats an incident as a sample of how a system really operates,
+  carrying information no design document or runbook can supply. Getting that
+  information requires conditions where engineers can say honestly what they saw
+  and decided without career risk, which is the purpose of the blameless
+  postmortem. The analysis then looks above the line, at the mental models and
+  coordination that operate the system, as well as below it at code and
+  configuration. Dark debt names what that analysis keeps finding: failure modes
+  that live in the interactions between components and cannot be found by
+  inspecting any one of them. The frame fails when blameless gets read as
+  consequence-free, which keeps the label and drops the learning discipline.
+extension: >
+  Security work generates dark debt quickly, because every new builder, API,
+  agent, and workflow adds interactions that no single review sees. As those
+  surfaces combine, their failure modes multiply, and they tend to surface only
+  through incidents. That makes the incident stream a security organization's
+  best instrument for finding dark debt, and measuring the team on incident
+  count degrades the instrument. A team scored on fewer incidents learns to
+  report fewer, and the samples that would have revealed the next interaction
+  failure never reach review. The fix has to come from leadership, because a
+  team already scored on incident count cannot rewrite its own scorecard. Once
+  the scoring changes, reported incidents and near misses can be treated as
+  signal worth rewarding.
+reading_review:
+  protocol: reading-protocol-v1
+  date: 2026-09-16
+  verdict: accept-with-edits
+  council_transcript: ~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-batch-7-legacy-pages-20260916-181307-quick/transcript.md
+  grounding_pack: _working/john-allspaw/grounding-pack.md
+  claims: _working/john-allspaw/reading-claims.md
+  dissent: false
 working_uses:
   - Security incident response (blameless framing applied to breach analysis)
   - '"Boring Seams" keynote (the work-as-imagined / work-as-done gap in security architecture)'

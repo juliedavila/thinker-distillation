@@ -175,27 +175,36 @@ body_of_work:
       training ground for many of the practitioners now carrying the
       resilience-engineering frame into industry.
 
-what_i_take: >
-  Security architecture work consistently operates at the edge of its
-  envelope. Controls are tuned for known threats, response capacity sized
-  for normal incident volume, the people who actually understand the
-  system spread thin across too many programs. Woods's *Law of Stretched
-  Systems* names this. The slack we cut as inefficiency is the adaptive
-  capacity we will need when the threat model breaks. Every efficiency
-  push makes this worse and the security org reads as "lean" right up
-  until the moment a real surprise arrives. Designing security programs
-  around graceful extensibility, not robustness to known attacks, is the
-  move I keep coming back to.
-where_i_extend: >
-  Woods built the theory for joint cognitive systems where humans and
-  automation share the cognitive work. The security extension is that
-  some of the joint cognitive work is *adversarial*: the "automation"
-  includes attacker tooling that is also adapting. The
-  joint cognitive system frame still holds; the adversarial axis means
-  adaptive capacity has to be sized for an opponent who is also
-  building adaptive capacity. The resilience-engineering instinct
-  gets a security layer the original framework didn't model, but
-  doesn't break under it.
+reading: >
+  Woods describes complex systems as joint cognitive systems, in which people
+  and automation do the thinking together and failures live in the joint between
+  them. Such systems survive surprises through adaptive capacity: reserves that
+  people and organizational arrangements supply, and that stay invisible until
+  they are needed. The Law of Stretched Systems explains why those reserves
+  shrink: slack looks like inefficiency, so every system gets pushed toward the
+  edge of its envelope, where small disturbances produce large failures.
+  Graceful extensibility, the ability to stretch under conditions nobody
+  designed for, is the property resilience engineering aims at. The original
+  papers are dense, which is why carriers such as Allspaw brought the vocabulary
+  into software.
+extension: >
+  The Law of Stretched Systems predicts what happens to security automation
+  gains: the capacity they free up gets spent on more load. A security leader
+  who wants resilience has to defend slack as reserve for surprises, and should
+  expect that defense to be contested for as long as the same pressure reads
+  slack as waste. That reserve is where security behaves as an emergent
+  property: no single control absorbs a novel attack, and what absorbs it is
+  people with the time and context to adapt. A program that lets its automation
+  savings turn into throughput ends up as stretched as before, and the reserve
+  it never rebuilt is the one an attacker eventually finds.
+reading_review:
+  protocol: reading-protocol-v1
+  date: 2026-09-16
+  verdict: accept-with-edits
+  council_transcript: ~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-batch-7-legacy-pages-20260916-181307-quick/transcript.md
+  grounding_pack: _working/david-woods/grounding-pack.md
+  claims: _working/david-woods/reading-claims.md
+  dissent: false
 working_uses:
   - '"Boring Seams" keynote (Law of Stretched Systems applied to security operations)'
   - Cordon framework (graceful extensibility as a software-quality dimension)

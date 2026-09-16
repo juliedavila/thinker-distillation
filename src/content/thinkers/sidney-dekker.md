@@ -192,28 +192,36 @@ body_of_work:
       it does. Best read after the other three; the argument has more
       edges and the prescription is sharper.
 
-what_i_take: >
-  The *just culture* distinction (accountable for willful violations,
-  not for honest mistakes) is the move I keep importing into security
-  conversations about engineer behavior. Security cultures default to
-  punitive responses for engineer "errors" (clicked the phishing email,
-  pushed the credential to GitHub, misconfigured the IAM policy) without
-  doing the Dekker move of asking what the system made easy, hard,
-  obvious, or invisible. The investigation should produce the same
-  conclusion most aviation investigations produce: an honest mistake
-  in conditions that made the mistake very likely. Punishing the human
-  doesn't change the conditions; the system will produce the same
-  mistake from the next engineer.
-where_i_extend: >
-  Dekker built the safety-culture frame for industries where the
-  primary disturbance is nature, accident, or organizational drift.
-  I push it into the security space where some of the disturbance is
-  adversarial intent. The framework still holds: engineer
-  "failures" under security pressure are mostly system-induced, but
-  the just-culture model needs an explicit adversarial axis. The
-  attacker is also exploiting the work-as-imagined / work-as-done
-  gap; the gap is therefore both a security defect and a safety
-  defect. The two frames need to meet, and Dekker is most of the way.
+reading: >
+  Dekker's starting point is that human error is a consequence of system
+  conditions, so the investigator's job is to reconstruct how an action made
+  sense to the person at the time. If it made sense once, it will make sense to
+  the next person in the same position. Just culture draws the accountability
+  line: people answer for willful violations, while honest mistakes and
+  system-induced failures become material for learning. Drift into failure
+  explains how organizations reach unsafe states through many small, reasonable
+  choices toward efficiency, none of them obviously wrong. The frame works best
+  when used surgically, because invoking drift for every incident can close off
+  the question of which decisions could have gone differently.
+extension: >
+  Security programs drift the same way, one reasonable exception at a time. Each
+  risk acceptance makes sense on the day it is signed, and the unsafe state
+  appears only in the accumulation. Recording every exception as a structured,
+  auditable object with an owner and an expiry makes that accumulation visible
+  before an incident does. An expiry helps only if renewal demands a fresh
+  justification, since routine renewal turns the record into a paper trail of
+  the drift. Just culture then shapes the review, which asks how each acceptance
+  made sense at the time while still separating an honest call from a willful
+  violation. The register cannot stop drift by itself, and it does stop the
+  organization from being the last to notice what has accumulated.
+reading_review:
+  protocol: reading-protocol-v1
+  date: 2026-09-16
+  verdict: accept-with-edits
+  council_transcript: ~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-batch-7-legacy-pages-20260916-181307-quick/transcript.md
+  grounding_pack: _working/sidney-dekker/grounding-pack.md
+  claims: _working/sidney-dekker/reading-claims.md
+  dissent: false
 working_uses:
   - Security incident response (just-culture framing for engineer-error analysis)
   - '"Boring Seams" keynote (drift-into-failure applied to security architecture)'

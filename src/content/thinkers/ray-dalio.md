@@ -172,32 +172,39 @@ body_of_work:
       the corpus. The principles-distiller move requires a venue
       that hosts the revisions in public.
 
-what_i_take: >
-  The principles-distiller move is the most useful import I carry into
-  security-program design. Most security organizations operate on
-  tacit principles: "we don't accept that risk class," "we always
-  require two-person review for these changes," "we don't allow X
-  unless Y", that are never written down, never examined, and
-  therefore never improved. Dalio's move is to *write the algorithm
-  down* and treat the document as both the operating procedure and
-  the artifact under continuous revision. The risk register, the
-  acceptable-use policy, the security-architecture principles
-  document. These become live artifacts in the Dalio frame, not
-  compliance theater. Whether or not Bridgewater's specific
-  operationalization was good, the genre is right.
-where_i_extend: >
-  Dalio built the principles-distiller move for a single-leader
-  organization with an unusual tolerance for radical transparency.
-  I push it into security organizations operating inside larger
-  enterprises that cannot tolerate radical transparency at scale:
-  the risk surface is too public, the regulatory environment too
-  punitive. The fix is to keep the principles-distiller form
-  (numbered, written, revisable) while replacing radical transparency
-  with *scoped transparency*: full disclosure inside the security
-  org and to leadership, edited disclosure to the broader company,
-  minimal disclosure externally. The argument that "the form is
-  the contribution" survives this adaptation; the specific
-  Bridgewater transparency norms don't.
+reading: >
+  Dalio argues that most consequential mistakes come from decision rules that
+  were tacit, contradictory, or never examined. His remedy is the principles
+  document: numbered, written-down rules that anyone may challenge and that get
+  revised when they produce bad outcomes. Radical transparency and
+  believability-weighted decisions support the document, the first by exposing
+  rationales and the second by weighting each person's input by their track
+  record on that kind of question. The personal version is pain plus reflection
+  equals progress. Reporting on Bridgewater describes a daily experience far
+  harsher than the document's ideal, which makes the form and its implementation
+  worth judging separately.
+extension: >
+  Believability weighting struggles in security, because the best security calls
+  leave no trace: a breach that never happened builds nobody's track record. The
+  principles move still transfers when it attaches to decisions instead of
+  people, although what transfers is the written rule, and the track-record
+  weighting that made the frame distinctive stays behind. A security
+  organization can write its standing positions as numbered principles, each
+  with its reasoning and the evidence that would change it. Treating prompt
+  injection as architecturally unsolvable, and therefore something to mitigate,
+  is a principle of this kind: stated plainly, open to challenge, and revisable
+  if the architecture changes. Taleb's objection lands hard here, since a
+  written principle says nothing about the attack nobody has written a principle
+  for yet. The other risk is the compliance theater the page already names,
+  where the document survives audits and stops steering decisions.
+reading_review:
+  protocol: reading-protocol-v1
+  date: 2026-09-16
+  verdict: accept-with-edits
+  council_transcript: ~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-batch-7-legacy-pages-20260916-181307-quick/transcript.md
+  grounding_pack: _working/ray-dalio/grounding-pack.md
+  claims: _working/ray-dalio/reading-claims.md
+  dissent: false
 working_uses:
   - Security principles documents (written down, numbered, revisable)
   - Risk-acceptance frameworks (explicit decision algorithm, not tacit)

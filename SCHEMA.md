@@ -207,14 +207,13 @@ What the site takes from the thinker, and how that extends into Julie's field. T
 
 | Field | Required | Holds |
 |-------|----------|-------|
-| `reading` | yes, unless the legacy pair is used | What the site takes from the thinker. Stays close to the grounding pack. Editorial voice, 160 words maximum. Renders under "The reading." |
-| `extension` | yes, unless the legacy pair is used | Where the reading extends the thinker through Julie's published positions. Inference is allowed, but it must read as the site's argument and never as the thinker's claim. Editorial voice, 160 words maximum. Renders under "Where it extends." |
+| `reading` | yes | What the site takes from the thinker. Stays close to the grounding pack. Editorial voice, 160 words maximum. Renders under "The reading." |
+| `extension` | yes | Where the reading extends the thinker through Julie's published positions. Inference is allowed, but it must read as the site's argument and never as the thinker's claim. Editorial voice, 160 words maximum. Renders under "Where it extends." |
 | `reading_review` | no | Backstage record of the protocol run: `protocol`, `date`, `verdict` (`accept` or `accept-with-edits`), `council_transcript`, `grounding_pack`, `claims`, `dissent` (default `false`) |
 | `margin_note` | no | Julie's own first-person note. Renders as "Julie's note." Never required, never drafted by Camila, never blocks shipping. |
 | `working_uses` | no | Bullet list of places the thinker's frames were used in real work |
-| `what_i_take`, `where_i_extend` | legacy | The older first-person pair, drafted by Camila and reviewed by Julie. A page renders them, under the label "From Julie's reading," only while it has no `reading`. Remove them once every page has been converted. |
 
-The schema requires either `reading` and `extension` together, or `what_i_take` and `where_i_extend` together.
+Pages converted before September 2026 carried a first-person pair, `what_i_take` and `where_i_extend`. Those fields have been removed from the schema.
 
 Visual treatment: an indented block with a slight color shift and a sans-serif base.
 
@@ -229,7 +228,7 @@ An honest account of where the thinker's ideas fail. Required on every page.
 
 Each limit renders as a card showing headline, severity, and elaboration. The section shares the color family and indent of Editorial Reading, with the card layout and an accent to tell them apart. The closing paragraph renders separately, under "Still load-bearing, despite," in plain paragraph style, so the section reads as a run of critiques followed by a turn back to why the ideas still hold.
 
-The section label is "Where this breaks" on pages with a protocol reading and "Where I think this breaks" on legacy pages.
+The section is labeled "Where this breaks."
 
 ### 4.11 Adjacent Thinkers
 
@@ -427,7 +426,7 @@ Every `reading` and `extension` is produced by the steps below, in order, with n
 
 **Julie's role is to audit.** She reads every page with `dissent: true` and a random one in four of the rest, and approves through the merge request. She may add a `margin_note` at any time.
 
-**Known limit.** The graph is still small, so early grounding packs lean on a few well-connected thinkers, and neighbors' readings are often still in the legacy first-person voice. The novelty reviewer exists to catch readings that converge as a result. Revisit the reviewer roster once ten pages have protocol readings.
+**Known limit.** The graph is still small, so early grounding packs lean on a few well-connected thinkers, so readings risk converging on the same moves. The novelty reviewer exists to catch that, and batches should assign each page its own angle before drafting. Revisit the reviewer roster once ten pages have protocol readings.
 
 ---
 
@@ -441,6 +440,14 @@ All site prose follows Julie's writing-style system, whoever drafts it. Editoria
 - No contrast constructions of the form "not just X," "not only X," or "not X but Y."
 - Paragraphs carry the argument. Use bullets sparingly, and tables only for real two-dimensional comparisons.
 - No banned words. The list is the `BANNED` pattern in `scripts/reading-gates.ts` (for example "operationalize" and "in the realm of"), plus "leverage" as a verb and "navigate" as a metaphor. The script matches the second pair only as warnings, because it cannot tell a verb or metaphor from ordinary use.
+
+**Apply the rules with judgment.** Their purpose is prose that doesn't read like generic AI output, and the thinkers' own vocabulary still belongs on the page. Three cases get room:
+
+- *Quotation.* A thinker's own words inside quotation marks keep their original wording and punctuation, banned words and em-dashes included. The gates script skips quoted text for this reason.
+- *Terms of art.* When a word is the accurate name for something in the thinker's field, use it. The Dalio limit "The Bridgewater operationalization is contested" keeps the word because that's what the critique is about.
+- *Repetition is the tell.* A precise word used once is fine. The same word five times across a page, or a jargon verb where a plain one works, is what makes prose sound machine-written. Fix those.
+
+When a flagged word survives on purpose, the reviewer should be able to see why from the sentence itself.
 
 The full rules live in Julie's private writing guides on the maintainer's machine, which are not part of this repo:
 
@@ -456,7 +463,7 @@ The full rules live in Julie's private writing guides on the maintainer's machin
 
 1. Read the applicable guides above before drafting.
 2. Confirm the baseline: `grep -c $'\xe2\x80\x94' src/content/thinkers/alex-komoroske.md` returns 0 (the pattern is an em-dash written as UTF-8 bytes).
-3. After drafting, run `grep -c $'\xe2\x80\x94' <file>` (target 0) and `grep -iE 'operationaliz|delv|leverag|nuance' <file>` (target: no output, or only uses you have checked by hand), then work through the AI-patterns checklist.
+3. After drafting, run `grep -c $'\xe2\x80\x94' <file>` (target 0) and `grep -iE 'operationaliz|delv|leverag|nuance' <file>` (target: no output, or only quotations and terms of art you have checked by hand), then work through the AI-patterns checklist.
 4. Merge requests and issues are read cold. Open with a plain paragraph that says what the change is and why it exists, and define or remove internal shorthand.
 
 ---
@@ -480,9 +487,9 @@ The home page (`/`) lists thinkers alphabetically. `/concepts/` lists concept pa
 
 ## 10. What the build enforces today
 
-`src/content.config.ts` rejects a build when a required field is missing, an enum value is wrong, a slug is not kebab-case, a thinker has fewer than 2 limits or fewer than 3 adjacent thinkers, a concept page lists fewer than 2 limits or 3 adjacent concepts (when those fields are present), or a thinker has neither the new reading pair nor the legacy pair. `scripts/reading-gates.ts` enforces the prose checks in section 7 for the Editorial Reading fields.
+`src/content.config.ts` rejects a build when a required field is missing, an enum value is wrong, a slug is not kebab-case, a thinker has fewer than 2 limits or fewer than 3 adjacent thinkers, a concept page lists fewer than 2 limits or 3 adjacent concepts (when those fields are present). `scripts/reading-gates.ts` enforces the prose checks in section 7 for the Editorial Reading fields.
 
-The following rules in this document are accepted by the schema but not implemented yet. Until they are, apply them by hand during review:
+The following rules in this document are accepted by the schema but not implemented yet. Until they are, apply them by hand during review: Each gap is tracked as an issue: [#6](https://gitlab.com/juliedavila/thinker-distillery/-/issues/6) Live Edge, [#7](https://gitlab.com/juliedavila/thinker-distillery/-/issues/7) About page, [#8](https://gitlab.com/juliedavila/thinker-distillery/-/issues/8) foreground and deep frames, [#9](https://gitlab.com/juliedavila/thinker-distillery/-/issues/9) Adjacent Thinkers, [#10](https://gitlab.com/juliedavila/thinker-distillery/-/issues/10) hosted work, [#11](https://gitlab.com/juliedavila/thinker-distillery/-/issues/11) concept page checks.
 
 | Rule | Where it is described | Gap |
 |------|-----------------------|-----|

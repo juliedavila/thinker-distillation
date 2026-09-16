@@ -309,7 +309,7 @@ adjacent_thinkers:
     edge_label: >
       Coined "technical debt" in 1992 and built the wiki, the form Fowler
       extended into the bliki. The genre of public-revision design writing
-      starts with Cunningham; Fowler operationalized it as a career.
+      starts with Cunningham; Fowler made a career of it.
     strength: primary
   - target_slug: eric-evans
     display_name: Eric Evans

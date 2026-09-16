@@ -295,6 +295,7 @@ adjacent_thinkers:
       Brooks's conceptual-integrity argument requires in practice. Brooks
       named the property; Parnas named the mechanism that produces it.
     strength: secondary
+    render_tier: deep
   - target_slug: edsger-dijkstra
     display_name: Edsger Dijkstra
     edge_type: parallel
@@ -320,6 +321,14 @@ adjacent_thinkers:
     edge_type: parallel
     edge_label: >
       Allspaw names the physics of running software in production, the operational layer beneath Brooks's project-scale claims.
+    strength: secondary
+  - target_slug: rich-hickey
+    display_name: Rich Hickey
+    edge_type: extends
+    edge_label: >
+      Hickey renames accidental complexity "incidental complexity" in "Simple
+      Made Easy" (2011) and places the blame on the tools and constructs a team
+      chooses.
     strength: secondary
   - target_slug: nicole-forsgren
     display_name: Nicole Forsgren

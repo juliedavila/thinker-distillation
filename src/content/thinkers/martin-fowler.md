@@ -347,12 +347,21 @@ adjacent_thinkers:
       Maneuver*. The boundary arc of Fowler's work runs through Conway's
       claim that org structure ships in the system structure.
     strength: secondary
+    render_tier: deep
 
   - target_slug: ray-dalio
     display_name: Ray Dalio
     edge_type: parallel
     edge_label: >
       Dalio writes down an organization's decision rules the way Fowler writes down design vocabulary: explicit, named, and open to revision.
+    strength: secondary
+  - target_slug: rich-hickey
+    display_name: Rich Hickey
+    edge_type: parallel
+    edge_label: >
+      Hickey calls reliance on tests to make change safe "guardrail
+      programming," a direct counterpoint to refactoring under tests. His
+      accretion-only interfaces pair with Fowler's Tolerant Reader.
     strength: secondary
   - target_slug: fred-brooks
     display_name: Fred Brooks

@@ -1,0 +1,78 @@
+# Grounding pack: Rich Hickey
+
+Generated 2026-09-16 by scripts/grounding-pack.ts. Every claim in the reading must cite at least one ID below.
+
+thinker_type: mixed · doctrine_mode: mode-a
+
+## The thinker (spine, handles, limits)
+
+- **[T:thesis]** Reliability depends on being able to understand a system, and people can only reason about a few things at a time, so the property that matters most is whether the parts of a system are intertwined. Simplicity in that sense is objective and chosen; ease is relative to the person and says nothing about how tangled the result is. Incidental complexity enters when teams pick familiar constructs (mutable objects, in-place updates, breaking version changes) that braid together things the problem kept separate. The remedy is to build from values, plain data and composable pieces, and to treat tests and type systems as safety nets that cannot make a tangled design simple. (The premise that simplicity is a prerequisite for reliability is Dijkstra's, quoted at the start of "Simple Made Easy.")
+- **[T:working-line]** Complecting things is the source of complexity. ("Simple Made Easy," Strange Loop, 2011.)
+- **[F:simple-versus-easy]** Simple versus easy (original, with edsger-dijkstra): Simple means one fold or braid, with no interleaving, and can be checked in the artifact itself. Easy means near at hand, familiar to the person using it, and is relative. Treating the two words as synonyms is how teams choose complexity without noticing. Builds on Dijkstra's "simplicity is prerequisite for reliability," which the talk opens by quoting.
+- **[F:complect]** Complect (popularized): An archaic English word for braiding or interleaving, revived for software: to complect is to entwine concerns that could stay independent, which is where complexity comes from. Its opposite is compose, to place together. Overlaps the older ideas of coupling and connascence.
+- **[F:incidental-complexity]** Incidental complexity (extended, with fred-brooks, ben-moseley-peter-marks; derived from essential-vs-accidental-complexity): Complexity that was no part of what the user asked for and arrived with a chosen tool or construct. Hickey's name for what Brooks called accidental complexity, and what Moseley and Marks's "Out of the Tar Pit" traced mainly to mutable state; his gloss is that "incidental is Latin for 'your fault'."
+- **[F:place-oriented-programming]** Place-oriented programming (PLOP) (original): Any design in which new information replaces old information in place. A habit born of early machines with little memory, kept long after the limits disappeared, at the cost of losing facts. The name is Hickey's; the critique of fetch-and-store programming goes back at least to Backus's 1977 Turing lecture and the functional programming tradition.
+- **[F:accretion-versus-breakage]** Accretion versus breakage (extended, with martin-fowler): A published interface can grow by providing more (accretion) or requiring less (relaxation). Removing anything is breakage. When a change must break, give it a new name instead of a new version number. Related to Postel's robustness principle and Fowler's Tolerant Reader, and argued against Semantic Versioning's habit of breaking under the same name.
+- **[F:guardrail-programming]** Guardrail programming (original): Relying on tests, refactoring tools and type checkers to make change safe, like driving by bouncing off guardrails. Those tools are safety nets; none of them makes a tangled program simple, so the ability to reason about the program still has to come from the design.
+- **[F:value-identity-state-time]** Value, identity, state and time (extended, with alfred-north-whitehead): A value is an immutable magnitude; an identity is an entity we associate with a series of values over time; state is the value of an identity at a moment. Separating them replaces mutable objects. Hickey credits Alfred North Whitehead's process philosophy as the inspiration.
+- **[F:situated-programs]** Situated programs (original): Programs that run continuously for years, deal mostly with information, remember what they did, and face real-world irregularity. The kind of system Hickey built for two decades, and the scope within which his arguments about data and types are made.
+- **[F:hammock-driven-development]** Hammock-driven development (extended, with george-polya): Load a problem into the waking mind with study and writing, then step away and let the background mind work on it. A programmer's name for the incubation stage of problem solving; the talk credits Polya's *How to Solve It*.
+- **[F:persistent-data-structures]** Persistent data structures as the default (extended, with phil-bagwell, chris-okasaki): Immutable collections that share structure so that making a changed copy is cheap, used as the language's everyday data. Clojure's versions build on Phil Bagwell's hash array mapped tries after Okasaki's structures proved too slow for Hickey's needs.
+- **[L:1]** The case against static types is contested (structural): "Effective Programs" and "Maybe Not" argue that type systems do little for the information systems Hickey builds. Jonathan Lange's published response to "Maybe Not" disputes the talk's account of sum types, argues that Wadler's "Theorems for Free!" shows how much a type signature communicates, and says the talk ignores the type theory literature. Hickey scopes his claims to situated programs, and the scope matters: the argument does not settle the question for other kinds of software.
+- **[L:2]** The evidence is one practitioner's experience (structural): The arguments rest on Hickey's own systems and his reading of what went wrong in them. The talks offer definitions, examples and a table of simpler replacements for complex constructs, but no measurement. The toolkit table itself arrives without argument in the talk; he says he did not label the columns good and bad and leaves the reader to.
+- **[L:3]** Simple is objective, and the cost of getting there is relative (local): The talk defines simplicity as a property of the artifact and ease as a property of the person, then tells teams to choose simple. For a team whose members find the simpler constructs unfamiliar, the relative cost is real and falls on people the definition sets aside. The distinction explains the trade-off; it does not price it.
+- **[L:4]** A singular vision has a governance cost (local): Hickey's history of Clojure says he prioritized "maintaining my vision for Clojure" over collaborative development, "for good and bad." His 2018 essay "Open Source is Not About You," which calls open source "a licensing and delivery mechanism, period," drew wide public criticism. The coherence of the language and the friction with contributors come from the same choice.
+- **[T:still-load-bearing]** The vocabulary survives its limits because the core observation holds in any codebase: things braided together have to be understood together, and familiarity hides the braid. The typing argument can stay contested and the evidence can stay anecdotal while "is this complected?" remains a sharper review question than "is this clean?" Accretion versus breakage holds up for a similar reason. Anyone who has upgraded a dependency across a major version has paid for breakage that arrived under a name they already trusted.
+
+## Outbound edges (this page points at)
+
+- **[E:out:fred-brooks]** antecedent, primary → Fred Brooks (has a page): Incidental complexity is Hickey's name for the accidental complexity Brooks separated from essential complexity in "No Silver Bullet," with the blame placed squarely on the choices a team makes.
+- **[N:fred-brooks:thesis]** Fred Brooks's thesis: Software is fundamentally a communication problem dressed up as an engineering problem. The cost of building large systems is mostly the cost of coordinating the people building them; that cost grows superlinearly with team size and is bounded below by communication topology, not by individual programmer productivity. Therefore: adding people to a late project makes it later (Brooks's Law). Therefore: conceptual integrity is the single most important property of a system and must be defended by keeping the design in a small number of heads. Therefore: tools and methodologies that target *accidental* complexity (syntax, memory, type errors) can yield big productivity gains; tools and methodologies that promise to reduce *essential* complexity (the problem domain itself) are silver bullets and they do not exist.
+- **[E:out:martin-fowler]** parallel, primary → Martin Fowler (has a page): Fowler treats tests as what makes refactoring safe; Hickey calls reliance on tests guardrail programming. On change, Fowler's Tolerant Reader (2011) is the consumer-side counterpart to Hickey's accretion-only interfaces.
+- **[N:martin-fowler:thesis]** Martin Fowler's thesis: Software is a perishable medium for shared understanding. It rots when nobody is tending it, and the cost of letting it rot is paid not in some distant future but in next week's velocity. The way to keep software cheap to change is to evolve practice in public: name the moves, share the vocabulary, run the build-test-deploy loop tight, place the boundaries where change wants to flow, model the domain in the language the team already uses with the customer, and write the practice down as you discover it. Quality IS speed. Naming the implicit is how the argument becomes negotiable. The catalog, the bliki entry, the pattern, the named refactoring, the smell: these are the cartographer's instruments.
+- **[E:out:ben-moseley-peter-marks]** antecedent, secondary → Ben Moseley and Peter Marks: "Out of the Tar Pit" (2006) traced most accidental complexity to mutable state and proposed functional and relational remedies. Hickey's history of Clojure describes Datomic as the final piece needed to get out of that tar pit.
+- **[E:out:alfred-north-whitehead]** antecedent, secondary → Alfred North Whitehead: The process philosopher whose account of time as a succession of events Hickey credits as the inspiration for separating value, identity and state.
+- **[E:out:jonathan-lange]** critiques, secondary → Jonathan Lange: A direct 2018 response to "Maybe Not," arguing that the talk misstates what sum types and type signatures communicate and ignores the type theory literature.
+- **[E:out:john-ousterhout]** parallel, secondary → John Ousterhout: *A Philosophy of Software Design* (2018) also treats complexity as the central problem of software design, with a different vocabulary built around deep modules and strategic programming.
+
+## Inbound edges (other pages point here)
+
+- **[E:in:martin-fowler]** Martin Fowler → Rich Hickey, parallel: Hickey calls reliance on tests to make change safe "guardrail programming," a direct counterpoint to refactoring under tests. His accretion-only interfaces pair with Fowler's Tolerant Reader.
+- **[E:in:fred-brooks]** Fred Brooks → Rich Hickey, extends: Hickey renames accidental complexity "incidental complexity" in "Simple Made Easy" (2011) and places the blame on the tools and constructs a team chooses.
+
+## Shared concepts (frames other pages also hold)
+
+
+## Two hops out (names only, for reach)
+
+- **[H:alex-komoroske]** Alex Komoroske (via martin-fowler, parallel)
+- **[H:melvin-conway]** Melvin Conway (via martin-fowler, antecedent)
+- **[H:david-parnas]** David Parnas (via fred-brooks, parallel)
+- **[H:edsger-dijkstra]** Edsger Dijkstra (via fred-brooks, parallel)
+- **[H:camille-fournier]** Camille Fournier (via fred-brooks, extends)
+- **[H:john-allspaw]** John Allspaw (via fred-brooks, parallel)
+- **[H:nicole-forsgren]** Nicole Forsgren (via fred-brooks, extends)
+- **[H:kent-beck]** Kent Beck (via martin-fowler, extends)
+- **[H:ward-cunningham]** Ward Cunningham (via martin-fowler, antecedent)
+- **[H:eric-evans]** Eric Evans (via martin-fowler, extends)
+- **[H:christopher-alexander]** Christopher Alexander (via martin-fowler, antecedent)
+- **[H:ray-dalio]** Ray Dalio (via martin-fowler, parallel)
+- **[H:zhamak-dehghani]** Zhamak Dehghani (via martin-fowler, hosts)
+
+## Lens: Julie's published positions
+
+The extension must connect to at least one of these, or say plainly that none applies.
+
+- **[P:1]** Prompt injection is architecturally unsolvable — mitigate, don't solve.
+- **[P:2]** Security as emergent property, not imposed constraint. Make secure behavior the Schelling point.
+- **[P:3]** Boundary enforcement over code inspection — capability-based security at infrastructure level scales where code review does not.
+- **[P:4]** AI Comprehension Crisis — code generation outpaces understanding at 2.5:1; the enterprise that maintains semantic comprehension of its software estate has structural advantage.
+- **[P:5]** Five Attack Surface Expansions — democratized builders + public APIs + agent access + autonomous reasoning + LLM workflows = combinatorial, not additive, threat surface.
+- **[P:6]** Software Factory Ontology — specs as ontology objects, security constraints as part of the spec, end-to-end auditability.
+- **[P:7]** Confused deputy problem (Hardy, 1988) is the correct framing for MCP/agent authorization failures.
+- **[P:8]** "It's gotta be tough for all the right reasons." Criteria for meaningful work: autonomy, difficulty, people, mission.
+
+## Neighbor readings (for the novelty check only; do not echo)
+
+- **[R:fred-brooks]** For Brooks, software is a communication problem before it is an engineering problem, and the cost of coordinating the people building a system grows faster than the team. Brooks's Law follows directly: adding people to a late project makes it later. No Silver Bullet sharpens the claim by separating essential complexity, which lives in the problem, from accidental complexity, which the tools add. Tooling can remove accidental complexity, sometimes dramatically, while no single development shrinks the essential part by an order of magnitude. The prediction dates from 1986 and still stands, which is why the vocabulary carries weight in any honest conversation about engineering.
+- **[R:martin-fowler]** In Fowler's account, software is a medium for shared understanding, and it decays whenever nobody tends it. The cost of that decay arrives quickly, in next week's velocity, and his design stamina hypothesis makes a parallel claim that internal quality pays back within weeks. His method is to name the moves (refactoring, code smell, strangler fig, bounded context), attribute each to its origin, and revise them in public on the bliki. Naming turns tacit design choices into distinctions a team can argue about. The method has limits of its own: his 2014 microservices article undersold the cost of distribution, and later follow-ups had to correct it.

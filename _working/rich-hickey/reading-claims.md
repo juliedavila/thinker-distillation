@@ -1,0 +1,23 @@
+# Reading claims: Rich Hickey
+
+One line per sentence of `reading` and `extension`, each with the grounding-pack IDs it rests on.
+
+## reading
+
+- "Simple Made Easy" pulls apart two words the industry treats as one: simple means nothing is interleaved, a property of the artifact, and easy means near at hand, a property of the person. [F:simple-versus-easy]
+- Hickey locates complexity in complecting, the braiding together of concerns that could stay independent. [F:complect] [T:working-line]
+- A familiar tool can bring complexity the problem never needed, which he calls incidental complexity, his name for what Brooks called accidental. [F:incidental-complexity] [E:out:fred-brooks]
+- Tests and type checkers catch mistakes after the fact, and in his account they are safety nets that cannot untangle a design. [F:guardrail-programming] [T:thesis]
+- The later talks carry the same concern into data and change. [T:thesis]
+- Overwriting a record in place discards the fact it replaced, and removing anything from a published interface breaks whoever depends on it. [F:place-oriented-programming] [F:accretion-versus-breakage]
+- He scopes these arguments to long-running information systems, and his case against static types remains contested. [F:situated-programs] [L:1]
+
+## extension
+
+- An audit log that overwrites its own entries fails at its one job. [F:place-oriented-programming] [P:6]
+- Applied past the log, the same test reaches the systems the log describes. [F:place-oriented-programming]
+- Where access grants, configuration and policy are stored as current values only, the record of who could do what last month is gone when an investigation needs it. [F:value-identity-state-time] [P:6]
+- Keeping those as accumulated facts would put part of that history in the data model itself. [F:value-identity-state-time] [P:6]
+- The trade-off is the write path: a log kept apart from the application is its own control when the credentials that change a grant cannot also rewrite its history. [P:3]
+- Teams used to overwriting records also pay the relative cost the talk sets aside. [L:3]
+- Even a complete fact store proves only that a change happened, so a malicious grant still waits on someone reviewing it to be noticed. [F:value-identity-state-time] [P:6]

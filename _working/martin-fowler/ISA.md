@@ -180,7 +180,7 @@ Produce the conceptual lattice for Fowler's corpus: through-line locked (with ba
 | ISC-9 | rg count | 41 hits for arc names in CONCEPT_LATTICE.md |
 | ISC-12 | rg count | 26 KEEP/AUGMENT/CAVEAT/REPLACE verdict tokens |
 | ISC-13 | rg count | 29+ adjacent-thinker table rows (now includes Dehghani, Forsgren, Böckeler, Cartwright+Horn, Byars, Hodgson) |
-| ISC-21 | grep | `ways-of-fowler` entry in `~/.claude/PAI/USER/Projects.md` |
+| ISC-21 | grep | `ways-of-fowler` entry in `~/.claude/LIFEOS/USER/PROJECTS.md` |
 | ISC-22 | inference | Advisor returned substantive critique; integrated into lattice |
 | ISC-23–27 | grep | "best practices" appears only in refusal/anti-framing; "patterns guy" appears only in the explicit refusal sentence |
 | ISC-29 | reading | Preface opener "If you have worked in software for more than five years, you have read Martin Fowler whether you noticed or not" — Camila peer-translator voice; feminine-energy carried by warmth + cross-domain analogies |

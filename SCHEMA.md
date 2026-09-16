@@ -540,7 +540,7 @@ Each frame renders with `also_held_by:` cluster underneath at build time. Exampl
 
 ## v1.2 — Fowler-audit schema bumps (2026-05-27, Q1+Q2+Q3+Q4+Q5 locks)
 
-Iter-7 system-level Q-block resolution. Three Council passes (Q1+Q2+Q5 clustered; Q3 standalone; Q4 standalone) landed five locked decisions, applied as schema bumps below. Transcripts persisted at `~/.claude/PAI/MEMORY/COUNCIL/thinker-distillery-q{1-q2-q5-clustered,q3-live-edge,q4-hosted-canon}-20260527-*/transcript.md`.
+Iter-7 system-level Q-block resolution. Three Council passes (Q1+Q2+Q5 clustered; Q3 standalone; Q4 standalone) landed five locked decisions, applied as schema bumps below. Transcripts persisted at `~/.claude/LIFEOS/MEMORY/COUNCIL/thinker-distillery-q{1-q2-q5-clustered,q3-live-edge,q4-hosted-canon}-20260527-*/transcript.md`.
 
 | Q | Lock | Schema delta |
 |---|------|--------------|

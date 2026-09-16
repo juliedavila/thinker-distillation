@@ -269,6 +269,18 @@ adjacent_thinkers:
       via Johnson's *Where Good Ideas Come From*.
     strength: secondary
 
+  - target_slug: nicole-forsgren
+    display_name: Nicole Forsgren
+    edge_type: extends
+    edge_label: >
+      Forsgren's DORA research measures what the headwind frame predicts. Slow lead time for changes is the headwind tax, instrumented.
+    strength: secondary
+  - target_slug: ray-dalio
+    display_name: Ray Dalio
+    edge_type: parallel
+    edge_label: >
+      The opposite answer to the same problem. Dalio centralizes the decision algorithm and publishes it; Komoroske gardens the conditions for good local decisions.
+    strength: secondary
 further_in:
   start_here: The Coordination Headwind Essay (2018). The keystone.
   then_read:

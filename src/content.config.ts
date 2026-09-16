@@ -112,12 +112,17 @@ const liveEdgeRecentWork = z.object({
   note: z.string().optional(),
 });
 
-const liveEdge = z.object({
-  current_focus: z.string(),
-  summary: z.string(),
-  recent_work: z.array(liveEdgeRecentWork).optional(),
-  last_observed: z.coerce.date(),
-});
+// Strict: unknown keys (such as links to frames) fail the build instead of being dropped (SCHEMA 4.14).
+const liveEdge = z
+  .object({
+    current_focus: z.string(),
+    summary: z.string(),
+    recent_work: z.array(liveEdgeRecentWork).optional(),
+    last_observed: z.coerce.date(),
+  })
+  .strict();
+
+const MAX_FOREGROUND_FRAMES = 8;
 
 const longRead = z.object({
   title: z.string(),
@@ -196,6 +201,36 @@ const thinkers = defineCollection({
 
     live_edge_visible: z.boolean().optional(),
     live_edge: liveEdge.optional(),
+  }).superRefine((t, ctx) => {
+    const fail = (message: string, path: (string | number)[]) =>
+      ctx.addIssue({ code: 'custom', message, path });
+
+    // Live Edge (SCHEMA 4.14, issue #6)
+    if (t.live_edge_visible) {
+      if (t.status !== 'alive-active') fail('live_edge_visible requires status: alive-active', ['live_edge_visible']);
+      if (!t.live_edge) fail('live_edge_visible is true but live_edge is missing', ['live_edge']);
+    }
+
+    // Foreground frame cap (SCHEMA 4.7, issue #8)
+    const foregroundFrames = t.named_frames.filter((f) => (f.render_tier ?? 'foreground') === 'foreground').length;
+    if (foregroundFrames > MAX_FOREGROUND_FRAMES) {
+      fail(`${foregroundFrames} foreground frames; the maximum is ${MAX_FOREGROUND_FRAMES}. Move the rest to render_tier: deep.`, ['named_frames']);
+    }
+
+    // Hosted work is generated from hosts edges only (SCHEMA 4.8 and 4.11, issue #10)
+    t.body_of_work.forEach((item, i) => {
+      if (item.attribution_kind === 'hosted') {
+        fail('hosted entries are generated from a hosts edge in adjacent_thinkers; do not add them to body_of_work by hand', ['body_of_work', i, 'attribution_kind']);
+      }
+    });
+    t.adjacent_thinkers.forEach((a, i) => {
+      if (a.hosted_items && a.edge_type !== 'hosts') {
+        fail('hosted_items are only allowed on edge_type: hosts', ['adjacent_thinkers', i, 'hosted_items']);
+      }
+      if (a.auto_surfaced !== undefined) {
+        fail('auto_surfaced is computed by the build; remove it from the file', ['adjacent_thinkers', i, 'auto_surfaced']);
+      }
+    });
   }),
 });
 
@@ -229,13 +264,11 @@ const concepts = defineCollection({
     julie_reading: z.string().optional(),
     julie_reading_prompt: z.string().optional(),
 
-    limits: z.array(limit).min(2, 'At least 2 limits per ISC-36 floor').optional(),
-    still_load_bearing_despite: z.string().optional(),
+    // Required at ship time (SCHEMA 6.4, issue #11). Holder count is checked in src/lib/checks.ts.
+    limits: z.array(limit).min(2, 'A concept page needs at least 2 limits'),
+    still_load_bearing_despite: z.string(),
 
-    adjacent_concepts: z
-      .array(adjacentConcept)
-      .min(3, 'At least 3 adjacent concepts per ISC-36 floor')
-      .optional(),
+    adjacent_concepts: z.array(adjacentConcept).min(3, 'A concept page needs at least 3 adjacent concepts'),
 
     working_uses: z.array(z.string()).optional(),
 

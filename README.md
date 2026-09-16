@@ -86,4 +86,4 @@ public/                           static files (favicons)
 
 ## Known gaps
 
-The header and footer link to `/about`, but the About page has not been built. Several rules in `SCHEMA.md` are accepted by the schema but not yet enforced or rendered, including the Live Edge section and foreground/deep frames. `SCHEMA.md` section 10 lists them.
+The About page's two sections in Julie's own words (why the site exists, and its stance toward the thinkers) are empty slots until she writes them. Rules that still need human judgment are listed in `SCHEMA.md` section 10.

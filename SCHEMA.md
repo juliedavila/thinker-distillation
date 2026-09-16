@@ -128,7 +128,7 @@ The page template is `src/pages/thinkers/[slug].astro`. Sections render in this 
 10. Long Read (only when `long_read` is present)
 11. Notes (the Markdown body of the file, when there is one)
 
-Live Edge (4.14) is defined in the schema but not rendered yet.
+Live Edge (4.14) renders after Further In when a thinker opts in.
 
 ### 4.4 Hero
 
@@ -181,7 +181,7 @@ What the page shows under each frame:
 - **"also held by"**: other thinkers who list the same `concept_slug`, computed at build time in `src/lib/graph.ts`. The label next to each name comes from that holder's `attribution_kind` (for example "origin" or "extension").
 - **"Open concept page →"**: shown only when `src/content/concepts/<concept_slug>.md` exists. The check runs at build time, so the link can never 404.
 
-**Foreground and deep frames.** A thinker's full set of frames can live in frontmatter, while the page shows only the most important ones. Foreground frames render on the page; deep frames are meant to collapse into a single line such as "12 more frames; see the long read," with a build check that the count is honest. Show at most 8 foreground frames, typically 6, whatever the `thinker_type`. Thinkers with large catalogs push the rest to `deep` and to long-read chapters. Choose foreground frames by how often other practitioners cite the thinker for them, weighted by Julie's own working uses. Status: the renderer does not yet read `render_tier`, so every frame currently renders. See section 10.
+**Foreground and deep frames.** A thinker's full set of frames can live in frontmatter, while the page shows only the most important ones. Foreground frames render on the page; deep frames are meant to collapse into a single line such as "12 more frames; see the long read," with a build check that the count is honest. Show at most 8 foreground frames, typically 6, whatever the `thinker_type`. Thinkers with large catalogs push the rest to `deep` and to long-read chapters. Choose foreground frames by how often other practitioners cite the thinker for them, weighted by Julie's own working uses. The build fails if a page has more than 8 foreground frames. Deep frames render as a collapsed "N more frames" disclosure, so the count is always the real count.
 
 ### 4.8 Body of Work
 
@@ -199,7 +199,7 @@ A curated reading list with editorial notes. It is not a complete bibliography. 
 | `translator`, `edition`, `edition_year` | no | For translated or ancient works |
 | `attribution_kind` | no | `authored` (default) or `hosted` |
 
-**Hosted work.** Some thinkers publish other people's work on a platform they own, as Martin Fowler does for Zhamak Dehghani's Data Mesh series on martinfowler.com. Hosting is distinct from authorship and must never read as authorship. The source of truth for hosted work is a `hosts` edge in Adjacent Thinkers (4.11). A `hosted` entry in Body of Work is meant to be generated from that edge, and must display a host label and the `hosted_on_url`; a CSS style difference alone is not enough. Status: this projection and its check are not built yet. See section 10.
+**Hosted work.** Some thinkers publish other people's work on a platform they own, as Martin Fowler does for Zhamak Dehghani's Data Mesh series on martinfowler.com. Hosting is distinct from authorship and must never read as authorship. The source of truth for hosted work is a `hosts` edge in Adjacent Thinkers (4.11). A `hosted` entry in Body of Work is meant to be generated from that edge, and must display a host label and the `hosted_on_url`; a CSS style difference alone is not enough. The page template generates a "Hosted by" list under Body of Work from each `hosts` edge, with a "hosted, not authored by" label on every item. The build fails if a `hosted` entry is written into `body_of_work` by hand, or if `hosted_items` appear on any other edge type.
 
 ### 4.9 Editorial Reading
 
@@ -246,9 +246,9 @@ The thinker's neighborhood in the graph, shown as a card grid. Each entry in `ad
 | `editorial_demote_to` | no | `secondary`, to override automatic promotion |
 | `hosted_items` | no | Only on `hosts` edges. See below. |
 
-**How many to show.** Typically 5 foreground neighbors. Up to 7 is fine when the extra ones have their own pages on this site.
+**How many to show.** At most 5 foreground neighbors without a page on this site, and at most 7 foreground neighbors in total. The only exception is a thinker whose on-site neighbors alone exceed 7, since those always render. Set `render_tier: deep` on off-site neighbors past the cap; they collapse into an "N more neighbors" list. The build enforces both caps.
 
-**Neighbors with pages on this site.** When `target_slug` matches a published thinker page, that edge should be marked `auto_surfaced`, show in the foreground, and default to `primary`. To show it as secondary anyway, set `editorial_demote_to: secondary` so the demotion is visible in the file. For example, Komoroske rarely cites Senge, and a secondary edge makes that absence visible. If a frame's `derived_from` points at a thinker who has a page here, and that thinker is missing from `adjacent_thinkers`, the build should warn. Status: auto-surfacing, demotion, and the warning are not built yet. Apply these rules by hand. See section 10.
+**Neighbors with pages on this site.** When `target_slug` matches a published thinker page, that edge should be marked `auto_surfaced`, show in the foreground, and default to `primary`. To show it as secondary anyway, set `editorial_demote_to: secondary` so the demotion is visible in the file. For example, Komoroske rarely cites Senge, and a secondary edge makes that absence visible. The build computes this: neighbors with pages here always render in the foreground, link to their page, carry an "on this site" tag, and sort first. `auto_surfaced` is computed, so the build fails if it is set by hand. The build warns when a page links to a thinker whose page does not link back, when a frame credits a co-originator who has a page here but is missing from `adjacent_thinkers`, and when a critic with a page here is not `primary`.
 
 **Hosting edges.** Use `edge_type: hosts` only when this thinker publishes others' work on a platform they own and edit. Amplifying someone through a network is not hosting; use `extends` or `parallel` for that. A `hosts` edge may carry `hosted_items`, each with `title`, `kind` (`essay`, `series`, `talk`, `interview`, or `translation`), `year`, `hosted_on_url`, and an optional `editorial_framing`. The framing is the host's own stated reason for publishing the piece. The site's view of the relationship belongs in Editorial Reading.
 
@@ -283,7 +283,7 @@ For thinkers who warrant a book-length treatment. Optional: a page without one i
 
 The thinker page shows the title, summary, and a "Read the long version →" link to `/thinkers/<slug>/long-read/`. That index page only exists when `has_long_read: true`, so set both. Chapters are described in section 5.
 
-### 4.14 Live Edge (defined, not yet rendered)
+### 4.14 Live Edge
 
 A section for what a living, active thinker is working on now. It keeps recent output out of the curated Body of Work and out of Further In. Examples: Fowler's recent memo series, Forsgren's DevEx research.
 
@@ -310,7 +310,7 @@ Live-edge entries may mention emerging frames in prose, but must never link to f
 
 Maintenance: during the weekly discovery pass, check each opted-in thinker for new work from the last 90 days. If there is some, update `summary` and `recent_work`. Either way, update `last_observed`.
 
-Status: the renderer ignores both fields, and the build does not check the `status` requirement, the required-when-visible rule, or the ban on frame links. See section 10.
+The build fails when `live_edge_visible` is true without `status: alive-active` or without `live_edge`, and when `live_edge` contains any key outside the fields above (which blocks frame links). Staleness is computed at build time, so a site that has not been rebuilt in a while understates the age.
 
 ---
 
@@ -479,7 +479,7 @@ The full rules live in Julie's private writing guides on the maintainer's machin
 3. Describe the inclusion filter for curious readers, making clear that the pages are curated readings with no claim to be authoritative biography.
 4. State the site's stance toward the thinkers it covers, including how it handles their intellectual property, in Julie's words.
 
-The About page is a required piece of real writing, never boilerplate. Every page footer links to it. Status: the header and footer link to `/about`, but no About page exists yet, so the link is broken. See section 10.
+The About page is a required piece of real writing, never boilerplate. Every page footer links to it. The page lives at `src/pages/about.astro`. Its editorial sections (how pages are written, who gets a page) are written. The mission and the stance toward the thinkers are empty slots awaiting Julie.
 
 The home page (`/`) lists thinkers alphabetically. `/concepts/` lists concept pages.
 
@@ -487,21 +487,16 @@ The home page (`/`) lists thinkers alphabetically. `/concepts/` lists concept pa
 
 ## 10. What the build enforces today
 
-`src/content.config.ts` rejects a build when a required field is missing, an enum value is wrong, a slug is not kebab-case, a thinker has fewer than 2 limits or fewer than 3 adjacent thinkers, a concept page lists fewer than 2 limits or 3 adjacent concepts (when those fields are present). `scripts/reading-gates.ts` enforces the prose checks in section 7 for the Editorial Reading fields.
+**Build failures** (the site will not build until fixed):
 
-The following rules in this document are accepted by the schema but not implemented yet. Until they are, apply them by hand during review: Each gap is tracked as an issue: [#6](https://gitlab.com/juliedavila/thinker-distillery/-/issues/6) Live Edge, [#7](https://gitlab.com/juliedavila/thinker-distillery/-/issues/7) About page, [#8](https://gitlab.com/juliedavila/thinker-distillery/-/issues/8) foreground and deep frames, [#9](https://gitlab.com/juliedavila/thinker-distillery/-/issues/9) Adjacent Thinkers, [#10](https://gitlab.com/juliedavila/thinker-distillery/-/issues/10) hosted work, [#11](https://gitlab.com/juliedavila/thinker-distillery/-/issues/11) concept page checks.
+- `src/content.config.ts`: a required field is missing, an enum value is wrong, a slug is not kebab-case; a thinker has fewer than 2 limits, fewer than 3 adjacent thinkers, or more than 8 foreground frames; `live_edge_visible` is set without `status: alive-active` or without `live_edge`; `live_edge` has an unknown key; `body_of_work` contains a hand-written `hosted` entry; `hosted_items` sit on an edge that is not `hosts`; `auto_surfaced` is set by hand; a concept page lacks 2 limits, `still_load_bearing_despite`, or 3 adjacent concepts.
+- `src/lib/checks.ts` (rules that need the whole graph): more than 5 foreground neighbors without a page here, or more than 7 in total; a concept page with fewer than 2 holders.
 
-| Rule | Where it is described | Gap |
-|------|-----------------------|-----|
-| Deep frames collapse to a counted one-line disclosure; 8 foreground maximum | 4.7 | `render_tier` is ignored; every frame renders; no cap or count check |
-| Neighbors with pages here are auto-surfaced and promoted; missing ones warn | 4.11 | `auto_surfaced` and `editorial_demote_to` are not computed or read; no warning |
-| Adjacent-thinker caps (5 typical, 7 maximum) and `render_tier` | 4.11 | Not enforced; all neighbors render |
-| Critic weighting based on whether the critic has a page here | 4.11 | Applied by hand only |
-| Hosted work generated from `hosts` edges, with a required host label | 4.8, 4.11 | No projection; `hosted_items` and `attribution_kind` on reading-list items are not rendered |
-| Live Edge rendering, 90-day staleness, and validation | 4.14 | Section is not rendered (Forsgren has it switched on); `status` requirement unchecked; stray keys such as frame links are silently dropped instead of rejected |
-| About page | 9 | Linked from every page but not built |
-| Concept pages need two holders and varied attribution | 6.4 | Not checked |
-| Concept-page limits and adjacent concepts required at ship | 6.4 | Optional in the schema |
+**Build warnings** (printed in the build log, prefixed `[distillery] warning`): a page links to a thinker whose page does not link back; a frame credits a co-originator who has a page here but is not a neighbor; a critic with a page here is not `primary`; every holder of a concept page has the same `attribution_kind`.
+
+**Prose checks**: `scripts/reading-gates.ts` enforces the checks in section 7 for the Editorial Reading fields. It is run by hand as part of the Reading Protocol, not by the build.
+
+**Still applied by hand**: the byline test, the inclusion filter, the ten-minute critic search, the choice of which frames go in the foreground, and the remaining concept-page rules in 6.4 (not a thinker page in disguise, not a doctrine claim, no overlap).
 
 ---
 

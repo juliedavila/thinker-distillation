@@ -307,6 +307,12 @@ adjacent_thinkers:
       Allspaw's software-ops work is built from.
     strength: primary
 
+  - target_slug: nicole-forsgren
+    display_name: Nicole Forsgren
+    edge_type: parallel
+    edge_label: >
+      DORA's time to restore and resilience engineering converge on the same property from different methods: how fast a team recovers.
+    strength: secondary
 further_in:
   start_here: >
     The Etsy 2012 *Blameless Postmortems and a Just Culture* essay

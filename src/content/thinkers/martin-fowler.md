@@ -338,6 +338,7 @@ adjacent_thinkers:
       Fowler's catalog discipline matters: naming is necessary but not
       sufficient.
     strength: secondary
+    render_tier: deep
   - target_slug: melvin-conway
     display_name: Melvin Conway
     edge_type: antecedent
@@ -347,6 +348,35 @@ adjacent_thinkers:
       claim that org structure ships in the system structure.
     strength: secondary
 
+  - target_slug: ray-dalio
+    display_name: Ray Dalio
+    edge_type: parallel
+    edge_label: >
+      Dalio writes down an organization's decision rules the way Fowler writes down design vocabulary: explicit, named, and open to revision.
+    strength: secondary
+  - target_slug: fred-brooks
+    display_name: Fred Brooks
+    edge_type: antecedent
+    edge_label: >
+      Brooks named the large-scale physics of software engineering; Fowler spent decades naming the daily practice inside that frame.
+    strength: primary
+  - target_slug: zhamak-dehghani
+    display_name: Zhamak Dehghani
+    edge_type: hosts
+    edge_label: >
+      Fowler published Dehghani's original Data Mesh articles on martinfowler.com,
+      where she first laid out the approach in writing.
+    strength: secondary
+    render_tier: deep
+    hosted_items:
+      - title: How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh
+        kind: essay
+        year: 2019
+        hosted_on_url: https://martinfowler.com/articles/data-monolith-to-mesh.html
+      - title: Data Mesh Principles and Logical Architecture
+        kind: essay
+        year: 2020
+        hosted_on_url: https://martinfowler.com/articles/data-mesh-principles.html
 further_in:
   start_here: '`IsQualitySoftwareWorthTheCost` (bliki). The economic-argument keystone.'
   then_read:

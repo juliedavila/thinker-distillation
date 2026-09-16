@@ -2,14 +2,68 @@
 project: thinker-distillation
 effort: E3
 phase: in-progress
-progress: 619/619
-iteration: iter-9-doctrineregister-reconciliation-2026-05-28
+progress: iter-10 to iter-14 shipped; tracked in GitLab MRs and issues
+iteration: iter-14-skill-and-site-rules-2026-09-16
 mode: project
 started: 2026-05-25
-updated: 2026-05-28
+updated: 2026-09-16
 ---
 
-## Save Point — 2026-05-28 (cold-start resume here)
+## Save Point — 2026-09-16 (cold-start resume here)
+
+> Everything below this block down to `## Superseded Save Point — 2026-05-28` is the current state. The May save point and older sections are history.
+
+### State at save (verified 2026-09-16)
+
+- **Site:** live at https://thinker-distillery-97a9ca.gitlab.io/ (private, project members only). 18 pages: 9 thinkers, 2 concepts, 2 long reads, About, indexes. Build clean with no warnings; pipeline green on `main` at `30175fe`.
+- **Thinkers:** Komoroske, Fowler, Brooks, Allspaw, Woods, Dekker, Dalio, Forsgren, Fournier. Every page carries a protocol-built Editorial Reading with a `reading_review` record and no dissent.
+- **Concepts:** coordination-headwind, adaptive-capacity.
+- **Git:** `main` only, clean. All MRs merged (!2 to !9). No open MRs.
+- **Open issues (all candidates):** #1 Joshua Saxe, #4 Maggie Appleton, #5 Joe Hudson (May cases, unverified), #12 Will Larson, #13 Charity Majors, #14 Matthew Skelton and Manuel Pais (surfaced by the Fournier Councils). Issues #2, #3, #6 to #11 are closed.
+
+### How work is done now (read these, in order)
+
+1. `.claude/skills/add-thinker/SKILL.md`: the eight-stage procedure from candidate issue to MR (research, inclusion Council, draft, return edges, Reading Protocol, review Council, ship, close the loop).
+2. `.claude/skills/add-thinker/calibration.md`: 19-item pre-draft checklist of every failure Councils have caught, plus the run log. Read before drafting; append after every run.
+3. `SCHEMA.md`: content model (section 4), Reading Protocol (section 7), writing rules with the judgment clause (section 8), what the build enforces (section 10). Rewritten for outside readers.
+4. `.claude/skills/add-thinker/seats.md` and `briefs/`: fixed Council seats and fill-in briefs. Do not recompose seats with ComposeAgent each run.
+
+### What happened this session (2026-09-16)
+
+- **Legacy paths repointed** from `~/.claude/PAI/...` to LifeOS locations. Writing-style guides: `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/` (ALL-CAPS names); AI patterns file: `~/.claude/LIFEOS/USER/AI_WRITING_PATTERNS.md` (`LIFEOS/USER` is a symlink to `~/.config/LIFEOS/USER`).
+- **Forsgren MR #1 merged** (Julie). doctrine_mode backfilled on all pages (!2).
+- **Path C for section 6 (Julie's decision):** the old first-person "What I take / Where I extend" is gone. Section 6 is now `reading` + `extension` in the Distillery's editorial voice, built by the Reading Protocol (grounding pack, claims map, gates, five-seat review Council), plus an optional `margin_note` that only Julie writes. Julie's role is audit: dissent pages plus a one-in-four sample, approval via MR. Piloted on Forsgren (!3), then the other seven pages converted as a batch (!4), then legacy fields and fallback code removed (!6).
+- **Docs rewritten for outsiders** (!5). "Casey test" renamed "byline test" (Julie kept it).
+- **Pragmatic writing rules (Julie):** the rules exist to avoid sounding like generic AI, not to purge the thinkers' own vocabulary. Quoted text is exempt in `scripts/reading-gates.ts`; terms of art stay; repetition and filler jargon are the tells (SCHEMA section 8).
+- **Camille Fournier added** (!7): research corrected three errors in the May case; inclusion Council 4 to 1; page anchored on *The Manager's Path*; platform coinages co-authored with Ian Nowland; `doctrine_mode: mode-a`. Recheck the platform coinages (glue, over-general swamp, shadow platforms) in 2027.
+- **Skill codified** (!8), and **all six documented-but-missing site rules built** (!9): Live Edge rendering and validation, About page, deep-frame collapse, neighbor auto-surfacing and caps, hosted work from `hosts` edges, concept page checks. Eight return edges added; Beck and North (Forsgren), Dijkstra (Brooks) and Alexander (Fowler) moved to the collapsed neighbor tier.
+
+### Waiting on Julie (none block new thinkers)
+
+- **About page:** "Why this exists" and "Our stance toward the thinkers" are empty slots with prompts in `src/pages/about.astro`. Hers to write.
+- **Forsgren Live Edge:** last surveyed 2026-05-27, now shows "refresh pending." A refresh is a small research task Camila can do on request.
+- **Optional:** `margin_note` on any page; review the four neighbor demotions above; `src/content/thinkers/_don-norman.md` is Julie's untracked, disabled draft still in the old first-person format (goes through the add-thinker skill if promoted).
+
+### Next move on resume
+
+Recommended: run the add-thinker skill on **#1 Joshua Saxe** (security lane, the site's first security-practice thinker). Treat the May case as unverified. Then Larson (#12) or Majors (#13). Batch the review Council when two or more pages are ready.
+
+### Environment notes
+
+- Commands need `PATH="/opt/homebrew/bin:$PATH"`. Run `bun install --frozen-lockfile` if `astro` is not found.
+- **glab** is installed via Homebrew and authenticated with `glab auth login --hostname gitlab.com --device` (the browser login flow returns 404). Token is in the macOS keychain.
+- **Interceptor:** if commands fail with "daemon failed to start" while a daemon is running, `/tmp/interceptor.sock` was deleted; kill the `interceptor-daemon --standalone` process and rerun. Its text reader truncates long pages; query the DOM with `interceptor eval ... --main`. Screenshots ignore scroll.
+- Medium and O'Reilly block direct fetches; verify those through search results.
+- When testing build rules by breaking files, back up and restore from the backup, never `git checkout` (it wiped uncommitted edits once this session).
+- YAML values containing ": " must be quoted; `scripts/grounding-pack.ts` parses strictly.
+
+### Council transcripts (this session)
+
+`~/.claude/LIFEOS/MEMORY/COUNCIL/`: `distillery-reading-nicole-forsgren-20260916-172704-quick`, `distillery-reading-batch-7-legacy-pages-20260916-181307-quick`, `distillery-inclusion-camille-fournier-20260916-183648-quick`, `distillery-reading-camille-fournier-20260916-185556-quick`.
+
+---
+
+## Superseded Save Point — 2026-05-28 (history; the current save point is at the top)
 
 > ✅ **DONE 2026-05-28 — pending Julie's Casey-test + merge.** A context-clear happened mid-task; the four approved steps below were then executed on branch `candidate/nicole-forsgren` (commit `d89a0e4`, pushed) and MR #1's description was rewritten. The steps below are kept as the executed record. Nothing left for Camila. **What's left for Julie:** (1) Casey-test the four bylines in MR #1; (2) author or sign off §6 in her own first-person voice (currently Camila-drafted, flagged inline in the page source); (3) merge MR #1 to `main`, then flip ISC-548 and close Issue #2. Result detail in the iter-8 criteria block (ISC-529..548, with a provenance banner) and in the Decisions / Changelog entries dated 2026-05-28.
 >

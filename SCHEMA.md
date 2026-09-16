@@ -1,636 +1,519 @@
-# Thinker Page Schema — v1 (TEI Pattern, Locked)
+# Thinker Distillery: Content Model and Editorial Rules
 
-> Canonical shape of a thinker page on the distillation site. Locked through a six-question walk-through with Julie (2026-05-24 / 2026-05-25). One thinker per page, graph-backed for cross-thinker views in v2+. Customer-zero is Julie; depth tuned for senior practitioners triangulating fast, readable by curious generalists. Inclusion filter — ≥2 years of consistent body of work AND produced a vocabulary or set of frames practitioners now use to think — is backstage curatorial discipline, not reader-facing justification.
+The Thinker Distillery publishes one page per thinker: a practitioner whose vocabulary other practitioners now use to reason about their own work. Each page is an editorial reading of that person's ideas. It names their central argument, the named concepts they gave the field, where those concepts fail, and who they connect to. The audience is senior engineering and security leaders who want to get oriented in a body of work fast, and the pages should also read well for a curious generalist. Alongside thinker pages, concept pages cover a single idea that several thinkers hold.
 
----
+This document defines the fields each page carries, the order the site renders them in, and the editorial rules for writing them. The enforced schema is `src/content.config.ts`. If this document and that file disagree, the code is correct and this document needs fixing.
 
-## 0. Discipline Gates (hard architectural invariants)
+For the project's working log and full decision history, see `ISA.md`.
 
-The three gates that hold Path C (core schema + named optional type-extensions, TEI-pattern) from drifting into Path B (per-type sub-templates) over time. Council 5/5 verdict.
+## Contents
 
-1. **Node-type uniformity.** Only `Thinker` and `Frame` are primary node types. New `thinker_type` values add property shapes and optional edges; they never introduce new node types. This is the load-bearing constraint that makes the v2 cross-thinker concept graph queryable.
-2. **Frame-level attribution from v0.** Every `Frame` node carries `attribution_kind`, `primary_author`, `co_originators[]`, optional `derived_from` edge. Required from the first thinker page, not retrofitted. Skipping this means re-curating every prior page when the first company-distributed thinker arrives.
-3. **Casey-test as v0 acceptance gate.** Before any thinker ships at v1, draft their page. If the byline would read as a quiet false claim, fix the schema or move the subject to a different page type. Casey Rosenthal triggered this gate during v0→v1 design; resolution was to exclude him from v1 and treat him as a v2 concept-page anchor instead.
-
----
-
-## 1. Frontmatter (machine-readable, mostly backstage)
-
-```yaml
----
-slug: alex-komoroske
-name: Alex Komoroske
-canonical_url: https://komoroske.com    # nullable for pre-web thinkers
-active_years: 2014–present              # free-text bracketed range; ancient OK
-primary_domains: [organization-design, platforms, complexity]
-status: alive-active                    # alive-active | alive-inactive | deceased
-inclusion_rationale: >                  # CURATORIAL DISCIPLINE — not rendered on page
-  Produced a portable vocabulary for organizational complexity that
-  practitioners now use to think about their own work.
-thinker_type: essay-corpus              # essay-corpus | book-author | principles-distiller | catalog-builder | mixed
-doctrine_mode: mode-c                   # mode-a | mode-b | mode-c; BACKSTAGE, never rendered (iter-10); see "Doctrine Mode" below
-has_long_read: true
-long_read_path: /thinkers/alex-komoroske/long-read
-last_updated: 2026-05-25
-live_edge_visible: false                # v1.2 — opt-in for §11 Live Edge section; defaults false
-# live_edge: { ... }                    # v1.2 — only when live_edge_visible: true; see §11
----
-```
-
-**Notes:**
-
-- `inclusion_rationale` is **backstage** — read by Julie during curation, not rendered on the reader-facing page. (Q3 lock — Popova pattern: filter is implicit in editorial choice.)
-- `thinker_type` drives render hints only — it never gates which schema fields exist. (Discipline Gate 1.)
-- `canonical_url` is nullable for pre-web thinkers; `active_years` accepts free-text bracketed ranges for ancient or otherwise unusual lifespans.
-- `live_edge_visible` (v1.2) defaults to `false`; curator opts in per-thinker. Requires `status: alive-active`. See §11 Live Edge for full contract.
-
-### Doctrine Mode (iter-10, 2026-09-16; design locked by the iter-9 Council, 2026-05-28)
-
-`doctrine_mode` records the editorial stance the Distillery takes toward a thinker, borrowed from `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/DOCTRINEREGISTER.md` §2. It classifies the Distillery's *reading* of the thinker, not the native shape of their corpus. Komoroske's corpus is Mode A in DoctrineRegister §5, but the page applies a Mode C treatment, so the page is `mode-c`. There is no contradiction to fix.
-
-- **`mode-c`**: manufacture portable handles around an implicit spine. The page separates the spine (`thesis`) from the handles (`named_frames`) and does the naming work the thinker left undone.
-- **`mode-a`**: resist manufacturing handles. A true Mode A reading is falsified by inventing frames the thinker would not recognize, so `named_frames` stays thin and close to the source.
-- **`mode-b`**: the named artifact IS the doctrine (DORA, *Principles*). The page presents the artifact faithfully and extends from it.
-
-**How it relates to what already exists.** `thesis` is the DoctrineRegister spine and `named_frames` are its handles; DoctrineRegister §3 says to keep them separate, and the schema already does. The Casey test (Discipline Gate 3) is the same rule as DoctrineRegister §3's attribution discipline: where the Distillery's compression is sharper than the source, credit the compression to whoever made it. `doctrine_mode` is orthogonal to `thinker_type`: `thinker_type` is the form of the output, `doctrine_mode` is whether portability was deliberate. Brooks (book-author, `mode-c`) shows neither derives the other.
-
-**Lineage parenthetical (soft norm).** Per DoctrineRegister §4, a `thesis` may carry one inline lineage marker naming its antecedent (for example, lean and Goldratt's theory of constraints behind Forsgren). Add it only where it strengthens the spine. Structured lineage still lives in `co_originators` and `derived_from`.
-
-**Named consumer.** The field is read by the drafting gate (the Editorial Voice rules in §3 below), never by the renderer. It tells the drafter whether to manufacture handles or resist them.
-
-**Guardrail.** This is a deliberate, capped exception. It does not license further mode-style backstage fields. **Kill criterion:** delete the field if, after 5 more thinker pages ship, no `doctrine_mode` value has changed a drafting decision. Owner: Julie, checked at the next quarterly review.
-
-**Current classifications (iter-9 Council):** Komoroske, Fowler, Brooks (60/40 over `mode-b`, recorded in a frontmatter comment), Allspaw, Woods and Dekker are `mode-c`; Dalio and Forsgren are `mode-b`.
+1. Glossary
+2. Core rules
+3. Who writes what
+4. Thinker pages
+5. Long-read chapters
+6. Concept pages
+7. The Reading Protocol
+8. Writing rules
+9. Site-level pages
+10. What the build enforces today
+11. Decision history
 
 ---
 
-## 2. Page Sections (fixed order, omitted when empty)
+## 1. Glossary
 
-### §1 Header / Hero
-
-`thirty_second_take` IS the editorial framing per thinker — no separate "Why this thinker matters" line. Reader experiences editorial voice, never compliance language.
-
-Fields: `name`, `tagline`, `domain_badges`, `thirty_second_take`.
-
-(`inclusion_rationale_visible` from v0 spec — removed.)
-
-### §2 Who They Are
-
-Background and trajectory as it makes thinking legible, not biography for biography's sake.
-
-Fields: `background`, `why_they_matter_as_a_thinker`.
-
-### §3 Core POV
-
-The single thesis holding the body of work together. 1–2 paragraphs editorial voice; optional `working_line` pull-quote in their voice.
-
-Fields: `thesis`, `working_line` (optional).
-
-### §4 Named Frames
-
-The portable vocabulary. Each frame is a Concept (`Frame` node) held by this thinker, with **its own attribution** — different frames from the same thinker can have different attribution shapes.
-
-**Per-frame fields:**
-
-- `concept_slug` — stable, global, kebab (graph join key)
-- `display_name`
-- `one_line_gloss`
-- `attribution_kind` — `original | extended | popularized | distributed | co-authored | translated | community`
-- `primary_author` — usually the current thinker; other slug allowed for distributed-attribution
-- `co_originators[]` — array of `{ slug, role }` for multi-author origin frames
-- `source_link` — canonical place this thinker writes about it (or canonical translation, for ancient)
-- `derived_from` — optional edge to an antecedent Frame
-- `render_tier` — `foreground | deep` (defaults to `foreground`). **v1.2 (Q1 lock):** the full lattice lives in frontmatter; only `foreground` entries render inline on the thinker page. `deep` entries surface as a collapsed single-line disclosure ("12 more frames in this thinker's lattice; see long-read") with a build-time check that the count is honest. Cap: **8 foreground frames maximum, 6 typical** — render-time policy constant, no per-`thinker_type` scaling. Catalog-builder thinkers with deeper lattices push spillover to `deep` tier + long-read chapters; they do NOT get a relaxed foreground cap. Future: `thinker_type: catalog-builder` may warrant a v2 catalog-companion-page surface. Selection criterion for `foreground`: frames the thinker is cross-cited by other practitioners for, weighted by Julie's working uses.
-- `also_held_by[]` — **render affordance for v1 (Q4 lock)**: list of `{ thinker_slug, role, edge_label }` for other thinkers who hold this same concept. Computed at build time from the Concept's `holders[]`, minus the current thinker. Rendered as a small "also held by:" link cluster directly beneath each frame on the thinker page.
-
-### §5 Body of Work
-
-Curated reading list with editorial annotation, not a complete bibliography.
-
-**Per-item fields:** `title`, `type`, `year`, `link`, `editorial_note`, `read_first`, `canonical`, `attribution_kind` (optional, v1.2).
-
-`type` enum: `book | essay | talk | blog-series | interview | paper | translation`. For ancient/translated thinkers, items carry an optional `translator`, `edition`, `edition_year` sub-block (translator block — TEI-style extension).
-
-**`attribution_kind` enum (v1.2 — Q4 lock): `authored | hosted`.** Default is `authored` (implicit when omitted). `hosted` entries are **projected at build time from §8 `hosts` edges** — they are NOT independently authored data. Single source of truth: the §8 edge. The §5 render of a `hosted` item MUST display the host-attribution label and the `hosted_on_url` from the edge payload (build-pipeline test fails the render otherwise — see Anti-16). Use case: Fowler hosting Dehghani's Data Mesh series at martinfowler.com appears in Fowler's §5 reading list as a hosted item, with the host-attribution label, while the source-of-truth lives on the §8 edge.
-
-### §6 Editorial Reading
-
-**Path C (iter-11, 2026-09-16, Julie's decision).** §6 is the Distillery's reading, built and reviewed by the Reading Protocol (below), plus an optional first-person note from Julie. It no longer waits on Julie to ship.
-
-**Fields:**
-
-- `reading` — what the Distillery takes from the thinker. Stays close to the grounding pack. No first person. Max 160 words.
-- `extension` — where the reading extends the thinker, through Julie's published positions (the pack's Lens section). Inference is allowed here and must read as the Distillery's argument, never as the thinker's claim. No first person. Max 160 words.
-- `reading_review` — backstage record of the protocol run: `protocol`, `date`, `verdict`, `council_transcript`, `grounding_pack`, `claims`, `dissent`. Never rendered.
-- `margin_note` — optional. Julie's own first-person note, written by Julie only. Never drafted by Camila, never required, never blocks shipping.
-- `working_uses` — optional bullets, unchanged (collaboration-recorded).
-- `what_i_take` / `where_i_extend` — **legacy**, pre-iter-11. On the original seven pages these were Camila-drafted and Julie-reviewed at v1 launch. A page renders them only until it has a `reading`; the schema accepts either pair. Delete once every page is converted.
-
-**Visual treatment:** indented block, "The Distillery's reading" header (legacy pages keep "From Julie's reading"), slight color shift, sans-serif at base. A `margin_note` renders beneath as "Julie's note."
-
-### §7 Where This Breaks
-
-Julie's honest-limits lane. Required, not optional.
-
-**Fields:**
-
-- `limits[]` — each: `headline`, `elaboration`, `severity` (`local | structural`)
-- `still_load_bearing_despite` — short paragraph at the close
-
-**Visual treatment (Q2 lock — Path 2):** Same color family + same indent + same Julie-voice mark as §6. Distinguished by §7's structural list-of-limits layout (each limit as a card with headline / severity / elaboration) AND a subtle typographic accent (left-border weight or a small mode-marker icon — final call at design time).
-
-**Closing-beat treatment:** The `still_load_bearing_despite` paragraph at the end of §7 renders in §6 style — no list structure, no accent — to signal the rhetorical shift from critique back to synthesis. Reader experiences critique → critique → critique → "and yet, here's why this is still load-bearing."
-
-### §8 Adjacent Thinkers
-
-Graph surfaced at page level.
-
-**Per-edge fields:** `target_slug`, `display_name`, `edge_type` (`antecedent | extends | critiques | parallel | synthesizes | hosts`), `edge_label` (one-line in editorial voice), `strength` (`primary | secondary`), `render_tier` (v1.2), `auto_surfaced` (v1.2, computed), `editorial_demote_to` (v1.2, optional), `hosted_items[]` (v1.2, conditional on `edge_type: hosts`).
-
-**v1.2 schema bumps (Q2 + Q4 + Q5 locks):**
-
-- **`edge_type: hosts` (Q4 lock).** Captures the editor-platform face — a thinker who *hosts* others on infrastructure they own (Fowler hosting Dehghani / Böckeler / Lewis / Sadalage / Kua at martinfowler.com). Hosting is categorically distinct from authorship — host doesn't claim the work, just platforms it. The `hosts` edge IS the source of truth for hosted work; §5 `attribution_kind: hosted` entries are projected from these edges at build time. Note: Komoroske-style "amplifies via network" is NOT hosting — no platform Komoroske owns and edits. Use `extends` or `parallel` edges for amplification, not `hosts`.
-
-- **`hosted_items[]` on `hosts` edges (Q4 lock).** Optional payload, only present when `edge_type: hosts`. Subfields per item: `title`, `kind` (`essay | series | talk | interview | translation`), `year`, `hosted_on_url`, `editorial_framing` (the *host's* stated framing of why they hosted this piece — NOT Julie's voice; Julie's reading of the relationship lives in §6 `what_i_take`).
-
-- **`render_tier: foreground | deep` (Q2 lock).** Mirrors the §4 mechanism — full adjacency neighborhood lives in frontmatter, only `foreground` entries render inline on the §8 card grid. Cap: **5 foreground adjacents typical, up to 7 when site-internal mutual edges exist** (site-internal edges exempt from the typical-5 cap). Defaults to `foreground`.
-
-- **`auto_surfaced: boolean` (Q2 lock, build-computed).** Set `true` at build when `target_slug` resolves to a published thinker page. Auto-surfaced edges **auto-promote to `render_tier: foreground` AND default to `strength: primary`** unless explicitly demoted via `editorial_demote_to`. This is what makes Brooks-on-Fowler-page mechanical, not editorial-discretionary.
-
-- **`editorial_demote_to: secondary` (Q2 lock, optional override).** When an auto-surfaced site-internal edge should NOT render as primary (e.g., Komoroske → Senge where the editorial absence is itself the content — Komoroske rarely cites Senge), set this explicitly in frontmatter. The demotion must be visible, not silent.
-
-- **Build-time warning (Q2 lock).** Missing the auto-promote (e.g., Fowler shipping without Brooks listed when Brooks is a published thinker page and Fowler's frontmatter names `brooks-law` as `derived_from`) produces a build-time warning, not a silent omission.
-
-- **Critics live here too (Q5 lock).** `edge_type: critiques` already existed; v1.2 adds the build-computed `critic_has_distillery_page: boolean` property, which drives three-tier render weight:
-  - Critic clears inclusion filter AND has Distillery page → `strength: primary`
-  - Critic clears the named-critique-threshold only → `strength: secondary`
-  - Critic clears neither → omit or optional secondary (editorial discretion)
-  - Named-critique threshold: critic has named the critique in their *own* durable artifact (essay, book chapter, talk transcript) — NOT internet snark, NOT conference Q&A, NOT third-party characterization.
-  - Register lane: critic `edge_label` is **Mode B (Camila-handle voice)**, NOT Mode C (Julie voice). Preserves the writing-partner discipline; Camila can author critic edge_labels because they are editorial commentary on the critic's argument, not Julie's analytical synthesis.
-  - Casey-test coupling: when a critic clears the inclusion filter, the same Casey-test applies — if listing this critic would feel like Julie picking a fight she hasn't earned in her own work, demote to secondary or omit. The gate isn't "is the critic right" — it's "is naming this critic an editorial move Julie has earned the standing to make in this venue."
-  - Working norm: pre-ship, run a 10-minute "who critiques this thinker in durable artifact" search; surface ≥1 critic via `edge_type: critiques` when one exists.
-
-### §9 Further In
-
-Reading paths: `start_here`, `then_read[]`, `if_you_want_depth`, `if_you_want_breadth`.
-
-### §10 Long Read (optional)
-
-For thinkers with book-length treatments. Chapters live in a separate `longReadChapters` Astro Content Collection at `src/content/long-read/{thinker_slug}/{nn-chapter}.md` — the chapter_list is *computed* at build time from that collection (filter by `thinker_slug`, sort by `chapter_number`) rather than duplicated in the thinker's frontmatter. §10 on the thinker page renders the long-read `title` + `summary` + a CTA link to `/thinkers/{slug}/long-read`; the index page lists all chapters; per-chapter pages render at `/thinkers/{slug}/long-read/{chapter}` with prev/next navigation.
-
-**Thinker frontmatter (`long_read` block):** `title`, `summary` (2–3 paragraphs), `source_path` (path to working files in the local book project).
-
-**Chapter frontmatter:** `thinker_slug` (kebab-case, joins to the thinker), `chapter_number` (non-negative integer; 0 for prefaces / introductions), `title`, `summary` (optional), `last_updated`.
-
-**Rationale for two-collection design (2026-05-25):** keeping the chapter list in one place (the chapter collection, not the thinker frontmatter) prevents drift between the listing and the actual chapter files — adding a new chapter is one new markdown file, no thinker-frontmatter edit needed, and the build catches missing chapters via `getStaticPaths` instead of producing broken links.
-
-### §11 Live Edge (optional, v1.2 — Q3 lock)
-
-The current-era surface for alive-active thinkers whose continued production needs a home that doesn't pollute curated `body_of_work[]` or stretch `further_in.if_you_want_breadth`. Examples: Fowler post-2015 (Refactoring 2e, Data Mesh hosting, Exploring Gen AI memo series, Tech Radar); Komoroske post-2018 ongoing essays; Dalio post-2017 *Changing World Order*; Saxe-class active LLM-security research.
-
-**Opt-in via frontmatter flag.** Defaults OFF. Curator opts in per-thinker; the section only renders when explicitly enabled. No phantom-empty rendering.
-
-**Frontmatter:**
-
-```yaml
-live_edge_visible: boolean           # default false; curator opts in per-thinker
-live_edge:                            # only present when live_edge_visible: true
-  current_focus: string              # one editorial sentence, present-continuous
-  summary: string                    # prose paragraph, Camila voice, present-continuous tense,
-                                     # names specific work-objects (titles, dates, co-authors); 80–180 words
-  recent_work:                       # optional; only when ≥3 artifacts cluster naturally
-    - title: string
-      year: number
-      kind: string                   # book | essay | talk | series | tool | other
-      with: string                   # optional co-author
-      note: string                   # optional 1-sentence editorial annotation
-  last_observed: YYYY-MM-DD          # MANDATORY when live_edge_visible: true
-```
-
-**Validator rules:**
-- `live_edge_visible: true` requires `status: alive-active` (else build error).
-- `live_edge_visible: true` requires `live_edge.summary` AND `live_edge.last_observed` (else build error).
-- `live_edge.recent_work` is optional; each entry requires `title`, `year`, `kind`.
-- **No `frame_ref` / `frame_id` / link-to-Frame-node fields permitted inside `live_edge`** (validator rejects). Emerging frames may be *mentioned* in prose; they cannot *link* to Frame nodes until those Frames clear the Casey gate. Protects Discipline Gate 2 (Frame-level attribution honesty).
-
-**Render contract:**
-1. Section heading: **Live Edge** (or Spanish-bilingual equivalent if/when the Distillery adopts bilingual section labels).
-2. One-line subtitle: `Last surveyed {last_observed} · {N} days ago` — greyed / de-emphasized when N > 90.
-3. Body: prose paragraph in Camila voice, **present-continuous tense** (not retrospective — same editorial voice as the rest of the page, with tense shifted). Names specific work-objects (titles, dates, co-authors) inline.
-4. Optional: compact `recent_work` inline list (NOT a dated bullet column) — title + year + kind + inline note as aside.
-
-**Render-time behavior:**
-- `live_edge_visible: false` → section does not render. No phantom empty.
-- `live_edge_visible: true` + fresh (`last_observed` within 90 days) → full render, normal styling.
-- `live_edge_visible: true` + stale (`last_observed` > 90 days) → render with greyed-out subtitle + "refresh pending" badge.
-- `live_edge_visible: true` + missing required fields → build fails (validator rejects).
-
-**Maintenance cadence (Q3 lock).** Refresh rides the weekly discovery pass — no separate live-edge cadence. For each thinker with `live_edge_visible: true`, the discovery pass asks: "Has anything new surfaced in the last 90 days?" Yes → update `summary` + `recent_work[]` as needed; bump `last_observed`. No → bump `last_observed` only (signal: still-surveyed, nothing new). 90+ days without a bump → render shows visible-staleness automatically.
-
-**Working norm:** `live_edge.summary` prose is Camila writing-partner lane — present-continuous, hedged where uncertain, names specific work. This entry lives in `feedback_writing_partner_per_field.md`. Schema affords the slot; norms govern the voice.
+| Term | Meaning |
+|------|---------|
+| Thinker | A person with their own page. Stored in `src/content/thinkers/<slug>.md`. |
+| Frame | A named concept a thinker uses, such as "coordination headwind." Each frame has a global slug (`concept_slug`) so several thinkers can hold the same one. |
+| Holder | A thinker who lists a given frame in their `named_frames`. |
+| Concept page | A page about one frame held by two or more thinkers. Stored in `src/content/concepts/<slug>.md`. |
+| Editorial voice | Third-person prose written for the site. Never says "I." |
+| Julie's voice | First-person prose written by Julie Davila, the site's curator, and by nobody else. |
+| Camila | Julie's AI writing assistant. It drafts most editorial-voice prose and is never allowed to draft Julie's voice. |
+| Council | A panel of AI reviewers, each given a specific role, that reads a draft and returns a verdict. Used in the Reading Protocol. |
+| Byline test | Before a page ships, ask: would the byline, or any attribution on the page, quietly claim something false about who originated an idea? If yes, fix the attribution or move the subject to a different kind of page. Older notes call this the "Casey test," after the case that prompted it. |
+| Reading Protocol | The fixed procedure that produces the Editorial Reading section (section 7 of this document). |
+| Grounding pack | A generated file listing everything the site already says about a thinker and their neighbors, with a citable ID per item. |
+| Lens | Julie's published positions, which the `extension` field must connect to. |
 
 ---
 
-## 3. Voice / Structure Lanes (attribution model — Q5 lock)
+## 2. Core rules
 
-Four lanes. Every content block on every thinker page belongs to exactly one. Visual treatment makes the lane unambiguous. **Meta-explanation lives in the About page, not as a per-page colophon.**
+These rules hold the content model together. Changing any of them means changing the model, so treat them as fixed unless Julie decides otherwise.
 
-| Lane | Content | Attribution | Visual Treatment |
-|------|---------|-------------|------------------|
-| **What X says** | Direct quotation, close paraphrase | Inline attribution every block | Quote block, distinct color/border |
-| **Editorial reading (§6)** | The Distillery's reading, protocol-reviewed; optional Julie margin note | "The Distillery's reading" header; "Julie's note" for the margin note | Indented, color shift, sans-serif at base |
-| **Where this breaks (§7)** | The Distillery's honest-limits critique | "Where this breaks" header (legacy pages: "Where I think this breaks") | Same family as §6 + list-of-limits structure + subtle accent |
-| **Adjacent thinkers (§8)** | Graph edges with editorial labels | Card list with edge-type tags | Card grid, edge labels in editorial voice |
+**Only two kinds of entity.** The graph has thinkers and frames, nothing else. A new `thinker_type` value may add optional fields or edges, but it never adds a new entity type. Concept pages are editorial overlays on frames and do not count as a third type. This rule keeps cross-thinker views (concept pages today, graph views later) queryable.
 
-Every thinker page footer carries a small `About →` link to the manifesto.
+**Attribution lives on each frame.** Every frame records its own `attribution_kind`, `primary_author`, and, where relevant, `co_originators` and `derived_from`. Two frames from the same thinker can have different origins. A thinker must never be presented as the sole originator of a frame that came from a team or a movement: use `attribution_kind: distributed` with `co_originators` for those.
 
-### Editorial Voice & Prose Mechanics (2026-05-28)
+**Run the byline test before shipping.** Defined in the glossary. The test also applies to live-edge prose and to naming critics (see Adjacent Thinkers).
 
-Distillery prose is written in Julie's voice register and follows her writing-style system. This rule was implicit until now (the existing pages prove it by carrying zero em-dashes); it is written down here so neither author drafts blind.
+**Inclusion filter.** A thinker qualifies when they have at least two years of consistent work and have produced vocabulary or frames that practitioners now use to think. The filter is a private curation discipline. It is recorded in `inclusion_rationale` and never shown to readers. For a borderline case, recommend exclusion and suggest one to three people from the same area who clear the filter more cleanly.
 
-**Lane-to-voice mapping:**
+**Frame slugs are permanent.** A `concept_slug` is a global join key. Renaming one is a migration across every thinker and concept file that uses it, never a casual edit.
 
-- **§6 `reading` and `extension`** are the Distillery's editorial voice, produced by the Reading Protocol. They never say "I." Their register is written for security and engineering leaders, and the extension argues through Julie's published positions without claiming to be her.
-- **§6 `margin_note`** is Julie's first-person voice and hers alone. Camila never drafts it (`feedback_writing_partner_per_field.md` still governs this field and concept-page `julie_reading`).
-- **Every other section** (hero, thirty-second take, background, thesis, frame glosses, body-of-work notes, limits, adjacency edge labels, further-in, live edge) is Camila's Mode B editorial voice.
-
-### Reading Protocol v1 (iter-11, 2026-09-16)
-
-Every `reading` + `extension` ships through these stages, in order. A page cannot skip a stage, and the output of each stage is kept as provenance under `_working/<slug>/`.
-
-1. **Grounding pack.** `bun scripts/grounding-pack.ts <slug>` walks the graph around the thinker and writes `_working/<slug>/grounding-pack.md`: the thinker's thesis, frames, and limits; outbound and inbound edges with neighbor theses; shared concepts; two-hop names; Julie's published positions (the Lens, read from `LIFEOS_DIR` PRINCIPAL_IDENTITY Key Positions); neighbor readings for the novelty check; and any prior §6 draft as input only. Every item carries a citable ID.
-2. **Draft with a claims map.** Write `reading` and `extension` on the page, and `_working/<slug>/reading-claims.md` with one line per sentence and its pack IDs. `reading` stays close to sources. `extension` carries the argument and must cite at least one Lens position (`[P:n]`) or state `lens: none applies`. Read the applicable writing-style files (§3 pre-ship gate) and the thinker's `doctrine_mode` first.
-3. **Automated gates.** `bun scripts/reading-gates.ts <slug>` must exit 0: no em-dashes, no banned words, no antithesis cadence, no first person, 160-word cap, every sentence mapped, every citation resolvable, lens touched. "Leverage" and "navigate" warn instead of fail; confirm usage by hand.
-4. **Council review.** Five custom-composed seats (Council skill, ComposeAgent), each reading the page, pack, and claims map: *Thinker's Advocate* (would the thinker recognize it), *Strongest Critic* (the page's `critiques` edges argue back), *Grounding Auditor* (do the cited items actually support each claim), *Security-Executive Lens* (does the extension earn its place for this audience), *Novelty and Casey Test* (does it repeat neighbors or the prior draft; could compression be mistaken for the thinker's claim). Each returns ACCEPT, ACCEPT-WITH-EDITS, REVISE, or REJECT with exact edits.
-5. **Revise and re-review.** Any REVISE sends the draft back. Re-author fixes under the gates (seat-suggested text is never pasted verbatim when it breaks voice rules), rerun stage 3, then the dissenting seats re-review only. Two revision rounds maximum; a third REVISE or any REJECT escalates to Julie. Use the full 3-round debate instead of the quick round for `mode-a` thinkers or when two or more seats REJECT.
-6. **Record and ship.** Persist the transcript to `~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-<slug>-<timestamp>-quick/transcript.md`, fill `reading_review` (with `dissent: true` if any seat stayed below ACCEPT-WITH-EDITS), build, and open the MR.
-
-**Julie's role is audit, not authorship.** She reads every page where `dissent: true`, plus a random one in four of the rest, and approves through the MR. She may add a `margin_note` whenever she has something to say.
-
-**Known limit.** The graph is small, so early packs lean on a few hub thinkers and neighbor readings still sit in legacy first-person voice. The novelty seat exists to catch the convergence this causes; revisit the seat roster once ten pages carry protocol readings.
-- Both registers obey the same Hard No list. The voice differs; the mechanics do not.
-
-**The mechanics (Julie's Hard No list, abridged):** no em-dashes; no "not just X / not only X / not X but Y" constructions; paragraphs do the heavy lifting, not bullets; tables only for a genuine two-axis comparison; banned words include delve, leverage (verb), navigate (metaphor), operationalize, nuanced, multifaceted, tapestry, "it's worth noting," "crucially," "importantly." Full list and rationale live in `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/WRITINGSTYLE.md` (Hard No list) and `~/.claude/LIFEOS/USER/AI_WRITING_PATTERNS.md` (P0/P1/P2 detection workflow).
-
-**Pre-ship gate (mandatory before any thinker page, concept page, MR description, or Issue body ships):**
-
-1. Read the applicable writing-style files before drafting. The two above apply to everything. The rest are scoped (iter-10 broadening; mirrors `feedback_distillery_prose_voice.md`), all in `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/`:
-   - `RHETORICALSTYLE.md` §4 figure guardrails on all editorial prose, and §2/§3 honesty and disagreement registers for §7 limits and §8 critic edge labels. `AI_WRITING_PATTERNS.md` detection step 7 cross-checks §4; do not skip it (it was the missed step on Forsgren).
-   - `DOCTRINEREGISTER.md` for every thinker page: spine vs handles, `doctrine_mode`, lineage parenthetical.
-   - `LONGFORMCRAFT.md` for long-read chapters only, not compact thinker pages.
-   - `PERSUASIONARCHITECTURE.md` §5 currency translation, only where a reading translates a thinker into security-executive terms.
-   - `PRIVATEWRITINGPRACTICE.md` does not apply; this is a public surface.
-2. Grep an existing page for the baseline: `grep -c '—' src/content/thinkers/alex-komoroske.md` returns 0. That is the spec.
-3. After drafting, grep your own draft: `grep -c '—' <file>` (target 0), `grep -iE 'operationaliz|delve|leverage|nuanced' <file>` (target empty), then run the AiWritingPatterns P0 through P2 sweep.
-4. MRs and Issues have a cold-reader audience. Lead with a plain-English paragraph saying what the thing is and why it exists; define or drop internal jargon.
-
-The gate applies equally to loop-drafted content. The first loop-drafted page (Forsgren, MR #1) shipped with 30 em-dashes and three banned-word uses because the gate was implicit. It is now explicit.
+**Layout shows who is speaking.** Quotation of the thinker, editorial reading, critique, and graph edges each have a distinct visual treatment. Readers should always be able to tell the thinker's words from the site's interpretation. The explanation of this attribution model lives once on the About page, never as a note repeated on each page.
 
 ---
 
-## 4. Data Model
+## 3. Who writes what
 
-### Nodes (two and only two, per Discipline Gate 1)
+| Content | Voice | Drafted by |
+|---------|-------|------------|
+| Editorial Reading: `reading`, `extension` | Editorial voice, no first person | Camila, through the Reading Protocol |
+| Editorial Reading: `margin_note` | Julie's voice | Julie only |
+| Concept page: `julie_reading` | Julie's voice | Julie only. Camila may write `julie_reading_prompt` to scaffold it. |
+| `working_uses` (thinker and concept pages) | Factual record | Camila records real uses from joint work; Julie may also add entries |
+| Everything else: hero, background, thesis, frame glosses, reading-list notes, limits, edge labels, Further In, live edge | Editorial voice | Camila, reviewed by Julie |
 
-**Thinker**
+Labels for critics in Adjacent Thinkers are editorial voice. They comment on the critic's argument and never speak for Julie.
 
-| field | type | required |
-|-------|------|----------|
-| slug | string (kebab) | yes |
-| name | string | yes |
-| frontmatter | object | yes |
-| sections | object keyed by section number | yes |
-
-**Frame**
-
-| field | type | required |
-|-------|------|----------|
-| slug | string (kebab) — **globally stable** | yes |
-| display_name | string | yes |
-| one_line_gloss | string | yes |
-| attribution_kind | enum (see above) | yes |
-| primary_author | thinker_slug | yes |
-| co_originators[] | array of `{ slug, role }` | optional |
-| holders[] | computed: all `(:Thinker)-[:HOLDS]->(:Frame)` | computed |
-
-**Source** — secondary node for source materials (books, essays, talks, translations). Used as edge target, not as primary page entity at v1.
-
-### Edges
-
-| edge_type | from | to | semantics |
-|-----------|------|-----|-----------|
-| `introduces` | Thinker | Frame | This thinker originates this frame |
-| `extends` | Thinker | Frame | Builds on an existing frame |
-| `critiques` | Thinker | Frame | Pushes back on this frame |
-| `holds` | Thinker | Frame | Uses without claiming origin |
-| `derived_from` | Frame | Frame | One frame builds on another |
-| `appears_in` | Frame | Source | Source is primary material for the frame |
-| `adjacent-to` | Thinker | Thinker | Same neighborhood; symmetric |
-| `antecedent-of` | Thinker | Thinker | Historical precedence and influence |
-
-Edge metadata: `label`, `strength` (`primary | secondary`), `source_link`.
-
-**Concept slug stability:** Frame slugs are global. Renaming is a migration with alias support, not an edit. `also_known_as[]` added before renaming.
+Both voices follow the same writing rules (section 8).
 
 ---
 
-## 5. Site-Level Artifacts (Q3 + Q5 locks)
+## 4. Thinker pages
 
-### Site-level tagline
+One Markdown file per thinker at `src/content/thinkers/<slug>.md`. Almost everything lives in YAML frontmatter. The `slug` field must match the file name, because long-read pages look thinkers up by file name. Files whose names start with `_` are disabled drafts and are skipped by the build.
 
-Voice-led, criterion-free one-liner in the site chrome — establishes kind-of-object once for the curious generalist landing from search. Wording is Julie's call (naming instinct). Placeholder: *"Curated readings of practitioners whose ideas are worth metabolizing."*
+For a complete, current example, read `src/content/thinkers/nicole-forsgren.md`, which uses the newest fields (a protocol-built reading, live edge, deep frames, critics).
 
-### About page
+### 4.1 Backstage fields (never rendered)
 
-The project's manifesto. Single page doing four jobs:
+| Field | Required | Holds |
+|-------|----------|-------|
+| `slug` | yes | Kebab-case ID, same as the file name |
+| `canonical_url` | no | The thinker's home on the web. May be `null` for thinkers who predate the web. |
+| `active_years` | yes | Free text, for example `2014–present` |
+| `status` | yes | `alive-active`, `alive-inactive`, or `deceased` |
+| `inclusion_rationale` | yes | Why the thinker clears the inclusion filter. Private. |
+| `thinker_type` | yes | The form of their output: `essay-corpus`, `book-author`, `principles-distiller`, `catalog-builder`, or `mixed`. It may shape how a page is presented, but it never changes which fields exist. |
+| `doctrine_mode` | yes | The site's editorial stance toward the thinker. See 4.2. |
+| `has_long_read` | no (default `false`) | Set `true` to generate the long-read index page |
+| `long_read_path` | no | Informational path to the long read; the site does not read it |
+| `last_updated` | yes | Date |
+| `reading_review` | no | Record of the Reading Protocol run. See 4.9. |
+| `live_edge_visible`, `live_edge` | no | See 4.14 |
 
-1. **Editorial mission** (Popova-style — what this site is, in Julie's voice).
-2. **How these pages are written** (names the four lanes; explains attribution; serves as the colophon for power users who care about citation accuracy).
-3. **The inclusion filter as backstage discipline** (for the curious — "here's how I choose; this is not authoritative biography").
-4. **Posture toward the source thinkers** (gratitude, framing — where the IP question gets answered in Julie's own words).
+### 4.2 Doctrine mode
 
-Required v1 artifact. Treated as a real writing piece, not boilerplate.
+`doctrine_mode` tells the drafter how much naming work the page should do. It describes the site's approach to the thinker, which can differ from how the thinker's own corpus is shaped. The renderer never reads it.
+
+- **`mode-c`**: the thinker has a clear central argument but left many ideas unnamed. The page separates the argument (`thesis`) from the named concepts (`named_frames`) and may coin portable names for ideas the thinker described without naming. Current examples: Komoroske, Fowler, Brooks, Allspaw, Woods, Dekker.
+- **`mode-a`**: the page should avoid coining names. A page like this fails if it invents frames the thinker would not recognize, so `named_frames` stays short and close to the source.
+- **`mode-b`**: the thinker's named artifact is itself the doctrine, such as DORA or *Principles*. The page presents the artifact faithfully and extends from it. Current examples: Dalio, Forsgren.
+
+`doctrine_mode` and `thinker_type` are independent. Brooks is a `book-author` with `mode-c`.
+
+Keep `thesis` and `named_frames` separate on every page: the thesis is the one argument, the frames are the names people carry away. Where the site's compressed phrasing is sharper than anything the thinker wrote, the page must not present that phrasing as the thinker's. A `thesis` may include one short parenthetical naming its intellectual antecedent (for example, lean and Goldratt's theory of constraints behind Forsgren) when that strengthens it. Structured lineage still belongs in `co_originators` and `derived_from`.
+
+This field is a deliberate one-off. Do not add more backstage fields of this kind. If five more thinker pages ship and no `doctrine_mode` value has changed a drafting decision, delete the field. Julie owns that check.
+
+### 4.3 Rendered sections, in order
+
+The page template is `src/pages/thinkers/[slug].astro`. Sections render in this order:
+
+1. Hero
+2. Who They Are
+3. Core POV
+4. Named Frames
+5. Body of Work
+6. Editorial Reading
+7. Where This Breaks
+8. Adjacent Thinkers
+9. Further In
+10. Long Read (only when `long_read` is present)
+11. Notes (the Markdown body of the file, when there is one)
+
+Live Edge (4.14) is defined in the schema but not rendered yet.
+
+### 4.4 Hero
+
+The first impression: who this is and the whole argument in thirty seconds. The thirty-second take carries the case for why the thinker matters, so there is no separate "why this thinker" line.
+
+| Field | Required | Holds |
+|-------|----------|-------|
+| `name` | yes | Display name |
+| `portrait` | no | Image path. A monogram renders when absent. |
+| `tagline` | yes | One line; also used as the page's meta description and on the home page roster |
+| `primary_domains` | yes | List of domain tags, rendered as badges |
+| `thirty_second_take` | yes | A short paragraph stating the thinker's whole argument |
+
+### 4.5 Who They Are
+
+Background and career, only as far as they make the thinking easier to understand. This is not a biography.
+
+| Field | Required | Holds |
+|-------|----------|-------|
+| `background` | yes | Career and trajectory |
+| `why_they_matter_as_a_thinker` | yes | What makes their ideas portable |
+
+### 4.6 Core POV
+
+The single argument that holds the body of work together.
+
+| Field | Required | Holds |
+|-------|----------|-------|
+| `thesis` | yes | One or two paragraphs, editorial voice |
+| `working_line` | no | A short pull quote in the thinker's own voice. Renders with the credit "paraphrased," so it must be a faithful paraphrase at minimum. |
+
+### 4.7 Named Frames
+
+The portable vocabulary: the named concepts this thinker holds. Each entry in `named_frames` has these fields:
+
+| Field | Required | Holds |
+|-------|----------|-------|
+| `concept_slug` | yes | Global kebab-case ID. Joins the frame to other holders and to its concept page. |
+| `display_name` | yes | The frame's name as shown |
+| `one_line_gloss` | yes | One-sentence definition |
+| `attribution_kind` | yes | `original`, `extended`, `popularized`, `distributed`, `co-authored`, `translated`, or `community` |
+| `primary_author` | yes | Usually this thinker's slug. May name someone else for a distributed frame. |
+| `co_originators` | no | List of `{ slug, role }` for frames with several originators |
+| `source_link` | no | Where the thinker writes about it (for ancient thinkers, a canonical translation) |
+| `derived_from` | no | `concept_slug` of an earlier frame this one builds on |
+| `render_tier` | no | `foreground` (default) or `deep` |
+
+What the page shows under each frame:
+
+- **"also held by"**: other thinkers who list the same `concept_slug`, computed at build time in `src/lib/graph.ts`. The label next to each name comes from that holder's `attribution_kind` (for example "origin" or "extension").
+- **"Open concept page →"**: shown only when `src/content/concepts/<concept_slug>.md` exists. The check runs at build time, so the link can never 404.
+
+**Foreground and deep frames.** A thinker's full set of frames can live in frontmatter, while the page shows only the most important ones. Foreground frames render on the page; deep frames are meant to collapse into a single line such as "12 more frames; see the long read," with a build check that the count is honest. Show at most 8 foreground frames, typically 6, whatever the `thinker_type`. Thinkers with large catalogs push the rest to `deep` and to long-read chapters. Choose foreground frames by how often other practitioners cite the thinker for them, weighted by Julie's own working uses. Status: the renderer does not yet read `render_tier`, so every frame currently renders. See section 10.
+
+### 4.8 Body of Work
+
+A curated reading list with editorial notes. It is not a complete bibliography. Each entry in `body_of_work`:
+
+| Field | Required | Holds |
+|-------|----------|-------|
+| `title` | yes | Title |
+| `type` | yes | `book`, `essay`, `talk`, `blog-series`, `interview`, `paper`, or `translation` |
+| `year` | no | Number or string |
+| `link` | no | URL; the title links when present |
+| `editorial_note` | no | Why to read it, and when |
+| `read_first` | no | Renders a "read first" tag |
+| `canonical` | no | Renders a "canonical" tag |
+| `translator`, `edition`, `edition_year` | no | For translated or ancient works |
+| `attribution_kind` | no | `authored` (default) or `hosted` |
+
+**Hosted work.** Some thinkers publish other people's work on a platform they own, as Martin Fowler does for Zhamak Dehghani's Data Mesh series on martinfowler.com. Hosting is distinct from authorship and must never read as authorship. The source of truth for hosted work is a `hosts` edge in Adjacent Thinkers (4.11). A `hosted` entry in Body of Work is meant to be generated from that edge, and must display a host label and the `hosted_on_url`; a CSS style difference alone is not enough. Status: this projection and its check are not built yet. See section 10.
+
+### 4.9 Editorial Reading
+
+What the site takes from the thinker, and how that extends into Julie's field. The renderer labels this block "The Distillery's reading." It is written and reviewed through the Reading Protocol (section 7) and does not wait on Julie to ship.
+
+| Field | Required | Holds |
+|-------|----------|-------|
+| `reading` | yes, unless the legacy pair is used | What the site takes from the thinker. Stays close to the grounding pack. Editorial voice, 160 words maximum. Renders under "The reading." |
+| `extension` | yes, unless the legacy pair is used | Where the reading extends the thinker through Julie's published positions. Inference is allowed, but it must read as the site's argument and never as the thinker's claim. Editorial voice, 160 words maximum. Renders under "Where it extends." |
+| `reading_review` | no | Backstage record of the protocol run: `protocol`, `date`, `verdict` (`accept` or `accept-with-edits`), `council_transcript`, `grounding_pack`, `claims`, `dissent` (default `false`) |
+| `margin_note` | no | Julie's own first-person note. Renders as "Julie's note." Never required, never drafted by Camila, never blocks shipping. |
+| `working_uses` | no | Bullet list of places the thinker's frames were used in real work |
+| `what_i_take`, `where_i_extend` | legacy | The older first-person pair, drafted by Camila and reviewed by Julie. A page renders them, under the label "From Julie's reading," only while it has no `reading`. Remove them once every page has been converted. |
+
+The schema requires either `reading` and `extension` together, or `what_i_take` and `where_i_extend` together.
+
+Visual treatment: an indented block with a slight color shift and a sans-serif base.
+
+### 4.10 Where This Breaks
+
+An honest account of where the thinker's ideas fail. Required on every page.
+
+| Field | Required | Holds |
+|-------|----------|-------|
+| `limits` | yes, at least 2 | Each entry has `headline`, `severity` (`local` or `structural`), and `elaboration` |
+| `still_load_bearing_despite` | yes | A closing paragraph on why the ideas remain useful anyway |
+
+Each limit renders as a card showing headline, severity, and elaboration. The section shares the color family and indent of Editorial Reading, with the card layout and an accent to tell them apart. The closing paragraph renders separately, under "Still load-bearing, despite," in plain paragraph style, so the section reads as a run of critiques followed by a turn back to why the ideas still hold.
+
+The section label is "Where this breaks" on pages with a protocol reading and "Where I think this breaks" on legacy pages.
+
+### 4.11 Adjacent Thinkers
+
+The thinker's neighborhood in the graph, shown as a card grid. Each entry in `adjacent_thinkers` (at least 3):
+
+| Field | Required | Holds |
+|-------|----------|-------|
+| `target_slug` | yes | The other thinker's slug. They may not have a page. |
+| `display_name` | yes | Name as shown |
+| `edge_type` | yes | `antecedent`, `extends`, `critiques`, `parallel`, `synthesizes`, or `hosts` |
+| `edge_label` | yes | One line, editorial voice, describing the relationship |
+| `strength` | yes | `primary` or `secondary` |
+| `render_tier` | no | `foreground` (default) or `deep` |
+| `auto_surfaced` | no | Meant to be computed by the build. Do not set by hand. |
+| `editorial_demote_to` | no | `secondary`, to override automatic promotion |
+| `hosted_items` | no | Only on `hosts` edges. See below. |
+
+**How many to show.** Typically 5 foreground neighbors. Up to 7 is fine when the extra ones have their own pages on this site.
+
+**Neighbors with pages on this site.** When `target_slug` matches a published thinker page, that edge should be marked `auto_surfaced`, show in the foreground, and default to `primary`. To show it as secondary anyway, set `editorial_demote_to: secondary` so the demotion is visible in the file. For example, Komoroske rarely cites Senge, and a secondary edge makes that absence visible. If a frame's `derived_from` points at a thinker who has a page here, and that thinker is missing from `adjacent_thinkers`, the build should warn. Status: auto-surfacing, demotion, and the warning are not built yet. Apply these rules by hand. See section 10.
+
+**Hosting edges.** Use `edge_type: hosts` only when this thinker publishes others' work on a platform they own and edit. Amplifying someone through a network is not hosting; use `extends` or `parallel` for that. A `hosts` edge may carry `hosted_items`, each with `title`, `kind` (`essay`, `series`, `talk`, `interview`, or `translation`), `year`, `hosted_on_url`, and an optional `editorial_framing`. The framing is the host's own stated reason for publishing the piece. The site's view of the relationship belongs in Editorial Reading.
+
+**Critics.** Record critics with `edge_type: critiques`. Before a page ships, spend about ten minutes looking for someone who has critiqued the thinker in a durable artifact of their own, and add at least one critic when one exists. A durable artifact is an essay, book chapter, or talk transcript by the critic. Social media posts, conference Q&A, and third-party summaries do not count. Weight critics this way:
+
+- The critic clears the inclusion filter and has a page on this site: `strength: primary`.
+- The critic has published a durable critique but does not meet the first condition: `strength: secondary`.
+- Neither: omit, or add as secondary at editorial discretion.
+
+Apply the byline test to critics too. If naming a critic would read as Julie picking a fight she has not earned standing for in her own work, demote the edge to secondary or omit it. The question is whether naming the critic is a move the site has standing to make, regardless of whether the critic is right.
+
+### 4.12 Further In
+
+Suggested reading paths, in a field called `further_in`:
+
+| Field | Required | Holds |
+|-------|----------|-------|
+| `start_here` | yes | The single best entry point |
+| `then_read` | no | Ordered list of next reads |
+| `if_you_want_depth` | no | Usually the long read, if one exists |
+| `if_you_want_breadth` | no | Related thinkers or works |
+
+### 4.13 Long Read
+
+For thinkers who warrant a book-length treatment. Optional: a page without one is not a lesser page.
+
+| Field | Required | Holds |
+|-------|----------|-------|
+| `long_read.title` | yes, when `long_read` is present | Title of the long read |
+| `long_read.summary` | yes, when `long_read` is present | Two or three paragraphs |
+| `long_read.source_path` | no | Where the working files live. Shown on the long-read index when no chapters are published. |
+
+The thinker page shows the title, summary, and a "Read the long version →" link to `/thinkers/<slug>/long-read/`. That index page only exists when `has_long_read: true`, so set both. Chapters are described in section 5.
+
+### 4.14 Live Edge (defined, not yet rendered)
+
+A section for what a living, active thinker is working on now. It keeps recent output out of the curated Body of Work and out of Further In. Examples: Fowler's recent memo series, Forsgren's DevEx research.
+
+The section is opt-in per thinker and should never render as an empty heading.
+
+| Field | Required | Holds |
+|-------|----------|-------|
+| `live_edge_visible` | no (default `false`) | Set `true` to opt in. Only valid with `status: alive-active`. |
+| `live_edge.current_focus` | yes, when `live_edge` is present | One editorial sentence in present-continuous tense |
+| `live_edge.summary` | yes, when `live_edge` is present | 80–180 words, editorial voice, present-continuous tense, naming specific works, dates, and co-authors. Hedge where uncertain. |
+| `live_edge.recent_work` | no | Use only when three or more recent works cluster naturally. Each entry: `title`, `year`, `kind` (`book`, `essay`, `talk`, `series`, `tool`, or `other`), optional `with` (co-author), optional `note` (one sentence). |
+| `live_edge.last_observed` | yes, when `live_edge` is present | Date the thinker was last checked |
+
+Intended rendering:
+
+1. Heading "Live Edge."
+2. Subtitle "Last surveyed {last_observed} · {N} days ago."
+3. The summary paragraph.
+4. Optionally, `recent_work` as a compact inline list showing title, year, kind, and note.
+
+If `last_observed` is more than 90 days old, the subtitle greys out and a "refresh pending" badge appears. The page must never present stale information as current.
+
+Live-edge entries may mention emerging frames in prose, but must never link to frame entries. A frame gets structured attribution only after it passes the byline test and joins `named_frames`.
+
+Maintenance: during the weekly discovery pass, check each opted-in thinker for new work from the last 90 days. If there is some, update `summary` and `recent_work`. Either way, update `last_observed`.
+
+Status: the renderer ignores both fields, and the build does not check the `status` requirement, the required-when-visible rule, or the ban on frame links. See section 10.
 
 ---
 
-## 6. Publishing Surface (Q6 lock)
+## 5. Long-read chapters
 
-- **Framework:** Astro 6.x. Content Collections give typed frontmatter; components handle structured sections; islands-of-interactivity available for v2 graph viz without committing to a full app framework.
-- **Host:** GitLab Pages (`gitlab.com/juliedavila/thinker-distillery`, Private + `pages_access_level=private`, project members only). Bun container CI via `.gitlab-ci.yml`. Migrated from Netlify Iter-6 2026-05-27 after free-tier exhaustion; Astro build output stays portable.
-- **Repo:** Single repo at `~/Camila/thinker-distillation/`. Per-thinker markdown under `content/thinkers/{slug}.md`. Long-read content under `content/thinkers/{slug}/long-read/`.
-- **Long-read working notes:** Live at `~/Camila/thinker-distillation/_working/{thinker-slug}/` (workspace-cohesive convention ratified Iter-7 step 1 2026-05-27, resolves Q6 from Fowler audit). Published chapters get content-collection-shaped versions under the long-read content path above. Standalone `~/Camila/ways-of-{slug}/` dirs are the retired legacy convention — Fowler migrated into `_working/martin-fowler/`; Komoroske archived at `~/Camila/_archive/ways-of-komoroske-merged-2026-05-27/` (chapter content already merged into the site).
+Chapters are a separate content collection, one Markdown file per chapter at `src/content/long-read/<thinker-slug>/<nn-name>.md`. The chapter list is built from these files, so adding a chapter means adding one file, with no change to the thinker's frontmatter.
 
----
+| Field | Required | Holds |
+|-------|----------|-------|
+| `thinker_slug` | yes | Must match a thinker file name |
+| `chapter_number` | yes | Integer, `0` for a preface. Sets the order. |
+| `title` | yes | Chapter title |
+| `summary` | no | Shown on the index and under the chapter title |
+| `glossary` | no | List of `{ term, gloss, concept_slug? }`. Renders as a side rail (a collapsible list on mobile), linking to concept pages that exist. |
+| `intro` | no | Accepted by the schema; not rendered |
+| `last_updated` | yes | Date |
 
-## 7. Anti-Criteria
+Routes: the index is `/thinkers/<slug>/long-read/` and each chapter is `/thinkers/<slug>/long-read/<file-name>/`, with previous and next links.
 
-- **Anti-1:** Schema must NOT collapse "What X says" and "Editorial reading" into one voice lane. Layout-as-attribution is the IP firewall.
-- **Anti-2:** Schema must NOT force book-length depth onto every thinker. §10 Long Read is optional; absence is not a lesser tier.
-- **Anti-3 (reframed Q3):** Schema must NOT hide the *kind-of-object* (curated reading, not authoritative biography) from the reader. Site-level tagline + About page carry this; per-page rendering of `inclusion_rationale` is not required.
-- **Anti-4:** Schema must NOT introduce new node types per `thinker_type` value. New types add property shapes and optional edges only. (Discipline Gate 1.)
-- **Anti-5 (Q5 lock):** Schema must NOT push the IP/attribution explanation into a per-page colophon. The About page does that work once; every thinker page footer links to it.
-- **Anti-6:** Schema must NOT pretend a thinker is the sole originator of frames that emerged from a team or movement. `attribution_kind: distributed` + `co_originators[]` are required for those cases. (Marcus's invariant from Council.)
-
-**v1.2 anti-criteria (Q1–Q5 schema bump locks):**
-
-- **Anti-16 (Q4 lock — hosted-vs-authored firewall).** Schema and renderer must NOT collapse the host-vs-author distinction. `body_of_work[]` items with `attribution_kind: hosted` MUST render with the host-attribution label and `hosted_on_url` link, sourced from the §8 `hosts` edge payload. Build pipeline fails if a `hosted` item renders without the label. Decorative-only attribution (CSS-class-only differentiation) is explicitly insufficient — the structural separation lives in the schema, not the stylesheet.
-- **Anti-17 (Q3 lock — phantom Live Edge).** Schema must NOT render the §11 Live Edge section when `live_edge_visible: false` or when the `live_edge` block is absent. No phantom-empty headers. Opt-in is the curator's affirmative act; default is silence.
-- **Anti-18 (Q3 lock — stale Live Edge masquerading as current).** Schema must NOT render a populated Live Edge section without visible-staleness degradation when `last_observed` is older than 90 days. Honesty about freshness is part of the section's contract — if the page can't show currency, it must show that it can't.
-- **Anti-19 (Q3 lock — Live Edge as Frame-attribution backdoor).** Schema must NOT accept `frame_ref` / `frame_id` / Frame-node-link fields inside `live_edge`. Emerging frames are *mentioned* in prose; they cannot *link* to Frame nodes until those Frames clear the Casey gate. Validator rejects at build.
-- **Anti-20 (Q1 lock — silent foreground/deep mismatch).** Schema must NOT allow a thinker page to ship with `named_frames[]` where the deep-tier disclosure count does not match the actual deep-tier entry count. Build-time validation enforces honest count. If the page says "12 more frames in the lattice," the lattice MUST contain 12 more frames.
-- **Anti-21 (Q2 lock — silent site-internal omission).** Schema must NOT permit a thinker page to ship with an `adjacent_thinkers[]` derived_from edge to a published-on-site thinker that is silently absent from §8. Build emits a warning when (a) a frontmatter `derived_from` or named-frame antecedent points to a slug that resolves to a published thinker page AND (b) that slug is not present in `adjacent_thinkers[]`.
-- **Anti-22 (Q5 lock — critic register collapse).** Schema must NOT permit `edge_type: critiques` edge_labels in Mode C (Julie voice / first-person editorial). Critic edge_labels are Mode B (Camila-handle voice) — editorial commentary on the critic's argument, NOT Julie's analytical synthesis. The §7 `limits[]` lane remains Julie's; §8 critic edges are Camila's.
+Working notes for a long read live in `_working/<thinker-slug>/`. Published chapters are rewritten into the collection above.
 
 ---
 
-## 8. Antecedent
+## 6. Concept pages
 
-- **Antecedent-1:** Each thinker on the site meets the inclusion filter at the time of publication. Edge cases trigger an explicit conversation: recommend exclusion + surface 1–3 same-neighborhood alternatives that clear the filter more cleanly. Saved as feedback memory.
+A concept page covers one frame that several thinkers hold. It exists alongside the thinker pages and adds no new entity to the graph.
 
----
+### 6.1 Where the data comes from
 
-## 9. Concept Pages (v2 surface — added 2026-05-25 with `coordination-headwind` as the seed concept)
+The concept file holds only editorial content about the concept. Everything about who holds the frame (holders, their attribution, their glosses) is derived at build time from the `named_frames` of thinker files. The concept schema has no `holders` field on purpose. To add a holder, edit that thinker's `named_frames`. Because holders are recomputed on every build, concept pages never need a manual sync.
 
-The v2 surface promised by Principle "Graph from day one." Per-concept pages are the canonical render of the Frame node — they exist alongside thinker pages, share the same source of truth, and add NO new node type to the graph.
+Qualifications about a particular holder ("Brooks's framing assumes engineering teams under deadline") go into editorial prose (`julie_reading`, limits, or edge labels). There is no per-holder field for them, because interpretation stored as structured data would read as derived fact.
 
-**Authoring surface vs derived surface.** A `Concept` Content Collection at `src/content/concepts/{slug}.md` is the AUTHORING surface for editorial content about the concept itself. Holders, attribution timeline, and frame glosses are DERIVED from the existing `named_frames[]` entries in `src/content/thinkers/`. There is exactly one source of truth for "who holds this frame": the thinker frontmatter. Discipline Gate 1 (node-type uniformity) holds — Concept files are not graph nodes; they are editorial overlays on the Frame nodes already encoded in thinker entries.
+### 6.2 Fields
 
-**Concept frontmatter (locked 2026-05-25):**
+File: `src/content/concepts/<slug>.md`.
 
-```yaml
-slug: coordination-headwind              # globally stable; matches concept_slug in thinker frames
-display_name: Coordination Headwind      # concept-level display, not borrowed from any one holder
-one_line_gloss: >                        # concept-level gloss, not borrowed verbatim from holder frame
-  The invisible drag on collaborative work — the cost of every agreement
-  a decision depends on — that grows superlinearly with team size.
-last_updated: 2026-05-25
+| Field | Required | Holds |
+|-------|----------|-------|
+| `slug` | yes | Matches the `concept_slug` used in thinker frames |
+| `display_name` | yes | A name for the concept as a whole. Do not reuse one holder's frame name by default. |
+| `one_line_gloss` | yes | A definition for the concept as a whole. Do not copy one holder's gloss. |
+| `last_updated` | yes | Date |
+| `julie_reading` | no | Julie's own reading of the concept. Julie writes it; Camila never does. |
+| `julie_reading_prompt` | no | A prompt Camila writes to help Julie fill `julie_reading` |
+| `limits` | no, but at least 2 when present | Same shape as thinker limits |
+| `still_load_bearing_despite` | no | Closing paragraph after limits |
+| `adjacent_concepts` | no, but at least 3 when present | Each entry: `target_slug`, `display_name`, `edge_label` |
+| `working_uses` | no | Record of real uses in joint work. Camila may append these as they happen, because they record facts. |
+| `long_read` | no | Same shape as on thinker pages |
 
-julie_reading: >                         # OPTIONAL — Julie's editorial reading of the concept itself
-                                         # (distinct from her per-thinker readings of the holders)
-julie_reading_prompt: >                  # OPTIONAL — Camila-scaffolded prompt for Julie to fill
-  ...
+### 6.3 Rendered sections, in order
 
-limits:                                  # OPTIONAL — when present, ≥2 enforced (per ISC-36)
-  - headline: ...
-    severity: local | structural
-    elaboration: ...
-still_load_bearing_despite: >            # OPTIONAL — closing-beat analog to thinker-page ISC-25
+The template is `src/pages/concepts/[slug].astro`.
 
-adjacent_concepts:                       # OPTIONAL — when present, ≥3 enforced (per ISC-36)
-  - target_slug: ...                     # kebab-case; target concept page may not yet exist
-    display_name: ...
-    edge_label: ...
+1. **Hero**: a "Concept" label, `display_name`, and `one_line_gloss`.
+2. **Genealogy**: each holder with their frame name and gloss. Sorted by `attribution_kind` in this order: `original`, `co-authored`, `distributed`, `extended`, `popularized`, `translated`, `community`, then alphabetically.
+3. **Who Holds This Frame**: holder cards, same order, each linking to the thinker page and showing attribution, frame name, and source link.
+4. **Editorial Reading**: `julie_reading` when present. Otherwise a visible empty slot reading "Awaiting Julie's editorial reading," with the prompt available in a collapsible block.
+5. **Where This Breaks**: limit cards and the closing paragraph, when present.
+6. **Adjacent Concepts**: links to concept pages that exist; concepts without a page yet show with a dotted underline.
+7. **Working Uses**: when present.
+8. **Long Read**: title and summary, when present.
+9. **Notes**: the Markdown body, when present.
 
-working_uses:                            # OPTIONAL — collaboration-recorded (Camila auto-updates when
-                                         # a frame is actually deployed in joint work; Julie can also
-                                         # write directly). Evidentiary not editorial.
-  - ...
+### 6.4 Rules for shipping a concept page
 
-long_read:                               # OPTIONAL — same shape as thinker.long_read
-  ...
-```
-
-**Page sections (order; omitted when empty):**
-
-- **Hero** — `Concept` eyebrow + `display_name` + `one_line_gloss`
-- **§A Genealogy** — holders sorted by `attribution_kind` (`original` first, then `co-authored`, `distributed`, `extended`, `popularized`, `translated`, `community`); each holder rendered with frame display_name + frame gloss
-- **§B Holders** — holders grid (alphabetical within attribution_kind tier); each card links back to `/thinkers/<slug>`; attribution_kind tag + frame name + primary source link
-- **§C Editorial Reading** — julie-lane styling; renders `julie_reading` when populated; renders empty-state slot (dashed border + scaffolded prompt under `<details>`) when not
-- **§D Where This Breaks** — limit-card pattern (same component as thinker page); `still_load_bearing_despite` closing-beat conditional
-- **§E Adjacent Concepts** — links to existing `/concepts/<slug>` pages; pending-concept (dotted-underline) for slugs not yet authored
-- **§F Working Uses** — julie-lane styling; only renders when `working_uses[]` populated. **Collaboration-recorded as of 2026-05-26:** Camila auto-appends entries when a frame is deployed in joint work; Julie can also write directly. The field is evidentiary (documenting actual use), distinct from `julie_reading` which remains Julie-writes-only editorial.
-- **§Long Read** — same as thinker §10
-
-**Cross-linking (thinker → concept):**
-
-When a concept page exists for a `concept_slug`, the corresponding thinker-page §4 Named Frame renders an additive "Open concept page →" link below the inline `also_held_by` cluster. When no concept page exists, the link is omitted entirely — v1 behavior preserved exactly. The link is gated on `buildConceptPageIndex()` returning the slug; this is a build-time check, never a 404 risk.
-
-**Derivation contract (locked 2026-05-26 per v3-blocker 1A resolution):**
-
-Holders on concept pages are derived at build time from thinker `named_frames[]` entries. Concept pages NEVER author holders in their own frontmatter. To add a holder, edit the upstream thinker's `named_frames[]` array — not the concept file. The `Concept` Content Collection schema deliberately has no `holders[]` field; if a future contributor reaches for one, the answer is "edit the thinker." This contract is what makes the IP-firewall mechanical: the source of truth is upstream of the editorial overlay. Astro rebuilds derive holders fresh from thinker frontmatter on every build, so the concept page is auto-fresh — there is no snapshot step and no manual sync.
-
-**Editorial-overrides-derivation (locked 2026-05-26 per v3-blocker 2B resolution):**
-
-When editorial voice wants to qualify a derived holder ("Brooks's framing assumes engineering teams under deadline; Komoroske's generalization stretches but doesn't break"), the qualification lives in editorial voice — `julie_reading` (Mode C) or concept-level editorial sections in Camila handle voice (Mode B). The concept schema deliberately has no per-holder `qualifies:` field. Three reasons: (a) preserving derivation purity per the contract above, (b) qualifications are interpretation, not fact, so structuring them in schema reads as derived when they are authored, (c) Mode A/B/C register lanes are visually distinct and load-bearing — qualification in editorial voice keeps the lanes from blurring.
-
-**Minimum-corroboration floor (locked 2026-05-26 per v3-blocker 3A resolution):**
-
-A concept page requires N≥2 independent derivable holders to ship. Below that, the candidate is either a doctrine claim (belongs in Julie's own writing, not the Distillery) or a single-thinker concept (lives on that thinker's page as a `named_frames[]` entry, possibly with editorial expansion in `what_i_take` / `where_i_extend`). No doctrine-claim exception with explicit attribution: the Distillery is per-thinker editorial readings with cross-thinker concept pages as the second-class entities — single-author concept pages drift toward doctrine even with author labeling, and Anti-12 below is supposed to prevent that.
-
-**v2-surface anti-criteria (added 2026-05-25 — extend §7):**
-
-- **Anti-7:** Concept page must NOT show all holders with the same `attribution_kind`. Diverse genealogy must be preserved — the IP-honesty discipline that lives on thinker pages extends to concept pages.
-- **Anti-8:** Concept page must NOT introduce a third node type. `Concept` Content Collection is an AUTHORING surface for editorial content on the Frame node; holders are derived. Graph stays Thinker + Frame only. Discipline Gate 1 holds.
-- **Anti-9:** Concept page must NOT render any `inclusion_rationale`-equivalent backstage content. Same discipline as Anti-3, applied at the concept layer.
-- **Anti-10 (writing-partner invariant, refined 2026-05-26):** Camila must NOT author `julie_reading` content on concept files. Scaffold the slot, never write Julie's voice in editorial fields. Per `feedback_feminine_energy_writing.md` and DA-identity collaboration rules. **Carve-out:** `working_uses` is *evidentiary*, not *editorial* — Camila auto-records uses that actually happened in collaborative work (writing, presentations, research). The fact that a frame was deployed is documentable; Julie's editorial reading of it is not. See `feedback_writing_partner_per_field.md` for the full operational rule.
-- **Anti-11 (added 2026-05-26):** Concept page must NOT read as a thinker page in disguise. If you could swap the URL prefix `/concepts/<slug>/` → `/thinkers/<dominant-holder>/` and the page would read as a defensible thinker page, it IS a thinker page in disguise — restructure or downgrade to a `named_frames[]` entry on the dominant holder. (Casey-test extension at pre-publication.)
-- **Anti-12 (added 2026-05-26):** Concept page must NOT be a doctrine claim. The page must describe a recognized cross-thinker pattern, not Julie's synthesized doctrine about a topic with thinker citations as decoration. Strip-the-holders test at pre-publication: if removing the holder list leaves the editorial intact, the editorial IS the page and the holders are decoration — that is doctrine, and it belongs in Julie's own writing rather than the Distillery.
-- **Anti-13 (added 2026-05-26):** No load-bearing editorial claim without an anchor. Every claim either (a) attributes to a holder via derivation, (b) lives in `julie_reading` as explicitly Julie's voice (Mode C), or (c) is bracketed in Camila handle voice (Mode B) as editorial commentary in `limits` / `still_load_bearing_despite` / `adjacent_concepts` edge labels. Mostly enforced by existing field design; the rule constrains FUTURE schema additions — new editorial fields must declare register lane up-front.
-- **Anti-14 (added 2026-05-26):** Concept page must NOT reduce to a glossary stub. Minimum required content at ship: ≥2 entries in `limits`, `still_load_bearing_despite` populated, ≥3 entries in `adjacent_concepts` (the schema's existing soft floors, here reaffirmed as the hard publication gate). Empty `julie_reading` does NOT count against this — writing-partner discipline holds the slot.
-- **Anti-15 (added 2026-05-26):** Concept page must NOT redundantly cover the same conceptual territory as an existing concept page. "Search before you author" discipline: walk existing concept pages before scaffolding; confirm no substantial territory overlap. When two candidates share territory, resolve to one page with sub-sections OR one page that names the other as an `adjacent_concept`. Distinct from Anti-12 and Blocker 3's N≥2 floor: a concept can clear those gates and still redundantly cover another concept's territory.
+- **At least two independent holders.** With one holder, the idea belongs on that thinker's page as a frame. An idea with no real holders is Julie's own doctrine and belongs in her own writing.
+- **Varied attribution.** If every holder has the same `attribution_kind`, the page loses the genealogy it exists to show.
+- **Not a thinker page in disguise.** If swapping `/concepts/<slug>/` for `/thinkers/<main-holder>/` would leave a defensible thinker page, restructure it or reduce it to a frame on that thinker's page.
+- **Not a doctrine claim.** Imagine removing the holder list. If the editorial content still stands on its own, the holders are decoration and the page is doctrine. It belongs in Julie's own writing.
+- **Every claim is anchored.** Each claim is attributed to a holder through the derived data, sits in `julie_reading` as Julie's view, or sits in editorial fields (`limits`, `still_load_bearing_despite`, edge labels) as the site's commentary. Any future editorial field must state its voice when it is added.
+- **More than a glossary entry.** At ship time a concept page needs at least 2 limits, a `still_load_bearing_despite` paragraph, and at least 3 adjacent concepts. An empty `julie_reading` does not block shipping.
+- **No overlap.** Before writing a new concept page, read the existing ones. If two candidates cover the same ground, merge them into one page with subsections, or have one list the other as an adjacent concept.
+- **No backstage content.** Nothing equivalent to `inclusion_rationale` renders on a concept page.
 
 ---
 
-# Pressure-Test: Alex Komoroske (v1 case)
+## 7. The Reading Protocol
 
-## §0 Frontmatter
+Every `reading` and `extension` is produced by the steps below, in order, with no step skipped. The output of each step is kept as a record under `_working/<slug>/`.
 
-```yaml
-slug: alex-komoroske
-name: Alex Komoroske
-canonical_url: https://komoroske.com
-active_years: 2014–present
-primary_domains: [organization-design, platforms, complexity]
-status: alive-active
-inclusion_rationale: >
-  Produced a portable vocabulary for organizational complexity (coordination
-  headwind, Schelling-point organizations, gardener-vs-architect) that
-  practitioners now use to think about their own work. ~10 years across essays,
-  talks, blog, and consulting practice.
-thinker_type: essay-corpus
-has_long_read: true
-long_read_path: /thinkers/alex-komoroske/long-read
-last_updated: 2026-05-25
-```
+1. **Generate the grounding pack.**
 
-## §1 Header / Hero
+   ```bash
+   bun scripts/grounding-pack.ts <slug>
+   ```
 
-- **name:** Alex Komoroske
-- **tagline:** The systems-thinker who named the hidden physics of why large organizations slow down.
-- **domain_badges:** `organization-design`, `complexity`, `platforms`
-- **thirty_second_take:** Komoroske's body of work is one argument: most organizations operate against an invisible drag that grows faster than headcount, and the leadership move is to garden the conditions where local decisions can happen rather than to centralize control. The slime mold is the working metaphor. Coordination headwind is the named cost. Schelling-point engineering is the leverage.
+   This writes `_working/<slug>/grounding-pack.md`. It contains the thinker's thesis, frames, and limits; edges in and out, with each neighbor's thesis; frames shared with other pages; names two hops away; Julie's published positions (the Lens, read from the "Key Positions" section of her private identity file under `LIFEOS_DIR`); neighbors' existing readings, for the novelty check; and any earlier Editorial Reading draft, as input only. Every item has a citable ID such as `[F:coordination-headwind]` or `[P:3]`.
 
-## §2 Who They Are
+2. **Draft with a claims map.** Before drafting, read the thinker's `doctrine_mode` and the writing-style guides listed in section 8. Write `reading` and `extension` into the thinker file. Then write `_working/<slug>/reading-claims.md` with one line per sentence (`- sentence [ID] [ID]`). `reading` stays close to its sources. `extension` carries the argument and must cite at least one Lens position (`[P:n]`), or the claims file must contain the line `lens: none applies`.
 
-Komoroske spent his career inside platforms — Google (Chrome, Salesforce platforms), Stripe (Climate, identity) — with a long arc of writing on Medium that runs parallel to the institutional work. Platforms thinker first, org-design thinker second, but the two collapse into each other: a platform is just an organization in code, and an organization is a platform of humans. His instinct is to treat large social systems as physics problems with hidden conservation laws.
+3. **Run the automated gates.**
 
-What makes him portable as a *thinker* is the vocabulary. He names things — coordination headwind, the slime mold, the gardener, the bramble, the Schelling point, adjacent possible — and the names lodge.
+   ```bash
+   bun scripts/reading-gates.ts <slug>
+   ```
 
-## §3 Core POV
+   It must exit 0. The script checks `reading`, `extension`, and `margin_note` for: em-dashes, banned words, contrast constructions such as "not just X" or "not X, but Y," and first person (allowed only in `margin_note`). For `reading` and `extension` it also checks the 160-word limit, that every sentence appears in the claims file, that every citation exists in the pack, and that the Lens is cited or waived. "Leverage" and "navigate" produce warnings instead of failures, because they are banned only as a verb or metaphor; check each by hand.
 
-Complex systems work best when they are gardened, not architected. The leader's job is not to plan the optimal answer and propagate it downward; the leader's job is to make defensible answers focal enough that local actors converge on them without being told. Organizations that ignore this pay a tax that grows faster than they expect, sooner than they expect — coordination headwind — and the standard responses (more meetings, more reorgs, more hiring) make it worse. The fix is to push decisions to where local information lives, accept the messiness, and trust that recovery time in a self-correcting system is faster than freeze-up time in a centralized one.
+4. **Council review.** Five AI reviewers, each built for this job, read the page, the pack, and the claims map. Each returns ACCEPT, ACCEPT-WITH-EDITS, REVISE, or REJECT, with exact edits.
+   - *Thinker's advocate*: would the thinker recognize this reading?
+   - *Strongest critic*: argues back using the page's `critiques` edges.
+   - *Grounding auditor*: do the cited items actually support each claim?
+   - *Security-executive reader*: does the extension earn its place for this audience?
+   - *Novelty and byline check*: does it repeat neighbors or the previous draft, and could the site's compressed phrasing be mistaken for the thinker's own claim?
 
-> *"Most organizations work like the opposite of the slime mold. There is a roadmap. There are quarterly goals. There is a project manager. And somehow, despite all of this central planning, the work moves slower the bigger the organization gets."* — paraphrased from the coordination-headwind essay (2018)
+   **Batches.** When several pages are converted at once, each reviewer reads every page in the batch and returns a verdict per page. This keeps the review to five reviewers, and it lets the novelty reviewer compare the pages with each other, which is where sameness shows up (repeated openers, the same closing move, the same Lens position everywhere). Before drafting a batch, give each page a different angle and Lens position where the sources allow it.
 
-## §4 Named Frames
+5. **Revise and re-review.** Any REVISE sends the draft back. Rewrite the fixes yourself under the writing rules (never paste a reviewer's suggested text if it breaks them), rerun step 3, and have only the dissenting reviewers review again. Allow two revision rounds. A third REVISE, or any REJECT, goes to Julie. Use the full three-round Council debate instead of the single quick round for `mode-a` thinkers, or when two or more reviewers REJECT.
 
-| Frame | attribution_kind | Source |
-|-------|------------------|--------|
-| **coordination-headwind** | `original` (Komoroske generalized Brooks's narrow claim; `derived_from: brooks-law`) | medium.com/@komorama coordination essay |
-| **slime-mold** | `popularized` (Tero 2010 experiment; Komoroske made it the working metaphor for org coordination) | komorama medium archive |
-| **schelling-point-organizations** | `extended` (Schelling 1960 *Strategy of Conflict*; Komoroske applied to org decision-making) | medium.com/@komorama/on-schelling-points-in-organizations |
-| **gardener-vs-architect** | `original` (Komoroske's leadership-stance contrast) | across multiple essays |
-| **heroics-smell** | `original` (if your system requires heroes, your system is broken — diagnostic, not solution) | medium.com/@komorama |
-| **adjacent-possible** | `extended` (Kauffman via Johnson; Komoroske applies to org movement) | across essays, Stripe-era talks |
+6. **Record and ship.** Save the Council transcript to `~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-<slug>-<timestamp>-quick/transcript.md` (a private path on the maintainer's machine). Fill in `reading_review`, setting `dissent: true` if any reviewer stayed below ACCEPT-WITH-EDITS. Run the build, then open a merge request.
 
-Each frame renders with `also_held_by:` cluster underneath at build time. Example: `coordination-headwind also held by → Fred Brooks (antecedent, "named the same cost for engineering teams in 1975")`.
+**Julie's role is to audit.** She reads every page with `dissent: true` and a random one in four of the rest, and approves through the merge request. She may add a `margin_note` at any time.
 
-## §5 Body of Work
-
-- **The Coordination Headwind Essay** — `essay`, 2018, [link] — `read_first: true`, `canonical: true`. Keystone.
-- **On Schelling Points in Organizations** — `essay`, ~2019, [link] — `canonical: true`. Hidden-physics piece; pairs with the headwind essay.
-- **The Bramble / Slime Mold Essay** — `essay`. The metaphor piece; best read after Coordination Headwind so the metaphor lands in context.
-- **Platform conference talks** (Google, Stripe) — `talk`. Adds the verbal hedges the written essays leave out — useful for seeing him think.
-- **Blog corpus on komoroske.com** — `blog-series`. Working ideas tested before they harden into essays.
-
-## §6 Editorial Reading
-
-**What I take from Komoroske.** The coordination-headwind frame is the single most useful thing I carry into security organization design. Most security programs fail not because the threat model is wrong but because the coordination cost of acting on the threat model exceeds the available organizational energy. Once you have the headwind frame, you stop trying to fix slow security work by adding more security people; you start trying to reduce the coordination surface that the security work has to cross. Structural intervention, not headcount intervention.
-
-**Where I extend.** Komoroske writes about coordination as a general organizational physics. I push it into security specifically: every security control is a coordination event with an attached headwind cost, and the right design move is to reduce the number of agreements a control depends on. Schelling points show up here too — a security culture works when the "secure default" is the focal one, the one nobody has to defend choosing. Straight Komoroske, applied to threat surface.
-
-**Working uses:** "Boring Seams" keynote · Cordon framework · Tinkerers community sizing.
-
-## §7 Where This Breaks
-
-- **Regulated environments shorten the recovery-time advantage** — *severity: structural* — The slime-mold's wrong turns are recoverable only when backing out is cheap. In regulated industries (banking, healthcare, defense), wrong turns generate audit findings, breach reports, compliance debt that does not back out cheaply.
-- **The gardener metaphor has no story for adversarial actors** — *severity: structural* — A garden assumes the plants are not trying to kill you. Security, fraud, political work all involve adversaries who exploit the gardener's tolerance. The framework's silence on this shows up the minute you try to apply it where some actors are optimizing against you.
-- **"Push decisions to where local information lives" assumes shared goals** — *severity: local* — In organizations with misaligned incentives, pushing decisions local doesn't reduce coordination cost — it relocates it inside a single team or person. The headwind sublimates into individual stress rather than disappearing.
-- **The vocabulary becomes its own jargon** — *severity: local* — Once a team has "coordination headwind" in their lexicon, every slow meeting gets blamed on it. The frame becomes a thought-terminator if not held carefully.
-
-**Still load-bearing despite:** The diagnostic power of the headwind frame is enormous even with these limits. You can apply it to your own organization and immediately see costs you were paying invisibly. That's what a good framework does — makes the invisible legible. The limits are reasons to *combine* Komoroske with other frames (Reason on safety-critical systems, Dekker on adversarial / failure-prone systems), not reasons to ignore the headwind frame.
-
-## §8 Adjacent Thinkers
-
-- **Fred Brooks** — `antecedent` · `primary` — "Brooks named the coordination cost in 1975 for engineering teams under deadline. Komoroske generalized the same physics from engineering to all coordination work."
-- **Thomas Schelling** — `antecedent` · `primary` — "Schelling's 1960 focal-point theory is the hidden physics under Komoroske's coordination work. Komoroske borrows it explicitly."
-- **Martin Fowler** — `parallel` · `secondary` — "Fowler builds the same kind of named-vocabulary instrument for software design that Komoroske builds for org design. Different domain, same cartographer move."
-- **Peter Senge** — `parallel` · `secondary` — "Same systems-thinking territory from the learning-organization angle. Komoroske rarely cites him; the absence is interesting."
-- **Stuart Kauffman / Steven Johnson** — `antecedent` · `secondary` — "Komoroske's use of 'adjacent possible' borrows directly from Kauffman via Johnson."
-
-## §9 Further In
-
-- **start_here:** The Coordination Headwind Essay (2018) — the keystone.
-- **then_read:** On Schelling Points in Organizations → The Bramble / Slime Mold Essay.
-- **if_you_want_depth:** → `/thinkers/alex-komoroske/long-read` (*Ways of Komoroske*).
-- **if_you_want_breadth:** Brooks's *Mythical Man-Month* (Ch. 2 — Brooks's Law) and Senge's *Fifth Discipline* (Ch. 3–5).
-
-## §10 Long Read
-
-- **title:** *Ways of Komoroske*
-- **summary:** Power in complex systems is emergent, not authored, so the work at every scale is to garden the conditions and resist the pull of central control. Unpacks the diagnosis (slime mold, coordination headwind, heroics smell, Schelling point), the prescription (gardening conditions, focal-point engineering, distributed decision rights), and the limits (regulated environments, adversarial actors, jargon collapse).
-- **chapter_list:** Part 1 — The Diagnosis [`/long-read/01-diagnosis`]; subsequent chapters per `~/Camila/_archive/ways-of-komoroske-merged-2026-05-27/PLAN.md`.
-- **source_path:** Working notes archived at `~/Camila/_archive/ways-of-komoroske-merged-2026-05-27/`; published chapters at `content/thinkers/alex-komoroske/long-read/`. Note: this thinker's working-notes pre-date the Iter-7 `_working/{slug}/` convention; new long-read working notes for other thinkers follow the convention.
+**Known limit.** The graph is still small, so early grounding packs lean on a few well-connected thinkers, and neighbors' readings are often still in the legacy first-person voice. The novelty reviewer exists to catch readings that converge as a result. Revisit the reviewer roster once ten pages have protocol readings.
 
 ---
 
-# Inclusion Bench
+## 8. Writing rules
 
-**On the v1 roster (populated or staged):** Alex Komoroske (populated above), Martin Fowler (book project ready), Ray Dalio (next).
+All site prose follows Julie's writing-style system, whoever drafts it. Editorial voice and Julie's voice differ in who is speaking; the rules below apply to both.
 
-**Recommended additions in the resilience / operational-complexity neighborhood** (each clears the filter cleanly):
+**Hard rules:**
 
-- **John Allspaw** — *Web Operations* editor; Adaptive Capacity Labs co-founder; named/popularized *blameless postmortem*, *above-the-line / below-the-line*, *dark debt*.
-- **David Woods** — resilience engineering theorist; Cognitive Systems Engineering Lab at Ohio State; *graceful extensibility*, *adaptive capacity*, *Law of Stretched Systems*.
-- **Sidney Dekker** — *Field Guide to Understanding Human Error*, *Drift Into Failure*, *Just Culture*; *drift into failure*, *just culture*, *new view of human error*.
+- No em-dashes.
+- No contrast constructions of the form "not just X," "not only X," or "not X but Y."
+- Paragraphs carry the argument. Use bullets sparingly, and tables only for real two-dimensional comparisons.
+- No banned words. The list is the `BANNED` pattern in `scripts/reading-gates.ts` (for example "operationalize" and "in the realm of"), plus "leverage" as a verb and "navigate" as a metaphor. The script matches the second pair only as warnings, because it cannot tell a verb or metaphor from ordinary use.
 
-**Watch list (for v2):** Nora Jones — *Learning From Incidents* community, *Howie* method for incident analysis. Strong individual frame production post-Netflix; ≥2yr-consistent-body clears but practitioners-cite-her-vocabulary is younger than the others.
+The full rules live in Julie's private writing guides on the maintainer's machine, which are not part of this repo:
 
-**Excluded from v1 — candidate for v2 concept page:** Casey Rosenthal. Filter clears on ≥2yr but the individual-portable-vocabulary clause is weak — frames he's associated with (game days, blast radius, steady-state hypothesis, Principles of Chaos Engineering) emerged from the Netflix Chaos team collectively, not from him singly. Honest byline would read "Casey Rosenthal and the Netflix Chaos team" — at which point it's a concept-page anchor, not a thinker page. Re-evaluate as concept-page subject when v2 ships.
+- `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/WRITINGSTYLE.md`: the complete banned list and its reasoning. Applies to everything.
+- `~/.claude/LIFEOS/USER/AI_WRITING_PATTERNS.md`: a checklist for detecting AI-sounding prose, in three priority tiers (P0 to P2). Applies to everything.
+- `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/RHETORICALSTYLE.md`: section 4 (limits on rhetorical figures) for all editorial prose; sections 2 and 3 (registers for honesty and disagreement) for limits and critic edge labels. Step 7 of the AI-patterns checklist cross-checks section 4. Do not skip it.
+- `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/DOCTRINEREGISTER.md`: every thinker page. Covers the thesis-versus-frames split, doctrine mode, and the lineage parenthetical.
+- `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/LONGFORMCRAFT.md`: long-read chapters only.
+- `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/PERSUASIONARCHITECTURE.md`: section 5, only where a reading translates a thinker into security-executive terms.
+- `PRIVATEWRITINGPRACTICE.md` in the same folder does not apply, because it covers private writing and this site is reader-facing.
+
+**Checklist before anything ships.** This covers thinker pages, concept pages, merge request descriptions, and issue bodies, including content drafted by an automated loop.
+
+1. Read the applicable guides above before drafting.
+2. Confirm the baseline: `grep -c $'\xe2\x80\x94' src/content/thinkers/alex-komoroske.md` returns 0 (the pattern is an em-dash written as UTF-8 bytes).
+3. After drafting, run `grep -c $'\xe2\x80\x94' <file>` (target 0) and `grep -iE 'operationaliz|delv|leverag|nuance' <file>` (target: no output, or only uses you have checked by hand), then work through the AI-patterns checklist.
+4. Merge requests and issues are read cold. Open with a plain paragraph that says what the change is and why it exists, and define or remove internal shorthand.
 
 ---
 
-# v0 → v1 Changelog
+## 9. Site-level pages
 
-| Q | Locked path | Change captured |
-|---|-------------|-----------------|
-| Q1 | Path C (TEI pattern) | Council 5/5 verdict — core schema + Frame-level attribution + named optional type-extensions. Three discipline gates locked at §0. |
-| Q1.5 | Curatorial `page_kind` | Thinker-vs-concept-page distinction lives in Julie's judgment, not in schema. No `page_kind` enum. |
-| Q2 | Path 2 — same family, distinguishable | §6 and §7 share Julie-voice family; §7 distinguished by list-of-limits structure + subtle accent. `still_load_bearing_despite` renders in §6 style as closing beat. |
-| Q3 | Refined Path 2 — rationale backstage | `inclusion_rationale` stays in frontmatter (curatorial discipline), not rendered. Site-level tagline + About page do the kind-of-object work. Anti-3 reframed. `inclusion_rationale_visible` field removed from §1. |
-| Q4 | Path 2 — minimal cross-thinker in v1 | `also_held_by[]` affordance added to §4 Named Frames. Full concept-page UI deferred to v2. |
-| Q5 | Path 2 — About-page-as-manifesto | About page does four jobs (mission, lanes, filter discipline, source posture). Small footer link on every thinker page. No per-page colophon. |
-| Q6 | Astro + Netlify, single repo | Cloudflare Pages was overweight given Julie's setup; Netlify is lowest-friction equivalent. Single repo at `~/Camila/thinker-distillation/` with book projects folded in as long-read. |
+**Site tagline.** One line in the site header that tells a first-time visitor what kind of site this is, without stating inclusion criteria. Julie chooses the wording. The current text in `src/layouts/Base.astro` is "Thinking through the shoulders of giants."
 
-## v1.1 — Long-read tier wired (2026-05-25)
+**About page.** The project's statement of purpose. It is where the site explains, once, what it is and how pages are written, so thinker pages do not carry per-page disclaimers. It has four jobs:
 
-`chapter_list[]` removed from the thinker `long_read` frontmatter block. Chapters now live in a separate `longReadChapters` Content Collection; the per-thinker chapter list is computed at build time. Cross-references rebuilt: routes added at `/thinkers/[slug]/long-read` (index) and `/thinkers/[slug]/long-read/[chapter]`. First two chapters shipped: Komoroske Part 1 — The Diagnosis; Fowler Chapter 0 — Preface.
+1. State the editorial mission, in Julie's voice.
+2. Explain how pages are written: who is speaking in each part of a page, and how attribution works.
+3. Describe the inclusion filter for curious readers, making clear that the pages are curated readings with no claim to be authoritative biography.
+4. State the site's stance toward the thinkers it covers, including how it handles their intellectual property, in Julie's words.
 
-## v1.2 — Fowler-audit schema bumps (2026-05-27, Q1+Q2+Q3+Q4+Q5 locks)
+The About page is a required piece of real writing, never boilerplate. Every page footer links to it. Status: the header and footer link to `/about`, but no About page exists yet, so the link is broken. See section 10.
 
-Iter-7 system-level Q-block resolution. Three Council passes (Q1+Q2+Q5 clustered; Q3 standalone; Q4 standalone) landed five locked decisions, applied as schema bumps below. Transcripts persisted at `~/.claude/LIFEOS/MEMORY/COUNCIL/thinker-distillery-q{1-q2-q5-clustered,q3-live-edge,q4-hosted-canon}-20260527-*/transcript.md`.
+The home page (`/`) lists thinkers alphabetically. `/concepts/` lists concept pages.
 
-| Q | Lock | Schema delta |
-|---|------|--------------|
-| Q1 | Frame surfacing depth — tiered rendering, uniform render contract | ADD `named_frames[].render_tier: foreground \| deep` (default `foreground`). Cap 8 foreground / 6 typical, no per-`thinker_type` scaling. Deep entries collapse to single-line disclosure; build verifies count. |
-| Q2 | Adjacency reach + site-internal auto-surface | ADD `adjacent_thinkers[].render_tier: foreground \| deep` (default `foreground`); ADD `adjacent_thinkers[].auto_surfaced: boolean` (build-computed); ADD `adjacent_thinkers[].editorial_demote_to: secondary` (optional). Site-internal target_slug resolution auto-promotes to `foreground + primary`. Cap 5 typical / up to 7 with site-internal exemption. Build warning on silent omission. |
-| Q3 | Live Edge — opt-in section for alive-active current-era work | NEW §11 Live Edge section. ADD `live_edge_visible: boolean` (default false); ADD `live_edge: { current_focus, summary, recent_work[], last_observed }` block. Validator: requires `status: alive-active`; requires `summary` + `last_observed`; rejects `frame_ref` fields. Render: prose-first, present-continuous, visible-staleness at 90 days. Maintenance rides weekly discovery pass. |
-| Q4 | Hosted canon — editor-platform face | EXTEND `adjacent_thinkers[].edge_type` enum: add `hosts`. ADD optional `adjacent_thinkers[].hosted_items[]` (conditional on `edge_type: hosts`; subfields `title`, `kind`, `year`, `hosted_on_url`, `editorial_framing`). ADD optional `body_of_work[].attribution_kind: authored \| hosted` — `hosted` items are projected from §8 `hosts` edges at build time. Build-pipeline test fails any `hosted` §5 render without host-attribution label. |
-| Q5 | Named critics — three-tier gating via existing `critiques` edge | NO new schema fields. ADD build-computed `adjacent_thinkers[].critic_has_distillery_page: boolean`. Three-tier rendering (primary / secondary / omit). Edge_labels in Mode B (Camila-handle voice). Casey-test gate: "has Julie earned the standing to name this critic in this venue." Working norm: 10-minute critic search per thinker pre-ship. |
+---
 
-**Net schema cost across all five locks:** 6 property additions (2 on `named_frames[]`, 3 on `adjacent_thinkers[]`, 1 on `body_of_work[]`) + 1 new section (§11 Live Edge) + 1 enum extension (`hosts` joins `edge_type`) + 2 frontmatter additions (`live_edge_visible`, `live_edge` block) + 7 new anti-criteria (Anti-16 through Anti-22). **Zero new node types.** Discipline Gate 1 (node-type uniformity) preserved.
+## 10. What the build enforces today
 
-**Backfill protocol for existing 7 thinkers (catalog only — done as separate task, NOT inline with schema bump):**
-- All current `named_frames[]` entries default to `render_tier: foreground` — no breaking change. Audit per-thinker for entries to promote to `deep` (Fowler is the dominant case; Komoroske ch01 references additional non-foreground frames that may move).
-- All current `adjacent_thinkers[]` entries default to `render_tier: foreground` — no breaking change. Build will emit auto-surface warnings; resolve each by either adding the missing adjacency, demoting via `editorial_demote_to`, or leaving (warning is informational, not blocking at first).
-- Brooks ↔ Fowler ↔ Komoroske mutual edges are the highest-priority backfill (currently silently missing per the audit that triggered Q2).
-- All thinkers default to `live_edge_visible: false` — no breaking change. Curator opts in per-thinker; Fowler, Saxe, Appleton, Forsgren, Fournier are the obvious starting candidates when those thinker pages reach `live_edge`-worthy state.
-- `body_of_work[]` entries default to `attribution_kind: authored` (implicit) — no breaking change. Fowler's hosted canon (Dehghani / Böckeler / Lewis / Sadalage / Kua) is the v1.2 application target. Build the §8 `hosts` edges first; §5 hosted entries project from them.
-- `edge_type: critiques` entries on existing 7 thinkers: pre-ship critic search per thinker as part of backfill iteration. Most thinkers have ≥1 durable critic; this raises hagiography-drift floor.
+`src/content.config.ts` rejects a build when a required field is missing, an enum value is wrong, a slug is not kebab-case, a thinker has fewer than 2 limits or fewer than 3 adjacent thinkers, a concept page lists fewer than 2 limits or 3 adjacent concepts (when those fields are present), or a thinker has neither the new reading pair nor the legacy pair. `scripts/reading-gates.ts` enforces the prose checks in section 7 for the Editorial Reading fields.
 
-**Application order:**
-1. Schema bumps land (THIS COMMIT).
-2. ISA Save Point + Decisions + Changelog updated (next commit).
-3. Build verification (`bun run build`) confirms schema additions are non-breaking.
-4. Backfill iteration scheduled as separate work (NOT this session): per-thinker pass through the 7 live thinkers, surface auto-surface warnings, populate Brooks ↔ Fowler ↔ Komoroske mutual edges, optionally enable Live Edge on Fowler, populate Fowler hosted canon.
-5. Loop activation: 5 candidate thinkers (Saxe / Forsgren / Fournier / Appleton / Hudson) go through inclusion Council under the v1.2 schema.
+The following rules in this document are accepted by the schema but not implemented yet. Until they are, apply them by hand during review:
+
+| Rule | Where it is described | Gap |
+|------|-----------------------|-----|
+| Deep frames collapse to a counted one-line disclosure; 8 foreground maximum | 4.7 | `render_tier` is ignored; every frame renders; no cap or count check |
+| Neighbors with pages here are auto-surfaced and promoted; missing ones warn | 4.11 | `auto_surfaced` and `editorial_demote_to` are not computed or read; no warning |
+| Adjacent-thinker caps (5 typical, 7 maximum) and `render_tier` | 4.11 | Not enforced; all neighbors render |
+| Critic weighting based on whether the critic has a page here | 4.11 | Applied by hand only |
+| Hosted work generated from `hosts` edges, with a required host label | 4.8, 4.11 | No projection; `hosted_items` and `attribution_kind` on reading-list items are not rendered |
+| Live Edge rendering, 90-day staleness, and validation | 4.14 | Section is not rendered (Forsgren has it switched on); `status` requirement unchecked; stray keys such as frame links are silently dropped instead of rejected |
+| About page | 9 | Linked from every page but not built |
+| Concept pages need two holders and varied attribution | 6.4 | Not checked |
+| Concept-page limits and adjacent concepts required at ship | 6.4 | Optional in the schema |
+
+---
+
+## 11. Decision history
+
+Older notes refer to the rules above by earlier labels: "Discipline Gates 1 to 3" (the first three core rules), "Anti-1" to "Anti-22" (the prohibitions now folded into each section), "Mode B" and "Mode C" for editorial voice and Julie's voice (unrelated to the `doctrine_mode` values), "lanes" for the voice zones of a page, and "§1" to "§11" for page sections. `ISA.md` holds the full record, including Council transcripts.
+
+- **2026-05-25. Content model chosen.** A shared core schema with optional per-type fields, frame-level attribution from the first page, and the byline test as a shipping gate. A Council review agreed five to zero. The alternative, a separate template per thinker type, was rejected.
+- **2026-05-25. Byline test first applied.** Casey Rosenthal was left off the roster because his best-known frames (game days, blast radius, steady-state hypothesis) came from the Netflix Chaos team collectively. He is a candidate subject for a future concept page.
+- **2026-05-25. No page-kind field.** Whether a subject gets a thinker page or a concept page is Julie's editorial call.
+- **2026-05-25. Inclusion rationale kept private.** The site tagline and About page tell readers what kind of site this is, so pages do not display why each thinker was included.
+- **2026-05-25. Editorial Reading and Where This Breaks share a visual family,** told apart by the card layout of limits.
+- **2026-05-25. About page replaces per-page colophons.**
+- **2026-05-25. Long-read chapters became their own collection,** so the chapter list cannot drift from the files. First chapters: Komoroske part 1 and the Fowler preface.
+- **2026-05-25. Concept pages added,** seeded with `coordination-headwind`.
+- **2026-05-26. Concept page rules settled.** Holders are always derived, qualifications live in prose, and a page needs two or more holders. `working_uses` became a factual record that Camila may append to.
+- **2026-05-27. Five schema additions after the Fowler audit:** foreground and deep frames, auto-surfacing of neighbors with pages here, the Live Edge section, hosted work via `hosts` edges, and weighting rules for critics. Each came from its own Council review.
+- **2026-05-27. Hosting moved from Netlify to GitLab Pages** after the Netlify free tier ran out.
+- **2026-05-27. Long-read working notes moved to `_working/<slug>/`,** replacing separate per-thinker folders elsewhere.
+- **2026-05-28. Writing rules made explicit.** The first page drafted by an automated loop (Forsgren) shipped with 30 em-dashes and three banned words, because the rules had never been written down. The pre-ship checklist followed.
+- **2026-05-28, applied 2026-09-16. `doctrine_mode` added** and backfilled on all pages. Brooks was a close call between `mode-c` and `mode-b`, recorded in a comment in his file.
+- **2026-09-16. Editorial Reading moved to the Reading Protocol.** The section became the site's third-person reading, reviewed by Council and audited by Julie, with an optional note from Julie. Piloted on Forsgren.

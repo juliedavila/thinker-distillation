@@ -155,23 +155,35 @@ body_of_work:
       Working ideas tested before they harden into essays. The bramble of
       half-finished thoughts that the keystone essays grow out of.
 
-what_i_take: >
-  Most security programs fail not because the threat model is wrong but because
-  the coordination cost of acting on the threat model exceeds the available
-  organizational energy. That is the headwind frame, applied; once you see it
-  in security work, you cannot unsee it. Once you have the
-  headwind frame, you stop trying to fix slow security work by adding more
-  security people; you start trying to reduce the coordination surface that
-  the security work has to cross. Structural intervention, not headcount
-  intervention.
-where_i_extend: >
-  Komoroske writes about coordination as a general organizational physics.
-  The security translation is that every security control is itself a coordination
-  event with an attached headwind cost, and the right design move is to
-  reduce the number of agreements a control depends on. Schelling points show
-  up here too: a security culture works when the "secure default" is the
-  focal one, the one nobody has to defend choosing. Straight Komoroske,
-  applied to threat surface.
+reading: >
+  Komoroske's central claim is that coordination has a cost most organizations
+  never see: every decision depends on agreements, and the drag of those
+  agreements grows faster than headcount. Brooks named the same cost for
+  software teams in 1975, and Komoroske extends it to all collaborative work.
+  His answer is a change of leadership stance, from architect to gardener, in
+  which the leader sets conditions that make good local choices the obvious
+  ones. The heroics smell is the diagnostic that goes with it: a system that
+  needs heroes to keep working is already broken. The frame earns its place by
+  making costs an organization was paying invisibly show up where they can be
+  counted.
+extension: >
+  Security is where the gardening stance meets its hardest limit, because a
+  garden assumes nothing in it is working against the gardener. A security
+  organization can hold both stances by splitting them by audience. Toward its
+  own engineers it gardens: the secure path becomes the default nobody has to
+  defend choosing, and each new control is judged by how many agreements it
+  adds. Toward adversaries it architects, with boundaries enforced by
+  infrastructure that hold whether or not anyone converges on them. The split
+  has a weak seam, because an adversary can pass as a good-faith insider, so the
+  enforced boundaries have to hold against insiders as well.
+reading_review:
+  protocol: reading-protocol-v1
+  date: 2026-09-16
+  verdict: accept-with-edits
+  council_transcript: ~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-batch-7-legacy-pages-20260916-181307-quick/transcript.md
+  grounding_pack: _working/alex-komoroske/grounding-pack.md
+  claims: _working/alex-komoroske/reading-claims.md
+  dissent: false
 working_uses:
   - '"Boring Seams" keynote (SANS AI Cybersecurity Summit 2026)'
   - Cordon framework (software-quality ontology)

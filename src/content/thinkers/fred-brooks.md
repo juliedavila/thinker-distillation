@@ -171,28 +171,36 @@ body_of_work:
       Turing Award. A useful one-hour introduction to Brooks's late
       thinking.
 
-what_i_take: >
-  Vendors sell silver bullets constantly. Every quarter brings a new tool
-  that will "transform" security posture, "eliminate" risk classes,
-  "solve" the AI-supply-chain problem. The Brooks question (is this
-  attacking essential complexity or accidental?) separates the real
-  from the rhetorical fast. If accidental, fine: that
-  is where order-of-magnitude wins are real. If essential (the underlying
-  problem of threat modeling, blast-radius reasoning, identity-and-access
-  decisions, adversarial dynamics), no tool will deliver an order of
-  magnitude. Same essay, applied forty years later, still works.
-where_i_extend: >
-  Brooks wrote about communication cost inside a single project team.
-  In the multi-org, multi-vendor, agent-mediated security surface that
-  is now standard, the "coordination cost grows superlinearly" claim
-  becomes: *the security cost of integrating systems
-  grows superlinearly with the number of trust boundaries the integration
-  crosses.* Brooks's Law in the supply-chain era: adding a vendor to a
-  late security program does not accelerate it. The physics is the same;
-  the surface is bigger. The surgical-team prescription extends too:
-  security architecture works best when one or two senior people hold the
-  whole picture, with the rest of the org executing against that picture
-  rather than re-deriving it.
+reading: >
+  For Brooks, software is a communication problem before it is an engineering
+  problem, and the cost of coordinating the people building a system grows
+  faster than the team. Brooks's Law follows directly: adding people to a late
+  project makes it later. No Silver Bullet sharpens the claim by separating
+  essential complexity, which lives in the problem, from accidental complexity,
+  which the tools add. Tooling can remove accidental complexity, sometimes
+  dramatically, while no single development shrinks the essential part by an
+  order of magnitude. The prediction dates from 1986 and still stands, which is
+  why the vocabulary carries weight in any honest conversation about
+  engineering.
+extension: >
+  AI code generation is one of the largest attacks yet on accidental complexity,
+  since it removes much of the labor of writing code. The line between essential
+  and accidental has moved before, and AI may move it again. What stays fixed is
+  that someone has to understand what shipped and why. Security review depends
+  on that understanding, because judging whether code is safe starts with
+  explaining what it does, so code that outpaces comprehension also outpaces
+  review. Conceptual integrity, the property Brooks ranked above all others, is
+  what erodes first. The Brooks question for any AI security product follows:
+  does it attack the essential problem of comprehension, or the accidental cost
+  of producing and scanning code?
+reading_review:
+  protocol: reading-protocol-v1
+  date: 2026-09-16
+  verdict: accept-with-edits
+  council_transcript: ~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-batch-7-legacy-pages-20260916-181307-quick/transcript.md
+  grounding_pack: _working/fred-brooks/grounding-pack.md
+  claims: _working/fred-brooks/reading-claims.md
+  dissent: false
 working_uses:
   - '"Boring Seams" keynote (no-silver-bullet applied to AI-security tooling)'
   - Threat-model writeups (essential vs accidental as the first filter)

@@ -209,29 +209,38 @@ body_of_work:
       include `BoundedContext`, `FeatureToggle`, `TechDebtQuadrant`,
       `InverseConwayManeuver`.
 
-what_i_take: >
-  Fowler's cartographer move is the most useful framework I carry into
-  security organization design. Most security programs fail at the same
-  layer his work attacks: implicit choices treated as too obvious to need
-  naming, which means too obvious to be debated. Threat models, control
-  selections, severity calls, risk-acceptance decisions are all
-  conversations starved of vocabulary. The Fowler move is to turn those
-  implicit calls into named, attributed, debatable objects, and the move
-  works at the security layer for the same reason it worked at the design
-  layer. Once a thing has a name, an engineering team can pick it up,
-  argue with it, refuse it, extend it. Without a name it is just somebody's
-  opinion in a meeting nobody remembers.
-where_i_extend: >
-  Fowler writes about cheap-to-change as the central economic property of
-  good software. I push the same logic into security: cheap-to-defend is
-  the central economic property of a securable system, and it is downstream
-  of the same internal-quality choices Fowler argues for. A system with
-  legible boundaries, named seams, and tight feedback loops is also a
-  system that can absorb a CVE, swap a dependency, rotate a credential,
-  or contain a blast radius without rewriting itself. Internal quality
-  shows up as the source of *security velocity* the same way it shows up
-  as the source of feature velocity. The cartographer's instruments apply
-  to both.
+reading: >
+  In Fowler's account, software is a medium for shared understanding, and it
+  decays whenever nobody tends it. The cost of that decay arrives quickly, in
+  next week's velocity, and his design stamina hypothesis makes a parallel claim
+  that internal quality pays back within weeks. His method is to name the moves
+  (refactoring, code smell, strangler fig, bounded context), attribute each to
+  its origin, and revise them in public on the bliki. Naming turns tacit design
+  choices into distinctions a team can argue about. The method has limits of its
+  own: his 2014 microservices article undersold the cost of distribution, and
+  later follow-ups had to correct it.
+extension: >
+  Bounded context places a boundary where the language changes. That line is
+  often a sensible place to draw an authority boundary as well, although in
+  multi-tenant systems contexts and authority domains can cut across each other.
+  The confused deputy problem is what happens when a request crosses an
+  authority boundary carrying authority it gathered on the other side. Agent and
+  tool integrations make this concrete: an agent working inside one context can
+  be steered by text that came from another, and it acts with its own
+  permissions. A trust boundary placed at the same seam as a bounded context
+  gives a security team a concrete place to enforce authority at the
+  infrastructure layer. The placement secures nothing until enforcement is wired
+  to it, since a named boundary with nothing behind it is only a label. Security
+  vocabulary drifts faster and is more vendor-driven than design vocabulary, so
+  the naming discipline has to be kept on purpose.
+reading_review:
+  protocol: reading-protocol-v1
+  date: 2026-09-16
+  verdict: accept-with-edits
+  council_transcript: ~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-batch-7-legacy-pages-20260916-181307-quick/transcript.md
+  grounding_pack: _working/martin-fowler/grounding-pack.md
+  claims: _working/martin-fowler/reading-claims.md
+  dissent: false
 working_uses:
   - '"Boring Seams" keynote (vocabulary-as-instrument applied to security architecture)'
   - Cordon framework (naming security as a peer dimension among the software-quality ontology)

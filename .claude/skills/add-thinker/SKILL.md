@@ -88,3 +88,9 @@ Confirm the build passes, the page renders, and `reading_review` does not appear
 - Batch reviews when several pages are ready: each seat reviews every page in one pass and returns a verdict per page. The novelty seat catches sameness across the batch this way.
 - Research stays in the main session with targeted searches.
 - Save every seat report to disk as it arrives. A transcript assembled from memory at the end is where content gets lost.
+
+## Gotchas
+
+- When testing a build rule by breaking a file on purpose, copy the file to a backup first and restore from the backup. Restoring with `git checkout` also throws away any uncommitted edits to that file.
+- YAML values that contain a colon followed by a space must be quoted. Astro's build accepts some of these, but `scripts/grounding-pack.ts` parses strictly and will fail.
+- Medium and O'Reilly pages block direct fetches. Confirm those URLs and article contents through search results instead.

@@ -1,6 +1,6 @@
 # Thinker Distillery — Prose-QA Audit
 
-> Holistic audit of all published Thinker Distillery writing against the 7-file Writing Style System at `~/.claude/PAI/USER/`.
+> Holistic audit of all published Thinker Distillery writing against the 7-file Writing Style System at `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/` + `~/.claude/LIFEOS/USER/AI_WRITING_PATTERNS.md`.
 >
 > **Status:** Complete. Mechanical scan, per-piece deep-dive, cross-cutting synthesis, dispositions, and closing summary populated. Nothing in this audit auto-applies edits — every disposition is for Julie's call.
 >
@@ -35,7 +35,7 @@ Eight patterns across the 10 pieces. Three STRUCTURAL leaks worth fixing before 
 
 ## Rubric
 
-Internalized from all 7 files at `~/.claude/PAI/USER/`:
+Internalized from all 7 files at `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/` + `~/.claude/LIFEOS/USER/AI_WRITING_PATTERNS.md`:
 
 | File | What this audit grades against |
 |---|---|

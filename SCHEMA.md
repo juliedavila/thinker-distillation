@@ -228,7 +228,7 @@ Distillery prose is written in Julie's voice register and follows her writing-st
 - **Every other section** (hero, thirty-second take, background, thesis, frame glosses, body-of-work notes, limits, adjacency edge labels, further-in, live edge) is Camila's Mode B editorial voice.
 - Both registers obey the same Hard No list. The voice differs; the mechanics do not.
 
-**The mechanics (Julie's Hard No list, abridged):** no em-dashes; no "not just X / not only X / not X but Y" constructions; paragraphs do the heavy lifting, not bullets; tables only for a genuine two-axis comparison; banned words include delve, leverage (verb), navigate (metaphor), operationalize, nuanced, multifaceted, tapestry, "it's worth noting," "crucially," "importantly." Full list and rationale live in `~/.claude/PAI/USER/WritingStyle.md` (Hard No list) and `~/.claude/PAI/USER/AiWritingPatterns.md` (P0/P1/P2 detection workflow).
+**The mechanics (Julie's Hard No list, abridged):** no em-dashes; no "not just X / not only X / not X but Y" constructions; paragraphs do the heavy lifting, not bullets; tables only for a genuine two-axis comparison; banned words include delve, leverage (verb), navigate (metaphor), operationalize, nuanced, multifaceted, tapestry, "it's worth noting," "crucially," "importantly." Full list and rationale live in `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/WRITINGSTYLE.md` (Hard No list) and `~/.claude/LIFEOS/USER/AI_WRITING_PATTERNS.md` (P0/P1/P2 detection workflow).
 
 **Pre-ship gate (mandatory before any thinker page, concept page, MR description, or Issue body ships):**
 
@@ -561,7 +561,7 @@ Each frame renders with `also_held_by:` cluster underneath at build time. Exampl
 
 ## v1.2 — Fowler-audit schema bumps (2026-05-27, Q1+Q2+Q3+Q4+Q5 locks)
 
-Iter-7 system-level Q-block resolution. Three Council passes (Q1+Q2+Q5 clustered; Q3 standalone; Q4 standalone) landed five locked decisions, applied as schema bumps below. Transcripts persisted at `~/.claude/PAI/MEMORY/COUNCIL/thinker-distillery-q{1-q2-q5-clustered,q3-live-edge,q4-hosted-canon}-20260527-*/transcript.md`.
+Iter-7 system-level Q-block resolution. Three Council passes (Q1+Q2+Q5 clustered; Q3 standalone; Q4 standalone) landed five locked decisions, applied as schema bumps below. Transcripts persisted at `~/.claude/LIFEOS/MEMORY/COUNCIL/thinker-distillery-q{1-q2-q5-clustered,q3-live-edge,q4-hosted-canon}-20260527-*/transcript.md`.
 
 | Q | Lock | Schema delta |
 |---|------|--------------|

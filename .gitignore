@@ -28,3 +28,6 @@ interceptor-screenshot-*.png
 screenshot-*.png
 iter5-screenshots/
 audit-screenshots/
+
+# Agent worktrees (temporary)
+.claude/worktrees/

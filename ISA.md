@@ -1639,3 +1639,8 @@ There is no required next move — v1 is done. When Julie picks the project up a
 ### Classifier note
 
 During this session the prompt classifier occasionally timed out / failed JSON parse, defaulting to ALGORITHM E3. Work proceeded cleanly. Repeated fail-safes in the next session are not a signal of project state; carry on.
+
+
+## Superseded PROJECTS.md entry (archived 2026-09-16)
+
+- **Thinker Distillation Site** — Active. LIVE at `https://thinker-distillery-97a9ca.gitlab.io/` (GitLab Pages, private). Astro 6 + Mexican-modernist identity; 7 thinkers, cross-thinker concept pages, long-read chapters. **Next moves (Julie's call):** unique-domain flip, Netlify cleanup, 7 B&W editorial portraits, content slots, iter-7 a11y/mobile follow-ups. Workspace + ISA + locked SCHEMA: `~/Camila/thinker-distillation/`. Norms: [[feedback_thinker_inclusion_pushback]] · [[feedback_writing_partner_per_field]] · [[feedback_distillery_prose_voice]].

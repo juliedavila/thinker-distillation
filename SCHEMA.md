@@ -28,6 +28,7 @@ inclusion_rationale: >                  # CURATORIAL DISCIPLINE — not rendered
   Produced a portable vocabulary for organizational complexity that
   practitioners now use to think about their own work.
 thinker_type: essay-corpus              # essay-corpus | book-author | principles-distiller | catalog-builder | mixed
+doctrine_mode: mode-c                   # mode-a | mode-b | mode-c; BACKSTAGE, never rendered (iter-10); see "Doctrine Mode" below
 has_long_read: true
 long_read_path: /thinkers/alex-komoroske/long-read
 last_updated: 2026-05-25
@@ -42,6 +43,24 @@ live_edge_visible: false                # v1.2 — opt-in for §11 Live Edge sec
 - `thinker_type` drives render hints only — it never gates which schema fields exist. (Discipline Gate 1.)
 - `canonical_url` is nullable for pre-web thinkers; `active_years` accepts free-text bracketed ranges for ancient or otherwise unusual lifespans.
 - `live_edge_visible` (v1.2) defaults to `false`; curator opts in per-thinker. Requires `status: alive-active`. See §11 Live Edge for full contract.
+
+### Doctrine Mode (iter-10, 2026-09-16; design locked by the iter-9 Council, 2026-05-28)
+
+`doctrine_mode` records the editorial stance the Distillery takes toward a thinker, borrowed from `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/DOCTRINEREGISTER.md` §2. It classifies the Distillery's *reading* of the thinker, not the native shape of their corpus. Komoroske's corpus is Mode A in DoctrineRegister §5, but the page applies a Mode C treatment, so the page is `mode-c`. There is no contradiction to fix.
+
+- **`mode-c`**: manufacture portable handles around an implicit spine. The page separates the spine (`thesis`) from the handles (`named_frames`) and does the naming work the thinker left undone.
+- **`mode-a`**: resist manufacturing handles. A true Mode A reading is falsified by inventing frames the thinker would not recognize, so `named_frames` stays thin and close to the source.
+- **`mode-b`**: the named artifact IS the doctrine (DORA, *Principles*). The page presents the artifact faithfully and extends from it.
+
+**How it relates to what already exists.** `thesis` is the DoctrineRegister spine and `named_frames` are its handles; DoctrineRegister §3 says to keep them separate, and the schema already does. The Casey test (Discipline Gate 3) is the same rule as DoctrineRegister §3's attribution discipline: where the Distillery's compression is sharper than the source, credit the compression to whoever made it. `doctrine_mode` is orthogonal to `thinker_type`: `thinker_type` is the form of the output, `doctrine_mode` is whether portability was deliberate. Brooks (book-author, `mode-c`) shows neither derives the other.
+
+**Lineage parenthetical (soft norm).** Per DoctrineRegister §4, a `thesis` may carry one inline lineage marker naming its antecedent (for example, lean and Goldratt's theory of constraints behind Forsgren). Add it only where it strengthens the spine. Structured lineage still lives in `co_originators` and `derived_from`.
+
+**Named consumer.** The field is read by the drafting gate (the Editorial Voice rules in §3 below), never by the renderer. It tells the drafter whether to manufacture handles or resist them.
+
+**Guardrail.** This is a deliberate, capped exception. It does not license further mode-style backstage fields. **Kill criterion:** delete the field if, after 5 more thinker pages ship, no `doctrine_mode` value has changed a drafting decision. Owner: Julie, checked at the next quarterly review.
+
+**Current classifications (iter-9 Council):** Komoroske, Fowler, Brooks (60/40 over `mode-b`, recorded in a frontmatter comment), Allspaw, Woods and Dekker are `mode-c`; Dalio and Forsgren are `mode-b`.
 
 ---
 
@@ -96,11 +115,18 @@ Curated reading list with editorial annotation, not a complete bibliography.
 
 ### §6 Editorial Reading
 
-Julie's voice lane — analytical synthesis, what she takes, where she extends, working uses.
+**Path C (iter-11, 2026-09-16, Julie's decision).** §6 is the Distillery's reading, built and reviewed by the Reading Protocol (below), plus an optional first-person note from Julie. It no longer waits on Julie to ship.
 
-**Fields:** `what_i_take`, `where_i_extend`, `working_uses` (optional bullets).
+**Fields:**
 
-**Visual treatment:** indented block, "From Julie's reading:" header, slight color shift, sans-serif at base.
+- `reading` — what the Distillery takes from the thinker. Stays close to the grounding pack. No first person. Max 160 words.
+- `extension` — where the reading extends the thinker, through Julie's published positions (the pack's Lens section). Inference is allowed here and must read as the Distillery's argument, never as the thinker's claim. No first person. Max 160 words.
+- `reading_review` — backstage record of the protocol run: `protocol`, `date`, `verdict`, `council_transcript`, `grounding_pack`, `claims`, `dissent`. Never rendered.
+- `margin_note` — optional. Julie's own first-person note, written by Julie only. Never drafted by Camila, never required, never blocks shipping.
+- `working_uses` — optional bullets, unchanged (collaboration-recorded).
+- `what_i_take` / `where_i_extend` — **legacy**, pre-iter-11. On the original seven pages these were Camila-drafted and Julie-reviewed at v1 launch. A page renders them only until it has a `reading`; the schema accepts either pair. Delete once every page is converted.
+
+**Visual treatment:** indented block, "The Distillery's reading" header (legacy pages keep "From Julie's reading"), slight color shift, sans-serif at base. A `margin_note` renders beneath as "Julie's note."
 
 ### §7 Where This Breaks
 
@@ -212,8 +238,8 @@ Four lanes. Every content block on every thinker page belongs to exactly one. Vi
 | Lane | Content | Attribution | Visual Treatment |
 |------|---------|-------------|------------------|
 | **What X says** | Direct quotation, close paraphrase | Inline attribution every block | Quote block, distinct color/border |
-| **Editorial reading (§6)** | Julie's analytical synthesis | "From Julie's reading:" header | Indented, color shift, sans-serif at base |
-| **Where this breaks (§7)** | Julie's honest-limits critique | "Where I think this breaks:" header | Same family as §6 + list-of-limits structure + subtle accent |
+| **Editorial reading (§6)** | The Distillery's reading, protocol-reviewed; optional Julie margin note | "The Distillery's reading" header; "Julie's note" for the margin note | Indented, color shift, sans-serif at base |
+| **Where this breaks (§7)** | The Distillery's honest-limits critique | "Where this breaks" header (legacy pages: "Where I think this breaks") | Same family as §6 + list-of-limits structure + subtle accent |
 | **Adjacent thinkers (§8)** | Graph edges with editorial labels | Card list with edge-type tags | Card grid, edge labels in editorial voice |
 
 Every thinker page footer carries a small `About →` link to the manifesto.
@@ -224,15 +250,36 @@ Distillery prose is written in Julie's voice register and follows her writing-st
 
 **Lane-to-voice mapping:**
 
-- **§6 Editorial Reading** (`what_i_take`, `where_i_extend`) is Julie's first-person Mode C voice. It must read as her, in the security-and-engineering-executive register. Camila scaffolds the slot but does not author her thinking; Julie finalizes it. See `feedback_writing_partner_per_field.md`.
+- **§6 `reading` and `extension`** are the Distillery's editorial voice, produced by the Reading Protocol. They never say "I." Their register is written for security and engineering leaders, and the extension argues through Julie's published positions without claiming to be her.
+- **§6 `margin_note`** is Julie's first-person voice and hers alone. Camila never drafts it (`feedback_writing_partner_per_field.md` still governs this field and concept-page `julie_reading`).
 - **Every other section** (hero, thirty-second take, background, thesis, frame glosses, body-of-work notes, limits, adjacency edge labels, further-in, live edge) is Camila's Mode B editorial voice.
+
+### Reading Protocol v1 (iter-11, 2026-09-16)
+
+Every `reading` + `extension` ships through these stages, in order. A page cannot skip a stage, and the output of each stage is kept as provenance under `_working/<slug>/`.
+
+1. **Grounding pack.** `bun scripts/grounding-pack.ts <slug>` walks the graph around the thinker and writes `_working/<slug>/grounding-pack.md`: the thinker's thesis, frames, and limits; outbound and inbound edges with neighbor theses; shared concepts; two-hop names; Julie's published positions (the Lens, read from `LIFEOS_DIR` PRINCIPAL_IDENTITY Key Positions); neighbor readings for the novelty check; and any prior §6 draft as input only. Every item carries a citable ID.
+2. **Draft with a claims map.** Write `reading` and `extension` on the page, and `_working/<slug>/reading-claims.md` with one line per sentence and its pack IDs. `reading` stays close to sources. `extension` carries the argument and must cite at least one Lens position (`[P:n]`) or state `lens: none applies`. Read the applicable writing-style files (§3 pre-ship gate) and the thinker's `doctrine_mode` first.
+3. **Automated gates.** `bun scripts/reading-gates.ts <slug>` must exit 0: no em-dashes, no banned words, no antithesis cadence, no first person, 160-word cap, every sentence mapped, every citation resolvable, lens touched. "Leverage" and "navigate" warn instead of fail; confirm usage by hand.
+4. **Council review.** Five custom-composed seats (Council skill, ComposeAgent), each reading the page, pack, and claims map: *Thinker's Advocate* (would the thinker recognize it), *Strongest Critic* (the page's `critiques` edges argue back), *Grounding Auditor* (do the cited items actually support each claim), *Security-Executive Lens* (does the extension earn its place for this audience), *Novelty and Casey Test* (does it repeat neighbors or the prior draft; could compression be mistaken for the thinker's claim). Each returns ACCEPT, ACCEPT-WITH-EDITS, REVISE, or REJECT with exact edits.
+5. **Revise and re-review.** Any REVISE sends the draft back. Re-author fixes under the gates (seat-suggested text is never pasted verbatim when it breaks voice rules), rerun stage 3, then the dissenting seats re-review only. Two revision rounds maximum; a third REVISE or any REJECT escalates to Julie. Use the full 3-round debate instead of the quick round for `mode-a` thinkers or when two or more seats REJECT.
+6. **Record and ship.** Persist the transcript to `~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-<slug>-<timestamp>-quick/transcript.md`, fill `reading_review` (with `dissent: true` if any seat stayed below ACCEPT-WITH-EDITS), build, and open the MR.
+
+**Julie's role is audit, not authorship.** She reads every page where `dissent: true`, plus a random one in four of the rest, and approves through the MR. She may add a `margin_note` whenever she has something to say.
+
+**Known limit.** The graph is small, so early packs lean on a few hub thinkers and neighbor readings still sit in legacy first-person voice. The novelty seat exists to catch the convergence this causes; revisit the seat roster once ten pages carry protocol readings.
 - Both registers obey the same Hard No list. The voice differs; the mechanics do not.
 
 **The mechanics (Julie's Hard No list, abridged):** no em-dashes; no "not just X / not only X / not X but Y" constructions; paragraphs do the heavy lifting, not bullets; tables only for a genuine two-axis comparison; banned words include delve, leverage (verb), navigate (metaphor), operationalize, nuanced, multifaceted, tapestry, "it's worth noting," "crucially," "importantly." Full list and rationale live in `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/WRITINGSTYLE.md` (Hard No list) and `~/.claude/LIFEOS/USER/AI_WRITING_PATTERNS.md` (P0/P1/P2 detection workflow).
 
 **Pre-ship gate (mandatory before any thinker page, concept page, MR description, or Issue body ships):**
 
-1. Read the two writing-style files above before drafting.
+1. Read the applicable writing-style files before drafting. The two above apply to everything. The rest are scoped (iter-10 broadening; mirrors `feedback_distillery_prose_voice.md`), all in `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/`:
+   - `RHETORICALSTYLE.md` §4 figure guardrails on all editorial prose, and §2/§3 honesty and disagreement registers for §7 limits and §8 critic edge labels. `AI_WRITING_PATTERNS.md` detection step 7 cross-checks §4; do not skip it (it was the missed step on Forsgren).
+   - `DOCTRINEREGISTER.md` for every thinker page: spine vs handles, `doctrine_mode`, lineage parenthetical.
+   - `LONGFORMCRAFT.md` for long-read chapters only, not compact thinker pages.
+   - `PERSUASIONARCHITECTURE.md` §5 currency translation, only where a reading translates a thinker into security-executive terms.
+   - `PRIVATEWRITINGPRACTICE.md` does not apply; this is a public surface.
 2. Grep an existing page for the baseline: `grep -c '—' src/content/thinkers/alex-komoroske.md` returns 0. That is the spec.
 3. After drafting, grep your own draft: `grep -c '—' <file>` (target 0), `grep -iE 'operationaliz|delve|leverage|nuanced' <file>` (target empty), then run the AiWritingPatterns P0 through P2 sweep.
 4. MRs and Issues have a cold-reader audience. Lead with a plain-English paragraph saying what the thing is and why it exists; define or drop internal jargon.

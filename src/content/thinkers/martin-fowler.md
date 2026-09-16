@@ -17,6 +17,7 @@ inclusion_rationale: >
   customers could negotiate over. Vocabulary that the industry now uses to
   think about its own work. The cartographer of working software.
 thinker_type: mixed
+doctrine_mode: mode-c
 has_long_read: true
 long_read_path: /thinkers/martin-fowler/long-read
 last_updated: 2026-05-25

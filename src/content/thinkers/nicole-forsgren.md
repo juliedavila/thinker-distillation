@@ -17,6 +17,7 @@ inclusion_rationale: >
   reflects the actual collaborative shape of the research. The empirical anchor
   every contrarian in the space defines themselves against.
 thinker_type: mixed
+doctrine_mode: mode-b
 has_long_read: false
 last_updated: 2026-05-27
 
@@ -251,33 +252,40 @@ body_of_work:
       she frames sample frames, regression analyses, and instrument design in
       a public talk is itself an artifact of her empirical commitment.
 
-# NOTE (2026-05-28): §6 (what_i_take + where_i_extend) is Camila-drafted argument
-# from the iter-8 loop run, style-normalized to the voice spec (two em-dashes recast
-# to periods, no words changed). §6 must read as Julie's first-person voice; it still
-# awaits her authorship and sign-off at the Casey-test gate. Not yet Julie-authored.
-what_i_take: >
-  The most useful piece of Forsgren for me as a security-and-engineering
-  executive is the empirical regularity that throughput and stability do not
-  trade off in well-run systems. They correlate. Most "we can't ship faster,
-  we'd break things" arguments collapse on contact with the data. That changed
-  how I evaluate platform-engineering proposals: the question stops being "is
-  this safe?" and starts being "does this team have the operational substrate
-  to make it safe?" The DORA frame gives the security organization a defensible
-  argument that fast-deployment culture isn't the enemy of stability; it's the
-  precondition for it.
-where_i_extend: >
-  Forsgren's frame measures *operational* engineering performance. The security
-  translation is that operational metrics are necessary but insufficient. A
-  team with elite DORA scores can still ship insecure code at elite velocity.
-  The DORA frame gives the security org a vocabulary to talk to engineering
-  leadership in their currency, but a complete picture also needs adversarial-
-  quality measurement (mean-time-to-detect, mean-time-to-remediate, breach
-  blast radius), which Forsgren's instruments don't cover. Coordination
-  headwind (Komoroske) explains *why* slow security work stays slow; DORA
-  explains *how* operational performance is measured. The two frames together
-  describe most of what a security organization needs to operate inside, but
-  neither alone covers the adversarial substrate.
-
+# §6 reading (iter-11 Reading Protocol v1). Built from _working/nicole-forsgren/grounding-pack.md;
+# every sentence is mapped to its sources in _working/nicole-forsgren/reading-claims.md.
+reading: >
+  The part of Forsgren that travels furthest is a finding: in well-run delivery
+  systems, throughput and stability rise together. That finding removes the most
+  common argument for slowing change down, the belief that each additional
+  deploy spends safety. DORA's stability measures, change failure rate and time
+  to restore, make the safety question observable: how often a change degrades
+  service, and how fast the team recovers when one does. Because DORA is itself
+  the doctrine here, the four keys belong to the delivery system they were built
+  to measure. Turning them into targets for teams invites the misuse the frame's
+  own limits describe, where people manage to the number until it stops
+  describing the system.
+extension: >
+  For a security organization, the throughput finding moves the first question
+  about a fast-moving team from how fast it ships to how well it recovers. The
+  four keys are silent on what each change does to an adversary's options, so a
+  team can post elite scores while shipping exploitable code at the same pace.
+  AI-assisted development is likely to widen that gap, because generated code
+  can raise deployment frequency faster than the team's understanding of what it
+  shipped, and the dashboard would read that as improvement. The security
+  measures worth adding sit on the same pipeline: the share of deploys that pass
+  enforced security gates, and time to remediate an exploitable finding. Both
+  inherit the Goodhart risk the four keys carry, so they work only as
+  diagnostics of the delivery system. Read that way, secure delivery becomes a
+  measurable property of the system itself.
+reading_review:
+  protocol: reading-protocol-v1
+  date: 2026-09-16
+  verdict: accept-with-edits
+  council_transcript: ~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-nicole-forsgren-20260916-172704-quick/transcript.md
+  grounding_pack: _working/nicole-forsgren/grounding-pack.md
+  claims: _working/nicole-forsgren/reading-claims.md
+  dissent: false
 limits:
   - headline: The sample frame is surveys, not telemetry
     severity: structural

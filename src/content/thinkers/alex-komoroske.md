@@ -14,6 +14,7 @@ inclusion_rationale: >
   practitioners now use to think about their own work. ~10 years across essays,
   talks, blog, and consulting practice.
 thinker_type: essay-corpus
+doctrine_mode: mode-c
 has_long_read: true
 long_read_path: /thinkers/alex-komoroske/long-read
 last_updated: 2026-05-25

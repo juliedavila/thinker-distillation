@@ -16,6 +16,8 @@ inclusion_rationale: >
   complexity, the surgical team. Bedrock vocabulary; 50 years on, working
   engineers still reach for his names when diagnosing their own projects.
 thinker_type: book-author
+# doctrine_mode: 60/40 call for mode-c over mode-b (iter-9 Council). The book is an artifact, but the value travels as handles (Brooks's Law, no silver bullet, conceptual integrity). Revisable.
+doctrine_mode: mode-c
 has_long_read: false
 last_updated: 2026-05-25
 

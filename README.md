@@ -42,6 +42,7 @@ Scripts for the Reading Protocol, the review process for a page's Editorial Read
 
 ```bash
 bun scripts/grounding-pack.ts <thinker-slug>   # writes _working/<slug>/grounding-pack.md
+bun scripts/apply-reading.ts <thinker-slug> <draft-file>  # writes reading, extension and the claims map from one draft
 bun scripts/reading-gates.ts <thinker-slug>    # prose and citation checks; exits 0 on pass
 ```
 
@@ -77,8 +78,10 @@ public/                           static files (favicons)
 
 ## Adding a thinker
 
+Follow the `add-thinker` project skill at `.claude/skills/add-thinker/SKILL.md`. It is the full procedure, from candidate issue to merge request, and its `calibration.md` lists the failures earlier reviews caught. The short version:
+
 1. Confirm the person clears the inclusion filter in `SCHEMA.md` (section 2).
-2. Create `src/content/thinkers/<slug>.md`. The file name must match the `slug` field. Use `src/content/thinkers/nicole-forsgren.md` as the reference for current fields.
+2. Create `src/content/thinkers/<slug>.md`. The file name must match the `slug` field. Use `src/content/thinkers/camille-fournier.md` as the reference for current fields.
 3. Fill every required field. The build fails if a thinker has fewer than 2 limits or fewer than 3 adjacent thinkers, or lacks an Editorial Reading.
 4. Write the Editorial Reading through the Reading Protocol (`SCHEMA.md`, section 7) and follow the writing rules (section 8).
 5. Run the byline test: make sure no attribution on the page implies the thinker originated something they did not.

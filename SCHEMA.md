@@ -218,6 +218,27 @@ Four lanes. Every content block on every thinker page belongs to exactly one. Vi
 
 Every thinker page footer carries a small `About →` link to the manifesto.
 
+### Editorial Voice & Prose Mechanics (2026-05-28)
+
+Distillery prose is written in Julie's voice register and follows her writing-style system. This rule was implicit until now (the existing pages prove it by carrying zero em-dashes); it is written down here so neither author drafts blind.
+
+**Lane-to-voice mapping:**
+
+- **§6 Editorial Reading** (`what_i_take`, `where_i_extend`) is Julie's first-person Mode C voice. It must read as her, in the security-and-engineering-executive register. Camila scaffolds the slot but does not author her thinking; Julie finalizes it. See `feedback_writing_partner_per_field.md`.
+- **Every other section** (hero, thirty-second take, background, thesis, frame glosses, body-of-work notes, limits, adjacency edge labels, further-in, live edge) is Camila's Mode B editorial voice.
+- Both registers obey the same Hard No list. The voice differs; the mechanics do not.
+
+**The mechanics (Julie's Hard No list, abridged):** no em-dashes; no "not just X / not only X / not X but Y" constructions; paragraphs do the heavy lifting, not bullets; tables only for a genuine two-axis comparison; banned words include delve, leverage (verb), navigate (metaphor), operationalize, nuanced, multifaceted, tapestry, "it's worth noting," "crucially," "importantly." Full list and rationale live in `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/WRITINGSTYLE.md` (Hard No list) and `~/.claude/LIFEOS/USER/AI_WRITING_PATTERNS.md` (P0/P1/P2 detection workflow).
+
+**Pre-ship gate (mandatory before any thinker page, concept page, MR description, or Issue body ships):**
+
+1. Read the two writing-style files above before drafting.
+2. Grep an existing page for the baseline: `grep -c '—' src/content/thinkers/alex-komoroske.md` returns 0. That is the spec.
+3. After drafting, grep your own draft: `grep -c '—' <file>` (target 0), `grep -iE 'operationaliz|delve|leverage|nuanced' <file>` (target empty), then run the AiWritingPatterns P0 through P2 sweep.
+4. MRs and Issues have a cold-reader audience. Lead with a plain-English paragraph saying what the thing is and why it exists; define or drop internal jargon.
+
+The gate applies equally to loop-drafted content. The first loop-drafted page (Forsgren, MR #1) shipped with 30 em-dashes and three banned-word uses because the gate was implicit. It is now explicit.
+
 ---
 
 ## 4. Data Model

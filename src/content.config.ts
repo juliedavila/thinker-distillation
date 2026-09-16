@@ -39,9 +39,22 @@ const edgeType = z.enum([
   'critiques',
   'parallel',
   'synthesizes',
+  'hosts',
 ]);
 
 const edgeStrength = z.enum(['primary', 'secondary']);
+
+const renderTier = z.enum(['foreground', 'deep']);
+
+const bodyOfWorkAttribution = z.enum(['authored', 'hosted']);
+
+const hostedItem = z.object({
+  title: z.string(),
+  kind: z.enum(['essay', 'series', 'talk', 'interview', 'translation']),
+  year: z.union([z.number().int(), z.string()]),
+  hosted_on_url: z.string().url(),
+  editorial_framing: z.string().optional(),
+});
 
 const namedFrame = z.object({
   concept_slug: z.string().regex(/^[a-z0-9-]+$/, 'kebab-case slug'),
@@ -54,6 +67,7 @@ const namedFrame = z.object({
     .optional(),
   source_link: z.string().url().optional(),
   derived_from: z.string().optional(),
+  render_tier: renderTier.optional(),
 });
 
 const bodyOfWorkItem = z.object({
@@ -67,6 +81,7 @@ const bodyOfWorkItem = z.object({
   translator: z.string().optional(),
   edition: z.string().optional(),
   edition_year: z.union([z.number().int(), z.string()]).optional(),
+  attribution_kind: bodyOfWorkAttribution.optional(),
 });
 
 const limit = z.object({
@@ -81,6 +96,25 @@ const adjacentThinker = z.object({
   edge_type: edgeType,
   edge_label: z.string(),
   strength: edgeStrength,
+  render_tier: renderTier.optional(),
+  auto_surfaced: z.boolean().optional(),
+  editorial_demote_to: z.literal('secondary').optional(),
+  hosted_items: z.array(hostedItem).optional(),
+});
+
+const liveEdgeRecentWork = z.object({
+  title: z.string(),
+  year: z.union([z.number().int(), z.string()]),
+  kind: z.enum(['book', 'essay', 'talk', 'series', 'tool', 'other']),
+  with: z.string().optional(),
+  note: z.string().optional(),
+});
+
+const liveEdge = z.object({
+  current_focus: z.string(),
+  summary: z.string(),
+  recent_work: z.array(liveEdgeRecentWork).optional(),
+  last_observed: z.coerce.date(),
 });
 
 const longRead = z.object({
@@ -142,6 +176,9 @@ const thinkers = defineCollection({
     }),
 
     long_read: longRead.optional(),
+
+    live_edge_visible: z.boolean().optional(),
+    live_edge: liveEdge.optional(),
   }),
 });
 

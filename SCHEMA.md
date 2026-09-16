@@ -28,6 +28,7 @@ inclusion_rationale: >                  # CURATORIAL DISCIPLINE — not rendered
   Produced a portable vocabulary for organizational complexity that
   practitioners now use to think about their own work.
 thinker_type: essay-corpus              # essay-corpus | book-author | principles-distiller | catalog-builder | mixed
+doctrine_mode: mode-c                   # mode-a | mode-b | mode-c; BACKSTAGE, never rendered (iter-10); see "Doctrine Mode" below
 has_long_read: true
 long_read_path: /thinkers/alex-komoroske/long-read
 last_updated: 2026-05-25
@@ -42,6 +43,24 @@ live_edge_visible: false                # v1.2 — opt-in for §11 Live Edge sec
 - `thinker_type` drives render hints only — it never gates which schema fields exist. (Discipline Gate 1.)
 - `canonical_url` is nullable for pre-web thinkers; `active_years` accepts free-text bracketed ranges for ancient or otherwise unusual lifespans.
 - `live_edge_visible` (v1.2) defaults to `false`; curator opts in per-thinker. Requires `status: alive-active`. See §11 Live Edge for full contract.
+
+### Doctrine Mode (iter-10, 2026-09-16; design locked by the iter-9 Council, 2026-05-28)
+
+`doctrine_mode` records the editorial stance the Distillery takes toward a thinker, borrowed from `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/DOCTRINEREGISTER.md` §2. It classifies the Distillery's *reading* of the thinker, not the native shape of their corpus. Komoroske's corpus is Mode A in DoctrineRegister §5, but the page applies a Mode C treatment, so the page is `mode-c`. There is no contradiction to fix.
+
+- **`mode-c`**: manufacture portable handles around an implicit spine. The page separates the spine (`thesis`) from the handles (`named_frames`) and does the naming work the thinker left undone.
+- **`mode-a`**: resist manufacturing handles. A true Mode A reading is falsified by inventing frames the thinker would not recognize, so `named_frames` stays thin and close to the source.
+- **`mode-b`**: the named artifact IS the doctrine (DORA, *Principles*). The page presents the artifact faithfully and extends from it.
+
+**How it relates to what already exists.** `thesis` is the DoctrineRegister spine and `named_frames` are its handles; DoctrineRegister §3 says to keep them separate, and the schema already does. The Casey test (Discipline Gate 3) is the same rule as DoctrineRegister §3's attribution discipline: where the Distillery's compression is sharper than the source, credit the compression to whoever made it. `doctrine_mode` is orthogonal to `thinker_type`: `thinker_type` is the form of the output, `doctrine_mode` is whether portability was deliberate. Brooks (book-author, `mode-c`) shows neither derives the other.
+
+**Lineage parenthetical (soft norm).** Per DoctrineRegister §4, a `thesis` may carry one inline lineage marker naming its antecedent (for example, lean and Goldratt's theory of constraints behind Forsgren). Add it only where it strengthens the spine. Structured lineage still lives in `co_originators` and `derived_from`.
+
+**Named consumer.** The field is read by the drafting gate (the Editorial Voice rules in §3 below), never by the renderer. It tells the drafter whether to manufacture handles or resist them.
+
+**Guardrail.** This is a deliberate, capped exception. It does not license further mode-style backstage fields. **Kill criterion:** delete the field if, after 5 more thinker pages ship, no `doctrine_mode` value has changed a drafting decision. Owner: Julie, checked at the next quarterly review.
+
+**Current classifications (iter-9 Council):** Komoroske, Fowler, Brooks (60/40 over `mode-b`, recorded in a frontmatter comment), Allspaw, Woods and Dekker are `mode-c`; Dalio and Forsgren are `mode-b`.
 
 ---
 
@@ -232,7 +251,12 @@ Distillery prose is written in Julie's voice register and follows her writing-st
 
 **Pre-ship gate (mandatory before any thinker page, concept page, MR description, or Issue body ships):**
 
-1. Read the two writing-style files above before drafting.
+1. Read the applicable writing-style files before drafting. The two above apply to everything. The rest are scoped (iter-10 broadening; mirrors `feedback_distillery_prose_voice.md`), all in `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/`:
+   - `RHETORICALSTYLE.md` §4 figure guardrails on all editorial prose, and §2/§3 honesty and disagreement registers for §7 limits and §8 critic edge labels. `AI_WRITING_PATTERNS.md` detection step 7 cross-checks §4; do not skip it (it was the missed step on Forsgren).
+   - `DOCTRINEREGISTER.md` for every thinker page: spine vs handles, `doctrine_mode`, lineage parenthetical.
+   - `LONGFORMCRAFT.md` for long-read chapters only, not compact thinker pages.
+   - `PERSUASIONARCHITECTURE.md` §5 currency translation, only where a reading translates a thinker into security-executive terms.
+   - `PRIVATEWRITINGPRACTICE.md` does not apply; this is a public surface.
 2. Grep an existing page for the baseline: `grep -c '—' src/content/thinkers/alex-komoroske.md` returns 0. That is the spec.
 3. After drafting, grep your own draft: `grep -c '—' <file>` (target 0), `grep -iE 'operationaliz|delve|leverage|nuanced' <file>` (target empty), then run the AiWritingPatterns P0 through P2 sweep.
 4. MRs and Issues have a cold-reader audience. Lead with a plain-English paragraph saying what the thing is and why it exists; define or drop internal jargon.

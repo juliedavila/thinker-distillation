@@ -18,6 +18,7 @@ inclusion_rationale: >
   on. Produced the vocabulary Allspaw spent a decade carrying into the
   software industry.
 thinker_type: mixed
+doctrine_mode: mode-c
 has_long_read: false
 last_updated: 2026-05-25
 

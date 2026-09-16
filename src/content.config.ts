@@ -42,6 +42,8 @@ const edgeType = z.enum([
   'hosts',
 ]);
 
+const doctrineMode = z.enum(['mode-a', 'mode-b', 'mode-c']);
+
 const edgeStrength = z.enum(['primary', 'secondary']);
 
 const renderTier = z.enum(['foreground', 'deep']);
@@ -140,6 +142,7 @@ const thinkers = defineCollection({
     status,
     inclusion_rationale: z.string(),
     thinker_type: thinkerType,
+    doctrine_mode: doctrineMode,
     has_long_read: z.boolean().default(false),
     long_read_path: z.string().optional(),
     last_updated: z.coerce.date(),

@@ -20,6 +20,7 @@ inclusion_rationale: >
   cartographer move of writing an entire operating philosophy down as
   numbered principles is itself the contribution.
 thinker_type: principles-distiller
+doctrine_mode: mode-b
 has_long_read: false
 last_updated: 2026-05-25
 

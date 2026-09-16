@@ -17,6 +17,7 @@ inclusion_rationale: >
   reflects the actual collaborative shape of the research. The empirical anchor
   every contrarian in the space defines themselves against.
 thinker_type: mixed
+doctrine_mode: mode-b
 has_long_read: false
 last_updated: 2026-05-27
 

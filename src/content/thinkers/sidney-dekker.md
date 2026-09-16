@@ -17,6 +17,7 @@ inclusion_rationale: >
   Failure*, *Just Culture*, and *Safety Differently*. Forty years of
   consistent body of work, multiple frames practitioners actively use.
 thinker_type: book-author
+doctrine_mode: mode-c
 has_long_read: false
 last_updated: 2026-05-25
 

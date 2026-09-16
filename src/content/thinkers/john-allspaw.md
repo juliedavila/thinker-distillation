@@ -17,6 +17,7 @@ inclusion_rationale: >
   industry's most reliable carrier of the new-view safety lens into the
   software-ops conversation.
 thinker_type: mixed
+doctrine_mode: mode-c
 has_long_read: false
 last_updated: 2026-05-25
 

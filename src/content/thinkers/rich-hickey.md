@@ -127,7 +127,7 @@ named_frames:
     derived_from: essential-vs-accidental-complexity
     source_link: https://www.infoq.com/presentations/Simple-Made-Easy/
     render_tier: foreground
-  - concept_slug: place-oriented-programming
+  - concept_slug: append-dont-overwrite
     display_name: Place-oriented programming (PLOP)
     one_line_gloss: >
       Any design in which new information replaces old information in place.

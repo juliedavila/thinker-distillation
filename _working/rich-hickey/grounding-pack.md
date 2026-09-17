@@ -1,6 +1,6 @@
 # Grounding pack: Rich Hickey
 
-Generated 2026-09-16 by scripts/grounding-pack.ts. Every claim in the reading must cite at least one ID below.
+Generated 2026-09-17 by scripts/grounding-pack.ts. Every claim in the reading must cite at least one ID below.
 
 thinker_type: mixed · doctrine_mode: mode-a
 
@@ -11,7 +11,7 @@ thinker_type: mixed · doctrine_mode: mode-a
 - **[F:simple-versus-easy]** Simple versus easy (original, with edsger-dijkstra): Simple means one fold or braid, with no interleaving, and can be checked in the artifact itself. Easy means near at hand, familiar to the person using it, and is relative. Treating the two words as synonyms is how teams choose complexity without noticing. Builds on Dijkstra's "simplicity is prerequisite for reliability," which the talk opens by quoting.
 - **[F:complect]** Complect (popularized): An archaic English word for braiding or interleaving, revived for software: to complect is to entwine concerns that could stay independent, which is where complexity comes from. Its opposite is compose, to place together. Overlaps the older ideas of coupling and connascence.
 - **[F:incidental-complexity]** Incidental complexity (extended, with fred-brooks, ben-moseley-peter-marks; derived from essential-vs-accidental-complexity): Complexity that was no part of what the user asked for and arrived with a chosen tool or construct. Hickey's name for what Brooks called accidental complexity, and what Moseley and Marks's "Out of the Tar Pit" traced mainly to mutable state; his gloss is that "incidental is Latin for 'your fault'."
-- **[F:place-oriented-programming]** Place-oriented programming (PLOP) (extended, with john-backus): Any design in which new information replaces old information in place. A habit born of early machines with little memory, kept long after the limits disappeared, at the cost of losing facts. The name is Hickey's; the critique of fetch-and-store programming goes back at least to Backus's 1977 Turing lecture and the functional programming tradition.
+- **[F:append-dont-overwrite]** Place-oriented programming (PLOP) (extended, with john-backus): Any design in which new information replaces old information in place. A habit born of early machines with little memory, kept long after the limits disappeared, at the cost of losing facts. The name is Hickey's; the critique of fetch-and-store programming goes back at least to Backus's 1977 Turing lecture and the functional programming tradition.
 - **[F:accretion-versus-breakage]** Accretion versus breakage (extended, with martin-fowler): A published interface can grow by providing more (accretion) or requiring less (relaxation). Removing anything is breakage. When a change must break, give it a new name instead of a new version number. Related to Postel's robustness principle and Fowler's Tolerant Reader, and argued against Semantic Versioning's habit of breaking under the same name.
 - **[F:guardrail-programming]** Guardrail programming (original): Relying on tests, refactoring tools and type checkers to make change safe, like driving by bouncing off guardrails. Those tools are safety nets; none of them makes a tangled program simple, so the ability to reason about the program still has to come from the design.
 - **[F:value-identity-state-time]** Value, identity, state and time (extended, with alfred-north-whitehead): A value is an immutable magnitude; an identity is an entity associated with a series of values over time; state is the value of an identity at a moment. Separating them replaces mutable objects. Hickey credits Alfred North Whitehead's process philosophy as the inspiration.
@@ -43,6 +43,7 @@ thinker_type: mixed · doctrine_mode: mode-a
 
 ## Shared concepts (frames other pages also hold)
 
+- **[S:append-dont-overwrite:martin-fowler]** Martin Fowler also holds Event sourcing: Record every change to application state as an event, and rebuild the state at any time by replaying the log. Fowler wrote the pattern up in draft in 2005 and returned to it in 2017, comparing the event log to a git history and to the accounting transactions behind a balance. Greg Young popularized it alongside CQRS from 2007, and neither claims the underlying idea as new.
 
 ## Two hops out (names only, for reach)
 

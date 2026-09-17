@@ -152,6 +152,21 @@ named_frames:
     attribution_kind: original
     primary_author: martin-fowler
     source_link: https://martinfowler.com/bliki/
+  - concept_slug: append-dont-overwrite
+    display_name: Event sourcing
+    one_line_gloss: >
+      Record every change to application state as an event, and rebuild the
+      state at any time by replaying the log. Fowler wrote the pattern up in
+      draft in 2005 and returned to it in 2017, comparing the event log to a
+      git history and to the accounting transactions behind a balance. Greg
+      Young popularized it alongside CQRS from 2007, and neither claims the
+      underlying idea as new.
+    attribution_kind: distributed
+    primary_author: martin-fowler
+    co_originators:
+      - slug: greg-young
+        role: popularized it with CQRS; early public explanation at QCon SF 2007
+    source_link: https://martinfowler.com/articles/201701-event-driven.html
 
 body_of_work:
   - title: Is Quality Software Worth The Cost?

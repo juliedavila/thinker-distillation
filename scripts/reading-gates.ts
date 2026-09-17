@@ -24,13 +24,35 @@ const ANTITHESIS = [
   /\bnot [^.;]{1,50}, but\b/i,
   /\b(is|are) not [^.;]{1,50}\. (It|They) (is|are)\b/,
 ];
-const FIRST_PERSON = /\b(I|I['’]m|I['’]ve|I['’]d|me|my|mine|myself)\b/;
+// Hyphen guards keep titles such as *Safety-I vs Safety-II* out of the first-person check.
+const FIRST_PERSON = /(?<![\w-])(I|I['’]m|I['’]ve|I['’]d|me|my|mine|myself)(?![\w-])/;
 
 const fields: Array<[string, string | undefined]> = [
   ['reading', t.reading],
   ['extension', t.extension],
   ['margin_note', t.margin_note],
 ];
+
+// Every other editorial field on the page. The hard rules in SCHEMA.md section 8 bind all site
+// prose, and until 2026-09-17 nothing checked these: a banned "not X but Y" reached a shipped
+// `thesis` and a review seat caught it by hand. Length and claims apply only to reading and
+// extension, so these fields get the voice checks alone. `working_line` is the thinker's own
+// paraphrased words and stays exempt.
+const proseFields = (): Array<[string, string]> => {
+  const out: Array<[string, string]> = [];
+  const add = (name: string, v: unknown) => { if (typeof v === 'string' && v.trim()) out.push([name, v]); };
+  for (const f of ['tagline', 'thirty_second_take', 'background', 'why_they_matter_as_a_thinker', 'thesis', 'still_load_bearing_despite', 'inclusion_rationale']) add(f, (t as Record<string, unknown>)[f]);
+  for (const [i, l] of ((t.limits as Array<Record<string, unknown>>) ?? []).entries()) {
+    add(`limits[${i}].headline`, l?.headline);
+    add(`limits[${i}].elaboration`, l?.elaboration);
+  }
+  for (const [i, f] of ((t.named_frames as Array<Record<string, unknown>>) ?? []).entries()) add(`named_frames[${i}].one_line_gloss`, f?.one_line_gloss);
+  for (const [i, e] of ((t.adjacent_thinkers as Array<Record<string, unknown>>) ?? []).entries()) add(`adjacent_thinkers[${i}].edge_label`, e?.edge_label);
+  for (const [i, w] of ((t.body_of_work as Array<Record<string, unknown>>) ?? []).entries()) add(`body_of_work[${i}].editorial_note`, w?.editorial_note);
+  const fi = (t.further_in as Record<string, unknown>) ?? {};
+  for (const k of ['start_here', 'if_you_want_depth', 'if_you_want_breadth']) add(`further_in.${k}`, fi[k]);
+  return out;
+};
 
 if (!t.reading) fail('present', '`reading` is empty');
 if (!t.extension) fail('present', '`extension` is empty');
@@ -56,6 +78,28 @@ for (const [name, raw] of fields) {
     const fp = own.match(FIRST_PERSON);
     if (fp) fail('voice', `${name} uses first person ("${fp[0]}")`);
   }
+}
+
+// These are warnings, not failures. The same patterns that are always wrong in a reading are
+// sometimes right here: a limit headline naming the critique's own word ("the Bridgewater
+// operationalization is contested", SCHEMA section 8), an edge label reporting that a critic
+// "does not name Fournier, but" argues a rival model, a frame gloss whose source contrast is the
+// definition. The drafter judges each one; `--strict-prose` turns them into failures.
+const strict = process.argv.includes('--strict-prose');
+for (const [name, raw] of proseFields()) {
+  const own = oneLine(raw).replace(/"[^"]*"|“[^”]*”/g, '""');
+  const note = (gate: string, msg: string) => (strict ? fail(gate, msg) : console.log(`warn ${gate} ${name}: ${msg}`));
+  if (own.includes('—')) note('em-dash', `contains ${own.split('—').length - 1}`);
+  const b = own.match(BANNED);
+  if (b) note('banned-word', `"${b[0]}"`);
+  const w = own.match(CONTEXTUAL);
+  if (w) note('contextual', `"${w[0]}" is banned as a verb or metaphor; confirm usage`);
+  for (const re of ANTITHESIS) {
+    const m = own.match(re);
+    if (m) note('antithesis', `"${m[0]}"`);
+  }
+  const fp = own.match(FIRST_PERSON);
+  if (fp) note('voice', `first person ("${fp[0]}")`);
 }
 
 // Grounding: every sentence of reading + extension appears in the claims file with >=1 citation,

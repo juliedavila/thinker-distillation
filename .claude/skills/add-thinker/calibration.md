@@ -13,6 +13,7 @@ Run each item against the draft before running the gates.
 - [ ] No compressed phrasing in the tagline, take, thesis, reading or extension presents the site's interpretation as the thinker's claim or intent ("as Forsgren built them" implied a design intent no source supports; "Hickey's argument asks why the rule stops at the log" put a security question in the mouth of someone who never discussed audit logs; on the append-dont-overwrite concept page, "Fowler compares the event log to a git history, where a leaked secret stays in every clone" let a relative clause hang the site's point on Fowler. Put the site's point in its own sentence).
 
 **Grounding**
+- [ ] Read the gate warnings, not only its exit code. `reading-gates.ts` fails on `reading` and `extension` and only warns on the other editorial fields, because a banned cadence is sometimes right there. A shipped `thesis` carried "not X but Y" until a review seat caught it by hand on 2026-09-17.
 - [ ] Every citation supports its own sentence, and every clause of it. A sentence that fuses a cited point with an uncited one fails (Hickey's privacy-deletion clause rode on a limit about unfamiliarity). A Lens citation belongs on the sentence that makes the Lens argument, not the setup sentence before it (Komoroske, Woods, Fournier).
 - [ ] Inference lives in `extension`. A `reading` sentence that draws a conclusion the sources do not state moves to `extension` or goes.
 - [ ] Limits stay limits. Do not recast a limit as evidence the method works (Fowler's microservices retraction, Dalio's Bridgewater gap).

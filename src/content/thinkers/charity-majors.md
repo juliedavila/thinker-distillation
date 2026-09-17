@@ -19,8 +19,8 @@ inclusion_rationale: >
   ThoughtWorks Technology Radar carried "Observability 2.0" in October 2024
   without naming her or Honeycomb. Attribution needs care, since "observability"
   is Kálmán's term from control theory and the "three pillars" she attacks
-  belong to Bourgon and Sridharan. She has since stepped back from the "2.0"
-  label. Inclusion Council 5 to 0, 2026-09-17.
+  belong to Bourgon and Sridharan. In March 2025 she said she would avoid the
+  "1.0" and "2.0" labels herself. Inclusion Council 5 to 0, 2026-09-17.
 thinker_type: mixed
 doctrine_mode: mode-a
 has_long_read: false
@@ -52,11 +52,10 @@ background: >
   really well, which is let you slice and dice in real time on dimensions that
   have very high cardinality." In 2016 she and Christine Yen founded Honeycomb
   to rebuild that capability as a product, where she is CTO. She has written at
-  charity.wtf since the mid 2010s and co-wrote *Observability Engineering*
+  charity.wtf since at least 2017 and co-wrote *Observability Engineering*
   (2022) with Liz Fong-Jones and George Miranda, and *Database Reliability
-  Engineering* before it. The trajectory matters twice: the argument comes from
-  running systems that failed in ways nobody had predicted, and the remedy is
-  also the product she sells.
+  Engineering* before it. The argument comes from running systems that failed
+  in ways nobody had predicted.
 why_they_matter_as_a_thinker: >
   Her definition of observability gave practitioners a test they can apply to
   their own tooling: can it answer a question nobody thought to ask in advance?
@@ -70,8 +69,8 @@ why_they_matter_as_a_thinker: >
 
 thesis: >
   Complex systems fail in ways their builders did not predict, so the useful
-  question about telemetry is not how much it collects but whether it can
-  answer a question formed after the failure began. Pre-aggregated metrics
+  question about telemetry is whether it can answer a question formed after
+  the failure began, whatever it collects along the way. Pre-aggregated metrics
   cannot, because the decision about what to count was made before the
   question existed. Her remedy is to record one wide, structured event per
   unit of work, keep its high-cardinality fields intact, and derive dashboards,
@@ -134,10 +133,11 @@ named_frames:
     one_line_gloss: >
       Storing telemetry once and deriving every view from it at read time,
       against the practice of keeping metrics, logs and traces in separate
-      tools. She first published this as "observability 1.0 versus 2.0," then
-      stepped back from those labels after vendors objected, and now prefers
-      "the multiple pillars model" and "unified storage." The pillars framing
-      she argues against is Bourgon's and Sridharan's.
+      tools. She first published this as "observability 1.0 versus 2.0." In
+      March 2025 she wrote that she would "mostly avoid" the version labels
+      after vendors objected, and now prefers "the multiple pillars model" and
+      "the unified or consolidated storage model." The pillars framing she
+      argues against is Bourgon's and Sridharan's.
     attribution_kind: original
     primary_author: charity-majors
     source_link: https://charity.wtf/2024/11/19/there-is-only-one-key-difference-between-observability-1-0-and-2-0/
@@ -192,8 +192,8 @@ body_of_work:
     link: https://charity.wtf/2024/11/19/there-is-only-one-key-difference-between-observability-1-0-and-2-0/
     editorial_note: >
       The unified-storage argument in its sharpest form: one source of truth,
-      aggregation at read time. Pair it with her later retreat from the
-      version labels.
+      aggregation at read time. Pair it with "Another observability 3.0 appears
+      on the horizon" (2025), where she drops the version labels.
   - title: Yes, I Test in Production (And So Do You)
     type: talk
     year: 2018
@@ -226,33 +226,34 @@ reading: >
   with its high-cardinality fields kept whole, so views can be derived from it
   at read time instead of being fixed at write time. The fields she insists on
   keeping are the ones that identify a single request: user id, build id,
-  feature flag. The same instinct runs through her other positions, that staging
-  cannot reproduce production and that management is a different job rather than
-  a rung above engineering. The pattern came from Scuba at Facebook, and the
-  company she co-founded sells it, which is the context every reader needs.
+  feature flag. The pattern came from Scuba at Facebook, and the company she
+  co-founded sells it. The same instinct runs through her other positions, that
+  staging cannot reproduce production and that management is a different job
+  rather than a rung above engineering.
 extension: >
-  Security teams build the same shape of instrument and hit the same wall: a
-  dashboard answers the questions someone predicted during design. Prompt
-  injection is where that bites, since the mitigation is layered and partial and
-  the incident arrives in a form nobody wrote a detection for. Her test
-  transfers directly: after an agent does something unexpected, can anyone ask
-  which tool call, which prompt, which user, without shipping new
-  instrumentation first. That argues for one wide record per agent action,
-  carrying the identifiers an investigation needs rather than counts of blocked
-  attempts. Sampling to afford that record removes the rare event an
-  investigation wants, which is the objection her critic raises about forensics.
-  And a record of what an agent did says nothing about whether it was permitted,
-  so this buys investigation and not assurance.
+  Prompt injection is architecturally unsolvable, so mitigation stays layered
+  and partial, and the incident that gets through arrives in a form nobody wrote
+  a detection for. Her test transfers directly: after an agent does something
+  unexpected, can anyone ask which tool call, which prompt, which user, without
+  shipping new instrumentation first. That argues for one wide record per agent
+  action, carrying the identifiers an investigation needs rather than counts of
+  blocked attempts. Sampling to afford that record removes the rare event an
+  investigation wants, which is the objection her critic raises about forensics,
+  so the reach of a wide record into security work stays unproven. A record
+  built from full prompts and tool payloads also becomes a store of secrets and
+  personal data to defend, and it still says nothing about whether the action
+  was permitted, so this buys investigation and not assurance.
 limits:
   - headline: The prescription is also the product
     severity: structural
     elaboration: >
       Majors is CTO and co-founder of Honeycomb, which sells the unified
       storage architecture her writing recommends, and much of that writing is
-      published on the company's blog. The argument stands or falls on its
-      merits, and a reader should know that the person making it profits from
-      it. She is direct about the commercial context, including about vendors
-      who adopted her vocabulary without changing their products.
+      published on the company's blog. A reader should weigh the argument
+      knowing that the person making it profits from its adoption, including
+      any adoption the reading below argues for. She is direct about the
+      commercial context, including about vendors who adopted her vocabulary
+      without changing their products.
   - headline: Cost and sampling undercut the single record
     severity: structural
     elaboration: >
@@ -266,14 +267,15 @@ limits:
   - headline: The version labels did not survive contact
     severity: local
     elaboration: >
-      She published the argument as "observability 1.0 versus 2.0," then moved
-      away from the labels after vendors objected to having 1.0 applied to
-      their tools, which she reports reading as a slight. Her current phrasing
-      is "the multiple pillars model" and "unified storage." A page or a
+      She published the argument as "observability 1.0 versus 2.0." In March
+      2025 she wrote that she would "mostly avoid" those labels, because
+      vendors "got really bristly about having '1.0' retroactively applied,"
+      which "reads like a subtle diss." Her current phrasing is "the multiple
+      pillars model" and "the unified or consolidated storage model." A page or a
       practitioner citing the version numbers is citing a framing their author
       has partly abandoned.
   - headline: It answers what happened, not whether it was allowed
-    severity: local
+    severity: structural
     elaboration: >
       Wide events with high-cardinality fields are built to reconstruct what a
       system did, when, and to whom. Nothing in the model establishes whether

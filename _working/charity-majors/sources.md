@@ -59,3 +59,13 @@ Her 2.0 argument is structurally the same move the concept page describes: keep 
 - **Honeycomb came out of using it.** Majors and Christine Yen were engineers at Parse, which Facebook acquired. After the acquisition they piped Parse data into Scuba, which Majors describes as "aggressively hostile to users" while doing "one thing really well, which is let you slice and dice in real time on dimensions that have very high cardinality." Honeycomb was founded in 2016 by Majors and Yen, inspired by that experience. [The New Stack](https://thenewstack.io/charity-majors-honeycomb-tech-founder-odyssey/), [Wikipedia: Honeycomb](https://en.wikipedia.org/wiki/Honeycomb_(company))
 - She presented the Scuba paper herself at Papers We Love, QCon NYC edition. [Papers We Love](https://paperswelove.org/videos/papers-we-love-qcon-nyc-edition-charity-majors-on-scuba-diving-into-data-at-face/), [slides](https://speakerdeck.com/paperswelove/charity-majors-on-scuba-diving-into-data-at-facebook)
 - **Attribution consequence:** wide structured events with high-cardinality querying is `extended`, not `original`. The Scuba paper's authors are the antecedent, and Majors credits the tool by name. **Christine Yen** must be named as Honeycomb's co-founder wherever the product carries the argument.
+
+## The label retreat, now first-person (verified 2026-09-17)
+
+"Another observability 3.0 appears on the horizon," charity.wtf, **2025-03-24**, in her own words:
+- "I am going to mostly avoid referring to the multiple pillars model as 'o11y 1.0', and instead I will call it the … multiple pillars model."
+- She will call the other one "the unified or consolidated storage model, sometimes called 'o11y 2.0'."
+- Why: "a bunch of people — vendors mostly, but not entirely — got really bristly about having '1.0' retroactively applied to describe the multiple pillars model. It reads like a subtle diss, or devaluation of their tools."
+- Her reason: "One of the principles I live my life by is that you should generally call people, or groups of people, what they want to be called."
+
+This replaces the secondhand Horovits account. The page can now state the retreat as her own stated position, dated March 2025, with this post as the source. [link](https://charity.wtf/2025/03/24/another-observability-3-0-appears-on-the-horizon/)

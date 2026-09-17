@@ -9,13 +9,18 @@ last_updated: 2026-09-17
 
 julie_reading_prompt: >
   Julie's reading of the concept itself, separate from the Hickey and Fowler
-  pages. The site's readings already argue one security use: keeping access
-  grants, configuration and policy as history so an investigation can see who
-  could do what last month. Questions to answer: is append-only history a
-  security property in its own right, and if so, which one? Where has an overwrite destroyed evidence you needed? Where would
-  you refuse to apply it (secrets, personal data, cost)? And does the idea
-  belong on the list of positions you publish, or does it stay a working
-  instrument?
+  pages. A working direction from conversation (2026-09-17): append-only
+  history matters because it makes a system investigable, answering what
+  happened, when, by whom and who was affected, and that property belongs as
+  much to reliability and performance as to security. Questions to answer: is
+  investigability the right name for the property? Does append-only history
+  mean a log kept beside the system, where completeness depends on what
+  someone chose to record, or a system whose state can only change through
+  recorded events? Where does the record have to live to count, given local
+  rotation and short-lived compute? What changes when agents write the
+  changes, since the author field is self-asserted and the reason for a change
+  was never recorded? And does the idea join the positions you publish, or
+  stay a working instrument?
 
 limits:
   - headline: Replaying an event-sourced history is harder than it looks

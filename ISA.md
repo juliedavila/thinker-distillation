@@ -2,14 +2,68 @@
 project: thinker-distillation
 effort: E3
 phase: in-progress
-progress: iter-10 to iter-14 shipped; tracked in GitLab MRs and issues
-iteration: iter-14-skill-and-site-rules-2026-09-16
+progress: iter-10 to iter-15 shipped; tracked in GitLab MRs and issues
+iteration: iter-15-hickey-concept-majors-2026-09-17
 mode: project
 started: 2026-05-25
-updated: 2026-09-16
+updated: 2026-09-17
 ---
 
-## Save Point — 2026-09-16 (cold-start resume here)
+## Save Point — 2026-09-17 (cold-start resume here)
+
+> Everything from here down to `## Superseded Save Point — 2026-09-16` is current state. Older blocks are history.
+
+### State at save (verified 2026-09-17)
+
+- **Site:** live at https://thinker-distillery-97a9ca.gitlab.io/ (private, project members only). **11 thinkers, 3 concepts** once MR !11 merges. Main pipeline green after MR !10 merged.
+- **Thinkers:** Komoroske, Fowler, Brooks, Allspaw, Woods, Dekker, Dalio, Forsgren, Fournier, **Hickey** (merged in !10), **Majors** (in !11).
+- **Concepts:** coordination-headwind, adaptive-capacity, **append-dont-overwrite** (merged in !10; Julie's reading slot is empty and waiting for her).
+- **MR !10: merged by Julie.** Hickey page, the Append-Don't-Overwrite concept page, the three-round review rule, rounds 2 and 3 for Hickey and Fournier, the Saxe research record.
+- **MR !11: open, awaiting Julie.** Majors page plus the gate-script fix. Branch `candidate/charity-majors`, targets main, review complete (three rounds, 5 accept, no dissent).
+- **Open candidate issues:** #4 Appleton, #5 Hudson (both May, unverified), #12 Larson, #14 Skelton and Pais, #16 Willison, #17 Anderson, #18 Herley, #19 Ousterhout, #20 Beck. #13 Majors is `camila:ready-for-review`. **#1 Saxe is closed: rejected 5 to 0, recheck September 2027** (a timing rejection, so the discovery pass must not skip it).
+
+### What happened this session
+
+- **Saxe rejected 5 to 0.** Tenure fine, vocabulary not: every named frame came from a Substack corpus starting April 2025 with no third-party uptake, and his marquee frames trail Willison, Florêncio and Herley, and Papert, none of whom he cites. Six errors in the May candidate case, including all four frames it named. Research kept at `_working/joshua-saxe/sources.md`.
+- **Hickey shipped.** Inclusion 5 to 0. "Complect" marked `popularized` (an archaic word he revived), incidental complexity `extended` from Brooks and Moseley and Marks, PLOP `extended` with Backus. Dijkstra credited for the premise quoted at the start of "Simple Made Easy." Retention limit added after Julie's privacy call: security records usually survive erasure requests, storage limitation still applies, Datomic ships excision.
+- **Three-round review restored.** SCHEMA required the full debate for `mode-a` pages; the skill and two shipped pages had used one round. The skill now mandates it, with `briefs/review-round2.md` and `briefs/review-round3.md`. Hickey and Fournier got rounds 2 and 3 retroactively (Hickey 5 accept; Fournier 4 accept, 1 accept-with-edits, applied).
+- **"Append, Don't Overwrite" concept page** built from Julie's Venn-diagram instinct. Holders: Hickey (PLOP, `extended`) and Fowler (event sourcing, a new frame, `distributed` with Greg Young). Fowler's December 2005 write-up is the earliest dated one found; Young's earliest verified public explanation is QCon SF 2007. One revise round fixed a leaked-secret point wrongly attached to Fowler.
+- **Majors added.** Inclusion 5 to 0 with the uptake check run first (ThoughtWorks Radar, October 2024, describes observability 2.0 without naming her or Honeycomb). Wide structured events are `extended` from Facebook's Scuba, which she credits by name. Observability belongs to Kálmán, the three pillars to Bourgon and Sridharan. Her retreat from the "1.0/2.0" labels rests on her own post of 2025-03-24. The Honeycomb conflict of interest is stated once, sharply, in the first limit.
+- **Gate script fixed.** `scripts/reading-gates.ts` read only `reading`, `extension` and `margin_note`, so a banned "not X but Y" reached a shipped `thesis`. It now warns on every editorial field, with `--strict-prose` to fail. Documented in SCHEMA section 10.
+- **Calibration log** carries all four runs (Saxe, Hickey, the concept page, Majors) plus five new checks, including running the uptake check before convening an inclusion Council.
+
+### Waiting on Julie
+
+- **Merge MR !11** (Majors and the gate fix).
+- **Her reading** on the concept page: the prompt asks whether "investigability" is the right name, whether append-only means a side log or a system whose state changes only through recorded events, where the record must live, and what changes when agents write the changes.
+- **Two About-page slots** (unchanged from the last save point).
+- **Neighbor demotions to review:** Parnas on Brooks, Conway on Fowler (merged in !10), DHH on Forsgren (in !11).
+- **Five legacy prose warnings** the new gate surfaces: Forsgren ("not merely a researcher" and "not simply doing more. They were doing better"), Fournier (an edge label reporting a critic "does not name Fournier, but"), Allspaw (a frame gloss contrast), Dalio ("operationalization" in a limit headline, protected by SCHEMA section 8, plus "Navigating" in background).
+
+### Next move on resume: automation
+
+**Julie's direction (2026-09-17):** she has been following along rather than deciding, and wants the pipeline automated so she is the blocker only at final merge-request approval. The next session designs that instead of adding another thinker by hand.
+
+What the session should work out:
+
+1. **Where approval is genuinely needed.** Merge approval stays hers. Everything before it (research, inclusion Council, drafting, return edges, the Reading Protocol, three rounds for mode-a, the MR) ran without her input this session, so the question is which steps still need a pause and which only need a record.
+2. **What blocked on permissions or clarification** this session, and how to remove it: pre-approved command allowlists, the shell-quoting failures that forced retries, and the Council seat runs (up to 20 agent runs for a mode-a thinker: 5 inclusion plus 5, 5 and 5 review, before batching).
+3. **Batching versus serial.** The skill already supports batched reviews, and the Hickey and Fournier rounds 2 and 3 ran batched. Whether the 9 open candidates can run as one batch per stage, and what that costs.
+4. **Whether this becomes a Workflow, a fleet, or a loop.** The Workflow tool exists for deterministic multi-agent orchestration and needs Julie's explicit opt-in. A scheduled run or a loop is another option. Pick one and write it.
+5. **What the skill still gets wrong.** Three failures surfaced this session: the review-round rule lived in one document and was ignored in another, the gates covered three fields out of a dozen, and seat reports asserted facts that turned out false (a sympathetic essay called a critique, an unsourced uptake quote). Automation without a fix for the third is how a wrong fact ships unread.
+6. **The quality bar to hold.** Per-page cost was high this session and every round caught real errors. The design should say plainly which checks are load-bearing and which were ceremony.
+
+### Environment notes (unchanged unless noted)
+
+- Commands need `PATH="/opt/homebrew/bin:$PATH"`.
+- **glab** is authenticated; `glab ci list -b <branch>` is broken (it parses the branch as a date), so use `glab ci list | rg <branch>`.
+- CI only builds on main (`.gitlab-ci.yml` rules), so branch MRs have no pipeline and the local `bun run build` is the gate.
+- Bun `-e` inline scripts break on apostrophes and parentheses inside shell single quotes; use the Edit tool or write the text to a file first.
+- Council transcripts from this session, all under `~/.claude/LIFEOS/MEMORY/COUNCIL/`: `distillery-inclusion-joshua-saxe-20260916-154411-quick`, `distillery-inclusion-rich-hickey-20260916-155350-quick`, `distillery-reading-rich-hickey-20260916-160900-quick`, `distillery-reading-batch-hickey-fournier-20260916-163706-debate`, `distillery-concept-append-dont-overwrite-20260917-094326-quick`, `distillery-inclusion-charity-majors-20260917-150407-quick`, `distillery-reading-charity-majors-20260917-151617-debate`.
+
+---
+
+## Superseded Save Point — 2026-09-16 (history)
 
 > Everything below this block down to `## Superseded Save Point — 2026-05-28` is the current state. The May save point and older sections are history.
 

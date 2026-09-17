@@ -379,6 +379,7 @@ adjacent_thinkers:
       care about; the instrument hides the work it was meant to make legible.
       Sharpest framing of the "measurement substitutes for engagement" worry.
     strength: secondary
+    render_tier: deep
   - target_slug: will-larson
     display_name: Will Larson
     edge_type: critiques
@@ -417,6 +418,15 @@ adjacent_thinkers:
       outcomes of delivery systems; Fournier describes how to organize the
       teams and platforms that produce them.
     strength: secondary
+  - target_slug: charity-majors
+    display_name: Charity Majors
+    edge_type: parallel
+    edge_label: >
+      The telemetry side of measurement. Forsgren measures delivery across
+      organizations with research instruments; Majors instruments one running
+      system so any later question about it can be answered.
+    strength: secondary
+
 further_in:
   start_here: '*Accelerate* (Forsgren, Humble, Kim, 2018). The keystone.'
   then_read:

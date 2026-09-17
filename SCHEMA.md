@@ -494,7 +494,7 @@ The home page (`/`) lists thinkers alphabetically. `/concepts/` lists concept pa
 
 **Build warnings** (printed in the build log, prefixed `[distillery] warning`): a page links to a thinker whose page does not link back; a frame credits a co-originator who has a page here but is not a neighbor; a critic with a page here is not `primary`; every holder of a concept page has the same `attribution_kind`.
 
-**Prose checks**: `scripts/reading-gates.ts` enforces the checks in section 7 for the Editorial Reading fields. It is run by hand as part of the Reading Protocol, not by the build.
+**Prose checks**: `scripts/reading-gates.ts` enforces the checks in section 7 for the Editorial Reading fields, and it fails on those. Since 2026-09-17 it also reads every other editorial field on the page (tagline, thirty-second take, background, why they matter, thesis, inclusion rationale, limits, frame glosses, edge labels, body-of-work notes, further-in lines) and prints a warning for em-dashes, banned words, the antithesis cadence and first person there. Those are warnings because the same pattern is sometimes correct in those fields, such as a limit headline that names the critique's own word. `--strict-prose` turns the warnings into failures. The script is run by hand as part of the Reading Protocol, not by the build.
 
 **Still applied by hand**: the byline test, the inclusion filter, the ten-minute critic search, the choice of which frames go in the foreground, and the remaining concept-page rules in 6.4 (not a thinker page in disguise, not a doctrine claim, no overlap).
 

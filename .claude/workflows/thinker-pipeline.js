@@ -375,16 +375,31 @@ for (let round = 1; round <= 3; round++) {
   })
   if (!due.length) break
 
-  // Round 1 is every seat. Later rounds are the seats that dissented plus the two that catch what
-  // a rewrite introduces, which is what a later round is for. A mode-a page keeps all five, because
-  // SCHEMA requires the full debate and this script does not get to trade that away for cost.
-  const seatsThisRound =
-    round === 1
+  // Who sits this round.
+  //
+  // Round 1 is always every seat. Round 2 is every seat when any page in the batch is mode-a,
+  // because SCHEMA requires the full debate there, and otherwise the seats that dissented plus the
+  // two that catch what a rewrite introduces.
+  //
+  // Round 3 is one adjudication pass rather than five seats, which Julie approved on 2026-09-17.
+  // Across four recorded runs a five-seat round 3 accepted unanimously and changed no page, while
+  // rounds 1 and 2 caught something every time. The seats come back the moment round 2 leaves any
+  // dissent, which is the case the evidence never covered. The check is over the whole batch, not
+  // per page: one page still in dispute buys the full Council for everyone in the round.
+  const carriesDissent = due.some((p) => state.get(p.slug).dissent)
+  const adjudicating = round === 3 && !carriesDissent
+  const seatsThisRound = adjudicating
+    ? [0] // 0 is the adjudicator, not a seat
+    : round === 1
       ? SEATS.map((s) => s.n)
       : [...new Set([...auditSeats, ...due.flatMap((p) => state.get(p.slug).history.flatMap((h) => h.dissenters)), ...(due.some((p) => roundsFor(p.slug) >= 3) ? SEATS.map((s) => s.n) : [])])].sort()
 
-  const brief = round === 1 ? 'briefs/review.md' : `briefs/review-round${Math.min(round, 3)}.md`
-  log(`Round ${round}: seats ${seatsThisRound.join(', ')} over ${due.map((p) => p.slug).join(', ')}`)
+  const brief = adjudicating ? 'briefs/review-adjudicate.md' : round === 1 ? 'briefs/review.md' : `briefs/review-round${Math.min(round, 3)}.md`
+  log(
+    adjudicating
+      ? `Round 3: one adjudication pass over ${due.map((p) => p.slug).join(', ')} (rounds 1 and 2 left no dissent)`
+      : `Round ${round}: seats ${seatsThisRound.join(', ')} over ${due.map((p) => p.slug).join(', ')}${round === 3 ? ' (full Council, round 2 left dissent)' : ''}`
+  )
 
   const priorRounds = due
     .map((p) => {
@@ -397,21 +412,31 @@ for (let round = 1; round <= 3; round++) {
   const reports = await parallel(
     seatsThisRound.map((n) => () =>
       agent(
-        `REVIEW COUNCIL round ${round} for ${REPO}. ${seatCard(n)}\n\n` +
+        `REVIEW COUNCIL round ${round} for ${REPO}. ` +
+          (adjudicating
+            ? `You are the ADJUDICATOR, not a seat. Rounds 1 and 2 are done and left no dissent, so you are the ` +
+              `last read before this reaches a merge request and you carry what five seats would have carried. ` +
+              `Read every seat's round 1 and round 2 report. Do not edit any file.`
+            : seatCard(n)) +
+          `\n\n` +
           `Fill in \`.claude/skills/add-thinker/${brief}\` and answer it for EVERY page below, one verdict each. ` +
           `Each page is new, so every field was drafted by an agent and is in scope, not only the Editorial Reading.\n\n` +
           `Pages: ${due.map((p) => `src/content/thinkers/${p.slug}.md`).join(', ')}\n` +
           `For each, its grounding pack, reading-claims.md, page-claims.md, facts.md and sources.md are under ` +
           `_working/<slug>/.\n\n` +
           (priorRounds ? `What earlier rounds found:\n${priorRounds}\n\nSay whether your concerns were resolved, respond to points other seats made by name, and audit the rewrite for claims that were not there before.\n\n` : '') +
-          `The automated gates and the fact ledger already pass, so judge substance. Seat 3: every citation must ` +
-          `support its own sentence and every clause of it, and every factual field must be backed by the [S:n] it ` +
-          `cites. Seat 5: compare these pages against each other and against the roster for repeated openers, ` +
-          `closers and Lens positions.\n\n` +
+          (adjudicating
+            ? `Round 2's edits are the newest text on the page and the least reviewed, so audit them hardest. ` +
+              `Confirm every earlier concern was resolved in the text rather than waved at, and confirm the fact ` +
+              `ledger still holds. ACCEPT ships the page; anything else stops it and goes to Julie.\n\n`
+            : `The automated gates and the fact ledger already pass, so judge substance. Seat 3: every citation must ` +
+              `support its own sentence and every clause of it, and every factual field must be backed by the [S:n] it ` +
+              `cites. Seat 5: compare these pages against each other and against the roster for repeated openers, ` +
+              `closers and Lens positions.\n\n`) +
           `Anything factual you assert that is not already in facts.md goes in new_factual_claims. It will be ` +
           `researched before it can reach the page and rejected if it does not hold. Three seat assertions have ` +
           `been wrong this way. Do not edit files. ${VOICE}`,
-        { label: `review-r${round}:seat-${n}`, phase: 'Review', schema: REVIEW }
+        { label: adjudicating ? 'review-r3:adjudicator' : `review-r${round}:seat-${n}`, phase: 'Review', schema: REVIEW }
       )
     )
   )

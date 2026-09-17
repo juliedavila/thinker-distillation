@@ -85,8 +85,9 @@ It reads `doctrine_mode` off the page and prints the required rounds, the seats 
 - **Three rounds**, which the script returns for `mode-a` pages, and which two or more REJECT verdicts in round 1 promote any page to. Use a `-debate` suffix on the transcript folder instead of `-quick`.
   - **Round 1:** the five seats review independently with `briefs/review.md`.
   - **Round 2:** apply round 1 edits and rerun the gates. Then each seat reads the full round 1 transcript and the revised page with `briefs/review-round2.md`. It responds to named points from other seats, says whether its own concerns were resolved, and audits the rewrite for new claims.
-  - **Round 3:** apply round 2 edits and rerun the gates. Each seat reads rounds 1 and 2 with `briefs/review-round3.md` and states where the Council agrees, what is still disputed, and a final verdict.
-  - Ship on the round 3 verdicts. Any REVISE or REJECT left after round 3 goes to Julie.
+  - **Round 3:** apply round 2 edits and rerun the gates. Then **one adjudication pass**, not five seats, with `briefs/review-adjudicate.md`. It reads both transcripts, confirms every earlier concern was resolved in the text rather than waved at, audits round 2's edits as the newest and least reviewed text on the page, and checks the ledger holds.
+    - **If any round 2 verdict was below ACCEPT-WITH-EDITS, round 3 is the full five seats** with `briefs/review-round3.md` instead. Adopted 2026-09-17: across four runs a five-seat round 3 accepted unanimously and changed no page, while rounds 1 and 2 caught something every time. The seats come back for the case the evidence never covered.
+  - Ship on the round 3 verdict. Any REVISE or REJECT left after round 3 goes to Julie.
 - **One round** otherwise, with the rules below.
 
 - One-round pages, all ACCEPT or ACCEPT-WITH-EDITS: apply the edits (re-authored under the writing rules, never pasted when they break them), rerun the gates, and ship. No second round.

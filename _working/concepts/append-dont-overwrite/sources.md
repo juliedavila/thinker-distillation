@@ -1,0 +1,58 @@
+# Concept candidate: append, don't overwrite (working name)
+
+Research pass 2026-09-16, Path A (Julie). Question: does a second holder on the site hold the idea of recording changes as an accumulating history instead of overwriting state, so it can be a concept page under SCHEMA section 6.4?
+
+## Holder 1: Rich Hickey (on site, MR !10)
+
+- Frame `place-oriented-programming` (extended, with John Backus) and `value-identity-state-time` (extended, with Whitehead). See `_working/rich-hickey/sources.md`. Datomic stores facts and never updates in place; excision is the escape hatch.
+
+## Holder 2 candidate: Martin Fowler (on site), Event Sourcing
+
+- **"Event Sourcing,"** martinfowler.com/eaaDev, **12 December 2005.** Definition: "Capture all changes to an application state as a sequence of events." Audit: "it's easy to serialize the events to make an Audit Log"; "An audit trail is useful for audit." **Draft status, in Fowler's own words:** part of the "Further Enterprise Application Architecture development writing that I was doing in the mid 2000's ... this material is very much in draft form." It credits no originator. [link](https://martinfowler.com/eaaDev/EventSourcing.html)
+- **"What do you mean by 'Event-Driven'?",** **7 February 2017** (also a GOTO Chicago 2017 keynote). "Whenever we make a change to the state of a system, we record that state change as an event, and we can confidently rebuild the system state by reprocessing the events at any time in the future." Analogies: "The log of all the commits is the event store and the working copy of the source tree is the system state"; "accounting transactions are an event source for account balances." Lists costs: replay against external systems, and schema evolution. [link](https://martinfowler.com/articles/201701-event-driven.html)
+
+## Attribution (not settled)
+
+- **Greg Young** popularized event sourcing, alongside CQRS, in the domain-driven design community from the late 2000s. Secondary sources disagree on who first used the term; some call Young the inventor and others say Fowler introduced the term. Fowler's December 2005 page is the earliest dated written description found. [Kurrent, Young talk transcript 2014](https://www.kurrent.io/blog/transcript-of-greg-youngs-talk-at-code-on-the-beach-2014-cqrs-and-event-sourcing), [InfoQ 2014](https://www.infoq.com/news/2014/09/greg-young-event-sourcing/)
+- **Young himself says the idea is old:** systems were built this way on mainframes before SQL databases; "Event Sourcing ... is a very very old concept." Accounting ledgers and double-entry bookkeeping are the usual antecedent. [Young's blog](https://gregfyoung.wordpress.com/tag/event-sourcing/)
+- **Draft attribution for a Fowler frame:** `distributed`, primary author Fowler (earliest dated write-up found), with Greg Young as co-originator (popularized it with CQRS), and accounting ledgers named in the gloss. Needs one more check: Young's earliest public use of the term.
+
+## Other holders for later (not on site)
+
+- Pat Helland, "Immutability Changes Everything" (CIDR 2015). Verify before use.
+- Martin Kleppmann, *Designing Data-Intensive Applications* (2017), and "turning the database inside out." Verify before use.
+- Ben Moseley and Peter Marks, "Out of the Tar Pit" (2006), on state as the main source of complexity. Already an edge on Hickey's page.
+
+## Fit against SCHEMA 6.4
+
+- Two independent on-site holders: yes, if Fowler gains an event-sourcing frame.
+- Varied attribution: Hickey `extended`, Fowler `distributed`. Passes.
+- Join mechanics: holders are joined by a shared `concept_slug`. Precedent: Brooks's "Brooks's Law" frame uses the `coordination-headwind` slug. Hickey's PLOP frame would move to the shared slug, which is allowed because the page is not yet merged. Fowler's new frame would use the same slug.
+- Not doctrine: holds only if the page is about the genealogy (ledgers → Backus → Fowler/Young → Hickey) and its limits. Julie's security reading (auditability, non-repudiation) goes in `julie_reading`, which she writes.
+
+## Greg Young, earliest public use (checked 2026-09-17)
+
+- Interview with Eric Evans at **QCon SF 2007** (posted 2008-06-24), described by the DDD Community as "one of Greg's earliest explanations of Event Sourcing." It credits no one. [dddcommunity.org](https://www.dddcommunity.org/event-sourcing/evans_2007/)
+- A search result claiming Young "first talked about event sourcing in 2006 at QCon San Francisco" is **rejected**: QCon SF began in 2007.
+- **Conclusion:** Fowler's 12 December 2005 draft is the earliest dated write-up found. Fowler's frame: `distributed`, primary author Fowler, Greg Young as co-originator, ledgers named as the older model. Neither Fowler nor Young claims to have invented the underlying idea.
+
+## Name
+
+Julie chose "Append, don't overwrite" (2026-09-17). Shared `concept_slug`: `append-dont-overwrite`.
+
+## Git's limits for AI agents (researched 2026-09-17 for Julie's reading; not on the page)
+
+Julie's framing (2026-09-17, in conversation): append-only history matters as investigability (what happened, when, by whom, who was impacted). It is a property of logging generally, and log rotation exists so logs can be shipped to a central store. Security shares the property with reliability and performance, so it is not security-specific. Git was designed with humans as its primary user and is hitting limits as AI agents write code.
+
+- **Joab Jackson, "Git is unprepared for the AI coding tsunami," The Register, 2026-05-15.** Quotes Scott Chacon (GitHub and GitButler co-founder), Patrick Steinhardt (GitLab, on commit reference management as "a real bottleneck"), Sasha Medvedovsky (Diversion, on single-threaded operations), and Peco Karayanev (Autoptic: "Agents are nudging us toward a continuous flow"). Reports 10.83 issues per AI-generated pull request against 6.45 for human-written ones. [link](https://www.theregister.com/devops/2026/05/15/git-is-unprepared-for-the-ai-coding-tsunami/5241480)
+- **Lenny Pruss and Rebecca Dodd, "Will agents like Git any more than we do?", Amplify Partners, 2026-05-20.** Git tops out around 2 to 3 merges to main per second. Provenance: when the answer to "who wrote this?" is increasingly an agent, git's commit model makes "fine-grained tracing difficult" compared with tools that keep a stable identity for each change. Git's modal staging states impose reasoning overhead, and conflicts block progress. [link](https://www.amplifypartners.com/blog-posts/will-agents-like-git-any-more-than-we-do)
+- **Pedro (pepicrft), "Rethinking Version Control for an Agentic World," 2026-01-20.** "The why behind changes matters as much as the what." Git preserves diffs but not reasoning. Proposes sessions that capture "the rationale behind them and the prompt that originated them." [link](https://pepicrft.me/blog/rethinking-version-control-for-agents/)
+- **Provenance tooling layered onto git:** agentdiff records which agent, model and prompt excerpt produced which lines, signs each record with ed25519, and stores it in git history. [GitHub](https://github.com/codeprakhar25/agentdiff). Other conventions: `Generated-By` and `Co-authored-by` trailers, signed commits, git notes under `refs/notes/ai`. [Crash Override KB](https://crashoverride.com/resources/knowledge-base/code-ownership/attributing-ai-commits-git)
+- **Agent fingerprinting:** a study of 33,580 pull requests from five agents identified the submitting agent from behavioral features with 97.2% F1. This suggests git's self-asserted author field is weaker evidence of "who" than the behavior itself. [arXiv 2601.17406](https://arxiv.org/pdf/2601.17406)
+- **Alternatives built for agents:** GitButler's agent CLI; Oak (the unit of work is a session, not a commit). Treat as market signals, not verified claims.
+
+## Structural versus opt-in completeness (2026-09-17, for Julie's question)
+
+- **Datomic reified transactions:** each transaction is itself an entity. Datomic automatically records `:db/txInstant`, the "when." Who made the change, why, and the source application are attributes a developer *can* add to the transaction; nothing requires them. [Datomic docs, transaction data](https://docs.datomic.com/transactions/transaction-data-reference.html), [Datomic blog, Reified Transactions (2015)](https://blog.datomic.com/2015/12/reified-transactions.html)
+- **Reading:** in a system where state changes only through recorded events or transactions, the record of *what* changed and *when* is complete by construction. *Who* and *why* remain opt-in and self-asserted, the same weakness git's author field has. Reads and side effects outside the event model are not recorded at all. Anyone with direct access to storage can still alter the store; append-only holds only as far as the write path is protected.
+- Julie's correction: log rotation is not always a shipping step. Short-lived compute may never rotate, and there the instance dies with its logs unless they were shipped.

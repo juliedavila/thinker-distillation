@@ -152,6 +152,21 @@ named_frames:
     attribution_kind: original
     primary_author: martin-fowler
     source_link: https://martinfowler.com/bliki/
+  - concept_slug: append-dont-overwrite
+    display_name: Event sourcing
+    one_line_gloss: >
+      Record every change to application state as an event, and rebuild the
+      state at any time by replaying the log. Fowler wrote the pattern up in
+      draft in 2005 and returned to it in 2017, comparing the event log to a
+      git history and to the accounting transactions behind a balance. Greg
+      Young popularized it alongside CQRS from 2007, and neither claims the
+      underlying idea as new.
+    attribution_kind: distributed
+    primary_author: martin-fowler
+    co_originators:
+      - slug: greg-young
+        role: popularized it with CQRS; early public explanation at QCon SF 2007
+    source_link: https://martinfowler.com/articles/201701-event-driven.html
 
 body_of_work:
   - title: Is Quality Software Worth The Cost?
@@ -347,12 +362,21 @@ adjacent_thinkers:
       Maneuver*. The boundary arc of Fowler's work runs through Conway's
       claim that org structure ships in the system structure.
     strength: secondary
+    render_tier: deep
 
   - target_slug: ray-dalio
     display_name: Ray Dalio
     edge_type: parallel
     edge_label: >
       Dalio writes down an organization's decision rules the way Fowler writes down design vocabulary: explicit, named, and open to revision.
+    strength: secondary
+  - target_slug: rich-hickey
+    display_name: Rich Hickey
+    edge_type: parallel
+    edge_label: >
+      Hickey calls reliance on tests to make change safe "guardrail
+      programming," a direct counterpoint to refactoring under tests. His
+      accretion-only interfaces pair with Fowler's Tolerant Reader.
     strength: secondary
   - target_slug: fred-brooks
     display_name: Fred Brooks

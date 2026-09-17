@@ -231,18 +231,28 @@ reading: >
   staging cannot reproduce production and that management is a different job
   rather than a rung above engineering.
 extension: >
-  Prompt injection is architecturally unsolvable, so mitigation stays layered
-  and partial, and the incident that gets through arrives in a form nobody wrote
-  a detection for. Her test transfers directly: after an agent does something
+  Prompt injection has no architectural fix, so mitigation stays layered and
+  partial, and the incident that gets through arrives in a form nobody wrote a
+  detection for. Her test transfers directly: after an agent does something
   unexpected, can anyone ask which tool call, which prompt, which user, without
   shipping new instrumentation first. That argues for one wide record per agent
   action, carrying the identifiers an investigation needs rather than counts of
   blocked attempts. Sampling to afford that record removes the rare event an
-  investigation wants, which is the objection her critic raises about forensics,
-  so the reach of a wide record into security work stays unproven. A record
-  built from full prompts and tool payloads also becomes a store of secrets and
-  personal data to defend, and it still says nothing about whether the action
-  was permitted, so this buys investigation and not assurance.
+  investigation wants, the objection her critic raises about forensics, and
+  agent loops generate more calls than the traffic that critique assumed, so the
+  reach into security work stays unproven. A record built from full prompts and
+  tool payloads also becomes a store of secrets and personal data to defend, and
+  it still says nothing about whether the action was permitted, so this buys
+  investigation and not assurance.
+reading_review:
+  protocol: reading-protocol-v1
+  date: 2026-09-17
+  verdict: accept
+  council_transcript: ~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-charity-majors-20260917-151617-debate/transcript.md
+  grounding_pack: _working/charity-majors/grounding-pack.md
+  claims: _working/charity-majors/reading-claims.md
+  dissent: false
+
 limits:
   - headline: The prescription is also the product
     severity: structural
@@ -251,7 +261,7 @@ limits:
       storage architecture her writing recommends, and much of that writing is
       published on the company's blog. A reader should weigh the argument
       knowing that the person making it profits from its adoption, including
-      any adoption the reading below argues for. She is direct about the
+      any adoption the extension below argues for. She is direct about the
       commercial context, including about vendors who adopted her vocabulary
       without changing their products.
   - headline: Cost and sampling undercut the single record

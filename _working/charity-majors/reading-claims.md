@@ -13,8 +13,8 @@ One line per sentence of `reading` and `extension`, each with the grounding-pack
 
 ## extension
 
-- Prompt injection is architecturally unsolvable, so mitigation stays layered and partial, and the incident that gets through arrives in a form nobody wrote a detection for. [P:1]
+- Prompt injection has no architectural fix, so mitigation stays layered and partial, and the incident that gets through arrives in a form nobody wrote a detection for. [P:1]
 - Her test transfers directly: after an agent does something unexpected, can anyone ask which tool call, which prompt, which user, without shipping new instrumentation first. [F:observability-as-unknown-unknowns] [F:high-cardinality]
 - That argues for one wide record per agent action, carrying the identifiers an investigation needs rather than counts of blocked attempts. [F:wide-structured-events]
-- Sampling to afford that record removes the rare event an investigation wants, which is the objection her critic raises about forensics, so the reach of a wide record into security work stays unproven. [L:2]
+- Sampling to afford that record removes the rare event an investigation wants, the objection her critic raises about forensics, and agent loops generate more calls than the traffic that critique assumed, so the reach into security work stays unproven. [L:2]
 - A record built from full prompts and tool payloads also becomes a store of secrets and personal data to defend, and it still says nothing about whether the action was permitted, so this buys investigation and not assurance. [L:4]

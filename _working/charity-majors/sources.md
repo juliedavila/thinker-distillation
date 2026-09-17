@@ -69,3 +69,7 @@ Her 2.0 argument is structurally the same move the concept page describes: keep 
 - Her reason: "One of the principles I live my life by is that you should generally call people, or groups of people, what they want to be called."
 
 This replaces the secondhand Horovits account. The page can now state the retreat as her own stated position, dated March 2025, with this post as the source. [link](https://charity.wtf/2025/03/24/another-observability-3-0-appears-on-the-horizon/)
+
+## Career ordering (round 2 grounding flag, 2026-09-17)
+
+Her Honeycomb bio lists the three employers without ordering them: "building and managing massive distributed systems at Parse (acquired by Facebook), Facebook, and Linden Lab building Second Life." The page's order (Linden Lab, then Parse, then Facebook through the acquisition) follows from Second Life predating Parse, and from Parse being acquired by Facebook while she was there. No source states the sequence directly, so the page avoids dates for it. [Honeycomb team page](https://www.honeycomb.io/teammember/charity-majors/)

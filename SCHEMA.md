@@ -409,7 +409,13 @@ Every `reading` and `extension` is produced by the steps below, in order, with n
    bun scripts/reading-gates.ts <slug>
    ```
 
-   It must exit 0. The script checks `reading`, `extension`, and `margin_note` for: em-dashes, banned words, contrast constructions such as "not just X" or "not X, but Y," and first person (allowed only in `margin_note`). For `reading` and `extension` it also checks the 160-word limit, that every sentence appears in the claims file, that every citation exists in the pack, and that the Lens is cited or waived. "Leverage" and "navigate" produce warnings instead of failures, because they are banned only as a verb or metaphor; check each by hand.
+   ```bash
+   bun scripts/fact-ledger.ts <slug>
+   ```
+
+   Both must exit 0. `fact-ledger.ts` checks that every factual field on the page cites a verified source: it reads `_working/<slug>/facts.md` (one line per verified fact, with a URL and the date checked) and `_working/<slug>/page-claims.md` (which field cites which fact), and derives the required field list from the page itself, so a new frame, critic edge or book cannot be forgotten. It covers attribution, co-originators, `critiques` and `antecedent` edges, body of work, `active_years` and `background`. Interpretation is not a fact and is not checked there.
+
+   `reading-gates.ts` must also exit 0. The script checks `reading`, `extension`, and `margin_note` for: em-dashes, banned words, contrast constructions such as "not just X" or "not X, but Y," and first person (allowed only in `margin_note`). For `reading` and `extension` it also checks the 160-word limit, that every sentence appears in the claims file, that every citation exists in the pack, and that the Lens is cited or waived. "Leverage" and "navigate" produce warnings instead of failures, because they are banned only as a verb or metaphor; check each by hand.
 
 4. **Council review.** Five AI reviewers, each built for this job, read the page, the pack, and the claims map. Each returns ACCEPT, ACCEPT-WITH-EDITS, REVISE, or REJECT, with exact edits.
    - *Thinker's advocate*: would the thinker recognize this reading?
@@ -420,7 +426,11 @@ Every `reading` and `extension` is produced by the steps below, in order, with n
 
    **Batches.** When several pages are converted at once, each reviewer reads every page in the batch and returns a verdict per page. This keeps the review to five reviewers, and it lets the novelty reviewer compare the pages with each other, which is where sameness shows up (repeated openers, the same closing move, the same Lens position everywhere). Before drafting a batch, give each page a different angle and Lens position where the sources allow it.
 
-5. **Revise and re-review.** Any REVISE sends the draft back. Rewrite the fixes yourself under the writing rules (never paste a reviewer's suggested text if it breaks them), rerun step 3, and have only the dissenting reviewers review again. Allow two revision rounds. A third REVISE, or any REJECT, goes to Julie. Use the full three-round Council debate instead of the single quick round for `mode-a` thinkers, or when two or more reviewers REJECT.
+5. **Revise and re-review.** Any REVISE sends the draft back. Rewrite the fixes yourself under the writing rules (never paste a reviewer's suggested text if it breaks them), rerun step 3, and have only the dissenting reviewers plus the grounding and byline reviewers review again. Allow two revision rounds. A third REVISE, or any REJECT, goes to Julie. Use the full three-round Council debate instead of the single quick round for `mode-a` thinkers, or when two or more reviewers REJECT.
+
+   **Ask for the round count rather than remembering it.** `bun scripts/review-policy.ts <slug>` reads `doctrine_mode` off the page and prints the required rounds, the seats per round, the transcript suffix and the escalation condition. It is the executable form of the paragraph above, and the only place a caller should get the number. This rule was written here and nowhere else until 2026-09-17, and two `mode-a` pages shipped with a single round because the skill driving the work never mentioned it.
+
+   **A reviewer's factual assertion is a research request, never a fact.** Three reviewer claims have been wrong: a sympathetic essay called a critique, an uptake quote with no source, a disclosed interest called undisclosed. Verify it and give it a line in `facts.md` before it reaches the page, or drop it and record that in the transcript.
 
 6. **Record and ship.** Save the Council transcript to `~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-<slug>-<timestamp>-quick/transcript.md` (a private path on the maintainer's machine). Fill in `reading_review`, setting `dissent: true` if any reviewer stayed below ACCEPT-WITH-EDITS. Run the build, then open a merge request.
 
@@ -495,6 +505,10 @@ The home page (`/`) lists thinkers alphabetically. `/concepts/` lists concept pa
 **Build warnings** (printed in the build log, prefixed `[distillery] warning`): a page links to a thinker whose page does not link back; a frame credits a co-originator who has a page here but is not a neighbor; a critic with a page here is not `primary`; every holder of a concept page has the same `attribution_kind`.
 
 **Prose checks**: `scripts/reading-gates.ts` enforces the checks in section 7 for the Editorial Reading fields, and it fails on those. Since 2026-09-17 it also reads every other editorial field on the page (tagline, thirty-second take, background, why they matter, thesis, inclusion rationale, limits, frame glosses, edge labels, body-of-work notes, further-in lines) and prints a warning for em-dashes, banned words, the antithesis cadence and first person there. Those are warnings because the same pattern is sometimes correct in those fields, such as a limit headline that names the critique's own word. `--strict-prose` turns the warnings into failures. The script is run by hand as part of the Reading Protocol, not by the build.
+
+**Fact ledger**: `scripts/fact-ledger.ts` fails when a factual field on the page has no verified source behind it, when a cited `[S:n]` is not in `facts.md`, or when a ledger line has no URL or no check date. It warns on a verified fact nothing cites, which is usually a claim a rewrite dropped. Run by hand as part of the Reading Protocol and by the pipeline at three stages.
+
+**Review policy**: `scripts/review-policy.ts` prints the required round count per page. It decides nothing on its own; it is section 7 step 5 in executable form.
 
 **Still applied by hand**: the byline test, the inclusion filter, the ten-minute critic search, the choice of which frames go in the foreground, and the remaining concept-page rules in 6.4 (not a thinker page in disguise, not a doctrine claim, no overlap).
 

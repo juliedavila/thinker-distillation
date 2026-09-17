@@ -19,11 +19,15 @@ The rules it applies live in `SCHEMA.md` (content model in section 4, Reading Pr
 
 Each stage names its output. Keep outputs under `_working/<slug>/` so the next run can see what this one did.
 
-### 1. Research (output: `_working/<slug>/sources.md`)
+### 1. Research (outputs: `_working/<slug>/sources.md`, `_working/<slug>/facts.md`)
 
 Targeted web searches from the main session, not open-ended research agents. Verify every fact the page will state: education, employers and titles with dates, books with year, publisher and co-authors, essays that carry named frames, and named critics who engaged the thinker directly. Prefer primary sources (the thinker's own text, publisher pages). When sources disagree, record both and keep the page vague on that point. Mark each correction to the candidate issue.
 
 Check antecedents before anything is called original. For each candidate frame, search for earlier uses (Fournier's tech lead framing extended Patrick Kua's earlier book). Record critics carefully: someone who argues a different model without naming the thinker is a parallel edge, not a critic.
+
+Run the uptake check before anything else, because it decides whether a Council is worth convening at all. For each candidate frame, find its first date and any use by practitioners other than the thinker. If every frame is under two years old with no outside use, stop and bring it to Julie (Saxe).
+
+**Write the fact ledger as you go.** `sources.md` is the prose record a human reads. `facts.md` is the machine-checkable half: one top-level bullet per verified fact, `- [S:n] claim | url | YYYY-MM-DD`. `_working/charity-majors/facts.md` is the worked example. A claim with no line in `facts.md` cannot reach the page, whoever proposed it, including a Council seat. See `PIPELINE.md` for why.
 
 Label the issue `camila:in-council` when research is done.
 
@@ -41,7 +45,15 @@ Update the issue with the verdict and corrections, and label it `camila:accepted
 
 Write every field except `reading` and `extension`. Apply the Council's agreed shape: which frames go in the foreground, attribution for each, `doctrine_mode`, and limits. Frames coined with co-authors are `co-authored` with every co-author named. Frames the thinker built on are `extended` with the originator in `co_originators`. Field vocabulary goes in the `deep` tier with `distributed` attribution. Keep adjacency edges to seven or fewer.
 
-Re-verify anything the draft adds beyond `sources.md` (URLs, essay dates, what an essay actually argues) and append it to `sources.md`.
+Re-verify anything the draft adds beyond `sources.md` (URLs, essay dates, what an essay actually argues) and append it to both `sources.md` and `facts.md`.
+
+Then write `_working/<slug>/page-claims.md`, one line per factual field, citing the `[S:n]` behind it, and run:
+
+```bash
+bun scripts/fact-ledger.ts <slug>
+```
+
+It derives the required fields from the page, so a new frame, critic edge or book adds a required line on its own. It must exit 0.
 
 ### 4. Return edges
 
@@ -62,9 +74,15 @@ Before writing the draft, choose an angle and a Lens position that no neighborin
 
 Run the five seats with `briefs/review.md`. For a new page, the grounding seat also audits every fact on the page against `sources.md`, and the byline seat audits every attribution.
 
-**Pick the round count before launching, and write it in the transcript header.**
+**Ask for the round count, do not remember it.** Before launching:
 
-- **Three rounds (required)** when the page is `doctrine_mode: mode-a`, or when two or more seats return REJECT in round 1 (SCHEMA section 7, step 5). Use a `-debate` suffix on the transcript folder instead of `-quick`.
+```bash
+bun scripts/review-policy.ts <slug> [slug...]
+```
+
+It reads `doctrine_mode` off the page and prints the required rounds, the seats per round, the transcript suffix and the escalation rule. That script is the only place the rule lives. This happened because the three-round requirement sat in SCHEMA section 7 and nowhere else, and two pages shipped with one round because the skill driving the work never said so. Write the count it gives you into the transcript header.
+
+- **Three rounds**, which the script returns for `mode-a` pages, and which two or more REJECT verdicts in round 1 promote any page to. Use a `-debate` suffix on the transcript folder instead of `-quick`.
   - **Round 1:** the five seats review independently with `briefs/review.md`.
   - **Round 2:** apply round 1 edits and rerun the gates. Then each seat reads the full round 1 transcript and the revised page with `briefs/review-round2.md`. It responds to named points from other seats, says whether its own concerns were resolved, and audits the rewrite for new claims.
   - **Round 3:** apply round 2 edits and rerun the gates. Each seat reads rounds 1 and 2 with `briefs/review-round3.md` and states where the Council agrees, what is still disputed, and a final verdict.
@@ -72,7 +90,9 @@ Run the five seats with `briefs/review.md`. For a new page, the grounding seat a
 - **One round** otherwise, with the rules below.
 
 - One-round pages, all ACCEPT or ACCEPT-WITH-EDITS: apply the edits (re-authored under the writing rules, never pasted when they break them), rerun the gates, and ship. No second round.
-- Any REVISE: fix, rerun the gates, and send the revised text to the seats that dissented plus the grounding seat, because rewrites introduce new unsupported claims (it happened on Komoroske).
+- Any REVISE: fix, rerun the gates, and send the revised text to the seats that dissented plus seats 3 and 5, because rewrites introduce new unsupported claims (it happened on Komoroske) and those two seats are the ones that catch it.
+
+**A seat's factual assertion is a research request, never a fact.** Seats have been wrong three times: a sympathetic essay called a critique, an uptake quote with no source, a disclosed interest called undisclosed. Before any seat-supplied fact reaches the page, verify it and add an `[S:n]` line to `facts.md` with a URL. If it does not hold, drop it and say so in the transcript.
 - Two revision rounds at most. A third REVISE or any REJECT goes to Julie.
 
 Add `reading_review` to the page with `dissent: true` if any seat ended below ACCEPT-WITH-EDITS.
@@ -80,6 +100,8 @@ Add `reading_review` to the page with `dissent: true` if any seat ended below AC
 ### 7. Ship
 
 ```bash
+bun scripts/reading-gates.ts <slug>
+bun scripts/fact-ledger.ts <slug>
 bun run build
 ```
 
@@ -89,6 +111,12 @@ Confirm the build passes, the page renders, and `reading_review` does not appear
 
 1. File a `Candidate:` issue for each strong same-neighborhood thinker the Councils named, using the format of issues #12 to #14 (why this candidate, working case marked as unconfirmed, questions for the inclusion Council). Skip anyone already filed or already on the site.
 2. Append this run to `calibration.md`: rounds used, verdict counts, and every new failure pattern a seat caught. A failure caught twice becomes a checklist item.
+
+## Running this without a human in the middle
+
+`.claude/workflows/thinker-pipeline.js` runs these eight stages end to end so Julie blocks only at merge approval. It parks a candidate rather than shipping it whenever this skill says to stop and ask her: a failed uptake check, research contradicted by its own sources, two or more inclusion REJECTs, a page that still carries dissent after its last round. `PIPELINE.md` has the design, the cost, and the evidence on which checks are load-bearing.
+
+Work this skill by hand when you are adding one thinker and want to think while you do it. Use the workflow when the queue is the point.
 
 ## Cost controls
 

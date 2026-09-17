@@ -57,3 +57,5 @@ Run each item against the draft before running the gates.
 | 2026-09-16 | Fournier (new page) | 4 accept, 1 reject | 1 | 5 accept-with-edits | Three errors in candidate case; closer echoed Komoroske; chronology slip; shadow tooling risk; embellished essay gloss |
 
 **Trend:** the Fournier page, drafted after the batch lessons, needed one review round and no revisions. The goal for the next page is the same result with a shorter edit list.
+
+**Round 3 narrowed, 2026-09-17 (Julie).** Read the run log column above: every recorded round 3 ended with all five seats accepting and no page changed, while rounds 1 and 2 caught something on every run. Round 3 is now a single adjudication pass (`briefs/review-adjudicate.md`), and the five seats return whenever round 2 leaves any verdict below ACCEPT-WITH-EDITS. Watch this: if an adjudication pass ever catches something a five-seat round would have caught, or misses something that reaches a merge request, record it here. That is the evidence that decides whether the narrowing holds.

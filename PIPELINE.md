@@ -47,7 +47,8 @@ out of the repository rather than out of the workflow script.
 
 **Review** runs the rounds the policy returned, with an editor between them that applies the
 accepted edits, re-authors them in the site's voice, reruns both gates and re-audits its own
-rewrite.
+rewrite. Rounds 1 and 2 are the full five seats; round 3 is one adjudication pass unless round 2
+left dissent, in which case the seats come back.
 
 **Ship** is serial, one candidate at a time, and it is the only phase that touches git or a
 neighbouring page. It applies the return edges, builds, writes the transcript, pushes and opens the
@@ -108,21 +109,22 @@ From the run log, which is the only thing that can answer this.
 | Automated gates | A banned cadence in a shipped thesis, every citation that failed to resolve | Load-bearing and free |
 | Review round 1 | Real errors on every run without exception | Load-bearing |
 | Review round 2 | One new claim introduced by a rewrite, in the seven-page batch | Load-bearing, but narrowly: it is the rewrite audit |
-| Review round 3 | Four runs, every seat accepted, no page changed | Ceremony, on the evidence so far |
+| Review round 3, five seats | Four runs, every seat accepted, no page changed | Retired as the default on 2026-09-17 |
+| Review round 3, adjudication | Replaces it: one pass that confirms resolution, audits round 2's edits, checks the ledger | The convergence step, at a fifth of the cost |
 
-Round 3 has never changed a page. The honest reading is that a fourth run of five seats confirming
-what three already agreed on is buying very little. The workflow still runs it, because SCHEMA
-section 7 requires the full debate for `mode-a` pages and lowering that bar is Julie's call rather
-than a cost optimisation this document gets to make on its own. The change worth considering is
-narrow: keep rounds 1 and 2 at five seats, and let round 3 be a single adjudication pass unless
-round 2 left dissent, in which case the full round comes back. That would cut four agents per batch
-and, on four runs of evidence, change no outcome. It needs one word from her and a SCHEMA edit in
-the same merge request.
+Round 3 had never changed a page. A fourth run of five seats confirming what three already agreed
+on was buying very little, so Julie approved the narrowing on 2026-09-17. Rounds 1 and 2 keep all
+five seats, because they catch something on every run. Round 3 is now a single adjudication pass
+against `briefs/review-adjudicate.md`, and the five seats come back whenever round 2 leaves any
+verdict below ACCEPT-WITH-EDITS, which is the case the evidence never covered. The adjudicator is
+told it is the last read before a merge request and carries what five seats would have carried.
+
+That saves four agents per batch and, on four runs of evidence, changes no outcome.
 
 ## Cost
 
-Roughly 32 agents for two candidates and 40 for three, on the happy path with both pages in
-`mode-a`. Candidates that park cost less, since parking happens before the expensive stages.
+Roughly 28 agents for two candidates and 36 for three, on the happy path with both pages in
+`mode-a` and round 3 adjudicating. Candidates that park cost less, since parking happens before the expensive stages.
 
 The design batches wherever the Councils can share a pass. Five seats review every page in the
 batch at once instead of five per page, which is what SCHEMA already recommends and which is also

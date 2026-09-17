@@ -30,6 +30,9 @@ type Plan = {
   rounds: number;
   transcript_suffix: 'debate' | 'quick';
   seats_by_round: Record<string, number[]>;
+  // 'adjudication' means one pass that reads rounds 1 and 2 and calls it, instead of five seats.
+  // An empty seat list in seats_by_round is what that looks like.
+  round3_mode?: 'adjudication' | 'full';
   reason: string;
   escalation: string;
 };
@@ -52,9 +55,17 @@ const plans: Plan[] = slugs.map((slug) => {
       doctrine_mode: mode,
       rounds: 3,
       transcript_suffix: 'debate',
-      seats_by_round: { '1': ALL_SEATS, '2': ALL_SEATS, '3': ALL_SEATS },
-      reason: 'mode-a pages carry doctrine, so SCHEMA section 7 step 5 requires the full three-round debate.',
-      escalation: 'Any REVISE or REJECT left after round 3 goes to Julie. Never ship over it.',
+      // Round 3 is one adjudication pass, not five seats. Across the four runs recorded in
+      // calibration.md, round 3 ended in unanimous acceptance every time and changed no page,
+      // while rounds 1 and 2 caught something on every run. Julie approved the narrowing on
+      // 2026-09-17: rounds 1 and 2 keep all five seats, and round 3 only gets them back when
+      // round 2 leaves dissent, which is the case the evidence never covered.
+      seats_by_round: { '1': ALL_SEATS, '2': ALL_SEATS, '3': [] },
+      round3_mode: 'adjudication',
+      reason: 'mode-a pages carry doctrine, so SCHEMA section 7 step 5 requires three rounds. Rounds 1 and 2 are the full Council; round 3 converges.',
+      escalation:
+        'If ANY verdict in round 2 is below ACCEPT-WITH-EDITS, round 3 reverts to all five seats. ' +
+        'Any REVISE or REJECT left after round 3 goes to Julie. Never ship over it.',
     };
   }
   return {
@@ -77,7 +88,7 @@ if (json) {
   for (const p of plans) {
     console.log(`${p.slug} (${p.doctrine_mode}): ${p.rounds} round${p.rounds > 1 ? 's' : ''}, transcript suffix -${p.transcript_suffix}`);
     for (const [round, seats] of Object.entries(p.seats_by_round)) {
-      console.log(`  round ${round}: seats ${seats.join(', ')}`);
+      console.log(`  round ${round}: ${seats.length ? `seats ${seats.join(', ')}` : 'one adjudication pass over the rounds 1 and 2 transcripts'}`);
     }
     console.log(`  why: ${p.reason}`);
     console.log(`  escalation: ${p.escalation}`);

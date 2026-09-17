@@ -313,6 +313,15 @@ adjacent_thinkers:
     edge_label: >
       DORA's time to restore and resilience engineering converge on the same property from different methods: how fast a team recovers.
     strength: secondary
+  - target_slug: charity-majors
+    display_name: Charity Majors
+    edge_type: parallel
+    edge_label: >
+      The instrumentation layer beneath sensemaking. Majors argues telemetry
+      should keep one wide record per request so responders can ask questions
+      nobody predicted before the incident.
+    strength: secondary
+
 further_in:
   start_here: >
     The Etsy 2012 *Blameless Postmortems and a Just Culture* essay

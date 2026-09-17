@@ -297,6 +297,15 @@ adjacent_thinkers:
     edge_label: >
       DORA's time to restore measures one operational footprint of the resilience Woods describes structurally.
     strength: secondary
+  - target_slug: charity-majors
+    display_name: Charity Majors
+    edge_type: parallel
+    edge_label: >
+      Both work on systems that surprise their operators. Woods names the
+      reserves that absorb surprise; Majors asks whether the instruments can
+      describe one after it arrives.
+    strength: secondary
+
 further_in:
   start_here: >
     *Four Concepts for Resilience and the Implications for the Future

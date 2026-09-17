@@ -3,15 +3,63 @@ project: thinker-distillation
 effort: E3
 phase: in-progress
 progress: iter-10 to iter-15 shipped; tracked in GitLab MRs and issues
-iteration: iter-15-hickey-concept-majors-2026-09-17
+iteration: iter-16-pipeline-automation-2026-09-17
 mode: project
 started: 2026-05-25
 updated: 2026-09-17
 ---
 
-## Save Point — 2026-09-17 (cold-start resume here)
+## Save Point — 2026-09-17 evening, pipeline automation (cold-start resume here)
 
-> Everything from here down to `## Superseded Save Point — 2026-09-16` is current state. Older blocks are history.
+> Current state. The block below it, `## Superseded Save Point — 2026-09-17 (thinkers)`, is the
+> session that shipped Hickey, Majors and the concept page, and is history now except where this
+> block points back into it.
+
+### State at save (verified 2026-09-17)
+
+- **Site:** live at https://thinker-distillery-97a9ca.gitlab.io/. **11 thinkers, 3 concepts.** Build clean, 21 pages.
+- **MR !11 merged by Julie**, so Majors is on main and issue #13 is closed. No thinker work is outstanding.
+- **MR !12 open, awaiting Julie:** the pipeline automation. https://gitlab.com/juliedavila/thinker-distillery/-/merge_requests/12
+- **Open candidate issues, nine of them:** #4 Appleton, #5 Hudson (both May, unverified), #12 Larson, #14 Skelton and Pais, #16 Willison, #17 Anderson, #18 Herley, #19 Ousterhout, #20 Beck. #1 Saxe stays closed, rejected 5 to 0, recheck September 2027.
+
+### What this session built
+
+Julie's direction was that she had been following along rather than deciding, and wanted the pipeline automated so she blocks only at final merge approval. Nothing was added to the site; this was the machine that adds the next nine.
+
+- **`.claude/workflows/thinker-pipeline.js`.** Seven phases over a batch of two or three candidates: research, adversarial fact audit, inclusion Council, draft, round policy, batched review rounds with an editor between them, serial ship, close the loop. Parks a candidate rather than shipping it wherever SKILL.md already said to stop and ask her. Agents never race: per-slug files only, and git plus neighbour pages plus calibration.md are touched only in the serial stages.
+- **`scripts/fact-ledger.ts`.** A Council seat's assertion is now a research request, never a fact. Every factual field must cite a verified `[S:n]` from `_working/<slug>/facts.md` with a URL and a check date, and the required field list is derived from the page so a new frame, critic edge or book cannot be forgotten. Majors backfilled as the worked example: 12 facts, 18 fields.
+- **`scripts/review-policy.ts`.** The round count as code, so it lives in one place. This is the fix for the rule that sat in SCHEMA section 7 and nowhere else while two pages shipped with one round.
+- **`PIPELINE.md`.** The design, the cost, where Julie blocks, and the load-bearing-versus-ceremony table.
+- **SKILL.md, SCHEMA.md section 7 and 10, calibration.md** all updated to point at the two scripts instead of restating their rules.
+
+### The finding worth Julie's attention
+
+**Review round 3 has never changed a page.** Four runs, every seat accepting, no edits applied. Rounds 1 and 2 earn their cost on every run; round 3 reads as ceremony on the evidence. The workflow still runs it, because SCHEMA requires the full debate for `mode-a` and lowering that bar is Julie's call. The proposal in MR !12: keep rounds 1 and 2 at five seats, make round 3 a single adjudication pass unless round 2 left dissent. Cuts four agents per batch, changes no outcome on the evidence so far. **Needs one word from her plus a SCHEMA edit in the same MR.**
+
+### Verification done
+
+Build passes, site unchanged. Both new scripts tested on pass and fail paths against the real Majors page. Workflow control flow exercised against stub agents across seven scenarios covering every parking path (uptake failure, contradicted research, inclusion rejection, draft gate failure, two rejects promoting a mode-b page to the full debate, dissent surviving the last round). **No real agents were spent, so agent judgment is untested.** First real run should be two candidates with `dryRun: true`.
+
+### Next move on resume
+
+1. **Julie:** merge or redline MR !12, and answer the round-3 question.
+2. Then the first real pipeline run. Suggested first batch: **#12 Larson and #16 Willison**. Larson is the closest neighbour to pages that already exist, which gives the novelty seat something to push against; Willison is the first candidate in the AI lane. Invoke with `{today, candidates:[{issue,name,slug}...], dryRun:true}` from the repo root. Workflow needs Julie's explicit opt-in each time; that is a property of the tool.
+3. Read the run's Report-phase output before launching a second batch. It reports which checks caught nothing.
+
+### Still Julie's, unchanged
+
+Two About-page slots. The concept-page reading prompt (investigability naming, side log versus events-as-system, where the record lives, what changes when agents write). Neighbour demotions: Parnas on Brooks, Conway on Fowler, DHH on Forsgren. Five legacy prose warnings on four merged pages (Forsgren, Fournier, Allspaw, Dalio).
+
+### Environment notes
+
+Unchanged from the block below, and all still true: `PATH="/opt/homebrew/bin:$PATH"`; `glab ci list -b <branch>` is broken, use `glab ci list | rg <branch>`; CI builds only on main so `bun run build` is the gate for branches; Bun `-e` breaks on apostrophes and parentheses inside shell single quotes. New: workflow scripts are plain JavaScript with no filesystem access and no clock, which is why `args.today` is required.
+
+---
+
+## Superseded Save Point — 2026-09-17 (thinkers; history)
+
+> The session that shipped Hickey, Majors and the Append, Don't Overwrite concept page. Its
+> "Next move on resume" section was the automation work, which the block above now answers.
 
 ### State at save (verified 2026-09-17)
 

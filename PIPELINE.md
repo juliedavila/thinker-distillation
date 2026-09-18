@@ -136,10 +136,12 @@ At three per batch, the nine queued candidates are three runs.
 
 ## Running it
 
-From the repository root, with the Workflow tool:
+From the repository root, with the Workflow tool. **Pass `scriptPath`, not `name`.** The named
+registry only resolves workflows the harness itself knows about, so a repository-local one has to
+be invoked by path. The first launch attempt failed on this.
 
 ```
-name: thinker-pipeline
+scriptPath: .claude/workflows/thinker-pipeline.js
 args: {
   "today": "2026-09-18",
   "candidates": [
@@ -151,6 +153,24 @@ args: {
 
 `today` is required because a workflow script cannot read the clock. `dryRun: true` runs everything
 except the push and the merge request.
+
+Two things the script itself must respect, both learned by breaking them. The `meta` block has to
+be a pure literal, so a `whenToUse` built by concatenating two strings is rejected outright before
+anything runs. And a script is plain JavaScript with no filesystem access, which is why every file
+in this process is written by an agent and never by the orchestrator.
+
+## The Council record
+
+Each seat writes its own report to `_working/_council/<today>/round-N-seat-M.md` before returning,
+and each editor writes its resolution notes beside it. Rounds 2 and 3 read that directory, which is
+what their briefs mean by the transcript, and the Ship stage assembles the final transcript from
+those files rather than from anyone's memory. The directory is gitignored, since the transcript
+that matters is copied to `~/.claude/LIFEOS/MEMORY/COUNCIL/`.
+
+This was missing on the first live run, on 2026-09-17. SKILL.md had always required it, and the
+workflow wrote nothing until Ship, so rounds 2 and 3 ran with a list of verdicts and no transcript.
+Several seats said so in their reports. They still found real problems, but seats responding to
+each other by name is the entire reason those rounds exist.
 
 The Workflow tool needs Julie's explicit opt-in each time, which is a property of the tool rather
 than of this design. The control flow has been exercised against stub agents across seven

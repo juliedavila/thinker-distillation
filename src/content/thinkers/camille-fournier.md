@@ -363,6 +363,7 @@ adjacent_thinkers:
       *Talking with Tech Leads* described the tech lead as a role change several
       years before *The Manager's Path* gave the tech lead its own chapter.
     strength: secondary
+    render_tier: deep
   - target_slug: nicole-forsgren
     display_name: Nicole Forsgren
     edge_type: parallel
@@ -387,6 +388,17 @@ adjacent_thinkers:
       Majors argues for moving back and forth between hands-on and management
       work instead of climbing.
     strength: secondary
+  - target_slug: will-larson
+    display_name: Will Larson
+    edge_type: parallel
+    edge_label: >
+      The other track above senior engineer. *The Manager's Path* follows the
+      management sequence one role at a time; Larson catalogued the
+      individual-contributor roles beside it, and spends most of his writing on
+      what someone in them does without a reporting line to act through. Where
+      he goes furthest from this shelf is on authority as a loan from a sponsor,
+      and on what happens to a policy that runs on exceptions.
+    strength: primary
   - target_slug: uri-bar-joseph
     display_name: Uri Bar-Joseph
     edge_type: critiques

@@ -366,6 +366,16 @@ adjacent_thinkers:
       describe a surprise once it arrives.
     strength: secondary
     render_tier: deep
+  - target_slug: will-larson
+    display_name: Will Larson
+    edge_type: parallel
+    edge_label: >
+      The same question answered on the other track. Larson catalogued the
+      roles that sit above senior engineer without a reporting line, and his
+      account of where their authority comes from treats influence without
+      command as the problem that job has to solve. Her pendulum answers by
+      moving between the two sides; his answer stays on one of them.
+    strength: primary
   - target_slug: simon-willison
     display_name: Simon Willison
     edge_type: parallel

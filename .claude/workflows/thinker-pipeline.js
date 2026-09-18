@@ -1,9 +1,7 @@
 export const meta = {
   name: 'thinker-pipeline',
   description: 'Take queued thinker candidates from research to a merge request Julie approves',
-  whenToUse:
-    'Run with args {today, candidates:[{issue, name, slug}], dryRun?} from the thinker-distillation repo. ' +
-    'Two or three candidates per run. Julie blocks only at merge approval.',
+  whenToUse: 'Run with args {today, candidates:[{issue, name, slug}], dryRun?} from the thinker-distillation repo. Two or three candidates per run. Julie blocks only at merge approval.',
   phases: [
     { title: 'Research', detail: 'verify every fact, build the ledger, then audit it adversarially' },
     { title: 'Inclusion', detail: 'five fixed seats, one pass over the whole batch' },
@@ -45,12 +43,29 @@ const NO_GIT =
   'Do NOT run any git command and do NOT touch files for any other candidate. Write only under ' +
   '_working/<slug>/ and your own page file. Branches and commits happen later, one at a time.'
 
+
 const today = args?.today
 const candidates = args?.candidates ?? []
 const dryRun = args?.dryRun === true
 if (!today) throw new Error('args.today is required (YYYY-MM-DD); workflow scripts cannot read the clock')
 if (!candidates.length) throw new Error('args.candidates is required, e.g. [{issue: 12, name: "Will Larson", slug: "will-larson"}]')
 if (candidates.length > 4) log(`WARNING: ${candidates.length} candidates in one batch. Three is the reviewed maximum; the review seats split their attention past that.`)
+
+// Where the Councils leave their reports while the run is in flight. Declared after `today`,
+// which it interpolates.
+//
+// The first live run found this missing. SKILL.md has always said to save every seat report to
+// disk as it arrives, because a transcript assembled from memory at the end is where content gets
+// lost, and the round 2 and 3 briefs both ask seats to quote the previous round by seat number.
+// This workflow wrote nothing until the Ship stage, so rounds 2 and 3 on 2026-09-17 ran with a
+// list of verdicts and no transcript. Several seats said so in their own reports. They still
+// found real problems, but responding to each other by name is the entire reason those rounds
+// exist.
+//
+// Each seat now writes its own report before returning, which costs no extra agents and keeps
+// writes collision-free: one file per seat per round. Ship assembles the final transcript from
+// these files rather than from anyone's memory.
+const COUNCIL = `_working/_council/${today}`
 
 const SEATS = [
   { n: 1, name: "Thinker's advocate" },
@@ -409,6 +424,19 @@ for (let round = 1; round <= 3; round++) {
     .filter(Boolean)
     .join('\n')
 
+  // The brief's {ROUND1_TRANSCRIPT} and {TRANSCRIPTS} placeholders resolve to this directory.
+  const transcriptNote =
+    `Every earlier seat report is on disk, one file per seat per round, under \`${COUNCIL}/\`. ` +
+    `Read all of them. That directory is what the brief means by {ROUND1_TRANSCRIPT} and {TRANSCRIPTS}. ` +
+    `The editor's resolution notes for each round are there too, as round-N-editor-<slug>.md. ` +
+    `Quote seats by number from those files rather than working from the verdict list below.`
+
+  const writeReport =
+    `Before you return, write your report verbatim to \`${COUNCIL}/round-${round}-` +
+    `${adjudicating ? 'adjudicator' : `seat-${'{SEAT}'}`}.md\`, covering every page you reviewed. ` +
+    `Create the directory if it does not exist. Later rounds and the final transcript are built from ` +
+    `these files, so write the full report and not a summary of it. This is the only file you write.`
+
   const reports = await parallel(
     seatsThisRound.map((n) => () =>
       agent(
@@ -424,7 +452,9 @@ for (let round = 1; round <= 3; round++) {
           `Pages: ${due.map((p) => `src/content/thinkers/${p.slug}.md`).join(', ')}\n` +
           `For each, its grounding pack, reading-claims.md, page-claims.md, facts.md and sources.md are under ` +
           `_working/<slug>/.\n\n` +
-          (priorRounds ? `What earlier rounds found:\n${priorRounds}\n\nSay whether your concerns were resolved, respond to points other seats made by name, and audit the rewrite for claims that were not there before.\n\n` : '') +
+          (priorRounds
+            ? `${transcriptNote}\n\nVerdicts so far:\n${priorRounds}\n\nSay whether your concerns were resolved, respond to points other seats made by name and quote them from their files, and audit the rewrite for claims that were not there before.\n\n`
+            : '') +
           (adjudicating
             ? `Round 2's edits are the newest text on the page and the least reviewed, so audit them hardest. ` +
               `Confirm every earlier concern was resolved in the text rather than waved at, and confirm the fact ` +
@@ -435,7 +465,9 @@ for (let round = 1; round <= 3; round++) {
               `closers and Lens positions.\n\n`) +
           `Anything factual you assert that is not already in facts.md goes in new_factual_claims. It will be ` +
           `researched before it can reach the page and rejected if it does not hold. Three seat assertions have ` +
-          `been wrong this way. Do not edit files. ${VOICE}`,
+          `been wrong this way.\n\n` +
+          `${writeReport.replace('{SEAT}', String(n))}\n\n` +
+          `Do not edit any page, any working file, or anything under src/. ${VOICE}`,
         { label: adjudicating ? 'review-r3:adjudicator' : `review-r${round}:seat-${n}`, phase: 'Review', schema: REVIEW }
       )
     )
@@ -480,6 +512,10 @@ for (let round = 1; round <= 3; round++) {
             `  bun scripts/reading-gates.ts ${p.slug}\n  bun scripts/fact-ledger.ts ${p.slug}\n` +
             `If you changed a reading sentence, update reading-claims.md so the claims map still matches, and ` +
             `regenerate the grounding pack if a neighbour changed. A stale pack propagated a dead sentence once.\n\n` +
+            `Then write your resolution notes to \`${COUNCIL}/round-${rn}-editor-${p.slug}.md\`: every edit you ` +
+            `applied and the text it replaced, every edit you rejected and why, and what you did with each ` +
+            `seat-asserted claim. The next round reads this file to check whether the resolution got a call ` +
+            `wrong, and the final transcript is built from it, so write it in full.\n\n` +
             `${VOICE}\n\n${NO_GIT}`,
           { label: `editor-r${rn}:${p.slug}`, phase: 'Review', schema: EDIT_RESULT }
         )
@@ -520,7 +556,11 @@ for (const p of finalized) {
       `4. \`bun scripts/reading-gates.ts ${p.slug}\` and \`bun scripts/fact-ledger.ts ${p.slug}\`, both exit 0.\n` +
       `5. Confirm reading_review is on the page, with dissent set correctly, and that it does not appear in the ` +
       `built HTML.\n` +
-      `6. Write the Council transcript to ~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-${p.slug}-${today.replace(/-/g, '')}-${policy?.plans?.find((x) => x.slug === p.slug)?.transcript_suffix ?? 'debate'}/transcript.md, with the round count in the header.\n` +
+      `6. Assemble the Council transcript from the seat reports and editor notes already on disk under ` +
+      `\`${COUNCIL}/\`, NOT from memory, and write it to ` +
+      `~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-${p.slug}-${today.replace(/-/g, '')}-${policy?.plans?.find((x) => x.slug === p.slug)?.transcript_suffix ?? 'debate'}/transcript.md. ` +
+      `Header carries the round count and the verdicts per round. Include each seat's report in full and each ` +
+      `round's resolution notes. Copy the source files into that directory alongside it.\n` +
       `7. Commit with Conventional Commits, push, and open a merge request${issue ? ` referencing issue #${issue}` : ''}.\n` +
       `8. Write _working/${p.slug}/calibration-entry.md: the run-log row for this page and any new failure pattern a ` +
       `seat caught. A later stage merges these into calibration.md. Do not edit calibration.md yourself.\n` +

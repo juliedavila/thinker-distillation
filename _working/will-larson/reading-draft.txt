@@ -1,0 +1,14 @@
+READING
+The organization Larson writes about is the one on paper: the ladder, the policy, the strategy, the team plan.
+The essays work one decay at a time: name how a written artifact fails, then prescribe the repair.
+A policy that spends its time granting exceptions carries exception debt, and the repair is to batch a month of requests and rewrite the policy around what the escalations show.
+Most companies already have an engineering strategy and never wrote it down, so by his account the writing solves half the problem, inside Rumelt's kernel of diagnosis, guiding policy and coherent action.
+The staff engineer archetypes came the other way, out of interviews with people who already held the title, which is what the taxonomy describes and what bounds it.
+Underneath sits his account of authority: the power a title carries is bestowed by a sponsor, can be retracted, and holds only while its holder stays aligned with whoever bestowed it.
+EXTENSION
+Larson's account describes staff engineers and their direct managers, and neither security functions nor executive cover appears in the record behind this page.
+A security mandate arrives partly the same way.
+Regulation names the officer and requires the annual signature, with no sponsor involved, and the discretion above that floor is on loan, which is the autonomy an executive weighs before taking a job.
+The exception queue is where that loan gets spent, because each granted exception suspends a written control over work somebody else owns, and the queue records how far the cover actually reaches.
+His repair does not transfer whole: a policy rewritten around the exceptions it granted is a weaker policy with a governance signature on it, and his setting holds no adversary who benefits from the rewrite.
+What carries over is the diagnostic half: read the queue per control and per sponsor, and it stays blind to the control nobody bothers to except against.

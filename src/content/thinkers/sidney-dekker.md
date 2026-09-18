@@ -294,6 +294,16 @@ adjacent_thinkers:
       built from. Swiss-cheese model, just culture (originally
       Reason's framing) all run through here.
     strength: primary
+  - target_slug: will-larson
+    display_name: Will Larson
+    edge_type: parallel
+    edge_label: >
+      Drift into failure with none of the drift hidden. Every deviation Larson
+      counts as exception debt was requested, argued and granted on the record,
+      and the written policy still loses contact with the work it governs. His
+      remedy is procedural: batch a month of exception requests and rewrite the
+      policy around what was granted anyway.
+    strength: primary
   - target_slug: erik-hollnagel
     display_name: Erik Hollnagel
     edge_type: parallel

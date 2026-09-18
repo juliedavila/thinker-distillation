@@ -382,13 +382,17 @@ adjacent_thinkers:
     render_tier: deep
   - target_slug: will-larson
     display_name: Will Larson
-    edge_type: critiques
+    edge_type: extends
     edge_label: >
-      The SPACE-as-pseudo-precision critique. Dimensionalizing developer
-      experience risks treating the dimensions as commensurable when they
-      aren't. The framework's organizing power can outrun its empirical floor;
-      Larson is the most measured voice on this risk.
-    strength: secondary
+      A reader who accepts the instruments and asks what comes after the
+      number. Larson called Accelerate's definition of developer productivity
+      one of the best he had encountered, and in December 2024 grouped DORA,
+      SPACE and DX Core 4 together as great frameworks. The gap he names is the
+      one his own title gives, a theory of improvement: an output metric is
+      effective at showing that something improved and poor at directing
+      attention toward improving it, so the program that collects it owes its
+      readers an account of how the number moves.
+    strength: primary
   - target_slug: kent-beck
     display_name: Kent Beck
     edge_type: critiques

@@ -24,7 +24,9 @@ const pageSlugs = new Set((await getCollection('thinkers')).map((p) => p.data.sl
 
 const foregroundFrames = t.named_frames.filter((f) => (f.render_tier ?? 'foreground') === 'foreground');
 const deepFrames = t.named_frames.filter((f) => f.render_tier === 'deep');
-const neighbors = orderNeighbors(t.adjacent_thinkers, pageSlugs);
+// Passing the frames lets the ranking collapse off-site neighbors past the cap on its own,
+// so adding a thinker never costs someone a hand-made demotion decision (SCHEMA 4.11).
+const neighbors = orderNeighbors(t.adjacent_thinkers, pageSlugs, t.named_frames);
 const hostsEdges = t.adjacent_thinkers.filter((a) => a.edge_type === 'hosts' && a.hosted_items?.length);
 const liveEdge = t.live_edge_visible ? t.live_edge : undefined;
 const liveEdgeAge = liveEdge ? daysSince(liveEdge.last_observed) : 0;

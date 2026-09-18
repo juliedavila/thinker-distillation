@@ -429,6 +429,16 @@ adjacent_thinkers:
       central problem of software design, with a different vocabulary built
       around deep modules and strategic programming.
     strength: secondary
+  - target_slug: simon-willison
+    display_name: Simon Willison
+    edge_type: parallel
+    edge_label: >
+      Guardrail programming carried into security. Willison rules out defenses
+      built from a second model because a black box cannot be shown to hold
+      against an attacker who keeps retrying, which leaves the property to be
+      designed in rather than caught on the way out. He does not cite Hickey,
+      so the pairing is the site's reading of two arguments with one shape.
+    strength: primary
 
 further_in:
   start_here: '"Simple Made Easy" (Strange Loop, 2011), the full hour.'

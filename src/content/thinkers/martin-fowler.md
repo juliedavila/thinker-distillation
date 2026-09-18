@@ -334,6 +334,7 @@ adjacent_thinkers:
       root, anti-corruption layer all enter the wider community through
       Fowler's foreword, bliki carries, and pattern catalog integration.
     strength: primary
+    render_tier: deep
   - target_slug: alex-komoroske
     display_name: Alex Komoroske
     edge_type: parallel
@@ -401,6 +402,17 @@ adjacent_thinkers:
         kind: essay
         year: 2020
         hosted_on_url: https://martinfowler.com/articles/data-mesh-principles.html
+  - target_slug: simon-willison
+    display_name: Simon Willison
+    edge_type: parallel
+    edge_label: >
+      A case where the boundary has nowhere to land. Fowler places the line
+      where the language changes; Willison's subject is a model that reads its
+      developer's instructions and outside text as one stream, with no internal
+      seam to draw a line along. Willison never uses this page's vocabulary, so
+      the pairing is the site's own.
+    strength: primary
+
 further_in:
   start_here: '`IsQualitySoftwareWorthTheCost` (bliki). The economic-argument keystone.'
   then_read:

@@ -1,0 +1,15 @@
+READING
+Willison works one problem in public: an application joins a developer's trusted instruction to untrusted text, and the model acts on the result. [T:thesis] [F:prompt-injection]
+He proposed the name in September 2022, in a post documenting Riley Goodside's demonstration, four months after @himbodhisattva used the phrase and Preamble disclosed it as command injection. [F:prompt-injection] [E:out:riley-goodside]
+Five days later he ruled out defenses built from another model, which cannot be shown to hold against an attacker who retries. [F:no-ai-fix-for-ai-security] [T:working-line]
+His answers are structural: a privileged model holding the tools, kept apart from a quarantined model that reads untrusted content, with ordinary software between them. [F:dual-llm-pattern]
+The lethal trifecta names a configuration rather than a technique: three capabilities each ordinary alone and dangerous together. [F:lethal-trifecta]
+He polices the term afterwards, ruling that without a concatenation of trusted and untrusted strings it is not prompt injection. [F:prompt-injection-is-not-jailbreaking]
+Nine posts in ten on his blog carry other people's research; the authored work is the twenty-three-post series behind these frames. [L:1]
+EXTENSION
+The trifecta is a combinatorial claim, the shape of the attack surface a security organization inherits: capabilities acceptable alone and unacceptable together inside one session. [P:5] [F:lethal-trifecta]
+Read that way it becomes a test applied when an agent is granted a tool, rather than a threat list. [F:lethal-trifecta]
+The combination is a property of a running session rather than an architecture diagram, so the test belongs at every capability grant and presumes a live inventory of what each agent can reach. [P:5] [F:lethal-trifecta]
+His own concession sets the scope: the frame covers exfiltration, and Meta's addition of changing state is what makes it usable at that decision. [L:2]
+That reallocates security budget from detection toward scoping and revocation, because his argument about defenses built from more AI forecloses buying a classifier for the gap. [F:no-ai-fix-for-ai-security]
+The cost lands on the product, because the pattern he offers as containment forbids the thing agents are bought for, reading an untrusted document and then acting on it. [L:3]

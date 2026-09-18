@@ -347,6 +347,7 @@ adjacent_thinkers:
       internal state can be inferred from its outputs. Majors carries the term
       into software telemetry; the word is his.
     strength: secondary
+    render_tier: deep
   - target_slug: laban-eilers
     display_name: Laban Eilers
     edge_type: critiques
@@ -365,6 +366,16 @@ adjacent_thinkers:
       describe a surprise once it arrives.
     strength: secondary
     render_tier: deep
+  - target_slug: simon-willison
+    display_name: Simon Willison
+    edge_type: parallel
+    edge_label: >
+      Willison supplies the incident this page's test has to survive. An agent
+      is steered by text that arrived through the channel the application reads
+      on purpose, so the question that forms after the failure began is which
+      input the model acted on and with whose privileges. Answering it needs
+      the input and the tool call inside the same record, at full cardinality.
+    strength: primary
 
 further_in:
   start_here: '"Observability is a Many-Splendored Definition" (2020).'

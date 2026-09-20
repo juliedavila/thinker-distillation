@@ -376,6 +376,16 @@ adjacent_thinkers:
       command as the problem that job has to solve. Her pendulum answers by
       moving between the two sides; his answer stays on one of them.
     strength: primary
+  - target_slug: simon-willison
+    display_name: Simon Willison
+    edge_type: parallel
+    edge_label: >
+      Willison supplies the incident this page's test has to survive. An agent
+      is steered by text that arrived through the channel the application reads
+      on purpose, so the question that forms after the failure began is which
+      input the model acted on and with whose privileges. Answering it needs
+      the input and the tool call inside the same record, at full cardinality.
+    strength: primary
 
 further_in:
   start_here: '"Observability is a Many-Splendored Definition" (2020).'

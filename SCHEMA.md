@@ -97,6 +97,7 @@ For a complete, current example, read `src/content/thinkers/nicole-forsgren.md`,
 | `last_updated` | yes | Date |
 | `reading_review` | no | Record of the Reading Protocol run. See 4.9. |
 | `live_edge_visible`, `live_edge` | no | See 4.14 |
+| `withdrawn` | no | `{ date, note }`. The site no longer stands behind this page. See 4.15. |
 
 ### 4.2 Doctrine mode
 
@@ -520,6 +521,10 @@ The home page (`/`) lists thinkers alphabetically. `/concepts/` lists concept pa
 
 **Review policy**: `scripts/review-policy.ts` prints the required round count per page. It decides nothing on its own; it is section 7 step 5 in executable form.
 
+**Staleness**: `scripts/staleness.ts` prints which pages are due for a recheck, computed as `volatile fields > 0 AND days since last_updated > 365`. Volatility comes from `scripts/decay.ts`, which classifies each required factual field from its path and the thinker's `status`: `active_years` and `background` are volatile for a living thinker and permanent for a dead one, and everything else on a page is a claim about the past. A deceased thinker's page therefore never comes due. `--strict` exits non-zero and belongs on merge requests, never inside `astro build`, because CI builds every default-branch commit and a time-based build failure would one day block deploying an unrelated fix.
+
+**Recheck**: `scripts/review-policy.ts <slug> --recheck` returns a two-phase plan, one seat surveying with no verdict and no edits, then an adjudicator who alone may change the page. A survey finding that contradicts a live claim opens a merge request hedging or removing it, with the contradiction named at the top. A shipped page is never unpublished, never silently edited and never parked.
+
 **Still applied by hand**: the byline test, the inclusion filter, the ten-minute critic search, the choice of which frames go in the foreground, and the remaining concept-page rules in 6.4 (not a thinker page in disguise, not a doctrine claim, no overlap).
 
 ---
@@ -543,3 +548,26 @@ Older notes refer to the rules above by earlier labels: "Discipline Gates 1 to 3
 - **2026-05-28. Writing rules made explicit.** The first page drafted by an automated loop (Forsgren) shipped with 30 em-dashes and three banned words, because the rules had never been written down. The pre-ship checklist followed.
 - **2026-05-28, applied 2026-09-16. `doctrine_mode` added** and backfilled on all pages. Brooks was a close call between `mode-c` and `mode-b`, recorded in a comment in his file.
 - **2026-09-16. Editorial Reading moved to the Reading Protocol.** The section became the site's third-person reading, reviewed by Council and audited by Julie, with an optional note from Julie. Piloted on Forsgren.
+
+
+### 4.15 Withdrawn pages
+
+A page the site no longer stands behind carries `withdrawn: { date, note }`. It keeps its URL, its
+file and every inbound edge; only the home index drops it, and the note renders above the hero as
+the first thing a reader meets. One or two sentences in editorial voice saying what the site no
+longer stands behind and why. Not Julie's first person, which the schema reserves for `margin_note`
+and `julie_reading`, because a withdrawal is the site speaking about its own curation, the same
+voice as `limits` and edge labels.
+
+**It is never computed.** Retirement is an editorial act, and the field cannot fire on a clock. An
+earlier design computed a `page_state` from elapsed time, on the precedent of the Stanford
+Encyclopedia retiring unrevised entries. Reading the source closely killed it: SEP's retirement is
+the terminal step of an adjudicated dispute about content, decided by an editor, and its separate
+four-to-five-year revision expectation carries no retirement consequence at all. Elapsed time
+reaches neither half (Council, 2026-09-20).
+
+**Do not retire a page with the `_` filename prefix.** The prefix hides a file from every loader,
+which is right for a draft that never shipped and wrong for a page a reader has seen. A hidden page
+leaves `pageSlugs`, so its inbound edges silently degrade to off-site, lose their "on this site"
+tag, become collapsible under the foreground cap, and the URL 404s with no redirect. Silent link
+rot is the failure this field exists to avoid.

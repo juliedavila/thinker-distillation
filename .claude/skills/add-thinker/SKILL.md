@@ -119,6 +119,10 @@ Confirm the build passes, the page renders, and `reading_review` does not appear
 
 Work this skill by hand when you are adding one thinker and want to think while you do it. Use the workflow when the queue is the point.
 
+## Rechecking a page that already shipped
+
+Different job, different cost. `bun scripts/staleness.ts` says what is due; `bun scripts/review-policy.ts <slug> --recheck` returns the two-phase plan; `briefs/recheck-survey.md` is the phase 1 brief. Only volatile fields are checked, the survey returns no verdict and edits nothing, and a contradiction with a live claim opens a merge request rather than a silent edit. A shipped page is never unpublished and never parked. Most rechecks find nothing, and that is the expected result.
+
 ## Cost controls
 
 - Five seats, one round, as the default for `mode-b` and `mode-c` pages. `mode-a` pages always get three rounds (stage 6); the rule is never traded away for cost. Batch mode-a pages together to share the rounds.

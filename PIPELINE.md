@@ -245,6 +245,38 @@ searches for a URL that fits a claim already published. The two are indistinguis
 only one means anything, which is why `facts.md` now marks a fact confirmed after publication as
 `re-verified` with its own date, and never rewrites the original `checked` date.
 
+## The candidate queue
+
+The pipeline files candidates faster than it ships pages, because every inclusion seat names
+adjacent people and stage 8 files all of them. One run shipped two thinkers and filed ten. Julie's
+call on 2026-09-20 was to keep the backlog and rank it rather than cap what a run may file.
+
+`bun scripts/queue.ts` ranks it on three observable facts, lexicographically rather than as a
+blended score. **Graph pull** leads: how many existing pages already name this person as a
+neighbour or a frame's co-originator, counted as distinct pages. It is the least speculative signal
+available, since those pages already decided the person mattered enough to name, and shipping them
+turns a dead name into a live link rather than adding an isolated node. Then **Council support**,
+parsed from the issue body. Then **age**, as a tiebreak only.
+
+No hand-tuned weights. A weighted sum whose coefficients someone chose by feel is the opacity that
+disqualified PageRank for the neighbour ranking.
+
+It ranks research order and nothing else. Whether a candidate belongs on the site is settled by the
+uptake check and the inclusion Council, on research the script has not done.
+
+**`--sync` writes two labels back to the issues, and deliberately not the rank.** A rank is a
+position in a list that changes every time a page ships, so a number written into an issue is wrong
+within days and nothing says so. Storing a computed value where it can rot silently is the mistake
+this repository has made twice already. What gets written are two facts that flip only on durable
+events: `queue:pulled` when at least one page names the person, and `queue:unargued` when nothing
+names them, no Council argued for them, and they have sat past sixty days. The sync touches only
+the `queue:` namespace and runs in the Report phase of every pipeline run, so the labels follow the
+graph instead of drifting from it.
+
+`queue:unargued` exists because age is only a tiebreak, so a candidate nobody has named and no
+Council has argued for never rises on its own. It is the "decide or park" flag. Hudson and Appleton
+carry it at 115 days.
+
 ## The unanchored control
 
 Round 3 was narrowed from five seats to one adjudication pass on 2026-09-17, on the evidence that four recorded five-seat round 3s accepted unanimously and changed no page. Bornmann's 2010 meta-analysis of 70 reliability coefficients in peer review puts a warning on that reasoning: high agreement among reviewers who have read each other is a signal to distrust rather than a result. All four of those rounds used seats required to read the earlier transcripts first, so the unanimity is as consistent with anchoring as with convergence, and the two have opposite implications.

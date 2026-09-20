@@ -802,6 +802,11 @@ const report = await agent(
     `3. For each parked candidate, comment on its issue with why it stopped and what would unpark it: ` +
     `${JSON.stringify(parked)}\n` +
     `4. Commit and open a merge request for the calibration update.\n` +
+    `4b. Run \`bun scripts/queue.ts --sync\` and then \`bun scripts/queue.ts\`. The first re-syncs the ` +
+    `queue: labels on every candidate issue against the graph as it now stands, which matters because ` +
+    `the pages this run shipped have just changed who is named on the site. The second prints the ` +
+    `ranking. Put the top three in your summary, with their graph pull, so the next batch is obvious ` +
+    `without anyone re-deriving it. Never write a rank into an issue: it changes whenever a page ships.\n` +
     `5. Record the unanchored control in calibration.md under the round-3 note: ` +
     `${JSON.stringify(unanchored)}. This is the measurement that decides whether the 2026-09-17 ` +
     `narrowing of round 3 rested on convergence or on anchoring. If the control disagreed with the ` +

@@ -61,13 +61,14 @@ if (json) {
       `${projected} more evictions are coming before the queue is drained.`,
   );
 
-  // The cap stops binding once a page has CAP on-site neighbours, because the limit is
-  // max(CAP, onSite). Off-site neighbours all collapse, which is fine, and on-site neighbours then
-  // grow without any limit at all, which is not.
-  const unbounded = rows.filter((r) => r.onSite >= CAP);
+  // Before 2026-09-20 the limit was max(CAP, onSite), so the cap stopped binding entirely once a
+  // page's on-site neighbours passed it and a hub page grew without limit. On-site membership is
+  // now a heavy weight rather than a guarantee, so the cap binds for everyone and this number is
+  // a report on how many pages are near the point where on-site edges start competing.
+  const crowded = rows.filter((r) => r.onSite >= CAP);
   console.log(
-    `\n${unbounded.length} page(s) already have ${CAP} or more on-site neighbours. Past that point the cap ` +
-      `stops binding: off-site neighbours all collapse and on-site ones grow unbounded, because the limit is ` +
-      `max(${CAP}, onSite). At a roster of 40 to 60 that is the layout problem, not churn.`,
+    `\n${crowded.length} page(s) have ${CAP} or more on-site neighbours, so on-site edges there are already ` +
+      `competing for slots rather than each being guaranteed one. Collapsed neighbours keep their link in the ` +
+      `"more neighbours" disclosure.`,
   );
 }

@@ -30,7 +30,15 @@ export const meta = {
 //    This is why Ship is a for-loop and not a parallel().
 // ---------------------------------------------------------------------------
 
-const REPO = 'the thinker-distillation repository (the working directory)'
+// `args.repoPath` points the whole run at a disposable sandbox clone, made by
+// `bun scripts/sandbox.ts create`. That clone pushes with a Developer-role token, so the server
+// refuses a push to main and refuses a merge: the pipeline is structurally unable to merge its own
+// work. Without it the run happens in the real checkout, which is how a stray `test merge` commit
+// ended up on local main during the first live run.
+const repoPath = args?.repoPath
+const REPO = repoPath
+  ? `the thinker-distillation repository at ${repoPath}. That is a disposable sandbox clone: work only inside it, and never touch any other checkout of this project`
+  : 'the thinker-distillation repository (the working directory)'
 const READ_FIRST =
   'Read these before you start, in this order: `.claude/skills/add-thinker/SKILL.md` (the procedure), ' +
   '`.claude/skills/add-thinker/calibration.md` (every failure a Council has caught), and the SCHEMA.md ' +
@@ -550,6 +558,9 @@ for (const p of finalized) {
       (dryRun ? ' DRY RUN: do everything except `git push` and the merge request. Report what you would have pushed.' : '') +
       `\n\n${READ_FIRST}\n\n` +
       `You are the only agent touching git right now. Work in this order:\n` +
+      (repoPath
+        ? `0. Everything below happens in ${repoPath} and nowhere else. Pushing to main will be refused twice over, by a local hook and by the server, so do not attempt it: open a merge request instead.\n`
+        : '') +
       `1. \`git checkout main && git pull\`, then \`git checkout -b candidate/${p.slug}\`.\n` +
       `2. Apply the return edges described in _working/${p.slug}/return-edges.md to the existing pages. Add the edge ` +
       `only where the relationship is real. If a neighbour goes over the seven-edge cap, demote the weakest to the ` +

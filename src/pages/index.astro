@@ -3,7 +3,10 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Monogram from '../components/Monogram.astro';
 
-const thinkers = await getCollection('thinkers');
+// A withdrawn page keeps its URL and every inbound edge; it just stops being offered here.
+// Dropping it from `getCollection` instead would take it out of `pageSlugs`, and its neighbours
+// would silently degrade to off-site and become collapsible under the foreground cap.
+const thinkers = (await getCollection('thinkers')).filter((t) => !t.data.withdrawn);
 thinkers.sort((a, b) => a.data.name.localeCompare(b.data.name));
 ---
 

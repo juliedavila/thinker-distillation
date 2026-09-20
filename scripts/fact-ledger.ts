@@ -18,11 +18,14 @@
 //
 // Two files, by design:
 //   facts.md       one line per verified fact, the ledger.  `- [S:1] claim | url | YYYY-MM-DD`
+//                  A fact confirmed after the page shipped adds `| re-verified YYYY-MM-DD` and
+//                  keeps its original date, so it can never read as sourced at intake.
 //   page-claims.md one line per factual field, the mapping. `- named_frames[0].attribution [S:1]`
 // sources.md stays what it is: the prose research record a human reads.
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parseFrontmatter, thinkerPath, workingDir, ROOT, oneLine } from './lib';
+import { requiredFields } from './decay';
 
 const argv = process.argv.slice(2);
 const json = argv.includes('--json');
@@ -44,7 +47,7 @@ const fail = (gate: string, msg: string) => fails.push(`${gate}: ${msg}`);
 const warn = (gate: string, msg: string) => warns.push(`${gate}: ${msg}`);
 
 // ---------------------------------------------------------------- the ledger
-type Fact = { id: string; claim: string; url: string; checked: string };
+type Fact = { id: string; claim: string; url: string; checked: string; reverified: string };
 const facts = new Map<string, Fact>();
 
 if (!existsSync(factsPath)) {
@@ -61,50 +64,29 @@ if (!existsSync(factsPath)) {
     const claim = parts[0] ?? '';
     const url = parts.find((p) => /^https?:\/\//.test(p)) ?? '';
     const checked = parts.find((p) => /^\d{4}-\d{2}-\d{2}$/.test(p)) ?? '';
+    // A fact confirmed after the page shipped is re-verified, never sourced, and it says so with
+    // its own date. `checked` is when the drafter took the claim FROM the source and is never
+    // rewritten. The distinction matters because the two are otherwise indistinguishable on disk
+    // and only one of them means anything: a ledger built at intake records where a claim came
+    // from, while a ledger assembled afterwards searches for a URL that fits a claim already
+    // published, which is confirmation-seeking by construction. Stamping today's date on a
+    // months-old assertion would make that look freshly verified (Council, 2026-09-20).
+    const reverified = (m[2].match(/re-verified\s+(\d{4}-\d{2}-\d{2})/) ?? [])[1] ?? '';
     const where = `${id} (facts.md line ${i + 1})`;
     if (facts.has(id)) fail('ledger', `duplicate id ${where}`);
     if (!claim) fail('ledger', `${where} has no claim text`);
     if (!url) fail('ledger', `${where} has no URL. A fact with no source is a seat's opinion.`);
     if (!checked) fail('ledger', `${where} has no check date (YYYY-MM-DD)`);
-    facts.set(id, { id, claim, url, checked });
+    facts.set(id, { id, claim, url, checked, reverified });
   }
   if (!facts.size) fail('ledger', `${factsPath} contains no "- [S:n] claim | url | date" lines`);
 }
 
 // ------------------------------------------------- what the page must account for
-// Derived from the page itself, so a new frame or a new critic cannot be forgotten.
+// Derived from the page itself, so a new frame or a new critic cannot be forgotten. The list now
+// lives in `decay.ts`, shared with `staleness.ts`, so coverage and recheck read one definition.
 const page = parseFrontmatter(pagePath);
-const required: Array<[string, string]> = [];
-const require_ = (path: string, why: string) => required.push([path, why]);
-
-// A concept page states no career or attribution facts of its own: its holders are derived from
-// the `concept_slug` on each thinker's frames, and those attributions are already covered on the
-// thinker pages. So a concept run checks the ledger and the citations, with nothing required.
-if (!isConcept) {
-  require_('active_years', 'the span the page states');
-  require_('background', 'employers, titles and dates');
-  for (const [i, f] of ((page.named_frames as Array<Record<string, unknown>>) ?? []).entries()) {
-    const name = f?.display_name ?? i;
-    require_(`named_frames[${i}].attribution`, `"${name}" is ${f?.attribution_kind} by ${f?.primary_author}`);
-    for (const [j, c] of ((f?.co_originators as Array<Record<string, unknown>>) ?? []).entries()) {
-      require_(`named_frames[${i}].co_originators[${j}]`, `${c?.slug} co-originated "${name}"`);
-    }
-    if (f?.derived_from) require_(`named_frames[${i}].derived_from`, `"${name}" derives from ${f.derived_from}`);
-  }
-  for (const [i, e] of ((page.adjacent_thinkers as Array<Record<string, unknown>>) ?? []).entries()) {
-    const rel = String(e?.edge_type ?? '');
-    // A critique or an antecedent is a claim about the record, and the one the seats have got
-    // wrong: a seat proposed Kyle Mitchell as a critic of Hickey when his essay is sympathetic.
-    // "parallel" and "extends" are the site's reading of a relationship, so the Councils judge
-    // those instead of the ledger.
-    if (rel === 'critiques' || rel === 'antecedent') {
-      require_(`adjacent_thinkers[${i}]`, `${e?.target_slug} ${rel} this thinker, by the record and not by inference`);
-    }
-  }
-  for (const [i, w] of ((page.body_of_work as Array<Record<string, unknown>>) ?? []).entries()) {
-    require_(`body_of_work[${i}]`, `"${w?.title}" (${w?.year ?? 'no year'}) exists as described`);
-  }
-}
+const required: Array<[string, string]> = requiredFields(page, isConcept).map((f) => [f.path, f.why]);
 
 // ---------------------------------------------------------------- the mapping
 const covered = new Map<string, string[]>();
@@ -147,7 +129,10 @@ if (json) {
     console.log(`FAIL ${slug} fact ledger (${fails.length})`);
     for (const f of fails) console.log(`  - ${f}`);
   } else {
-    console.log(`PASS ${slug}: ${facts.size} facts, ${required.length} factual fields all cited`);
+    const rv = [...facts.values()].filter((f) => f.reverified).length;
+  console.log(
+    `PASS ${slug}: ${facts.size} facts${rv ? ` (${facts.size - rv} sourced at intake, ${rv} re-verified after publication)` : ''}, ${required.length} factual fields all cited`,
+  );
   }
 }
 process.exit(fails.length ? 1 : 0);

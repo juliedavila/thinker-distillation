@@ -12,10 +12,75 @@ import { parseFrontmatter, thinkerPath, loadThinkers } from './lib';
 
 const args = process.argv.slice(2);
 const json = args.includes('--json');
+const recheck = args.includes('--recheck');
 const slugs = args.filter((a) => !a.startsWith('--'));
 if (!slugs.length) {
-  console.error('usage: bun scripts/review-policy.ts <slug> [slug...] [--json]');
+  console.error('usage: bun scripts/review-policy.ts <slug> [slug...] [--json] [--recheck]');
   process.exit(1);
+}
+
+// A recheck is not a review. A review asks whether a new page is good enough to ship; a recheck
+// asks whether a page that already shipped is still true. It is deliberately the cheapest thing
+// in this repository, because Butler 2023 found 30 search updates producing 3 published revisions
+// and a recheck that costs what a review costs will simply never be run.
+//
+// Phases are separated, after Featured Article Review: the first pass surveys and returns no
+// verdict at all, and only the second may change the page. That separation is what keeps a survey
+// from turning into a rewrite nobody asked for.
+//
+// It lives here rather than in a script of its own so the round count stays in one place. The
+// three-round rule for mode-a pages once lived in SCHEMA and nowhere else, and two pages shipped
+// with a single round because the skill driving the work never mentioned it.
+if (recheck) {
+  const plan = slugs.map((slug) => {
+    const page = (() => {
+      try {
+        return parseFrontmatter(thinkerPath(slug));
+      } catch {
+        console.error(`no page for "${slug}"`);
+        process.exit(1);
+      }
+    })();
+    return {
+      slug,
+      doctrine_mode: String(page.doctrine_mode ?? ''),
+      kind: 'recheck',
+      transcript_suffix: 'recheck',
+      phases: [
+        {
+          phase: 1,
+          name: 'survey',
+          seats: [3],
+          verdict: false,
+          brief: '.claude/skills/add-thinker/briefs/recheck-survey.md',
+          does: 'Re-verify every volatile field against its source and report what has changed. Returns findings only, never a verdict, and never edits the page.',
+        },
+        {
+          phase: 2,
+          name: 'adjudicate',
+          seats: [0],
+          verdict: true,
+          brief: '.claude/skills/add-thinker/briefs/review-adjudicate.md',
+          does: 'Read the survey and decide. Only this phase may change the page, and a contradiction with a live claim opens a merge request rather than a silent edit.',
+        },
+      ],
+      escalation:
+        'If the survey finds a contradiction with a claim the page makes, phase 2 opens a merge request hedging or removing that claim, with the contradiction named at the top of the description. It never unpublishes, never edits silently, and never parks a page that has already shipped.',
+    };
+  });
+  if (json) {
+    console.log(JSON.stringify({ kind: 'recheck', plans: plan }, null, 2));
+  } else {
+    for (const p of plan) {
+      console.log(`${p.slug} (${p.doctrine_mode}): recheck, ${p.phases.length} phases, transcript suffix -${p.transcript_suffix}`);
+      for (const ph of p.phases) {
+        console.log(`  phase ${ph.phase} (${ph.name}): ${ph.seats[0] === 0 ? 'adjudicator' : `seat ${ph.seats[0]}`}, ${ph.verdict ? 'returns a verdict and may change the page' : 'returns findings only, no verdict, no edits'}`);
+        console.log(`    ${ph.does}`);
+      }
+      console.log(`  escalation: ${p.escalation}`);
+    }
+  }
+  process.exit(0);
 }
 
 const ALL_SEATS = [1, 2, 3, 4, 5];

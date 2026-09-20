@@ -164,6 +164,16 @@ const thinkers = defineCollection({
 
     portrait: z.string().optional(),
 
+    // A page the site no longer stands behind. It keeps its URL and its file and its inbound
+    // edges; only the home index drops it, and a note renders above the hero saying what changed.
+    // Deliberately NOT computed from a date: retirement is an editorial act, and the Stanford
+    // Encyclopedia precedent that was cited for a time-based version turns out to describe the
+    // terminal step of an adjudicated dispute about content, with no retirement attached to its
+    // revision clock at all (Council, 2026-09-20).
+    withdrawn: z
+      .object({ date: z.coerce.date(), note: z.string() })
+      .optional(),
+
     tagline: z.string(),
     thirty_second_take: z.string(),
 

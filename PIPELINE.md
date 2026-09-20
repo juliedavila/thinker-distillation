@@ -194,6 +194,55 @@ not use `git push --dry-run`, because a dry run skips the hook and GitLab does n
 protection for one, so it reports success for a push that would be refused. The first version of
 the check did exactly that and declared the boundary broken when it was holding.
 
+## Maintenance
+
+Added 2026-09-20 after a five-seat Council debated the design and rejected most of it. The
+transcript is at `~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-maintenance-layer-20260920-debate/`,
+and it is worth reading, because four of the five seats withdrew a position they had argued for.
+
+**What is due** comes from one place, `bun scripts/staleness.ts`. A page is due when it has volatile
+fields and has gone more than a year without revision. Volatility is computed in `scripts/decay.ts`
+from the field path and the thinker's `status`, so nothing is assigned by hand: `active_years` and
+`background` are volatile for a living thinker and permanent for a dead one, and every other
+factual field on a page is a claim about the past. Brooks died in 2022, so his page has nothing
+that can rot and never comes due. Parked candidates are read from `_working/_parked.md` and appear
+in the same report, because "what is due" should have one answer.
+
+`--strict` exits non-zero and belongs on merge requests. Never put it inside `astro build`: CI
+builds every commit on the default branch, so a time-based failure there would one day block
+deploying an unrelated typo fix.
+
+**A recheck is not a review.** `scripts/review-policy.ts <slug> --recheck` returns two phases: one
+seat surveys and returns findings with no verdict and no edits, then an adjudicator decides and is
+the only phase that may change the page. Butler 2023 found 30 search updates producing 3 published
+revisions, so a recheck has to be near-free or it will simply never be run. Most rechecks finding
+nothing is the expected result, not a failure.
+
+**The contradiction rule.** If a survey finds something that contradicts a claim a live page makes,
+the adjudicator opens a merge request hedging or removing that claim, with the contradiction named
+at the top of the description. That is the same channel a neighbour demotion already uses, so it
+reaches Julie as a thing to approve. A shipped page is **never unpublished, never silently edited
+and never parked.** Parking is for candidates; a page that already shipped has readers.
+
+**Withdrawal** is an editorial act and is never computed. SCHEMA section 4.15 has the field and the
+reasoning. It is not retirement-on-a-clock, and it is not the `_` filename prefix, which would take
+the page out of `pageSlugs` and rot every inbound edge silently.
+
+**What readers see** is one plain line, "This reading: <date>", with no threshold and no colour,
+plus the Live Edge badge where a page has one. No staleness badge. The limits section earns trust
+because it is argued, specific and signed; a badge is generic and unargued, and reads as evidence
+nobody is home. A date lets the reader judge, and a reader who knows Brooks wrote in 1975 reads a
+four-month-old date differently from one reading a working practitioner's page.
+
+**What the Council cut, and why it matters that it did:** a computed `page_state` (the Stanford
+Encyclopedia precedent turned out to describe an adjudicated dispute, not a clock), per-fact decay
+tags assigned by hand (exactly one of thirteen pages ever carried the site's other optional
+per-page field), and the bulk ledger backfill. That last one is the finding worth remembering: a
+ledger built at intake records where a claim came from, while a ledger assembled afterwards
+searches for a URL that fits a claim already published. The two are indistinguishable on disk and
+only one means anything, which is why `facts.md` now marks a fact confirmed after publication as
+`re-verified` with its own date, and never rewrites the original `checked` date.
+
 ## The Council record
 
 Each seat writes its own report to `_working/_council/<today>/round-N-seat-M.md` before returning,

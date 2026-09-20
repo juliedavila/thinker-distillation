@@ -43,3 +43,8 @@ export function loadLens(): string[] {
 }
 
 export const oneLine = (s: unknown) => String(s ?? '').replace(/\s+/g, ' ').trim();
+
+// Days since a date. `src/lib/checks.ts` carries its own copy because it cannot import across the
+// Astro boundary; this is the one the scripts share.
+export const daysSince = (date: unknown, now = new Date()): number =>
+  Math.floor((now.getTime() - new Date(date as string).getTime()) / 86_400_000);

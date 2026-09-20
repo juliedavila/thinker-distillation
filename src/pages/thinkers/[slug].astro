@@ -35,6 +35,12 @@ const STALE_DAYS = 90;
 
 <Base title={`${t.name} — Thinker Distillation`} description={t.tagline}>
   <article>
+    {t.withdrawn && (
+      <aside class="withdrawn-note">
+        <p class="lane-mark">Withdrawn {t.withdrawn.date.toISOString().slice(0, 10)}</p>
+        <p>{t.withdrawn.note}</p>
+      </aside>
+    )}
     <section class="hero thinker-hero">
       <div class="thinker-hero-portrait">
         {t.portrait ? (
@@ -199,6 +205,7 @@ const STALE_DAYS = 90;
             <p>{t.margin_note}</p>
           </>
         )}
+        <p class="reading-provenance">This reading: {t.last_updated.toISOString().slice(0, 10)}</p>
         {t.working_uses && t.working_uses.length > 0 && (
           <>
             <h3>Working uses</h3>

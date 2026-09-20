@@ -1030,3 +1030,37 @@ blockquote.what-x-says cite {
   font-size: 0.92rem;
   color: var(--ink-soft);
 }
+
+/* A withdrawn page. It keeps its URL and its inbound edges and only leaves the home index, so the
+   note is the first thing a reader meets and has to carry the whole explanation itself. Editorial
+   voice, like limits and edge labels, never Julie's first person. */
+.withdrawn-note {
+  border: 1px solid var(--rule, #d8d2c8);
+  border-left: 4px solid var(--ink, #2a2622);
+  background: var(--paper-2, #f6f3ee);
+  padding: 1rem 1.25rem;
+  margin: 0 0 2rem;
+}
+
+.withdrawn-note .lane-mark {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 0.35rem;
+  opacity: 0.7;
+}
+
+.withdrawn-note p:last-child {
+  margin: 0;
+}
+
+/* Provenance, not maintenance. The wording is deliberate: "last revised" names upkeep and a reader
+   hears neglect, where a bare date lets them judge for themselves. There is no threshold and no
+   colour, because a threshold would assert a half-life nobody has. A reader who knows Brooks wrote
+   in 1975 reads this date differently from one reading a working practitioner's page, and that
+   judgment is theirs to make (Council, 2026-09-20). */
+.reading-provenance {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  margin-top: 1.5rem;
+}

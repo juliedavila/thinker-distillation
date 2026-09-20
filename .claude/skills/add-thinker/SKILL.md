@@ -133,3 +133,11 @@ Work this skill by hand when you are adding one thinker and want to think while 
 - When testing a build rule by breaking a file on purpose, copy the file to a backup first and restore from the backup. Restoring with `git checkout` also throws away any uncommitted edits to that file.
 - YAML values that contain a colon followed by a space must be quoted. Astro's build accepts some of these, but `scripts/grounding-pack.ts` parses strictly and will fail.
 - Medium and O'Reilly pages block direct fetches. Confirm those URLs and article contents through search results instead.
+
+The rest of this list came out of the first unattended pipeline run: 1,391 tool calls, 24 of which failed. Each line below is one of those failures.
+
+- **No Python for YAML.** `python3 -c` with `import yaml` fails; PyYAML is not installed. Use `bun` and `Bun.YAML.parse`, which `scripts/lib.ts` already wraps. Two agents lost a call each to this.
+- **The shell is zsh, so an unmatched glob is an error, not an empty result.** `ls ~/.claude/LIFEOS/MEMORY/COUNCIL/*larson*` aborts with `no matches found` when nothing matches. Quote the pattern and let the command do the matching, or test with `ls -d ... 2>/dev/null`.
+- **Never run git during an unresolved conflict.** An agent hit `path 'src/content/thinkers/charity-majors.md' is unmerged; you need to resolve your current index first`. Finish or abort the merge before anything else touches git.
+- **Do not reach for `rm -rf`.** Both permission refusals in the whole run were agents trying to delete a temp directory, and `.claude/settings.json` now denies it outright. Work in the session scratchpad, which is cleaned up for you.
+- **`git checkout` and `git restore` are denied** in this repository for the reason in the first gotcha above: restoring a file that way also throws away uncommitted edits to it, which happened once and cost real work. Back a file up before you break it, and restore from the backup.

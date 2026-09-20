@@ -116,14 +116,37 @@ function creditedElsewhere(n: Neighbor, frames: Thinker['data']['named_frames'])
 // The whole score reads off THIS page. It never depends on the rest of the graph, which is the
 // property that matters: adding a thinker anywhere else cannot reshuffle an unrelated page. Only a
 // page that gains an edge re-sorts, and it re-sorts by one position.
+// Having a page here is a heavy weight, not an absolute guarantee.
+//
+// It used to be absolute, and that produced both of the problems the neighbour measurement found.
+// A new page's return edge landed on a page already at the cap, took a slot it could never lose,
+// and evicted an off-site neighbour; 11 of 13 pages sat exactly at the cap, with roughly 21 more
+// evictions due before the queue drained. And because the limit was max(CAP, onSite), a page whose
+// on-site neighbours passed the cap grew without any limit at all, which is the same root cause
+// wearing the opposite face at a roster of 40 to 60.
+//
+// As a weight, an on-site neighbour still beats an off-site one in the same category, so ordinary
+// pages are unchanged. What changes is that a page's only critic, or an edge crediting someone the
+// page credits nowhere else, can now hold its place against a weak on-site edge. Collapsed
+// neighbours keep their link in the "more neighbours" disclosure, so nothing becomes unreachable.
+// Categories are spaced by 2 and the off-site penalty is 3, so being off-site costs one and a half
+// categories. Heavy, and short of absolute. A critic still loses to an on-site `hosts` edge
+// carrying items, and an edge crediting someone the page credits nowhere else still beats an
+// on-site edge whose credit is already stated inside a frame.
+const CATEGORY_SPACING = 2;
+const OFF_SITE_PENALTY = 3;
+
 function collapseRank(n: Neighbor, frames: Thinker['data']['named_frames']): number {
-  // A critic is often the page's only counterposition, so it collapses last. SCHEMA 4.11 weights
-  // against demoting one and both editors said so unprompted when they had to choose.
-  if (n.edge_type === 'critiques') return 0;
-  // A `hosts` edge carrying items is the only route to work that lives nowhere else.
-  if (n.edge_type === 'hosts' && (n.hosted_items?.length ?? 0) > 0) return 1;
-  if (!creditedElsewhere(n, frames)) return n.effectiveStrength === 'primary' ? 2 : 3;
-  return n.effectiveStrength === 'primary' ? 4 : 5;
+  const category = (() => {
+    // A critic is often the page's only counterposition, so it collapses last. SCHEMA 4.11 weights
+    // against demoting one and both editors said so unprompted when they had to choose.
+    if (n.edge_type === 'critiques') return 0;
+    // A `hosts` edge carrying items is the only route to work that lives nowhere else.
+    if (n.edge_type === 'hosts' && (n.hosted_items?.length ?? 0) > 0) return 1;
+    if (!creditedElsewhere(n, frames)) return n.effectiveStrength === 'primary' ? 2 : 3;
+    return n.effectiveStrength === 'primary' ? 4 : 5;
+  })();
+  return category * CATEGORY_SPACING + (n.hasPage ? 0 : OFF_SITE_PENALTY);
 }
 
 // Neighbors in render order, with the auto-surfacing rules from SCHEMA 4.11 applied.
@@ -137,28 +160,38 @@ export function orderNeighbors(
   pageSlugs: Set<string>,
   frames?: Thinker['data']['named_frames'],
 ): { foreground: Neighbor[]; deep: Neighbor[]; autoCollapsed: Neighbor[] } {
-  const all: Neighbor[] = adjacent.map((a) => {
+  // `authored` is the position in the file. The collapse tiebreak needs it, because the display
+  // sort below puts every on-site neighbour first, and tie-breaking on that order would hand every
+  // tie to an on-site edge, which is the absolute guarantee creeping back in through the side
+  // door. A test critic lost its slot to a synthetic weak edge exactly that way.
+  const all: Array<Neighbor & { authored: number }> = adjacent.map((a, authored) => {
     const hasPage = pageSlugs.has(a.target_slug);
     const effectiveStrength = hasPage && !a.editorial_demote_to ? 'primary' : a.editorial_demote_to ?? a.strength;
-    return { ...a, hasPage, autoSurfaced: hasPage, effectiveStrength };
+    return { ...a, hasPage, autoSurfaced: hasPage, effectiveStrength, authored };
   });
   const rank = (n: Neighbor) => (n.hasPage ? 0 : 2) + (n.effectiveStrength === 'primary' ? 0 : 1);
   const sorted = all.map((n, i) => ({ n, i })).sort((x, y) => rank(x.n) - rank(y.n) || x.i - y.i).map((x) => x.n);
 
-  const pinnedDeep = (n: Neighbor) => !n.hasPage && n.render_tier === 'deep';
-  let foreground = sorted.filter((n) => n.hasPage || (n.render_tier ?? 'foreground') === 'foreground');
+  // Explicit beats automatic. Auto-surfacing exists so an on-site neighbour never has to be hand
+  // promoted, not to forbid ever demoting one, and until now `render_tier: deep` on a neighbour
+  // with a page here did nothing at all. Majors has carried exactly that on David Woods since the
+  // page shipped: an editorial decision recorded and silently dropped. Lane A's reading of LCSH
+  // H 370 says the decision was right, since Majors already reaches Woods through Allspaw.
+  //
+  // Auto-collapse still never touches an on-site neighbour. Only a human can demote one.
+  const pinnedDeep = (n: Neighbor) => n.render_tier === 'deep';
+  let foreground = sorted.filter((n) => (n.render_tier ?? 'foreground') === 'foreground');
   const deep = sorted.filter(pinnedDeep);
   const autoCollapsed: Neighbor[] = [];
 
   if (frames) {
-    // On-site neighbors always surface, so they set the floor the cap cannot go below.
-    const onSite = foreground.filter((n) => n.hasPage).length;
-    const limit = Math.max(FOREGROUND_CAP, onSite);
-    // Collapse the weakest off-site edges until the page fits. Stable: equal ranks keep their
-    // authored order, so a rerun never reshuffles a page that already fits.
-    const candidates = foreground
-      .map((n, i) => ({ n, i }))
-      .filter((x) => !x.n.hasPage)
+    // The cap binds. It used to be max(CAP, onSite), which meant it stopped binding entirely once
+    // a page's on-site neighbours passed it, and a hub page would grow unbounded at scale.
+    const limit = FOREGROUND_CAP;
+    // Collapse the weakest edges until the page fits, on-site included. Stable: equal ranks keep
+    // their authored order, so a rerun never reshuffles a page that already fits.
+    const candidates = (foreground as Array<Neighbor & { authored: number }>)
+      .map((n) => ({ n, i: n.authored }))
       .sort((a, b) => collapseRank(b.n, frames) - collapseRank(a.n, frames) || b.i - a.i);
     // Both caps from SCHEMA 4.11: at most 7 in total, and at most 5 without a page here.
     const overCap = () => foreground.length > limit || foreground.filter((n) => !n.hasPage).length > OFF_SITE_CAP;

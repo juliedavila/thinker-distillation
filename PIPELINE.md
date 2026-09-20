@@ -141,8 +141,11 @@ registry only resolves workflows the harness itself knows about, so a repository
 be invoked by path. The first launch attempt failed on this.
 
 ```
+bun scripts/sandbox.ts create 2026-09-21      # prints the sandbox path
+
 scriptPath: .claude/workflows/thinker-pipeline.js
 args: {
+  "repoPath": "<the path the sandbox printed>",
   "today": "2026-09-18",
   "candidates": [
     {"issue": 12, "name": "Will Larson", "slug": "will-larson"},
@@ -158,6 +161,38 @@ Two things the script itself must respect, both learned by breaking them. The `m
 be a pure literal, so a `whenToUse` built by concatenating two strings is rejected outright before
 anything runs. And a script is plain JavaScript with no filesystem access, which is why every file
 in this process is written by an agent and never by the orchestrator.
+
+## The sandbox, and why capability does the real work
+
+Unattended runs happen in a disposable clone. `bun scripts/sandbox.ts create` makes one under the
+system temp directory, resets it to `origin/main`, symlinks `node_modules` so the build works, and
+prints the path. Pass that path as `args.repoPath` and the whole run happens there. Tear it down
+with `bun scripts/sandbox.ts destroy <path>`, which refuses any path outside the sandbox root,
+including the root itself. Teardown is a guarded function rather than a shell command because
+`.claude/settings.json` denies `rm -rf`, which is what the only two permission refusals in the
+first live run were reaching for.
+
+That makes every local mistake free. An agent that deletes the wrong directory or mangles the index
+costs a rebuild of the sandbox and nothing else, and the real checkout is never touched, which is
+how a stray `test merge` commit reached local main on the first run.
+
+**A sandbox cannot contain the part that matters most.** Destroying a directory does not un-push a
+branch, un-open a merge request or un-close an issue, and those are the pipeline's only genuinely
+irreversible actions. They are contained by capability instead. The sandbox pushes with a GitLab
+project access token holding the **Developer** role, and `main` is protected at Maintainer for both
+push and merge. So the pipeline can push a candidate branch and open a merge request, and it is
+**structurally unable to push to main or merge its own work**. The one gate that stays human is
+enforced by the server rather than by asking an agent nicely.
+
+Worth knowing, since it was nearly missed: branch protection was already configured before any of
+this, and it was inert. The pipeline authenticated as the project owner, who is a Maintainer, so
+the rule never bound. The fix was not more configuration, it was a weaker identity.
+
+`bun scripts/sandbox.ts check <path>` proves both halves: it feeds refs to the pre-push hook
+directly and reads the token's access level and the branch's required level from the API. It does
+not use `git push --dry-run`, because a dry run skips the hook and GitLab does not evaluate branch
+protection for one, so it reports success for a push that would be refused. The first version of
+the check did exactly that and declared the boundary broken when it was holding.
 
 ## The Council record
 

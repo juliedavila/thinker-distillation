@@ -155,6 +155,36 @@ const STALE_DAYS = 90;
       ))}
     </section>
 
+    <section aria-labelledby="further-in">
+      <h2 id="further-in" class="section-h">Further In</h2>
+      <dl class="further-in">
+        <dt>Start here</dt>
+        <dd>{t.further_in.start_here}</dd>
+        {t.further_in.then_read && t.further_in.then_read.length > 0 && (
+          <>
+            <dt>Then read</dt>
+            <dd>
+              <ol>
+                {t.further_in.then_read.map((tr) => <li>{tr}</li>)}
+              </ol>
+            </dd>
+          </>
+        )}
+        {t.further_in.if_you_want_depth && (
+          <>
+            <dt>If you want depth</dt>
+            <dd>{t.further_in.if_you_want_depth}</dd>
+          </>
+        )}
+        {t.further_in.if_you_want_breadth && (
+          <>
+            <dt>If you want breadth</dt>
+            <dd>{t.further_in.if_you_want_breadth}</dd>
+          </>
+        )}
+      </dl>
+    </section>
+
     <section aria-labelledby="editorial">
       <h2 id="editorial" class="section-h">Editorial Reading</h2>
       <div class="julie-lane">
@@ -227,36 +257,6 @@ const STALE_DAYS = 90;
           </ul>
         </details>
       )}
-    </section>
-
-    <section aria-labelledby="further-in">
-      <h2 id="further-in" class="section-h">Further In</h2>
-      <dl class="further-in">
-        <dt>Start here</dt>
-        <dd>{t.further_in.start_here}</dd>
-        {t.further_in.then_read && t.further_in.then_read.length > 0 && (
-          <>
-            <dt>Then read</dt>
-            <dd>
-              <ol>
-                {t.further_in.then_read.map((tr) => <li>{tr}</li>)}
-              </ol>
-            </dd>
-          </>
-        )}
-        {t.further_in.if_you_want_depth && (
-          <>
-            <dt>If you want depth</dt>
-            <dd>{t.further_in.if_you_want_depth}</dd>
-          </>
-        )}
-        {t.further_in.if_you_want_breadth && (
-          <>
-            <dt>If you want breadth</dt>
-            <dd>{t.further_in.if_you_want_breadth}</dd>
-          </>
-        )}
-      </dl>
     </section>
 
     {liveEdge && (

@@ -7,6 +7,7 @@ export const meta = {
     { title: 'Inclusion', detail: 'five fixed seats, one pass over the whole batch' },
     { title: 'Draft', detail: 'page, fact ledger mapping, return-edge plan, Editorial Reading' },
     { title: 'Policy', detail: 'read the required round count out of scripts/review-policy.ts' },
+    { title: 'Recheck', detail: 'whatever the staleness queue says is due, surveyed and adjudicated' },
     { title: 'Review', detail: 'batched Council rounds with an editor between them' },
     { title: 'Ship', detail: 'serial: return edges, build, branch, merge request' },
     { title: 'Report', detail: 'calibration entries, parked candidates, what Julie must look at' },
@@ -196,6 +197,51 @@ const SHIP = {
     blocker: { type: 'string' },
   },
   required: ['slug', 'shipped'],
+}
+
+const STALENESS = {
+  type: 'object',
+  properties: {
+    due: { type: 'array', items: { type: 'object', properties: { slug: { type: 'string' }, days: { type: 'integer' }, reason: { type: 'string' } }, required: ['slug'] } },
+    parked_due: { type: 'array', items: { type: 'object', properties: { slug: { type: 'string' } }, required: ['slug'] } },
+    raw: { type: 'string' },
+  },
+  required: ['due'],
+}
+
+const RECHECK_SURVEY = {
+  type: 'object',
+  properties: {
+    slug: { type: 'string' },
+    volatile_fields_checked: { type: 'array', items: { type: 'string' } },
+    changed: { type: 'array', items: { type: 'object', properties: { field: { type: 'string' }, what_changed: { type: 'string' }, url: { type: 'string' }, dated: { type: 'string' } }, required: ['field', 'what_changed', 'url'] }, description: 'empty when nothing changed, which is the common and correct outcome' },
+    contradictions: { type: 'array', items: { type: 'object', properties: { claim: { type: 'string' }, what_the_source_says: { type: 'string' }, url: { type: 'string' } }, required: ['claim', 'what_the_source_says', 'url'] }, description: 'findings that contradict something the page asserts; these go out as a merge request with the contradiction named at the top' },
+    unsourced: { type: 'array', items: { type: 'string' }, description: 'believed changed but could not be sourced; never becomes a page edit' },
+    notes: { type: 'string' },
+  },
+  required: ['slug', 'volatile_fields_checked', 'changed', 'contradictions'],
+}
+
+const RECHECK_VERDICT = {
+  type: 'object',
+  properties: {
+    slug: { type: 'string' },
+    changed_page: { type: 'boolean' },
+    edits: { type: 'array', items: { type: 'string' } },
+    contradictions_handled: { type: 'array', items: { type: 'string' } },
+    facts_added: { type: 'integer', description: 'new ledger lines, each marked re-verified with its own date' },
+    gates_pass: { type: 'boolean' },
+    summary: { type: 'string' },
+  },
+  required: ['slug', 'changed_page', 'gates_pass', 'summary'],
+}
+
+const UNANCHORED = {
+  type: 'object',
+  properties: {
+    candidates: { type: 'array', items: { type: 'object', properties: { slug: { type: 'string' }, verdict: { type: 'string', enum: ['ACCEPT', 'ACCEPT-WITH-EDITS', 'REVISE', 'REJECT'] }, findings: { type: 'array', items: { type: 'string' } } }, required: ['slug', 'verdict'] } },
+  },
+  required: ['candidates'],
 }
 
 const POLICY = {
@@ -389,9 +435,84 @@ const roundsFor = (slug) => policy?.plans?.find((p) => p.slug === slug)?.rounds 
 const auditSeats = policy?.rewrite_audit_seats?.length ? policy.rewrite_audit_seats : [3, 5]
 for (const p of pages) log(`${p.slug} (${p.doctrine_mode}): ${roundsFor(p.slug)} review round(s)`)
 
+// =========================================================== 4b. Recheck
+//
+// A recheck rides along with a thinker batch and never runs on its own schedule. A separate
+// schedule would need a trigger, and every trigger this project has written in prose has gone
+// unwatched, including a "refresh pending" badge that sat on a page for four months. Riding along
+// means it fires whenever work happens, which is the only cadence that has ever held here.
+//
+// The queue is computed, not passed in. If a human had to name the due pages, this would be
+// another trigger nobody pulls.
+//
+// Two phases, after Featured Article Review: a survey that returns findings and no verdict and
+// edits nothing, then an adjudicator who alone may change the page. Most rechecks find nothing,
+// which is the expected result rather than a failure: Butler 2023 saw 30 search updates produce 3
+// published revisions.
+phase('Recheck')
+const staleness = await agent(
+  `Run \`bun scripts/staleness.ts --json\` in ${REPO} and return its output verbatim. Do not ` +
+    `interpret it, do not add pages to the list, and do not act on anything. Put the raw stdout in "raw".`,
+  { label: 'staleness-queue', phase: 'Recheck', schema: STALENESS, effort: 'low' }
+)
+const dueSlugs = (staleness?.due ?? []).map((d) => d.slug).filter(Boolean)
+const parkedDue = (staleness?.parked_due ?? []).map((p) => p.slug).filter(Boolean)
+if (parkedDue.length) log(`Parked candidates now due for a fresh inclusion case: ${parkedDue.join(', ')}. Not run here; they need a candidate issue.`)
+log(dueSlugs.length ? `Recheck due: ${dueSlugs.join(', ')}` : 'Recheck queue empty, which is the common case.')
+
+const rechecks = dueSlugs.length
+  ? await pipeline(
+      dueSlugs,
+      (slug) =>
+        agent(
+          `RECHECK PHASE 1 (survey) for ${slug} in ${REPO}.\n\n` +
+            `Fill in \`.claude/skills/add-thinker/briefs/recheck-survey.md\` and answer it for this page. ` +
+            `Run \`bun scripts/review-policy.ts ${slug} --recheck\` first and follow the plan it prints.\n\n` +
+            `You are checking whether the page is still TRUE, not whether it is good. The writing, the ` +
+            `argument, the structure and the Lens position were settled by a full Council when the page ` +
+            `shipped, and reopening them here is the failure this phase exists to prevent.\n\n` +
+            `Check only the volatile fields. \`bun scripts/staleness.ts --json\` says how many this page ` +
+            `has and why it came due; \`scripts/decay.ts\` decides which they are. Everything else on the ` +
+            `page is a claim about the past.\n\n` +
+            `Return findings and NO verdict. Do not edit any file. Returning "nothing has changed" is a ` +
+            `complete answer and padding it to look productive is worse than useless. ${VOICE}`,
+          { label: `recheck-survey:${slug}`, phase: 'Recheck', schema: RECHECK_SURVEY }
+        ),
+      (survey, slug) => {
+        if (!survey) return null
+        if (!survey.changed?.length && !survey.contradictions?.length) {
+          log(`${slug}: recheck found nothing. Page stands.`)
+          return { slug, survey, verdict: null }
+        }
+        return agent(
+          `RECHECK PHASE 2 (adjudicate) for ${slug} in ${REPO}. You are the adjudicator, not a seat, ` +
+            `and you are the only phase that may change this page.\n\n` +
+            `The survey found:\n${JSON.stringify(survey, null, 1)}\n\n` +
+            `Decide what the page should say now. Anything you change must cite a source, so add an ` +
+            `\`[S:n]\` line to \`_working/${slug}/facts.md\` with a URL, and mark it \`| re-verified ${today}\`. ` +
+            `**Never rewrite an existing \`checked\` date.** A fact confirmed after the page shipped is ` +
+            `re-verified, never sourced at intake, and the ledger has to keep those apart.\n\n` +
+            `If a finding CONTRADICTS a claim the page makes, hedge or remove that claim and say so ` +
+            `plainly. A shipped page is never unpublished, never silently edited and never parked: the ` +
+            `change goes out as a merge request with the contradiction named at the top of the ` +
+            `description, which is the same channel a neighbour demotion already uses.\n\n` +
+            `Then rerun \`bun scripts/reading-gates.ts ${slug}\` and \`bun scripts/fact-ledger.ts ${slug}\`, ` +
+            `both exiting 0, and set \`last_updated: ${today}\` only if you actually changed the page.\n\n` +
+            `${VOICE}\n\n${NO_GIT}`,
+          { label: `recheck-adjudicate:${slug}`, phase: 'Recheck', schema: RECHECK_VERDICT }
+        ).then((v) => ({ slug, survey, verdict: v }))
+      }
+    )
+  : []
+
+const rechecked = rechecks.filter(Boolean).filter((r) => r.verdict?.changed_page)
+for (const r of rechecked) log(`${r.slug}: recheck changed the page. ${r.verdict.summary}`)
+
 // =========================================================== 5. Review
 phase('Review')
 const state = new Map(pages.map((p) => [p.slug, { required: roundsFor(p.slug), dissent: false, escalated: false, history: [] }]))
+// Recorded, never acted on. See the unanchored control below.
+const unanchored = []
 
 for (let round = 1; round <= 3; round++) {
   const due = pages.filter((p) => {
@@ -506,6 +627,64 @@ for (let round = 1; round <= 3; round++) {
     if (edits.length || claims.length) editable.push({ p, edits, claims, round })
   }
 
+  // The unanchored control.
+  //
+  // Round 3 was narrowed from five seats to one adjudication pass on 2026-09-17, because four
+  // recorded runs of a five-seat round 3 accepted unanimously and changed no page. Bornmann's 2010
+  // meta-analysis of 70 reliability coefficients in peer review puts a warning on exactly that
+  // reasoning: high agreement among reviewers who have read each other is a signal to distrust
+  // rather than a result. Every one of those four rounds used seats required to read the earlier
+  // transcripts first, so the unanimity is as consistent with anchoring as with convergence, and
+  // the two have opposite implications. If they genuinely converged, the narrowing was right. If
+  // they were anchored, the narrowing replaced an anchored round with a MORE anchored one, since
+  // the adjudicator reads both transcripts by design, and the answer was fresh eyes rather than
+  // fewer eyes.
+  //
+  // So: one seat that has seen no transcript, no verdict history and no other seat's reasoning.
+  // Only the finished page and the gates. Its verdict is recorded beside the adjudicator's and
+  // never gates shipping, because this is a measurement rather than a check. When several runs
+  // agree, the question is settled and this can go.
+  if (adjudicating && !dryRun) {
+    const control = await agent(
+      `You are reviewing finished pages in ${REPO} with fresh eyes, and you are a control in a ` +
+        `measurement, so read this carefully.\n\n` +
+        `You have deliberately NOT been given the review transcripts, the verdict history, or any ` +
+        `other reviewer's reasoning, and you must not go looking for them: ignore anything under ` +
+        `\`_working/_council/\`. Read only the pages themselves, their grounding packs, their claims ` +
+        `maps and their fact ledgers under \`_working/<slug>/\`, plus \`SCHEMA.md\` sections 4 and 8 and ` +
+        `\`.claude/skills/add-thinker/calibration.md\`.\n\n` +
+        `Pages: ${due.map((p) => `src/content/thinkers/${p.slug}.md`).join(', ')}\n\n` +
+        `Judge each page on its own terms, as a senior reviewer seeing it for the first time. Would you ` +
+        `ship it? Apply the calibration checklist. Look hardest at whether any sentence states as ` +
+        `settled something the page's own limits call contested, whether any citation fails to support ` +
+        `its own clause, and whether the attribution would survive the byline test.\n\n` +
+        `Do not soften toward agreement. Nobody will see your verdict before they form their own, and ` +
+        `the entire value of this pass is that it is uncontaminated. Do not edit any file. ${VOICE}`,
+      { label: 'review-r3:unanchored-control', phase: 'Review', schema: UNANCHORED }
+    )
+    if (control) {
+      for (const p of due) {
+        const mine = (control.candidates ?? []).find((c) => c.slug === p.slug)
+        const adjudicated = tally(reports, p.slug, 'verdict')[0] ?? 'none'
+        if (mine) {
+          // Direction matters more than equality. A control that lands one step stricter than the
+          // adjudicator has found something the anchored pass did not, and that is the result the
+          // experiment is looking for. A control that is more lenient is not evidence of anything,
+          // since it saw less. Reporting any difference as a disagreement would cry wolf on the
+          // gap between ACCEPT and ACCEPT-WITH-EDITS, which is not a dispute.
+          const severity = { ACCEPT: 0, 'ACCEPT-WITH-EDITS': 1, REVISE: 2, REJECT: 3 }
+          const delta = (severity[mine.verdict] ?? 0) - (severity[adjudicated] ?? 0)
+          const direction = delta > 0 ? 'stricter' : delta < 0 ? 'more lenient' : 'same'
+          unanchored.push({ slug: p.slug, adjudicator: adjudicated, unanchored: mine.verdict, direction, findings: mine.findings ?? [] })
+          log(
+            `${p.slug} unanchored control: ${mine.verdict} against adjudicator ${adjudicated} (${direction})` +
+              (delta > 0 ? ' <- fresh eyes found more than the anchored pass. This is the result that would reverse the round 3 narrowing.' : ''),
+          )
+        }
+      }
+    }
+  }
+
   if (editable.length) {
     await parallel(
       editable.map(({ p, edits, claims, round: rn }) => () =>
@@ -588,6 +767,26 @@ for (const p of finalized) {
   if (result && !result.shipped) log(`${p.slug} did not ship: ${result.blocker}`)
 }
 
+// Recheck merge requests ship after the thinker pages, still serially, because they touch pages
+// the thinker branches may also have edited through return edges.
+for (const r of rechecked) {
+  const shipResult = await agent(
+    `Ship the recheck of ${r.slug} in ${REPO}.` +
+      (dryRun ? ' DRY RUN: everything except `git push` and the merge request.' : '') +
+      `\n\nYou are the only agent touching git right now. Branch \`recheck/${r.slug}\` from main, ` +
+      `commit the page change and the ledger lines, run \`bun run build\`, and confirm ` +
+      `\`bun scripts/reading-gates.ts ${r.slug}\` and \`bun scripts/fact-ledger.ts ${r.slug}\` both exit 0.\n\n` +
+      `The merge request description opens with a plain paragraph saying what is no longer true and ` +
+      `what the page now says. If the survey found a contradiction, name it at the top. List every ` +
+      `ledger line added, each marked re-verified. Say plainly if the change is small, because most ` +
+      `rechecks are, and a description that oversells a one-line correction wastes the only human ` +
+      `read this gets.\n\nWhat the survey found:\n${JSON.stringify(r.survey, null, 1)}\n\n` +
+      `What was changed:\n${JSON.stringify(r.verdict, null, 1)}\n\n${VOICE}`,
+    { label: `ship-recheck:${r.slug}`, phase: 'Ship', schema: SHIP }
+  )
+  if (shipResult) shipped.push(shipResult)
+}
+
 // =========================================================== 7. Report
 phase('Report')
 const newCandidates = inclusionReports.filter(Boolean).flatMap((r) => (r.candidates ?? []).flatMap((c) => c.new_candidates ?? []))
@@ -602,7 +801,15 @@ const report = await agent(
     `skipping anyone already filed or already on the site. Named this run: ${JSON.stringify(newCandidates)}\n` +
     `3. For each parked candidate, comment on its issue with why it stopped and what would unpark it: ` +
     `${JSON.stringify(parked)}\n` +
-    `4. Commit and open a merge request for the calibration update.\n\n` +
+    `4. Commit and open a merge request for the calibration update.\n` +
+    `5. Record the unanchored control in calibration.md under the round-3 note: ` +
+    `${JSON.stringify(unanchored)}. This is the measurement that decides whether the 2026-09-17 ` +
+    `narrowing of round 3 rested on convergence or on anchoring. If the control disagreed with the ` +
+    `adjudicator anywhere, say so prominently, because that is the result that would reverse the ` +
+    `decision. If it agreed, record that too; several agreements settle the question and the control ` +
+    `can then be retired.\n` +
+    `6. Record the recheck outcomes: ${JSON.stringify(rechecked.map((r) => ({ slug: r.slug, summary: r.verdict?.summary })))}. ` +
+    `A recheck that found nothing is a successful recheck and belongs in the log as one.\n\n` +
     `Then write, as your return value, the note Julie reads first. Plain paragraphs. What shipped and where to ` +
     `review it, what is parked and why, what needs her judgment (neighbour demotions above all), and what this run ` +
     `taught the process. If a check cost a lot and caught nothing, say so plainly: she asked which checks are ` +
@@ -611,6 +818,8 @@ const report = await agent(
 )
 
 return {
+  unanchored_control: unanchored,
+  rechecks: rechecks.filter(Boolean).map((r) => ({ slug: r.slug, changed: Boolean(r.verdict?.changed_page), summary: r.verdict?.summary ?? 'nothing had changed' })),
   shipped: shipped.map((s) => ({ slug: s.slug, mr: s.mr_url, warnings: s.warnings_for_julie })),
   parked,
   rounds: [...state.entries()].map(([slug, s]) => ({ slug, required: s.required, escalated: s.escalated, history: s.history })),

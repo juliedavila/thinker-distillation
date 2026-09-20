@@ -212,6 +212,8 @@ in the same report, because "what is due" should have one answer.
 builds every commit on the default branch, so a time-based failure there would one day block
 deploying an unrelated typo fix.
 
+**The recheck rides along with a thinker batch**, in a Recheck phase between Policy and Review. The queue is computed inside the run by `staleness.ts`, never passed in, because a list a human has to supply is another trigger nobody pulls. An empty queue costs one cheap agent and is the common case. A recheck that changes a page ships its own merge request, serially, after the thinker pages.
+
 **A recheck is not a review.** `scripts/review-policy.ts <slug> --recheck` returns two phases: one
 seat surveys and returns findings with no verdict and no edits, then an adjudicator decides and is
 the only phase that may change the page. Butler 2023 found 30 search updates producing 3 published
@@ -242,6 +244,14 @@ ledger built at intake records where a claim came from, while a ledger assembled
 searches for a URL that fits a claim already published. The two are indistinguishable on disk and
 only one means anything, which is why `facts.md` now marks a fact confirmed after publication as
 `re-verified` with its own date, and never rewrites the original `checked` date.
+
+## The unanchored control
+
+Round 3 was narrowed from five seats to one adjudication pass on 2026-09-17, on the evidence that four recorded five-seat round 3s accepted unanimously and changed no page. Bornmann's 2010 meta-analysis of 70 reliability coefficients in peer review puts a warning on that reasoning: high agreement among reviewers who have read each other is a signal to distrust rather than a result. All four of those rounds used seats required to read the earlier transcripts first, so the unanimity is as consistent with anchoring as with convergence, and the two have opposite implications.
+
+So every adjudicated round 3 now also runs one control seat that has seen no transcript, no verdict history and no other seat's reasoning: only the finished page, its grounding pack, its claims map and its ledger. Its verdict is recorded beside the adjudicator's and **never gates shipping**, because this is a measurement rather than a check.
+
+What matters is direction, not equality. A control landing stricter than the adjudicator has found something the anchored pass did not, and that is the result that would reverse the narrowing. A more lenient control is not evidence of anything, since it saw less. One extra agent per batch. When several runs agree, the question is settled and the control can go.
 
 ## The Council record
 

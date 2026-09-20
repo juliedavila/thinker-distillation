@@ -118,7 +118,9 @@ const perCandidate = (props, required) => ({
     candidates: { type: 'array', items: { type: 'object', properties: { slug: { type: 'string' }, ...props }, required: ['slug', ...required] } },
     cross_batch_note: { type: 'string', description: 'sameness or overlap you can only see with every page in front of you' },
   },
-  required: ['seat', 'candidates'],
+  // `seat` is not required: the round 3 adjudicator holds no seat, and on the first live run a
+  // seat report was rejected for omitting it, costing a retry. Only `candidates` is load-bearing.
+  required: ['candidates'],
 })
 
 const INCLUSION = perCandidate(

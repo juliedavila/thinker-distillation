@@ -3,13 +3,77 @@ project: thinker-distillation
 effort: E3
 phase: in-progress
 progress: iter-10 to iter-15 shipped; tracked in GitLab MRs and issues
-iteration: iter-16-pipeline-automation-2026-09-17
+iteration: iter-17-first-live-run-and-prior-art-2026-09-20
 mode: project
 started: 2026-05-25
-updated: 2026-09-17
+updated: 2026-09-20
 ---
 
-## Save Point — 2026-09-17 evening, pipeline automation (cold-start resume here)
+## Save Point — 2026-09-20, first live pipeline run and the prior-art survey (cold-start resume here)
+
+> Current state. Everything below, starting at `## Superseded Save Point — 2026-09-17 evening`, is history.
+
+### State at save (verified 2026-09-20)
+
+- **Site live, 13 thinkers, 3 concepts, 23 pages.** Larson (!14) and Willison (!15) both merged. Build clean.
+- **No open merge requests** except the one this save point ships with.
+- **Seven candidates queued:** #4 Appleton, #5 Hudson (both May, unverified), #14 Skelton and Pais, #17 Anderson, #18 Herley, #19 Ousterhout, #20 Beck. #1 Saxe stays closed, recheck September 2027.
+
+### The pipeline ran unattended, end to end, and it worked
+
+36 agents, 3h50m, zero agent errors, 1,391 tool calls. Julie blocked only at merge approval, which was the goal. Both pages passed three review rounds; Larson carries 57 verified facts against 25 factual fields, Willison 44 against 23.
+
+**Two launch bugs, both fixed:** a repo-local workflow will not resolve by `name` (use `scriptPath`), and `meta` must be a pure literal, so a concatenated `whenToUse` is rejected before anything runs.
+
+**Three real defects the run exposed, all now fixed:**
+1. **No transcript between rounds.** Rounds 2 and 3 are supposed to have seats quoting each other; the workflow wrote nothing until Ship, so they ran on a verdict list. Seats now write their own report to `_working/_council/<date>/` before returning, editors write resolution notes beside them, and Ship assembles from disk.
+2. **`collapseRank` stability was overclaimed.** MR !17 said adding a thinker cannot reshuffle an unrelated page. The rank is local but `hasPage` is global, so publishing Larson forced an eviction on all four pages citing him. Still open, see below.
+3. **An on-site `render_tier: deep` was silently ignored.** Majors carried one on Woods from day one.
+
+### The prior-art survey
+
+Three bounded lanes, 40,000 words, every citation verified twice, all under `_working/_research/prior-art/`. **Read `SYNTHESIS.md` first**; the lane files are the detail.
+
+**The verdict on this project:** ahead of every system surveyed on intake, behind all of them after a page ships. Nothing surveyed has a completeness check like `fact-ledger.ts` deriving its required fields from the page. Nothing here rechecks a shipped page, and the schema has changed six times in four months.
+
+**Findings that changed decisions:**
+- **The Council must not shrink.** The screening literature measures replication (N reviewers, one criterion set); this Council does decomposition (five different criterion sets). Cutting seats deletes questions rather than halving error.
+- **Sharpen briefs before adding seats.** Experienced reviewers missed 3%, inexperienced 13%. That four-fold gap is larger than the single-versus-double gap, which makes `calibration.md` quantitatively the highest-leverage file in the repo.
+- **The round 3 narrowing rests on untested ground.** Bornmann 2010: high reviewer agreement is a signal to distrust. All four runs behind the 09-17 decision used seats that had read each other's transcripts, so the unanimity is as consistent with anchoring as with convergence. **Open experiment, needs a live run: one round 3 with seats that have not read the earlier transcripts.**
+- **Staleness cannot be predicted.** Shojania 2007: no feature of the original predicted whether it needed updating within two years, and 7% were stale at publication. Scheduled surveillance is the only evidenced approach; annual cadence, expect ~70% of rechecks to come back low priority.
+- **The cap of 7 has no evidential basis** and does not need one. Keep it as a layout budget; redundancy decides which edges earn a place.
+- **Reading order beat link count experimentally**, which is why `further_in` moved up the page.
+- **Hand-authored reciprocity fails everywhere.** qSKOS over 24 published vocabularies found unidirectional relations in all but three. Return edges should be derived, not warned about.
+
+### What shipped 2026-09-20 (this save point's MR)
+
+`further_in` promoted from ninth section to directly after Body of Work. On-site `render_tier: deep` now honored, which dropped Woods off Majors' foreground and made the Sridharan auto-collapse unnecessary. New `scripts/lens-index.ts` replaces a hand-kept Lens list in `calibration.md` that had already drifted inside one run. Repo-level `.claude/settings.json` (first one), allowing the project's own scripts and read-only git/glab, denying `rm -rf`, `git checkout --` and `git restore`. SKILL.md gotchas from the 24 failed calls. SCHEMA corrected on the `dissent` rule and section 4.11. Research committed.
+
+### Next move on resume: keep improving the machine, then run thinkers
+
+Julie's direction 2026-09-20: improve the machine before adding more thinkers. In order:
+
+1. **Two-bucket jump and hysteresis.** Soften the `hasPage` promotion so publishing a thinker stops forcing evictions on every citing page, then add a dead band on demotion (`render_tier` already persists the prior decision in git). Churn concentrates within score clusters and rarely crosses them (Ufimtsev, CIKM 2016), which is the empirical case for the dead band. Measure with top-k Jaccard before and after.
+2. **Validate the `collapseRank` weights.** They are hand-picked integers. Asudeh et al., PVLDB 12(3) 2018, doi:10.14778/3291264.3291269, gives a method for asking how stable a weighting is and choosing a stable one.
+3. **Lens allocation, then cluster-scoped novelty.** Hungarian method on a page-by-position cost matrix before drafting (prevention), then test novelty only within the cluster `lens-index.ts` names (Yang et al., doi:10.1145/775047.775150). Validate the similarity function rather than defaulting to embeddings.
+4. **The maintenance layer:** a retirement state (SEP moves unrevised entries to an archive), decay classes per fact in `facts.md`, and cheap one-seat recheck of shipped pages with phases separated as Featured Article Review does.
+5. **Derive return edges** instead of warning.
+6. **Split `antecedent`** (it carries at least four relationships) and close the `co_originators.role` vocabulary (MARC relator terms, CRediT).
+7. **Ledger backfill.** 10 of 13 pages have no `facts.md`; only Majors, Larson and Willison do. Good candidate for a parallel workflow, one agent per slug, no file collisions.
+
+Then run thinkers again, and fold the unanchored round 3 experiment into that batch.
+
+### Still Julie's
+
+Two About-page slots. The concept-page reading prompt. Neighbour demotions to review, now including Eric Evans on Fowler, where the computed ranking disagrees with the editor and would collapse Kent Beck instead. Five legacy prose warnings on four merged pages.
+
+### Environment notes
+
+`PATH="/opt/homebrew/bin:$PATH"`. `glab ci list -b <branch>` is broken; use `glab ci list | rg <branch>`. CI builds only on main, so `bun run build` is the gate for branches. Workflow scripts are plain JavaScript, no filesystem, no clock, so `args.today` is required, and `meta` must be a pure literal. The shell is zsh: an unmatched glob is an error, not an empty result. No PyYAML on this machine; use `bun` and `Bun.YAML.parse`.
+
+---
+
+## Superseded Save Point — 2026-09-17 evening, pipeline automation
 
 > Current state. The block below it, `## Superseded Save Point — 2026-09-17 (thinkers)`, is the
 > session that shipped Hickey, Majors and the concept page, and is history now except where this

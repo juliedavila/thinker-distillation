@@ -246,7 +246,13 @@ The thinker's neighborhood in the graph, shown as a card grid. Each entry in `ad
 | `editorial_demote_to` | no | `secondary`, to override automatic promotion |
 | `hosted_items` | no | Only on `hosts` edges. See below. |
 
-**How many to show.** At most 5 foreground neighbors without a page on this site, and at most 7 foreground neighbors in total. The only exception is a thinker whose on-site neighbors alone exceed 7, since those always render. Set `render_tier: deep` on off-site neighbors past the cap; they collapse into an "N more neighbors" list. The build enforces both caps.
+**How many to show.** At most 5 foreground neighbors without a page on this site, and at most 7 foreground neighbors in total. The only exception is a thinker whose on-site neighbors alone exceed 7, since those always render.
+
+**The cap is a layout budget, not a claim about comprehension.** The nearest experimental test of link count (three against eight, which brackets this cap) found no significant effect on cognitive load or learning, and the literature is divided with no published number. So the cap exists to keep a card grid readable, and what decides *which* edges earn a place is redundancy, below.
+
+**Collapsing past the cap is computed, not curated.** Off-site neighbors past the cap collapse on their own, ranked so that a critic goes last, then a `hosts` edge carrying items, then a neighbor whose credit appears nowhere else on the page, and first of all a neighbor already named as a frame's `primary_author`, `derived_from` or co-originator, who keeps the credit and loses only a second mention. Ties keep authored order. The build logs every collapse. Setting `render_tier: deep` by hand still overrides the ranking. Before 2026-09-17 this was a human decision on every page, and with 7 of 11 pages sitting at the cap it was a permanent tax on adding anyone.
+
+**Demoting an on-site neighbor.** `render_tier: deep` on a neighbor who has a page here is honored: explicit beats automatic. Auto-surfacing exists so an on-site neighbor never has to be hand-promoted, not to forbid ever demoting one. Automatic collapsing never touches an on-site neighbor, so only a person can make that call. Until 2026-09-20 the setting was silently ignored, and Majors carried exactly such a demotion on Woods from the day the page shipped.
 
 **Neighbors with pages on this site.** When `target_slug` matches a published thinker page, that edge should be marked `auto_surfaced`, show in the foreground, and default to `primary`. To show it as secondary anyway, set `editorial_demote_to: secondary` so the demotion is visible in the file. For example, Komoroske rarely cites Senge, and a secondary edge makes that absence visible. The build computes this: neighbors with pages here always render in the foreground, link to their page, carry an "on this site" tag, and sort first. `auto_surfaced` is computed, so the build fails if it is set by hand. The build warns when a page links to a thinker whose page does not link back, when a frame credits a co-originator who has a page here but is missing from `adjacent_thinkers`, and when a critic with a page here is not `primary`.
 
@@ -436,7 +442,9 @@ Every `reading` and `extension` is produced by the steps below, in order, with n
 
 6. **Record and ship.** Save the Council transcript to `~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-reading-<slug>-<timestamp>-quick/transcript.md` (a private path on the maintainer's machine). Fill in `reading_review`, setting `dissent: true` if any reviewer stayed below ACCEPT-WITH-EDITS. Run the build, then open a merge request.
 
-**Julie's role is to audit.** She reads every page with `dissent: true` and a random one in four of the rest, and approves through the merge request. She may add a `margin_note` at any time.
+**Julie's role is to audit.** She reads every page eventually; there is no page she never reads. What `dissent: true` changes is the order, not the fact: a page carrying dissent is read **before** its merge request is approved, and the rest are read afterwards, at leisure. Corrected 2026-09-20, replacing a rule that said she read a random one in four of the rest, which was never true.
+
+`dissent: true` fires when the Council **could not resolve** something, meaning a seat ended the final round below ACCEPT-WITH-EDITS. It does not fire because a seat objected in an early round and was answered: rounds 1 and 2 produce objections on nearly every page, so a flag that counted those would fire everywhere and tell her nothing. Where the friction was is recorded in the transcript and called out in the merge request description instead.
 
 **Known limit.** The graph is still small, so early grounding packs lean on a few well-connected thinkers, so readings risk converging on the same moves. The novelty reviewer exists to catch that, and batches should assign each page its own angle before drafting. Revisit the reviewer roster once ten pages have protocol readings.
 

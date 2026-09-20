@@ -145,8 +145,15 @@ export function orderNeighbors(
   const rank = (n: Neighbor) => (n.hasPage ? 0 : 2) + (n.effectiveStrength === 'primary' ? 0 : 1);
   const sorted = all.map((n, i) => ({ n, i })).sort((x, y) => rank(x.n) - rank(y.n) || x.i - y.i).map((x) => x.n);
 
-  const pinnedDeep = (n: Neighbor) => !n.hasPage && n.render_tier === 'deep';
-  let foreground = sorted.filter((n) => n.hasPage || (n.render_tier ?? 'foreground') === 'foreground');
+  // Explicit beats automatic. Auto-surfacing exists so an on-site neighbour never has to be hand
+  // promoted, not to forbid ever demoting one, and until now `render_tier: deep` on a neighbour
+  // with a page here did nothing at all. Majors has carried exactly that on David Woods since the
+  // page shipped: an editorial decision recorded and silently dropped. Lane A's reading of LCSH
+  // H 370 says the decision was right, since Majors already reaches Woods through Allspaw.
+  //
+  // Auto-collapse still never touches an on-site neighbour. Only a human can demote one.
+  const pinnedDeep = (n: Neighbor) => n.render_tier === 'deep';
+  let foreground = sorted.filter((n) => (n.render_tier ?? 'foreground') === 'foreground');
   const deep = sorted.filter(pinnedDeep);
   const autoCollapsed: Neighbor[] = [];
 

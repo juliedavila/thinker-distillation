@@ -3,13 +3,67 @@ project: thinker-distillation
 effort: E3
 phase: in-progress
 progress: iter-10 to iter-15 shipped; tracked in GitLab MRs and issues
-iteration: iter-17-first-live-run-and-prior-art-2026-09-20
+iteration: iter-18-maintenance-layer-2026-09-20
 mode: project
 started: 2026-05-25
 updated: 2026-09-20
 ---
 
-## Save Point — 2026-09-20, first live pipeline run and the prior-art survey (cold-start resume here)
+## Save Point — 2026-09-20 evening, the maintenance layer (cold-start resume here)
+
+> Current state. Everything from `## Save Point — 2026-09-20, first live pipeline run` down is history.
+
+### State at save (verified)
+
+- **13 thinkers, 3 concepts, 23 pages.** Main at `244d17c`. Build clean. No open merge requests.
+- **Merged today:** !14 Larson, !15 Willison, !16 pipeline seat-report fix, !17 computed edge ranking, !18 machine improvements, !19 the maintenance layer.
+- **17 open candidates**, up from 7 this morning.
+
+### The queue diverges, and it needs a policy
+
+The last run shipped 2 pages and filed **10** new candidates, because every inclusion seat names adjacent people and stage 8 files them. At that ratio the queue grows by 8 per run and never drains. Nothing is broken; this is the skill working as written. But at a roster ceiling of 40 to 60 it means the backlog becomes the artifact rather than the site. **Open question for Julie: cap what a run may file, rank the queue, or accept it as a slush pile and pick by hand.**
+
+### What shipped today
+
+**Machine improvements (!18).** Repo's first `.claude/settings.json`, written from measurement rather than assumption: the live run made 1,391 tool calls and exactly two permission refusals, both agents reaching for `rm -rf`. So the file denies `rm -rf`, `git checkout --` and `git restore`, and allows the project's own scripts. `further_in` promoted from ninth section to just after Body of Work, on the one experiment that tested reading order against link count. On-site `render_tier: deep` now honoured, which dropped Woods off Majors. `scripts/lens-index.ts` replaced a hand-kept Lens list that had already drifted inside one run.
+
+**Computed edge ranking (!17), then Path B.** Off-site neighbours past the cap collapse by rank rather than by a human decision. Then on-site membership became a heavy weight rather than an absolute guarantee, which makes the cap bind again at scale and lets a page's only critic hold its slot. Zero collapses on today's roster, so it changed nothing now and changes everything at 40 pages.
+
+**Sandbox and capability boundary.** `scripts/sandbox.ts` creates a disposable clone. The real control is identity: a GitLab project access token named `thinker-pipeline`, Developer role, in the macOS keychain (service `gitlab-thinker-distillery`, account `thinker-pipeline`, id 27688037, expires 2027-03-20). Main is protected at Maintainer, so the pipeline **cannot push to main and cannot merge its own work**. Branch protection already existed and was inert, because the pipeline authenticated as the owner. The fix was a weaker identity, not more configuration.
+
+**The maintenance layer (!19), after a five-seat Council cut most of the proposal.** Transcript at `~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-maintenance-layer-20260920-debate/`. Built: `scripts/staleness.ts` (one place to ask what is due, pages and parked candidates), `scripts/decay.ts` (volatility computed from field path and `status`, so a deceased thinker's page never comes due), a two-phase recheck plan in `review-policy.ts`, `briefs/recheck-survey.md`, `withdrawn: { date, note }` as an editorial act that cannot fire on a clock, `_working/_parked.md`, and `re-verified` in the ledger. Readers get one line, "This reading: <date>", and no badge.
+
+### The three findings worth carrying forward
+
+1. **A ledger built at intake and one backfilled afterwards are indistinguishable on disk and only one means anything.** Intake records where a claim came from; backfill searches for a URL that fits a claim already published. This is why the bulk backfill was cut and why `re-verified` exists.
+2. **Optional hand-filled fields die.** Exactly one of thirteen pages ever carried a `live_edge`. Anything the design asks a human to write per page will go the same way. Compute it or do not have it.
+3. **Trigger in code or it does not exist.** Every trigger written in prose here has gone unwatched, including a "refresh pending" badge that sat for four months.
+
+### Known gaps, named rather than hidden
+
+- **The recheck is not wired into the workflow.** `review-policy.ts --recheck` returns a plan and the brief exists, but `thinker-pipeline.js` has no recheck phase. The Council's "a recheck rides along with every thinker batch" is **not true yet**. Forsgren is currently due.
+- **The unanchored round 3 experiment has not been run.** The 2026-09-17 decision to narrow round 3 rests on four runs of unanimous agreement among seats that had read each other, which the peer-review literature says is the signal to distrust. Note that the next run will be the first where rounds 2 and 3 have real transcripts on disk, so that run is not a clean test; do the experiment separately.
+- **10 of 13 pages still have no fact ledger**, deliberately, per the Council.
+
+### Next move on resume
+
+Run the pipeline against the queue. Suggested batch of two, chosen to exercise the new machinery as well as to add pages: **#17 Ross Anderson** (security economics; if he is `deceased` his page will be the first with zero volatile fields, testing `decay.ts`) and **#20 Kent Beck** (already a collapsed neighbour on Fowler and Forsgren, so shipping him promotes those edges and exercises the new ranking).
+
+```
+bun scripts/sandbox.ts create 2026-09-21          # prints the sandbox path
+Workflow scriptPath: .claude/workflows/thinker-pipeline.js
+args: { "repoPath": "<sandbox path>", "today": "2026-09-21",
+        "candidates": [ {"issue":17,"name":"Ross Anderson","slug":"ross-anderson"},
+                        {"issue":20,"name":"Kent Beck","slug":"kent-beck"} ] }
+```
+
+### Environment notes
+
+`PATH="/opt/homebrew/bin:$PATH"`. `glab mr merge` can return a spurious 405 right after a push; the API `PUT .../merge` works. CI builds only on main. Workflow scripts are plain JavaScript, no filesystem, no clock, `args.today` required, `meta` must be a pure literal, and a repo-local workflow resolves by `scriptPath` and never by `name`. Shell is zsh, so an unmatched glob is an error. No PyYAML; use `bun` and `Bun.YAML.parse`.
+
+---
+
+## Save Point — 2026-09-20, first live pipeline run and the prior-art survey (history)
 
 > Current state. Everything below, starting at `## Superseded Save Point — 2026-09-17 evening`, is history.
 

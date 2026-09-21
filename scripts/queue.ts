@@ -40,6 +40,8 @@ import { loadThinkers } from './lib';
 
 const argv = process.argv.slice(2);
 const json = argv.includes('--json');
+const sync = argv.includes('--sync');
+const dryRun = argv.includes('--dry-run');
 const topIdx = argv.indexOf('--top');
 const top = topIdx > -1 ? Number(argv[topIdx + 1]) : 0;
 const PROJECT = 'juliedavila/thinker-distillery';
@@ -117,13 +119,64 @@ const rows: Row[] = issues.map((i) => {
   };
 });
 
+// ------------------------------------------------------------------ labels
+//
+// What gets written back to an issue, and what deliberately does not.
+//
+// NOT the rank. A rank is a position in a list that changes every time a page ships, so a number
+// written into an issue on Monday is wrong by Friday and nothing tells you. Storing a computed
+// value where it can rot silently is the mistake this repository has now made twice, with a
+// hand-kept Lens list that drifted inside a single run and a "refresh pending" badge that went
+// unread for four months. The ordering stays computed, and `bun scripts/queue.ts` is where you
+// read it.
+//
+// What does get written are two facts that flip only on durable events, so a stale one is visible
+// rather than quietly wrong:
+//
+//   queue:pulled     at least one existing page already names this person. Changes only when a
+//                    page ships or an edge is removed.
+//   queue:unargued   nothing names them, no Council argued for them, and they have sat past the
+//                    stale threshold. This is the "decide or park" flag, and it is the one the
+//                    sort would otherwise bury forever.
+//
+// Both are recomputed and re-synced on every run, so the labels follow the graph rather than
+// drifting from it. The sync only ever touches the `queue:` namespace and never replaces an
+// issue's whole label set, so `camila:` labels are left alone.
+const STALE_DAYS = 60;
+const QUEUE_LABELS = ['queue:pulled', 'queue:unargued'];
+const desiredLabels = (r: Row): string[] => {
+  const want: string[] = [];
+  if (r.pull > 0) want.push('queue:pulled');
+  if (r.pull === 0 && r.councils.length === 0 && r.age_days > STALE_DAYS) want.push('queue:unargued');
+  return want;
+};
+
 // Lexicographic, never a blended score: graph pull, then Council support, then age.
 rows.sort((a, b) => b.pull - a.pull || b.councils.length - a.councils.length || b.age_days - a.age_days);
 
 const shown = top > 0 ? rows.slice(0, top) : rows;
 
-if (json) {
-  console.log(JSON.stringify({ ranked: shown, total: rows.length }, null, 2));
+if (sync) {
+  let changed = 0;
+  for (const r of rows) {
+    const current: string[] = (issues.find((i) => Number(i.iid) === r.issue)?.labels ?? []).filter((l: string) => QUEUE_LABELS.includes(l));
+    const want = desiredLabels(r);
+    const add = want.filter((l) => !current.includes(l));
+    const remove = current.filter((l) => !want.includes(l));
+    if (!add.length && !remove.length) continue;
+    changed++;
+    console.log(`  #${r.issue} ${r.name}: ${[...add.map((l) => `+${l}`), ...remove.map((l) => `-${l}`)].join(' ')}`);
+    if (dryRun) continue;
+    const args = ['glab', 'api', '--method', 'PUT', `projects/${encodeURIComponent(PROJECT)}/issues/${r.issue}`];
+    if (add.length) args.push('-f', `add_labels=${add.join(',')}`);
+    if (remove.length) args.push('-f', `remove_labels=${remove.join(',')}`);
+    const w = run(args);
+    if (!w.ok) console.error(`    failed: ${w.err.trim().slice(0, 160)}`);
+  }
+  console.log(changed ? `\n${changed} issue(s) ${dryRun ? 'would change' : 'updated'}.` : 'Labels already match the graph; nothing to do.');
+  console.log('Only the queue: namespace is touched. The rank itself is never written to an issue, because it changes whenever a page ships.');
+} else if (json) {
+  console.log(JSON.stringify({ ranked: shown.map((r) => ({ ...r, labels: desiredLabels(r) })), total: rows.length }, null, 2));
 } else {
   console.log(`${rows.length} open candidates, ranked. Graph pull first, then how many Councils named them, then age.\n`);
   console.log('  #   candidate                   pull  councils  age   already named on');
@@ -140,7 +193,6 @@ if (json) {
   );
   // Age is only a tiebreak, so anything with no pull and no Council support never rises. Say so
   // rather than letting the sort quietly bury it.
-  const STALE_DAYS = 60;
   const unargued = rows.filter((r) => r.pull === 0 && r.councils.length === 0 && r.age_days > STALE_DAYS);
   if (unargued.length) {
     console.log(

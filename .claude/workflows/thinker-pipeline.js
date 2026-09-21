@@ -83,6 +83,27 @@ const SEATS = [
   { n: 4, name: 'Security-executive lens' },
   { n: 5, name: 'Novelty and byline test' },
 ]
+// Run a Council in waves rather than all five at once.
+//
+// On 2026-09-20 all five inclusion seats stalled, six retries each, without emitting a single tool
+// call, and both candidates were parked for want of a verdict. The task prompt was 2.5KB; what the
+// seats actually had to swallow first was about 135KB of automatically injected context, a skill
+// catalogue and a CLAUDE.md tree that a Council seat has no use for. Five of those at once on a
+// machine already at a load average of 36 across 8 cores meant nobody produced a first token
+// inside the 180 second watchdog.
+//
+// The injected context is not something a workflow script can decline. Peak concurrency is. Waves
+// of three trade a little wall-clock for a run that survives a busy laptop, and the barrier
+// between them lets the first wave's memory go before the second starts.
+const WAVE = 3
+async function inWaves(items, make) {
+  const out = []
+  for (let i = 0; i < items.length; i += WAVE) {
+    out.push(...(await parallel(items.slice(i, i + WAVE).map(make))))
+  }
+  return out
+}
+
 const seatCard = (n) =>
   `You are Council seat ${n} (${SEATS.find((s) => s.n === n).name}). Your seat card is section ` +
   `"Seat ${n}" of \`.claude/skills/add-thinker/seats.md\`. Read it and hold that seat only. ` +
@@ -341,8 +362,9 @@ log(`${cleared.length} of ${candidates.length} cleared research.`)
 phase('Inclusion')
 const rosterNote = cleared.map(({ c, research }) => `- ${research.name} (${c.slug}), issue #${c.issue}: ${research.frames.map((f) => f.name).join('; ')}`).join('\n')
 
-const inclusionReports = await parallel(
-  SEATS.map((s) => () =>
+const inclusionReports = await inWaves(
+  SEATS,
+  (s) => () =>
     agent(
       `INCLUSION COUNCIL for ${REPO}. ${seatCard(s.n)}\n\n` +
         `Fill in \`.claude/skills/add-thinker/briefs/inclusion.md\` and answer it for EVERY candidate below, ` +
@@ -357,7 +379,6 @@ const inclusionReports = await parallel(
         `be researched before it can reach a page. Do not edit files. ${VOICE}`,
       { label: `inclusion:seat-${s.n}`, phase: 'Inclusion', schema: INCLUSION }
     )
-  )
 )
 
 const accepted = cleared.filter(({ c }) => {
@@ -568,8 +589,9 @@ for (let round = 1; round <= 3; round++) {
     `Create the directory if it does not exist. Later rounds and the final transcript are built from ` +
     `these files, so write the full report and not a summary of it. This is the only file you write.`
 
-  const reports = await parallel(
-    seatsThisRound.map((n) => () =>
+  const reports = await inWaves(
+    seatsThisRound,
+    (n) => () =>
       agent(
         `REVIEW COUNCIL round ${round} for ${REPO}. ` +
           (adjudicating
@@ -601,7 +623,6 @@ for (let round = 1; round <= 3; round++) {
           `Do not edit any page, any working file, or anything under src/. ${VOICE}`,
         { label: adjudicating ? 'review-r3:adjudicator' : `review-r${round}:seat-${n}`, phase: 'Review', schema: REVIEW }
       )
-    )
   )
 
   // Record verdicts, then let one editor per page apply that page's edits. Per page, never shared.

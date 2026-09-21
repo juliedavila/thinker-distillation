@@ -583,11 +583,17 @@ for (let round = 1; round <= 3; round++) {
     `The editor's resolution notes for each round are there too, as round-N-editor-<slug>.md. ` +
     `Quote seats by number from those files rather than working from the verdict list below.`
 
+  // The file is the SAME report you return, copied verbatim. An earlier wording said "write the
+  // full report and not a summary of it", which seats read as licence to expand: the brief caps a
+  // report at 230 words per page, about 1.5KB, and round 1 produced files of 12 to 27KB. Those
+  // then became required reading for rounds 2 and 3, and by round 2 a seat faced roughly half a
+  // megabyte before it could write a word. Every late-round agent in the 2026-09-20 run stalled.
   const writeReport =
-    `Before you return, write your report verbatim to \`${COUNCIL}/round-${round}-` +
+    `Before you return, copy your report verbatim to \`${COUNCIL}/round-${round}-` +
     `${adjudicating ? 'adjudicator' : `seat-${'{SEAT}'}`}.md\`, covering every page you reviewed. ` +
-    `Create the directory if it does not exist. Later rounds and the final transcript are built from ` +
-    `these files, so write the full report and not a summary of it. This is the only file you write.`
+    `Create the directory if it does not exist. It must be the SAME report you return and the same ` +
+    `length: the word limit in the brief binds the file too. Later rounds read these, so an expanded ` +
+    `file makes the next round unreadable. This is the only file you write.`
 
   const reports = await inWaves(
     seatsThisRound,
@@ -603,8 +609,10 @@ for (let round = 1; round <= 3; round++) {
           `Fill in \`.claude/skills/add-thinker/${brief}\` and answer it for EVERY page below, one verdict each. ` +
           `Each page is new, so every field was drafted by an agent and is in scope, not only the Editorial Reading.\n\n` +
           `Pages: ${due.map((p) => `src/content/thinkers/${p.slug}.md`).join(', ')}\n` +
-          `For each, its grounding pack, reading-claims.md, page-claims.md, facts.md and sources.md are under ` +
-          `_working/<slug>/.\n\n` +
+          `For each, its grounding pack, reading-claims.md, page-claims.md and facts.md are under ` +
+          `_working/<slug>/. **Do not read sources.md.** It is the prose research record, it is the largest ` +
+          `file in a working set, and facts.md plus page-claims.md already carry the verified record in the ` +
+          `form you need. Read the page, the claims maps, and the ledger.\n\n` +
           (priorRounds
             ? `${transcriptNote}\n\nVerdicts so far:\n${priorRounds}\n\nSay whether your concerns were resolved, respond to points other seats made by name and quote them from their files, and audit the rewrite for claims that were not there before.\n\n`
             : '') +

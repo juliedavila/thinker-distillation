@@ -277,6 +277,28 @@ graph instead of drifting from it.
 Council has argued for never rises on its own. It is the "decide or park" flag. Hudson and Appleton
 carry it at 115 days.
 
+## The other axis: what each agent must read
+
+Batching is the lever on agent count, and it has a cost on the axis nobody was watching. Five
+Council seats review one candidate or three at the same price, so per-page agent count falls
+sharply with batch size. But a seat reads every page in the batch, each page's working set, and
+every earlier seat report, so the same batching multiplies what each seat must swallow.
+
+Those two were pushed at once on 2026-09-20 and the second one broke. By review round 2 a seat
+faced roughly half a megabyte: 162KB of automatically injected context, about 200KB of working
+files across two candidates, 81KB of round 1 seat reports, and 56KB of pages. Every agent from
+round 2 onward stalled on the 180 second watchdog without producing a token, which is how this
+failure presents. It does not error, it goes quiet.
+
+Two self-inflicted causes, both fixed. The write-to-disk instruction said to write the full report
+rather than a summary, which seats took as licence to expand past the brief's 230-word cap, so
+round 1 produced 12 to 27KB files that became required reading for round 2. And reviewers were told
+to read `sources.md`, the prose research record and the largest file in any working set, when
+`facts.md` and `page-claims.md` already carry the verified record in the form a reviewer needs.
+
+**Price anything added to a seat's reading list.** Agent count is the cheap axis and it fails
+gracefully. Per-agent context fails as a stall, fifteen hours in, with nothing to show.
+
 ## The unanchored control
 
 Round 3 was narrowed from five seats to one adjudication pass on 2026-09-17, on the evidence that four recorded five-seat round 3s accepted unanimously and changed no page. Bornmann's 2010 meta-analysis of 70 reliability coefficients in peer review puts a warning on that reasoning: high agreement among reviewers who have read each other is a signal to distrust rather than a result. All four of those rounds used seats required to read the earlier transcripts first, so the unanimity is as consistent with anchoring as with convergence, and the two have opposite implications.

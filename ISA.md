@@ -3,13 +3,72 @@ project: thinker-distillation
 effort: E3
 phase: in-progress
 progress: iter-10 to iter-15 shipped; tracked in GitLab MRs and issues
-iteration: iter-18-maintenance-layer-2026-09-20
+iteration: iter-19-second-live-run-2026-09-21
 mode: project
 started: 2026-05-25
-updated: 2026-09-20
+updated: 2026-09-21
 ---
 
-## Save Point — 2026-09-20 evening, the maintenance layer (cold-start resume here)
+## Save Point — 2026-09-21, the second live run (cold-start resume here)
+
+> Current state. Everything from `## Save Point — 2026-09-20 evening` down is history.
+
+### Where things stand, verified
+
+- **Main at `77f5c85`. 13 thinkers, 23 pages, build clean.**
+- **Four merge requests open and all waiting on Julie.** Read them in this order:
+  - **!24 Ross Anderson** — new page, clean on all five seats in round 3.
+  - **!26 Kent Beck** — new page. Was parked, then unparked by a source hunt. Already rebased onto main and conflict-free.
+  - **!23** — cuts what a review seat must read. Genuine improvement, but its description wrongly claims it fixes the overnight stall. **That description needs correcting before merge; the stall was a dropped network.**
+  - **!27** — the close-the-loop work a 529 interrupted, plus four new calibration checks.
+- **Ledger coverage is now 4 of 13**: Majors, Willison, Larson, and Forsgren (built during her recheck). Nine pages still have none.
+- **25 open candidates.** Top of the ranked queue: Jez Humble (pull 2), Kent Beck (shipping), Sean Goedecke, Riley Goodside.
+- Saxe parked to 2027-09-16. Brooks can never come due, having no volatile fields.
+
+### What the run produced
+
+Second live run, Anderson and Beck, 39 agents, 38 clean. It shipped two pages and corrected a third, and the corrections are the interesting part.
+
+**The Forsgren recheck is the single most valuable thing the machinery has done.** Sent to check one thing, it found five. She is Senior Director of Developer Intelligence at Google, not Partner Researcher at Microsoft Research, and had been since before the page shipped, so the page was **wrong on the day it published** rather than having decayed. Building the ledger the gate requires meant sourcing all 33 factual fields, which surfaced: two more wrong biographical claims (her PhD is Management Information Systems at Arizona, not industrial engineering; her IBM work was software engineering, not operations research), an incomplete DevEx attribution missing Greiler with Noda as first author, a `source_link` returning 404, and **all three `critiques` edges failing the record**. Dan North's only durable artifact defends her by name. Beck's never mentions her. No DHH artifact exists at all. Her page now carries no critic edge, which SCHEMA 4.11 wants filled, and a critic search is the outstanding follow-up.
+
+**Beck was parked and then unparked.** Two seats held REVISE in round 3 over a claim appearing in three fields with no support: that the right practice differs by 3X phase. A source hunt found it in Beck's own prose, in a post already on file as `[S:24]`, whose ledger line had recorded only that the post credits no antecedent. Quote: "Applying the approach from one phase to an idea in another phase kills ideas." Ledgered as `[S:64]`, verified twice.
+
+### The five findings worth carrying
+
+1. **A source on file is not a sourced claim.** The ledger verifies a field cites a line; nothing verifies the line supports the field. This is the gap that parked Beck and no script closes it.
+2. **Two pages contradicted each other in the open for months.** Beck's page said his piece targets McKinsey; Forsgren's filed him as her critic. Nothing noticed until a ledger was built.
+3. **Return-edge plans go stale.** Drafted at stage 3, applied at stage 7, with three review rounds in between. Round 3 struck a phrase from five fields and the plan still carried it the next day.
+4. **The network, not the architecture.** The overnight failure was a dropped connection after Julie landed from Dallas. Round 1 seats 1 to 4 finished at 22:41; seat 5 stalled at 23:09 on identical inputs; nothing succeeded for thirteen hours; transcripts carry `getaddrinfo ENOTFOUND`. **Camila diagnosed load, then context size, and was wrong both times with the timestamps available.** For a silent agent, ask when it stopped and what stopped with it, before asking what it was reading.
+5. **P:3 is crowded** and will be five pages once !24 merges. Second run in a row to hit it, and unresolved.
+
+### Known gaps, named
+
+- **`!23`'s description is wrong** about what it fixes. Correct it before merging.
+- **The unanchored round 3 control has still never run.** It only fires on an adjudicated round 3, and both runs escalated to the full Council because round 2 left dissent. The question of whether the 2026-09-17 narrowing rested on convergence or anchoring is still open.
+- **Nine pages have no fact ledger.** The Forsgren recheck shows what that hides: four defects on one page.
+- **Forsgren now has no critic edge.** Needs a critic search.
+- **The Komoroske and Brooks antecedent edges on Forsgren are dated wrong.** Coordination Headwind is 2018; DORA began 2013 to 2014, so the essay cannot be an antecedent of the work. Left alone because fixing it desynchronises two pages. Recorded at `[S:30]` and `[S:31]`.
+- Efficiency: review is 57% of all agents and bytes, and 20% of every byte is injected context nobody here controls, at a median 162KB against a 2.5KB task. `bun scripts/run-cost.ts --model` has the batching maths. **Batching is the lever on agent count; per-agent context is the axis that fails hard.**
+
+### Next move on resume
+
+1. Julie reads and merges the four open MRs, !24 and !26 first.
+2. Correct !23's description before merging it.
+3. Then run the queue again. **Three candidates, not two**, per the cost model: from the ranked top, Jez Humble, Sean Goedecke and Riley Goodside. Humble is the strongest, already named on two pages.
+
+```
+bun scripts/sandbox.ts create <today>
+Workflow scriptPath: .claude/workflows/thinker-pipeline.js
+args: { "repoPath": "<sandbox path>", "today": "<today>", "candidates": [ ... ] }
+```
+
+### Environment notes
+
+`PATH="/opt/homebrew/bin:$PATH"`. `glab mr merge` can 405 spuriously right after a push; the API `PUT .../merge` works. Repo-local workflows resolve by `scriptPath`, never `name`; `meta` must be a pure literal; workflow scripts have no clock, so `args.today` is required. Shell is zsh, so an unmatched glob is an error and `find` beats a glob. No PyYAML. The pipeline token is a GitLab Developer-role project token in the macOS keychain (`gitlab-thinker-distillery` / `thinker-pipeline`), so the pipeline can open a merge request and structurally cannot merge one.
+
+---
+
+## Save Point — 2026-09-20 evening, the maintenance layer (history)
 
 > Current state. Everything from `## Save Point — 2026-09-20, first live pipeline run` down is history.
 

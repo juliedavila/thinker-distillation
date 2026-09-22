@@ -464,6 +464,17 @@ adjacent_thinkers:
       Engineer's Path* (O'Reilly, 2022). The two books cover one career from
       different distances.
     strength: secondary
+  - target_slug: ward-cunningham
+    display_name: Ward Cunningham
+    edge_type: antecedent
+    edge_label: >
+      Cunningham supplies the analogy exception debt is built on. His version,
+      set down in an OOPSLA experience report in 1992, treats shipping
+      first-time code as a debt that a prompt rewrite repays, with every minute
+      spent on not-quite-right code counted as interest. Larson keeps the shape
+      and moves it to policy, where the thing accumulating is the time an
+      organization spends granting exceptions to its own rules.
+    strength: secondary
 
 further_in:
   start_here: '"Work the policy, not the exceptions" (2018), the shortest piece that shows how he thinks.'

@@ -1,0 +1,17 @@
+READING
+Cunningham puts a price on the gap between a program and what its owning team now understands about the problem. [T:thesis] [F:technical-debt]
+Code written to reflect a partial understanding is legitimate in his account, and the interest is the friction of working against the gap until it is rewritten. [T:thesis] [F:technical-debt]
+The wiki applies the same premise to prose, with an editing surface thin enough that people who would not normally author will revise what is there. [F:wikiwikiweb] [T:thesis]
+What the site takes is the pattern across all three coinages. [L:2] [T:still-load-bearing]
+Each reached practitioners with its condition stripped: debt read as permission to write bad code, the simplest thing read as a command, and a law carrying his name that is not his. [L:2] [F:simplest-thing-that-could-possibly-work]
+He answered the first two on the record, and his own wiki's community posted a warning above the phrase for later arrivals. [L:2] [F:simplest-thing-that-could-possibly-work]
+The correction reached fewer people than the phrase each time. [L:2]
+Vocabulary that needs a warning label has stopped belonging to its author. [T:still-load-bearing]
+EXTENSION
+Technical debt is the phrase engineering leadership reaches for when it budgets remediation, which makes the condition attached to it a spending question. [F:technical-debt] [P:4]
+His repayment model assumes a team that once understood the problem and let the program drift, because a rewrite needs something to be rewritten toward. [T:thesis] [F:technical-debt]
+Generated code breaks that assumption, since nobody held the understanding at the moment the code was written. [P:4]
+A plan funded as paying down AI debt is priced against an alignment that never existed. [P:4] [F:technical-debt]
+What the work actually buys is comprehension the estate never had, a different job from the rewrite his metaphor prices, and one that has to land before anyone can say what the code is permitted to do. [P:4] [L:3]
+The precondition is an owner for the problem model the estate should match, and generated volume supplies none. [P:4] [T:thesis]
+The risk is that AI debt becomes the next phrase to arrive without its condition and fund whatever was already planned. [L:2] [L:3]

@@ -133,6 +133,25 @@ if (cmd === 'create') {
   const dir = assertInsideRoot(process.argv[3] ?? '');
   rmSync(dir, { recursive: true, force: true });
   console.log(`destroyed ${dir}`);
+} else if (cmd === 'prune') {
+  // The create path tells you the token "goes when the sandbox does", which is true and had never
+  // once fired: nothing destroyed a sandbox, so on 2026-09-22 two abandoned clones from two
+  // different runs were still holding the pipeline's GitLab token in plaintext .git/config, 45MB
+  // and valid until 2027-03-20. A guarantee nobody executes is not a guarantee.
+  //
+  // Age rather than success: a run that failed is exactly the one worth keeping to look at, and a
+  // finished run stops being interesting within a day.
+  const hours = Number(process.argv[3] ?? 24);
+  if (!existsSync(SANDBOX_ROOT)) { console.log('no sandboxes'); process.exit(0); }
+  const stale = readdirSync(SANDBOX_ROOT)
+    .map((d) => join(SANDBOX_ROOT, d))
+    .filter((p) => (Date.now() - statSync(p).mtimeMs) / 3600_000 > hours);
+  if (!stale.length) { console.log(`nothing older than ${hours}h`); process.exit(0); }
+  for (const p of stale) {
+    const age = Math.round((Date.now() - statSync(p).mtimeMs) / 3600_000);
+    rmSync(assertInsideRoot(p), { recursive: true, force: true });
+    console.log(`destroyed ${p} (${age}h old, credential gone with it)`);
+  }
 } else if (cmd === 'check') {
   // Not with `git push --dry-run`. A dry run skips the pre-push hook and GitLab does not evaluate
   // branch protection for one either, so it reports success for a push that would be refused. The
@@ -181,6 +200,6 @@ if (cmd === 'create') {
   console.log(fails.length ? `\nBOUNDARY BROKEN:\n- ${fails.join('\n- ')}` : `\nboundary holds: the pipeline can open a merge request and cannot merge it`);
   process.exit(fails.length ? 1 : 0);
 } else {
-  console.error('usage: bun scripts/sandbox.ts create|list|destroy <path>|check <path>');
+  console.error('usage: bun scripts/sandbox.ts create|list|destroy <path>|prune [hours]|check <path>');
   process.exit(1);
 }

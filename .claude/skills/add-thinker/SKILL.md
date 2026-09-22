@@ -158,7 +158,8 @@ Julie's instruction on 2026-09-22, after reading four of these in a row: "you ge
 
    Four blocks: who they are in one plain line, why they might belong, what is still unverified, and the real questions before we commit. Everything in the issue is unconfirmed by definition, so say so rather than writing a case that reads settled. Skip anyone already filed or already on the site.
 2. Append this run to `calibration.md`: rounds used, verdict counts, and every new failure pattern a seat caught. A failure caught twice becomes a checklist item.
-3. **Account for everything this run produced.** `git status` clean, and every branch this run created either merged or carrying an open merge request. Work that ends a run on an unmerged branch is invisible: the measurement script the batching decision rests on sat on `feat/run-cost` for a day with no merge request while a save point told the next session to use it, and the next session found `error: Module not found`. This is the second sighting of the same shape. The first was a fix for a recurring failure left in a working tree while the calibration entry describing that failure was being written.
+3. **Prune the sandbox once the merge requests are open.** `bun scripts/sandbox.ts prune 24`. The clone holds the pipeline's GitLab token in plaintext in its `.git/config`, and `create` promises the token "goes when the sandbox does", which was true and had never fired: two abandoned clones from two runs were still holding it on 2026-09-22. Keep a failed run's sandbox to look at; a finished one stops being interesting within a day. The Council reports inside it are gitignored, so confirm the transcript reached `~/.claude/LIFEOS/MEMORY/COUNCIL/` before pruning.
+4. **Account for everything this run produced.** `git status` clean, and every branch this run created either merged or carrying an open merge request. Work that ends a run on an unmerged branch is invisible: the measurement script the batching decision rests on sat on `feat/run-cost` for a day with no merge request while a save point told the next session to use it, and the next session found `error: Module not found`. This is the second sighting of the same shape. The first was a fix for a recurring failure left in a working tree while the calibration entry describing that failure was being written.
 
 ## Running this without a human in the middle
 
@@ -173,7 +174,7 @@ Different job, different cost. `bun scripts/staleness.ts` says what is due; `bun
 ## Cost controls
 
 - Five seats, one round, as the default for `mode-b` and `mode-c` pages. `mode-a` pages always get three rounds (stage 6); the rule is never traded away for cost. Batch mode-a pages together to share the rounds.
-- Outside the three-round case, re-review only dissenting seats plus the grounding seat.
+- Outside the three-round case, re-review only the dissenting seats plus the rewrite-audit seats. Ask `bun scripts/review-policy.ts <slug> --json` for those rather than naming them here, because this line said "the grounding seat" and stage 6 said "seats 3 and 5" and they were describing the same rule. `REWRITE_AUDIT_SEATS` in that script is the answer.
 - Reuse `seats.md` and the briefs. Do not recompose seats each run.
 - Batch reviews when several pages are ready: each seat reviews every page in one pass and returns a verdict per page. The novelty seat catches sameness across the batch this way.
 - Research stays in the main session with targeted searches.

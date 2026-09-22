@@ -26,7 +26,8 @@ For each page, do four things:
    citation that no longer supports what the sentence now says.
 3. **Check the ledger holds.** Every factual field still cites a verified `[S:n]`. Any fact a seat
    asserted during the rounds either has a ledger line with a URL or is off the page.
-4. **Decide.** ACCEPT ships it. Anything else stops it and goes to Julie.
+4. **Decide.** ACCEPT and ACCEPT-WITH-EDITS both ship, once your edits are applied. REVISE or REJECT stops the page and goes to Julie.
+   Do not use ACCEPT-WITH-EDITS as a way to halt a page: it does not halt one. If you want a human to look before this publishes, the verdict is REVISE.
 
 You are the last read before this page reaches a merge request, so you carry what five seats would
 have carried. Raise only what would change the verdict.

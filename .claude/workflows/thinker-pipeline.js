@@ -270,7 +270,39 @@ const UNANCHORED = {
 const POLICY = {
   type: 'object',
   properties: {
-    plans: { type: 'array', items: { type: 'object', properties: { slug: { type: 'string' }, doctrine_mode: { type: 'string' }, rounds: { type: 'integer' }, transcript_suffix: { type: 'string' } }, required: ['slug', 'rounds', 'transcript_suffix'] } },
+    // Ask for everything the script decides, not just the round count. Requesting a subset is how
+    // the control seat went missing on 2026-09-22: review-policy.ts is designated the one place
+    // the round rule lives, it published `control`, and this schema never asked for it, so the
+    // workflow re-derived the rule locally and the script's copy was decoration. A single source
+    // of truth that nobody reads is two sources of truth.
+    plans: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          slug: { type: 'string' },
+          doctrine_mode: { type: 'string' },
+          rounds: { type: 'integer' },
+          transcript_suffix: { type: 'string' },
+          round3_mode: { type: 'string', description: "'adjudication' means one pass instead of five seats" },
+          seats_by_round: { type: 'object', description: 'round number to seat numbers; an empty list means the adjudicator' },
+          control: {
+            type: 'object',
+            description: 'the unanchored control that rides along with an adjudicated round 3, or absent when there is none to run',
+            properties: {
+              when: { type: 'string' },
+              runs_after: { type: 'string' },
+              sees: { type: 'string' },
+              writes: { type: 'string' },
+              gates: { type: 'boolean' },
+              reads_as: { type: 'string' },
+            },
+          },
+          escalation: { type: 'string' },
+        },
+        required: ['slug', 'rounds', 'transcript_suffix'],
+      },
+    },
     rewrite_audit_seats: { type: 'array', items: { type: 'integer' } },
     raw: { type: 'string' },
   },
@@ -468,7 +500,13 @@ const policy = await agent(
     `output. Do not interpret it, do not adjust it, and do not add rounds of your own. Put the raw stdout in "raw".`,
   { label: 'review-policy', phase: 'Policy', schema: POLICY, effort: 'low' }
 )
-const roundsFor = (slug) => policy?.plans?.find((p) => p.slug === slug)?.rounds ?? 3
+const planFor = (slug) => policy?.plans?.find((p) => p.slug === slug)
+const roundsFor = (slug) => planFor(slug)?.rounds ?? 3
+// The policy decides whether round 3 adjudicates and whether a control rides along with it. Read
+// it here rather than restating the condition; the local fallbacks exist only for a policy agent
+// that returned nothing, and a disagreement between these and the script is a bug in this file.
+const adjudicatesFor = (slug) => planFor(slug)?.round3_mode === 'adjudication'
+const controlFor = (slug) => planFor(slug)?.control
 const auditSeats = policy?.rewrite_audit_seats?.length ? policy.rewrite_audit_seats : [3, 5]
 for (const p of pages) log(`${p.slug} (${p.doctrine_mode}): ${roundsFor(p.slug)} review round(s)`)
 
@@ -576,11 +614,14 @@ for (let round = 1; round <= 3; round++) {
   // dissent, which is the case the evidence never covered. The check is over the whole batch, not
   // per page: one page still in dispute buys the full Council for everyone in the round.
   const carriesDissent = due.some((p) => state.get(p.slug).dissent)
-  // `scripts/review-policy.ts` is the one place this rule lives, including the control seat that
-  // rides along with the adjudicated branch. This line restates its round3_mode locally; if the
-  // two ever disagree, the script wins and this is the bug.
-  const adjudicating = round === 3 && !carriesDissent
-  if (adjudicating) controlOwed.push(...due.map((p) => p.slug))
+  // `scripts/review-policy.ts` owns this rule. Round 3 adjudicates when the policy says the page
+  // adjudicates AND round 2 left no dissent, which is the escalation the policy also publishes.
+  // The `?? true` is the fallback for a policy agent that returned nothing at all, and is the only
+  // case where this file decides anything about rounds.
+  const adjudicating = round === 3 && !carriesDissent && due.every((p) => adjudicatesFor(p.slug) ?? true)
+  // Owed only where the policy actually attaches a control, rather than wherever this file guesses
+  // one belongs.
+  if (adjudicating) controlOwed.push(...due.filter((p) => controlFor(p.slug) ?? true).map((p) => p.slug))
   const seatsThisRound = adjudicating
     ? [0] // 0 is the adjudicator, not a seat
     : round === 1
@@ -645,7 +686,7 @@ for (let round = 1; round <= 3; round++) {
           (adjudicating
             ? `Round 2's edits are the newest text on the page and the least reviewed, so audit them hardest. ` +
               `Confirm every earlier concern was resolved in the text rather than waved at, and confirm the fact ` +
-              `ledger still holds. ACCEPT ships the page; anything else stops it and goes to Julie.\n\n`
+              `ledger still holds. ACCEPT and ACCEPT-WITH-EDITS both ship once your edits are applied; REVISE or REJECT stops the page and goes to Julie. ACCEPT-WITH-EDITS will NOT halt a page, so if you want a human to look first the verdict is REVISE.\n\n`
             : `The automated gates and the fact ledger already pass, so judge substance. Seat 3: every citation must ` +
               `support its own sentence and every clause of it, and every factual field must be backed by the [S:n] it ` +
               `cites. Seat 5: compare these pages against each other and against the roster for repeated openers, ` +

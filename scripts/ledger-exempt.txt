@@ -1,0 +1,28 @@
+# Pages exempt from the fact-ledger gate, because they shipped before the ledger existed.
+#
+# This list may only ever SHRINK. Adding a line means publishing a page whose claims nobody
+# traced to a source, which is the thing the gate exists to prevent. Removing a line means
+# someone built `_working/<slug>/facts.md` and `page-claims.md` for that page, and from then on
+# CI holds it to the same standard as everything else.
+#
+# Why a list and not a git diff: a diff exempts whatever a branch did not touch, which quietly
+# exempts a brand new page that arrives with no ledger at all. That is the exact failure worth
+# catching. A list exempts these nine and nothing else, forever, and it is countable.
+#
+# What the exemption hides, measured: the Forsgren recheck of 2026-09-20 was sent to correct one
+# employer field on a page with no ledger. Building the ledger the gate requires meant sourcing
+# all 33 factual fields, which turned up two more wrong biographical claims, an incomplete
+# attribution, a source link returning 404, and three `critiques` edges that all failed the
+# record. One page, five defects, none of them visible from the outside.
+#
+# 9 of 17 live pages, as of 2026-09-22.
+
+alex-komoroske
+camille-fournier
+david-woods
+fred-brooks
+john-allspaw
+martin-fowler
+ray-dalio
+rich-hickey
+sidney-dekker

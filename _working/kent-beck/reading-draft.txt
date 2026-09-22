@@ -1,0 +1,18 @@
+READING
+Beck's subject is the price of the next change, which Constantine's Equivalence states as cost(software) ~= cost(change). [T:thesis] [F:constantines-equivalence]
+Coupling is what makes that price high, so design is whatever brings it down. [F:constantines-equivalence]
+The work happens in tidyings, small changes to structure that leave behavior alone. [F:tidying]
+The two kinds are asymmetrical: a helper extracted can be inlined again, and a behavior change that reached customers cannot. [F:tidying]
+Small steps with a test behind each one follow from that asymmetry, and he calls the test-first technique a rediscovery whose limits he states himself. [F:test-driven-development] [L:1]
+His answer to whether to tidy first is an inequality rather than a rule, and it sometimes comes out no. [T:working-line] [F:tidying]
+Extreme Programming was written up out of a payroll project where the team had already adopted the way of working. [F:extreme-programming]
+His 3X phases add the axis the others lack, since a practice that fits a product being explored is waste once it is being extracted. [F:three-x]
+EXTENSION
+Because prompt injection has no architectural fix, the controls around an agent keep being revised while it runs. [P:1]
+Beck has never written about security, and what follows is the site's use of his pricing. [L:5]
+Each revision is a behavior change to a live control, the kind his own writing calls hard to take back. [F:tidying]
+What makes revisions expensive is coupling: the decision about what an agent may reach, spread across every integration. [F:constantines-equivalence]
+The structural work worth buying puts that decision in one place, so the next revision is an edit. [F:constantines-equivalence] [F:tidying]
+His inequality is the brake, since the same work bought where the surface is stable is cost with no option attached. [T:working-line] [F:tidying]
+The 3X phases say where that surface is still moving, because controls sized for an extracting product buy little against an exploring one. [F:three-x]
+That work needs an owner and a budget no feature funds, and one place deciding what every agent may reach is one place worth attacking. [L:5]

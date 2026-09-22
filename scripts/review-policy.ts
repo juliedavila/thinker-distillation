@@ -98,6 +98,16 @@ type Plan = {
   // 'adjudication' means one pass that reads rounds 1 and 2 and calls it, instead of five seats.
   // An empty seat list in seats_by_round is what that looks like.
   round3_mode?: 'adjudication' | 'full';
+  // The measurement that rides along with an adjudicated round 3, never a check. Present only
+  // when there is one to run, so a caller can treat its absence as "no control this round".
+  control?: {
+    when: string;
+    runs_after: string;
+    sees: string;
+    writes: string;
+    gates: boolean;
+    reads_as: string;
+  };
   reason: string;
   escalation: string;
 };
@@ -127,6 +137,22 @@ const plans: Plan[] = slugs.map((slug) => {
       // round 2 leaves dissent, which is the case the evidence never covered.
       seats_by_round: { '1': ALL_SEATS, '2': ALL_SEATS, '3': [] },
       round3_mode: 'adjudication',
+      // The control belongs HERE, in the one place the round rule lives, and not only in the
+      // workflow and the skill. Leaving it out of this output is how it went missing: on
+      // 2026-09-22 the first page ever to reach the adjudicated branch shipped without the
+      // measurement, and the shipping stage traced the cause straight back to this file saying
+      // nothing about it. That is the identical failure to the three-round rule living in
+      // SCHEMA section 7 alone, which let two mode-a pages ship with one round.
+      control: {
+        // Only on the adjudicated branch. An escalated round 3 is five seats again, which is the
+        // thing being compared against, so there is nothing to control for.
+        when: 'round3_mode is adjudication',
+        runs_after: 'the round 3 editor applies the adjudicator edits, so it reads the text that ships',
+        sees: 'the finished pages, their grounding packs, claims maps and ledgers, and nothing under _working/_council/',
+        writes: 'round-3-unanchored-control.md, beside the adjudicator report',
+        gates: false,
+        reads_as: 'stricter than the adjudicator reverses the 2026-09-17 narrowing; more lenient means nothing, because it saw less',
+      },
       reason: 'mode-a pages carry doctrine, so SCHEMA section 7 step 5 requires three rounds. Rounds 1 and 2 are the full Council; round 3 converges.',
       escalation:
         'If ANY verdict in round 2 is below ACCEPT-WITH-EDITS, round 3 reverts to all five seats. ' +
@@ -154,6 +180,14 @@ if (json) {
     console.log(`${p.slug} (${p.doctrine_mode}): ${p.rounds} round${p.rounds > 1 ? 's' : ''}, transcript suffix -${p.transcript_suffix}`);
     for (const [round, seats] of Object.entries(p.seats_by_round)) {
       console.log(`  round ${round}: ${seats.length ? `seats ${seats.join(', ')}` : 'one adjudication pass over the rounds 1 and 2 transcripts'}`);
+    }
+    if (p.control) {
+      console.log(`  control seat: one unanchored pass, ${p.control.when}`);
+      console.log(`    runs after: ${p.control.runs_after}`);
+      console.log(`    sees: ${p.control.sees}`);
+      console.log(`    writes: ${p.control.writes}`);
+      console.log(`    gates shipping: ${p.control.gates ? 'yes' : 'no, it is a measurement'}`);
+      console.log(`    how to read it: ${p.control.reads_as}`);
     }
     console.log(`  why: ${p.reason}`);
     console.log(`  escalation: ${p.escalation}`);

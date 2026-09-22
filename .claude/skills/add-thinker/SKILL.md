@@ -130,11 +130,32 @@ bun scripts/fact-ledger.ts <slug>
 bun run build
 ```
 
-Confirm the build passes, the page renders, and `reading_review` does not appear in the HTML. Commit, push, and open a merge request with a plain-language description (what changed, what the Councils caught, what Julie should look at). Label the issue `camila:ready-for-review`.
+Confirm the build passes, the page renders, and `reading_review` does not appear in the HTML. Commit, push, and open a merge request. Label the issue `camila:ready-for-review`.
+
+**The description has a house standard, and it is a gate.**
+
+```bash
+bun scripts/describe.ts --template mr-thinker   # or mr-machine, mr-recheck
+# write the description to a file, then:
+bun scripts/describe.ts --lint <file>
+```
+
+It must exit 0 before the merge request is opened. Four blocks: what changed, what Julie needs to do, the few things worth a look, and everything else inside a `<details>` block. The words above the `<details>` block may not use repo shorthand, because she reads them cold and so might someone who has never seen this project. Below it there is no vocabulary limit, so nothing is lost, it just stops standing between her and the decision.
+
+Julie's instruction on 2026-09-22, after reading four of these in a row: "you get a little jargony ... it is not really formulated for outside collaborators or even for me." The cause is structural rather than stylistic. Whoever writes the description just did the work, and is the one person who cannot tell which of their words are shorthand. Running the lint is how you find out.
+
+**There is no word limit, deliberately.** The first version of this gate capped the opening at 200 words and Julie removed it the same day: "It's not about quantity; it's about quality when it comes to the prose. I don't think a number is what sets that." A page about a thinker is an editorial judgment and often needs the room. The lint reports length and never fails on it. Compression is not clarity, and a budget buys the first at the cost of the second.
 
 ### 8. Close the loop
 
-1. File a `Candidate:` issue for each strong same-neighborhood thinker the Councils named, using the format of issues #12 to #14 (why this candidate, working case marked as unconfirmed, questions for the inclusion Council). Skip anyone already filed or already on the site.
+1. File a `Candidate:` issue for each strong same-neighborhood thinker the Councils named. Same standard as a merge request description, same gate:
+
+   ```bash
+   bun scripts/describe.ts --template issue-candidate
+   bun scripts/describe.ts --lint <file>
+   ```
+
+   Four blocks: who they are in one plain line, why they might belong, what is still unverified, and the real questions before we commit. Everything in the issue is unconfirmed by definition, so say so rather than writing a case that reads settled. Skip anyone already filed or already on the site.
 2. Append this run to `calibration.md`: rounds used, verdict counts, and every new failure pattern a seat caught. A failure caught twice becomes a checklist item.
 3. **Account for everything this run produced.** `git status` clean, and every branch this run created either merged or carrying an open merge request. Work that ends a run on an unmerged branch is invisible: the measurement script the batching decision rests on sat on `feat/run-cost` for a day with no merge request while a save point told the next session to use it, and the next session found `error: Module not found`. This is the second sighting of the same shape. The first was a fix for a recurring failure left in a working tree while the calibration entry describing that failure was being written.
 

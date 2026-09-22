@@ -439,7 +439,17 @@ adjacent_thinkers:
       designed in rather than caught on the way out. He does not cite Hickey,
       so the pairing is the site's reading of two arguments with one shape.
     strength: primary
-
+  - target_slug: kent-beck
+    display_name: Kent Beck
+    edge_type: parallel
+    edge_label: >
+      Beck reaches this page's conclusion from money rather than from meaning.
+      Where Hickey argues that complecting independent concerns is what makes a
+      program hard to reason about, Beck writes that the cost of software is
+      approximately the cost of changing it, and puts coupling in the place
+      where that cost accumulates. Neither man cites the other, and the two
+      arguments arrive at the same advice about where design effort goes.
+    strength: primary
 further_in:
   start_here: '"Simple Made Easy" (Strange Loop, 2011), the full hour.'
   then_read:

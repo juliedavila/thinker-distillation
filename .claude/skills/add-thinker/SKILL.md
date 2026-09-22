@@ -21,13 +21,29 @@ Each stage names its output. Keep outputs under `_working/<slug>/` so the next r
 
 ### 1. Research (outputs: `_working/<slug>/sources.md`, `_working/<slug>/facts.md`)
 
+**Start by asking what the site already claims about this person.**
+
+```bash
+bun scripts/inbound-claims.ts <slug-or-name>
+```
+
+It runs before the page exists and prints every edge, frame credit and prose mention on the roster that names them. Each line is a published claim the new page has to agree with or knowingly correct. This exists because Forsgren's page filed Kent Beck as her critic while Beck's page said his piece answers McKinsey and never names her, and the two sat in the open for months. The information was available; nobody was shown it at the stage where the claim was made. `grounding-pack.ts` also lists inbound edges, but it runs at stage 5 and needs the page to exist, so it cannot help here.
+
 Targeted web searches from the main session, not open-ended research agents. Verify every fact the page will state: education, employers and titles with dates, books with year, publisher and co-authors, essays that carry named frames, and named critics who engaged the thinker directly. Prefer primary sources (the thinker's own text, publisher pages). When sources disagree, record both and keep the page vague on that point. Mark each correction to the candidate issue.
 
-Check antecedents before anything is called original. For each candidate frame, search for earlier uses (Fournier's tech lead framing extended Patrick Kua's earlier book). Record critics carefully: someone who argues a different model without naming the thinker is a parallel edge, not a critic.
+Check antecedents before anything is called original. For each candidate frame, search for earlier uses (Fournier's tech lead framing extended Patrick Kua's earlier book).
+
+**A `critiques` edge is the most error-prone thing on a page.** All three failed the record on Forsgren: Dan North's only durable artifact defends her by name, Beck's never mentions her, and no DHH artifact exists at all. Before an edge is `critiques`, all three of these must hold, each with its own ledger line:
+
+1. A durable artifact exists (essay, book chapter, talk transcript). Not a social post, not a Q&A, not someone's summary of it.
+2. It names the thinker. A counterposition that never names them is `parallel`.
+3. It argues against them. Defending, extending, or citing them approvingly is not critique, whatever its tone.
 
 Run the uptake check before anything else, because it decides whether a Council is worth convening at all. For each candidate frame, find its first date and any use by practitioners other than the thinker. If every frame is under two years old with no outside use, stop and bring it to Julie (Saxe).
 
 **Write the fact ledger as you go.** `sources.md` is the prose record a human reads. `facts.md` is the machine-checkable half: one top-level bullet per verified fact, `- [S:n] claim | url | YYYY-MM-DD`. `_working/charity-majors/facts.md` is the worked example. A claim with no line in `facts.md` cannot reach the page, whoever proposed it, including a Council seat. See `PIPELINE.md` for why.
+
+**Write the line so it records what in the document supports the claim**, quoting the passage when the claim rests on specific wording. A source on file is not a sourced claim. Beck's page was parked in round 3 for an unsourced assertion whose source was already on file: `[S:24]` cited the very post containing "Applying the approach from one phase to an idea in another phase kills ideas", but the ledger line recorded only that the post credits no antecedent, so the line could not support the field that cited it. `fact-ledger.ts` cannot catch this. It verifies that a field cites a line and has no way to verify that the line supports the field, which makes this the one place in the ledger where care at intake is the only control.
 
 Label the issue `camila:in-council` when research is done.
 
@@ -43,6 +59,8 @@ Update the issue with the verdict and corrections, and label it `camila:accepted
 
 ### 3. Draft the page (output: `src/content/thinkers/<slug>.md` on branch `candidate/<slug>`)
 
+**Reconcile the inbound claims before writing.** Re-read the `inbound-claims.ts` output from stage 1 against what this page is about to assert. For each line: agree with it, or correct it and carry the correction into the merge request description. A new page that contradicts a live page produces two published claims disagreeing in the open, and nothing in the build or the ledger will notice.
+
 Write every field except `reading` and `extension`. Apply the Council's agreed shape: which frames go in the foreground, attribution for each, `doctrine_mode`, and limits. Frames coined with co-authors are `co-authored` with every co-author named. Frames the thinker built on are `extended` with the originator in `co_originators`. Field vocabulary goes in the `deep` tier with `distributed` attribution. Keep adjacency edges to seven or fewer.
 
 Re-verify anything the draft adds beyond `sources.md` (URLs, essay dates, what an essay actually argues) and append it to both `sources.md` and `facts.md`.
@@ -57,7 +75,9 @@ It derives the required fields from the page, so a new frame, critic edge or boo
 
 ### 4. Return edges
 
-Add an edge back to the new thinker on each existing page the new page links to, where the relationship is real. A page that nothing links to is a known gap (issue #9).
+Add an edge back to the new thinker on each existing page the new page links to, where the relationship is real. A page that nothing links to is a known gap (issue #9). Write the plan to `_working/<slug>/return-edges.md`; stage 7 applies it, and stage 7 re-reads it first.
+
+**Check whether the neighbour has a ledger before choosing the edge type.** A page with no `facts.md` has never had a single factual field traced to a source, and nine pages are in that state. Such a page can take a `parallel` return edge, which adds no required ledger line, and cannot take a `critiques` or `antecedent` one, which does. Running `fact-ledger.ts` on a legacy page after editing it proves nothing, because it was already exiting 1 before you arrived.
 
 ### 5. Reading Protocol (outputs: grounding pack, draft file, claims map)
 
@@ -87,6 +107,8 @@ It reads `doctrine_mode` off the page and prints the required rounds, the seats 
   - **Round 2:** apply round 1 edits and rerun the gates. Then each seat reads the full round 1 transcript and the revised page with `briefs/review-round2.md`. It responds to named points from other seats, says whether its own concerns were resolved, and audits the rewrite for new claims.
   - **Round 3:** apply round 2 edits and rerun the gates. Then **one adjudication pass**, not five seats, with `briefs/review-adjudicate.md`. It reads both transcripts, confirms every earlier concern was resolved in the text rather than waved at, audits round 2's edits as the newest and least reviewed text on the page, and checks the ledger holds.
     - **If any round 2 verdict was below ACCEPT-WITH-EDITS, round 3 is the full five seats** with `briefs/review-round3.md` instead. Adopted 2026-09-17: across four runs a five-seat round 3 accepted unanimously and changed no page, while rounds 1 and 2 caught something every time. The seats come back for the case the evidence never covered.
+    - **The evidence behind that narrowing has since turned, and the narrowing has still never been tested.** Every run since has escalated, because round 2 left dissent each time, and the escalated round 3 changed a page on all of them. On Larson it caught an extension saying the regulator designates the CISO where 23 NYCRR 500.4(a) says the entity does, after two rounds and an editor had read the sentence. So the adjudication pass has never once carried a live page, and the branch it was designed for, the quiet page where round 2 leaves nothing below ACCEPT-WITH-EDITS, has not happened yet. When it does, record what the adjudicator caught or missed in `calibration.md` with more care than usual. That single run is the whole evidence base for the narrowing.
+    - **Every adjudicated round 3 also runs one unanchored control seat**, which sees only the finished page, its grounding pack, claims map and ledger: no transcript, no verdict history, no other seat's reasoning. Its verdict is recorded beside the adjudicator's and never gates shipping, because it measures rather than checks. Bornmann's 2010 meta-analysis puts the reason plainly: agreement among reviewers who have read each other is a signal to distrust, not a result. A control landing stricter than the adjudicator has found something the anchored pass did not, and that is the result that reverses the narrowing. A more lenient control means nothing, since it saw less. It has never run, for the same reason the adjudication pass has never run.
   - Ship on the round 3 verdict. Any REVISE or REJECT left after round 3 goes to Julie.
 - **One round** otherwise, with the rules below.
 
@@ -100,6 +122,8 @@ Add `reading_review` to the page with `dissent: true` if any seat ended below AC
 
 ### 7. Ship
 
+**Re-read `_working/<slug>/return-edges.md` against the finished page before applying it.** The plan is drafted at stage 4 and applied here, with the Reading Protocol and three review rounds in between, and the plan does not move while the page does. Round 3 struck "doctoral student" from five fields of the Anderson page and the Willison return-edge label still carried the phrase a day later. This is structural rather than a slip: return edges are written before the page is finished and applied after it is. Every phrase the rounds changed has to be chased into the plan by hand.
+
 ```bash
 bun scripts/reading-gates.ts <slug>
 bun scripts/fact-ledger.ts <slug>
@@ -112,6 +136,7 @@ Confirm the build passes, the page renders, and `reading_review` does not appear
 
 1. File a `Candidate:` issue for each strong same-neighborhood thinker the Councils named, using the format of issues #12 to #14 (why this candidate, working case marked as unconfirmed, questions for the inclusion Council). Skip anyone already filed or already on the site.
 2. Append this run to `calibration.md`: rounds used, verdict counts, and every new failure pattern a seat caught. A failure caught twice becomes a checklist item.
+3. **Account for everything this run produced.** `git status` clean, and every branch this run created either merged or carrying an open merge request. Work that ends a run on an unmerged branch is invisible: the measurement script the batching decision rests on sat on `feat/run-cost` for a day with no merge request while a save point told the next session to use it, and the next session found `error: Module not found`. This is the second sighting of the same shape. The first was a fix for a recurring failure left in a working tree while the calibration entry describing that failure was being written.
 
 ## Running this without a human in the middle
 
@@ -145,3 +170,5 @@ The rest of this list came out of the first unattended pipeline run: 1,391 tool 
 - **Never run git during an unresolved conflict.** An agent hit `path 'src/content/thinkers/charity-majors.md' is unmerged; you need to resolve your current index first`. Finish or abort the merge before anything else touches git.
 - **Do not reach for `rm -rf`.** Both permission refusals in the whole run were agents trying to delete a temp directory, and `.claude/settings.json` now denies it outright. Work in the session scratchpad, which is cleaned up for you.
 - **`git checkout` and `git restore` are denied** in this repository for the reason in the first gotcha above: restoring a file that way also throws away uncommitted edits to it, which happened once and cost real work. Back a file up before you break it, and restore from the backup.
+
+**When an agent goes silent, ask when it stopped and what stopped with it, before asking what it was reading.** An overnight run stalled and was diagnosed first as load, then as context size, and both were wrong with the timestamps already on disk. Round 1 seats 1 to 4 finished at 22:41 and seat 5 stalled at 23:09 on identical inputs, nothing succeeded for the next thirteen hours, and the transcripts carried `getaddrinfo ENOTFOUND`. The network had dropped. A context-size problem would have taken seats 1 to 4 down with it, and simultaneity is the cheapest thing to check: a failure that hits every seat at once is environmental, and one that hits the largest seat is not.

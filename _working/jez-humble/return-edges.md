@@ -198,3 +198,42 @@ lineage either of them claims.
   business settling it, which all three seats that raised the question asked the drafter to avoid.
 - **Riley Goodside and Sean Goedecke** are being drafted in the same batch. No edge exists in
   either direction and none should be invented to create one.
+
+---
+
+## Applied at Ship, 2026-09-22
+
+All four edges applied to the four target pages on branch `candidate/jez-humble`. The plan was
+re-read against the finished page first. No phrase the three review rounds changed had drifted into
+this file, which is the specific failure this check exists for. Two other defects were found and
+repaired at apply time, and neither was reviewed by any Council round, because a return-edge label
+is drafted at stage 4 and applied at stage 7 with no review in between.
+
+1. **Fowler, subject error.** The planned label read "Fowler's article on continuous integration
+   sends readers to *Continuous Delivery* for the broader process, published the book in his own
+   signature series, and wrote the bliki entries...". An article cannot publish a book. Split into
+   two sentences with Fowler as the subject of the second. Claim delta: SAME, three propositions
+   before and after.
+2. **Allspaw, near-verbatim duplication with the new page's own label for the same pair.** The
+   planned middle sentence was word for word identical to a sentence in
+   `jez-humble.md`'s Allspaw label, and the planned third sentence restated that page's third
+   sentence in different words. The third sentence was deleted; its content is already carried by
+   the first, from Allspaw's side. Deletion only. This is the checklist item from the Larson and
+   Willison runs, and it fired even though the label was written from the neighbour's side as the
+   item instructs.
+
+Build after applying: all nine warnings this plan targeted are gone. The four collapse notices the
+table above predicted appeared exactly as computed, on all four pages.
+
+```
+[distillery] warning: charity-majors: collapsed cindy-sridharan to stay inside the neighbor caps
+[distillery] warning: john-allspaw: collapsed richard-cook to stay inside the neighbor caps
+[distillery] warning: martin-fowler: collapsed jez-humble to stay inside the neighbor caps
+[distillery] warning: nicole-forsgren: collapsed jez-humble to stay inside the neighbor caps
+```
+
+Neighbour ledger state, recorded before editing per the calibration item: `martin-fowler` and
+`john-allspaw` have no `facts.md` and their ledgers already exited 1 on `main`. They still do, on a
+`body_of_work` entry this change never touched. That is why all four edges are `parallel`, which
+adds no required ledger line. `nicole-forsgren` and `charity-majors` both have ledgers and both
+still exit 0.

@@ -7,6 +7,7 @@ What the Councils have caught so far, turned into checks. Read this before draft
 Run each item against the draft before running the gates.
 
 **Attribution**
+- [ ] A source already in `facts.md` does not mean the claim is sourced. Check that the ledger LINE records the part of the document the claim rests on. Beck's page asserted in three fields that the right practice differs by 3X phase; `[S:24]` cited the very post that says "Applying the approach from one phase to an idea in another phase kills ideas", but its ledger line had recorded only that the post credits no antecedent. The page was parked in round 3 for an unsourced claim whose source was already on file. `fact-ledger.ts` cannot catch this: it verifies that a field cites a line, never that the line supports the field.
 - [ ] No frame is marked `original` without an antecedent search. Earlier uses found so far: Patrick Kua on the tech lead role, Evan Bottcher on the platform definition, Dan McKinley on boring technology.
 - [ ] Every co-author of a coined term is named in `co_originators` and wherever the term appears in prose.
 - [ ] A counterposition that never names the thinker is a `parallel` edge, not `critiques`.
@@ -35,6 +36,11 @@ Run each item against the draft before running the gates.
 - [ ] The Lens position and the angle are not already used elsewhere on the site. Run `bun scripts/lens-index.ts <slug>`, which prints the positions this page argues through and the other pages holding each one. Read those extensions before drafting; that set is what the page has to be novel against, and it is far smaller than the roster. Run the script with no argument for the whole index, where a position held three or more times is flagged as crowded.
   This replaced a hand-kept list on 2026-09-20. The list had drifted inside a single pipeline run: it recorded Fowler at P:7 only when he also holds P:3 and P:5, and Larson at P:8 only when he also holds P:3. The understated P:5 count is why a three-way collision reached a shipped page through three review rounds. A roster list maintained by hand rots faster than it is read.
 - [ ] A term repeated many times on one page reads as machine prose even when it is the right word (Dalio's five uses of "operationalization").
+
+**Process**
+- [ ] Re-read `return-edges.md` against the FINAL page before applying it. The plan is drafted at stage 3, the Reading Protocol and three review rounds run after it, and the plan does not move. On the Anderson run round 3 struck "doctoral student" from five fields and the Willison return-edge label still carried it a day later. This is structural rather than a slip: return edges are written before the page is finished and applied after.
+- [ ] A shipped `critiques` edge is the most error-prone thing on a page. Three of three failed the record on Forsgren: Dan North's only durable artifact defends her by name, Beck's never mentions her, and no DHH artifact exists at all. Beck's own page had said so since the day both shipped, so two pages contradicted each other in the open and nothing noticed until a ledger was built.
+- [ ] A page with no `facts.md` has never had a single factual field traced to a source. Forsgren's recheck had to source all 33 and found four defects beyond the one it was sent for, including two wrong biographical claims and a 404 on a `source_link` used by two frames.
 
 **Research**
 - [ ] Every fact in the candidate issue is re-verified. The Fournier case had three errors; the Saxe case had six, including every frame it named.

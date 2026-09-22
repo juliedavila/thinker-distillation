@@ -305,6 +305,19 @@ adjacent_thinkers:
       reserves that absorb surprise; Majors asks whether the instruments can
       describe one after it arrives.
     strength: secondary
+  - target_slug: ross-anderson
+    display_name: Ross Anderson
+    edge_type: parallel
+    edge_label: >
+      Anderson puts an adversary inside the feedback argument. His 1993 survey
+      of cash machine fraud collected how the losses actually happened and found
+      them concentrated in implementation error and management failure, while
+      the field designed against cryptanalysis. The paper opens by contrasting
+      cryptography with aviation, where accidents are investigated and the
+      findings feed back into practice, and it credits no source for that
+      comparison. He reaches it from banking rather than from resilience
+      engineering.
+    strength: primary
 
 further_in:
   start_here: >

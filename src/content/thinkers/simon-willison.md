@@ -451,6 +451,17 @@ adjacent_thinkers:
       and reaches his 2022 conclusion, which makes it uptake rather than
       critique.
     strength: secondary
+  - target_slug: ross-anderson
+    display_name: Ross Anderson
+    edge_type: parallel
+    edge_label: >
+      Anderson takes the untrusted-input problem below the model. Trojan
+      Source, first authored by his student Nicholas Boucher with Anderson
+      second, shows source text that renders one way to a human reviewer and
+      compiles another, carrying CVE-2021-42574 and CVE-2021-42694. The remedy
+      landed in Rust 1.56.1, in a -Wbidi-chars warning merged for GCC 12 and in
+      LLVM, which is containment applied to a compiler instead of to an agent.
+    strength: primary
 
 further_in:
   start_here: '"Prompt injection attacks against GPT-3" (2022), then "You can''t solve AI security problems with more AI" five days later.'

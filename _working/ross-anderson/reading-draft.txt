@@ -1,0 +1,16 @@
+READING
+Anderson's 1993 finding came from counting: he collected how cash machine fraud happened and found most of it running through implementation error and management failure while the field designed against cryptanalysis. [F:threat-model-was-wrong] [T:thesis]
+The paper blames a missing feedback loop: one field investigates its accidents and the other did not. [T:thesis] [E:out:david-woods]
+Once the losses are visible the pattern is economic, and his rule says where the party able to protect a system is not the party who suffers, problems may be expected. [T:working-line] [T:thesis]
+That reading began in a conversation with the economist Hal Varian, and it borrows moral hazard and network externalities from economics. [F:security-economics] [E:out:hal-varian]
+The phrasing that travelled is "misaligned incentives", a section heading in the 2006 paper with Tyler Moore. [F:misaligned-incentives]
+The late work turns the same eye on new material, in Trojan Source with his student Nicholas Boucher and in model collapse with Ilia Shumailov and four others. [F:trojan-source] [F:model-collapse]
+What the record shows him doing best is convening, and those communities outlived him. [L:3] [T:still-load-bearing]
+EXTENSION
+Trojan Source is the sharpest case on this site for enforcing boundaries in infrastructure rather than trusting code review, because it beats review at the character level: the human reads one program and the compiler builds another. [F:trojan-source] [P:3]
+The fixes bear that out: Rust, GCC and LLVM changed, and no reviewer was asked to look harder. [F:trojan-source]
+The move worth copying is to push the check into the toolchain wherever the rendered and the executed artifact can differ. [P:3] [F:trojan-source]
+Its precondition is ownership of the build, so enforcement reaches only as far as the compilers, linters and package resolution an organisation controls, and no further into a vendor's. [P:3]
+It also buys false confidence, because a build rule covers the encodings somebody already named. [L:4] [F:threat-model-was-wrong]
+Anderson's own correction is the cheaper companion: collect how the losses happened, then check the threat model against that record. [F:threat-model-was-wrong] [T:still-load-bearing]
+Asking which of those losses a build rule could have refused is where the next rule comes from. [T:still-load-bearing] [P:3]

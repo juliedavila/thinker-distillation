@@ -77,7 +77,7 @@ source without rereading `sources.md`.
 - adjacent_thinkers[0].edge_label [S:12] [S:13] [S:20] [S:22] [S:36]
 - adjacent_thinkers[1].edge_label [S:44] [S:42] [S:43] [S:45]
 - adjacent_thinkers[4].edge_label [S:35] [S:36] [S:46]
-- adjacent_thinkers[5].edge_label [S:16]
+- adjacent_thinkers[5].edge_label [S:16] [S:65] [S:66]
 - further_in [S:48] [S:26] [S:11] [S:24] [S:15] [S:9] [S:34] [S:35] [S:36]
 - live_edge.summary [S:6] [S:7] [S:8] [S:28] [S:31] [S:50]
 
@@ -185,3 +185,16 @@ move is checkable from this page alone. [S:54] is the count both arguments rest 
   Beck priced practices, which [S:48] carries for tidying and [S:37] carries for test-driven
   development, in his own voice and against four named conditions. The second of those was on the
   page at `limits[0]` and missing from this line.
+
+## The Cunningham edge, widened 2026-09-22
+
+`adjacent_thinkers[5].edge_label` named one shared artifact, the CRC cards paper, and now names
+three: the 1989 paper `[S:16]`, the 1987 pattern-languages report `[S:65]` and the Smalltalk
+session behind "the simplest thing that could possibly work" `[S:66]`. The two new lines were
+re-verified at their own URLs rather than copied from `_working/ward-cunningham/facts.md`. The
+label also dropped "when Beck was at Apple and Cunningham at Wyatt Software": `[S:65]` places
+Cunningham at Tektronix in 1987 and `[S:16]` at Wyatt Software in 1989, so the affiliation pair
+was true of the 1989 paper alone and would have read as covering all three.
+
+The edge keeps `edge_type: parallel`, `strength: secondary` and `render_tier: deep`. Nothing
+structural changed, and `parallel` adds no required field to the ledger.

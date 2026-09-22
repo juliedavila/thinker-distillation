@@ -447,9 +447,12 @@ adjacent_thinkers:
     display_name: Ward Cunningham
     edge_type: parallel
     edge_label: >
-      Co-author of the one CRC cards paper, presented at OOPSLA in 1989 when
-      Beck was at Apple and Cunningham at Wyatt Software. The frame above
-      carries the credit in full, so the edge sits in the deep tier.
+      Cunningham is the other name on three of Beck's earliest artifacts: the
+      CRC cards paper at OOPSLA in 1989, the 1987 technical report proposing
+      pattern languages for programs, and the Smalltalk session where the
+      question about the simplest thing that could possibly work was put to
+      Beck rather than by him. The CRC frame above carries that credit in full,
+      so the edge sits in the deep tier.
     strength: secondary
     render_tier: deep
   - target_slug: larry-constantine

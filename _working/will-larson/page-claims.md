@@ -38,6 +38,7 @@ inclusion seats asked for specific claims to be traceable.
 - adjacent_thinkers[4] [S:23] [S:24]
 - adjacent_thinkers[5] [S:29] [S:52]
 - adjacent_thinkers[6] [S:36] [S:11]
+- adjacent_thinkers[7] [S:42] [S:58] [S:16]
 
 Recorded beyond the required set:
 
@@ -78,3 +79,17 @@ said the executive book was written after the Calm and Carta jobs; [S:55] places
 inside the Carta tenure, so it now says the book was published while he was CTO at Carta. `thesis`
 gained the French and Raven lineage parenthetical the frame already carried at
 `named_frames[3].co_originators`, so it cites [S:40] here too.
+
+## The Cunningham edge, added 2026-09-22
+
+`adjacent_thinkers[7]` is the return edge from the Ward Cunningham page, appended at the end of
+`adjacent_thinkers` rather than inserted, because the lines above address edges positionally and an
+insertion mid-list would shift every later index. Three lines carry it: `[S:42]` for the metaphor
+behind "exception debt" being Cunningham's, `[S:58]` for what the 1992 report actually says, which
+is the half `[S:42]` never quoted, and `[S:16]` for exception debt and its repair in Larson's own
+post.
+
+The label says Cunningham "supplies the analogy exception debt is built on" and stops there.
+`[S:16]` records that Larson credits no prior source for the name, so nothing here claims he cited
+Cunningham. The derivation is the site's reading, stated as the site's, and the Cunningham page
+makes the same claim in the same terms from the other side.

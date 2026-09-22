@@ -149,3 +149,14 @@ replacement language at all, so the rule text settles neither the assertion nor 
 this research will not manufacture a rule that is not there. The page asserts neither: `extension`
 now says no sponsor can waive the duty, which is what [S:45] and [S:46] support, and says nothing
 about who holds the seat.
+
+## Added at the ward-cunningham return edge, 2026-09-22
+
+One line, for the new `antecedent` edge to Cunningham. `[S:42]` already records that the debt
+metaphor behind "exception debt" is Cunningham's and places its first appearance in an OOPSLA 1992
+experience report, on Fowler's attribution. What `[S:42]` does not carry is what the report itself
+says, and the edge label describes the mechanism, so the report was re-opened at its own URL rather
+than the claim being rested on a line that never quoted it. That is the Beck round 3 failure shape:
+a source on file is not a sourced claim unless the line records the passage the field stands on.
+
+- [S:58] "The WyCash Portfolio Management System," Ward Cunningham, Wyatt Software, OOPSLA '92 Experience Report, dated March 26 1992. Re-read at its own URL 2026-09-22. The debt passage in full: "Shipping first time code is like going into debt. A little debt speeds development so long as it is paid back promptly with a rewrite. Objects make the cost of this transaction tolerable. The danger occurs when the debt is not repaid. Every minute spent on not-quite-right code counts as interest on that debt. Entire engineering organizations can be brought to a stand-still under the debt load of an unconsolidated implementation, object-oriented or otherwise." Supports: the metaphor's first printed statement and its interest side, in the words the Cunningham edge label paraphrases. Does NOT carry the alignment framing, that the debt is code out of step with what a team now understands, which is from his 2009 talk and not from this report. | https://c2.com/doc/oopsla92.html | 2026-09-22

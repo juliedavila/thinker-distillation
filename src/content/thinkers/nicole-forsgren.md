@@ -19,7 +19,7 @@ inclusion_rationale: >
 thinker_type: mixed
 doctrine_mode: mode-b
 has_long_read: false
-last_updated: 2026-05-27
+last_updated: 2026-09-20
 
 live_edge_visible: true
 
@@ -35,14 +35,17 @@ thirty_second_take: >
   anchor is what makes the field's measurement conversation tractable at all.
 
 background: >
-  Industrial engineer by training (PhD), with an early career inside operations
-  research at IBM and a stint at Chef Software before founding DORA (DevOps
-  Research and Assessment) in 2014 with Jez Humble and Gene Kim. DORA was
-  acquired by Google in 2018, the same year the team's culminating book
-  *Accelerate* shipped from IT Revolution. From there Forsgren went to GitHub
-  as VP of Research, then to Microsoft Research where she is now Partner
-  Researcher, currently driving the DevEx work. The trajectory matters because
-  it is itself an intellectual artifact: DORA (2014–2018) established that
+  A PhD in management information systems from the University of Arizona, after
+  an early career as a software engineer at IBM working on large-scale
+  enterprise storage, and a stint at Chef Software before founding DORA (DevOps
+  Research and Assessment) with Jez Humble and Gene Kim. DORA was acquired by
+  Google in 2018, the same year the team's culminating book *Accelerate*
+  shipped from IT Revolution. From there Forsgren went to GitHub as VP of
+  Research, then to Microsoft as a Partner leading the Developer Experience
+  Lab, and is now Senior Director of Developer Intelligence at Google. Her own
+  site still describes the Microsoft role as current, so the Google role is the
+  better-attested reading on a point where the sources disagree. The trajectory
+  matters because it is itself an intellectual artifact: DORA (2014–2018) established that
   engineering performance was measurable at all; SPACE (2021) decomposed the
   measurement into five dimensions when single-metric thinking had broken; DevEx
   (2023–present) is consolidating the productivity question around three
@@ -100,7 +103,7 @@ named_frames:
         role: co-author *Accelerate*; *Continuous Delivery* lineage
       - slug: gene-kim
         role: co-author *Accelerate*; *DevOps Handbook* framing
-    source_link: https://services.google.com/fh/files/misc/state-of-devops-2023.pdf
+    source_link: https://dora.dev/guides/dora-metrics/
     render_tier: foreground
   - concept_slug: space-framework
     display_name: SPACE framework
@@ -136,6 +139,8 @@ named_frames:
       - slug: margaret-anne-storey
         role: co-author DevEx 2023
       - slug: abi-noda
+        role: first author DevEx 2023
+      - slug: michaela-greiler
         role: co-author DevEx 2023
     source_link: https://queue.acm.org/detail.cfm?id=3595878
     render_tier: foreground
@@ -163,7 +168,7 @@ named_frames:
         role: co-author *Accelerate*
       - slug: gene-kim
         role: co-author *Accelerate*
-    source_link: https://services.google.com/fh/files/misc/state-of-devops-2023.pdf
+    source_link: https://dora.dev/guides/dora-metrics/
     render_tier: deep
   - concept_slug: time-to-restore
     display_name: Time to restore as operability
@@ -232,7 +237,8 @@ body_of_work:
     year: 2023
     link: https://queue.acm.org/detail.cfm?id=3595878
     editorial_note: >
-      The current frontier. Co-authored with Storey and Noda. Consolidates the
+      The current frontier. Written with Abi Noda (first author),
+      Margaret-Anne Storey and Michaela Greiler. Consolidates the
       productivity question around three measurable system properties:
       feedback loops, cognitive load, flow state. Read after *Accelerate* and
       SPACE; this is the live edge.
@@ -370,16 +376,6 @@ adjacent_thinkers:
       Woods explains what resilience is structurally; Forsgren measures one
       operational footprint of it.
     strength: primary
-  - target_slug: dhh
-    display_name: David Heinemeier Hansson
-    edge_type: critiques
-    edge_label: >
-      The metrics-as-managerial-distance critique. DORA's measurability invites
-      managers to optimize what they can count rather than what they should
-      care about; the instrument hides the work it was meant to make legible.
-      Sharpest framing of the "measurement substitutes for engagement" worry.
-    strength: secondary
-    render_tier: deep
   - target_slug: will-larson
     display_name: Will Larson
     edge_type: extends
@@ -395,22 +391,27 @@ adjacent_thinkers:
     strength: primary
   - target_slug: kent-beck
     display_name: Kent Beck
-    edge_type: critiques
+    edge_type: parallel
     edge_label: >
-      The metrics-as-management-distance position. Numbers about engineering
-      work substitute for engagement with engineering work; measurement is a
-      structural seduction for non-engineering leadership. Adjacent to DHH's
-      critique but more careful about which measurement uses are legitimate.
+      The Goodhart worry, argued from the same side of the table. Answering
+      McKinsey in August 2023 with Gergely Orosz, Beck put the four DORA
+      measures on the outcome-and-impact side of his own diagram and argued
+      against effort metrics, because "measuring leads to behavior change
+      including coming up with creative ways to improve those measurement
+      scores even at the expense of results that everyone agrees matter."
+      The piece never names Forsgren.
     strength: secondary
     render_tier: deep
   - target_slug: dan-north
     display_name: Dan North
-    edge_type: critiques
+    edge_type: parallel
     edge_label: >
-      The continuous-delivery measurement critique. Lead-time-for-changes can
-      incentivize batch-shrinking that degrades coherent change. North's
-      version: the metric undermines the practice it was meant to honor when
-      teams optimize the measure instead of the work.
+      The attribution argument. Reviewing McKinsey's productivity framework in
+      October 2023, North called himself a fan of the DORA *Accelerate*
+      research and the later SPACE model, faulted McKinsey for failing to cite
+      Forsgren as lead researcher on both, and wrote that the research "has
+      been analysed, critiqued, and studied by industry analysts, and has stood
+      up to scrutiny."
     strength: secondary
     render_tier: deep
 
@@ -445,31 +446,33 @@ further_in:
 
 live_edge:
   current_focus: >
-    DevEx measurement at Microsoft Research: turning feedback loops,
-    cognitive load, and flow state into instrumented system properties.
+    Developer-experience measurement in the AI era, now from Google: turning
+    feedback loops, cognitive load, and flow state into instrumented system
+    properties.
   summary: >
-    Forsgren is currently extending the SPACE framework into the DevEx layer
-    at Microsoft Research, with three named instruments (feedback loops,
+    Forsgren extended the SPACE framework into the DevEx layer across her
+    Microsoft years, with three named instruments (feedback loops,
     cognitive load, flow state) taking the place of activity and efficiency
-    as the operational telemetry for developer experience. The 2023 CACM piece
-    (with Storey and Noda) lays out the consolidation; the work in 2024–2026
+    as the operational telemetry for developer experience. The 2023 paper
+    (with Noda, Storey and Greiler) lays out the consolidation; the work since
     has been about pressure-testing the dimensions across organizations of
     different sizes and clarifying what counts as a measurable feedback loop.
     The DevEx Index, a survey instrument that measures the dimensions,
-    is the live edge of the empirical research. Vocabulary is not yet stable;
-    we are watching this frame harden in real time.
+    is the live edge of the empirical research, and *Frictionless* (2025, with
+    Abi Noda) is the first book-length statement of it. Vocabulary is not yet
+    stable; we are watching this frame harden in real time.
   recent_work:
     - title: 'DevEx: What Actually Drives Productivity'
       year: 2023
       kind: essay
-      with: Margaret-Anne Storey, Abi Noda
+      with: Abi Noda, Margaret-Anne Storey, Michaela Greiler
       note: >
-        The CACM piece; the cleanest single statement of the post-SPACE
-        consolidation.
+        The ACM Queue piece, also carried by CACM later that year; the
+        cleanest single statement of the post-SPACE consolidation.
     - title: DevEx in Action
       year: 2024
       kind: essay
-      with: Abi Noda
+      with: Eirini Kalliamvakou, Abi Noda, Michaela Greiler, Brian Houck, Margaret-Anne Storey
       note: >
         Pressure-testing DevEx in operating organizations; the operational
         case studies that move the frame from paper to practice.
@@ -479,5 +482,13 @@ live_edge:
       note: >
         Continuing the empirical anchor that started in 2014; the DORA program
         continues post-Google-acquisition.
-  last_observed: 2026-05-27
+    - title: 'Frictionless: 7 Steps to Remove Barriers, Unlock Value, and Outpace Your Competition in the AI Era'
+      year: 2025
+      kind: book
+      with: Abi Noda
+      note: >
+        Announced November 2025. The DevEx research packaged as an end-to-end
+        system for improving developer experience at scale, with workbooks for
+        the teams doing the measuring.
+  last_observed: 2026-09-20
 ---

@@ -550,6 +550,12 @@ phase('Review')
 const state = new Map(pages.map((p) => [p.slug, { required: roundsFor(p.slug), dissent: false, escalated: false, history: [] }]))
 // Recorded, never acted on. See the unanchored control below.
 const unanchored = []
+// Every page that reached the adjudicated branch and therefore owes a control verdict. Compared
+// against what the control actually returned once the rounds are done, because on 2026-09-22 the
+// control silently produced nothing for the shipping stage to find and only a human reading two
+// disagreeing reports noticed. A measurement that can go missing without anyone being told is not
+// a measurement.
+const controlOwed = []
 
 for (let round = 1; round <= 3; round++) {
   const due = pages.filter((p) => {
@@ -570,7 +576,11 @@ for (let round = 1; round <= 3; round++) {
   // dissent, which is the case the evidence never covered. The check is over the whole batch, not
   // per page: one page still in dispute buys the full Council for everyone in the round.
   const carriesDissent = due.some((p) => state.get(p.slug).dissent)
+  // `scripts/review-policy.ts` is the one place this rule lives, including the control seat that
+  // rides along with the adjudicated branch. This line restates its round3_mode locally; if the
+  // two ever disagree, the script wins and this is the bug.
   const adjudicating = round === 3 && !carriesDissent
+  if (adjudicating) controlOwed.push(...due.map((p) => p.slug))
   const seatsThisRound = adjudicating
     ? [0] // 0 is the adjudicator, not a seat
     : round === 1
@@ -672,64 +682,6 @@ for (let round = 1; round <= 3; round++) {
     if (edits.length || claims.length) editable.push({ p, edits, claims, round })
   }
 
-  // The unanchored control.
-  //
-  // Round 3 was narrowed from five seats to one adjudication pass on 2026-09-17, because four
-  // recorded runs of a five-seat round 3 accepted unanimously and changed no page. Bornmann's 2010
-  // meta-analysis of 70 reliability coefficients in peer review puts a warning on exactly that
-  // reasoning: high agreement among reviewers who have read each other is a signal to distrust
-  // rather than a result. Every one of those four rounds used seats required to read the earlier
-  // transcripts first, so the unanimity is as consistent with anchoring as with convergence, and
-  // the two have opposite implications. If they genuinely converged, the narrowing was right. If
-  // they were anchored, the narrowing replaced an anchored round with a MORE anchored one, since
-  // the adjudicator reads both transcripts by design, and the answer was fresh eyes rather than
-  // fewer eyes.
-  //
-  // So: one seat that has seen no transcript, no verdict history and no other seat's reasoning.
-  // Only the finished page and the gates. Its verdict is recorded beside the adjudicator's and
-  // never gates shipping, because this is a measurement rather than a check. When several runs
-  // agree, the question is settled and this can go.
-  if (adjudicating && !dryRun) {
-    const control = await agent(
-      `You are reviewing finished pages in ${REPO} with fresh eyes, and you are a control in a ` +
-        `measurement, so read this carefully.\n\n` +
-        `You have deliberately NOT been given the review transcripts, the verdict history, or any ` +
-        `other reviewer's reasoning, and you must not go looking for them: ignore anything under ` +
-        `\`_working/_council/\`. Read only the pages themselves, their grounding packs, their claims ` +
-        `maps and their fact ledgers under \`_working/<slug>/\`, plus \`SCHEMA.md\` sections 4 and 8 and ` +
-        `\`.claude/skills/add-thinker/calibration.md\`.\n\n` +
-        `Pages: ${due.map((p) => `src/content/thinkers/${p.slug}.md`).join(', ')}\n\n` +
-        `Judge each page on its own terms, as a senior reviewer seeing it for the first time. Would you ` +
-        `ship it? Apply the calibration checklist. Look hardest at whether any sentence states as ` +
-        `settled something the page's own limits call contested, whether any citation fails to support ` +
-        `its own clause, and whether the attribution would survive the byline test.\n\n` +
-        `Do not soften toward agreement. Nobody will see your verdict before they form their own, and ` +
-        `the entire value of this pass is that it is uncontaminated. Do not edit any file. ${VOICE}`,
-      { label: 'review-r3:unanchored-control', phase: 'Review', schema: UNANCHORED }
-    )
-    if (control) {
-      for (const p of due) {
-        const mine = (control.candidates ?? []).find((c) => c.slug === p.slug)
-        const adjudicated = tally(reports, p.slug, 'verdict')[0] ?? 'none'
-        if (mine) {
-          // Direction matters more than equality. A control that lands one step stricter than the
-          // adjudicator has found something the anchored pass did not, and that is the result the
-          // experiment is looking for. A control that is more lenient is not evidence of anything,
-          // since it saw less. Reporting any difference as a disagreement would cry wolf on the
-          // gap between ACCEPT and ACCEPT-WITH-EDITS, which is not a dispute.
-          const severity = { ACCEPT: 0, 'ACCEPT-WITH-EDITS': 1, REVISE: 2, REJECT: 3 }
-          const delta = (severity[mine.verdict] ?? 0) - (severity[adjudicated] ?? 0)
-          const direction = delta > 0 ? 'stricter' : delta < 0 ? 'more lenient' : 'same'
-          unanchored.push({ slug: p.slug, adjudicator: adjudicated, unanchored: mine.verdict, direction, findings: mine.findings ?? [] })
-          log(
-            `${p.slug} unanchored control: ${mine.verdict} against adjudicator ${adjudicated} (${direction})` +
-              (delta > 0 ? ' <- fresh eyes found more than the anchored pass. This is the result that would reverse the round 3 narrowing.' : ''),
-          )
-        }
-      }
-    }
-  }
-
   if (editable.length) {
     await parallel(
       editable.map(({ p, edits, claims, round: rn }) => () =>
@@ -756,6 +708,88 @@ for (let round = 1; round <= 3; round++) {
       )
     )
   }
+
+  // The unanchored control.
+  //
+  // Round 3 was narrowed from five seats to one adjudication pass on 2026-09-17, because four
+  // recorded runs of a five-seat round 3 accepted unanimously and changed no page. Bornmann's 2010
+  // meta-analysis of 70 reliability coefficients in peer review puts a warning on exactly that
+  // reasoning: high agreement among reviewers who have read each other is a signal to distrust
+  // rather than a result. Every one of those four rounds used seats required to read the earlier
+  // transcripts first, so the unanimity is as consistent with anchoring as with convergence, and
+  // the two have opposite implications. If they genuinely converged, the narrowing was right. If
+  // they were anchored, the narrowing replaced an anchored round with a MORE anchored one, since
+  // the adjudicator reads both transcripts by design, and the answer was fresh eyes rather than
+  // fewer eyes.
+  //
+  // So: one seat that has seen no transcript, no verdict history and no other seat's reasoning.
+  // Only the finished page and the gates. Its verdict is recorded beside the adjudicator's and
+  // never gates shipping, because this is a measurement rather than a check. When several runs
+  // agree, the question is settled and this can go.
+  //
+  // IT RUNS HERE, AFTER THE ROUND 3 EDITOR, and that placement is the whole point. On the first
+  // run that reached this branch, 2026-09-22, it ran before the editor and therefore reviewed the
+  // round 2 text while its own brief told it it was reading a finished page. Three of its fourteen
+  // Cunningham findings were against sentences the adjudicator had already fixed. The question
+  // this measures is whether a cold reader would ship WHAT WE ARE ABOUT TO SHIP, so it has to read
+  // the page with the adjudicator's edits applied, which only exists after the editor has run.
+  if (adjudicating && !dryRun) {
+    const control = await agent(
+      `You are reviewing finished pages in ${REPO} with fresh eyes, and you are a control in a ` +
+        `measurement, so read this carefully.\n\n` +
+        `You have deliberately NOT been given the review transcripts, the verdict history, or any ` +
+        `other reviewer's reasoning, and you must not go looking for them: ignore anything under ` +
+        `\`_working/_council/\`. Read only the pages themselves, their grounding packs, their claims ` +
+        `maps and their fact ledgers under \`_working/<slug>/\`, plus \`SCHEMA.md\` sections 4 and 8 and ` +
+        `\`.claude/skills/add-thinker/calibration.md\`.\n\n` +
+        `Pages: ${due.map((p) => `src/content/thinkers/${p.slug}.md`).join(', ')}\n\n` +
+        `Judge each page on its own terms, as a senior reviewer seeing it for the first time. Would you ` +
+        `ship it? Apply the calibration checklist. Look hardest at whether any sentence states as ` +
+        `settled something the page's own limits call contested, whether any citation fails to support ` +
+        `its own clause, and whether the attribution would survive the byline test.\n\n` +
+        `Do not soften toward agreement. Nobody will see your verdict before they form their own, and ` +
+        `the entire value of this pass is that it is uncontaminated.\n\n` +
+        `These pages are FINISHED: every earlier round's edits are already applied, so what you are ` +
+        `reading is what ships if nobody stops it. Judge that text and nothing else.\n\n` +
+        `Before you return, copy your report verbatim to \`${COUNCIL}/round-3-unanchored-control.md\`, ` +
+        `covering every page you reviewed. Write that one file and read NOTHING else in that ` +
+        `directory, which is where the other reviewers' reports live and is the contamination this ` +
+        `pass exists to avoid. Your findings are the measurement, so a verdict that reaches nobody is ` +
+        `the same as not having run: on 2026-09-22 this pass ran, found a page the anchored pass had ` +
+        `passed, and wrote nothing, so the shipping stage correctly reported that the check had never ` +
+        `happened. Do not edit any other file. ${VOICE}`,
+      { label: 'review-r3:unanchored-control', phase: 'Review', schema: UNANCHORED }
+    )
+    if (control) {
+      for (const p of due) {
+        const mine = (control.candidates ?? []).find((c) => c.slug === p.slug)
+        const adjudicated = tally(reports, p.slug, 'verdict')[0] ?? 'none'
+        if (mine) {
+          // Direction matters more than equality. A control that lands one step stricter than the
+          // adjudicator has found something the anchored pass did not, and that is the result the
+          // experiment is looking for. A control that is more lenient is not evidence of anything,
+          // since it saw less. Reporting any difference as a disagreement would cry wolf on the
+          // gap between ACCEPT and ACCEPT-WITH-EDITS, which is not a dispute.
+          const severity = { ACCEPT: 0, 'ACCEPT-WITH-EDITS': 1, REVISE: 2, REJECT: 3 }
+          const delta = (severity[mine.verdict] ?? 0) - (severity[adjudicated] ?? 0)
+          const direction = delta > 0 ? 'stricter' : delta < 0 ? 'more lenient' : 'same'
+          unanchored.push({ slug: p.slug, adjudicator: adjudicated, unanchored: mine.verdict, direction, findings: mine.findings ?? [] })
+          log(
+            `${p.slug} unanchored control: ${mine.verdict} against adjudicator ${adjudicated} (${direction})` +
+              (delta > 0 ? ' <- fresh eyes found more than the anchored pass. This is the result that would reverse the round 3 narrowing.' : ''),
+          )
+        }
+      }
+    }
+  }
+}
+
+// The control is a measurement and never gates a page, so a missing one cannot stop the run. It
+// can and must be impossible to miss. Anything owed and not delivered is named here and carried
+// into the closing report, where it reaches calibration.md as a gap rather than as silence.
+const controlMissing = [...new Set(controlOwed)].filter((s) => !unanchored.some((u) => u.slug === s))
+if (controlMissing.length) {
+  log(`CONTROL MISSING for ${controlMissing.join(', ')}: these pages reached the adjudicated round 3 and owed an unanchored verdict, and none came back. The narrowing of round 3 rests on this measurement, so record the gap in calibration.md rather than the result.`)
 }
 
 const finalized = pages.filter((p) => {
@@ -876,7 +910,13 @@ const report = await agent(
     `narrowing of round 3 rested on convergence or on anchoring. If the control disagreed with the ` +
     `adjudicator anywhere, say so prominently, because that is the result that would reverse the ` +
     `decision. If it agreed, record that too; several agreements settle the question and the control ` +
-    `can then be retired.\n` +
+    `can then be retired. Read its report at \`${COUNCIL}/round-3-unanchored-control.md\` rather than ` +
+    `working from the summary above, the way you read every other seat report.\n` +
+    (controlMissing.length
+      ? `5b. A CONTROL WAS OWED AND DID NOT COME BACK for: ${controlMissing.join(', ')}. Record that as a gap in ` +
+        `calibration.md, not as a result, and do not let the run log read as though the measurement was taken. ` +
+        `A page that reached the adjudicated round 3 without a control is a page whose round 3 is an anecdote.\n`
+      : '') +
     `6. Record the recheck outcomes: ${JSON.stringify(rechecked.map((r) => ({ slug: r.slug, summary: r.verdict?.summary })))}. ` +
     `A recheck that found nothing is a successful recheck and belongs in the log as one.\n\n` +
     `Then write, as your return value, the note Julie reads first. Plain paragraphs. What shipped and where to ` +

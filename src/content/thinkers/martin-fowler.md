@@ -412,6 +412,17 @@ adjacent_thinkers:
       seam to draw a line along. Willison never uses this page's vocabulary, so
       the pairing is the site's own.
     strength: primary
+  - target_slug: jez-humble
+    display_name: Jez Humble
+    edge_type: parallel
+    edge_label: >
+      Humble carries this page's build-side practices out to the far end of the
+      route. Fowler's article on continuous integration sends readers to
+      *Continuous Delivery* for the broader process. He published that book in
+      his own signature series, and he wrote the bliki entries for the
+      deployment pipeline and for continuous delivery with Humble's detailed
+      help acknowledged on both.
+    strength: primary
 
 further_in:
   start_here: '`IsQualitySoftwareWorthTheCost` (bliki). The economic-argument keystone.'

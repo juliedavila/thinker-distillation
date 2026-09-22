@@ -151,7 +151,10 @@ named_frames:
       `stable`), attribute origins. The form Fowler's argument evolves in.
     attribution_kind: original
     primary_author: martin-fowler
-    source_link: https://martinfowler.com/bliki/
+    co_originators:
+      - slug: ward-cunningham
+        role: named the form, in Fowler's own account of the post defining the word (2003)
+    source_link: https://martinfowler.com/bliki/WhatIsaBliki.html
   - concept_slug: append-dont-overwrite
     display_name: Event sourcing
     one_line_gloss: >

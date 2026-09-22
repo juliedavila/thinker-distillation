@@ -321,6 +321,16 @@ adjacent_thinkers:
       should keep one wide record per request so responders can ask questions
       nobody predicted before the incident.
     strength: secondary
+  - target_slug: jez-humble
+    display_name: Jez Humble
+    edge_type: parallel
+    edge_label: >
+      Humble designs the route a change takes into production, which is the
+      route that delivered the change this page's incidents start from.
+      Allspaw wrote the foreword to the first edition of *The DevOps
+      Handbook*, which Humble co-wrote with Gene Kim, Patrick Debois and John
+      Willis.
+    strength: primary
 
 further_in:
   start_here: >

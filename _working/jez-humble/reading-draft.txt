@@ -1,0 +1,14 @@
+READING
+Humble's subject is the route a change takes to production, and his claim is that there should be exactly one. [T:thesis] [F:deployment-pipeline]
+The artifact is built once and promoted through every environment, and any stage can reject it, so what reaches users is what was tested. [T:thesis] [F:deployment-pipeline]
+That is what makes the discipline work: software kept releasable at all times, with any good build deployable on demand, which puts the release schedule in the hands of the business. [F:continuous-delivery] [T:working-line]
+One distinction inside the discipline is smaller and separable: deploying code and releasing a feature are two decisions, so code can run in production for months with nobody able to reach it. [F:release-decoupled-from-deploy] [T:thesis]
+Almost none of it is his alone and he is usually the one saying so: Chris Read and Dan North on the pipeline paper, Dave Farley on the book, Deming and Toyota behind the principles. [L:3] [F:continuous-delivery] [F:continuous-delivery-principles]
+The measures that read this delivery system come out of Nicole Forsgren's research and stay on her page. [F:dora-four-keys] [N:nicole-forsgren:thesis]
+EXTENSION
+One route to production is the condition under which a security constraint can be a stage that rejects a change instead of a document somebody complies with, which is what auditability across a software factory asks for. [P:6] [F:deployment-pipeline]
+That concentration earns the route a threat model of its own, since deploy credentials, signing authority and an unattended privileged path into production sit in one system. [L:4]
+Releasing separately from deploying then takes the last decision back out of it. [F:release-decoupled-from-deploy]
+What reaches production is built, tested and signed on the audited path, while the act that exposes it to users is a runtime switch sitting outside that path, so the flag service inherits an authorization decision the discipline never names as one. [F:release-decoupled-from-deploy] [F:deployment-pipeline] [L:4]
+Treating each switch as part of the factory, with an owner and a record of who moved it and when, is what closes that seam. [P:6] [L:4]
+Until it closes, the pipeline is audited end to end and the release is not. [L:4]

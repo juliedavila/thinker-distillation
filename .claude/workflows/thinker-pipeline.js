@@ -118,6 +118,7 @@ const RESEARCH = {
     uptake_passes: { type: 'boolean', description: 'false when every named frame is under two years old with no use by anyone outside the thinker' },
     uptake_evidence: { type: 'string' },
     corrections: { type: 'array', items: { type: 'string' }, description: 'facts the candidate issue got wrong' },
+    inbound_claims: { type: 'array', items: { type: 'object', properties: { page: { type: 'string' }, claim: { type: 'string' }, holds: { type: 'boolean' }, note: { type: 'string' } }, required: ['page', 'claim', 'holds'] }, description: 'every line of inbound-claims.ts output, with whether the research confirms the claim the live page already publishes. A false here is a contradiction between a shipped page and this research, and it goes in the merge request.' },
     frames: { type: 'array', items: { type: 'object', properties: { name: { type: 'string' }, attribution_kind: { type: 'string' }, antecedent: { type: 'string' }, first_dated: { type: 'string' } }, required: ['name', 'attribution_kind'] } },
     fact_count: { type: 'integer' },
     open_questions: { type: 'array', items: { type: 'string' } },
@@ -186,9 +187,10 @@ const DRAFT = {
     build_passes: { type: 'boolean' },
     angle: { type: 'string', description: 'the angle and Lens position chosen, and the neighbour move deliberately not repeated' },
     return_edges: { type: 'array', items: { type: 'object', properties: { page: { type: 'string' }, edge_type: { type: 'string' }, note: { type: 'string' } }, required: ['page', 'edge_type'] } },
+    reconciled_claims: { type: 'array', items: { type: 'object', properties: { claim: { type: 'string' }, page: { type: 'string' }, outcome: { type: 'string', enum: ['agreed', 'corrected'] }, note: { type: 'string' } }, required: ['claim', 'page', 'outcome'] }, description: 'one entry per line of inbound-claims.ts output: the live published claim, the page making it, and whether this page agreed with it or corrected it. A correction must be called out in the merge request.' },
     unresolved: { type: 'array', items: { type: 'string' } },
   },
-  required: ['slug', 'doctrine_mode', 'ledger_passes', 'gates_pass', 'angle', 'return_edges'],
+  required: ['slug', 'doctrine_mode', 'ledger_passes', 'gates_pass', 'angle', 'return_edges', 'reconciled_claims'],
 }
 
 const EDIT_RESULT = {
@@ -297,10 +299,20 @@ const researched = await pipeline(
     agent(
       `Stage 1 of the add-thinker skill: research ${c.name} for ${REPO}, candidate issue #${c.issue}.\n\n` +
         `${READ_FIRST}\n\n` +
+        `FIRST run \`bun scripts/inbound-claims.ts ${c.slug}\` and read all of it. It prints every claim the ` +
+        `roster already publishes about this person: edges pointing at them, frame credits, prose mentions. Each ` +
+        `one is a live published claim the new page must agree with or knowingly correct, and you must report ` +
+        `which you did. Forsgren's page filed Kent Beck as her critic while Beck's page said his piece answers ` +
+        `McKinsey and never names her; both sat in the open for months because nobody ran this view at this ` +
+        `stage. Carry the output into sources.md.\n\n` +
         `Treat the candidate issue as UNVERIFIED. The Fournier case had three errors and the Saxe case had six, ` +
         `including every frame it named. Verify from primary sources: education, employers and titles with dates, ` +
         `books with year and publisher and co-authors, the essays that carry each named frame, and any critic who ` +
-        `engages this thinker by name. A counterposition that never names the thinker is a parallel, never a critic.\n\n` +
+        `engages this thinker by name.\n\n` +
+        `A \`critiques\` edge needs all three of these, each with its own ledger line, or it is not a critic: a ` +
+        `durable artifact exists (essay, book chapter, talk transcript, never a social post or a summary), it ` +
+        `names the thinker, and it argues against them rather than defending or extending them. All three failed ` +
+        `on Forsgren: North's artifact defends her by name, Beck's never mentions her, no DHH artifact exists.\n\n` +
         `Run the uptake check BEFORE anything else, because it is what makes a Council worth convening: for each ` +
         `candidate frame find its first date and any use by practitioners other than the thinker. If every frame is ` +
         `under two years old with no outside use, set uptake_passes false and recommendation "park". That is the ` +
@@ -414,6 +426,10 @@ const drafted = await pipeline(
         `Use src/content/thinkers/charity-majors.md as the reference page and _working/charity-majors/ as the ` +
         `reference working set.\n\n` +
         `The inclusion Council said:\n${seatInput}\n\n` +
+        `Before you write a field, re-run \`bun scripts/inbound-claims.ts ${c.slug}\` and reconcile every line ` +
+        `against what this page is about to assert. Agree with each claim or correct it, and report which in ` +
+        `reconciled_claims. Nothing in the build or the ledger compares two pages, so a contradiction you leave ` +
+        `here ships and stays.\n\n` +
         `Write, all under your own slug:\n` +
         `  src/content/thinkers/${c.slug}.md  every field. last_updated: ${today}.\n` +
         `  _working/${c.slug}/page-claims.md  one line per factual field, citing [S:n] from facts.md.\n` +

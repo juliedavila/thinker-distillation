@@ -803,9 +803,22 @@ for (const p of finalized) {
       `seat caught. A later stage merges these into calibration.md. Do not edit calibration.md yourself.\n` +
       (issue ? `9. Label issue #${issue} camila:ready-for-review with a comment linking the merge request.\n` : '') +
       `\nThe merge request description is read cold by Julie and is the only thing standing between this page and ` +
-      `the site. Open with a plain paragraph saying what changed and why. Then: what the Councils caught, every ` +
-      `judgment call you made, every return edge and demotion, and anything you are unsure about. Round history: ` +
-      `${JSON.stringify(s.history)}. Do not oversell it. ${VOICE}`,
+      `the site. It has a house standard and a gate, and both are mandatory:\n` +
+      `  bun scripts/describe.ts --template mr-thinker     # the shape\n` +
+      `  write the description to a file under your scratch space\n` +
+      `  bun scripts/describe.ts --lint <file>             # must exit 0 BEFORE you open the merge request\n` +
+      `Four blocks: what changed, what Julie needs to do, the few things worth a look, then EVERYTHING else ` +
+      `inside a <details> block. The words above that block may not use the vocabulary of this repository, ` +
+      `because she reads them cold and so might an outside collaborator; the lint will tell you exactly which ` +
+      `words to replace. Below it there is no vocabulary limit: put the review history, the judgment calls, every ` +
+      `link back to an existing page, everything moved off a main list, the reconciled claims and anything you ` +
+      `are unsure about in there. Nothing is dropped, it just stops standing between her and the decision.\n` +
+      `There is NO word limit and the lint will not fail you for length. Julie removed the one this gate ` +
+      `originally had: "It's not about quantity; it's about quality when it comes to the prose." A page about a ` +
+      `thinker is an editorial judgment and usually needs more than a sentence to explain what this person is ` +
+      `here for and what the page argues about them. Take the room that needs, and spend it on being followable ` +
+      `by an outsider rather than on being short. Round history: ${JSON.stringify(s.history)}. Do not oversell ` +
+      `it. ${VOICE}`,
     { label: `ship:${p.slug}`, phase: 'Ship', schema: SHIP }
   )
   if (result) shipped.push(result)
@@ -842,8 +855,14 @@ const report = await agent(
     `\`.claude/skills/add-thinker/calibration.md\`: add the run-log rows, and promote any failure pattern that has ` +
     `now been caught twice into the pre-draft checklist. Delete the per-slug entry files afterwards. You are the ` +
     `only agent writing this file, which is why it happens here and not in Ship.\n` +
-    `2. File a "Candidate:" issue for each strong new candidate the seats named, in the format of issues #12 to #14, ` +
-    `skipping anyone already filed or already on the site. Named this run: ${JSON.stringify(newCandidates)}\n` +
+    `2. File a "Candidate:" issue for each strong new candidate the seats named, skipping anyone already filed or ` +
+    `already on the site. Named this run: ${JSON.stringify(newCandidates)}\n` +
+    `   Use the house standard and its gate, which are mandatory: \`bun scripts/describe.ts --template ` +
+    `issue-candidate\` for the shape, then \`bun scripts/describe.ts --lint <file> --kind issue-candidate\`, ` +
+    `which must exit 0 before you file. Who they are in one plain line, why they might belong, what is still ` +
+    `unverified, and the real open questions. Everything in a candidate issue is unconfirmed by definition, so ` +
+    `write it that way rather than building a case that reads settled: the Fournier issue had three errors and ` +
+    `the Saxe issue had six, and both read as established fact.\n` +
     `3. For each parked candidate, comment on its issue with why it stopped and what would unpark it: ` +
     `${JSON.stringify(parked)}\n` +
     `4. Commit and open a merge request for the calibration update.\n` +

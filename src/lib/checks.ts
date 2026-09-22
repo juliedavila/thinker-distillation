@@ -54,7 +54,8 @@ async function check() {
   }
 
   // Neighbor caps (SCHEMA 4.11, issue #9): at most 5 foreground neighbors without a page here,
-  // and at most 7 in total, unless on-site neighbors alone exceed 7 (they always surface).
+  // and at most 7 in total. Both bind absolutely; on-site neighbors are not exempt. The old
+  // max(CAP, onSite) form let hub pages grow without limit and was removed on 2026-09-20.
   for (const t of thinkers) {
     // The caps are now enforced by collapsing, not by failing. Adding a thinker used to push
     // several existing pages over the cap and each one needed a human to choose who lost their
@@ -110,8 +111,8 @@ function creditedElsewhere(n: Neighbor, frames: Thinker['data']['named_frames'])
   );
 }
 
-// Rank for the collapse order, lowest first. Off-site neighbors only: a neighbor with a page here
-// always surfaces (SCHEMA 4.11) and is never auto-collapsed.
+// Rank for the collapse order, lowest first. Every foreground neighbor is a candidate: having a
+// page here is a heavy weight below, never an exemption from collapsing.
 //
 // The whole score reads off THIS page. It never depends on the rest of the graph, which is the
 // property that matters: adding a thinker anywhere else cannot reshuffle an unrelated page. Only a
@@ -178,7 +179,7 @@ export function orderNeighbors(
   // page shipped: an editorial decision recorded and silently dropped. Lane A's reading of LCSH
   // H 370 says the decision was right, since Majors already reaches Woods through Allspaw.
   //
-  // Auto-collapse still never touches an on-site neighbour. Only a human can demote one.
+  // `render_tier: deep` set by hand still wins outright: explicit beats automatic.
   const pinnedDeep = (n: Neighbor) => n.render_tier === 'deep';
   let foreground = sorted.filter((n) => (n.render_tier ?? 'foreground') === 'foreground');
   const deep = sorted.filter(pinnedDeep);

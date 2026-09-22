@@ -1,14 +1,29 @@
-# Thinker Distillery — GitLab Pages deploy pipeline
+# Thinker Distillery — verify on merge requests, deploy from the default branch.
 #
-# Builds the Astro site and publishes the `dist/` output as GitLab Pages.
-# Access control is configured in the GitLab project Settings → Pages
-# ("Only project members") — the pipeline itself doesn't gate access;
-# GitLab serves Pages behind the project visibility rules.
+# Until 2026-09-22 this file held one job, gated to the default branch, so nothing whatsoever ran
+# while a merge request was open. Every check in the repository ran after merge, and the only
+# post-merge check was the deploy build. The checking scripts all exit non-zero correctly and
+# nothing consumed the exit code: they were invoked by prose inside an agent's prompt, and the
+# pipeline decided whether a page had passed its gates by reading two booleans the agent wrote
+# about its own work. `verify` is where that stops being true.
 
 image: oven/bun:1
 
 stages:
+  - verify
   - deploy
+
+# Runs while the merge request is open, which is the only moment a failure is cheap.
+verify:
+  stage: verify
+  script:
+    - bun install --frozen-lockfile
+    # The build first, because a page that does not compile makes every other failure noise.
+    - bun run build
+    # Then the gates, on every live page that is not on scripts/ledger-exempt.txt.
+    - bun scripts/verify.ts
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
 
 pages:
   stage: deploy

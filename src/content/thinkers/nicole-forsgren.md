@@ -431,6 +431,17 @@ adjacent_thinkers:
       organizations with research instruments; Majors instruments one running
       system so any later question about it can be answered.
     strength: secondary
+  - target_slug: jez-humble
+    display_name: Jez Humble
+    edge_type: parallel
+    edge_label: >
+      Humble supplies the machinery these measures read. The deployment
+      pipeline and the split between deploying code and releasing a feature
+      describe how a change reaches production; the four keys describe how well
+      that route performs. The two founded DORA with Gene Kim and wrote
+      *Accelerate* together, and his page holds the mechanism rather than
+      restating the measures.
+    strength: primary
 
 further_in:
   start_here: '*Accelerate* (Forsgren, Humble, Kim, 2018). The keystone.'

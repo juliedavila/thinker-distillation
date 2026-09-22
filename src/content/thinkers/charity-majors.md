@@ -386,6 +386,15 @@ adjacent_thinkers:
       input the model acted on and with whose privileges. Answering it needs
       the input and the tool call inside the same record, at full cardinality.
     strength: primary
+  - target_slug: jez-humble
+    display_name: Jez Humble
+    edge_type: parallel
+    edge_label: >
+      Humble names the distinction her guardrails run on. Testing against real
+      traffic is only safe if code can be live in production without being
+      reachable by users, which is the split between deploying and releasing
+      that his book states and a feature flag exercises.
+    strength: primary
 
 further_in:
   start_here: '"Observability is a Many-Splendored Definition" (2020).'

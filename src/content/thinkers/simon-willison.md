@@ -462,6 +462,21 @@ adjacent_thinkers:
       landed in Rust 1.56.1, in a -Wbidi-chars warning merged for GCC 12 and in
       LLVM, which is containment applied to a compiler instead of to an agent.
     strength: primary
+  - target_slug: gene-kim
+    display_name: Gene Kim
+    edge_type: critiques
+    edge_label: >
+      Kim is one of the three authors named in "Two publishers and three
+      authors fail to understand what 'vibe coding' means" (May 2025), and the
+      only one with a page here. The objection measures the subtitle of his
+      book with Steve Yegge against the definition this page's own narrowing
+      supplied, so the standard being applied is Willison's rather than
+      Karpathy's. Nothing
+      in the DevOps corpus Kim is otherwise known for is in range of the
+      argument. What followed bounds what a definitional objection achieves:
+      Addy Osmani's book was retitled *Beyond Vibe Coding*, and the Kim and
+      Yegge book shipped in October 2025 with the wording intact.
+    strength: primary
 
 further_in:
   start_here: '"Prompt injection attacks against GPT-3" (2022), then "You can''t solve AI security problems with more AI" five days later.'

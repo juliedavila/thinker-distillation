@@ -44,6 +44,7 @@ and the Councils judge the rest.
 - adjacent_thinkers[4] [S:18]
 - adjacent_thinkers[5] [S:27] [S:27b]
 - adjacent_thinkers[6] [S:21] [S:26]
+- adjacent_thinkers[8] [S:35] [S:36] [S:18]
 
 ## Other factual prose on the page
 

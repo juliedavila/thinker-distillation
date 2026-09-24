@@ -465,6 +465,18 @@ adjacent_thinkers:
       newsletter, which is where the equivalence is stated.
     strength: secondary
     render_tier: deep
+  - target_slug: christopher-alexander
+    display_name: Christopher Alexander
+    edge_type: antecedent
+    edge_label: >
+      The named source of Beck's earliest published proposal. The 1987 report
+      he first-bylined adapts concepts from Alexander's work, says so inside
+      its own proposal sentence, and cites A Pattern Language as the one
+      Alexander work in its bibliography. Read it as an antecedent to that one
+      report. The economic argument the rest of this page follows does not run
+      through it, which is why the edge sits in the deep tier.
+    strength: primary
+    render_tier: deep
 
 further_in:
   start_here: '"Options Versus Cash Flows" (2022), four paragraphs holding the whole economic argument.'

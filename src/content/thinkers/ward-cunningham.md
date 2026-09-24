@@ -152,7 +152,7 @@ named_frames:
       - slug: kent-beck
         role: co-author and first byline on the 1987 technical report
       - slug: christopher-alexander
-        role: originated pattern languages in A Pattern Language (1977), credited inside the paper's own proposal sentence
+        role: credited inside the paper's own proposal sentence; the report's bibliography cites A Pattern Language (1977) as "Christopher Alexander et. al.", the co-authors being Sara Ishikawa and Murray Silverstein
     source_link: https://c2.com/doc/oopsla87.html
     render_tier: foreground
   - concept_slug: crc-cards
@@ -412,11 +412,13 @@ adjacent_thinkers:
     display_name: Christopher Alexander
     edge_type: antecedent
     edge_label: >
-      A Pattern Language (1977) gave the word pattern its architectural sense,
-      and the 1987 report with Beck credits him inside its own proposal
-      sentence, adapting concepts from his work. The software pattern movement,
-      the Portland Pattern Repository and the wiki built to hold its literature
-      all descend from that borrowing.
+      A Pattern Language (1977) is the one work of his the 1987 report cites,
+      and the report credits him inside its own proposal sentence, adapting
+      concepts from his work. The phrase is older than that book, so the date
+      marks where the software borrowing took the term rather than where the
+      term was made. The software pattern movement, the Portland Pattern
+      Repository and the wiki built to hold its literature all descend from the
+      borrowing.
     strength: secondary
   - target_slug: george-lakoff
     display_name: George Lakoff
@@ -442,9 +444,9 @@ further_in:
     *The Wiki Way* (2001), written with Bo Leuf and first-authored by him, for
     the design decisions behind the first wiki set out at length.
   if_you_want_breadth: >
-    Christopher Alexander's *A Pattern Language* (1977) for the source of the
-    pattern idea, and Fowler's Technical Debt Quadrant (2009) for the best known
-    extension of the metaphor.
+    Christopher Alexander's *A Pattern Language* (1977) for the pattern idea in
+    its architectural form, and Fowler's Technical Debt Quadrant (2009) for the
+    best known extension of the metaphor.
 
 live_edge_visible: true
 live_edge:

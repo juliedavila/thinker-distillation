@@ -1,0 +1,18 @@
+READING
+Sequence is the working part of a pattern language. [T:thesis] [F:pattern-language]
+Each of the 253 patterns in the 1977 book states a problem and a current best guess at its resolution, and in order they are meant to compose into a whole. [F:pattern-language] [T:thesis]
+He calls the instructions that do that generative schemes. [F:generative-schemes]
+At OOPSLA in 1996 he granted software the format. [T:thesis]
+Of his own languages he said in the same talk that the sequential instruction was not emphasized in use. [T:working-line] [T:thesis]
+That gap is between a language and a catalogue: the same entries, without the mechanism. [T:thesis]
+The catalogue is what travelled, from the 1987 report through Design Patterns into fields with no buildings. [L:2] [E:out:erich-gamma]
+On whether his condition carries across he stopped short, saying he does not know whether the moral component exists in computer science. [L:1]
+That leaves the order claim, which any library of patterns can be asked about. [T:still-load-bearing]
+EXTENSION
+A software factory ontology puts security constraints inside the spec, which makes the security content an enumeration of objects. [P:6]
+Alexander's claim is what an enumeration cannot answer, that a coherent whole comes from applying parts in an order rather than from each part being right alone. [T:thesis] [F:generative-schemes]
+Read that way, the missing field on a control object is its dependence: what must hold before it applies, and what it opens next. [P:6] [F:generative-schemes]
+Auditability then has an order to judge against, since a dated record of what happened asserts no required sequence. [P:6]
+Someone has to own the sequence, since one nobody may change is a waterfall and one nobody enforces is a comment. [L:2]
+The risk runs two ways: the order hardens into another gate, and a control whose precondition goes unmet never fires at all. [L:2] [P:6]
+Outside his own books the sequential reading survives as an argument about what makes a language a language, and not as a practice anyone was found running. [L:2]

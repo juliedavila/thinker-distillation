@@ -171,14 +171,14 @@ named_frames:
   - concept_slug: vibe-coding
     display_name: Vibe coding
     one_line_gloss: >
-      Andrej Karpathy coined the term on 2025-02-06. Willison's contribution is
+      Andrej Karpathy coined the term on 2025-02-02. Willison's contribution is
       a narrowing: "Building software with an LLM without reviewing the code it
       writes." The review step is what the definition turns on.
     attribution_kind: extended
-    primary_author: simon-willison
+    primary_author: andrej-karpathy
     co_originators:
       - slug: andrej-karpathy
-        role: coined the term on 2025-02-06
+        role: coined the term on 2025-02-02
     source_link: https://simonwillison.net/2025/Mar/19/vibe-coding/
     render_tier: deep
   - concept_slug: slop
@@ -427,9 +427,12 @@ adjacent_thinkers:
     display_name: Andrej Karpathy
     edge_type: antecedent
     edge_label: >
-      Coined vibe coding on 2025-02-06. Willison's narrowing, building software
-      with an LLM without reviewing the code it writes, turns the term on the
-      review step, and his own post credits Karpathy for it.
+      Karpathy supplied the word on 2025-02-02 and left it loose, which is why
+      the narrowing on this page had somewhere to go: his post reports accepting
+      every diff and pasting errors back in without comment, and hedges the
+      whole thing as fine for a weekend project. The coinage post cannot be
+      fetched from X, so the reproduction inside the 2025-03-19 post here is
+      where this site quotes it from.
     strength: secondary
   - target_slug: johann-rehberger
     display_name: Johann Rehberger

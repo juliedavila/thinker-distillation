@@ -81,6 +81,7 @@ source without rereading `sources.md`.
 - adjacent_thinkers[1].edge_label [S:44] [S:42] [S:43] [S:45]
 - adjacent_thinkers[4].edge_label [S:35] [S:36] [S:46]
 - adjacent_thinkers[5].edge_label [S:16] [S:65] [S:66]
+- adjacent_thinkers[7].edge_label [S:28] [S:50]
 - further_in [S:48] [S:26] [S:11] [S:24] [S:15] [S:9] [S:34] [S:35] [S:36]
 - live_edge.summary [S:6] [S:7] [S:8] [S:28] [S:31] [S:50]
 

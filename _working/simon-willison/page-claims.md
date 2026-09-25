@@ -24,7 +24,7 @@ and the Councils judge the rest.
 - named_frames[3].attribution [S:11] [S:29]
 - named_frames[4].attribution [S:16]
 - named_frames[5].attribution [S:18]
-- named_frames[5].co_originators[0] [S:18]
+- named_frames[5].co_originators[0] [S:18] [S:37]
 - named_frames[6].attribution [S:17]
 - named_frames[6].co_originators[0] [S:17]
 
@@ -41,7 +41,7 @@ and the Councils judge the rest.
 ## Adjacent thinkers
 
 - adjacent_thinkers[3] [S:8]
-- adjacent_thinkers[4] [S:18]
+- adjacent_thinkers[4] [S:18] [S:37]
 - adjacent_thinkers[5] [S:27] [S:27b]
 - adjacent_thinkers[6] [S:21] [S:26]
 - adjacent_thinkers[8] [S:35] [S:36] [S:18]
@@ -55,6 +55,7 @@ source without rereading `sources.md`.
 - why_they_matter_as_a_thinker [S:7] [S:14] [S:20] [S:22] [S:23] [S:23c] [S:24]
 - thesis [S:11] [S:13] [S:16] [S:23b]
 - named_frames[4].one_line_gloss [S:10] [S:16]
+- named_frames[5].one_line_gloss [S:18] [S:37]
 - named_frames[6].one_line_gloss [S:17] [S:17b]
 - working_line [S:11]
 - limits[0] [S:7] [S:23] [S:27] [S:27b]

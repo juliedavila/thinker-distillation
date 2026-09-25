@@ -477,6 +477,17 @@ adjacent_thinkers:
       through it, which is why the edge sits in the deep tier.
     strength: primary
     render_tier: deep
+  - target_slug: andrej-karpathy
+    display_name: Andrej Karpathy
+    edge_type: parallel
+    edge_label: >
+      Karpathy's coinage is the fixed point Beck's newest frame is defined
+      against. In the June 2025 post that names augmented coding, model-written
+      code is held to the standard Beck holds his own code to: "you care about
+      the code, its complexity, the tests, & their coverage." The whole test is
+      "tidy code that works," and it is the one the practice named here declines
+      to run. The argument reaches the word and never its author.
+    strength: secondary
 
 further_in:
   start_here: '"Options Versus Cash Flows" (2022), four paragraphs holding the whole economic argument.'

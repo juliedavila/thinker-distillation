@@ -45,11 +45,14 @@ and the Councils judge the rest.
 ## Adjacent thinkers
 
 Only `critiques` and `antecedent` edges are required by the ledger; the others are the site's
-reading of a relationship and the Councils judge them. Both required lines are listed, and the
-label text of the three `parallel` edges that assert facts is listed under prose below.
+reading of a relationship and the Councils judge them. All three required lines are listed, and the
+label text of the three `parallel` edges that assert facts is listed under prose below. The third,
+`adjacent_thinkers[7]`, is the Christopher Alexander return edge added 2026-09-24 when that page
+shipped; it was appended at the end of the list so no earlier index moved.
 
 - adjacent_thinkers[3] [S:34]
 - adjacent_thinkers[6] [S:26]
+- adjacent_thinkers[7] [S:65]
 
 ## Other factual prose on the page
 

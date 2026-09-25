@@ -352,10 +352,10 @@ adjacent_thinkers:
     display_name: Christopher Alexander
     edge_type: antecedent
     edge_label: >
-      The pattern-language form Fowler's catalogs descend from. Alexander's
-      later critique of how programmers used patterns is itself part of why
-      Fowler's catalog discipline matters: naming is necessary but not
-      sufficient.
+      The pattern-language form Fowler's catalogs descend from. Alexander went
+      back to the borrowers in 1996 and named what a pattern language was for
+      besides the format, which is part of why Fowler's catalog discipline
+      matters: naming is necessary and it is not sufficient.
     strength: secondary
     render_tier: deep
   - target_slug: melvin-conway

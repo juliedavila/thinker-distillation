@@ -23,7 +23,7 @@ updated: 2026-09-24
 - **31 open candidates.** Top of the ranked queue: Gene Kim (shipping), Dave Farley, Dan North, all pull 2 and all named on Humble.
 - Ledger coverage 8 of 17. Nine pages are exempt by name in `scripts/ledger-exempt.txt`, a list that may only shrink.
 
-### The round 3 narrowing should be reverted, and now there is evidence
+### The round 3 measurement, and why the revert was withdrawn
 
 The unanchored control has run twice, on five pages. **Three came back stricter than the adjudicator and none came back more lenient.** `SKILL.md` stage 6 wrote the criterion down in advance: a stricter control is the result that reverses the 2026-09-17 narrowing.
 
@@ -35,7 +35,7 @@ The unanchored control has run twice, on five pages. **Three came back stricter 
 | 2026-09-24 | gene-kim | ACCEPT-WITH-EDITS | same |
 | 2026-09-24 | andrej-karpathy | ACCEPT-WITH-EDITS | REVISE |
 
-**Recommendation for Julie: revert the narrowing, or keep the cold reader permanently beside the adjudicator rather than as an experiment.** The control's own note is the reason: all three ledgers exit 0, all three gate runs are clean, zero em dashes, and it calls its findings "the kind no script reaches."
+**Recommendation, revised after the Council pass below: do NOT restore five seats. Make the cold reader a permanent, non-gating control.** Three of four seats attacked the revert independently and converged on this instead. The control's own note is the reason: all three ledgers exit 0, all three gate runs are clean, zero em dashes, and it calls its findings "the kind no script reaches."
 
 ### The three findings that recur across runs, and are therefore skill defects
 
@@ -95,25 +95,86 @@ Three questions the retro should answer every time:
 - Did the cold reader agree with the adjudicator?
 - How many rounds did each page actually need? Every run has escalated except this one, which is why the quiet branch stayed untested so long.
 
+### Julie's directions, 2026-09-25 — four decisions that reshape the design
+
+**1. No auto-merge, ever. She merges every page herself or with Camila.** Her reason is not risk, it is purpose: "I do want to take time to actually read through this and learn, and not just have an endless list of authors that keep getting added." **The human gate is a feature of the product, not scaffolding waiting to be removed.** This deletes a whole branch: no cleanliness predicate, no trust calibration, no auto-publish, and the control measurement stops being a gate-readiness question and becomes purely a quality question. A Council seat had independently argued auto-merge should leave the roadmap; she removed it for a better reason.
+
+**2. Unit economics are deprioritised. She is subscription-tier and does not pay per token.** The metrics that matter are **speed of incorporating a new thinker, and defect rate.** Cost per page is no longer a ranking criterion for any recommendation.
+
+**3. Move to one thinker per run, and test it.** Julie's own reasoning: every addition requires working out the new thinker's web of connectivity to the existing roster and to the other candidates in the batch, plus the sharpening that follows, and that is where a multi-candidate run gets complicated.
+
+The argument is stronger than speed. Once tokens stop mattering, the only case for batching collapses, because batching exists to amortise fixed agent cost across candidates. What remains is all cost: graph reconciliation is **superlinear in batch size** (one candidate reconciles against the roster; three reconcile against the roster and each other, and their corrections to shared neighbours collide), and per-agent context is the axis that stalled run 4.
+
+**Serial addition is correct by construction.** In a batch, every page is drafted against the same stale snapshot and page 2 cannot see the sharpening page 1 just did. Evidence on file: Larson and Willison both planned to demote Rudolf Kálmán on Majors; Alexander's page asserts it corrected Cunningham's solo credit while `ward-cunningham.md` still carries it; all three run-5 pages proposed corrections to overlapping existing pages. Run one at a time and page *k+1* is always drafted against a roster that already contains everything page *k* fixed.
+
+**Caveat, stated honestly: N=1 has never been run through this pipeline.** Every N=2 run shipped; the only N=3 run died. So this is a prediction, and the next run is the experiment. What N=1 gives up is the novelty seat seeing two new pages side by side, which is small because `lens-index.ts` already checks a page's positions against the whole roster rather than its batch.
+
+**4. The roster should grow beyond software, deliberately.** Julie: the current software-heaviness is today's state and not the intent. She named **permaculture** as a target: another tradition on resilience and safety, developed entirely outside technology. She also named **Ray Dalio**, confirmed by her in-session, who is already on the roster and is the existing proof that a non-software thinker belongs.
+
+Design consequences worth thinking about before the first non-software candidate:
+- A permaculture-to-resilience-engineering edge (Holmgren or Mollison against Woods and Dekker) would be `parallel` in the truest sense: same system property, different substrate, neither citing the other. Far more interesting than software-to-software edges, which risk becoming incestuous.
+- The inclusion filter assumes an audience of senior engineering and security leaders. For a non-software thinker the bar probably becomes "vocabulary that travels into the reader's domain" rather than "practitioners in their own field use it." **This needs deciding rather than drifting.**
+
+### New work item: the distillery as a council for Julie's own work
+
+Julie's idea, 2026-09-25: use the roster as a reasoning substrate for her engineering work, system diagrams, code and design decisions, **including where the thinkers disagree**, so that the disagreement itself becomes a council of different approaches to a problem.
+
+**The structure already exists.** Every page carries a `thesis`, `named_frames` with glosses, a `limits` section recording where the idea fails, and `still_load_bearing_despite`. That is a council seat already: how this person sees a problem plus where they would be wrong. The `critiques` and `parallel` edges record who argues against whom, so a seating can be chosen to produce friction on substance rather than four agents agreeing in different registers.
+
+What it needs:
+- **A selector.** Given a problem, which thinkers' frames apply. `lens-index.ts` already maps positions to pages and frames carry `concept_slug`s.
+- **A seat builder.** Turn a page into a seat prompt from thesis, frames, limits and what the thinker would reject.
+- **Deliberate pairing.** Seat at least one `critiques` or `parallel` pair so the council disagrees on substance. Woods against Dekker on resilience; Hickey against Beck on where design effort goes.
+
+**This reframes the queue ranking.** Today it ranks by graph pull, which optimises site coherence. If pages are also seats, rank partly by **whether a candidate adds a position nobody currently holds**; `lens-index.ts` already flags crowded positions, so it is the same data read for a different purpose. It also answers the roster ceiling differently: **40 pages chosen for positional coverage is a better council than 60 chosen for connectivity.**
+
+Camila's note from running a generic Council this session: four seats composed from three expertise traits produced useful positions with a generic flavour. Real thinkers with real limits sections is a different instrument.
+
+### Council pass on the recommendations, 2026-09-25
+
+Four custom seats, single round, no seat seeing another's answer. Transcript: `~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-improvement-recommendations-20260925-172458-quick/transcript.md`
+
+**Three of four independently attacked reverting round 3 to five seats, and Camila withdrew it.**
+- Reeve: review already failed, since three of five pages carried defects through three rounds plus an adjudicator. Paying five times more for a process with no demonstrated correlation to catching defects is increasing headcount on a broken checklist.
+- Nadia: the sample is too thin for a permanent reversal, and the first control run was contaminated by the pre-edit bug so the clean sample is smaller than five. **But she corrected the framing:** this is not the Bornmann "high agreement, distrust it" pattern, it is the opposite, a less-contaminated observer finding MORE. That is construct validity for the control itself.
+- Tobias: restoring headcount does not touch the actual failure, which was a seat running silently unenforced.
+
+**All three converged on the same alternative: make the cold reader a permanent, non-gating control instead of restoring five seats.** That is now the recommendation.
+
+**Baron found a contradiction nobody had priced:** recommendations 1 to 5 hardened the review pipeline on the assumption the human merge gate was permanent, while the roadmap planned to delete that gate via auto-merge, on infrastructure that had already leaked a live credential from abandoned clones undetected for two days. Julie's decision above resolves this by making the gate permanent.
+
+**Two findings that were not in the recommendations at all:**
+- **Tobias: the context cut is self-reversing without a ceiling.** Trimming required reading to ~30KB is a one-time trim on a file that grew 18KB to 44KB in three days. It is back to 117KB by mid-October unless the cut ships with a byte budget or a decay mechanism. LifeOS already has this discipline for always-on files and the distillery has none.
+- **Nadia: nobody checked whether the three recurring defect types predate the narrowing.** If they do, reviewer count is not the relevant variable and the whole revert debate was aimed at the wrong thing.
+
 ### Open work, ranked
 
-1. **Apply the REVISE findings on !36 and !38** before merging. !37 needs the DORA contradiction decided.
-2. **Revert the round 3 narrowing**, or make the control permanent. Julie's call; the evidence is in.
-3. **Build the run ledger, then the retro loop.**
-4. **Scope the required reading per stage**, 117KB toward ~30KB. Biggest compute win, no architecture change.
-5. **Set model and effort per phase.** No model is specified anywhere today, so all 41 agents run Opus. `policy` and `staleness` are Haiku work; fact audit, ship and report are Sonnet work; research, inclusion, draft, review and editors stay Opus.
-6. **Fix the three recurring defects above**, especially the antecedent-search ledger line, which is mechanically checkable.
-7. **Weekly maintenance cron in GitLab CI**, not launchd. `staleness.ts` and `decay.ts` have zero model calls, so detection runs on GitLab's runners with no laptop and no cost. Prerequisite for anything cloud: move the project token from the macOS keychain into a masked CI variable.
+Reordered after Julie's four decisions and the Council pass. **Speed and defect rate are the ranking criteria now, not cost per page.**
 
-### The hands-off question, answered with evidence
+1. **Finish the three open pages.** Apply the control's REVISE findings on !36 Alexander and !38 Karpathy; decide the DORA contradiction on !37 Gene Kim. Nothing else ships until the pages in flight are done.
+2. **Run the N=1 experiment.** Next run takes one candidate. This is the speed question Julie actually cares about and it has never been tested. Top of the ranked queue: Dave Farley or Dan North, both pull 2.
+3. **Make the cold reader permanent and non-gating.** Do NOT restore five seats. Then answer Nadia's question, which nobody has: **do the three recurring defect types predate the 2026-09-17 narrowing?** If they do, reviewer count was never the relevant variable.
+4. **Cut what Julie reads to reach a decision.** Now that she reads every page deliberately and merges it herself, this is the highest-value work left. Exception-only descriptions: a clean page arrives as a short note, not 5,000 words.
+5. **Scope the required reading per stage, WITH a byte ceiling.** 117KB toward ~30KB. Per Tobias, the trim is self-reversing without a budget: `calibration.md` grew 18KB to 44KB in three days and returns to 117KB by mid-October otherwise. LifeOS already has this discipline for always-on files; the distillery has none. **Ship the ceiling with the cut or do not ship the cut.**
+6. **Fix the three recurring defects**, chiefly the antecedent-search ledger line, which is mechanically checkable and which two Council seats endorsed as cheap and targeted.
+7. **Build the run ledger, then the retro loop.** Keep the sequence, and add Tobias's requirement: log every rule-source and rule-consumer pair so **drift becomes machine-detectable** rather than something Camila catches by hand-spawning an audit agent. That is the fix for the failure class that has now bitten four times.
+8. **Scaffold the distillery council** (see its own section). Selector, seat builder, deliberate `critiques` pairing.
+9. **Weekly maintenance job in GitLab CI**, not launchd, so detection stops depending on Julie's laptop. Prerequisite for anything off-machine: move the project token from the macOS keychain into a masked CI variable. Baron's credential point applies here and only here now, since addition is staying attended.
+10. **Decide the inclusion filter for non-software thinkers** before the first permaculture candidate. The current filter assumes an audience of senior engineering and security leaders; for a thinker outside technology the bar probably becomes "vocabulary that travels into the reader's domain."
 
-Julie asked what a set-and-forget distillery at ~10 thinkers a week would take. The arithmetic: ~3M tokens and ~$25 a page, so ~$1,000 a month at that volume, **but the binding constraint is her attention**: run 3 sent 9,900 words and 11 decisions for two pages, so ten a week is ~50,000 words and ~55 decisions weekly.
+**Not doing, decided:** auto-merge, a cleanliness predicate, trust calibration for unattended publishing, a graph database, and restoring five seats in round 3.
 
-Two further contradictions: the roster ceiling of 40 to 60 makes continuous addition a four-week project rather than a steady state, and only twelve of thirty-one queued candidates have any graph pull.
+### The hands-off question, settled
 
-**Split the loops.** Maintenance can be genuinely hands-off now. Addition cannot, because the auto-merge predicate needs the cold reader to agree with the adjudicator and it disagrees on the majority of pages. **The path to unattended publishing runs through the control measurement.**
+Julie asked what a set-and-forget distillery at ~10 thinkers a week would take. **She then answered it herself: she does not want one.** She merges every page, because the point is to read and learn rather than accumulate a list.
 
-On architecture: the 162KB injected floor exists only because this runs inside a chat harness, and prompt caching needs a prefix you control. **Managed Agents is the closest fit for unattended operation** (Anthropic runs the loop, the sandbox already has bash, file ops and web search, and scheduled deployments give the cron), with two caveats: it is beta and not eligible for zero data retention.
+So the split that survives is narrower than the original proposal. **Maintenance can be genuinely unattended**, and should be: `staleness.ts` and `decay.ts` have zero model calls, so weekly detection runs on GitLab's runners with no laptop and no cost, failing the pipeline when something comes due. **Addition stays human-gated permanently, by choice.**
+
+What is still true and still unaddressed: the reading load per page. Run 3 sent 9,900 words and 11 flagged decisions for two pages. Now that she reads every page deliberately, **cutting what she has to read to reach a decision is the highest-value work left**, and it is the one thing that makes serial addition sustainable alongside a new job.
+
+Two constraints stay on the record. Only twelve of thirty-one queued candidates have any graph pull. And the roster ceiling of 40 to 60 now interacts with the council idea: prefer positional coverage over connectivity when choosing whom to add.
+
+On architecture: the 162KB injected floor exists only because this runs inside a chat harness, and prompt caching needs a prefix you control. Managed Agents remains the closest fit for the unattended **maintenance** loop, with the caveats that it is beta and not eligible for zero data retention. It is no longer needed for addition, which is staying attended.
 
 ### Environment notes
 

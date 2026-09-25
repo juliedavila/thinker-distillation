@@ -426,6 +426,17 @@ adjacent_thinkers:
       deployment pipeline and for continuous delivery with Humble's detailed
       help acknowledged on both.
     strength: primary
+  - target_slug: gene-kim
+    display_name: Gene Kim
+    edge_type: parallel
+    edge_label: >
+      *Accelerate*, which Kim wrote with Nicole Forsgren and Jez Humble, is one
+      of the books Fowler wrote a foreword for. Past that the two barely touch,
+      and the gap is worth seeing. Kim's doctrine ships as a numbered set
+      inside a novel or a handbook, which is a different way of putting
+      vocabulary into other people's hands from the one this page describes.
+      Same decade, same industry.
+    strength: primary
 
 further_in:
   start_here: '`IsQualitySoftwareWorthTheCost` (bliki). The economic-argument keystone.'

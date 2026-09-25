@@ -1,0 +1,14 @@
+READING
+Kim's unit is the numbered set, and the first of them fixes an order. [T:thesis] [F:the-three-ways]
+Flow and systems thinking come first, then feedback loops shortened and amplified, then a culture where experiment and failure are ordinary and repetition is the prerequisite to mastery. [T:thesis] [T:working-line] [F:the-three-ways]
+The later sets arrive as named lists, the Five Ideals from the one solo book and three mechanisms with Steven Spear that the book says move problem solving out of the high-risk zones. [F:the-five-ideals] [F:slowification-simplification-amplification]
+What each set borrows is credited in his own text: Deming inside the First Way, Goldratt in the novel, Smart and Moore in the Five Ideals. [L:3]
+The distribution is the second contribution: a novel, a summit he has run since 2014, and a handbook whose first chapter cites the 2012 post as the frame's source. [L:1] [F:the-three-ways]
+How far the sets travelled from there is hard to judge: one imprint carries every book, and on the reference pages checked it is his books that turn up. [L:2] [L:1]
+EXTENSION
+The Third Way asks for a culture where taking risks and learning from failure are ordinary, and where repetition and practice are the prerequisite to mastery. [F:the-three-ways] [T:working-line]
+Held against a security organization, that is a claim about which difficulty in the job is the right one, because mastery by repetition requires that the repeated work be the work itself. [P:8] [T:working-line]
+Where the repeated work is the approval and the sign-off, the mastery that accrues is in coordination. [P:8]
+The First Way points at the subtraction: judge the performance of the whole system, and the control that survives the judgement is the one that does not hand the work to another department. [T:thesis] [F:the-three-ways]
+The Fourth Ideal names psychological safety and the post listing the five credits nobody for it, so a leader adopting the word inherits no method with it. [L:3] [F:the-five-ideals]
+And the transfer stops at the blast radius, since failure can be made ordinary only where it is recoverable. [F:the-three-ways]

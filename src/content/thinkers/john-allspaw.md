@@ -331,6 +331,16 @@ adjacent_thinkers:
       Handbook*, which Humble co-wrote with Gene Kim, Patrick Debois and John
       Willis.
     strength: primary
+  - target_slug: gene-kim
+    display_name: Gene Kim
+    edge_type: parallel
+    edge_label: >
+      Kim supplies the management programme the incidents on this page arrive
+      inside. The third of his numbered principles instructs an organization
+      from above on how to treat a failure it chose to risk; Allspaw's subject
+      begins after a failure nobody chose has already happened, with the
+      question of what makes an account of it trustworthy.
+    strength: primary
 
 further_in:
   start_here: >

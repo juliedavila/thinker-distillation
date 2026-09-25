@@ -442,6 +442,17 @@ adjacent_thinkers:
       *Accelerate* together, and his page holds the mechanism rather than
       restating the measures.
     strength: primary
+  - target_slug: gene-kim
+    display_name: Gene Kim
+    edge_type: parallel
+    edge_label: >
+      Kim is the co-author who was in this research first. *Accelerate*'s own
+      preface records Puppet inviting him into the 2012 study and his bringing
+      Humble in, two years before the report she joined for. That order of
+      arrival is why four of the frames above credit him. His page holds a
+      different output of the same years: numbered principles, published as
+      posts and dramatized in a novel, with the measures left here.
+    strength: primary
 
 further_in:
   start_here: '*Accelerate* (Forsgren, Humble, Kim, 2018). The keystone.'

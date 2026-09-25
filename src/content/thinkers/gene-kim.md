@@ -22,10 +22,12 @@ inclusion_rationale: >
   most of the visible circulation runs through the press that publishes every
   book cited here after the 2004 handbook, the summit he convenes and the
   podcast he hosts. That dissent
-  is limits[0] and limits[1]. Three things stay off the page for want of a
-  source: his education, his relationship to IT Revolution, and the claim that
-  he co-founded DORA, which this site currently publishes across two other pages
-  and cannot source. The four types of work is left out as a frame because the
+  is limits[0] and limits[1]. Two things stay off the page for want of a
+  source: his education and his relationship to IT Revolution. The DORA
+  founding claim, recorded as unsourced during research, turned out to be
+  sourced on the Forsgren and Humble ledgers all along, and DORA's own 2018
+  acquisition announcement names him among its founders, so `background` now
+  carries it. The four types of work is left out as a frame because the
   enumeration is unsourced. `doctrine_mode` is `mode-a` against seat 3's
   `mode-b` recommendation, because the hazard here is byline density rather than
   naming, and because `mode-a` is what earns the three review rounds two seats
@@ -40,12 +42,10 @@ live_edge_visible: true
 tagline: The author who numbered the DevOps doctrine and then built what carried it, from a novel with two co-authors to a summit he has run since 2014.
 thirty_second_take: >
   Kim's doctrine arrives in numbered sets. The Three Ways, published in August
-  2012 under his name alone, run in sequence: fast flow of work first,
-  then feedback loops shortened and amplified, then a culture of continual
-  experimentation and learning in which repetition and practice are treated as
-  the prerequisite to mastery. The Five Ideals, worked out in the one book on
-  his list with a single byline and numbered in a 2020 post, run from locality
-  and simplicity to customer focus, with psychological safety fourth.
+  2012 under his name alone, put flow, feedback and a learning culture in that
+  order. The Five Ideals, worked out in *The Unicorn Project* and numbered in a
+  2020 post, run from locality and simplicity to customer focus, with
+  psychological safety fourth.
   The 2023 book with Steven Spear
   names three mechanisms, slowification, simplification and amplification, which
   it says move problem solving out of high-risk danger zones into low-risk
@@ -69,12 +69,13 @@ background: >
   John Willis), *Accelerate* (2018, with Nicole Forsgren and Humble), *Wiring
   the Winning Organization* (2023, with Steven Spear) and *Vibe Coding* (2025,
   with Steve Yegge). Almost all of it is co-authored, with one solo byline in
-  *The Unicorn Project* (2019). Since 2014 he has organized the DevOps
+  *The Unicorn Project* (2019). With Nicole Forsgren and Jez Humble he was one
+  of the founders of DORA, which Google acquired in 2018. Since 2014 he has organized the DevOps
   Enterprise Summit, now the Enterprise Technology Leadership Summit and the
   Enterprise AI Summit, and he hosts *The Idealcast*.
 why_they_matter_as_a_thinker: >
   A set of principles with an order in it is portable in a way an argument is not,
-  and the strongest byline evidence here is that his own co-authors cite him for
+  and the strongest evidence of authorship here is that his own co-authors cite him for
   it in print. Figure 1.4 in the first chapter of *The DevOps
   Handbook, Second Edition* carries the source line "Gene Kim, 'The Three Ways:
   The Principles Underpinning DevOps,' ITRevolution.com (blog), August 22,
@@ -83,8 +84,8 @@ why_they_matter_as_a_thinker: >
   inside a novel, where a character states all three in sequence and credits
   Goldratt for the Theory of Constraints along the way; the handbook that
   followed draws on close to a hundred case studies presented at a summit he
-  convenes; Wikipedia's disambiguation entry for the title describes that novel
-  as a fundamental book that introduced the concept of DevOps. How much of that
+  convenes; and a one-line Wikipedia gloss calls that novel a fundamental book
+  that introduced the concept of DevOps. How much of that
   circulation is independent of him is the question the limits below take up.
 
 thesis: >
@@ -136,8 +137,7 @@ named_frames:
     one_line_gloss: >
       Locality and simplicity; focus, flow and joy; improvement of daily work;
       psychological safety; customer focus. Worked out in *The Unicorn Project*
-      (2019), the one book-length work on his list with a single byline, and
-      numbered in a 2020 post. Two of the five carry credits in his own text, Jon
+      (2019) and numbered in a 2020 post. Two of the five carry credits in his own text, Jon
       Smart for better value sooner safer and happier, and Geoffrey Moore for
       the difference between core and context.
     attribution_kind: original
@@ -181,9 +181,9 @@ named_frames:
     display_name: The DORA measures
     one_line_gloss: >
       The operational measures from the DORA research and *Accelerate* (2018),
-      which he wrote with Nicole Forsgren and Jez Humble. The measures belong to
-      Forsgren's research and her page carries them and their count.
-      *Accelerate*'s
+      which he wrote with Nicole Forsgren and Jez Humble. The measures came out
+      of the six-year study Forsgren led across the 2014 to 2019 State of DevOps
+      Reports, and her page carries them. *Accelerate*'s
       own preface dates the collaboration and gives the order: Puppet invited
       Kim into the 2012 study, Kim invited Humble, the two of them analysed
       4,000 responses, and Forsgren joined for the 2014 report.
@@ -203,7 +203,7 @@ body_of_work:
     year: 2012
     link: https://itrevolution.com/articles/the-three-ways-principles-underpinning-devops/
     editorial_note: >
-      Short, bylined to him alone, and the document the later books cite for the
+      Short, and the document the later books cite for the
       frame. Start here, and read the First Way's Deming clause and the Mike
       Orzen sentence while you are in it, because both decide how the rest of
       the corpus should be attributed.
@@ -225,7 +225,7 @@ body_of_work:
     year: 2019
     link: https://itrevolution.com/product/the-unicorn-project/
     editorial_note: >
-      The single byline, and the book the Five Ideals come out of. Pair it with
+      His one solo book, and the one the Five Ideals come out of. Pair it with
       "The Five Ideals of DevOps" (2020), which is where the five are named in
       order and where Jon Smart and Geoffrey Moore are credited.
   - title: The DevOps Handbook, Second Edition
@@ -274,16 +274,13 @@ body_of_work:
     editorial_note: >
       With Kevin Behr, who has the first byline, and George Spafford. Four
       prescriptive steps from three years of studying IT operations and security
-      organizations, opening on the claim that almost 80% of outages are
-      self-inflicted. The earliest of the management books and the one his own
+      organizations, the first of them introduced with the claim that almost
+      80% of outages are self-inflicted. The earliest of the management books and the one his own
       *Accelerate* bio names beside *The Phoenix Project*.
 
 reading: >
-  Kim's unit is the numbered set, and the earliest of them is published in order.
-  Fast flow of work comes first, then feedback loops shortened and
-  amplified, then a culture where experiment and failure are ordinary and
-  repetition is the prerequisite to mastery. The later sets arrive as named
-  lists, the Five Ideals from the solo book and the post naming them, and three
+  The Three Ways were the first of Kim's numbered sets, posted in August 2012.
+  The later sets arrive as named lists, the Five Ideals from the solo book and the post naming them, and three
   mechanisms with Steven Spear the book says move problem solving out of
   high-risk zones. Each of the sets comes at one claim, that technology work is
   a system whose performance is set by flow, feedback and experiment. The
@@ -346,7 +343,8 @@ limits:
       Goldratt for the Theory of Constraints in a character's own words. The
       Five Ideals credit Jon Smart for one phrase and Geoffrey Moore for
       another, and the fourth of the five is called Psychological Safety, an
-      existing term of art that the post asserts and credits to nobody. The
+      existing term of art and the subject of Amy Edmondson's 1999 study of
+      learning in work teams, which the post asserts and credits to nobody. The
       three mechanisms are co-authored with Steven Spear, and both authors send
       the lineage to Spear and Bowen's Toyota article in their own prefaces. The
       file integrity work is co-authored with Eugene Spafford. A sentence
@@ -363,7 +361,7 @@ limits:
       'Lean IT.'" Orzen is an author of neither book the post says the Three
       Ways are being used in. The likeliest reading is a collaboration on work
       in progress, and the post does not say that, so this page does not say it
-      either. The frame is filed as original because the post carries his byline
+      either. The credit stays with him because the post carries his name
       alone, and because the second edition of *The DevOps Handbook*, which he
       wrote with four co-authors, cites the post as his.
   - headline: The research half of the corpus has a published objection
@@ -381,15 +379,13 @@ limits:
       evidence that none exists.
 
 still_load_bearing_despite: >
-  Strip all of that away and the sequence is still there. Flow, then feedback,
-  then a culture of
-  experiment is an ordering claim, and the order is the useful part: a team
-  that cannot watch work move has nothing to shorten a feedback loop around,
-  and a team with no feedback has nothing to learn an experiment from. That
-  holds whoever numbered it and whoever printed it. The First Way holds for the
-  same reason. Judging the performance of an entire system rather than the
-  performance of one department is a demand about where to look, and it survives
-  whatever happens to the set that carries it. What this page cannot settle is
+  Strip all of that away and one dependency is still there: a team that cannot
+  watch work move has nothing to shorten a feedback loop around, and a team
+  with no feedback has nothing to learn an experiment from. That dependency
+  does not rest on who numbered the Ways or who printed them. The First Way
+  stands on its own terms too. Judging the performance of an entire system
+  rather than the performance of one department is a demand about where to
+  look, and it outlasts the set that carries it. What this page cannot settle is
   how much of the reach was his own doing. Building the channel an idea travels
   through is work either way, and it is the work a reader is least likely to
   see, because afterwards the numbered set looks like the whole of it.
@@ -515,9 +511,8 @@ live_edge:
     and Beyond* was published on 21 October 2025 with Steve Yegge, with a
     foreword by Dario Amodei and a 2026 Axiom Book Awards gold medal. The
     publisher's downloads for it name a FAAFO measurement toolkit and three
-    developer loops of vibe coding. Both are under a year old and neither has
-    turned up yet in the sources read for this page, so they stay in prose here and get
-    no frame entry. The book's subtitle is the one Simon Willison quoted in May
+    developer loops of vibe coding. Both are under a year old and neither
+    appears in the sources read here. The book's subtitle is the one Simon Willison quoted in May
     2025 when he argued that the title describes the opposite of the term it
     uses, and it is unchanged on the publisher's page a year later. The
     convening has moved the same way: the summit he has organized since 2014

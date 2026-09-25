@@ -43,10 +43,16 @@ P:8, which this page does hold, so they are left as they are. **For Julie or for
 that script:** a file that both records citations and discusses them cannot be parsed by a bare regex,
 and the cheap fix is to read only the lines under the `## reading` and `## extension` headings.
 
+**The unanchored control's round 3 changed `reading`, 2026-09-25.** Two sentences became one. The
+opener "Kim's unit is the numbered set" repeated the shape of `kent-beck.md`'s "Beck's subject is",
+and the second sentence was the third full statement of the Three Ways on the page, which the control
+counted as the harder form of the repetition item; `thesis` and `named_frames[0]` keep the
+enumeration. The flow, feedback and experiment claim survives in sentence 3 unchanged. Claim delta:
+NARROWED. Record: `_working/gene-kim/control-remediation-2026-09-25.md`.
+
 ## reading
 
-- Kim's unit is the numbered set, and the earliest of them is published in order. [T:thesis] [F:the-three-ways]
-- Fast flow of work comes first, then feedback loops shortened and amplified, then a culture where experiment and failure are ordinary and repetition is the prerequisite to mastery. [T:thesis] [T:working-line] [F:the-three-ways]
+- The Three Ways were the first of Kim's numbered sets, posted in August 2012. [F:the-three-ways]
 - The later sets arrive as named lists, the Five Ideals from the solo book and the post naming them, and three mechanisms with Steven Spear the book says move problem solving out of high-risk zones. [F:the-five-ideals] [F:slowification-simplification-amplification]
 - Each of the sets comes at one claim, that technology work is a system whose performance is set by flow, feedback and experiment. [T:thesis]
 - The distribution is the second contribution: a novel, a summit he has run since 2014, and a handbook crediting the 2012 post for the frame. [L:1] [F:the-three-ways]

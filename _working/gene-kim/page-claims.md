@@ -238,6 +238,15 @@ assertion beside it. Citation unchanged at [S:15]. Claim delta: SAME, and narrow
 since the register claim is now bounded by what the page says about this corpus rather than standing
 on its own.
 
+**10. The unanchored control's findings were applied on 2026-09-25, and note 1 is resolved rather than
+repeated.** Full record, with a claim-delta row per change:
+`_working/gene-kim/control-remediation-2026-09-25.md`. The DORA founding claim note 1 calls unsourced
+was sourced on two neighbour ledgers the whole time (`nicole-forsgren` [S:13], `jez-humble` [S:18]),
+and DORA's own 2018 announcement is now on this ledger as [S:26a], so none of the eight places note 1
+lists needs lowering and `background` now carries the fact, cited to [S:26a]. Both `original` frames
+now cite their antecedent search, [S:5a] and [S:11a]. `limits[2]` cites [S:29] for the Edmondson
+clause. `thirty_second_take` keeps [S:8], which still carries its Goldratt clause.
+
 **4. Two frames the inclusion Council discussed are deliberately absent.** The four types of work
 has no entry, because [S:9] verifies that the novel poses the frame and names one of the four and
 that the enumeration is nowhere on this ledger, and a frame whose content cannot be stated is not
@@ -248,15 +257,15 @@ per SCHEMA 4.14, which forbids a frame entry linked from the live edge.
 ## Required set
 
 - active_years [S:3] [S:1] [S:20]
-- background [S:1] [S:2] [S:3] [S:4] [S:10] [S:12] [S:13] [S:14] [S:15] [S:17] [S:18] [S:20]
+- background [S:1] [S:2] [S:3] [S:4] [S:10] [S:12] [S:13] [S:14] [S:15] [S:17] [S:18] [S:20] [S:26a]
 
-- named_frames[0].attribution [S:5] [S:6]
-- named_frames[1].attribution [S:10] [S:11]
+- named_frames[0].attribution [S:5] [S:6] [S:5a]
+- named_frames[1].attribution [S:10] [S:11] [S:11a]
 - named_frames[2].attribution [S:3] [S:4]
 - named_frames[2].co_originators[0] [S:3] [S:4]
 - named_frames[3].attribution [S:12] [S:13]
 - named_frames[3].co_originators[0] [S:12] [S:13]
-- named_frames[4].attribution [S:15] [S:16]
+- named_frames[4].attribution [S:15] [S:16] [S:6]
 - named_frames[4].co_originators[0] [S:15] [S:16]
 - named_frames[4].co_originators[1] [S:15] [S:16]
 
@@ -284,7 +293,7 @@ per SCHEMA 4.14, which forbids a frame entry linked from the live edge.
 - named_frames[1].one_line_gloss [S:10] [S:11]
 - named_frames[2].one_line_gloss [S:2] [S:3] [S:4]
 - named_frames[3].one_line_gloss [S:12] [S:13]
-- named_frames[4].one_line_gloss [S:15] [S:16]
+- named_frames[4].one_line_gloss [S:15] [S:16] [S:6]
 - adjacent_thinkers[0] [S:16] [S:14] [S:15] [S:6]
 - adjacent_thinkers[1] [S:6] [S:16]
 - adjacent_thinkers[2] [S:14] [S:5]
@@ -294,7 +303,7 @@ per SCHEMA 4.14, which forbids a frame entry linked from the live edge.
 - adjacent_thinkers[9] [S:18] [S:7]
 - limits[0] [S:1] [S:5] [S:11] [S:6] [S:25] [S:27] [S:18] [S:19]
 - limits[1] [S:24]
-- limits[2] [S:5] [S:8] [S:11] [S:12] [S:13] [S:3]
+- limits[2] [S:5] [S:8] [S:11] [S:12] [S:13] [S:3] [S:29]
 - limits[3] [S:5] [S:6]
 - limits[4] [S:22] [S:15]
 - still_load_bearing_despite [S:5] [S:24] [S:1]

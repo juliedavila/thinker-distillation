@@ -9,6 +9,14 @@ started: 2026-05-25
 updated: 2026-09-24
 ---
 
+<!-- RESUME-HEAD v1 -->
+> **Status** · 2026-09-25 — main at `aba4715`, 17 live pages, build clean, CI green. Three merge requests open, all waiting on Julie: !36 Alexander (control says REVISE, 10 findings), !37 Gene Kim (control agreed, 11 findings, none deciding), !38 Karpathy (REVISE, 10 findings). 31 open candidates; ledger coverage 8 of 17.
+> **Next** · Apply the control's REVISE findings on !36 and !38 and decide the DORA contradiction on !37. Nothing else ships until those three are done. Julie merges every page herself; who applies the REVISE edits is not stated in the file.
+> **Blocked** · !36 and !38 must not merge as written. !37 waits on the DORA co-founding claim, unsourceable after two audits and published on two other pages. The retro loop is blocked until the run ledger exists.
+> **Resume** · Read from "## Save Point — 2026-09-24 ... (cold-start resume here)" through "### Environment notes", especially "Julie's directions, 2026-09-25" and "Open work, ranked". Re-read /Users/juliedavila/Camila/thinker-distillation/SCHEMA.md, PIPELINE.md and the skill at /Users/juliedavila/Camila/thinker-distillation/.claude/skills/add-thinker/ before any code. ⚠ Read to the END of the Council pass: an earlier paragraph recommends restoring five seats and the later one reverses it. Frontmatter (`updated: 2026-09-24`, `progress: iter-10 to iter-15`) is stale against the body.
+<!-- /RESUME-HEAD -->
+
+
 ## Save Point — 2026-09-24, the audit and the control verdict (cold-start resume here)
 
 > Current state. Everything from `## Save Point — 2026-09-21` down is history.

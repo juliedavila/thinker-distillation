@@ -89,6 +89,28 @@ const ALL_SEATS = [1, 2, 3, 4, 5];
 // calibration log that found a new problem in round 2 found it through one of these two.
 const REWRITE_AUDIT_SEATS = [3, 5];
 
+// The cold reader. One reviewer who has seen no transcript, no verdict history and no other
+// seat's reasoning reads every page after its last review round, whatever that round was.
+//
+// It began on 2026-09-17 as a temporary control on the adjudicated round 3, meant to be retired
+// once a few runs agreed with the adjudicator. Five pages later it had come back stricter three
+// times and more lenient never, and every finding it filed was the kind no script reaches. A
+// 2026-09-25 Council rejected restoring five seats and asked for this instead: keep the fresh
+// eyes, permanently, and never let them gate. So it runs on every page (adjudicated, escalated
+// and one-round alike), an editor applies what it confirms, and anything the editor declines
+// goes to the top of the merge request, where Julie reads it before she merges.
+//
+// Its placement is the lesson of its first run. It reads the page AFTER the last editor, because
+// on 2026-09-22 it read the round 2 text and three of its fourteen findings were already fixed.
+const COLD_READER = {
+  when: 'every page, after its last review round and the editor that follows it',
+  runs_after: 'the last editor, so it reads the text that would ship',
+  sees: 'the finished pages, their grounding packs, claims maps and ledgers, and nothing under _working/_council/',
+  writes: 'cold-reader.md in the council directory; its editor writes cold-reader-editor-<slug>.md',
+  gates: false,
+  reads_as: 'an editor applies what it confirms; what the editor declines, and any REVISE or REJECT, opens the merge request description. Stricter than the last round is recorded as a catch the anchored review missed',
+};
+
 type Plan = {
   slug: string;
   doctrine_mode: string;
@@ -98,9 +120,8 @@ type Plan = {
   // 'adjudication' means one pass that reads rounds 1 and 2 and calls it, instead of five seats.
   // An empty seat list in seats_by_round is what that looks like.
   round3_mode?: 'adjudication' | 'full';
-  // The measurement that rides along with an adjudicated round 3, never a check. Present only
-  // when there is one to run, so a caller can treat its absence as "no control this round".
-  control?: {
+  // The cold reader, on every plan. Never a gate.
+  control: {
     when: string;
     runs_after: string;
     sees: string;
@@ -137,22 +158,7 @@ const plans: Plan[] = slugs.map((slug) => {
       // round 2 leaves dissent, which is the case the evidence never covered.
       seats_by_round: { '1': ALL_SEATS, '2': ALL_SEATS, '3': [] },
       round3_mode: 'adjudication',
-      // The control belongs HERE, in the one place the round rule lives, and not only in the
-      // workflow and the skill. Leaving it out of this output is how it went missing: on
-      // 2026-09-22 the first page ever to reach the adjudicated branch shipped without the
-      // measurement, and the shipping stage traced the cause straight back to this file saying
-      // nothing about it. That is the identical failure to the three-round rule living in
-      // SCHEMA section 7 alone, which let two mode-a pages ship with one round.
-      control: {
-        // Only on the adjudicated branch. An escalated round 3 is five seats again, which is the
-        // thing being compared against, so there is nothing to control for.
-        when: 'round3_mode is adjudication',
-        runs_after: 'the round 3 editor applies the adjudicator edits, so it reads the text that ships',
-        sees: 'the finished pages, their grounding packs, claims maps and ledgers, and nothing under _working/_council/',
-        writes: 'round-3-unanchored-control.md, beside the adjudicator report',
-        gates: false,
-        reads_as: 'stricter than the adjudicator reverses the 2026-09-17 narrowing; more lenient means nothing, because it saw less',
-      },
+      control: COLD_READER,
       reason: 'mode-a pages carry doctrine, so SCHEMA section 7 step 5 requires three rounds. Rounds 1 and 2 are the full Council; round 3 converges.',
       escalation:
         'If ANY verdict in round 2 is below ACCEPT-WITH-EDITS, round 3 reverts to all five seats. ' +
@@ -165,6 +171,7 @@ const plans: Plan[] = slugs.map((slug) => {
     rounds: 1,
     transcript_suffix: 'quick',
     seats_by_round: { '1': ALL_SEATS },
+    control: COLD_READER,
     reason: `${mode || 'unset'} pages get one round; dissent adds rounds rather than the mode adding them up front.`,
     escalation:
       `Two or more REJECT in round 1 promotes this page to the three-round debate. ` +
@@ -181,12 +188,12 @@ if (json) {
     for (const [round, seats] of Object.entries(p.seats_by_round)) {
       console.log(`  round ${round}: ${seats.length ? `seats ${seats.join(', ')}` : 'one adjudication pass over the rounds 1 and 2 transcripts'}`);
     }
-    if (p.control) {
-      console.log(`  control seat: one unanchored pass, ${p.control.when}`);
+    {
+      console.log(`  cold reader: one unanchored pass, ${p.control.when}`);
       console.log(`    runs after: ${p.control.runs_after}`);
       console.log(`    sees: ${p.control.sees}`);
       console.log(`    writes: ${p.control.writes}`);
-      console.log(`    gates shipping: ${p.control.gates ? 'yes' : 'no, it is a measurement'}`);
+      console.log(`    gates shipping: ${p.control.gates ? 'yes' : 'no, an editor applies its findings and the rest go to Julie'}`);
       console.log(`    how to read it: ${p.control.reads_as}`);
     }
     console.log(`  why: ${p.reason}`);

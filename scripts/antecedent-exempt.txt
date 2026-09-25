@@ -1,0 +1,29 @@
+# Pages exempt from the antecedent-search check in fact-ledger.ts, because they shipped before it.
+#
+# This list may only ever SHRINK. The check: every frame filed `attribution_kind: original` must
+# cite, on its attribution line in page-claims.md, a fact whose text records "antecedent search",
+# with the method and what it found. SKILL.md has required the search since 2026-09-16 and nothing
+# recorded that it happened, so the rule could not fail, and the cold reader kept finding original
+# frames with nothing behind them (Cunningham, then five frames across Alexander and Gene Kim).
+#
+# Removing a line means someone ran the search for each original frame on that page and recorded
+# it. A search that finds an earlier holder changes the frame's attribution, which is the point.
+#
+# 15 of 17 live pages as of 2026-09-25. The pages
+# on ledger-exempt.txt have no ledger at all, so every original frame they carry is owed.
+#
+alex-komoroske
+camille-fournier
+charity-majors
+david-woods
+fred-brooks
+kent-beck
+martin-fowler
+nicole-forsgren
+ray-dalio
+rich-hickey
+ross-anderson
+sidney-dekker
+simon-willison
+ward-cunningham
+will-larson

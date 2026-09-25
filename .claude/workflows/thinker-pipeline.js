@@ -288,7 +288,7 @@ const POLICY = {
           seats_by_round: { type: 'object', description: 'round number to seat numbers; an empty list means the adjudicator' },
           control: {
             type: 'object',
-            description: 'the unanchored control that rides along with an adjudicated round 3, or absent when there is none to run',
+            description: 'the cold reader, which runs on every page after its last round and never gates',
             properties: {
               when: { type: 'string' },
               runs_after: { type: 'string' },
@@ -586,14 +586,8 @@ for (const r of rechecked) log(`${r.slug}: recheck changed the page. ${r.verdict
 // =========================================================== 5. Review
 phase('Review')
 const state = new Map(pages.map((p) => [p.slug, { required: roundsFor(p.slug), dissent: false, escalated: false, history: [] }]))
-// Recorded, never acted on. See the unanchored control below.
+// The cold reader's verdicts beside each page's last-round verdict. See section 5b.
 const unanchored = []
-// Every page that reached the adjudicated branch and therefore owes a control verdict. Compared
-// against what the control actually returned once the rounds are done, because on 2026-09-22 the
-// control silently produced nothing for the shipping stage to find and only a human reading two
-// disagreeing reports noticed. A measurement that can go missing without anyone being told is not
-// a measurement.
-const controlOwed = []
 
 for (let round = 1; round <= 3; round++) {
   const due = pages.filter((p) => {
@@ -619,9 +613,6 @@ for (let round = 1; round <= 3; round++) {
   // The `?? true` is the fallback for a policy agent that returned nothing at all, and is the only
   // case where this file decides anything about rounds.
   const adjudicating = round === 3 && !carriesDissent && due.every((p) => adjudicatesFor(p.slug) ?? true)
-  // Owed only where the policy actually attaches a control, rather than wherever this file guesses
-  // one belongs.
-  if (adjudicating) controlOwed.push(...due.filter((p) => controlFor(p.slug) ?? true).map((p) => p.slug))
   const seatsThisRound = adjudicating
     ? [0] // 0 is the adjudicator, not a seat
     : round === 1
@@ -709,7 +700,7 @@ for (let round = 1; round <= 3; round++) {
       .filter((r) => (r.candidates ?? []).some((c) => c.slug === p.slug && (c.verdict === 'REVISE' || c.verdict === 'REJECT')))
       .map((r) => r.seat)
     const s = state.get(p.slug)
-    s.history.push({ summary: verdicts.join(', ') || 'no verdicts', dissenters })
+    s.history.push({ summary: verdicts.join(', ') || 'no verdicts', dissenters, verdicts })
     s.dissent = dissenters.length > 0
     const rejects = verdicts.filter((v) => v === 'REJECT').length
     if (round === 1 && rejects >= 2 && s.required < 3 && !s.escalated) {
@@ -750,87 +741,7 @@ for (let round = 1; round <= 3; round++) {
     )
   }
 
-  // The unanchored control.
-  //
-  // Round 3 was narrowed from five seats to one adjudication pass on 2026-09-17, because four
-  // recorded runs of a five-seat round 3 accepted unanimously and changed no page. Bornmann's 2010
-  // meta-analysis of 70 reliability coefficients in peer review puts a warning on exactly that
-  // reasoning: high agreement among reviewers who have read each other is a signal to distrust
-  // rather than a result. Every one of those four rounds used seats required to read the earlier
-  // transcripts first, so the unanimity is as consistent with anchoring as with convergence, and
-  // the two have opposite implications. If they genuinely converged, the narrowing was right. If
-  // they were anchored, the narrowing replaced an anchored round with a MORE anchored one, since
-  // the adjudicator reads both transcripts by design, and the answer was fresh eyes rather than
-  // fewer eyes.
-  //
-  // So: one seat that has seen no transcript, no verdict history and no other seat's reasoning.
-  // Only the finished page and the gates. Its verdict is recorded beside the adjudicator's and
-  // never gates shipping, because this is a measurement rather than a check. When several runs
-  // agree, the question is settled and this can go.
-  //
-  // IT RUNS HERE, AFTER THE ROUND 3 EDITOR, and that placement is the whole point. On the first
-  // run that reached this branch, 2026-09-22, it ran before the editor and therefore reviewed the
-  // round 2 text while its own brief told it it was reading a finished page. Three of its fourteen
-  // Cunningham findings were against sentences the adjudicator had already fixed. The question
-  // this measures is whether a cold reader would ship WHAT WE ARE ABOUT TO SHIP, so it has to read
-  // the page with the adjudicator's edits applied, which only exists after the editor has run.
-  if (adjudicating && !dryRun) {
-    const control = await agent(
-      `You are reviewing finished pages in ${REPO} with fresh eyes, and you are a control in a ` +
-        `measurement, so read this carefully.\n\n` +
-        `You have deliberately NOT been given the review transcripts, the verdict history, or any ` +
-        `other reviewer's reasoning, and you must not go looking for them: ignore anything under ` +
-        `\`_working/_council/\`. Read only the pages themselves, their grounding packs, their claims ` +
-        `maps and their fact ledgers under \`_working/<slug>/\`, plus \`SCHEMA.md\` sections 4 and 8 and ` +
-        `\`.claude/skills/add-thinker/calibration.md\`.\n\n` +
-        `Pages: ${due.map((p) => `src/content/thinkers/${p.slug}.md`).join(', ')}\n\n` +
-        `Judge each page on its own terms, as a senior reviewer seeing it for the first time. Would you ` +
-        `ship it? Apply the calibration checklist. Look hardest at whether any sentence states as ` +
-        `settled something the page's own limits call contested, whether any citation fails to support ` +
-        `its own clause, and whether the attribution would survive the byline test.\n\n` +
-        `Do not soften toward agreement. Nobody will see your verdict before they form their own, and ` +
-        `the entire value of this pass is that it is uncontaminated.\n\n` +
-        `These pages are FINISHED: every earlier round's edits are already applied, so what you are ` +
-        `reading is what ships if nobody stops it. Judge that text and nothing else.\n\n` +
-        `Before you return, copy your report verbatim to \`${COUNCIL}/round-3-unanchored-control.md\`, ` +
-        `covering every page you reviewed. Write that one file and read NOTHING else in that ` +
-        `directory, which is where the other reviewers' reports live and is the contamination this ` +
-        `pass exists to avoid. Your findings are the measurement, so a verdict that reaches nobody is ` +
-        `the same as not having run: on 2026-09-22 this pass ran, found a page the anchored pass had ` +
-        `passed, and wrote nothing, so the shipping stage correctly reported that the check had never ` +
-        `happened. Do not edit any other file. ${VOICE}`,
-      { label: 'review-r3:unanchored-control', phase: 'Review', schema: UNANCHORED }
-    )
-    if (control) {
-      for (const p of due) {
-        const mine = (control.candidates ?? []).find((c) => c.slug === p.slug)
-        const adjudicated = tally(reports, p.slug, 'verdict')[0] ?? 'none'
-        if (mine) {
-          // Direction matters more than equality. A control that lands one step stricter than the
-          // adjudicator has found something the anchored pass did not, and that is the result the
-          // experiment is looking for. A control that is more lenient is not evidence of anything,
-          // since it saw less. Reporting any difference as a disagreement would cry wolf on the
-          // gap between ACCEPT and ACCEPT-WITH-EDITS, which is not a dispute.
-          const severity = { ACCEPT: 0, 'ACCEPT-WITH-EDITS': 1, REVISE: 2, REJECT: 3 }
-          const delta = (severity[mine.verdict] ?? 0) - (severity[adjudicated] ?? 0)
-          const direction = delta > 0 ? 'stricter' : delta < 0 ? 'more lenient' : 'same'
-          unanchored.push({ slug: p.slug, adjudicator: adjudicated, unanchored: mine.verdict, direction, findings: mine.findings ?? [] })
-          log(
-            `${p.slug} unanchored control: ${mine.verdict} against adjudicator ${adjudicated} (${direction})` +
-              (delta > 0 ? ' <- fresh eyes found more than the anchored pass. This is the result that would reverse the round 3 narrowing.' : ''),
-          )
-        }
-      }
-    }
-  }
-}
 
-// The control is a measurement and never gates a page, so a missing one cannot stop the run. It
-// can and must be impossible to miss. Anything owed and not delivered is named here and carried
-// into the closing report, where it reaches calibration.md as a gap rather than as silence.
-const controlMissing = [...new Set(controlOwed)].filter((s) => !unanchored.some((u) => u.slug === s))
-if (controlMissing.length) {
-  log(`CONTROL MISSING for ${controlMissing.join(', ')}: these pages reached the adjudicated round 3 and owed an unanchored verdict, and none came back. The narrowing of round 3 rests on this measurement, so record the gap in calibration.md rather than the result.`)
 }
 
 const finalized = pages.filter((p) => {
@@ -843,6 +754,105 @@ const finalized = pages.filter((p) => {
   }
   return true
 })
+
+// =========================================================== 5b. Cold reader
+//
+// One reviewer who has seen no transcript, no verdict history and no other seat's reasoning reads
+// every page that is about to ship. Permanent since 2026-09-25, on every page whatever its round
+// count, and it never gates.
+//
+// History, because the reasons are the design. It began on 2026-09-17 as a temporary control on
+// the adjudicated round 3: Bornmann's 2010 meta-analysis warns that agreement among reviewers who
+// have read each other is a reason to distrust the agreement, and the narrowing rested on exactly
+// that kind of unanimity. Across five pages it came back stricter than the adjudicator three times
+// and more lenient never, and its findings were the kind no script reaches: a frame marked
+// original with no search behind it, a claim lowered in one field and left standing in three
+// others, a page announcing a correction to a neighbour that was never made. A 2026-09-25 Council
+// rejected restoring five seats to round 3 and asked for this instead. The fresh eyes stay, and
+// an editor applies what they confirm, so a finding stops being a note in a report that a human
+// has to carry into a second session.
+//
+// It reads the page AFTER the last editor. On its first run it read the round 2 text while its
+// brief said "finished", and three of its fourteen findings were against sentences already fixed.
+//
+// Why it does not gate: Julie merges every page herself, by choice, to read it. The cold reader's
+// job is to hand her a page with fewer defects and to tell her plainly what is still open, not to
+// hold the page back from her.
+phase('Review')
+const severity = { ACCEPT: 0, 'ACCEPT-WITH-EDITS': 1, REVISE: 2, REJECT: 3 }
+const worst = (vs) => (vs ?? []).reduce((a, v) => ((severity[v] ?? -1) > (severity[a] ?? -1) ? v : a), 'none')
+const coldReadOwed = finalized.filter((p) => controlFor(p.slug) ?? true).map((p) => p.slug)
+const coldDeclined = new Map()
+if (coldReadOwed.length) {
+  const cold = await agent(
+    `You are reading finished pages in ${REPO} with fresh eyes. You are the cold reader, the last ` +
+      `review before Julie reads these pages herself, so read this carefully.\n\n` +
+      `You have deliberately NOT been given the review transcripts, the verdict history, or any ` +
+      `other reviewer's reasoning, and you must not go looking for them: ignore anything under ` +
+      `\`_working/_council/\`. Read only the pages themselves, their grounding packs, their claims ` +
+      `maps and their fact ledgers under \`_working/<slug>/\`, plus \`SCHEMA.md\` sections 4 and 8 and ` +
+      `\`.claude/skills/add-thinker/calibration.md\`. Where a page makes a claim about a neighbouring ` +
+      `page, open that neighbour and check it: a page that says it corrected another page has to be ` +
+      `true of the other page.\n\n` +
+      `Pages: ${coldReadOwed.map((s) => `src/content/thinkers/${s}.md`).join(', ')}\n\n` +
+      `Judge each page on its own terms, as a senior reviewer seeing it for the first time. Would you ` +
+      `ship it? Apply the calibration checklist. Look hardest at whether any sentence states as ` +
+      `settled something the page's own limits call contested, whether any citation fails to support ` +
+      `its own clause, whether a claim lowered in one field still stands in another, whether every ` +
+      `frame filed as original has an antecedent search on the ledger, and whether the attribution ` +
+      `would survive the byline test. Give each field's word count for reading and extension, so the ` +
+      `editor knows what an additive fix must be funded by.\n\n` +
+      `Do not soften toward agreement. Nobody will see your verdict before they form their own, and ` +
+      `the value of this pass is that it is uncontaminated. Mark each finding CONFIRMED when you ` +
+      `checked it against the file or the ledger, and give the defensible replacement text where one ` +
+      `exists.\n\n` +
+      `Before you return, copy your report verbatim to \`${COUNCIL}/cold-reader.md\`, covering every page. ` +
+      `Write that one file and read NOTHING else in that directory. A verdict that reaches nobody is ` +
+      `the same as not having run. Do not edit any other file. ${VOICE}`,
+    { label: 'cold-reader', phase: 'Review', schema: UNANCHORED }
+  )
+  const fixes = []
+  for (const slug of coldReadOwed) {
+    const mine = (cold?.candidates ?? []).find((c) => c.slug === slug)
+    const hist = state.get(slug).history
+    const last = worst(hist[hist.length - 1]?.verdicts)
+    if (!mine) {
+      unanchored.push({ slug, last_round: last, cold_reader: 'MISSING', direction: 'missing', findings: [] })
+      log(`COLD READER MISSING for ${slug}. It never gates, so the page still ships, but the merge request must say the page was not cold-read.`)
+      continue
+    }
+    const delta = (severity[mine.verdict] ?? 0) - (severity[last] ?? 0)
+    const direction = delta > 0 ? 'stricter' : delta < 0 ? 'more lenient' : 'same'
+    unanchored.push({ slug, last_round: last, cold_reader: mine.verdict, direction, findings: mine.findings ?? [] })
+    log(`${slug} cold reader: ${mine.verdict} against the last round's ${last} (${direction})`)
+    if ((mine.findings ?? []).length) fixes.push({ slug, verdict: mine.verdict, findings: mine.findings })
+  }
+  // One editor per page, the same editor contract as every round: re-author in the site's voice,
+  // claim-delta every rewrite, rerun both gates. Anything it declines is carried to Ship.
+  const edited = await parallel(
+    fixes.map(({ slug, verdict, findings }) => () =>
+      agent(
+        `Apply the cold reader's findings to src/content/thinkers/${slug}.md in ${REPO}. You are the ` +
+          `editor. Its verdict was ${verdict}.\n\n${READ_FIRST}\n\n` +
+          `Its full report is \`${COUNCIL}/cold-reader.md\`; read the section for this page. Findings:\n` +
+          `${JSON.stringify(findings, null, 1)}\n\n` +
+          `Check each finding against the current file first. Apply every one that holds, including any ` +
+          `that touches a neighbouring page: a page that claims a correction to a neighbour ships with that ` +
+          `correction made. Where a finding asks for an antecedent search, run it and record one ledger ` +
+          `line per original frame. For every rewrite, write one line before and one after, marked SAME, ` +
+          `NARROWED, WIDENED or NEW; nothing WIDENED or NEW goes in without a ledger line. When you lower a ` +
+          `claim, grep every field that carries it and lower them all. After each repair, read the sentence ` +
+          `on either side. Rerun, both exit 0:\n  bun scripts/reading-gates.ts ${slug}\n  bun scripts/fact-ledger.ts ${slug}\n` +
+          `Then \`bun run build\` and read the warnings for this page.\n\n` +
+          `Decline a finding only for a reason you can state, and record it in \`rejected\`: those go at the ` +
+          `top of the merge request for Julie. Write your notes to \`${COUNCIL}/cold-reader-editor-${slug}.md\`.\n\n` +
+          `${VOICE}\n\n${NO_GIT}`,
+        { label: `editor-cold:${slug}`, phase: 'Review', schema: EDIT_RESULT }
+      )
+    )
+  )
+  for (const r of edited.filter(Boolean)) coldDeclined.set(r.slug, r.rejected ?? [])
+}
 
 // =========================================================== 6. Ship
 // Serial on purpose. This is the only phase that touches git and the neighbour pages.
@@ -892,7 +902,11 @@ for (const p of finalized) {
       `originally had: "It's not about quantity; it's about quality when it comes to the prose." A page about a ` +
       `thinker is an editorial judgment and usually needs more than a sentence to explain what this person is ` +
       `here for and what the page argues about them. Take the room that needs, and spend it on being followable ` +
-      `by an outsider rather than on being short. Round history: ${JSON.stringify(s.history)}. Do not oversell ` +
+      `by an outsider rather than on being short. Round history: ${JSON.stringify(s.history)}.\n` +
+      `The cold reader: ${JSON.stringify(unanchored.find((u) => u.slug === p.slug) ?? 'did not run')}. Findings its editor declined: ` +
+      `${JSON.stringify(coldDeclined.get(p.slug) ?? [])}. If it returned REVISE or REJECT, or its editor declined anything, ` +
+      `that goes in "what Julie needs to do", in plain words, above everything else. If it did not run, say so there. ` +
+      `If every finding was applied, one sentence below the fold says so. Do not oversell ` +
       `it. ${VOICE}`,
     { label: `ship:${p.slug}`, phase: 'Ship', schema: SHIP }
   )
@@ -946,18 +960,12 @@ const report = await agent(
     `the pages this run shipped have just changed who is named on the site. The second prints the ` +
     `ranking. Put the top three in your summary, with their graph pull, so the next batch is obvious ` +
     `without anyone re-deriving it. Never write a rank into an issue: it changes whenever a page ships.\n` +
-    `5. Record the unanchored control in calibration.md under the round-3 note: ` +
-    `${JSON.stringify(unanchored)}. This is the measurement that decides whether the 2026-09-17 ` +
-    `narrowing of round 3 rested on convergence or on anchoring. If the control disagreed with the ` +
-    `adjudicator anywhere, say so prominently, because that is the result that would reverse the ` +
-    `decision. If it agreed, record that too; several agreements settle the question and the control ` +
-    `can then be retired. Read its report at \`${COUNCIL}/round-3-unanchored-control.md\` rather than ` +
-    `working from the summary above, the way you read every other seat report.\n` +
-    (controlMissing.length
-      ? `5b. A CONTROL WAS OWED AND DID NOT COME BACK for: ${controlMissing.join(', ')}. Record that as a gap in ` +
-        `calibration.md, not as a result, and do not let the run log read as though the measurement was taken. ` +
-        `A page that reached the adjudicated round 3 without a control is a page whose round 3 is an anecdote.\n`
-      : '') +
+    `5. Record the cold reader in calibration.md's run log, one line per page: its verdict, the last ` +
+    `round's verdict, the direction, how many findings its editor applied and declined. ${JSON.stringify(unanchored)}. ` +
+    `A stricter cold read is a catch the anchored review missed; record which checklist item each ` +
+    `finding falls under, because a finding type that recurs is a skill defect to fix upstream, not a ` +
+    `thing for the cold reader to keep catching. Any page marked MISSING is a gap: say so. Read ` +
+    `\`${COUNCIL}/cold-reader.md\` rather than working from this summary.\n` +
     `6. Record the recheck outcomes: ${JSON.stringify(rechecked.map((r) => ({ slug: r.slug, summary: r.verdict?.summary })))}. ` +
     `A recheck that found nothing is a successful recheck and belongs in the log as one.\n\n` +
     `Then write, as your return value, the note Julie reads first. Plain paragraphs. What shipped and where to ` +

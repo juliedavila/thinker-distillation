@@ -48,7 +48,7 @@ out of the repository rather than out of the workflow script.
 **Review** runs the rounds the policy returned, with an editor between them that applies the
 accepted edits, re-authors them in the site's voice, reruns both gates and re-audits its own
 rewrite. Rounds 1 and 2 are the full five seats; round 3 is one adjudication pass unless round 2
-left dissent, in which case the seats come back.
+left dissent, in which case the seats come back. Then the cold reader, below, on every page.
 
 **Ship** is serial, one candidate at a time, and it is the only phase that touches git or a
 neighbouring page. It applies the return edges, builds, writes the transcript, pushes and opens the
@@ -299,13 +299,23 @@ to read `sources.md`, the prose research record and the largest file in any work
 **Price anything added to a seat's reading list.** Agent count is the cheap axis and it fails
 gracefully. Per-agent context fails as a stall, fifteen hours in, with nothing to show.
 
-## The unanchored control
+## The cold reader
 
-Round 3 was narrowed from five seats to one adjudication pass on 2026-09-17, on the evidence that four recorded five-seat round 3s accepted unanimously and changed no page. Bornmann's 2010 meta-analysis of 70 reliability coefficients in peer review puts a warning on that reasoning: high agreement among reviewers who have read each other is a signal to distrust rather than a result. All four of those rounds used seats required to read the earlier transcripts first, so the unanimity is as consistent with anchoring as with convergence, and the two have opposite implications.
+Every page gets one last read from a reviewer who has seen no transcript, no verdict history and no other seat's reasoning: only the finished page, its grounding pack, its claims map and its ledger. It runs after the last editor, whatever the page's round count, and an editor applies what it confirms. It never gates. Its verdict, and anything its editor declined, opens the merge request description.
 
-So every adjudicated round 3 now also runs one control seat that has seen no transcript, no verdict history and no other seat's reasoning: only the finished page, its grounding pack, its claims map and its ledger. Its verdict is recorded beside the adjudicator's and **never gates shipping**, because this is a measurement rather than a check.
+It began on 2026-09-17 as a temporary control. Round 3 had just been narrowed from five seats to one adjudication pass, on four runs where five seats accepted unanimously, and Bornmann's 2010 meta-analysis of peer review warns that agreement among reviewers who have read each other is a reason to distrust the agreement. The control was meant to measure that and then retire.
 
-What matters is direction, not equality. A control landing stricter than the adjudicator has found something the anchored pass did not, and that is the result that would reverse the narrowing. A more lenient control is not evidence of anything, since it saw less. One extra agent per batch. When several runs agree, the question is settled and the control can go.
+Five pages later it had come back stricter than the adjudicator three times and more lenient never, and its findings were the kind no script reaches: a frame marked original with no search behind it, a claim lowered in one field and left standing in others, a page announcing a correction to a neighbour that was never made. A 2026-09-25 Council was asked whether to restore five seats to round 3, and three of four seats said no independently: more readers who have read each other buys more of the same reading. Keep the fresh eyes instead, permanently.
+
+Two things changed from the control. It runs on every page, including an escalated round 3 and a one-round page, since the case for fresh eyes does not depend on how many anchored readers came before. And its findings are applied rather than filed, so a defect it catches is fixed in the same run instead of waiting for a human to carry it into a second session, which is what the 2026-09-24 run cost.
+
+It does not gate because Julie merges every page herself, by choice, to read it. The cold reader's job is to hand her a page with fewer defects and say plainly what is still open.
+
+**The three defects it keeps finding predate the narrowing, so reviewer count was never the variable.** The Council asked this on 2026-09-25 and nobody had checked. A frame filed as original with no antecedent search is in the calibration log's first commit, 2026-09-16, with three examples from pages reviewed by five seats (Kua, Bottcher, McKinley). A claim lowered in one field and left standing in others first appeared on Anderson on 2026-09-20: five seats in round 2 left it and five seats in round 3 caught it. A page's claim about a neighbour going stale was first caught on the same run, in the Willison return edge. All three got past five-seat rounds. They are made when a page is written or edited, and the first is mechanically checkable, which is where the fix belongs.
+
+A finding type the cold reader keeps catching is a defect in the skill, not a job for the cold reader. The Report stage records which checklist item each finding falls under so a recurring type gets fixed upstream.
+
+`scripts/test/pipeline-stub.test.ts` runs the workflow against stub agents and checks the cold reader's placement, that it runs on all three round shapes, that a REVISE reaches the merge request without parking the page, and that a missing cold read is named.
 
 ## The Council record
 
@@ -329,4 +339,4 @@ orchestration.
 
 The About page slots. The concept-page reading prompt. The `margin_note` on any page. The neighbour
 demotions, which arrive in merge requests. The five legacy prose warnings on four merged pages. And
-the round-3 question above.
+every merge, which stays hers by choice.

@@ -3,13 +3,125 @@ project: thinker-distillation
 effort: E3
 phase: in-progress
 progress: iter-10 to iter-15 shipped; tracked in GitLab MRs and issues
-iteration: iter-19-second-live-run-2026-09-21
+iteration: iter-21-audit-and-control-verdict-2026-09-24
 mode: project
 started: 2026-05-25
-updated: 2026-09-21
+updated: 2026-09-24
 ---
 
-## Save Point — 2026-09-21, the second live run (cold-start resume here)
+## Save Point — 2026-09-24, the audit and the control verdict (cold-start resume here)
+
+> Current state. Everything from `## Save Point — 2026-09-21` down is history.
+
+### Where things stand, verified
+
+- **Main at `aba4715`. 17 live pages, build clean, CI green.** `verify` now runs on every merge request.
+- **Three merge requests open, all waiting on Julie, and two should NOT merge as written:**
+  - **!36 Christopher Alexander** — control returned REVISE, 10 findings.
+  - **!37 Gene Kim** — control agreed with the adjudicator, 11 findings, none deciding.
+  - **!38 Andrej Karpathy** — control returned REVISE, 10 findings.
+- **31 open candidates.** Top of the ranked queue: Gene Kim (shipping), Dave Farley, Dan North, all pull 2 and all named on Humble.
+- Ledger coverage 8 of 17. Nine pages are exempt by name in `scripts/ledger-exempt.txt`, a list that may only shrink.
+
+### The round 3 narrowing should be reverted, and now there is evidence
+
+The unanchored control has run twice, on five pages. **Three came back stricter than the adjudicator and none came back more lenient.** `SKILL.md` stage 6 wrote the criterion down in advance: a stricter control is the result that reverses the 2026-09-17 narrowing.
+
+| Run | Page | Adjudicator | Control |
+|---|---|---|---|
+| 2026-09-22 | ward-cunningham | ACCEPT-WITH-EDITS | REVISE |
+| 2026-09-22 | jez-humble | ACCEPT-WITH-EDITS | same, 7 findings the adjudicator missed |
+| 2026-09-24 | christopher-alexander | ACCEPT-WITH-EDITS | REVISE |
+| 2026-09-24 | gene-kim | ACCEPT-WITH-EDITS | same |
+| 2026-09-24 | andrej-karpathy | ACCEPT-WITH-EDITS | REVISE |
+
+**Recommendation for Julie: revert the narrowing, or keep the cold reader permanently beside the adjudicator rather than as an experiment.** The control's own note is the reason: all three ledgers exit 0, all three gate runs are clean, zero em dashes, and it calls its findings "the kind no script reaches."
+
+### The three findings that recur across runs, and are therefore skill defects
+
+1. **A frame marked `original` with no antecedent search on file.** Third sighting: the Cunningham control found it, then Alexander (three frames) and Gene Kim (two) in the same batch. `SKILL.md` requires the search and nothing records that it happened, so the requirement is unfalsifiable. **Fix: the ledger should carry an antecedent-search line per `original` frame, and `fact-ledger.ts` should require it.** Karpathy's working set did it correctly in the same batch, which proves it is cheap.
+2. **Lowering a claim in one field and leaving its carriers standing.** Third sighting, and the second where the stale carrier cites the very line that lowered it (Alexander's `reading` cites `limits[1]`, the field narrowed on 2026-09-24, for the claim it was narrowed to contest). Already a checklist item; it keeps firing, so the checklist is not the right instrument.
+3. **A page asserting a correction to another page that was not made.** Alexander's `inclusion_rationale` says the Cunningham solo credit "is corrected in this merge request"; `ward-cunningham.md` still carries it. Same shape as the return-edge staleness item.
+
+### Cross-page contradictions this run surfaced and did not fix
+
+- `martin-fowler.md` asserts "Alexander's later critique of how programmers used patterns", which Alexander's own `limits[0]` and `[S:25]` rule out. Shipping !36 puts both claims on the site at once, on that page's central argument.
+- The DORA co-founding claim **cannot be sourced after two audits** (`[S:26]`), and the site publishes it on two other pages. !37 is clean and leaves the contradiction live.
+- !37 ships with ten build warnings including four missing back-edges to `gene-kim`.
+
+### What shipped today
+
+**Skill hardening (!29).** Eight gaps from the prior two runs. New `scripts/inbound-claims.ts` prints what the roster already claims about a person before their page exists, wired into Research and Draft with `inbound_claims` and `reconciled_claims` schema fields. **It earned its keep on its first run:** two of three merge request titles are corrections to existing pages.
+
+**Description standard (!30).** `scripts/describe.ts` gives merge requests and issues a required shape, a plain-language rule and a lint, after Julie's note that the descriptions were "jargony ... not really formulated for outside collaborators or even for me." Four templates. **There is deliberately no word limit**; the first draft had a 200-word cap and Julie removed it the same day: "It's not about quantity; it's about quality when it comes to the prose."
+
+**Control defects fixed (!34).** The control ran for the first time on 2026-09-22 and three things about how it ran were wrong: it read the page before the round 3 editor applied edits, it never wrote its report, and `review-policy.ts` had never heard of it. All fixed; a guard now names any page that owed a control verdict and did not get one.
+
+**Audit remediation (!35).** The engineering audit found nothing ran while a merge request was open. New `scripts/verify.ts` plus a `verify` CI job on `merge_request_event`, running the gates over every page not on `ledger-exempt.txt`, plus `staleness.ts --strict`. Five documented rules corrected against the code that runs, including the shipping verdict, on-site collapsing, and a pre-draft checklist line that had been wrong for two days. `sandbox.ts prune` added.
+
+### The engineering audit, and where compute actually goes
+
+Artifact: **Distillery Compute Map**, <https://claude.ai/artifact/9XoPpBG1unUnqKWJ1jA1U7>
+
+- **A graph database is overkill.** 17 nodes, 139 edges, 129 frames, and the whole corpus parses in **9.9ms**. Deepest traversal in use is two hops. At the 40-page ceiling it is still trivial. **The graph does not scale badly; the prose about the graph does.**
+- **Per-agent context is the axis that fails hard.** Every agent is told to read `SCHEMA.md` (51KB), `calibration.md` (44KB) and `SKILL.md` (22KB): 117KB each, ~4.2MB per run of the same three files. `calibration.md` was 18KB on 2026-09-21 and is 44KB now, a 2.4x growth in three days.
+- **162KB per agent is injected by the harness and cannot be declined**, against a median computed task of 2.5KB.
+- **Zero tests.** 2,339 lines of load-bearing TypeScript across 15 scripts, no test framework imported anywhere.
+
+### Run history, and why it needs a ledger
+
+| Run | Date | Candidates | Agents | Tokens | Outcome |
+|---|---|---|---|---|---|
+| 1 | 09-20 | 2 | 36 | n/a | Larson, Willison |
+| 2 | 09-21 | 2 | 39 | n/a | Anderson, Beck + Forsgren recheck |
+| 3 | 09-22 | 3 | 36 | 6.2M | Humble, Cunningham; Goedecke parked 5-0 |
+| 4 | 09-22 | 3 | 41 | 11.8M | **FAILED.** 11 labels stalled, all 6 attempts, 0 pages |
+| 5 | 09-24 | 3 (resumed) | 41 | 8.06M | Alexander, Kim, Karpathy |
+
+**Run 4 failed because three candidates all cleared inclusion for the first time**, so every review seat and editor carried three pages. Failures were the round 2 and 3 editors on all three pages. **Not the network:** failures staggered over 8.5 hours with other agents succeeding between them, unlike the 09-21 stall which took every seat down inside 28 minutes with `getaddrinfo ENOTFOUND`.
+
+**Resume does not work here.** It replayed Research and re-ran everything from Inclusion onward, ~20 agents of completed work. `review-policy`'s prompt is byte-identical across both runs and its cache key still changed, so the key is not a pure function of the prompt. Resume salvages only up to the first agent whose input comes from another agent's return value.
+
+**Nothing aggregates run telemetry.** Run 4's failure had to be reconstructed from file modification times, because the journal carries no timestamps and no run summary is persisted anywhere.
+
+### Next session: the retro loop
+
+Julie's direction, 2026-09-24: **with every thinker addition, run a rapid retro that identifies where the skill and workflow could be better, faster or cheaper, against known historical data points.**
+
+The blocker is that there is no baseline to compare against. **Build the run ledger first**, the same idea as the fact ledger applied to the machine: one appended, committed record per run carrying agents, tokens, tool calls, wall time, stalls and retries, rounds per page, verdict counts, control agreement, and defects caught per round. `run-cost.ts` already computes most of it and writes nothing down.
+
+Three questions the retro should answer every time:
+- Did per-agent required reading grow, and where?
+- Did the cold reader agree with the adjudicator?
+- How many rounds did each page actually need? Every run has escalated except this one, which is why the quiet branch stayed untested so long.
+
+### Open work, ranked
+
+1. **Apply the REVISE findings on !36 and !38** before merging. !37 needs the DORA contradiction decided.
+2. **Revert the round 3 narrowing**, or make the control permanent. Julie's call; the evidence is in.
+3. **Build the run ledger, then the retro loop.**
+4. **Scope the required reading per stage**, 117KB toward ~30KB. Biggest compute win, no architecture change.
+5. **Set model and effort per phase.** No model is specified anywhere today, so all 41 agents run Opus. `policy` and `staleness` are Haiku work; fact audit, ship and report are Sonnet work; research, inclusion, draft, review and editors stay Opus.
+6. **Fix the three recurring defects above**, especially the antecedent-search ledger line, which is mechanically checkable.
+7. **Weekly maintenance cron in GitLab CI**, not launchd. `staleness.ts` and `decay.ts` have zero model calls, so detection runs on GitLab's runners with no laptop and no cost. Prerequisite for anything cloud: move the project token from the macOS keychain into a masked CI variable.
+
+### The hands-off question, answered with evidence
+
+Julie asked what a set-and-forget distillery at ~10 thinkers a week would take. The arithmetic: ~3M tokens and ~$25 a page, so ~$1,000 a month at that volume, **but the binding constraint is her attention**: run 3 sent 9,900 words and 11 decisions for two pages, so ten a week is ~50,000 words and ~55 decisions weekly.
+
+Two further contradictions: the roster ceiling of 40 to 60 makes continuous addition a four-week project rather than a steady state, and only twelve of thirty-one queued candidates have any graph pull.
+
+**Split the loops.** Maintenance can be genuinely hands-off now. Addition cannot, because the auto-merge predicate needs the cold reader to agree with the adjudicator and it disagrees on the majority of pages. **The path to unattended publishing runs through the control measurement.**
+
+On architecture: the 162KB injected floor exists only because this runs inside a chat harness, and prompt caching needs a prefix you control. **Managed Agents is the closest fit for unattended operation** (Anthropic runs the loop, the sandbox already has bash, file ops and web search, and scheduled deployments give the cron), with two caveats: it is beta and not eligible for zero data retention.
+
+### Environment notes
+
+`PATH="/opt/homebrew/bin:$PATH"`. `glab mr merge` can 405 right after a push; the API `PUT .../merge` works. Repo-local workflows resolve by `scriptPath`, never `name`; `meta` must be a pure literal; workflow scripts have no clock, so `args.today` is required. Shell is zsh, so an unmatched glob is an error and `find` beats a glob. No PyYAML. **WebSearch is capped at 200 calls per session**, which lands inside the research phase where a truncated search becomes a wrong fact; raise with `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`. The pipeline token is a GitLab Developer-role project token in the macOS keychain (`gitlab-thinker-distillery` / `thinker-pipeline`), so the pipeline can open a merge request and structurally cannot merge one. **Sandboxes are never torn down automatically**; `bun scripts/sandbox.ts prune <hours>` now exists, and two abandoned clones were found holding a live credential on 2026-09-22. Council reports are gitignored: this run's are preserved at `~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-run5-council-20260924/`, and run 4's unfinished state at `distillery-run4-unfinished-20260922/` plus branch `salvage/run4-unfinished`.
+
+---
+
+## Save Point — 2026-09-21, the second live run (history)
 
 > Current state. Everything from `## Save Point — 2026-09-20 evening` down is history.
 

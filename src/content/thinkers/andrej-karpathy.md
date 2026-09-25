@@ -21,7 +21,7 @@ inclusion_rationale: >
   Willison's sentence, written six weeks after the coinage in a post that
   separates vibe coding from AI-assisted programming at large; the unread code is already in
   Karpathy's own post. And Software 3.0 is not his: the June 2025 talk carries
-  no such title, the label came from Latent Space's writeup, which credits
+  no such title; the label came from Latent Space's writeup, which credits
   itself for it, and independent uses predate the talk by two years. It is
   therefore not a frame here. LLM OS and
   jagged intelligence are excluded for the same reason twice over: every artifact

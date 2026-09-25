@@ -7,10 +7,9 @@ One line per sentence of `reading` and `extension`, each with the grounding-pack
 - Sequence is the working part of a pattern language. [T:thesis] [F:pattern-language]
 - Each of the 253 patterns in the 1977 book states a problem and a current best guess at its resolution, and in order they are meant to compose into a whole. [F:pattern-language] [T:thesis]
 - He calls the instructions that do that generative schemes. [F:generative-schemes]
-- At OOPSLA in 1996 he granted software the format. [T:thesis]
-- Of his own languages he said in the same talk that the sequential instruction was not emphasized in use. [T:working-line] [T:thesis]
+- Of his own languages he said at OOPSLA in 1996 that the sequential instruction was not emphasized in use. [T:working-line] [T:thesis]
 - That gap is between a language and a catalogue: the same entries, without the mechanism. [T:thesis]
-- The catalogue is what travelled, from the 1987 report through Design Patterns into fields with no buildings. [L:2] [E:out:erich-gamma]
+- The catalogue is what got copied into practice, from the 1987 report through Design Patterns into fields with no buildings. [L:2] [E:out:erich-gamma]
 - On whether his condition carries across he stopped short, saying he does not know whether the moral component exists in computer science. [L:1]
 - That leaves the order claim, which any library of patterns can be asked about. [T:still-load-bearing]
 
@@ -115,3 +114,11 @@ in this field and fifteen in `reading`.
 Third, the Lens paragraph above said this extension argues that a spec object is missing a field,
 "its position". Round 1 changed that word on the page to "dependence" and left this file reading the
 old one, which is the stale-record failure this file has now recorded three times. Fixed above.
+
+**Correction, control remediation, 2026-09-25.** The unanchored round 3 control found `reading`
+stating that the catalogue is what travelled while citing `[L:2]`, the limit narrowed on 2026-09-24
+to say the order claim did cross, as an argument in print. The sentence now says the catalogue is
+what got copied into practice, which is what `[L:2]` supports: the format in use across fields, and
+no practice found working a language through in order. The format-grant sentence was cut from
+`reading` in the same pass, because the grant was stated in five fields and `limits[1]` is the one
+where it does argumentative work. Full remediation record: `control-remediation-2026-09-25.md`.

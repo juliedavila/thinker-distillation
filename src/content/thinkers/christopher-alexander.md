@@ -19,9 +19,9 @@ inclusion_rationale: >
   0, 2026-09-22. Three things the Council settled and this page holds to.
   First, the byline: *A Pattern Language* is Alexander, Sara Ishikawa and
   Murray Silverstein, with further writing credits to Max Jacobson, Ingrid
-  Fiksdahl-King and Shlomo Angel, so the frame is `co-authored` and the solo
-  credit that the live Cunningham frame and issue #42 both carry is corrected
-  in this merge request. Second, the phrase is nine years older than the book,
+  Fiksdahl-King and Shlomo Angel, so the frame is `co-authored`, and the
+  Cunningham frame no longer carries the solo credit issue #42 was filed
+  with. Second, the phrase is nine years older than the book,
   appearing in the title of a 1968 Center for Environmental Structure paper
   that his own vitae bylines to the same three authors, so no field here dates
   origination to 1977 and none dates it to 1968 either. Third, two frames that seats proposed are
@@ -32,7 +32,7 @@ inclusion_rationale: >
   headings, and tree versus semilattice, because the antecedent search closed
   inconclusive on two questions, the borrowing of `semilattice` from lattice
   theory and Jane Jacobs' 1961 organised-complexity framing. Recheck items,
-  recorded rather than resolved: seventeen of the ledger's thirty-eight lines rest on
+  recorded rather than resolved: seventeen of the ledger's forty-three lines rest on
   Wikipedia, the highest concentration on any page built here, and one of them
   carries an active neutrality dispute; the widely repeated claim that *Design
   Patterns* opens by quoting Alexander is unverified and stays off the page;
@@ -44,7 +44,7 @@ doctrine_mode: mode-a
 has_long_read: false
 last_updated: 2026-09-24
 
-tagline: The architect who wrote, with two co-authors, the pattern vocabulary software borrowed in 1987, and who stood in front of a room of programmers in 1996 to say what a pattern language was supposed to do besides.
+tagline: The architect who wrote, with co-authors, the pattern vocabulary software borrowed in 1987, and who stood in front of a room of programmers in 1996 to say what a pattern language was supposed to do besides.
 thirty_second_take: >
   Alexander designed buildings and towns by writing patterns: short statements
   of a problem and a current best guess at what will resolve it, gathered into
@@ -56,8 +56,8 @@ thirty_second_take: >
   his own. Software borrowed the vocabulary in 1987, and the catalogue that
   descends from that borrowing sold more than half a million copies in English
   and thirteen other languages. Standing in front of the OOPSLA audience in
-  1996, Alexander granted them the format and named three further things "the
-  pattern language that we began creating in the 1970s" was built to do: carry
+  1996, Alexander named three things beyond the format that "the pattern
+  language that we began creating in the 1970s" was built to do: carry
   a moral component, aim at coherence, and generate. Whether software had taken those he would not say,
   telling the room he was ignorant of their field and did not know whether the
   features had yet been translated into it. He said separately, in the same
@@ -71,8 +71,7 @@ background: >
   Architecture awarded there, on a dissertation completed in 1962, and worked
   at MIT on transportation theory and computer science. In 1963 he moved to
   Berkeley to accept an appointment as Professor of Architecture and held that
-  appointment for decades; his own vitae and the fullest secondary account disagree
-  about when it ended, so this page gives no end date. He founded the Center
+  appointment for decades. He founded the Center
   for Environmental Structure, which the 1987 software report calls him the
   founder of and his vitae gives him as president of from 1967, and the book
   series the pattern work appears in carries its name. He
@@ -109,16 +108,15 @@ thesis: >
   a time, however good each part is alone.
 
   Software took the pattern; whether it took the sequence he declined to rule
-  on. At OOPSLA in 1996 he granted the audience the format, in those words, and
-  named three things a pattern language is also for: a moral component, the aim
+  on. At OOPSLA in 1996 he named three things a pattern language is for besides
+  its format: a moral component, the aim
   of creating coherence, and generativity. He would not say they were missing
   here, only that he did not know whether they had been translated into the
   field. On the mechanism he was exact, quoting his own two books to say that
   the language is used sequentially and that in practice the instruction
   dropped out of sight and was not emphasized in use. That last sentence
   describes the fate of his own languages. It lays no charge against
-  programmers. The charge is this page's inference from the two, and is
-  labelled as one.
+  programmers. The charge is this page's inference from the two.
 working_line: >
   In fact, both A Pattern Language and The Timeless Way Of Building say that the pattern
   language is to be used sequentially. In practice, however, this feature
@@ -134,8 +132,8 @@ named_frames:
       with Sara Ishikawa and Murray Silverstein and stating of itself that all
       253 patterns together form a language. The phrase is older than the book:
       it is in the title of a 1968 Center for Environmental Structure paper
-      that Alexander's own vitae bylines to the same three authors, against a
-      catalogue record that gives him alone. The antecedent Alexander credits is not
+      that Alexander's own vitae bylines to the same three authors. The
+      antecedent Alexander credits is not
       a person. He says the language was based on generative schemes that exist
       in traditional cultures.
     attribution_kind: co-authored
@@ -170,7 +168,9 @@ named_frames:
       The property a place has when it is alive, introduced in *The Timeless
       Way of Building* (1979), which he approaches by surrounding it with
       existing concepts that each reflect part of it and none of which defines
-      it alone. This round's search found no use of it outside architecture.
+      it alone. Richard Gabriel carried it into software in *Patterns of
+      Software* (1996), in an essay that sets out to find what the quality is
+      for programs.
     attribution_kind: original
     primary_author: christopher-alexander
     render_tier: deep
@@ -258,11 +258,11 @@ reading: >
   Sequence is the working part of a pattern language. Each of the 253 patterns
   in the 1977 book states a problem and a current best guess at its resolution,
   and in order they are meant to compose into a whole. He calls the instructions
-  that do that generative schemes. At OOPSLA in 1996 he granted software the
-  format. Of his own languages he said in the same talk that the sequential
-  instruction was not emphasized in use. That gap is between a language and a
-  catalogue: the same entries, without the mechanism. The catalogue is what
-  travelled, from the 1987 report through Design Patterns into fields with no
+  that do that generative schemes. Of his own languages he said at OOPSLA in
+  1996 that the sequential instruction was not emphasized in use. That gap is
+  between a language and a catalogue: the same entries, without the mechanism.
+  The catalogue is what got copied into practice, from the 1987 report
+  through Design Patterns into fields with no
   buildings. On whether his condition carries across he stopped short, saying he
   does not know whether the moral component exists in computer science. That
   leaves the order claim, which any library of patterns can be asked about.
@@ -305,12 +305,12 @@ limits:
       reader who turns it into an indictment of engineers has gone past what he
       was willing to say, and a leader who reads it as an ethics mandate has
       gone further still.
-  - headline: The part that travelled is the part he granted
+  - headline: The part that travelled is the format
     severity: structural
     elaboration: >
       That software kept the format and dropped the sequence is this page's
       reading. He granted the format and then declined to say what had crossed,
-      so the verdict is not his. Set against the reading is where the reach
+      so the verdict is not his. Against that reading, here is where the reach
       actually is.
       The format has been in use by other fields since 1987, across
       programming, teaching, systems architecture, design science, community
@@ -322,15 +322,17 @@ limits:
       one way that confirms him. Read another way it raises the question his
       talk does not answer, which is whether a pattern has to keep the sequence
       to be worth carrying.
-  - headline: The later vocabulary has no reach to point at
+  - headline: Most of the later vocabulary has no reach to point at
     severity: local
     elaboration: >
       *The Timeless Way of Building* introduces the quality without a name, and
       the four volumes of *The Nature of Order* set out centers,
-      structure-preserving transformations and living structure. No use of any
-      of it outside architecture was found in this round's search, and the
-      fullest available account of those volumes carries an active neutrality
-      dispute, which bounds what the search could establish about them.
+      structure-preserving transformations and living structure. Only the first
+      was found in use outside architecture, in Richard Gabriel's 1996 essays
+      on software. No use of the other three outside it was found in this
+      round's search, and the fullest available account of those volumes
+      carries an active neutrality dispute, which bounds what the search could
+      establish about them.
       Anyone who meets Alexander through the software
       borrowing is meeting a narrow slice of him, and the rest has not been
       tested the way the patterns have.
@@ -401,8 +403,7 @@ adjacent_thinkers:
       *Design Patterns* (1994), with Richard Helm, Ralph Johnson and John
       Vlissides, is the descendant with the widest reach on the record: more
       than half a million copies in English and thirteen other languages.
-      Alexander addressed the OOPSLA audience two years after it appeared, and
-      what he granted them there was the format.
+      Alexander addressed the OOPSLA audience two years after it appeared.
     strength: secondary
   - target_slug: peter-eisenman
     display_name: Peter Eisenman

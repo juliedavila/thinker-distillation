@@ -12,15 +12,15 @@ and the Councils judge the rest.
 - active_years [S:7] [S:14]
 - background [S:1] [S:2] [S:3] [S:3a] [S:4] [S:4a] [S:6]
 
-- named_frames[0].attribution [S:10] [S:9] [S:9a] [S:33] [S:27]
-- named_frames[0].co_originators[0] [S:10] [S:9] [S:9a]
-- named_frames[0].co_originators[1] [S:10] [S:9] [S:9a]
-- named_frames[1].attribution [S:27] [S:25]
-- named_frames[2].attribution [S:11]
-- named_frames[3].attribution [S:28] [S:13]
+- named_frames[0].attribution [S:10a] [S:10] [S:9] [S:9a] [S:33] [S:27]
+- named_frames[0].co_originators[0] [S:10a] [S:10] [S:9] [S:9a]
+- named_frames[0].co_originators[1] [S:10a] [S:10] [S:9] [S:9a]
+- named_frames[1].attribution [S:27] [S:25] [S:27a]
+- named_frames[2].attribution [S:11] [S:11a] [S:15] [S:15b]
+- named_frames[3].attribution [S:28] [S:13] [S:28a]
 
 - body_of_work[0] [S:22] [S:23]
-- body_of_work[1] [S:10] [S:17]
+- body_of_work[1] [S:10] [S:10a] [S:17]
 - body_of_work[2] [S:11] [S:4a] [S:26]
 - body_of_work[3] [S:8]
 - body_of_work[4] [S:7]
@@ -36,21 +36,21 @@ block exists because a claims map that covers only the required set leaves the m
 uncovered, which is how an attribution defect reached a shipped `thirty_second_take` on the Humble
 page while its claims file asserted full coverage.
 
-- tagline [S:10] [S:16] [S:22] [S:23] [S:25]
+- tagline [S:10a] [S:10] [S:16] [S:22] [S:23] [S:25]
 - thirty_second_take [S:10] [S:26] [S:27] [S:16] [S:19] [S:24] [S:25] [S:22]
 - why_they_matter_as_a_thinker [S:16] [S:17] [S:18] [S:20]
 - thesis [S:10] [S:26] [S:27] [S:24] [S:25] [S:22]
 - working_line [S:26] [S:22]
-- inclusion_rationale [S:16] [S:19] [S:20] [S:10] [S:9] [S:9a] [S:24] [S:8] [S:13] [S:22]
+- inclusion_rationale [S:16] [S:19] [S:20] [S:10a] [S:10] [S:9] [S:9a] [S:24] [S:8] [S:13] [S:22]
 - limits[0] [S:25]
 - limits[1] [S:24] [S:26] [S:20] [S:18] [S:34]
-- limits[2] [S:11] [S:13]
+- limits[2] [S:11] [S:13] [S:15] [S:15b]
 - limits[3] [S:29] [S:30] [S:31]
 - still_load_bearing_despite [S:26] [S:27]
 - adjacent_thinkers[0].edge_label [S:16]
 - adjacent_thinkers[1].edge_label [S:16] [S:17]
 - adjacent_thinkers[2].edge_label [S:34] [S:24] [S:26]
-- adjacent_thinkers[3].edge_label [S:18] [S:19] [S:24] [S:22]
+- adjacent_thinkers[3].edge_label [S:18] [S:19] [S:22]
 - further_in [S:22] [S:10] [S:11] [S:8] [S:13] [S:16] [S:7]
 
 ## Notes on lines that were nearly written and are not here
@@ -82,8 +82,9 @@ page while its claims file asserted full coverage.
   itself was repaired on 2026-09-24: it had quoted Cunningham saying the first wiki "led directly
   from Alexander's work," words that are not at the URL. The edge label does not quote him and is
   unaffected, but any future field that wants his words has to go to the 2013 paper on [S:20].**
-- **[S:5] (awards), [S:12] (*The Oregon Experiment*), [S:14] beyond the 2012 date, [S:15], [S:15a]
-  (the Gabriel introduction) and now [S:21] are cited by no field.** They are verified and the page has no
+- **[S:5] (awards), [S:12] (*The Oregon Experiment*), [S:14] beyond the 2012 date, [S:15a]
+  (the Gabriel introduction) and now [S:21] are cited by no field.** ([S:15] was in this list until
+  2026-09-25, when [S:15b] put Gabriel's book behind the quality-without-a-name gloss.) They are verified and the page has no
   use for them, which is the expected state rather than a dropped claim.
 - **The Wikipedia count in `inclusion_rationale` is a fact about this ledger, not about the world,
   so it has no [S:n] line and cannot have one.** Review seat 3 asserted that sixteen of the ledger's
@@ -216,3 +217,31 @@ page while its claims file asserted full coverage.
   `extension` is where inference lives (SCHEMA section 7), the sentence is cited to [L:2] and [P:6]
   in `reading-claims.md`, and nothing about the world is asserted. It is recorded here because it is
   the one proposition this pass added rather than narrowed or cut.
+
+## Lines changed by the control remediation (2026-09-25)
+
+- **Every `original` frame now cites its antecedent search** ([S:27a], [S:11a], [S:28a]). The
+  unanchored control found three `original` frames with no search on file, the third sighting of
+  that defect, while Karpathy's working set had closed the same gap in the same batch. All three
+  frames stay `original`; each line states its method and its bound.
+- **The 1977 byline now rests on Alexander's vitae** ([S:10a]), the first-party record already open
+  at [S:3a] and [S:9a], instead of on Wikipedia alone. [S:10] stays cited for the book's own
+  sentences and for the split between co-authors and further writing credits, which the vitae does
+  not make.
+- **Tagline versus `co_originators`, decided.** The tagline said "with two co-authors" while four
+  fields name six contributors. The vitae lists all five collaborators under one "with", so any
+  count on the one line a reader meets without a caveat is a choice between two records. The tagline
+  now says "with co-authors" and gives no count. `co_originators` stays at Ishikawa and
+  Silverstein, keyed to what the frame credits: the phrase itself, whose earliest verified
+  appearance, the 1968 paper, carries exactly those three names on [S:9a]. The writing credits stay
+  in `inclusion_rationale` and `body_of_work[1]`.
+- **The quality without a name has a use outside architecture after all** ([S:15b]). Gabriel's
+  1996 essay of that title asks what the quality is in software. The frame gloss and `limits[2]`
+  both said no such use was found, and the book was already on this ledger at [S:15]. Both carriers
+  were changed in the same pass; `limits[2]` keeps its bounded absence for the three *Nature of
+  Order* terms, where the search still found nothing.
+- **`adjacent_thinkers[3]` no longer cites [S:24].** The clause it carried, that what Alexander
+  granted the OOPSLA audience was the format, was cut as one of five carriers of the same
+  proposition. `limits[1]` keeps it on [S:24].
+- **The Wikipedia count in `inclusion_rationale` re-run, per the note above.** Five lines added,
+  none on Wikipedia: seventeen of forty-three. The page now reads forty-three.

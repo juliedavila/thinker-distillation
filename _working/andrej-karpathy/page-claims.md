@@ -43,7 +43,7 @@ for a structured field and would be site bookkeeping in a field a reader meets.
 - body_of_work[2] [S:8]
 - body_of_work[3] [S:20] [S:20a]
 - body_of_work[4] [S:22] [S:21]
-- body_of_work[5] [S:17] [S:18]
+- body_of_work[5] [S:17] [S:17a] [S:18]
 - body_of_work[6] [S:23]
 
 - adjacent_thinkers[2] [S:13]
@@ -59,7 +59,7 @@ Listed because these are the fields a reader meets first, and because a `paralle
 - why_they_matter_as_a_thinker [S:7] [S:12] [S:20] [S:21]
 - thesis [S:5] [S:27] [S:9] [S:23]
 - working_line [S:5]
-- inclusion_rationale [S:5] [S:6] [S:7] [S:10] [S:12] [S:14] [S:15] [S:17] [S:18] [S:19]
+- inclusion_rationale [S:5] [S:6] [S:7] [S:9] [S:10] [S:11] [S:12] [S:14] [S:15] [S:17] [S:17a] [S:18] [S:19]
 - named_frames[0].one_line_gloss [S:5] [S:7] [S:7a] [S:27]
 - named_frames[1].one_line_gloss [S:9] [S:10] [S:11]
 

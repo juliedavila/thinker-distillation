@@ -17,10 +17,11 @@ inclusion_rationale: >
   months old and clears the uptake bar on use rather than on age: Merriam-Webster
   listed it as slang and trending in March 2025, Collins named it word of the
   year for 2025, and dozens of Hacker News submissions use it as a given. Two
-  cautions carried onto the page. The definition in circulation belongs to
-  Simon Willison, who narrowed it onto the review step six weeks after the
-  coinage. And Software 3.0 is not his: the June 2025 talk is titled "Software
-  in the era of AI," the label came from Latent Space's writeup, which credits
+  cautions carried onto the page. The definition in circulation is Simon
+  Willison's sentence, written six weeks after the coinage in a post that
+  separates vibe coding from AI-assisted programming at large; the unread code is already in
+  Karpathy's own post. And Software 3.0 is not his: the June 2025 talk carries
+  no such title, the label came from Latent Space's writeup, which credits
   itself for it, and independent uses predate the talk by two years. It is
   therefore not a frame here. LLM OS and
   jagged intelligence are excluded for the same reason twice over: every artifact
@@ -77,7 +78,7 @@ why_they_matter_as_a_thinker: >
   different place where an engineering discipline loses hold of its own artifact,
   and the two places are not the same one. His teaching corpus argues in the
   other direction, and at volume. nn-zero-to-hero and nanoGPT exist to make a
-  person build the thing from scratch.
+  person build a neural network, and then a GPT, from scratch.
 
 thesis: >
   One shift runs through the corpus: the thing that decides how a system behaves
@@ -119,12 +120,12 @@ named_frames:
     display_name: Vibe coding
     one_line_gloss: >
       Building software by giving in to the vibes and forgetting that the code
-      exists. He coined the term in a post dated 2025-02-02, which Willison's
-      account gives as February 6th. The post describes the practice loosely and
-      hedges it as fine for "throwaway weekend projects"; the definition that
-      circulated, "building software with an LLM without reviewing the code it
-      writes," is Simon Willison's narrowing six weeks later, and the review
-      step is his addition.
+      exists. He coined the term in February 2025 in a post that describes
+      accepting every diff unread and hedges the practice as fine for "throwaway
+      weekend projects." The definition that circulated, "building software with
+      an LLM without reviewing the code it writes," is Simon Willison's wording
+      six weeks later, in a post that separates the term from AI-assisted
+      programming in general.
     attribution_kind: original
     primary_author: andrej-karpathy
     source_link: https://x.com/karpathy/status/1886192184808149383
@@ -171,17 +172,18 @@ body_of_work:
       The lecture from that series with the widest reach, at 1,110 points on
       Hacker News, and the one that builds toward the nanoGPT repository. Watch it
       before any discussion of what a language model is doing.
-  - title: Software in the era of AI
+  - title: Software Is Changing (Again)
     type: talk
     year: 2025
-    link: https://www.latent.space/p/s3
+    link: https://www.youtube.com/watch?v=LCEmiRjPEtQ
     editorial_note: >
-      His talk at Y Combinator's AI Startup School, June 2025, which introduces
-      an autonomy slider for AI products, an Iron Man suit figure for tools that
-      offer both augmentation and autonomy, and agents as a third consumer of
-      digital information alongside humans and APIs. Widely known as the
-      "Software 3.0" talk; that label belongs to this writeup, which credits
-      itself for it, and the talk does not carry it.
+      His talk at Y Combinator's AI Startup School, June 2025, also circulated
+      as "Software in the era of AI." It introduces an autonomy slider for AI
+      products, an Iron Man suit figure for tools that offer both augmentation
+      and autonomy, and agents as a third consumer of digital information
+      alongside humans and APIs. Widely known as the "Software 3.0" talk; that
+      label comes from Latent Space's writeup, which credits itself for it, and
+      the talk does not carry it.
   - title: Interview with Dwarkesh Patel
     type: interview
     year: 2025
@@ -200,8 +202,8 @@ reading: >
   failure on a hard case gets fixed by adding labelled examples of it. Seven
   years later he coined vibe coding, where the model writes the source and the
   person stops reading it. The two name different artifacts: one has no source
-  to read, the other has source nobody read. The definition people argue about
-  is Willison's narrowing rather than his. His own account carries the limits,
+  to read, the other has source nobody read. The definition people quote is
+  Willison's wording. His own account carries the limits,
   from the essay's trade between accuracy and understanding to his report in
   October 2025 that on code where "everything has to be very precisely arranged"
   the models were "just not net useful."
@@ -231,7 +233,7 @@ reading_review:
   dissent: true
 
 limits:
-  - headline: The definition in circulation is not his
+  - headline: The definition in circulation is worded by Willison
     severity: structural
     elaboration: >
       He coined vibe coding in February 2025 in a post that is loose about what the
@@ -239,11 +241,11 @@ limits:
       messages back in without comment. The version practitioners now argue
       about arrived on 2025-03-19 from Simon Willison, who wrote that he means
       "building software with an LLM without reviewing the code it writes." The
-      review step is Willison's addition and it is what makes the term testable,
-      so anyone citing Karpathy for that definition has the wrong author. The
-      post itself is not readable from here, since X refuses the fetch, and its
-      text reaches this page through three independent reproductions of one
-      status.
+      unread code is in Karpathy's post; the one-sentence definition, and its
+      separation from AI-assisted programming in general, are Willison's. A
+      reader quoting that sentence is quoting Willison. The post itself is not
+      readable from here, since X refuses the fetch, and its text reaches this
+      page through three independent reproductions of one status.
   - headline: He reports coding models failing on intellectually intense code
     severity: structural
     elaboration: >
@@ -256,7 +258,7 @@ limits:
       things on the Internet," bloating the code base and reaching for
       deprecated APIs, so what came back was "just not net useful." His own
       practice, in his words: "autocomplete is my sweet spot," with agents good
-      on boilerplate. He also moved the industry's timeline out, correcting a
+      on boilerplate. He also put the timeline further out, correcting a
       claim that this was the year of agents with "It's the decade of agents."
       All of that is a limit on the models, eight and a half months after the
       coinage, and this page carries no later report from him on them.
@@ -289,10 +291,10 @@ limits:
   - headline: One durable critique names him, and the widely read attacks do not
     severity: local
     elaboration: >
-      The search for a durable critique that names him found one: Cendyne's
-      "'Vibe Coding' vs. Reality" (March 2025), which quotes him, lists what the
-      tools could not then do in production, and closes that vibe coding "will
-      not create the next big thing in 2025." Rachel Thomas's essay for fast.ai
+      The search for a durable critique that names him found one, Cendyne's
+      essay of March 2025, and it takes on the coinage and the practice around
+      it while leaving the rest of his work alone. So the page has one critic,
+      scoped to one of his two frames. Rachel Thomas's essay for fast.ai
       and Bram Cohen's "The Cult Of Vibe Coding Is Insane" both argue against the
       practice at length and carried several hundred points each on Hacker News,
       and neither names him; an arXiv paper arguing the practice erodes
@@ -317,9 +319,9 @@ adjacent_thinkers:
     edge_type: extends
     edge_label: >
       Willison supplies the definition the word now carries. Six weeks after the
-      coinage he narrowed vibe coding to building software with an LLM
-      without reviewing the code it writes, which turns a mood into a testable
-      claim about a review step. His page files the frame as an extension with
+      coinage he put it in one sentence, building software with an LLM without
+      reviewing the code it writes, and fenced it off from AI-assisted
+      programming in general. His page files the frame as an extension with
       Karpathy credited for the term, and his own post is also where the coinage
       post itself can be read, since X cannot be fetched.
     strength: primary
@@ -341,8 +343,7 @@ adjacent_thinkers:
       names him. It quotes the coinage post, argues the tools could not then
       produce a performant application or a secure registration flow, attributes
       the trend to "laziness, inexperience, and self-deluding imagination," and
-      closes that vibe coding "will not create the next big thing in 2025." The
-      scope is the coinage and the practice around it, not the wider body of work.
+      closes that vibe coding "will not create the next big thing in 2025."
     strength: secondary
   - target_slug: fei-fei-li
     display_name: Fei-Fei Li
@@ -361,15 +362,15 @@ adjacent_thinkers:
       One of the authors who made the term the subject of their own work.
       "Software 2.0 and Snorkel" (2018) and the weak supervision paper with
       Ratner and colleagues treat labelled data as the programmable surface the
-      frame describes, which is the uptake the inclusion case rests on. The
-      claim here is about use of the term, not about citation of the man.
+      frame describes, which is the uptake the inclusion case rests on. This
+      edge records their use of the term and makes no claim that they cite him.
     strength: secondary
 
 further_in:
   start_here: '"Software 2.0" (2017), including its limitations section.'
   then_read:
     - '"The Unreasonable Effectiveness of Recurrent Neural Networks" (2015)'
-    - '"Software in the era of AI" (Y Combinator AI Startup School, 2025)'
+    - '"Software Is Changing (Again)" (Y Combinator AI Startup School, 2025)'
     - 'The Dwarkesh Patel interview (October 2025), for where he now puts the limits'
   if_you_want_depth: >
     *Neural Networks: Zero to Hero*, eight lectures with notebooks, and the

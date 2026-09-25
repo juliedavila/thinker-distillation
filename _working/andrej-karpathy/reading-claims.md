@@ -10,7 +10,7 @@ One line per sentence of `reading` and `extension`, each with the grounding-pack
 - The work moves to the criterion and the data, so a failure on a hard case gets fixed by adding labelled examples of it. [T:thesis]
 - Seven years later he coined vibe coding, where the model writes the source and the person stops reading it. [F:vibe-coding]
 - The two name different artifacts: one has no source to read, the other has source nobody read. [F:software-2-0] [F:vibe-coding] [T:still-load-bearing]
-- The definition people argue about is Willison's narrowing rather than his. [L:1] [E:out:simon-willison]
+- The definition people quote is Willison's wording. [L:1] [E:out:simon-willison]
 - His own account carries the limits, from the essay's trade between accuracy and understanding to his report in October 2025 that on code where "everything has to be very precisely arranged" the models were "just not net useful." [L:4] [L:2]
 
 ## extension

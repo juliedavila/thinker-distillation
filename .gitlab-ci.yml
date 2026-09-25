@@ -22,6 +22,8 @@ verify:
     - bun run build
     # Then the gates, on every live page that is not on scripts/ledger-exempt.txt.
     - bun scripts/verify.ts
+    # The workflow control flow, against stub agents. No model calls.
+    - bun test scripts/test/
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
 

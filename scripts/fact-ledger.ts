@@ -113,6 +113,31 @@ for (const [path, why] of required) {
   if (!covered.has(path)) fail('coverage', `${path} has no entry in page-claims.md (${why})`);
 }
 
+// An `original` frame needs its antecedent search on the ledger, cited by the attribution line.
+// SKILL.md has required the search since the first commit and nothing recorded that it happened,
+// so the requirement could not fail: the cold reader found an `original` frame with no search
+// behind it on Cunningham, then on three Alexander frames and two Gene Kim frames in one batch,
+// while Karpathy's page in that same batch did it correctly. The convention that page set is the
+// one checked here: the attribution line cites a fact whose text says "antecedent search", and
+// that fact records the method and what it found. A search that finds nothing is still a line.
+//
+// Pages that shipped before this check are listed in antecedent-exempt.txt, which may only shrink.
+const antecedentExempt = (() => {
+  const p = join(ROOT, 'scripts/antecedent-exempt.txt');
+  if (!existsSync(p)) return new Set<string>();
+  return new Set(readFileSync(p, 'utf8').split('\n').map((l) => l.trim()).filter((l) => l && !l.startsWith('#')));
+})();
+if (!isConcept && !antecedentExempt.has(slug)) {
+  for (const [i, f] of ((page.named_frames as Array<Record<string, unknown>>) ?? []).entries()) {
+    if (f?.attribution_kind !== 'original') continue;
+    const path = `named_frames[${i}].attribution`;
+    const searched = (covered.get(path) ?? []).some((id) => /antecedent search/i.test(facts.get(id)?.claim ?? ''));
+    if (!searched) {
+      fail('antecedent', `${path} ("${f?.display_name ?? f?.concept_slug}") is original, and none of the facts it cites records an antecedent search. Add one "[S:n] The antecedent search for ..." line with its method and result, and cite it here.`);
+    }
+  }
+}
+
 // A fact nobody cites is usually a seat's claim that research could not confirm and the drafter
 // dropped, or a claim the page lost in a rewrite. Worth a look, not worth a failure.
 for (const id of facts.keys()) {

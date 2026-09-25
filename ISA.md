@@ -2,22 +2,66 @@
 project: thinker-distillation
 effort: E3
 phase: in-progress
-progress: iter-10 to iter-15 shipped; tracked in GitLab MRs and issues
-iteration: iter-21-audit-and-control-verdict-2026-09-24
+progress: 17 live pages, 3 in merge requests; tracked in GitLab MRs and issues
+iteration: iter-22-pages-finished-cold-reader-permanent-2026-09-25
 mode: project
 started: 2026-05-25
-updated: 2026-09-24
+updated: 2026-09-25
 ---
 
 <!-- RESUME-HEAD v1 -->
-> **Status** · 2026-09-25 — main at `aba4715`, 17 live pages, build clean, CI green. Three merge requests open, all waiting on Julie: !36 Alexander (control says REVISE, 10 findings), !37 Gene Kim (control agreed, 11 findings, none deciding), !38 Karpathy (REVISE, 10 findings). 31 open candidates; ledger coverage 8 of 17.
-> **Next** · Apply the control's REVISE findings on !36 and !38 and decide the DORA contradiction on !37. Nothing else ships until those three are done. Julie merges every page herself; who applies the REVISE edits is not stated in the file.
-> **Blocked** · !36 and !38 must not merge as written. !37 waits on the DORA co-founding claim, unsourceable after two audits and published on two other pages. The retro loop is blocked until the run ledger exists.
-> **Resume** · Read from "## Save Point — 2026-09-24 ... (cold-start resume here)" through "### Environment notes", especially "Julie's directions, 2026-09-25" and "Open work, ranked". Re-read /Users/juliedavila/Camila/thinker-distillation/SCHEMA.md, PIPELINE.md and the skill at /Users/juliedavila/Camila/thinker-distillation/.claude/skills/add-thinker/ before any code. ⚠ Read to the END of the Council pass: an earlier paragraph recommends restoring five seats and the later one reverses it. Frontmatter (`updated: 2026-09-24`, `progress: iter-10 to iter-15`) is stale against the body.
+> **Status** · 2026-09-25 — main at `aba4715`. The three run-5 pages are finished and waiting on Julie: !36 Alexander, !37 Gene Kim, !38 Karpathy, every cold-reader finding applied, CI green. !41 (pipeline) makes the cold reader permanent and adds the antecedent-search check and the first tests. !39 (calibration) and !40 (this save point) also open.
+> **Next** · Julie merges !36, then !37. Camila rebases !38 (two both-sides append conflicts, `kent-beck.md` and `_working/simon-willison/facts.md`: keep both) and Julie merges it, then !41, then Camila rebases !39. Then the N=1 run, recommended candidate Dan North.
+> **Blocked** · The N=1 run waits on those merges by design: serial addition only helps if the next page is drafted against a roster that already holds the last pages' fixes.
+> **Resume** · Read "## Save Point — 2026-09-25" below, then the 2026-09-24 block's "Julie's directions" and "Open work, ranked" (items 1 and 3 are done, 6 is partly done).
 <!-- /RESUME-HEAD -->
 
 
-## Save Point — 2026-09-24, the audit and the control verdict (cold-start resume here)
+## Save Point — 2026-09-25, the three pages finished and the cold reader made permanent
+
+> Current state. The 2026-09-24 block below is still the reference for Julie's four decisions, the Council pass and the ranked list.
+
+### What was done
+
+**The three open pages, finished.** One agent per page in its own worktree applied every cold-reader finding, with a claim-delta line per rewrite in `_working/<slug>/control-remediation-2026-09-25.md`. Camila read every diff and fixed three more sentences (a comma splice on Karpathy, two that needed a second read on Alexander). Nothing was declined.
+- **!38 Karpathy:** no field now says the review step was Willison's addition; the coinage is dated to the month on both pages; the talk links YC's own video, "Software Is Changing (Again)".
+- **!36 Alexander:** reading agrees with its own limit; "granted the format" once instead of five times; three antecedent searches recorded; the 1977 byline from his own CV. The editor also caught a false absence claim the cold reader missed: Gabriel's 1996 essay "The Quality Without a Name" was on the ledger the whole time.
+- **!37 Gene Kim: the DORA contradiction dissolved.** DORA's own December 2018 announcement names him among its founders, and the Forsgren and Humble ledgers had sources all along. Research and both audits never opened the neighbours' ledgers. Nothing on either neighbour changes.
+- A test merge of all three plus !41 builds, passes verify and passes all five touched ledgers. MR descriptions rewritten, lint clean.
+
+**!41, the cold reader made permanent (ranked item 3) and the first half of item 6.**
+- Runs on every page after its last round, whatever the round count. An editor applies what it confirms; its verdict and anything declined open the merge request. Never gates.
+- `fact-ledger.ts` now fails an `original` frame whose attribution line cites no "antecedent search" fact. 15 of 17 live pages predate it and sit in `scripts/antecedent-exempt.txt`, which may only shrink.
+- `scripts/test/pipeline-stub.test.ts`: the whole workflow against stub agents, 7 tests, ~50ms, in the `verify` CI job. Six of seven fail against the old workflow.
+- **Nadia's question answered, in PIPELINE.md:** all three recurring defect types predate the 2026-09-17 narrowing and each got past five-seat rounds. Reviewer count was never the variable.
+
+**!39** gained two "Caught once" entries: an absence claim contradicted by the page's own ledger, and a gap declared without opening the neighbours' ledgers.
+
+### Merge order, and why
+
+!36 → !37 → (Camila rebases) !38 → !41 → (Camila rebases) !39 → !40. Only !38 conflicts with the others, on two appended entries. !39 holds merge commits of the old page heads and its own resolutions of the same conflicts, so it rebases cleanly only after the pages are in.
+
+### The N=1 experiment, ready to run after the merges
+
+**Recommended candidate: Dan North** (#39, pull 2: Forsgren, Humble). Dave Farley has the same pull, but he co-wrote *Continuous Delivery* with Humble, so his page would argue from a position the roster already holds. North brings BDD, which no page holds; that is the positional-coverage criterion from the council idea. North also corrects a known wound: Forsgren's `critiques` edge to him failed the record in September.
+
+Run it on the post-!41 pipeline so the permanent cold reader is exercised. Measure against runs 3 and 5: wall time from research to merge request, agents, stalls, rounds, cold-reader verdict and how many findings the in-run editor closed. Record it by hand until the run ledger (item 7) exists.
+
+### Ranked list, updated
+
+Done: 1 (three pages), 3 (cold reader permanent). Half done: 6 (antecedent search is mechanical now; the lowered-claim carriers and the unmade-correction defect are not). Next: 2 (N=1, after merges), then 4 (cut what Julie reads), 5 (required reading per stage with a byte ceiling), 7 (run ledger), 8 to 10 as listed below.
+
+### Environment notes, additions
+
+Worktrees for this session live in the scratchpad (`td-<branch>`), with `node_modules` symlinked; remove with `git worktree remove` when the branches merge. The workflow's stub harness supplies `pipeline()` stages as `(previous, originalItem)`, which is how the real tool calls them.
+
+---
+
+## Save Point — 2026-09-24 ... (cold-start resume here)" through "### Environment notes", especially "Julie's directions, 2026-09-25" and "Open work, ranked". Re-read /Users/juliedavila/Camila/thinker-distillation/SCHEMA.md, PIPELINE.md and the skill at /Users/juliedavila/Camila/thinker-distillation/.claude/skills/add-thinker/ before any code. ⚠ Read to the END of the Council pass: an earlier paragraph recommends restoring five seats and the later one reverses it. Frontmatter (`updated: 2026-09-24`, `progress: iter-10 to iter-15`) is stale against the body.
+<!-- /RESUME-HEAD -->
+
+
+## Save Point — 2026-09-24, the audit and the control verdict
 
 > Current state. Everything from `## Save Point — 2026-09-21` down is history.
 

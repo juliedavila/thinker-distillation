@@ -2,7 +2,7 @@
 project: thinker-distillation
 effort: E3
 phase: in-progress
-progress: 17 live pages, 3 in merge requests; tracked in GitLab MRs and issues
+progress: 20 live pages; tracked in GitLab MRs and issues
 iteration: iter-22-pages-finished-cold-reader-permanent-2026-09-25
 mode: project
 started: 2026-05-25
@@ -10,10 +10,10 @@ updated: 2026-09-25
 ---
 
 <!-- RESUME-HEAD v1 -->
-> **Status** · 2026-09-25 — main at `aba4715`. The three run-5 pages are finished and waiting on Julie: !36 Alexander, !37 Gene Kim, !38 Karpathy, every cold-reader finding applied, CI green. !41 (pipeline) makes the cold reader permanent and adds the antecedent-search check and the first tests. !39 (calibration) and !40 (this save point) also open.
-> **Next** · Julie merges !36, then !37. Camila rebases !38 (two both-sides append conflicts, `kent-beck.md` and `_working/simon-willison/facts.md`: keep both) and Julie merges it, then !41, then Camila rebases !39. Then the N=1 run, recommended candidate Dan North.
-> **Blocked** · The N=1 run waits on those merges by design: serial addition only helps if the next page is drafted against a roster that already holds the last pages' fixes.
-> **Resume** · Read "## Save Point — 2026-09-25" below, then the 2026-09-24 block's "Julie's directions" and "Open work, ranked" (items 1 and 3 are done, 6 is partly done).
+> **Status** · 2026-09-25, evening. Everything merged: !36 Alexander, !37 Gene Kim, !38 Karpathy (rebased, append conflicts kept both sides), !41 permanent cold reader plus antecedent-search check plus first tests, !39 calibration (rebuilt on main from its own three commits), !40 this save point. 20 live pages. No open merge requests.
+> **Next** · The N=1 run, on the post-!41 pipeline. Recommended candidate: Dan North (#39). Julie gives the go.
+> **Blocked** · Nothing.
+> **Resume** · Read "## Save Point — 2026-09-25" below; its "Merge order" section is now history. Then the 2026-09-24 block's "Julie's directions" and "Open work, ranked" (1 and 3 done, 6 half done).
 <!-- /RESUME-HEAD -->
 
 

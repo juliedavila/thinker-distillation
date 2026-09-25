@@ -19,9 +19,9 @@ inclusion_rationale: >
   0, 2026-09-22. Three things the Council settled and this page holds to.
   First, the byline: *A Pattern Language* is Alexander, Sara Ishikawa and
   Murray Silverstein, with further writing credits to Max Jacobson, Ingrid
-  Fiksdahl-King and Shlomo Angel, so the frame is `co-authored`, and the
-  Cunningham frame no longer carries the solo credit issue #42 was filed
-  with. Second, the phrase is nine years older than the book,
+  Fiksdahl-King and Shlomo Angel, so the frame is `co-authored`. The
+  Cunningham frame now names all three; issue #42 had given Alexander sole
+  credit. Second, the phrase is nine years older than the book,
   appearing in the title of a 1968 Center for Environmental Structure paper
   that his own vitae bylines to the same three authors, so no field here dates
   origination to 1977 and none dates it to 1968 either. Third, two frames that seats proposed are
@@ -327,10 +327,10 @@ limits:
     elaboration: >
       *The Timeless Way of Building* introduces the quality without a name, and
       the four volumes of *The Nature of Order* set out centers,
-      structure-preserving transformations and living structure. Only the first
-      was found in use outside architecture, in Richard Gabriel's 1996 essays
-      on software. No use of the other three outside it was found in this
-      round's search, and the fullest available account of those volumes
+      structure-preserving transformations and living structure. Only the quality
+      without a name was found in use outside architecture, in Richard
+      Gabriel's 1996 essays on software. This round's search found no such use
+      of the other three, and the fullest available account of those volumes
       carries an active neutrality dispute, which bounds what the search could
       establish about them.
       Anyone who meets Alexander through the software

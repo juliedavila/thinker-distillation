@@ -2,14 +2,239 @@
 project: thinker-distillation
 effort: E3
 phase: in-progress
-progress: iter-10 to iter-15 shipped; tracked in GitLab MRs and issues
-iteration: iter-19-second-live-run-2026-09-21
+progress: 20 live pages; tracked in GitLab MRs and issues
+iteration: iter-22-pages-finished-cold-reader-permanent-2026-09-25
 mode: project
 started: 2026-05-25
-updated: 2026-09-21
+updated: 2026-09-25
 ---
 
-## Save Point — 2026-09-21, the second live run (cold-start resume here)
+<!-- RESUME-HEAD v1 -->
+> **Status** · 2026-09-25, evening. Everything merged: !36 Alexander, !37 Gene Kim, !38 Karpathy (rebased, append conflicts kept both sides), !41 permanent cold reader plus antecedent-search check plus first tests, !39 calibration (rebuilt on main from its own three commits), !40 this save point. 20 live pages. No open merge requests.
+> **Next** · The N=1 run, on the post-!41 pipeline. Recommended candidate: Dan North (#39). Julie gives the go.
+> **Blocked** · Nothing.
+> **Resume** · Read "## Save Point — 2026-09-25" below; its "Merge order" section is now history. Then the 2026-09-24 block's "Julie's directions" and "Open work, ranked" (1 and 3 done, 6 half done).
+<!-- /RESUME-HEAD -->
+
+
+## Save Point — 2026-09-25, the three pages finished and the cold reader made permanent
+
+> Current state. The 2026-09-24 block below is still the reference for Julie's four decisions, the Council pass and the ranked list.
+
+### What was done
+
+**The three open pages, finished.** One agent per page in its own worktree applied every cold-reader finding, with a claim-delta line per rewrite in `_working/<slug>/control-remediation-2026-09-25.md`. Camila read every diff and fixed three more sentences (a comma splice on Karpathy, two that needed a second read on Alexander). Nothing was declined.
+- **!38 Karpathy:** no field now says the review step was Willison's addition; the coinage is dated to the month on both pages; the talk links YC's own video, "Software Is Changing (Again)".
+- **!36 Alexander:** reading agrees with its own limit; "granted the format" once instead of five times; three antecedent searches recorded; the 1977 byline from his own CV. The editor also caught a false absence claim the cold reader missed: Gabriel's 1996 essay "The Quality Without a Name" was on the ledger the whole time.
+- **!37 Gene Kim: the DORA contradiction dissolved.** DORA's own December 2018 announcement names him among its founders, and the Forsgren and Humble ledgers had sources all along. Research and both audits never opened the neighbours' ledgers. Nothing on either neighbour changes.
+- A test merge of all three plus !41 builds, passes verify and passes all five touched ledgers. MR descriptions rewritten, lint clean.
+
+**!41, the cold reader made permanent (ranked item 3) and the first half of item 6.**
+- Runs on every page after its last round, whatever the round count. An editor applies what it confirms; its verdict and anything declined open the merge request. Never gates.
+- `fact-ledger.ts` now fails an `original` frame whose attribution line cites no "antecedent search" fact. 15 of 17 live pages predate it and sit in `scripts/antecedent-exempt.txt`, which may only shrink.
+- `scripts/test/pipeline-stub.test.ts`: the whole workflow against stub agents, 7 tests, ~50ms, in the `verify` CI job. Six of seven fail against the old workflow.
+- **Nadia's question answered, in PIPELINE.md:** all three recurring defect types predate the 2026-09-17 narrowing and each got past five-seat rounds. Reviewer count was never the variable.
+
+**!39** gained two "Caught once" entries: an absence claim contradicted by the page's own ledger, and a gap declared without opening the neighbours' ledgers.
+
+### Merge order, and why
+
+!36 → !37 → (Camila rebases) !38 → !41 → (Camila rebases) !39 → !40. Only !38 conflicts with the others, on two appended entries. !39 holds merge commits of the old page heads and its own resolutions of the same conflicts, so it rebases cleanly only after the pages are in.
+
+### The N=1 experiment, ready to run after the merges
+
+**Recommended candidate: Dan North** (#39, pull 2: Forsgren, Humble). Dave Farley has the same pull, but he co-wrote *Continuous Delivery* with Humble, so his page would argue from a position the roster already holds. North brings BDD, which no page holds; that is the positional-coverage criterion from the council idea. North also corrects a known wound: Forsgren's `critiques` edge to him failed the record in September.
+
+Run it on the post-!41 pipeline so the permanent cold reader is exercised. Measure against runs 3 and 5: wall time from research to merge request, agents, stalls, rounds, cold-reader verdict and how many findings the in-run editor closed. Record it by hand until the run ledger (item 7) exists.
+
+### Ranked list, updated
+
+Done: 1 (three pages), 3 (cold reader permanent). Half done: 6 (antecedent search is mechanical now; the lowered-claim carriers and the unmade-correction defect are not). Next: 2 (N=1, after merges), then 4 (cut what Julie reads), 5 (required reading per stage with a byte ceiling), 7 (run ledger), 8 to 10 as listed below.
+
+### Environment notes, additions
+
+Worktrees for this session live in the scratchpad (`td-<branch>`), with `node_modules` symlinked; remove with `git worktree remove` when the branches merge. The workflow's stub harness supplies `pipeline()` stages as `(previous, originalItem)`, which is how the real tool calls them.
+
+---
+
+## Save Point — 2026-09-24 ... (cold-start resume here)" through "### Environment notes", especially "Julie's directions, 2026-09-25" and "Open work, ranked". Re-read /Users/juliedavila/Camila/thinker-distillation/SCHEMA.md, PIPELINE.md and the skill at /Users/juliedavila/Camila/thinker-distillation/.claude/skills/add-thinker/ before any code. ⚠ Read to the END of the Council pass: an earlier paragraph recommends restoring five seats and the later one reverses it. Frontmatter (`updated: 2026-09-24`, `progress: iter-10 to iter-15`) is stale against the body.
+<!-- /RESUME-HEAD -->
+
+
+## Save Point — 2026-09-24, the audit and the control verdict
+
+> Current state. Everything from `## Save Point — 2026-09-21` down is history.
+
+### Where things stand, verified
+
+- **Main at `aba4715`. 17 live pages, build clean, CI green.** `verify` now runs on every merge request.
+- **Three merge requests open, all waiting on Julie, and two should NOT merge as written:**
+  - **!36 Christopher Alexander** — control returned REVISE, 10 findings.
+  - **!37 Gene Kim** — control agreed with the adjudicator, 11 findings, none deciding.
+  - **!38 Andrej Karpathy** — control returned REVISE, 10 findings.
+- **31 open candidates.** Top of the ranked queue: Gene Kim (shipping), Dave Farley, Dan North, all pull 2 and all named on Humble.
+- Ledger coverage 8 of 17. Nine pages are exempt by name in `scripts/ledger-exempt.txt`, a list that may only shrink.
+
+### The round 3 measurement, and why the revert was withdrawn
+
+The unanchored control has run twice, on five pages. **Three came back stricter than the adjudicator and none came back more lenient.** `SKILL.md` stage 6 wrote the criterion down in advance: a stricter control is the result that reverses the 2026-09-17 narrowing.
+
+| Run | Page | Adjudicator | Control |
+|---|---|---|---|
+| 2026-09-22 | ward-cunningham | ACCEPT-WITH-EDITS | REVISE |
+| 2026-09-22 | jez-humble | ACCEPT-WITH-EDITS | same, 7 findings the adjudicator missed |
+| 2026-09-24 | christopher-alexander | ACCEPT-WITH-EDITS | REVISE |
+| 2026-09-24 | gene-kim | ACCEPT-WITH-EDITS | same |
+| 2026-09-24 | andrej-karpathy | ACCEPT-WITH-EDITS | REVISE |
+
+**Recommendation, revised after the Council pass below: do NOT restore five seats. Make the cold reader a permanent, non-gating control.** Three of four seats attacked the revert independently and converged on this instead. The control's own note is the reason: all three ledgers exit 0, all three gate runs are clean, zero em dashes, and it calls its findings "the kind no script reaches."
+
+### The three findings that recur across runs, and are therefore skill defects
+
+1. **A frame marked `original` with no antecedent search on file.** Third sighting: the Cunningham control found it, then Alexander (three frames) and Gene Kim (two) in the same batch. `SKILL.md` requires the search and nothing records that it happened, so the requirement is unfalsifiable. **Fix: the ledger should carry an antecedent-search line per `original` frame, and `fact-ledger.ts` should require it.** Karpathy's working set did it correctly in the same batch, which proves it is cheap.
+2. **Lowering a claim in one field and leaving its carriers standing.** Third sighting, and the second where the stale carrier cites the very line that lowered it (Alexander's `reading` cites `limits[1]`, the field narrowed on 2026-09-24, for the claim it was narrowed to contest). Already a checklist item; it keeps firing, so the checklist is not the right instrument.
+3. **A page asserting a correction to another page that was not made.** Alexander's `inclusion_rationale` says the Cunningham solo credit "is corrected in this merge request"; `ward-cunningham.md` still carries it. Same shape as the return-edge staleness item.
+
+### Cross-page contradictions this run surfaced and did not fix
+
+- `martin-fowler.md` asserts "Alexander's later critique of how programmers used patterns", which Alexander's own `limits[0]` and `[S:25]` rule out. Shipping !36 puts both claims on the site at once, on that page's central argument.
+- The DORA co-founding claim **cannot be sourced after two audits** (`[S:26]`), and the site publishes it on two other pages. !37 is clean and leaves the contradiction live.
+- !37 ships with ten build warnings including four missing back-edges to `gene-kim`.
+
+### What shipped today
+
+**Skill hardening (!29).** Eight gaps from the prior two runs. New `scripts/inbound-claims.ts` prints what the roster already claims about a person before their page exists, wired into Research and Draft with `inbound_claims` and `reconciled_claims` schema fields. **It earned its keep on its first run:** two of three merge request titles are corrections to existing pages.
+
+**Description standard (!30).** `scripts/describe.ts` gives merge requests and issues a required shape, a plain-language rule and a lint, after Julie's note that the descriptions were "jargony ... not really formulated for outside collaborators or even for me." Four templates. **There is deliberately no word limit**; the first draft had a 200-word cap and Julie removed it the same day: "It's not about quantity; it's about quality when it comes to the prose."
+
+**Control defects fixed (!34).** The control ran for the first time on 2026-09-22 and three things about how it ran were wrong: it read the page before the round 3 editor applied edits, it never wrote its report, and `review-policy.ts` had never heard of it. All fixed; a guard now names any page that owed a control verdict and did not get one.
+
+**Audit remediation (!35).** The engineering audit found nothing ran while a merge request was open. New `scripts/verify.ts` plus a `verify` CI job on `merge_request_event`, running the gates over every page not on `ledger-exempt.txt`, plus `staleness.ts --strict`. Five documented rules corrected against the code that runs, including the shipping verdict, on-site collapsing, and a pre-draft checklist line that had been wrong for two days. `sandbox.ts prune` added.
+
+### The engineering audit, and where compute actually goes
+
+Artifact: **Distillery Compute Map**, <https://claude.ai/artifact/9XoPpBG1unUnqKWJ1jA1U7>
+
+- **A graph database is overkill.** 17 nodes, 139 edges, 129 frames, and the whole corpus parses in **9.9ms**. Deepest traversal in use is two hops. At the 40-page ceiling it is still trivial. **The graph does not scale badly; the prose about the graph does.**
+- **Per-agent context is the axis that fails hard.** Every agent is told to read `SCHEMA.md` (51KB), `calibration.md` (44KB) and `SKILL.md` (22KB): 117KB each, ~4.2MB per run of the same three files. `calibration.md` was 18KB on 2026-09-21 and is 44KB now, a 2.4x growth in three days.
+- **162KB per agent is injected by the harness and cannot be declined**, against a median computed task of 2.5KB.
+- **Zero tests.** 2,339 lines of load-bearing TypeScript across 15 scripts, no test framework imported anywhere.
+
+### Run history, and why it needs a ledger
+
+| Run | Date | Candidates | Agents | Tokens | Outcome |
+|---|---|---|---|---|---|
+| 1 | 09-20 | 2 | 36 | n/a | Larson, Willison |
+| 2 | 09-21 | 2 | 39 | n/a | Anderson, Beck + Forsgren recheck |
+| 3 | 09-22 | 3 | 36 | 6.2M | Humble, Cunningham; Goedecke parked 5-0 |
+| 4 | 09-22 | 3 | 41 | 11.8M | **FAILED.** 11 labels stalled, all 6 attempts, 0 pages |
+| 5 | 09-24 | 3 (resumed) | 41 | 8.06M | Alexander, Kim, Karpathy |
+
+**Run 4 failed because three candidates all cleared inclusion for the first time**, so every review seat and editor carried three pages. Failures were the round 2 and 3 editors on all three pages. **Not the network:** failures staggered over 8.5 hours with other agents succeeding between them, unlike the 09-21 stall which took every seat down inside 28 minutes with `getaddrinfo ENOTFOUND`.
+
+**Resume does not work here.** It replayed Research and re-ran everything from Inclusion onward, ~20 agents of completed work. `review-policy`'s prompt is byte-identical across both runs and its cache key still changed, so the key is not a pure function of the prompt. Resume salvages only up to the first agent whose input comes from another agent's return value.
+
+**Nothing aggregates run telemetry.** Run 4's failure had to be reconstructed from file modification times, because the journal carries no timestamps and no run summary is persisted anywhere.
+
+### Next session: the retro loop
+
+Julie's direction, 2026-09-24: **with every thinker addition, run a rapid retro that identifies where the skill and workflow could be better, faster or cheaper, against known historical data points.**
+
+The blocker is that there is no baseline to compare against. **Build the run ledger first**, the same idea as the fact ledger applied to the machine: one appended, committed record per run carrying agents, tokens, tool calls, wall time, stalls and retries, rounds per page, verdict counts, control agreement, and defects caught per round. `run-cost.ts` already computes most of it and writes nothing down.
+
+Three questions the retro should answer every time:
+- Did per-agent required reading grow, and where?
+- Did the cold reader agree with the adjudicator?
+- How many rounds did each page actually need? Every run has escalated except this one, which is why the quiet branch stayed untested so long.
+
+### Julie's directions, 2026-09-25 — four decisions that reshape the design
+
+**1. No auto-merge, ever. She merges every page herself or with Camila.** Her reason is not risk, it is purpose: "I do want to take time to actually read through this and learn, and not just have an endless list of authors that keep getting added." **The human gate is a feature of the product, not scaffolding waiting to be removed.** This deletes a whole branch: no cleanliness predicate, no trust calibration, no auto-publish, and the control measurement stops being a gate-readiness question and becomes purely a quality question. A Council seat had independently argued auto-merge should leave the roadmap; she removed it for a better reason.
+
+**2. Unit economics are deprioritised. She is subscription-tier and does not pay per token.** The metrics that matter are **speed of incorporating a new thinker, and defect rate.** Cost per page is no longer a ranking criterion for any recommendation.
+
+**3. Move to one thinker per run, and test it.** Julie's own reasoning: every addition requires working out the new thinker's web of connectivity to the existing roster and to the other candidates in the batch, plus the sharpening that follows, and that is where a multi-candidate run gets complicated.
+
+The argument is stronger than speed. Once tokens stop mattering, the only case for batching collapses, because batching exists to amortise fixed agent cost across candidates. What remains is all cost: graph reconciliation is **superlinear in batch size** (one candidate reconciles against the roster; three reconcile against the roster and each other, and their corrections to shared neighbours collide), and per-agent context is the axis that stalled run 4.
+
+**Serial addition is correct by construction.** In a batch, every page is drafted against the same stale snapshot and page 2 cannot see the sharpening page 1 just did. Evidence on file: Larson and Willison both planned to demote Rudolf Kálmán on Majors; Alexander's page asserts it corrected Cunningham's solo credit while `ward-cunningham.md` still carries it; all three run-5 pages proposed corrections to overlapping existing pages. Run one at a time and page *k+1* is always drafted against a roster that already contains everything page *k* fixed.
+
+**Caveat, stated honestly: N=1 has never been run through this pipeline.** Every N=2 run shipped; the only N=3 run died. So this is a prediction, and the next run is the experiment. What N=1 gives up is the novelty seat seeing two new pages side by side, which is small because `lens-index.ts` already checks a page's positions against the whole roster rather than its batch.
+
+**4. The roster should grow beyond software, deliberately.** Julie: the current software-heaviness is today's state and not the intent. She named **permaculture** as a target: another tradition on resilience and safety, developed entirely outside technology. She also named **Ray Dalio**, confirmed by her in-session, who is already on the roster and is the existing proof that a non-software thinker belongs.
+
+Design consequences worth thinking about before the first non-software candidate:
+- A permaculture-to-resilience-engineering edge (Holmgren or Mollison against Woods and Dekker) would be `parallel` in the truest sense: same system property, different substrate, neither citing the other. Far more interesting than software-to-software edges, which risk becoming incestuous.
+- The inclusion filter assumes an audience of senior engineering and security leaders. For a non-software thinker the bar probably becomes "vocabulary that travels into the reader's domain" rather than "practitioners in their own field use it." **This needs deciding rather than drifting.**
+
+### New work item: the distillery as a council for Julie's own work
+
+Julie's idea, 2026-09-25: use the roster as a reasoning substrate for her engineering work, system diagrams, code and design decisions, **including where the thinkers disagree**, so that the disagreement itself becomes a council of different approaches to a problem.
+
+**The structure already exists.** Every page carries a `thesis`, `named_frames` with glosses, a `limits` section recording where the idea fails, and `still_load_bearing_despite`. That is a council seat already: how this person sees a problem plus where they would be wrong. The `critiques` and `parallel` edges record who argues against whom, so a seating can be chosen to produce friction on substance rather than four agents agreeing in different registers.
+
+What it needs:
+- **A selector.** Given a problem, which thinkers' frames apply. `lens-index.ts` already maps positions to pages and frames carry `concept_slug`s.
+- **A seat builder.** Turn a page into a seat prompt from thesis, frames, limits and what the thinker would reject.
+- **Deliberate pairing.** Seat at least one `critiques` or `parallel` pair so the council disagrees on substance. Woods against Dekker on resilience; Hickey against Beck on where design effort goes.
+
+**This reframes the queue ranking.** Today it ranks by graph pull, which optimises site coherence. If pages are also seats, rank partly by **whether a candidate adds a position nobody currently holds**; `lens-index.ts` already flags crowded positions, so it is the same data read for a different purpose. It also answers the roster ceiling differently: **40 pages chosen for positional coverage is a better council than 60 chosen for connectivity.**
+
+Camila's note from running a generic Council this session: four seats composed from three expertise traits produced useful positions with a generic flavour. Real thinkers with real limits sections is a different instrument.
+
+### Council pass on the recommendations, 2026-09-25
+
+Four custom seats, single round, no seat seeing another's answer. Transcript: `~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-improvement-recommendations-20260925-172458-quick/transcript.md`
+
+**Three of four independently attacked reverting round 3 to five seats, and Camila withdrew it.**
+- Reeve: review already failed, since three of five pages carried defects through three rounds plus an adjudicator. Paying five times more for a process with no demonstrated correlation to catching defects is increasing headcount on a broken checklist.
+- Nadia: the sample is too thin for a permanent reversal, and the first control run was contaminated by the pre-edit bug so the clean sample is smaller than five. **But she corrected the framing:** this is not the Bornmann "high agreement, distrust it" pattern, it is the opposite, a less-contaminated observer finding MORE. That is construct validity for the control itself.
+- Tobias: restoring headcount does not touch the actual failure, which was a seat running silently unenforced.
+
+**All three converged on the same alternative: make the cold reader a permanent, non-gating control instead of restoring five seats.** That is now the recommendation.
+
+**Baron found a contradiction nobody had priced:** recommendations 1 to 5 hardened the review pipeline on the assumption the human merge gate was permanent, while the roadmap planned to delete that gate via auto-merge, on infrastructure that had already leaked a live credential from abandoned clones undetected for two days. Julie's decision above resolves this by making the gate permanent.
+
+**Two findings that were not in the recommendations at all:**
+- **Tobias: the context cut is self-reversing without a ceiling.** Trimming required reading to ~30KB is a one-time trim on a file that grew 18KB to 44KB in three days. It is back to 117KB by mid-October unless the cut ships with a byte budget or a decay mechanism. LifeOS already has this discipline for always-on files and the distillery has none.
+- **Nadia: nobody checked whether the three recurring defect types predate the narrowing.** If they do, reviewer count is not the relevant variable and the whole revert debate was aimed at the wrong thing.
+
+### Open work, ranked
+
+Reordered after Julie's four decisions and the Council pass. **Speed and defect rate are the ranking criteria now, not cost per page.**
+
+1. **Finish the three open pages.** Apply the control's REVISE findings on !36 Alexander and !38 Karpathy; decide the DORA contradiction on !37 Gene Kim. Nothing else ships until the pages in flight are done.
+2. **Run the N=1 experiment.** Next run takes one candidate. This is the speed question Julie actually cares about and it has never been tested. Top of the ranked queue: Dave Farley or Dan North, both pull 2.
+3. **Make the cold reader permanent and non-gating.** Do NOT restore five seats. Then answer Nadia's question, which nobody has: **do the three recurring defect types predate the 2026-09-17 narrowing?** If they do, reviewer count was never the relevant variable.
+4. **Cut what Julie reads to reach a decision.** Now that she reads every page deliberately and merges it herself, this is the highest-value work left. Exception-only descriptions: a clean page arrives as a short note, not 5,000 words.
+5. **Scope the required reading per stage, WITH a byte ceiling.** 117KB toward ~30KB. Per Tobias, the trim is self-reversing without a budget: `calibration.md` grew 18KB to 44KB in three days and returns to 117KB by mid-October otherwise. LifeOS already has this discipline for always-on files; the distillery has none. **Ship the ceiling with the cut or do not ship the cut.**
+6. **Fix the three recurring defects**, chiefly the antecedent-search ledger line, which is mechanically checkable and which two Council seats endorsed as cheap and targeted.
+7. **Build the run ledger, then the retro loop.** Keep the sequence, and add Tobias's requirement: log every rule-source and rule-consumer pair so **drift becomes machine-detectable** rather than something Camila catches by hand-spawning an audit agent. That is the fix for the failure class that has now bitten four times.
+8. **Scaffold the distillery council** (see its own section). Selector, seat builder, deliberate `critiques` pairing.
+9. **Weekly maintenance job in GitLab CI**, not launchd, so detection stops depending on Julie's laptop. Prerequisite for anything off-machine: move the project token from the macOS keychain into a masked CI variable. Baron's credential point applies here and only here now, since addition is staying attended.
+10. **Decide the inclusion filter for non-software thinkers** before the first permaculture candidate. The current filter assumes an audience of senior engineering and security leaders; for a thinker outside technology the bar probably becomes "vocabulary that travels into the reader's domain."
+
+**Not doing, decided:** auto-merge, a cleanliness predicate, trust calibration for unattended publishing, a graph database, and restoring five seats in round 3.
+
+### The hands-off question, settled
+
+Julie asked what a set-and-forget distillery at ~10 thinkers a week would take. **She then answered it herself: she does not want one.** She merges every page, because the point is to read and learn rather than accumulate a list.
+
+So the split that survives is narrower than the original proposal. **Maintenance can be genuinely unattended**, and should be: `staleness.ts` and `decay.ts` have zero model calls, so weekly detection runs on GitLab's runners with no laptop and no cost, failing the pipeline when something comes due. **Addition stays human-gated permanently, by choice.**
+
+What is still true and still unaddressed: the reading load per page. Run 3 sent 9,900 words and 11 flagged decisions for two pages. Now that she reads every page deliberately, **cutting what she has to read to reach a decision is the highest-value work left**, and it is the one thing that makes serial addition sustainable alongside a new job.
+
+Two constraints stay on the record. Only twelve of thirty-one queued candidates have any graph pull. And the roster ceiling of 40 to 60 now interacts with the council idea: prefer positional coverage over connectivity when choosing whom to add.
+
+On architecture: the 162KB injected floor exists only because this runs inside a chat harness, and prompt caching needs a prefix you control. Managed Agents remains the closest fit for the unattended **maintenance** loop, with the caveats that it is beta and not eligible for zero data retention. It is no longer needed for addition, which is staying attended.
+
+### Environment notes
+
+`PATH="/opt/homebrew/bin:$PATH"`. `glab mr merge` can 405 right after a push; the API `PUT .../merge` works. Repo-local workflows resolve by `scriptPath`, never `name`; `meta` must be a pure literal; workflow scripts have no clock, so `args.today` is required. Shell is zsh, so an unmatched glob is an error and `find` beats a glob. No PyYAML. **WebSearch is capped at 200 calls per session**, which lands inside the research phase where a truncated search becomes a wrong fact; raise with `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`. The pipeline token is a GitLab Developer-role project token in the macOS keychain (`gitlab-thinker-distillery` / `thinker-pipeline`), so the pipeline can open a merge request and structurally cannot merge one. **Sandboxes are never torn down automatically**; `bun scripts/sandbox.ts prune <hours>` now exists, and two abandoned clones were found holding a live credential on 2026-09-22. Council reports are gitignored: this run's are preserved at `~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-run5-council-20260924/`, and run 4's unfinished state at `distillery-run4-unfinished-20260922/` plus branch `salvage/run4-unfinished`.
+
+---
+
+## Save Point — 2026-09-21, the second live run (history)
 
 > Current state. Everything from `## Save Point — 2026-09-20 evening` down is history.
 
@@ -1923,3 +2148,11 @@ During this session the prompt classifier occasionally timed out / failed JSON p
 ## Superseded PROJECTS.md entry (archived 2026-09-16)
 
 - **Thinker Distillation Site** — Active. LIVE at `https://thinker-distillery-97a9ca.gitlab.io/` (GitLab Pages, private). Astro 6 + Mexican-modernist identity; 7 thinkers, cross-thinker concept pages, long-read chapters. **Next moves (Julie's call):** unique-domain flip, Netlify cleanup, 7 B&W editorial portraits, content slots, iter-7 a11y/mobile follow-ups. Workspace + ISA + locked SCHEMA: `~/Camila/thinker-distillation/`. Norms: [[feedback_thinker_inclusion_pushback]] · [[feedback_writing_partner_per_field]] · [[feedback_distillery_prose_voice]].
+
+
+## Superseded PROJECTS.md entry — archived 2026-09-25
+
+> Replaced in the index by a lean current-state line during the resume-contract
+> reconciliation. Kept verbatim; nothing is lost.
+
+- **Thinker Distillation Site** — Active. LIVE at `https://thinker-distillery-97a9ca.gitlab.io/` (private GitLab Pages). 10 thinkers, 3 concepts (+Majors in !11). Process: repo skill `.claude/skills/add-thinker/`; `mode-a` pages need all three review rounds. **Next (Julie, 2026-09-17): design the automation** so she blocks only at merge approval. Also hers: merge !11, the concept reading slot, two About slots. Resume: 2026-09-17 Save Point, `~/Camila/thinker-distillation/ISA.md`. Norms: [[feedback_thinker_inclusion_pushback]] · [[feedback_distillery_prose_voice]].

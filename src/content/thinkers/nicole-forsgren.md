@@ -403,7 +403,7 @@ adjacent_thinkers:
     strength: secondary
     render_tier: deep
   - target_slug: dan-north
-    display_name: Dan North
+    display_name: Daniel Terhorst-North
     edge_type: parallel
     edge_label: >
       The attribution argument. Reviewing McKinsey's productivity framework in

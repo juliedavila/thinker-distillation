@@ -437,6 +437,17 @@ adjacent_thinkers:
       vocabulary into other people's hands from the one this page describes.
       Same decade, same industry.
     strength: primary
+  - target_slug: dan-north
+    display_name: Daniel Terhorst-North
+    edge_type: parallel
+    edge_label: >
+      Two bliki entries credit work Terhorst-North shared with others. The
+      Given/When/Then entry records the template as developed with Chris Matts
+      and adds a footnote on the credit he gave Ivan Moore when reviewing it;
+      the blue-green entry leaves the name to "some foggy combination" of him
+      and Humble.
+    strength: secondary
+    render_tier: deep
 
 further_in:
   start_here: '`IsQualitySoftwareWorthTheCost` (bliki). The economic-argument keystone.'

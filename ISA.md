@@ -2104,3 +2104,11 @@ During this session the prompt classifier occasionally timed out / failed JSON p
 ## Superseded PROJECTS.md entry (archived 2026-09-16)
 
 - **Thinker Distillation Site** — Active. LIVE at `https://thinker-distillery-97a9ca.gitlab.io/` (GitLab Pages, private). Astro 6 + Mexican-modernist identity; 7 thinkers, cross-thinker concept pages, long-read chapters. **Next moves (Julie's call):** unique-domain flip, Netlify cleanup, 7 B&W editorial portraits, content slots, iter-7 a11y/mobile follow-ups. Workspace + ISA + locked SCHEMA: `~/Camila/thinker-distillation/`. Norms: [[feedback_thinker_inclusion_pushback]] · [[feedback_writing_partner_per_field]] · [[feedback_distillery_prose_voice]].
+
+
+## Superseded PROJECTS.md entry — archived 2026-09-25
+
+> Replaced in the index by a lean current-state line during the resume-contract
+> reconciliation. Kept verbatim; nothing is lost.
+
+- **Thinker Distillation Site** — Active. LIVE at `https://thinker-distillery-97a9ca.gitlab.io/` (private GitLab Pages). 10 thinkers, 3 concepts (+Majors in !11). Process: repo skill `.claude/skills/add-thinker/`; `mode-a` pages need all three review rounds. **Next (Julie, 2026-09-17): design the automation** so she blocks only at merge approval. Also hers: merge !11, the concept reading slot, two About slots. Resume: 2026-09-17 Save Point, `~/Camila/thinker-distillation/ISA.md`. Norms: [[feedback_thinker_inclusion_pushback]] · [[feedback_distillery_prose_voice]].

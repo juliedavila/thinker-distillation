@@ -36,7 +36,9 @@
 // inclusion filter. That is what the uptake check and the inclusion Council are for, and it needs
 // research this script has not done. A high rank here means "research this one next," never
 // "this one belongs on the site."
-import { loadThinkers } from './lib';
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { loadThinkers, ROOT } from './lib';
 
 const argv = process.argv.slice(2);
 const json = argv.includes('--json');
@@ -86,6 +88,9 @@ const toSlug = (name: string) =>
     .replace(/[̀-ͯ]/g, '')
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
+    // A joint candidate is titled "A and B" and its edge slug is "a-b"; without this, Skelton and
+    // Pais ranked at zero pull while the Fournier page named them.
+    .replace(/-and-/g, '-')
     .replace(/^-|-$/g, '');
 
 type Row = {
@@ -152,6 +157,31 @@ const desiredLabels = (r: Row): string[] => {
 };
 
 // Lexicographic, never a blended score: graph pull, then Council support, then age.
+// Two kinds of open issue are not candidates, and ranking them anyway is how the queue went wrong
+// on 2026-09-25: Sean Goedecke, rejected 5 to 0 and parked to 2027, ranked second, and three
+// thinkers whose pages had shipped (Humble, Cunningham, Terhorst-North) sat in the queue for days.
+// A parked slug is held until its recheck date, read from the same _working/_parked.md that
+// staleness.ts reads, so the two scripts agree on what a park means. A slug that already has a
+// page is held and named, because the fix is closing the issue, not researching the person.
+const parkedUntil = new Map<string, string>();
+{
+  const p = join(ROOT, '_working', '_parked.md');
+  if (existsSync(p)) {
+    for (const line of readFileSync(p, 'utf8').split('\n')) {
+      const m = line.match(/^-\s+(\S+)\s*\|.*\|\s*recheck\s+(\d{4}-\d{2}-\d{2})/);
+      if (m) parkedUntil.set(m[1], m[2]);
+    }
+  }
+}
+const today = new Date(now).toISOString().slice(0, 10);
+const held: Array<Row & { held: string }> = [];
+for (let i = rows.length - 1; i >= 0; i--) {
+  const r = rows[i];
+  const until = parkedUntil.get(r.slug);
+  const why = onSite.has(r.slug) ? 'has a page; close the issue' : until && until > today ? `parked until ${until}` : '';
+  if (why) { held.push({ ...r, held: why }); rows.splice(i, 1); }
+}
+
 rows.sort((a, b) => b.pull - a.pull || b.councils.length - a.councils.length || b.age_days - a.age_days);
 
 const shown = top > 0 ? rows.slice(0, top) : rows;
@@ -176,7 +206,7 @@ if (sync) {
   console.log(changed ? `\n${changed} issue(s) ${dryRun ? 'would change' : 'updated'}.` : 'Labels already match the graph; nothing to do.');
   console.log('Only the queue: namespace is touched. The rank itself is never written to an issue, because it changes whenever a page ships.');
 } else if (json) {
-  console.log(JSON.stringify({ ranked: shown.map((r) => ({ ...r, labels: desiredLabels(r) })), total: rows.length }, null, 2));
+  console.log(JSON.stringify({ ranked: shown.map((r) => ({ ...r, labels: desiredLabels(r) })), total: rows.length, held }, null, 2));
 } else {
   console.log(`${rows.length} open candidates, ranked. Graph pull first, then how many Councils named them, then age.\n`);
   console.log('  #   candidate                   pull  councils  age   already named on');
@@ -200,6 +230,9 @@ if (sync) {
         `them: ${unargued.map((r) => `${r.name} (#${r.issue}, ${r.age_days}d)`).join(', ')}. Age is only a tiebreak here, so they ` +
         `will never rise on their own. Either research one or park it with a recheck date in _working/_parked.md.`,
     );
+  }
+  if (held.length) {
+    console.log(`\nHeld out of the ranking: ${held.map((r) => `${r.name} (#${r.issue}, ${r.held})`).join(', ')}.`);
   }
   console.log(
     `\nThis ranks research order and nothing else. Whether a candidate belongs on the site is decided by the uptake check ` +

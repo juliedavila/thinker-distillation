@@ -1,0 +1,14 @@
+READING
+Terhorst-North's part in behaviour-driven development is a change of vocabulary, made while teaching test-driven development: think in behaviour instead of tests. [T:working-line] [T:thesis] [F:behaviour-driven-development]
+Most pieces came from other people, and his 2006 essay names them: Chris Stevenson's agiledox, a "should" convention he came across, Chris Matts on analysis, Eric Evans's ubiquitous language. [F:behaviour-driven-development] [L:1]
+With Matts he wrote the template Gherkin now uses as step keywords, which states a story's acceptance criteria as a context, an event and an outcome before the work starts. [F:given-when-then] [T:thesis]
+Deliberate Discovery turns to planning: ignorance is the constraint on delivery, including the ignorance a team does not know it has, so finding it out is work to schedule early. [F:deliberate-discovery]
+As Mark Needham quotes it, Phillip Armour's 2000 paper had already named a second order of ignorance. [L:4] [E:out:phillip-armour]
+CUPID, grown from a 2016 talk against SOLID, answers SOLID with five properties of code. [F:cupid] [T:thesis]
+The two signed critiques found answer that talk, and neither addresses CUPID or BDD. [E:out:robert-c-martin] [E:out:jeroen-de-dauw]
+EXTENSION
+In a scenario the team picks the Given; against an agent, an attacker writes some of them. [F:given-when-then] [L:3] [P:1]
+Prompt injection stays open in the architecture. [P:1]
+Read through Deliberate Discovery, the Givens the team has not named are the constraint: adversarial discovery becomes planned work funded from the start, each finding written as a new Given with the outcome the team will accept. [F:deliberate-discovery] [F:given-when-then] [P:1]
+Each Given pins one payload, and a model that passed it once can fail a variant of it or a rerun. [F:given-when-then] [P:1]
+The essay front-loads discovery to relieve the constraint; here the constraint never lifts, so a release can gate only on the Givens already found. [F:deliberate-discovery] [P:1]

@@ -424,7 +424,7 @@ adjacent_thinkers:
       missing half of where it came from.
     strength: primary
   - target_slug: dan-north
-    display_name: Dan North
+    display_name: Daniel Terhorst-North
     edge_type: parallel
     edge_label: >
       Co-author of the 2006 paper that first wrote up the deployment pipeline,

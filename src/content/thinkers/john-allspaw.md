@@ -139,7 +139,7 @@ named_frames:
     primary_author: erik-hollnagel
     co_originators:
       - slug: erik-hollnagel
-        role: original in safety-science literature
+        role: popularized the English pair in resilience engineering and safety management; the distinction began in French ergonomics
       - slug: john-allspaw
         role: carried into ops/SRE practice
 
@@ -340,6 +340,15 @@ adjacent_thinkers:
       from above on how to treat a failure it chose to risk; Allspaw's subject
       begins after a failure nobody chose has already happened, with the
       question of what makes an account of it trustworthy.
+    strength: primary
+  - target_slug: erik-hollnagel
+    display_name: Erik Hollnagel
+    edge_type: parallel
+    edge_label: >
+      Named the efficiency-thoroughness trade-off and gave the shortcuts it
+      produces names of their own, such as "Will be checked by someone
+      else". Allspaw's master's thesis took up that catalogue of judgement
+      heuristics.
     strength: primary
 
 further_in:

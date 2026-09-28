@@ -2,18 +2,69 @@
 project: thinker-distillation
 effort: E3
 phase: in-progress
-progress: 20 live pages; tracked in GitLab MRs and issues
-iteration: iter-22-pages-finished-cold-reader-permanent-2026-09-25
+progress: 23 live pages, Cook in review; tracked in GitLab MRs and issues
+iteration: iter-23-serial-runs-cold-reader-round-3-2026-09-28
 mode: project
 started: 2026-05-25
-updated: 2026-09-25
+updated: 2026-09-28
 ---
 
 <!-- RESUME-HEAD v1 -->
-> **Status** · 2026-09-25, evening. Everything merged: !36 Alexander, !37 Gene Kim, !38 Karpathy (rebased, append conflicts kept both sides), !41 permanent cold reader plus antecedent-search check plus first tests, !39 calibration (rebuilt on main from its own three commits), !40 this save point. 20 live pages. No open merge requests.
-> **Next** · The N=1 run, on the post-!41 pipeline. Recommended candidate: Dan North (#39). Julie gives the go.
+> **Status** · 2026-09-28 — main at `3d75314`, 24 live pages once !52 merges. Serial one-thinker runs are the working mode: Dan North, Hollnagel, Shortridge and Cook shipped or are in review this session, each in about 2 hours of running. Open and waiting on Julie: !52 Richard Cook (page), !53 its calibration notes (either order).
+> **Next** · Restart the session first: the web-search cap is now 1,000 in `~/.claude/settings.json` and only a new session picks it up. Then the next run. By graph pull: Jens Rasmussen #74 or James Reason #73 (3 pages each). By hand: Leslie Lamport #81 (formal methods, a position nobody holds) or Aaron Rinehart #70.
 > **Blocked** · Nothing.
-> **Resume** · Read "## Save Point — 2026-09-25" below; its "Merge order" section is now history. Then the 2026-09-24 block's "Julie's directions" and "Open work, ranked" (1 and 3 done, 6 half done).
+> **Resume** · Read "## Save Point — 2026-09-28" below, then PIPELINE.md's "The cold reader" section.
+<!-- /RESUME-HEAD -->
+
+
+## Save Point — 2026-09-28, serial runs working and the cold reader is round 3
+
+> Current state. The 2026-09-25 and 2026-09-24 blocks below are history.
+
+### Runs this session
+
+| Run | Thinker | Agents | Tokens | Running time | Cold reader | MR |
+|---|---|---|---|---|---|---|
+| 6 | Daniel Terhorst-North | 28 | 4.05M | 2h46m | same verdict, 16 findings, all applied | !42 merged |
+| 7 | Erik Hollnagel | 28 | 4.63M | about 5h (Mac slept 18h mid-run) | same, 12, all applied | !45 merged |
+| 8 | Kelly Shortridge | 28 | 4.13M | 2h02m | same, 16, 15 applied | !48 merged |
+| 9 | Richard Cook | 26 | 3.82M | 1h55m | same, 10, 9 applied | !52 open |
+
+Every round 1 and round 2 across all four was unanimous ACCEPT-WITH-EDITS, and every cold read still found 10 to 16 live defects. A unanimous round is weak evidence that a page is clean; the cold reader is load-bearing on 9 of 9 measurements.
+
+### Decisions (Julie), all recorded where the pipeline reads them
+
+- **N=1 is the mode.** No multi-candidate batches.
+- **The round 3 adjudicator is dropped** (third sighting counted on Shortridge). A unanimous round 2 ends the rounds and the cold reader is the third read; round 2 dissent still brings five seats back. `round3_mode: adjudication` in `review-policy.ts` restores it. SCHEMA section 7 now defers to the script.
+- **Critic limit plus critic edge is a convention** (SCHEMA 4.11).
+- **Joint cognitive system stays joint credit.** `primary_author` is never rendered.
+- **Chaos engineering is a concept page credited to Casey Rosenthal**, framed as resilience engineering under another name; research questions on #71.
+- **Resilience engineering and security are in scope**, and non-software thinkers are welcome.
+
+### Machinery changed this session
+
+Keep-awake in `sandbox.ts` (!47). Queue holds parked and already-shipped candidates out and matches joint names (!44), and counts main-author credits (!50). `inbound-claims.ts` walks every prose field (!50). Cold reader permanent, applies its findings, runs on every page (!41); antecedent-search check in `fact-ledger.ts` with `antecedent-exempt.txt` (15 legacy pages, may only shrink); first tests (8 now, in CI).
+
+### Open, ranked
+
+1. **Merge !52 and !53.** Julie's calls on !52: the line-of-representation credit moved to `extended` with Woods as main author (no source names Cook as a writer of the 2017 report); dark-debt `primary_author` holds Woods as a placeholder; the Hollnagel edge stays as Hollnagel building on Cook. Camila checked the four claims added after the cold read against the ledger; all sourced.
+2. **Guard against the silent search cap.** At the cap, WebSearch tells the model to continue with what it has, and research then writes from memory while looking sourced (GitHub issue anthropics/claude-code#95815). Research and fact-audit stages should report any such result and stop the candidate.
+3. **Two mechanical checks the cold reader keeps doing by hand:** a warning in `reading-gates.ts` on "named", "introduced", "coined", "first" without an antecedent line (fired on Cook after the checklist item existed), and the duplicate-point scan across a page's fields (five runs running).
+4. **The inclusion Council writes nothing to disk**, four runs running, so issues cannot say which reviewer named whom.
+5. **`inbound-claims.ts` matches on the last word of the display name**, so "Daniel Terhorst-North" misses pages that say "Dan North".
+6. Carried from 2026-09-24: cut what Julie reads per page, scope required reading with a byte ceiling, the run ledger, the distillery council, weekly maintenance in GitLab CI, and the inclusion filter for non-software thinkers.
+
+### Candidates filed this session
+
+Hollnagel #68 (shipped), Shortridge #69 (shipped), Rinehart #70, Rosenthal #71, Cook #72, Reason #73, Rasmussen #74, Deming #75, Conway #76, Dijkstra #77, Chris Read #78, Keunwoo Lee #79, Laforgia #80 (corpus about six months old; likely set aside), Lamport #81, Leveson #82, Sounil Yu #83, Shostack #84, Dykstra #85, Venables #86, Hochstein #87. Blue-green credit question is #67.
+
+### Environment notes, additions
+
+Council reports for runs 6 to 9 are preserved at `~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-run{6,7,8,9}-council-2026092{5,6,8,8}/`. Sandboxes are destroyed after each run; the keep-awake process stops with them. glab merges work through `glab api -X PUT projects/:id/merge_requests/<n>/merge` once the MR's head pipeline is green.
+
+---
+
+## Save Point — 2026-09-25" below; its "Merge order" section is now history. Then the 2026-09-24 block's "Julie's directions" and "Open work, ranked" (1 and 3 done, 6 half done).
 <!-- /RESUME-HEAD -->
 
 

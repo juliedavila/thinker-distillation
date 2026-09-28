@@ -612,7 +612,14 @@ for (let round = 1; round <= 3; round++) {
   // adjudicates AND round 2 left no dissent, which is the escalation the policy also publishes.
   // The `?? true` is the fallback for a policy agent that returned nothing at all, and is the only
   // case where this file decides anything about rounds.
-  const adjudicating = round === 3 && !carriesDissent && due.every((p) => adjudicatesFor(p.slug) ?? true)
+  // Since 2026-09-28 a quiet round 2 ends the rounds: the cold reader in section 5b is the third
+  // read (review-policy.ts, round3_mode 'cold-reader'). Dissent in round 2 still brings all five seats
+  // back. A policy that says 'adjudication' restores the old single pass below.
+  if (round === 3 && !carriesDissent && due.every((p) => (planFor(p.slug)?.round3_mode ?? 'cold-reader') === 'cold-reader')) {
+    log(`Round 3: no transcript-reading pass for ${due.map((p) => p.slug).join(', ')}; round 2 was unanimous, so the cold reader is the third read`)
+    break
+  }
+  const adjudicating = round === 3 && !carriesDissent && due.every((p) => adjudicatesFor(p.slug))
   const seatsThisRound = adjudicating
     ? [0] // 0 is the adjudicator, not a seat
     : round === 1

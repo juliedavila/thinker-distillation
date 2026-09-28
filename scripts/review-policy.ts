@@ -119,7 +119,7 @@ type Plan = {
   seats_by_round: Record<string, number[]>;
   // 'adjudication' means one pass that reads rounds 1 and 2 and calls it, instead of five seats.
   // An empty seat list in seats_by_round is what that looks like.
-  round3_mode?: 'adjudication' | 'full';
+  round3_mode?: 'cold-reader' | 'adjudication' | 'full';
   // The cold reader, on every plan. Never a gate.
   control: {
     when: string;
@@ -151,15 +151,17 @@ const plans: Plan[] = slugs.map((slug) => {
       doctrine_mode: mode,
       rounds: 3,
       transcript_suffix: 'debate',
-      // Round 3 is one adjudication pass, not five seats. Across the four runs recorded in
-      // calibration.md, round 3 ended in unanimous acceptance every time and changed no page,
-      // while rounds 1 and 2 caught something on every run. Julie approved the narrowing on
-      // 2026-09-17: rounds 1 and 2 keep all five seats, and round 3 only gets them back when
-      // round 2 leaves dissent, which is the case the evidence never covered.
+      // Round 3 is the cold reader. From 2026-09-17 it was one adjudicator reading the round 1 and 2
+      // transcripts; on three runs in a row (Terhorst-North, Hollnagel, Shortridge) that adjudicator's
+      // own work introduced, preserved or argued for a defect the cold reader then caught, and Julie
+      // dropped it on 2026-09-28 under the rule she set that morning. When round 2 is unanimous there
+      // is no third transcript-reading pass; the cold reader, which reads no transcript and whose
+      // editor applies what it confirms, is the third read. Round 3 still becomes all five seats
+      // when round 2 leaves dissent. Set round3_mode to 'adjudication' to restore the old pass.
       seats_by_round: { '1': ALL_SEATS, '2': ALL_SEATS, '3': [] },
-      round3_mode: 'adjudication',
+      round3_mode: 'cold-reader',
       control: COLD_READER,
-      reason: 'mode-a pages carry doctrine, so SCHEMA section 7 step 5 requires three rounds. Rounds 1 and 2 are the full Council; round 3 converges.',
+      reason: 'mode-a pages carry doctrine, so SCHEMA section 7 step 5 requires three reads. Rounds 1 and 2 are the full Council; the cold reader is the third.',
       escalation:
         'If ANY verdict in round 2 is below ACCEPT-WITH-EDITS, round 3 reverts to all five seats. ' +
         'Any REVISE or REJECT left after round 3 goes to Julie. Never ship over it.',
@@ -186,7 +188,7 @@ if (json) {
   for (const p of plans) {
     console.log(`${p.slug} (${p.doctrine_mode}): ${p.rounds} round${p.rounds > 1 ? 's' : ''}, transcript suffix -${p.transcript_suffix}`);
     for (const [round, seats] of Object.entries(p.seats_by_round)) {
-      console.log(`  round ${round}: ${seats.length ? `seats ${seats.join(', ')}` : 'one adjudication pass over the rounds 1 and 2 transcripts'}`);
+      console.log(`  round ${round}: ${seats.length ? `seats ${seats.join(', ')}` : (p.round3_mode === 'adjudication' ? 'one adjudication pass over the rounds 1 and 2 transcripts' : 'no reviewer: the cold reader below is the third read')}`);
     }
     {
       console.log(`  cold reader: one unanchored pass, ${p.control.when}`);

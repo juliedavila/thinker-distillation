@@ -18,6 +18,7 @@ type Scenario = {
   round2?: Verdict; // what every seat says in round 2
   cold?: Verdict | null; // the cold reader's verdict; null means it returns nothing
   declined?: string[]; // what the cold reader's editor declines
+  round3?: string; // the policy's round3_mode for mode-a pages
 };
 
 async function run(sc: Scenario) {
@@ -34,7 +35,7 @@ async function run(sc: Scenario) {
     if (label.startsWith('fact-audit:')) return { slug, checked: 10, contradicted: [], unsupported: [], ledger_passes: true, verdict: 'clean', notes: '' };
     if (label.startsWith('inclusion:seat-')) return { seat: Number(label.split('-').pop()), candidates: sc.slugs.map((s) => ({ slug: s, verdict: 'ACCEPT' })) };
     if (label.startsWith('draft:')) return { slug, doctrine_mode: mode, ledger_passes: true, gates_pass: true, angle: 'x', return_edges: [], reconciled_claims: [] };
-    if (label === 'review-policy') return { plans: sc.slugs.map((s) => ({ slug: s, doctrine_mode: mode, rounds: mode === 'mode-a' ? 3 : 1, transcript_suffix: 'debate', round3_mode: mode === 'mode-a' ? 'adjudication' : undefined, seats_by_round: {}, control: { when: 'every page', gates: false } })), rewrite_audit_seats: [3, 5] };
+    if (label === 'review-policy') return { plans: sc.slugs.map((s) => ({ slug: s, doctrine_mode: mode, rounds: mode === 'mode-a' ? 3 : 1, transcript_suffix: 'debate', round3_mode: mode === 'mode-a' ? (sc.round3 ?? 'cold-reader') : undefined, seats_by_round: {}, control: { when: 'every page', gates: false } })), rewrite_audit_seats: [3, 5] };
     if (label === 'staleness-queue') return { due: [], parked_due: [] };
     if (label === 'review-r3:adjudicator') return { seat: 0, candidates: sc.slugs.map((s) => ({ slug: s, verdict: 'ACCEPT-WITH-EDITS', edits: [] })) };
     const m = label.match(/^review-r(\d)(?::seat-(\d))?/);
@@ -56,10 +57,11 @@ async function run(sc: Scenario) {
   return { result, calls, logs, labels: calls.map((c) => c.label) };
 }
 
-test('the cold reader runs on an adjudicated page, after the round 3 editor and before Ship', async () => {
+test('a quiet round 2 ends the rounds: no round 3 reviewer, and the cold reader is the third read', async () => {
   const { labels } = await run({ slugs: ['dave-farley'] });
+  expect(labels.some((l) => l.startsWith('review-r3'))).toBe(false);
   const cold = labels.indexOf('cold-reader');
-  expect(cold).toBeGreaterThan(labels.indexOf('review-r3:adjudicator'));
+  expect(cold).toBeGreaterThan(labels.indexOf('review-r2:seat-5'));
   expect(cold).toBeLessThan(labels.indexOf('ship:dave-farley'));
   expect(labels).toContain('editor-cold:dave-farley');
   expect(labels.indexOf('editor-cold:dave-farley')).toBeLessThan(labels.indexOf('ship:dave-farley'));
@@ -105,4 +107,10 @@ test('a clean cold read runs no editor', async () => {
 test('one candidate is the supported shape: one research, one draft, one ship', async () => {
   const { labels } = await run({ slugs: ['dave-farley'] });
   for (const p of ['research:', 'draft:', 'ship:']) expect(labels.filter((l) => l.startsWith(p)).length).toBe(1);
+});
+
+test('setting round3_mode back to adjudication restores the single round 3 pass', async () => {
+  const { labels } = await run({ slugs: ['dave-farley'], round3: 'adjudication' });
+  expect(labels).toContain('review-r3:adjudicator');
+  expect(labels.indexOf('cold-reader')).toBeGreaterThan(labels.indexOf('review-r3:adjudicator'));
 });

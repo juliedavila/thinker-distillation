@@ -52,6 +52,17 @@ const NO_GIT =
   'Do NOT run any git command and do NOT touch files for any other candidate. Write only under ' +
   '_working/<slug>/ and your own page file. Branches and commits happen later, one at a time.'
 
+// The web-search cap (scripts/search-cap.ts has the history). At the cap WebSearch returns an
+// ordinary result saying the search was not performed and telling the model to carry on with what
+// it has, which is an instruction to write from memory. Research and the fact audit are where that
+// becomes a ledger line that looks sourced, so both stages carry this and both park on it.
+const SEARCH_CAP =
+  'If any WebSearch result says "Web search was not performed" or mentions the web search budget, the ' +
+  'session has hit its search cap. STOP at once. That message tells you to continue with what you have, ' +
+  'and here you must not: write no further fact, set search_cap_hit true, and return. A ledger line ' +
+  'written without a search you actually saw is the failure this pipeline exists to prevent.'
+const SEARCH_CAP_FIELD = { type: 'boolean', description: 'true if any WebSearch result said the search was not performed or named the web search budget' }
+const SEARCH_CAP_CMD = `bun scripts/search-cap.ts --since ${args?.today}${repoPath ? ` --marker ${repoPath}` : ''}`
 
 const today = args?.today
 const candidates = args?.candidates ?? []
@@ -123,9 +134,10 @@ const RESEARCH = {
     fact_count: { type: 'integer' },
     open_questions: { type: 'array', items: { type: 'string' } },
     recommendation: { type: 'string', enum: ['proceed', 'park'] },
+    search_cap_hit: SEARCH_CAP_FIELD,
     reasoning: { type: 'string' },
   },
-  required: ['slug', 'name', 'uptake_passes', 'uptake_evidence', 'corrections', 'frames', 'fact_count', 'recommendation', 'reasoning'],
+  required: ['slug', 'name', 'uptake_passes', 'uptake_evidence', 'corrections', 'frames', 'fact_count', 'recommendation', 'search_cap_hit', 'reasoning'],
 }
 
 const AUDIT = {
@@ -137,9 +149,11 @@ const AUDIT = {
     unsupported: { type: 'array', items: { type: 'object', properties: { id: { type: 'string' }, why: { type: 'string' } }, required: ['id', 'why'] } },
     ledger_passes: { type: 'boolean', description: 'true when bun scripts/fact-ledger.ts <slug> reports no missing URLs or dates' },
     verdict: { type: 'string', enum: ['clean', 'repaired', 'park'] },
+    search_cap_hit: SEARCH_CAP_FIELD,
+    search_cap_scan: { type: 'string', enum: ['clean', 'hit', 'blind'], description: 'exit 0, 1 or 2 of scripts/search-cap.ts' },
     notes: { type: 'string' },
   },
-  required: ['slug', 'checked', 'contradicted', 'unsupported', 'ledger_passes', 'verdict', 'notes'],
+  required: ['slug', 'checked', 'contradicted', 'unsupported', 'ledger_passes', 'verdict', 'search_cap_hit', 'search_cap_scan', 'notes'],
 }
 
 const perCandidate = (props, required) => ({
@@ -351,6 +365,7 @@ const researched = await pipeline(
         `Saxe case and it costs five seats to learn late.\n\n` +
         `Check antecedents before calling anything original. Check the opening of every talk or essay you cite for a ` +
         `credited premise: "Simple Made Easy" opens by quoting Dijkstra, which changed an attribution.\n\n` +
+        `${SEARCH_CAP}\n\n` +
         `Write two files under _working/${c.slug}/:\n` +
         `  sources.md  the prose research record a human reads, with corrections to the issue called out.\n` +
         `  facts.md    the ledger: one top-level bullet per verified fact, "- [S:n] claim | url | ${today}".\n` +
@@ -361,6 +376,10 @@ const researched = await pipeline(
     ),
   (r, c) => {
     if (!r) return null
+    if (r.search_cap_hit) {
+      park(c, 'research', 'the web-search cap was hit during research, so part of the ledger may be written from memory. Rerun in a fresh session.')
+      return null
+    }
     if (r.recommendation === 'park' || !r.uptake_passes) {
       park(c, 'research', `uptake check: ${r.uptake_evidence}`)
       return null
@@ -382,6 +401,10 @@ const researched = await pipeline(
         `Then run \`bun scripts/fact-ledger.ts ${c.slug}\` and report whether the ledger half passes (coverage ` +
         `failures are expected: the page does not exist yet).\n\n` +
         `Set verdict "park" if the thinker's central claim to a page rests on something you could not verify.\n\n` +
+        `${SEARCH_CAP}\n\n` +
+        `Last, run \`${SEARCH_CAP_CMD}\` and set search_cap_scan from its exit code: 0 clean, 1 hit, 2 blind. It reads ` +
+        `this run's transcripts for a refused search by any agent, including the research you are auditing. Paste ` +
+        `its output into notes when it is not clean.\n\n` +
         `${NO_GIT}`,
       { label: `fact-audit:${c.slug}`, phase: 'Research', schema: AUDIT }
     ).then((a) => (a ? { c, research: r, audit: a } : null))
@@ -389,6 +412,12 @@ const researched = await pipeline(
 )
 
 const cleared = researched.filter(Boolean).filter(({ c, audit }) => {
+  if (audit.search_cap_hit || audit.search_cap_scan !== 'clean') {
+    park(c, 'fact audit', audit.search_cap_scan === 'blind'
+      ? 'scripts/search-cap.ts could not find this run\'s transcripts, so nobody knows whether research hit the web-search cap. Check by hand before unparking.'
+      : 'the web-search cap was hit during research or the audit, so part of the ledger may be written from memory. Rerun in a fresh session.')
+    return false
+  }
   if (audit.verdict === 'park') { park(c, 'fact audit', audit.notes); return false }
   if (audit.contradicted.length) { park(c, 'fact audit', `${audit.contradicted.length} claim(s) contradicted by their own sources: ${audit.contradicted.map((x) => x.claim).join('; ')}`); return false }
   return true
@@ -973,6 +1002,9 @@ const report = await agent(
     `finding falls under, because a finding type that recurs is a skill defect to fix upstream, not a ` +
     `thing for the cold reader to keep catching. Any page marked MISSING is a gap: say so. Read ` +
     `\`${COUNCIL}/cold-reader.md\` rather than working from this summary.\n` +
+    `5b. Run \`${SEARCH_CAP_CMD}\`. It checks every agent in this run for a web search the session refused at its cap. ` +
+    `If it exits 1 or 2, put its output first in for_julie: any page whose draft, edit or review ran after a refused ` +
+    `search may carry a claim written from memory, and the merge request should say so.\n` +
     `6. Record the recheck outcomes: ${JSON.stringify(rechecked.map((r) => ({ slug: r.slug, summary: r.verdict?.summary })))}. ` +
     `A recheck that found nothing is a successful recheck and belongs in the log as one.\n\n` +
     `Then write, as your return value, the note Julie reads first. Plain paragraphs. What shipped and where to ` +

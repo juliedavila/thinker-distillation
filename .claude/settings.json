@@ -9,6 +9,7 @@
       "Bash(bun scripts/review-policy.ts:*)",
       "Bash(bun scripts/grounding-pack.ts:*)",
       "Bash(bun scripts/apply-reading.ts:*)",
+      "Bash(bun scripts/search-cap.ts:*)",
       "Bash(glab issue list:*)",
       "Bash(glab issue view:*)",
       "Bash(glab mr list:*)",

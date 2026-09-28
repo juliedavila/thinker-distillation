@@ -1,0 +1,22 @@
+# Reading claims: Kelly Shortridge
+
+One line per sentence of `reading` and `extension`, each with the grounding-pack IDs it rests on.
+
+## reading
+
+- Shortridge weighs a security program as an investment, and the return that counts is what remains after an attack succeeds. [T:thesis]
+- Prevention, she argues, pays only when an attack is stopped, so she moves effort toward "a flexible system that can absorb an attack and reorganize around the threat." [T:thesis] [T:working-line]
+- Security Obstructionism names where part of the budget goes instead: tools, policies and practices that impede progress "for security's (speculative) sake" and, in her account, persist because they yield outputs, control and status. [F:security-obstructionism] [T:thesis]
+- The Ice Cream Cone, her name for a ranking that closely parallels the system-safety order of precedence, puts hazards designed out at the top and administrative controls "last and least effective." [F:ice-cream-cone-hierarchy]
+- Security chaos engineering, a practice she shares with Aaron Rinehart, tests by experiment whether the controls behave as their builders believe. [F:security-chaos-engineering]
+- Her hazard is an opponent, and the premise she states is that "attackers will adapt in response to your mitigations." [L:1]
+
+## extension
+
+- Read beside the cone, SecObs gives a reason a program drifts toward its bottom: a guideline or a review yields countable outputs, and a hazard designed out leaves nothing to point to. [F:security-obstructionism] [F:ice-cream-cone-hierarchy]
+- Her definition also names tools, so obstruction can sit in the guard tier too. [F:security-obstructionism] [F:ice-cream-cone-hierarchy]
+- A sort by tier then asks what share of a program rests on people complying, and which higher-tier controls mainly produce a gate. [F:ice-cream-cone-hierarchy] [F:security-obstructionism] [P:2]
+- The tiers hold per attack path, because an attacker whose route was designed out tries another. [L:1]
+- So the sort has to be rerun on the attacker's next path, which her 2017 decision trees drew. [L:1]
+- That needs engineers who own the design, and it inherits the tree's blind spot, a path nobody pictured. [T:thesis]
+- Her experiments, which compare how a system behaves with what its builders predicted, are aimed at that gap. [F:security-chaos-engineering]

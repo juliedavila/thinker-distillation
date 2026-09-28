@@ -319,6 +319,15 @@ adjacent_thinkers:
       comparison. He reaches it from banking rather than from resilience
       engineering.
     strength: primary
+  - target_slug: kelly-shortridge
+    display_name: Kelly Shortridge
+    edge_type: parallel
+    edge_label: >
+      Shortridge's 2020 primer on resilience in security insists that
+      "Robustness does not equal resilience," close to Woods's point that
+      robustness to known threats is locally useful and globally fragile.
+    strength: secondary
+    render_tier: deep
 
 further_in:
   start_here: >

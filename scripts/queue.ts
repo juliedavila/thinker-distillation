@@ -65,6 +65,10 @@ for (const [slug, d] of pages) {
   for (const e of (d.adjacent_thinkers ?? []) as Array<Record<string, any>>) noteMention(e.target_slug, slug);
   for (const f of (d.named_frames ?? []) as Array<Record<string, any>>) {
     for (const c of (f.co_originators ?? []) as Array<Record<string, any>>) noteMention(c.slug, slug);
+    // A frame credited to someone else names them as surely as a co-originator does. Missing this left
+    // Aaron Rinehart at zero on 2026-09-28 while the Shortridge page filed security chaos engineering
+    // under his name. noteMention already ignores the page's own slug when it has a page.
+    if (f.primary_author && f.primary_author !== slug) noteMention(String(f.primary_author), slug);
   }
 }
 
@@ -110,7 +114,7 @@ const rows: Row[] = issues.map((i) => {
   const slug = toSlug(name);
   const body = String(i.description ?? '');
   // "Surfaced by the Camille Fournier inclusion Council" and similar.
-  const councils = [...new Set([...body.matchAll(/Surfaced by the ([A-Z][^(,.]*?) inclusion Council/g)].map((m) => m[1].trim()))];
+  const councils = [...new Set([...body.matchAll(/(?:Surfaced|Named) by the ([A-Z][^(,.]*?) inclusion (?:Council|reviewers)/g)].map((m) => m[1].trim()))];
   const by = mentions.get(slug);
   return {
     issue: Number(i.iid),

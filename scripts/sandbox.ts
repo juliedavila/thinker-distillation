@@ -21,7 +21,7 @@
 // denies `rm -rf` outright, because the only two permission refusals in the first live run were
 // agents reaching for it. Deleting through code means the path can be checked against the sandbox
 // root first, which a shell glob never is.
-import { existsSync, mkdirSync, readdirSync, rmSync, writeFileSync, chmodSync, statSync, symlinkSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync, chmodSync, statSync, symlinkSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { ROOT } from './lib';
@@ -77,6 +77,32 @@ done
 exit 0
 `;
 
+// Keep the Mac awake for as long as a sandbox exists. On 2026-09-26 the Hollnagel run went quiet
+// for eighteen hours because the laptop went to idle sleep at 6:17 pm, mid-web-lookup, and did not
+// wake until 12:39 the next day; the power log shows both. A run is only as unattended as the
+// machine under it. create starts caffeinate and records its pid inside .git, where no commit can
+// pick it up; destroy and prune stop it. -i blocks idle sleep, -s blocks system sleep on AC power,
+// and -t caps it at 48 hours, so a sandbox nobody tears down cannot hold the machine awake forever.
+// A closed lid on battery still sleeps; no flag overrides that.
+const AWAKE_HOURS = 48;
+const pidFile = (dir: string) => join(dir, '.git', 'caffeinate.pid');
+function keepAwake(dir: string): number | null {
+  if (process.platform !== 'darwin') return null;
+  const p = Bun.spawn(['caffeinate', '-i', '-s', '-t', String(AWAKE_HOURS * 3600)], { stdio: ['ignore', 'ignore', 'ignore'], detached: true });
+  p.unref();
+  writeFileSync(pidFile(dir), String(p.pid));
+  return p.pid;
+}
+function letSleep(dir: string): void {
+  const f = pidFile(dir);
+  if (!existsSync(f)) return;
+  const pid = Number(readFileSync(f, 'utf8').trim());
+  // Only kill the pid if it is still caffeinate. After a reboot the number can belong to anything.
+  if (pid && run(['ps', '-p', String(pid), '-o', 'comm=']).out.trim().endsWith('caffeinate')) {
+    try { process.kill(pid); } catch {}
+  }
+}
+
 const cmd = process.argv[2];
 
 if (cmd === 'create') {
@@ -113,9 +139,12 @@ if (cmd === 'create') {
   const mods = join(source, 'node_modules');
   if (existsSync(mods)) symlinkSync(mods, join(dir, 'node_modules'));
 
+  const awake = keepAwake(dir);
+
   console.log(dir);
   console.error(
     `sandbox ready at ${dir}\n` +
+      (awake ? `  keeping the Mac awake (caffeinate pid ${awake}) until destroy, or ${AWAKE_HOURS}h at most\n` : '') +
       `  reset to origin/main, pushes to main blocked locally and by the server\n` +
       `  the token sits in this clone's .git/config and goes when the sandbox does\n` +
       `  tear down with: bun scripts/sandbox.ts destroy ${dir}`,
@@ -131,6 +160,7 @@ if (cmd === 'create') {
   }
 } else if (cmd === 'destroy') {
   const dir = assertInsideRoot(process.argv[3] ?? '');
+  letSleep(dir);
   rmSync(dir, { recursive: true, force: true });
   console.log(`destroyed ${dir}`);
 } else if (cmd === 'prune') {
@@ -149,6 +179,7 @@ if (cmd === 'create') {
   if (!stale.length) { console.log(`nothing older than ${hours}h`); process.exit(0); }
   for (const p of stale) {
     const age = Math.round((Date.now() - statSync(p).mtimeMs) / 3600_000);
+    letSleep(assertInsideRoot(p));
     rmSync(assertInsideRoot(p), { recursive: true, force: true });
     console.log(`destroyed ${p} (${age}h old, credential gone with it)`);
   }

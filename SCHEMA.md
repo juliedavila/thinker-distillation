@@ -269,6 +269,8 @@ The thinker's neighborhood in the graph, shown as a card grid. Each entry in `ad
 
 Apply the byline test to critics too. If naming a critic would read as Julie picking a fight she has not earned standing for in her own work, demote the edge to secondary or omit it. The question is whether naming the critic is a move the site has standing to make, regardless of whether the critic is right.
 
+**A critic appears twice, by convention.** The `critiques` edge says what the critic argues; a limit drawing on the same critique says what it costs the page. Keep each to its own job and do not restate the argument in the limit. Julie ruled the pair a convention on 2026-09-28, after four pages carried it and a cold reader flagged it as repetition each time.
+
 ### 4.12 Further In
 
 Suggested reading paths, in a field called `further_in`:

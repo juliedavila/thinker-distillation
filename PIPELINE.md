@@ -166,7 +166,7 @@ in this process is written by an agent and never by the orchestrator.
 
 Unattended runs happen in a disposable clone. `bun scripts/sandbox.ts create` makes one under the
 system temp directory, resets it to `origin/main`, symlinks `node_modules` so the build works, and
-prints the path. Pass that path as `args.repoPath` and the whole run happens there. Tear it down
+prints the path. It also keeps the Mac awake until the sandbox is destroyed, or for 48 hours at most, because on 2026-09-26 idle sleep stalled a run for eighteen hours. Pass that path as `args.repoPath` and the whole run happens there. Tear it down
 with `bun scripts/sandbox.ts destroy <path>`, which refuses any path outside the sandbox root,
 including the root itself. Teardown is a guarded function rather than a shell command because
 `.claude/settings.json` denies `rm -rf`, which is what the only two permission refusals in the

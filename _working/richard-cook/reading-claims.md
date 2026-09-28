@@ -1,0 +1,22 @@
+# Reading claims: Richard Cook
+
+One line per sentence of `reading` and `extension`, each with the grounding-pack IDs it rests on. Round 1 and round 2 resolutions applied 2026-09-28 (`_working/_council/2026-09-28/round-1-editor-richard-cook.md`, `round-2-editor-richard-cook.md`); cold reader findings applied 2026-09-28 (`cold-reader-editor-richard-cook.md`).
+
+## reading
+
+- The eighteen propositions of How Complex Systems Fail run from the nature of hazard, through how blame gets assigned, to safety as something people create. [F:how-complex-systems-fail] [T:thesis]
+- In Cook's account a complex system is heavily defended and always carries flaws, so a catastrophe takes several flaws together. [T:thesis] [T:working-line]
+- It follows that naming a single root cause after an accident answers a social need to blame and leaves the mechanism of the failure unexplained. [T:thesis] [F:how-complex-systems-fail] [L:2]
+- The 1998 report he wrote with Woods and Miller gives the alternative: the first story is one of human error, the second one of the systemic vulnerabilities behind it. [F:first-story-second-story]
+- Going solid, written with Rasmussen in 2005, describes efficiency gains stripping the buffers between distant parts of a hospital until they are tightly coupled. [F:going-solid]
+- Cook's 2020 statement of the line of representation, a frame set out in the 2017 STELLA report, is written for software operators, who reach the system only through representations. [F:above-the-line-below-the-line] [T:thesis]
+
+## extension
+
+- Nobody running a system sees it directly, a condition that predates generated code. [P:4] [F:above-the-line-below-the-line]
+- In Cook's 2020 account, operators hold a model built through representations and kept current by continual refreshing. [F:above-the-line-below-the-line]
+- On that reading, the security question this frame adds for generated code is how stale the organization's model of what it runs has become, which reviewing each change does not measure. [P:4] [F:above-the-line-below-the-line]
+- An attacker acting below the line aims to change the system without changing anything its operators see, and refreshing prompted by those representations may never pick that change up. [F:above-the-line-below-the-line]
+- The practical move is to refresh the model on a schedule of its own, from a representation the attacker does not control, such as an out-of-band inventory checked against what operators believe is running. [F:above-the-line-below-the-line] [P:4]
+- The frame sets the ceiling, because the refresh is itself a representation, worth something only if it could show a change the usual representations hide. [F:above-the-line-below-the-line]
+- A review log shows no such change. [F:above-the-line-below-the-line]

@@ -14,8 +14,8 @@ inclusion_rationale: >
   is and how it gets depleted, why systems that look robust on paper
   collapse in practice, and what the *Law of Stretched Systems* predicts
   about every optimization push. The theoretical foundation that Allspaw,
-  Cook, Dekker, and the modern software-ops resilience conversation rests
-  on. Produced the vocabulary Allspaw spent a decade carrying into the
+  Dekker, and the modern software-ops resilience conversation rest on, and
+  that Cook helped write. Produced the vocabulary Allspaw spent a decade carrying into the
   software industry.
 thinker_type: mixed
 doctrine_mode: mode-c
@@ -272,16 +272,16 @@ adjacent_thinkers:
       Partner on cognitive systems engineering from a 1983 paper through
       both *Joint Cognitive Systems* books (2005, 2006). The two-view
       device Hollnagel later used for Safety-I and Safety-II has a
-      precedent he cites in *A Tale of Two Stories* (1998), a paper
-      Woods co-wrote with Cook and Miller.
+      precedent he cites in *A Tale of Two Stories* (1998), a paper by
+      Cook, Woods and Miller.
     strength: primary
   - target_slug: richard-cook
     display_name: Richard Cook
-    edge_type: extends
+    edge_type: parallel
     edge_label: >
-      Long-time Woods collaborator. *How Complex Systems Fail* (Cook,
-      2000) is the most widely-read distillation of the joint
-      Woods/Cook position on systemic failure.
+      Cook condensed the program the two ran together into How Complex
+      Systems Fail (1998), whose propositions were first squeezed onto two
+      pages of card stock, by Allspaw's account.
     strength: primary
   - target_slug: jens-rasmussen
     display_name: Jens Rasmussen
@@ -339,7 +339,6 @@ further_in:
     - '*Joint Cognitive Systems* (with Hollnagel; the deeper theory)'
     - 'CSEL papers at csel.osu.edu'
   if_you_want_breadth: >
-    Read Cook's *How Complex Systems Fail* (eighteen rules, eight
-    pages, the most-cited resilience-engineering piece in software)
-    and Dekker's *Drift Into Failure* as the working pair to Woods.
+    Read Cook's *How Complex Systems Fail* (1998, eighteen short
+    propositions) and Dekker's *Drift Into Failure* as the working pair to Woods.
 ---

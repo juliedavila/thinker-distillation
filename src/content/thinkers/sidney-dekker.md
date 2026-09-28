@@ -322,6 +322,15 @@ adjacent_thinkers:
       underlies *Drift Into Failure*. The intellectual grandfather of
       the resilience-engineering tradition.
     strength: secondary
+  - target_slug: richard-cook
+    display_name: Richard Cook
+    edge_type: parallel
+    edge_label: >
+      Cook argued the same ground from the operating room. His 1998 report with
+      David Woods and Charlotte Miller set a first story of human error against
+      a second story of systemic vulnerabilities, and he shares a byline with
+      Dekker on the 2010 second edition of Behind Human Error.
+    strength: secondary
 
 further_in:
   start_here: >
@@ -332,7 +341,8 @@ further_in:
     - '*Drift Into Failure* (the slow-motion-disaster framing)'
     - '*Safety Differently* (the prescription)'
   if_you_want_breadth: >
-    Read Reason's *Human Error*, Woods's *Behind Human Error*, and
+    Read Reason's *Human Error*, *Behind Human Error* (1994, Woods, Cook
+    and colleagues), and
     Cook's *How Complex Systems Fail* as the foundation Dekker is
     standing on. Allspaw and Nora Jones are the carrying-forward side.
 ---

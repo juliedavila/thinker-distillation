@@ -87,17 +87,22 @@ named_frames:
   - concept_slug: above-the-line-below-the-line
     display_name: Above the line / below the line
     one_line_gloss: >
-      A distinction between the visible artifacts of a system (code,
-      configs, dashboards: *below the line*) and the cognitive work that
-      goes into operating it (mental models, attention, sensemaking, team
-      coordination: *above the line*). Most postmortems only document
-      below; the learning is mostly above.
-    attribution_kind: co-authored
-    primary_author: john-allspaw
+      Operators never touch the software and hardware of a running system
+      directly: it sits below a line of representation, and they work with it
+      through the representations that cross that line, while the learning
+      from an incident lies mostly in the cognitive work above. Outlined in the
+      2017 STELLA report; Allspaw presented it to practitioners that year,
+      and a 2019 post of his credits the report.
+    attribution_kind: popularized
+    primary_author: david-woods
     co_originators:
+      - slug: david-woods
+        role: the STELLA report (2017), prepared under his supervision
       - slug: richard-cook
-        role: co-author
-    source_link: https://www.adaptivecapacitylabs.com
+        role: presented it with Woods in 2017 and wrote its standalone statement (ACM Queue, 2020)
+      - slug: john-allspaw
+        role: carried it to software practitioners from 2017
+    source_link: https://snafucatchers.github.io/
   - concept_slug: dark-debt
     display_name: Dark debt
     one_line_gloss: >
@@ -105,13 +110,13 @@ named_frames:
       unknown until an incident reveals them, and that are not
       discoverable by inspection of any individual component. Different
       from tech debt; closer to "unknown unknowns" as a structural class.
-    attribution_kind: co-authored
-    primary_author: john-allspaw
+      The STELLA report attributes the term to a workshop participant it
+      does not identify.
+    attribution_kind: distributed
+    primary_author: david-woods
     co_originators:
-      - slug: richard-cook
-        role: co-author
-      - slug: laura-maguire
-        role: co-author
+      - slug: john-allspaw
+        role: explained the term to practitioners from 2018, with excerpts from the report
     source_link: https://snafucatchers.github.io/
   - concept_slug: adaptive-capacity
     display_name: Adaptive capacity
@@ -168,8 +173,8 @@ body_of_work:
     year: 2017
     link: https://snafucatchers.github.io/
     editorial_note: >
-      Co-authored with Cook, Maguire and others. Where *dark debt* and
-      *above-the-line / below-the-line* enter the literature. The
+      The workshop report, cited as Woods; its participants are not named.
+      It sets out *dark debt* and *above-the-line / below-the-line*. The
       resilience-engineering / software-ops bridge in working form.
     canonical: true
   - title: Adaptive Capacity Labs blog + talks

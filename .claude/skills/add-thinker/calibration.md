@@ -262,6 +262,7 @@ Eleven of twelve fall under items already on the checklist. Two recur as skill d
 **Three decisions, Julie, 2026-09-28.**
 
 - **The round 3 adjudicator waits for a third sighting.** On Terhorst-North and then Hollnagel, the adjudicator's own edits introduced or removed the record of a defect the cold reader then caught. If the next run repeats it, drop the adjudicator and let the cold reader be round 3, which is one line in `review-policy.ts`. Record the next run's adjudicator edits against this line either way, including when they are clean.
+  - **Resolved 2026-09-28: the third sighting counted, and the adjudicator is gone.** On Shortridge its two edits added no new error, but it kept a clause that stretched its source and ruled three misleading limit headlines acceptable because the body hedged; the cold reader overturned that ruling as its first must-fix. Julie counted it. A quiet round 2 now ends the rounds and the cold reader is the third read (`round3_mode: cold-reader`).
 - **A critic limit that repeats its critic edge is a convention, not a defect** (SCHEMA 4.11). The edge carries the argument, the limit carries its cost. A cold reader should flag only a limit that restates the argument.
 - **Joint cognitive system stays joint credit.** Both pages file it `co-authored` with the other as co-originator, which is what readers see. `primary_author: david-woods` is a filing field, never rendered, and changes only on evidence that ranks the two authors, which nothing found so far does.
 

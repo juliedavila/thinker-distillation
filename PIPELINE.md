@@ -47,8 +47,9 @@ out of the repository rather than out of the workflow script.
 
 **Review** runs the rounds the policy returned, with an editor between them that applies the
 accepted edits, re-authors them in the site's voice, reruns both gates and re-audits its own
-rewrite. Rounds 1 and 2 are the full five seats; round 3 is one adjudication pass unless round 2
-left dissent, in which case the seats come back. Then the cold reader, below, on every page.
+rewrite. Rounds 1 and 2 are the full five seats. If round 2 left dissent, round 3 brings the
+seats back; otherwise there is no round 3 reviewer and the cold reader, below, is the third read.
+The cold reader runs on every page either way.
 
 **Ship** is serial, one candidate at a time, and it is the only phase that touches git or a
 neighbouring page. It applies the return edges, builds, writes the transcript, pushes and opens the
@@ -110,7 +111,8 @@ From the run log, which is the only thing that can answer this.
 | Review round 1 | Real errors on every run without exception | Load-bearing |
 | Review round 2 | One new claim introduced by a rewrite, in the seven-page batch | Load-bearing, but narrowly: it is the rewrite audit |
 | Review round 3, five seats | Four runs, every seat accepted, no page changed | Retired as the default on 2026-09-17 |
-| Review round 3, adjudication | Replaces it: one pass that confirms resolution, audits round 2's edits, checks the ledger | The convergence step, at a fifth of the cost |
+| Review round 3, adjudication | Replaced it: one pass that confirms resolution, audits round 2's edits, checks the ledger | Dropped 2026-09-28: on three runs running its own work introduced, kept or argued for a defect the cold reader caught |
+| Cold reader | Reads the finished page with no transcript; an editor applies what it confirms | Found live defects on every page it has read; since 2026-09-28 it is the third read |
 
 Round 3 had never changed a page. A fourth run of five seats confirming what three already agreed
 on was buying very little, so Julie approved the narrowing on 2026-09-17. Rounds 1 and 2 keep all
@@ -119,7 +121,7 @@ against `briefs/review-adjudicate.md`, and the five seats come back whenever rou
 verdict below ACCEPT-WITH-EDITS, which is the case the evidence never covered. The adjudicator is
 told it is the last read before a merge request and carries what five seats would have carried.
 
-That saves four agents per batch and, on four runs of evidence, changes no outcome.
+That saved four agents per batch. **Superseded 2026-09-28:** the adjudicator is gone and the cold reader is the third read, for the reasons in the table above.
 
 ## Cost
 

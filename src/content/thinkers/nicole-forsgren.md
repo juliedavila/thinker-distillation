@@ -453,6 +453,16 @@ adjacent_thinkers:
       different output of the same years: numbered principles, published as
       posts and dramatized in a novel, with the measures left here.
     strength: primary
+  - target_slug: kelly-shortridge
+    display_name: Kelly Shortridge
+    edge_type: parallel
+    edge_label: >
+      Shortridge takes this delivery research into a security argument.
+      "From Lemons to Peaches" (2022) cites the 2019 State of DevOps report,
+      Forsgren et al., for the finding that deploying on demand is correlated
+      with spending less time remediating security issues.
+    strength: secondary
+    render_tier: deep
 
 further_in:
   start_here: '*Accelerate* (Forsgren, Humble, Kim, 2018). The keystone.'

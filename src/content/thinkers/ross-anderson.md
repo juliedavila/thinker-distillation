@@ -488,6 +488,17 @@ adjacent_thinkers:
       He replied by name three months later, so the exchange is documented in
       both directions, and its target is a paper with fourteen authors.
     strength: secondary
+  - target_slug: kelly-shortridge
+    display_name: Kelly Shortridge
+    edge_type: parallel
+    edge_label: >
+      Shortridge applies the economic argument to the defender's own program.
+      "From Lemons to Peaches" (2022) treats security spending as an
+      investment whose return has to survive a successful attack, and her
+      essay on security obstructionism locates an incentive problem inside
+      the security team itself: controls that, in her account, persist for
+      the outputs, control and status they produce.
+    strength: secondary
 
 further_in:
   start_here: '"Why Cryptosystems Fail" (CCS, 1993). Thirteen pages, and the whole method is in them.'

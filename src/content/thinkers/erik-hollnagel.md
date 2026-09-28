@@ -400,6 +400,16 @@ adjacent_thinkers:
       Applies Safety-II to software availability, arguing that the normal
       work people do every day is what creates reliability.
     strength: secondary
+  - target_slug: kelly-shortridge
+    display_name: Kelly Shortridge
+    edge_type: parallel
+    edge_label: >
+      Shortridge carries the gap between work as imagined and work as
+      practiced, her wording, into software security. In her summary of the
+      2023 book, attackers "search for our 'this will always be true'
+      assumptions and hunt for loopholes."
+    strength: secondary
+    render_tier: deep
 
 further_in:
   start_here: '"From Safety-I to Safety-II: A White Paper" (EUROCONTROL, 2013, with Leonhardt, Licu and Shorrock), free and short.'

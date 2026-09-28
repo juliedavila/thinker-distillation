@@ -395,6 +395,16 @@ adjacent_thinkers:
       reachable by users, which is the split between deploying and releasing
       that his book states and a feature flag exercises.
     strength: primary
+  - target_slug: kelly-shortridge
+    display_name: Kelly Shortridge
+    edge_type: parallel
+    edge_label: >
+      Where Majors asks whether telemetry can answer a question nobody
+      predicted, Shortridge asks whether a security control does what its
+      builders believe, and settles it by experiment. Security chaos
+      engineering injects the adverse condition on purpose to find out.
+    strength: secondary
+    render_tier: deep
 
 further_in:
   start_here: '"Observability is a Many-Splendored Definition" (2020).'

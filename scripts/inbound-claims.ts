@@ -87,16 +87,32 @@ out.push('');
 // 3. Prose mentions. The Forsgren case turned on what a page said in prose, not on an edge:
 // Beck's page asserted his piece never names her. A name in prose is a claim about this person
 // even when no edge carries it.
-const PROSE_FIELDS = ['thesis', 'working_line', 'reading', 'extension', 'tagline', 'take', 'still_load_bearing_despite'];
+// Every text field, found by walking the page, rather than a hand-kept list of field names. The list
+// this replaced named 'take' where the field is 'thirty_second_take' and left out background,
+// why_they_matter_as_a_thinker and further_in, so on 2026-09-28 the script reported that nothing on
+// the site named Kelly Shortridge while the Hollnagel page recommended her book. A list of fields
+// goes stale as the schema grows; the page itself cannot. Limits, frames and edges are reported
+// separately below, and structural keys (slugs, links, names) are not prose.
+const HANDLED = new Set(['limits', 'named_frames', 'adjacent_thinkers']);
+const STRUCTURAL = new Set(['slug', 'target_slug', 'concept_slug', 'primary_author', 'link', 'url', 'source_link', 'name', 'display_name']);
+const proseFields = (v: unknown, path: string, out: Array<[string, string]>) => {
+  if (typeof v === 'string') out.push([path, v]);
+  else if (Array.isArray(v)) v.forEach((x, i) => proseFields(x, `${path}[${i}]`, out));
+  else if (v && typeof v === 'object')
+    for (const [k, x] of Object.entries(v)) if (!STRUCTURAL.has(k)) proseFields(x, path ? `${path}.${k}` : k, out);
+  return out;
+};
 const needle = display.split(/\s+/).pop() ?? display; // surname, which is how the pages refer to people
 const mentions: string[] = [];
 
 const scan = (d: Doc, kind: string) => {
   if (d.slug === slug) return;
   const hits: string[] = [];
-  for (const f of PROSE_FIELDS) {
-    const v = oneLine(d[f]);
-    if (v && new RegExp(`\\b${needle}\\b`).test(v)) hits.push(`\`${f}\``);
+  for (const [k, v] of Object.entries(d)) {
+    if (HANDLED.has(k) || STRUCTURAL.has(k)) continue;
+    for (const [path, text] of proseFields(v, k, [])) {
+      if (new RegExp(`\\b${needle}\\b`).test(oneLine(text))) hits.push(`\`${path}\``);
+    }
   }
   for (const l of d.limits ?? []) {
     const v = `${oneLine(l.headline)} ${oneLine(l.elaboration)}`;

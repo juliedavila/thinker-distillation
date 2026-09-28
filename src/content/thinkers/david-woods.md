@@ -9,7 +9,7 @@ primary_domains:
   - safety-science
 status: alive-active
 inclusion_rationale: >
-  Founded the field of resilience engineering. Forty years of writing on
+  Co-founded the field of resilience engineering. Forty years of writing on
   how complex systems actually cope with surprise, what *adaptive capacity*
   is and how it gets depleted, why systems that look robust on paper
   collapse in practice, and what the *Law of Stretched Systems* predicts
@@ -39,7 +39,7 @@ thirty_second_take: >
 background: >
   American cognitive systems engineer. Professor Emeritus at Ohio State
   University; founder and former director of the Cognitive Systems
-  Engineering Laboratory (CSEL). Built the field of resilience
+  Engineering Laboratory (CSEL). Helped build the field of resilience
   engineering through forty years of writing, much of it co-authored
   with Erik Hollnagel, Richard Cook, and Sidney Dekker. President of the
   Resilience Engineering Association. The intellectual lineage runs
@@ -269,10 +269,11 @@ adjacent_thinkers:
     display_name: Erik Hollnagel
     edge_type: parallel
     edge_label: >
-      Co-author of *Joint Cognitive Systems* and resilience-engineering
-      co-founder. Hollnagel's *Safety-I vs Safety-II* distinction
-      puts into practice the insight Woods's graceful-extensibility
-      frame names.
+      Partner on cognitive systems engineering from a 1983 paper through
+      both *Joint Cognitive Systems* books (2005, 2006). The two-view
+      device Hollnagel later used for Safety-I and Safety-II has a
+      precedent he cites in *A Tale of Two Stories* (1998), a paper
+      Woods co-wrote with Cook and Miller.
     strength: primary
   - target_slug: richard-cook
     display_name: Richard Cook

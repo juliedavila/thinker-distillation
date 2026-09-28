@@ -128,7 +128,7 @@ named_frames:
     primary_author: erik-hollnagel
     co_originators:
       - slug: erik-hollnagel
-        role: original in safety-science literature
+        role: popularized the English pair in resilience engineering and safety management; the distinction began in French ergonomics
       - slug: sidney-dekker
         role: carried into practitioner vocabulary
       - slug: john-allspaw
@@ -308,10 +308,12 @@ adjacent_thinkers:
     display_name: Erik Hollnagel
     edge_type: parallel
     edge_label: >
-      Co-founder of resilience engineering with Woods. *Safety-I vs
-      Safety-II* is the closest theoretical parallel to Dekker's
-      *Safety Differently*.
-    strength: secondary
+      Co-editor of the 2006 resilience-engineering anthology, which
+      carried a chapter by Dekker. Hollnagel's Safety-II runs parallel
+      to Dekker's *Safety Differently*: one studies how everyday work
+      goes right, the other treats the people doing it as a source of
+      insight.
+    strength: primary
   - target_slug: jens-rasmussen
     display_name: Jens Rasmussen
     edge_type: antecedent

@@ -93,10 +93,12 @@ named_frames:
       *willful violations* but not for honest mistakes or system-induced
       failures. The cultural precondition for blameless investigation.
     attribution_kind: extended
-    primary_author: sidney-dekker
+    primary_author: james-reason
     co_originators:
       - slug: james-reason
-        role: original 1997 framing
+        role: 1997 framing, carried by his 1998 paper
+      - slug: david-marx
+        role: work on where the disciplinary line must be drawn (1997), credited by Reason
     source_link: https://sidneydekker.com/just-culture/
   - concept_slug: drift-into-failure
     display_name: Drift into failure
@@ -341,8 +343,8 @@ further_in:
     - '*Drift Into Failure* (the slow-motion-disaster framing)'
     - '*Safety Differently* (the prescription)'
   if_you_want_breadth: >
-    Read Reason's *Human Error*, *Behind Human Error* (1994, Woods, Cook
-    and colleagues), and
+    Read Reason's *Human Error*, *Behind Human Error* (1994, Woods,
+    Johannesen, Cook and Sarter), and
     Cook's *How Complex Systems Fail* as the foundation Dekker is
     standing on. Allspaw and Nora Jones are the carrying-forward side.
 ---

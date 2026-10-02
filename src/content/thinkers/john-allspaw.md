@@ -81,8 +81,6 @@ named_frames:
     co_originators:
       - slug: sidney-dekker
         role: just-culture predecessor
-      - slug: james-reason
-        role: human-error/Swiss-cheese predecessor
     source_link: https://www.etsy.com/codeascraft/blameless-postmortems/
   - concept_slug: above-the-line-below-the-line
     display_name: Above the line / below the line

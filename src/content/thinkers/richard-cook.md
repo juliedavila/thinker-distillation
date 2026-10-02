@@ -178,14 +178,15 @@ named_frames:
     one_line_gloss: >
       Practitioners at the sharp end work directly with the hazardous process;
       people at the blunt end shape the resources and constraints they work
-      under. The terms are James Reason's, and Cook and Woods credit them to
-      him in their 1994 chapter "Operating at the Sharp End", which applies
-      them to medicine.
+      under. "Sharp end" is James Reason's term, which Cook and Woods credit
+      to him in their 1994 chapter "Operating at the Sharp End"; they present
+      "blunt end" as continuing his analogy, and the chapter applies the pair
+      to medicine.
     attribution_kind: extended
     primary_author: james-reason
     co_originators:
       - slug: david-woods
-        role: co-author of the 1994 chapter that applies the pair to medicine
+        role: co-author of the 1994 chapter that applies the pair to medicine and continues Reason's analogy to the blunt end
     source_link: https://securityandtechnology.org/wp-content/uploads/2020/07/operatingatthesharp-2.pdf
     render_tier: deep
   - concept_slug: distancing-through-differencing
@@ -228,8 +229,9 @@ body_of_work:
     link: https://securityandtechnology.org/wp-content/uploads/2020/07/operatingatthesharp-2.pdf
     editorial_note: >
       With David Woods, a chapter in Human Error in Medicine. The longer
-      argument the propositions later condense, with Reason's sharp end and
-      blunt end credited to him on its first page.
+      argument the propositions later condense, with Reason's sharp end
+      credited to him on its first page and the blunt end offered as a
+      continuation of his analogy.
   - title: "'Going solid': a model of system dynamics and consequences for patient safety"
     type: paper
     year: 2005
@@ -377,10 +379,10 @@ adjacent_thinkers:
     display_name: James Reason
     edge_type: antecedent
     edge_label: >
-      The sharp end and the blunt end are his terms, and Cook and Woods credit
-      them to Reason (1990) in their 1994 chapter. The propositions'
-      "latent failures" is his vocabulary too, and a 2005 Cook figure is
-      credited "modified from J. Reason, 1990."
+      "Sharp end" is his term, which Cook and Woods credit to Reason (1990) in
+      their 1994 chapter while presenting the blunt end as their continuation
+      of his analogy. The propositions borrow his "latent failures", and a
+      2005 figure by Cook is credited as modified from Reason's 1990 work.
     strength: primary
   - target_slug: jens-rasmussen
     display_name: Jens Rasmussen

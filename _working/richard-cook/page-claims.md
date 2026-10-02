@@ -24,20 +24,20 @@ the software clause of `limits[2]`.
 - named_frames[2].co_originators[0] [S:30] [S:31]
 - named_frames[3].attribution [S:25] [S:26]
 - named_frames[3].co_originators[0] [S:25]
-- named_frames[4].attribution [S:41] [S:21] [S:23]
-- named_frames[4].co_originators[0] [S:41] [S:23]
+- named_frames[4].attribution [S:41] [S:51] [S:21] [S:23]
+- named_frames[4].co_originators[0] [S:41] [S:51] [S:23]
 - named_frames[5].attribution [S:27] [S:44] [S:56]
 - named_frames[5].co_originators[0] [S:27] [S:44]
 
 - body_of_work[0] [S:9] [S:12]
 - body_of_work[1] [S:19] [S:20]
-- body_of_work[2] [S:23] [S:41]
+- body_of_work[2] [S:23] [S:41] [S:51]
 - body_of_work[3] [S:25]
 - body_of_work[4] [S:31]
 - body_of_work[5] [S:15]
 - body_of_work[6] [S:28]
 
-- adjacent_thinkers[4] [S:41] [S:21] [S:13] [S:45] [S:43] [S:52] (the quoted "latent failures" is proposition 4's own wording, [S:52])
+- adjacent_thinkers[4] [S:41] [S:51] [S:21] [S:13] [S:45] [S:43] [S:52] (the quoted "latent failures" is proposition 4's own wording, [S:52])
 - adjacent_thinkers[5] [S:25]
 
 ## Prose fields (not required by the ledger)
@@ -51,7 +51,7 @@ the software clause of `limits[2]`.
 - named_frames[1].one_line_gloss [S:19] [S:20]
 - named_frames[2].one_line_gloss [S:29] [S:31] [S:30]
 - named_frames[3].one_line_gloss [S:25] [S:26]
-- named_frames[4].one_line_gloss [S:41] [S:23]
+- named_frames[4].one_line_gloss [S:41] [S:51] [S:23]
 - named_frames[5].one_line_gloss [S:44] [S:27] (source_link: the publisher page, [S:56])
 - body_of_work editorial notes: [S:9] (Revision D), [S:31] (reprint and closing claim), [S:15] [S:46] (length; the conference's own description of itself), [S:25] (hospital cases), [S:28], [S:41] [S:51] (both credits on the chapter's first page, p. 255)
 - limits[0] [S:11] [S:53] (reading list and no credited premise, [S:11]; the one footnote and its outside sources, [S:53])

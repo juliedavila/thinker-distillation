@@ -410,6 +410,16 @@ adjacent_thinkers:
       assumptions and hunt for loopholes."
     strength: secondary
     render_tier: deep
+  - target_slug: james-reason
+    display_name: James Reason
+    edge_type: parallel
+    edge_label: >
+      Reason's layered-defences model, drawn with John Wreathall, is the
+      subject of a 2006 Eurocontrol note by Reason, Hollnagel and Paries,
+      which sets out how the model changed and the criticism it had drawn by
+      then.
+    strength: secondary
+    render_tier: deep
 
 further_in:
   start_here: '"From Safety-I to Safety-II: A White Paper" (EUROCONTROL, 2013, with Leonhardt, Licu and Shorrock), free and short.'

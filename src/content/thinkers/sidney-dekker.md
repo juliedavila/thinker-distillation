@@ -96,7 +96,9 @@ named_frames:
     primary_author: james-reason
     co_originators:
       - slug: james-reason
-        role: original 1997 framing
+        role: 1997 framing, carried by his 1998 paper
+      - slug: david-marx
+        role: work on where the disciplinary line must be drawn (1997), credited by Reason
     source_link: https://sidneydekker.com/just-culture/
   - concept_slug: drift-into-failure
     display_name: Drift into failure

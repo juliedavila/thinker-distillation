@@ -25,13 +25,13 @@ inclusion_rationale: >
   established in security practice. Three cross-page decisions travel with
   this page, all applied to the neighbouring pages in the merge request
   that ships it. Just
-  culture is filed `original` with `primary_author: james-reason`, dated by
-  the 1997 book and the 1998 paper; the antecedent search found no earlier
-  holder but could not reach Marx's 1997 pieces, so the term is not called
-  his coinage anywhere on the page. `sidney-dekker.md` filed the same slug
+  culture is filed `distributed` with `primary_author: james-reason` and
+  Marx and Johnston as co-originators, dated by the 1997 book and the 1998
+  paper; the antecedent search found no earlier holder but could not reach
+  Marx's 1997 pieces, so the term is not called his coinage anywhere on the
+  page, and Julie chose `distributed` over `original` for that reason. `sidney-dekker.md` filed the same slug
   with `primary_author: sidney-dekker` until that merge request, which
-  changes that holder to match and keeps Dekker `extended`. That choice is Julie's, at the
-  top of the merge request. Cook's sharp-end gloss said both terms were
+  changes that holder to match and keeps Dekker `extended`. Cook's sharp-end gloss said both terms were
   Reason's, where Cook and Woods present "blunt end" as continuing his
   analogy, and the merge request corrects it. Allspaw's blameless-postmortem frame
   credited Reason as a predecessor on a post that never names him, and the
@@ -59,7 +59,7 @@ thirty_second_take: >
   picture, drawn with the engineer John Wreathall and labelled "Swiss cheese"
   by someone else, was adopted by ICAO's human factors group in the early
   1990s, by the account of a report he co-wrote, and spread into patient
-  safety. In 1997 and 1998 he argued that an organisation learns about its
+  safety. In 1998 he argued that an organisation learns about its
   hazards only if people report them, and that reporting rests on a just
   culture.
 
@@ -157,7 +157,7 @@ named_frames:
       blanket "no blame" amnesty, and inside the argument he credits David
       Marx for work on where the disciplinary line must be drawn and Neil
       Johnston for the substitution test.
-    attribution_kind: original
+    attribution_kind: distributed
     primary_author: james-reason
     co_originators:
       - slug: david-marx

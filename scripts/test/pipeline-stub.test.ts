@@ -139,3 +139,13 @@ test('research and the fact audit both carry the stop instruction, and the audit
   for (const l of ['research:dave-farley', 'fact-audit:dave-farley']) expect(prompt(l)).toContain('Web search was not performed');
   for (const l of ['fact-audit:dave-farley', 'close-the-loop']) expect(prompt(l)).toContain('bun scripts/search-cap.ts --since 2026-09-25');
 });
+
+test('prompts follow SKILL.md: no git checkout, neighbours only at Ship, and the stage labels get set', async () => {
+  const { calls } = await run({ slugs: ['dave-farley'] });
+  const prompt = (l: string) => calls.find((c) => c.label === l)!.prompt;
+  for (const c of calls) expect(c.prompt).not.toContain('git checkout main');
+  expect(prompt('ship:dave-farley')).toContain('git switch -c candidate/dave-farley');
+  expect(prompt('editor-cold:dave-farley')).toContain('Do not edit any other page');
+  expect(prompt('fact-audit:dave-farley')).toContain('--label camila:in-council');
+  expect(prompt('draft:dave-farley')).toContain('--label camila:accepted');
+});

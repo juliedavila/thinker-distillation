@@ -2,20 +2,43 @@
 project: thinker-distillation
 effort: E3
 phase: in-progress
-progress: 23 live pages, Cook in review; tracked in GitLab MRs and issues
-iteration: iter-23-serial-runs-cold-reader-round-3-2026-09-28
+progress: 26 live pages, James Reason merged 2026-10-02; nothing open
+iteration: iter-24-search-cap-guard-and-reason-2026-10-02
 mode: project
 started: 2026-05-25
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 <!-- RESUME-HEAD v1 -->
-> **Status** · 2026-09-28 (later) — the web-search cap guard is built: !56, CI green, waiting on Julie. Its first scan found 21 searches refused on 2026-09-22/24 in the agents that wrote Humble, Cunningham, Alexander, Gene Kim and Karpathy, all live; audit filed as #88. Still open from earlier: !52 Richard Cook (page), !53 its calibration notes.
-> **Next** · Julie merges !56 (the fact audit calls the new script, so it must be on main before a run), then !52 and !53. Then Camila runs the next thinker; recommended James Reason #73, who gives the roster the Swiss-cheese position the resilience pages argue against. #88 can run alongside.
+> **Status** · 2026-10-02 — main at `052bc30`, 26 live pages, no merge request open. The web-search cap guard (!56) is live and ran clean on its first run; James Reason (!58, !59) and three workflow prompt fixes (!60) are merged; the cap audit (#88) closed with one fix (!57).
+> **Next** · Camila runs the next thinker once Julie says go: Jens Rasmussen #74, named on four pages, top of the queue.
 > **Blocked** · Nothing.
-> **Resume** · Read "## Save Point — 2026-09-28" below, then PIPELINE.md's "The cold reader" section.
+> **Resume** · Read "## Save Point — 2026-10-02" below, then /Users/juliedavila/Camila/thinker-distillation/PIPELINE.md "The web-search cap" and "The cold reader".
 <!-- /RESUME-HEAD -->
 
+
+## Save Point — 2026-10-02, the search-cap guard and James Reason
+
+> Current state. The 2026-09-28 block below is history, apart from its open list, re-ranked here.
+
+### Done
+
+- **Search-cap guard (!56).** At the cap WebSearch returns an ordinary result saying the search was not performed and to carry on. Three layers: research and fact audit report it and park; `scripts/search-cap.ts` reads the run's own `wf_<id>` transcripts (exit 1 hit, 2 blind, both park) from the fact audit and again at Report; and a global hook, `~/.claude/hooks/SearchCapGuard.hook.ts` (committed in `~/.claude` as `5fe4f9e`), blocks on the message in every session. Cap raised to 1,000.
+- **Its first scan found 21 refused searches** on 2026-09-22 and 09-24 in agents behind Humble, Cunningham, Alexander, Gene Kim and Karpathy. Audit #88: nothing wrong, one unsourced sentence on Humble, fixed in !57. Reports in `_working/<slug>/cap-audit-2026-10.md` (local).
+- **Run 10, James Reason.** 26 agents, 3.9M tokens, about 4h20m. Inclusion 5-0; rounds 1 and 2 unanimous ACCEPT-WITH-EDITS; cold reader 14 findings plus 4 on the plan, all applied in part. Search-cap scan clean. Julie's calls: just culture filed `distributed` (Marx and Johnston co-originators; Dekker's credit narrowed and gains Marx); reporting argument dated 1998; neither declined cold-reader suggestion added (the per-task grant clause presumed grants are decided per action, which a broader workflow need not do). New candidates Perrow #89, Marx #90.
+- **Workflow prompts follow SKILL.md (!60):** `git switch` at Ship, the cold editor routes neighbour fixes to the plan, and the in-council and accepted labels are set.
+- Sandboxes: run-1 destroyed, two abandoned 2026-09-22 clones pruned.
+
+### Open, ranked
+
+1. **Next run: Jens Rasmussen #74** (pull 4).
+2. The duplicate-point scan (fired on six of the last seven cold reads) and the firstness-verb warning in `reading-gates.ts`.
+3. The inclusion Council writes nothing to disk (five runs); queue.ts shows Rasmussen at 0 Councils despite ten namings.
+4. `inbound-claims.ts` matches on the last word of a display name.
+5. Run 10 took twice as long as runs 6 to 9; worth reading the per-stage times before run 11.
+6. Carried: cut what Julie reads per page, required reading with a byte ceiling, the run ledger, the distillery council, weekly maintenance in CI, the non-software inclusion filter.
+
+---
 
 ## Save Point — 2026-09-28, serial runs working and the cold reader is round 3
 
@@ -2207,3 +2230,7 @@ During this session the prompt classifier occasionally timed out / failed JSON p
 > reconciliation. Kept verbatim; nothing is lost.
 
 - **Thinker Distillation Site** — Active. LIVE at `https://thinker-distillery-97a9ca.gitlab.io/` (private GitLab Pages). 10 thinkers, 3 concepts (+Majors in !11). Process: repo skill `.claude/skills/add-thinker/`; `mode-a` pages need all three review rounds. **Next (Julie, 2026-09-17): design the automation** so she blocks only at merge approval. Also hers: merge !11, the concept reading slot, two About slots. Resume: 2026-09-17 Save Point, `~/Camila/thinker-distillation/ISA.md`. Norms: [[feedback_thinker_inclusion_pushback]] · [[feedback_distillery_prose_voice]].
+
+## Superseded PROJECTS.md entry (2026-10-02)
+
+- **Thinker Distillation Site** — Active, LIVE at <https://thinker-distillery-97a9ca.gitlab.io/> (private GitLab Pages). **17 live pages** as of 2026-09-25, build clean, CI green; 31 open candidates, ledger coverage 8/17. **Three MRs open, all waiting on Julie:** !36 Alexander (control says REVISE), !37 Gene Kim (decide the DORA co-founding claim — unsourceable after two audits, published on two other pages), !38 Karpathy (REVISE). Nothing else ships first. **Auto-merge is decided against** (2026-09-25: "the human gate is a feature of the product, not scaffolding waiting to be removed") — this reverses the old "design the automation" item; do not re-raise. Process: repo skill `.claude/skills/add-thinker/`. System of record: `~/Camila/thinker-distillation/ISA.md` — read its RESUME HEAD. Norms: [[feedback_thinker_inclusion_pushback]] · [[feedback_distillery_prose_voice]].

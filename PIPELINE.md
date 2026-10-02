@@ -319,6 +319,20 @@ A finding type the cold reader keeps catching is a defect in the skill, not a jo
 
 `scripts/test/pipeline-stub.test.ts` runs the workflow against stub agents and checks the cold reader's placement, that it runs on all three round shapes, that a REVISE reaches the merge request without parking the page, and that a missing cold read is named.
 
+## The web-search cap
+
+Claude Code caps WebSearch per session, and the budget is shared by the main session and every agent it runs. At the cap the tool does not fail. It returns an ordinary result saying "Web search was not performed" and tells the model to continue with what it has gathered, so research keeps writing, from memory, into a ledger that looks sourced.
+
+This went unnoticed for six days. On 2026-09-22 two runs had 21 searches refused, in the research, fact-audit and draft agents for Karpathy, Alexander, Gene Kim, Humble and Cunningham, and in research for Goedecke. All five pages shipped. The four serial runs of 2026-09-28 reached the old cap of 200 between them without any one run coming close, which is how it was found.
+
+Three layers now, from weakest to strongest:
+
+- **The agent's own report.** Research and the fact audit are told to stop at the message and return `search_cap_hit: true`, and either one parks the candidate. This depends on the model noticing a message that tells it to carry on.
+- **A global hook**, `~/.claude/hooks/SearchCapGuard.hook.ts`, blocks on the message with a reason that overrides it. It covers every session, not only this pipeline.
+- **The transcripts.** `bun scripts/search-cap.ts --since <day> --marker <sandbox path>` reads every agent transcript of the run and exits 1 on a refused search. The fact audit runs it and a non-zero exit parks the candidate; the Report stage runs it again over the whole run and puts any hit first in the note to Julie. Exit 2 means it found no transcript for the run, and parks as well: a check that could not see is not a clean result.
+
+The cap itself is `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` in `~/.claude/settings.json`, 1,000 since 2026-09-28. It is read at session start. `scripts/test/search-cap.test.ts` holds the message verbatim; if Claude Code rewords it, the patterns in `search-cap.ts` and the hook need the new wording.
+
 ## The Council record
 
 Each seat writes its own report to `_working/_council/<today>/round-N-seat-M.md` before returning,

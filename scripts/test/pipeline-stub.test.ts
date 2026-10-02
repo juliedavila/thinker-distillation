@@ -19,6 +19,8 @@ type Scenario = {
   cold?: Verdict | null; // the cold reader's verdict; null means it returns nothing
   declined?: string[]; // what the cold reader's editor declines
   round3?: string; // the policy's round3_mode for mode-a pages
+  researchCap?: boolean; // research reports the web-search cap
+  scan?: 'clean' | 'hit' | 'blind'; // what scripts/search-cap.ts told the fact audit
 };
 
 async function run(sc: Scenario) {
@@ -31,8 +33,8 @@ async function run(sc: Scenario) {
   });
   const respond = (label: string): unknown => {
     const slug = label.split(':')[1];
-    if (label.startsWith('research:')) return { slug, name: slug, uptake_passes: true, uptake_evidence: 'x', corrections: [], frames: [{ name: 'f', attribution_kind: 'original' }], fact_count: 10, recommendation: 'proceed', reasoning: 'x' };
-    if (label.startsWith('fact-audit:')) return { slug, checked: 10, contradicted: [], unsupported: [], ledger_passes: true, verdict: 'clean', notes: '' };
+    if (label.startsWith('research:')) return { slug, name: slug, uptake_passes: true, uptake_evidence: 'x', corrections: [], frames: [{ name: 'f', attribution_kind: 'original' }], fact_count: 10, recommendation: 'proceed', search_cap_hit: sc.researchCap ?? false, reasoning: 'x' };
+    if (label.startsWith('fact-audit:')) return { slug, checked: 10, contradicted: [], unsupported: [], ledger_passes: true, verdict: 'clean', search_cap_hit: false, search_cap_scan: sc.scan ?? 'clean', notes: '' };
     if (label.startsWith('inclusion:seat-')) return { seat: Number(label.split('-').pop()), candidates: sc.slugs.map((s) => ({ slug: s, verdict: 'ACCEPT' })) };
     if (label.startsWith('draft:')) return { slug, doctrine_mode: mode, ledger_passes: true, gates_pass: true, angle: 'x', return_edges: [], reconciled_claims: [] };
     if (label === 'review-policy') return { plans: sc.slugs.map((s) => ({ slug: s, doctrine_mode: mode, rounds: mode === 'mode-a' ? 3 : 1, transcript_suffix: 'debate', round3_mode: mode === 'mode-a' ? (sc.round3 ?? 'cold-reader') : undefined, seats_by_round: {}, control: { when: 'every page', gates: false } })), rewrite_audit_seats: [3, 5] };
@@ -113,4 +115,27 @@ test('setting round3_mode back to adjudication restores the single round 3 pass'
   const { labels } = await run({ slugs: ['dave-farley'], round3: 'adjudication' });
   expect(labels).toContain('review-r3:adjudicator');
   expect(labels.indexOf('cold-reader')).toBeGreaterThan(labels.indexOf('review-r3:adjudicator'));
+});
+
+test('research that hit the web-search cap parks before the fact audit spends anything', async () => {
+  const { result, labels } = await run({ slugs: ['dave-farley'], researchCap: true });
+  expect(labels).toEqual(['research:dave-farley']);
+  expect(result.parked[0]).toMatchObject({ stage: 'research' });
+  expect(result.parked[0].why).toContain('web-search cap');
+});
+
+test('a refused search anywhere in the run parks at the fact audit, and so does a scan that cannot see', async () => {
+  for (const scan of ['hit', 'blind'] as const) {
+    const { result, labels } = await run({ slugs: ['dave-farley'], scan });
+    expect(labels.some((l) => l.startsWith('inclusion:'))).toBe(false);
+    expect(result.parked[0]).toMatchObject({ stage: 'fact audit' });
+    expect(result.parked[0].why).toContain(scan === 'blind' ? 'could not find' : 'web-search cap');
+  }
+});
+
+test('research and the fact audit both carry the stop instruction, and the audit and report both run the scan', async () => {
+  const { calls } = await run({ slugs: ['dave-farley'] });
+  const prompt = (l: string) => calls.find((c) => c.label === l)!.prompt;
+  for (const l of ['research:dave-farley', 'fact-audit:dave-farley']) expect(prompt(l)).toContain('Web search was not performed');
+  for (const l of ['fact-audit:dave-farley', 'close-the-loop']) expect(prompt(l)).toContain('bun scripts/search-cap.ts --since 2026-09-25');
 });

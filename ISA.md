@@ -10,8 +10,8 @@ updated: 2026-09-28
 ---
 
 <!-- RESUME-HEAD v1 -->
-> **Status** · 2026-09-28 — main at `3d75314`, 24 live pages once !52 merges. Serial one-thinker runs are the working mode: Dan North, Hollnagel, Shortridge and Cook shipped or are in review this session, each in about 2 hours of running. Open and waiting on Julie: !52 Richard Cook (page), !53 its calibration notes (either order).
-> **Next** · Restart the session first: the web-search cap is now 1,000 in `~/.claude/settings.json` and only a new session picks it up. Then the next run. By graph pull: Jens Rasmussen #74 or James Reason #73 (3 pages each). By hand: Leslie Lamport #81 (formal methods, a position nobody holds) or Aaron Rinehart #70.
+> **Status** · 2026-09-28 (later) — the web-search cap guard is built: !56, CI green, waiting on Julie. Its first scan found 21 searches refused on 2026-09-22/24 in the agents that wrote Humble, Cunningham, Alexander, Gene Kim and Karpathy, all live; audit filed as #88. Still open from earlier: !52 Richard Cook (page), !53 its calibration notes.
+> **Next** · Julie merges !56 (the fact audit calls the new script, so it must be on main before a run), then !52 and !53. Then Camila runs the next thinker; recommended James Reason #73, who gives the roster the Swiss-cheese position the resilience pages argue against. #88 can run alongside.
 > **Blocked** · Nothing.
 > **Resume** · Read "## Save Point — 2026-09-28" below, then PIPELINE.md's "The cold reader" section.
 <!-- /RESUME-HEAD -->
@@ -48,7 +48,7 @@ Keep-awake in `sandbox.ts` (!47). Queue holds parked and already-shipped candida
 ### Open, ranked
 
 1. **Merge !52 and !53.** Julie's calls on !52: the line-of-representation credit moved to `extended` with Woods as main author (no source names Cook as a writer of the 2017 report); dark-debt `primary_author` holds Woods as a placeholder; the Hollnagel edge stays as Hollnagel building on Cook. Camila checked the four claims added after the cold read against the ledger; all sourced.
-2. **Guard against the silent search cap.** At the cap, WebSearch tells the model to continue with what it has, and research then writes from memory while looking sourced (GitHub issue anthropics/claude-code#95815). Research and fact-audit stages should report any such result and stop the candidate.
+2. **Done 2026-09-28, !56.** ~~Guard against the silent search cap.~~ At the cap, WebSearch tells the model to continue with what it has, and research then writes from memory while looking sourced (GitHub issue anthropics/claude-code#95815). Research and fact-audit stages should report any such result and stop the candidate.
 3. **Two mechanical checks the cold reader keeps doing by hand:** a warning in `reading-gates.ts` on "named", "introduced", "coined", "first" without an antecedent line (fired on Cook after the checklist item existed), and the duplicate-point scan across a page's fields (five runs running).
 4. **The inclusion Council writes nothing to disk**, four runs running, so issues cannot say which reviewer named whom.
 5. **`inbound-claims.ts` matches on the last word of the display name**, so "Daniel Terhorst-North" misses pages that say "Dan North".

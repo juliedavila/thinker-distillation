@@ -401,6 +401,8 @@ const researched = await pipeline(
         `Then run \`bun scripts/fact-ledger.ts ${c.slug}\` and report whether the ledger half passes (coverage ` +
         `failures are expected: the page does not exist yet).\n\n` +
         `Set verdict "park" if the thinker's central claim to a page rests on something you could not verify.\n\n` +
+        `If you are NOT parking (verdict not "park", nothing in contradicted, search_cap_scan "clean"), the ` +
+        `inclusion Council convenes next, so run \`glab issue update ${c.issue} --label camila:in-council\`.\n\n` +
         `${SEARCH_CAP}\n\n` +
         `Last, run \`${SEARCH_CAP_CMD}\` and set search_cap_scan from its exit code: 0 clean, 1 hit, 2 blind. It reads ` +
         `this run's transcripts for a refused search by any agent, including the research you are auditing. Paste ` +
@@ -486,6 +488,8 @@ const drafted = await pipeline(
         `${READ_FIRST} Work the calibration.md checklist against your draft line by line before you run any gate. ` +
         `Use src/content/thinkers/charity-majors.md as the reference page and _working/charity-majors/ as the ` +
         `reference working set.\n\n` +
+        `The inclusion Council has passed this candidate, so first run ` +
+        `\`glab issue update ${c.issue} --label camila:accepted --unlabel camila:in-council\`.\n\n` +
         `The inclusion Council said:\n${seatInput}\n\n` +
         `Before you write a field, re-run \`bun scripts/inbound-claims.ts ${c.slug}\` and reconcile every line ` +
         `against what this page is about to assert. Agree with each claim or correct it, and report which in ` +
@@ -872,9 +876,11 @@ if (coldReadOwed.length) {
           `editor. Its verdict was ${verdict}.\n\n${READ_FIRST}\n\n` +
           `Its full report is \`${COUNCIL}/cold-reader.md\`; read the section for this page. Findings:\n` +
           `${JSON.stringify(findings, null, 1)}\n\n` +
-          `Check each finding against the current file first. Apply every one that holds, including any ` +
-          `that touches a neighbouring page: a page that claims a correction to a neighbour ships with that ` +
-          `correction made. Where a finding asks for an antecedent search, run it and record one ledger ` +
+          `Check each finding against the current file first. Apply every one that holds to this page. A ` +
+          `finding that touches a neighbouring page goes into _working/${slug}/return-edges.md instead, ` +
+          `written as the change Ship should make: Ship is the only stage that edits a neighbour, and it ` +
+          `applies that plan, so a page that claims a correction to a neighbour still ships with it made. ` +
+          `Do not edit any other page's file. Where a finding asks for an antecedent search, run it and record one ledger ` +
           `line per original frame. For every rewrite, write one line before and one after, marked SAME, ` +
           `NARROWED, WIDENED or NEW; nothing WIDENED or NEW goes in without a ledger line. When you lower a ` +
           `claim, grep every field that carries it and lower them all. After each repair, read the sentence ` +
@@ -906,7 +912,8 @@ for (const p of finalized) {
       (repoPath
         ? `0. Everything below happens in ${repoPath} and nowhere else. Pushing to main will be refused twice over, by a local hook and by the server, so do not attempt it: open a merge request instead.\n`
         : '') +
-      `1. \`git checkout main && git pull\`, then \`git checkout -b candidate/${p.slug}\`.\n` +
+      `1. \`git switch main && git pull\`, then \`git switch -c candidate/${p.slug}\`. Never \`git checkout\`: ` +
+      `SKILL.md's Gotchas deny it here, because restoring a file with it throws away uncommitted edits.\n` +
       `2. Apply the return edges described in _working/${p.slug}/return-edges.md to the existing pages. Add the edge ` +
       `only where the relationship is real. If a neighbour goes over the seven-edge cap, demote the weakest to the ` +
       `collapsed tier and SAY SO in warnings_for_julie: she reviews every demotion.\n` +

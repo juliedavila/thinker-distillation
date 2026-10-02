@@ -72,7 +72,7 @@ absence claim about the sources and takes no ledger line, unchanged from round 2
 
 Beyond the required set, so nothing the page asserts in prose is untraceable:
 
-- why_they_matter_as_a_thinker [S:14] [S:6] [S:11]
+- why_they_matter_as_a_thinker [S:14] [S:6] [S:11] [S:30]
 - adjacent_thinkers[1] [S:13] [S:11] [S:3] [S:10]
 - limits[0] [S:19] [S:20]
 - limits[1] [S:25] [S:20]

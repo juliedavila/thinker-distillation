@@ -320,9 +320,9 @@ adjacent_thinkers:
     display_name: Jens Rasmussen
     edge_type: antecedent
     edge_label: >
-      Danish safety scientist whose drift-toward-boundaries model
-      underlies *Drift Into Failure*. The intellectual grandfather of
-      the resilience-engineering tradition.
+      A 2013 paper by Dekker and Shawn Pruchnicki cites Rasmussen 1997 for
+      the drift account at its centre. Rasmussen's own word for the
+      movement is migration, under an effort gradient and a cost gradient.
     strength: secondary
   - target_slug: richard-cook
     display_name: Richard Cook

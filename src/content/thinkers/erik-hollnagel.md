@@ -420,6 +420,16 @@ adjacent_thinkers:
       then.
     strength: secondary
     render_tier: deep
+  - target_slug: jens-rasmussen
+    display_name: Jens Rasmussen
+    edge_type: parallel
+    edge_label: >
+      A 2013 framework for analysing everyday adaptations in high-risk work,
+      by Rankin, Lundberg, Woltjer, Rollenhagen and Hollnagel, cites
+      Rasmussen's 1986 book for the way pressure moves work toward the limits
+      of what is acceptable for safety.
+    strength: secondary
+    render_tier: deep
 
 further_in:
   start_here: '"From Safety-I to Safety-II: A White Paper" (EUROCONTROL, 2013, with Leonhardt, Licu and Shorrock), free and short.'

@@ -44,6 +44,9 @@ const text = (content: unknown): string =>
 export function hitsIn(jsonl: string, since: Date, where: { run: string; agent: string }): Hit[] {
   const hits: Hit[] = [];
   let stage = '';
+  // Only a WebSearch result counts. Agents read PIPELINE.md and this file, which quote the message,
+  // and on 2026-10-05 that produced four false hits from Read and Bash results.
+  const searches = new Set<string>();
   for (const line of jsonl.split('\n')) {
     if (!line) continue;
     let entry: any;
@@ -62,7 +65,8 @@ export function hitsIn(jsonl: string, since: Date, where: { run: string; agent: 
     }
     if (!Array.isArray(content)) continue;
     for (const block of content) {
-      if (block?.type !== 'tool_result') continue;
+      if (block?.type === 'tool_use' && block.name === 'WebSearch') searches.add(block.id);
+      if (block?.type !== 'tool_result' || !searches.has(block.tool_use_id)) continue;
       const body = text(block.content);
       if (!CAP_SIGNS.some((re) => re.test(body))) continue;
       const at = new Date(entry.timestamp ?? 0);

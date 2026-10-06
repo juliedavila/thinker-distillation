@@ -21,6 +21,7 @@ type Scenario = {
   round3?: string; // the policy's round3_mode for mode-a pages
   researchCap?: boolean; // research reports the web-search cap
   scan?: 'clean' | 'hit' | 'blind'; // what scripts/search-cap.ts told the fact audit
+  repoPath?: string; // a sandbox path, as an unattended run passes
 };
 
 async function run(sc: Scenario) {
@@ -53,7 +54,7 @@ async function run(sc: Scenario) {
   const parallel = async (fns: (() => Promise<unknown>)[]) => Promise.all(fns.map((f) => f()));
   const pipeline = async (items: unknown[], ...stages: ((x: any, item: any) => Promise<unknown>)[]) =>
     Promise.all(items.map(async (item) => { let v: any = item; for (const [k, s] of stages.entries()) v = await s(k === 0 ? item : v, item as any); return v; }));
-  const args = { today: '2026-09-25', candidates: sc.slugs.map((slug, i) => ({ issue: i + 1, name: slug, slug })) };
+  const args = { repoPath: sc.repoPath, today: '2026-09-25', candidates: sc.slugs.map((slug, i) => ({ issue: i + 1, name: slug, slug })) };
   const body = new Function('agent', 'parallel', 'pipeline', 'phase', 'log', 'args', `return (async () => {\n${SRC}\n})()`);
   const result = await body(agent, parallel, pipeline, () => {}, (m: string) => logs.push(m), args);
   return { result, calls, logs, labels: calls.map((c) => c.label) };
@@ -148,4 +149,13 @@ test('prompts follow SKILL.md: no git checkout, neighbours only at Ship, and the
   expect(prompt('editor-cold:dave-farley')).toContain('Do not edit any other page');
   expect(prompt('fact-audit:dave-farley')).toContain('--label camila:in-council');
   expect(prompt('draft:dave-farley')).toContain('--label camila:accepted');
+});
+
+test('in a sandbox every agent is told the unattended rules, and outside one none is', async () => {
+  const sandboxed = await run({ slugs: ['dave-farley'], repoPath: '/tmp/thinker-sandbox/2026-10-06-1' });
+  const missing = sandboxed.calls.filter((c) => !c.prompt.includes('This run is unattended')).map((c) => c.label);
+  expect(missing).toEqual([]);
+  expect(sandboxed.calls.length).toBeGreaterThan(15);
+  const local = await run({ slugs: ['dave-farley'] });
+  expect(local.calls.some((c) => c.prompt.includes('This run is unattended'))).toBe(false);
 });

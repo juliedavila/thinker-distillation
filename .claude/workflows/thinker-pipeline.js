@@ -40,6 +40,21 @@ const repoPath = args?.repoPath
 const REPO = repoPath
   ? `the thinker-distillation repository at ${repoPath}. That is a disposable sandbox clone: work only inside it, and never touch any other checkout of this project`
   : 'the thinker-distillation repository (the working directory)'
+// Nobody is awake to answer a permission prompt in an unattended run, and a prompt does not fail: it
+// waits. Run 10 (2026-10-02) waited 135 minutes on `curl ... | bun -e` and run 11 (2026-10-05) waited
+// 7.5 hours overnight on an `rm`. ~/.claude/hooks/SandboxGuard.hook.ts now denies those shapes at once
+// inside a sandbox; this tells agents the replacements up front so they do not spend a turn finding
+// out. dispatch() appends it to every prompt when the run has a sandbox.
+const UNATTENDED =
+  "\n\nThis run is unattended: nobody can answer a permission prompt, and a prompt stalls the whole run " +
+  "until morning. So: never use `rm`; delete a file under _working/ with `bun scripts/discard.ts <path>` " +
+  "and a tracked file with `git rm`. Never use `curl` or `wget`; fetch with `bun scripts/fetch.ts " +
+  "<https-url> [<out-path under _working/>]`, which writes the response to a file (a PDF also gets a .txt) " +
+  "that you then read. Never pipe output into an interpreter (`| bun`, `| python3`, `| node`, `| sh`): " +
+  "write it to a file under _working/_tmp/ and read that. No Python at all; TypeScript or the shell tools. " +
+  "Keep scratch files under _working/_tmp/, never outside the sandbox. Push only with `git push -u origin " +
+  "<branch>` as its own command."
+const dispatch = (prompt, opts) => agent(repoPath ? prompt + UNATTENDED : prompt, opts)
 const READ_FIRST =
   'Read these before you start, in this order: `.claude/skills/add-thinker/SKILL.md` (the procedure), ' +
   '`.claude/skills/add-thinker/calibration.md` (every failure a Council has caught), and the SCHEMA.md ' +
@@ -342,7 +357,7 @@ log(`${candidates.length} candidate(s): ${candidates.map((c) => c.name ?? c.slug
 const researched = await pipeline(
   candidates,
   (c) =>
-    agent(
+    dispatch(
       `Stage 1 of the add-thinker skill: research ${c.name} for ${REPO}, candidate issue #${c.issue}.\n\n` +
         `${READ_FIRST}\n\n` +
         `FIRST run \`bun scripts/inbound-claims.ts ${c.slug}\` and read all of it. It prints every claim the ` +
@@ -384,7 +399,7 @@ const researched = await pipeline(
       park(c, 'research', `uptake check: ${r.uptake_evidence}`)
       return null
     }
-    return agent(
+    return dispatch(
       `Adversarial fact audit of _working/${c.slug}/facts.md in ${REPO}.\n\n` +
         `You did not do this research and you do not trust it. Your job is to REFUTE, not to confirm. For each ` +
         `[S:n] line: open the URL, and decide whether the source actually says what the claim says. Default to ` +
@@ -440,7 +455,7 @@ const rosterNote = cleared.map(({ c, research }) => `- ${research.name} (${c.slu
 const inclusionReports = await inWaves(
   SEATS,
   (s) => () =>
-    agent(
+    dispatch(
       `INCLUSION COUNCIL for ${REPO}. ${seatCard(s.n)}\n\n` +
         `Fill in \`.claude/skills/add-thinker/briefs/inclusion.md\` and answer it for EVERY candidate below, ` +
         `one verdict each. Read each candidate's _working/<slug>/sources.md and facts.md as the verified record.\n\n` +
@@ -483,7 +498,7 @@ const drafted = await pipeline(
       })
       .filter(Boolean)
       .join('\n')
-    return agent(
+    return dispatch(
       `Stages 3 and 5 of the add-thinker skill: draft the ${c.name} page in ${REPO}.\n\n` +
         `${READ_FIRST} Work the calibration.md checklist against your draft line by line before you run any gate. ` +
         `Use src/content/thinkers/charity-majors.md as the reference page and _working/charity-majors/ as the ` +
@@ -528,7 +543,7 @@ if (!pages.length) return { shipped: [], parked, note: 'No page passed the draft
 // =========================================================== 4. Policy
 // The round count is read out of the repo, never decided here. One rule, one place.
 phase('Policy')
-const policy = await agent(
+const policy = await dispatch(
   `Run \`bun scripts/review-policy.ts ${pages.map((p) => p.slug).join(' ')} --json\` in ${REPO} and return its ` +
     `output. Do not interpret it, do not adjust it, and do not add rounds of your own. Put the raw stdout in "raw".`,
   { label: 'review-policy', phase: 'Policy', schema: POLICY, effort: 'low' }
@@ -558,7 +573,7 @@ for (const p of pages) log(`${p.slug} (${p.doctrine_mode}): ${roundsFor(p.slug)}
 // which is the expected result rather than a failure: Butler 2023 saw 30 search updates produce 3
 // published revisions.
 phase('Recheck')
-const staleness = await agent(
+const staleness = await dispatch(
   `Run \`bun scripts/staleness.ts --json\` in ${REPO} and return its output verbatim. Do not ` +
     `interpret it, do not add pages to the list, and do not act on anything. Put the raw stdout in "raw".`,
   { label: 'staleness-queue', phase: 'Recheck', schema: STALENESS, effort: 'low' }
@@ -572,7 +587,7 @@ const rechecks = dueSlugs.length
   ? await pipeline(
       dueSlugs,
       (slug) =>
-        agent(
+        dispatch(
           `RECHECK PHASE 1 (survey) for ${slug} in ${REPO}.\n\n` +
             `Fill in \`.claude/skills/add-thinker/briefs/recheck-survey.md\` and answer it for this page. ` +
             `Run \`bun scripts/review-policy.ts ${slug} --recheck\` first and follow the plan it prints.\n\n` +
@@ -592,7 +607,7 @@ const rechecks = dueSlugs.length
           log(`${slug}: recheck found nothing. Page stands.`)
           return { slug, survey, verdict: null }
         }
-        return agent(
+        return dispatch(
           `RECHECK PHASE 2 (adjudicate) for ${slug} in ${REPO}. You are the adjudicator, not a seat, ` +
             `and you are the only phase that may change this page.\n\n` +
             `The survey found:\n${JSON.stringify(survey, null, 1)}\n\n` +
@@ -696,7 +711,7 @@ for (let round = 1; round <= 3; round++) {
   const reports = await inWaves(
     seatsThisRound,
     (n) => () =>
-      agent(
+      dispatch(
         `REVIEW COUNCIL round ${round} for ${REPO}. ` +
           (adjudicating
             ? `You are the ADJUDICATOR, not a seat. Rounds 1 and 2 are done and left no dissent, so you are the ` +
@@ -757,7 +772,7 @@ for (let round = 1; round <= 3; round++) {
   if (editable.length) {
     await parallel(
       editable.map(({ p, edits, claims, round: rn }) => () =>
-        agent(
+        dispatch(
           `Apply round ${rn} Council edits to src/content/thinkers/${p.slug}.md in ${REPO}. You are the editor, ` +
             `not a seat.\n\n${READ_FIRST}\n\n` +
             `Edits proposed:\n${JSON.stringify(edits, null, 1)}\n\n` +
@@ -824,7 +839,7 @@ const worst = (vs) => (vs ?? []).reduce((a, v) => ((severity[v] ?? -1) > (severi
 const coldReadOwed = finalized.filter((p) => controlFor(p.slug) ?? true).map((p) => p.slug)
 const coldDeclined = new Map()
 if (coldReadOwed.length) {
-  const cold = await agent(
+  const cold = await dispatch(
     `You are reading finished pages in ${REPO} with fresh eyes. You are the cold reader, the last ` +
       `review before Julie reads these pages herself, so read this carefully.\n\n` +
       `You have deliberately NOT been given the review transcripts, the verdict history, or any ` +
@@ -871,7 +886,7 @@ if (coldReadOwed.length) {
   // claim-delta every rewrite, rerun both gates. Anything it declines is carried to Ship.
   const edited = await parallel(
     fixes.map(({ slug, verdict, findings }) => () =>
-      agent(
+      dispatch(
         `Apply the cold reader's findings to src/content/thinkers/${slug}.md in ${REPO}. You are the ` +
           `editor. Its verdict was ${verdict}.\n\n${READ_FIRST}\n\n` +
           `Its full report is \`${COUNCIL}/cold-reader.md\`; read the section for this page. Findings:\n` +
@@ -904,7 +919,7 @@ for (const p of finalized) {
   const match = accepted.find(({ c }) => c.slug === p.slug)
   const issue = match?.c?.issue
   const s = state.get(p.slug)
-  const result = await agent(
+  const result = await dispatch(
     `Stage 7 of the add-thinker skill: ship the ${p.slug} page in ${REPO}.` +
       (dryRun ? ' DRY RUN: do everything except `git push` and the merge request. Report what you would have pushed.' : '') +
       `\n\n${READ_FIRST}\n\n` +
@@ -960,7 +975,7 @@ for (const p of finalized) {
 // Recheck merge requests ship after the thinker pages, still serially, because they touch pages
 // the thinker branches may also have edited through return edges.
 for (const r of rechecked) {
-  const shipResult = await agent(
+  const shipResult = await dispatch(
     `Ship the recheck of ${r.slug} in ${REPO}.` +
       (dryRun ? ' DRY RUN: everything except `git push` and the merge request.' : '') +
       `\n\nYou are the only agent touching git right now. Branch \`recheck/${r.slug}\` from main, ` +
@@ -981,11 +996,11 @@ for (const r of rechecked) {
 phase('Report')
 const newCandidates = inclusionReports.filter(Boolean).flatMap((r) => (r.candidates ?? []).flatMap((c) => c.new_candidates ?? []))
 
-const report = await agent(
+const report = await dispatch(
   `Close the loop on this pipeline run in ${REPO}, on a branch called chore/pipeline-${today}.\n\n` +
     `1. Merge every _working/<slug>/calibration-entry.md into ` +
     `\`.claude/skills/add-thinker/calibration.md\`: add the run-log rows, and promote any failure pattern that has ` +
-    `now been caught twice into the pre-draft checklist. Delete the per-slug entry files afterwards. You are the ` +
+    `now been caught twice into the pre-draft checklist. Delete the per-slug entry files afterwards with \`bun scripts/discard.ts <path>\` (they are untracked, so \`git rm\` will not work). You are the ` +
     `only agent writing this file, which is why it happens here and not in Ship.\n` +
     `2. File a "Candidate:" issue for each strong new candidate the seats named, skipping anyone already filed or ` +
     `already on the site. Named this run: ${JSON.stringify(newCandidates)}\n` +

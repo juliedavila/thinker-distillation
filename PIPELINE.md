@@ -333,6 +333,18 @@ Three layers now, from weakest to strongest:
 
 The cap itself is `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` in `~/.claude/settings.json`, 1,000 since 2026-09-28. It is read at session start. `scripts/test/search-cap.test.ts` holds the message verbatim; if Claude Code rewords it, the patterns in `search-cap.ts` and the hook need the new wording.
 
+## Permission prompts
+
+Nobody is awake to answer a permission prompt in an unattended run, and a prompt does not fail: it waits. Run 11 (Rasmussen, 2026-10-05) finished its page in 81 minutes and then waited 7.5 hours overnight on one command in Close the Loop, `rm <file> && git add && git commit && git push`. Run 10's 135-minute draft stall on 2026-10-02 was the same thing, on `curl ... | bun -e`. It was first read as a network call with no timeout, which a timeout would not have fixed. Hollnagel's 18-hour stall on 2026-09-27, logged then as the Mac sleeping, sits on the same curl-into-interpreter shape.
+
+Three layers, the strongest first:
+
+- **A global hook**, `~/.claude/hooks/SandboxGuard.hook.ts`, decides instead of asking for any Bash command that names a `thinker-sandbox/` path or runs in one. It denies `rm`, `curl` and `wget`, output piped into an interpreter, and Python, with a reason naming the replacement. A denial returns at once, so the agent adapts instead of hanging. It pre-approves only the two guarded scripts and a push of a `candidate/`, `chore/`, `fix/`, `docs/` or `feat/` branch, which the Developer-role token and branch protection already bound. Everything else takes the normal permission flow, and outside a sandbox the hook does nothing. Tests: `bun test ./hooks/SandboxGuard.test.ts` in `~/.claude`.
+- **Two guarded scripts.** `bun scripts/fetch.ts <https-url> [<out-path>]` makes a GET with a 30-second timeout and a 25 MB cap, and writes only under `_working/` (by default `_working/_tmp/fetch/`, which is gitignored). A PDF also gets a `.txt`. `bun scripts/discard.ts <path>...` deletes files, never directories, and only under `_working/`. Tracked files go through `git rm`.
+- **The prompts.** Every sandbox agent's prompt ends with the same rules (`UNATTENDED` in the workflow, appended by `dispatch()`), so an agent knows the replacements before the hook has to tell it. `scripts/test/pipeline-stub.test.ts` fails if any agent in a sandbox run is missing them.
+
+To find a stall after the fact, look for a tool call whose result arrived long after the call; the run's `wf_<id>` transcripts record both timestamps. A long gap on an ordinary read is usually other agents queued ahead. A long gap on one of the shapes above is a prompt.
+
 ## The Council record
 
 Each seat writes its own report to `_working/_council/<today>/round-N-seat-M.md` before returning,

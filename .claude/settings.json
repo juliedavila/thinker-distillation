@@ -22,7 +22,9 @@
       "Bash(git show:*)",
       "Bash(git branch:*)",
       "Bash(git ls-tree:*)",
-      "Bash(git merge-base:*)"
+      "Bash(git merge-base:*)",
+      "Bash(bun scripts/fetch.ts:*)",
+      "Bash(bun scripts/discard.ts:*)"
     ],
     "deny": [
       "Bash(rm -rf:*)",

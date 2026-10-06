@@ -122,6 +122,15 @@ for (const [path, why] of required) {
 // that fact records the method and what it found. A search that finds nothing is still a line.
 //
 // Pages that shipped before this check are listed in antecedent-exempt.txt, which may only shrink.
+// The line has to BE the search record: it opens "The antecedent search for" (or "Antecedent search
+// for", or "The antecedent check", as on Alexander and Karpathy) and does not say the search was
+// left undone ("has not been run"). Until 2026-10-05 any
+// line containing the phrase passed, and on Rasmussen that let through a bound saying "no antecedent
+// search ... has been run", the one sentence on the ledger recording that the search was missing.
+const recordsAntecedentSearch = (claim: string) =>
+  /^\W*(the )?antecedent (search|check)\b/i.test(claim) &&
+  !/\b(not|never)\b[^.;]{0,20}\b(been )?(run|done|performed)\b/i.test(claim);
+
 const antecedentExempt = (() => {
   const p = join(ROOT, 'scripts/antecedent-exempt.txt');
   if (!existsSync(p)) return new Set<string>();
@@ -131,7 +140,7 @@ if (!isConcept && !antecedentExempt.has(slug)) {
   for (const [i, f] of ((page.named_frames as Array<Record<string, unknown>>) ?? []).entries()) {
     if (f?.attribution_kind !== 'original') continue;
     const path = `named_frames[${i}].attribution`;
-    const searched = (covered.get(path) ?? []).some((id) => /antecedent search/i.test(facts.get(id)?.claim ?? ''));
+    const searched = (covered.get(path) ?? []).some((id) => recordsAntecedentSearch(facts.get(id)?.claim ?? ''));
     if (!searched) {
       fail('antecedent', `${path} ("${f?.display_name ?? f?.concept_slug}") is original, and none of the facts it cites records an antecedent search. Add one "[S:n] The antecedent search for ..." line with its method and result, and cite it here.`);
     }

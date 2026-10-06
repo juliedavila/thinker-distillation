@@ -271,10 +271,9 @@ reading: >
   available. Which rule ends it depends on whether the analysis means to explain
   the events, to allocate responsibility and blame or to improve the system.
 extension: >
-  A security review stops by the same rarely stated rules, and on an attack
-  surface whose exposures multiply one another, his third becomes dangerous:
-  once a cure such as an unapplied patch appears, the review can end. The patch
-  closes one path through the combination and leaves the others open. An
+  A security review stops by the same rarely stated rules, and his third is
+  the risky one: once a cure such as an unapplied patch appears, the review can
+  end, whether or not the patch closed the only way in. An
   attacker can trip the second rule on purpose by planting a familiar
   explanation, such as a known exploit. Writing down, before the review starts,
   its aim, its stop rule and the evidence that would rule out a familiar

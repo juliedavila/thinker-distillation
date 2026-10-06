@@ -115,3 +115,8 @@ Re-read against the finished page (after the cold reader editor) before applying
 - **Item 3 (Reason) and item 4 (Cook): no change.** The optional Reason-side sentence was not added: it would need a new Reason ledger line and the page's own Reason label already shows the credit running both ways.
 - **Item 5 (Hollnagel), applied as planned**, appended at the end of `adjacent_thinkers` (index 9), `render_tier: deep`. Hollnagel ledger gains `[S:56]` (copy of Rasmussen `[S:37]`, the Rankin et al. 2013 quotation) and `page-claims.md` gains `adjacent_thinkers[9] [S:56]`. `fact-ledger.ts erik-hollnagel` exits 0, 56 facts. The build no longer prints `erik-hollnagel has no edge back to jens-rasmussen`.
 - **Build after applying:** exit 0. Collapse lines identical to the stage 4 observation except the closed Hollnagel line; no existing edge on any neighbour lost its card.
+
+## Julie's review, 2026-10-06
+
+- sidney-dekker: the drift-into-failure frame gains `derived_from: migration-toward-the-boundary`, on [S:53] (the 2011 book cites Rasmussen and Svedung 2000 in two chapters, and that work states the migration model). Dekker's page has no ledger, so the fact sits here.
+- Still open for Dekker's next recheck: his thirty_second_take credits the new view of human error to "Rasmussen and Woods", and nothing on file supports the Rasmussen part.

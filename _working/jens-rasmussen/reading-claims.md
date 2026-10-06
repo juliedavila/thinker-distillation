@@ -13,11 +13,12 @@ One line per sentence of `reading` and `extension`, each with the grounding-pack
 
 ## extension
 
-- A security review stops by the same rarely stated rules, and on an attack surface whose exposures multiply one another, his third becomes dangerous: once a cure such as an unapplied patch appears, the review can end. [F:stop-rules] [P:5]
-- The patch closes one path through the combination and leaves the others open. [P:5]
+- A security review stops by the same rarely stated rules, and his third is the risky one: once a cure such as an unapplied patch appears, the review can end, whether or not the patch closed the only way in. [F:stop-rules]
 - An attacker can trip the second rule on purpose by planting a familiar explanation, such as a known exploit. [F:stop-rules]
 - Writing down, before the review starts, its aim, its stop rule and the evidence that would rule out a familiar explanation makes the rules checkable. [F:stop-rules] [T:still-load-bearing]
 - After a breach, advice on preserving privilege can put the forensic work under counsel, aimed at "litigation preparation" and kept "need-to-know", so a review meant to improve the system can lose the analyses it needs and stop at the first rule. [F:stop-rules]
 - Writing the rules down costs time his cost gradient will press the team to give back. [F:migration-toward-the-boundary]
 
 Factual support outside the pack: the privilege-advice sentence in `extension` rests on [S:51], traced in `page-claims.md`.
+
+lens: none applies. Julie, 2026-10-06: the combination sentences that carried [P:5] were cut to consolidate that move, which Allspaw's extension already makes and which is filed as a concept candidate. The remaining extension applies the stop rules to security reviews and touches no published position.

@@ -109,6 +109,7 @@ named_frames:
       envelope is breached.
     attribution_kind: original
     primary_author: sidney-dekker
+    derived_from: migration-toward-the-boundary
     source_link: https://sidneydekker.com/drift-into-failure/
   - concept_slug: safety-differently
     display_name: Safety differently

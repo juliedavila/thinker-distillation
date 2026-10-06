@@ -105,7 +105,7 @@ named_frames:
     primary_author: david-woods
     co_originators:
       - slug: jens-rasmussen
-        role: theoretical predecessor (Rasmussen's drift toward boundaries)
+        role: 'cited with Hirschhorn and others for the general law of adaptive systems (his 1986 book, in Woods 2002)'
   - concept_slug: joint-cognitive-system
     display_name: Joint cognitive system
     one_line_gloss: >
@@ -287,9 +287,12 @@ adjacent_thinkers:
     display_name: Jens Rasmussen
     edge_type: antecedent
     edge_label: >
-      The Danish safety-science theorist whose drift-toward-boundaries
-      model underlies the Law of Stretched Systems. Rasmussen 1997 is
-      the antecedent paper.
+      In his 1997 paper, pressure to save effort and cost very likely
+      moves work toward the boundary of acceptable performance, a movement
+      he calls migration. Woods's 2002 text places the Law of Stretched
+      Systems within a general law of adaptive systems noted by many
+      researchers, and the examples it cites include Rasmussen's 1986 book,
+      Information Processing and Human-Machine Interaction.
     strength: secondary
 
   - target_slug: nicole-forsgren

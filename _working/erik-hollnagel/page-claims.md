@@ -62,6 +62,7 @@ still-load-bearing paragraph's judgement.
 - adjacent_thinkers[1] [S:32] [S:49] [S:24] [S:53]
 - adjacent_thinkers[2] [S:29]
 - adjacent_thinkers[6] [S:28]
+- adjacent_thinkers[9] [S:56] (the Rasmussen return edge, added at the Rasmussen Ship on 2026-10-05)
 - further_in [S:12] [S:13] [S:18] [S:33] [S:34] [S:9] [S:20] [S:25] [S:32] [S:51] [S:54] [S:55] (the Security Chaos Engineering sentence: book and authors [S:51]; attackers among the adverse events [S:54]; resilience engineering applied to software security [S:55])
 - inclusion_rationale [S:28] [S:29] [S:24] [S:25] [S:6] [S:33]
 

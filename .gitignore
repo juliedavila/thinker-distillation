@@ -35,3 +35,6 @@ audit-screenshots/
 # Council seat reports written during a pipeline run. The final transcript is copied to
 # ~/.claude/LIFEOS/MEMORY/COUNCIL/ by the Ship stage; this is the in-flight scratch copy.
 _working/_council/
+
+# Scratch for unattended runs: fetch.ts output and anything an agent needs only for the run.
+_working/_tmp/

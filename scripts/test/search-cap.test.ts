@@ -14,10 +14,11 @@ const CAP =
 const OK = 'Web search results for query: "Jez Humble"\n\nLinks: [{"title":"x","url":"https://example.com"}]';
 
 const line = (o: unknown) => JSON.stringify(o);
-const transcript = (result: string, timestamp = '2026-09-28T12:00:00Z') =>
+const transcript = (result: string, timestamp = '2026-09-28T12:00:00Z', tool = 'WebSearch') =>
   [
     line({ type: 'user', message: { content: '[Workflow harness — user request] relayed\n  run the pipeline' } }),
     line({ type: 'user', message: { content: '[Workflow harness — computed task] header\n\n  Stage 1 of the add-thinker skill: research Jez Humble' } }),
+    line({ type: 'assistant', timestamp, message: { content: [{ type: 'tool_use', id: 't1', name: tool, input: {} }] } }),
     line({ type: 'user', timestamp, message: { content: [{ type: 'tool_result', tool_use_id: 't1', content: result }] } }),
   ].join('\n');
 
@@ -34,6 +35,11 @@ test('the verbatim cap message is a hit, with its query and the stage that made 
 test('an ordinary result is not a hit, and neither is a cap before --since', () => {
   expect(hitsIn(transcript(OK), since, where)).toEqual([]);
   expect(hitsIn(transcript(CAP, '2026-09-27T23:00:00Z'), since, where)).toEqual([]);
+});
+
+test('the message quoted in a Read or Bash result, as when an agent reads PIPELINE.md, is not a hit', () => {
+  expect(hitsIn(transcript(CAP, undefined, 'Read'), since, where)).toEqual([]);
+  expect(hitsIn(transcript(CAP, undefined, 'Bash'), since, where)).toEqual([]);
 });
 
 test('scan finds a run by its marker, reports its hits, and finds nothing when no run carries the marker', () => {

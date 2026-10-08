@@ -339,7 +339,7 @@ Nobody is awake to answer a permission prompt in an unattended run, and a prompt
 
 Three layers, the strongest first:
 
-- **A global hook**, `~/.claude/hooks/SandboxGuard.hook.ts`, decides instead of asking for any Bash command that names a `thinker-sandbox/` path or runs in one. It denies `rm`, `curl` and `wget`, output piped into an interpreter, and Python, with a reason naming the replacement. A denial returns at once, so the agent adapts instead of hanging. It pre-approves only the two guarded scripts and a push of a `candidate/`, `chore/`, `fix/`, `docs/` or `feat/` branch, which the Developer-role token and branch protection already bound. Everything else takes the normal permission flow, and outside a sandbox the hook does nothing. Tests: `bun test ./hooks/SandboxGuard.test.ts` in `~/.claude`.
+- **A global hook**, `~/.claude/hooks/SandboxGuard.hook.ts`, decides instead of asking for any Bash command that names a `thinker-sandbox/` path or runs in one. It denies `rm`, `curl` and `wget`, output piped into an interpreter, and Python, with a reason naming the replacement. A denial returns at once, so the agent adapts instead of hanging. It pre-approves only the guarded scripts (`fetch.ts`, `discard.ts`, `issue-note.ts`) and a push of a `candidate/`, `chore/`, `fix/`, `docs/` or `feat/` branch, which the Developer-role token and branch protection already bound. Everything else takes the normal permission flow, and outside a sandbox the hook does nothing. Tests: `bun test ./hooks/SandboxGuard.test.ts` in `~/.claude`.
 - **Two guarded scripts.** `bun scripts/fetch.ts <https-url> [<out-path>]` makes a GET with a 30-second timeout and a 25 MB cap, and writes only under `_working/` (by default `_working/_tmp/fetch/`, which is gitignored). A PDF also gets a `.txt`. `bun scripts/discard.ts <path>...` deletes files, never directories, and only under `_working/`. Tracked files go through `git rm`.
 - **The prompts.** Every sandbox agent's prompt ends with the same rules (`UNATTENDED` in the workflow, appended by `dispatch()`), so an agent knows the replacements before the hook has to tell it. `scripts/test/pipeline-stub.test.ts` fails if any agent in a sandbox run is missing them.
 
@@ -347,7 +347,15 @@ To find a stall after the fact, look for a tool call whose result arrived long a
 
 ## The Council record
 
-Each seat writes its own report to `_working/_council/<today>/round-N-seat-M.md` before returning,
+**Inclusion** is recorded on the candidate's issue, not on disk. For six runs the inclusion seats
+left nothing anywhere but the tally in `inclusion_rationale`, so nobody could say which seat argued
+what or why a candidate was parked. Their structured returns already held all of it, so the
+workflow now builds one comment from them (tally, outcome, then each seat's findings, frames, risks
+and the candidates it named, folded per seat) and a small `inclusion-record` agent posts it with
+`scripts/issue-note.ts`. It runs for every candidate that reached the Council, parked ones
+included, and never gates: a failed post is logged. Dry runs skip it.
+
+**Review rounds.** Each seat writes its own report to `_working/_council/<today>/round-N-seat-M.md` before returning,
 and each editor writes its resolution notes beside it. Rounds 2 and 3 read that directory, which is
 what their briefs mean by the transcript, and the Ship stage assembles the final transcript from
 those files rather than from anyone's memory. The directory is gitignored, since the transcript

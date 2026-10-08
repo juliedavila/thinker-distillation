@@ -47,9 +47,9 @@ Run the uptake check before anything else, because it decides whether a Council 
 
 Label the issue `camila:in-council` when research is done.
 
-### 2. Inclusion Council (output: transcript under `~/.claude/LIFEOS/MEMORY/COUNCIL/distillery-inclusion-<slug>-<timestamp>-quick/`)
+### 2. Inclusion Council (output: one comment on the candidate's issue)
 
-Run the five seats in `seats.md` in parallel as background agents, with `briefs/inclusion.md` filled in. One round. Save each report to disk as it arrives, then write the synthesis into the transcript.
+Run the five seats in `seats.md` in parallel as background agents, with `briefs/inclusion.md` filled in. One round. The record is a single comment on the candidate's issue: the tally, the outcome, and each seat's findings, frames, risks and named candidates, taken from the seats' own returns and posted with `bun scripts/issue-note.ts <issue> <file>`. It goes on the issue whatever the verdict, so a parked or rejected candidate keeps its reasons. Nothing is written to the repository or to `MEMORY/COUNCIL/` (Julie, 2026-10-06). The workflow builds and posts this itself; by hand, do the same.
 
 - A clear majority to ACCEPT carries. Carry any dissent into the page as a limit or a recheck note instead of dropping it.
 - Two or more REJECT, or a split on what the page should be about that facts cannot settle: stop and ask Julie, with the options laid out.

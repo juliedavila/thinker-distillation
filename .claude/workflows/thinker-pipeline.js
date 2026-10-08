@@ -480,6 +480,62 @@ const accepted = cleared.filter(({ c }) => {
   return true
 })
 
+// The inclusion record goes on each candidate's issue (Julie, 2026-10-06). Six runs in a row left
+// no inclusion report anywhere but a 5-0 in inclusion_rationale, so nobody could say which seat
+// argued what, or why a parked candidate was parked. The seats' structured returns already hold
+// everything, so the text is built here, from those returns rather than from any agent's memory of
+// them, and one small agent posts it. It runs for every candidate that reached the Council, parked
+// or not, and never gates: a failed post is logged and the run goes on.
+const bullets = (items) => (items ?? []).filter(Boolean).map((x) => `- ${x}`).join('\n')
+const inclusionRecord = (c) => {
+  const seats = inclusionReports
+    .filter(Boolean)
+    .map((r) => ({ r, mine: (r.candidates ?? []).find((x) => x.slug === c.slug) }))
+    .filter((x) => x.mine)
+  const accepts = seats.filter((x) => x.mine.verdict === 'ACCEPT').length
+  const rejects = seats.filter((x) => x.mine.verdict === 'REJECT').length
+  const parkedAt = parked.find((p) => p.issue === c.issue && p.stage === 'inclusion')
+  const outcome = parkedAt ? `parked at inclusion: ${parkedAt.why}` : 'cleared; drafting next'
+  const seatBlock = ({ r, mine }) => {
+    const name = SEATS.find((s) => s.n === r.seat)?.name ?? 'seat'
+    const parts = [
+      mine.findings?.length ? `**Findings**\n${bullets(mine.findings)}` : '',
+      mine.foreground_frames?.length
+        ? `**Frames**\n${bullets(mine.foreground_frames.map((f) => `${f.name}: ${f.attribution_kind}${f.credit_to ? ` (${f.credit_to})` : ''}`))}`
+        : '',
+      mine.thinker_type || mine.doctrine_mode ? `**Type**: ${[mine.thinker_type, mine.doctrine_mode].filter(Boolean).join(', ')}` : '',
+      mine.risks?.length ? `**Risks**\n${bullets(mine.risks)}` : '',
+      mine.new_candidates?.length ? `**Named as candidates**\n${bullets(mine.new_candidates.map((n) => `${n.name}: ${n.why}`))}` : '',
+    ].filter(Boolean)
+    return `<details><summary>Seat ${r.seat}, ${name}: ${mine.verdict}</summary>\n\n${parts.join('\n\n')}\n\n</details>`
+  }
+  const crowding = inclusionReports.filter(Boolean).map((r) => r.cross_batch_note).filter(Boolean)
+  return (
+    `## Inclusion Council, ${today}: ${accepts} accept, ${rejects} reject\n\n` +
+    `**Outcome:** ${outcome}.\n\n` +
+    seats.map(seatBlock).join('\n\n') +
+    (crowding.length ? `\n\n<details><summary>Notes on crowding</summary>\n\n${bullets(crowding)}\n\n</details>` : '') +
+    `\n\n_Posted by the pipeline from the seats' own returns, unedited._`
+  )
+}
+const recorded = cleared.map(({ c }) => ({ c, text: inclusionRecord(c) })).filter(({ text }) => !/: 0 accept, 0 reject/.test(text))
+if (recorded.length && !dryRun) {
+  const posted = await dispatch(
+    `Post the inclusion Council's record on each candidate's issue, in ${REPO}. For each block below, write the ` +
+      `text between the markers to the named file with the Write tool, exactly as given, then run the command. ` +
+      `Do not edit, summarise or add to the text, and do nothing else.\n\n` +
+      recorded
+        .map(({ c, text }) =>
+          `FILE _working/_tmp/inclusion/${c.slug}.md, then run \`bun scripts/issue-note.ts ${c.issue} _working/_tmp/inclusion/${c.slug}.md\`\n` +
+          `<<<BEGIN\n${text}\nEND>>>`
+        )
+        .join('\n\n'),
+    { label: 'inclusion-record', phase: 'Inclusion', schema: { type: 'object', properties: { posted: { type: 'array', items: { type: 'integer' } }, failed: { type: 'array', items: { type: 'string' } } }, required: ['posted'] } }
+  )
+  const missed = recorded.filter(({ c }) => !(posted?.posted ?? []).includes(c.issue)).map(({ c }) => c.slug)
+  log(missed.length ? `Inclusion record NOT posted for: ${missed.join(', ')}. ${(posted?.failed ?? []).join(' ')}` : `Inclusion record posted on ${recorded.length} issue(s).`)
+}
+
 if (!accepted.length) {
   log('No candidate cleared inclusion.')
   return { shipped: [], parked, inclusionReports, note: 'No candidate cleared the inclusion Council.' }

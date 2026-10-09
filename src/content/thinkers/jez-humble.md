@@ -107,8 +107,8 @@ named_frames:
       Farley and Mark Rickmeier with the idea in 2004, and names a 2005 blog
       entry by Sam Newman as its first public documentation. The paper calls
       it a deployment production line, and the name that stuck arrived later.
-    attribution_kind: co-authored
-    primary_author: jez-humble
+    attribution_kind: distributed
+    primary_author: dave-farley
     co_originators:
       - slug: chris-read
         role: co-author, "The Deployment Production Line," AGILE 2006

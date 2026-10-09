@@ -161,8 +161,8 @@ named_frames:
       the conference title as "Build Production Line"; the published paper is
       "The Deployment Production Line." Humble's February 2010 post credits
       Dave Farley and Mark Rickmeier with the idea in 2004.
-    attribution_kind: co-authored
-    primary_author: jez-humble
+    attribution_kind: distributed
+    primary_author: dave-farley
     co_originators:
       - slug: chris-read
         role: co-author, "The Deployment Production Line," AGILE 2006

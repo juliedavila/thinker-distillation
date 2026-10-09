@@ -18,11 +18,10 @@ inclusion_rationale: >
   as its first public write-up, and Farley's single-author 2007 paper uses the name
   "Deployment Pipeline". The pipeline is filed `distributed` here, following
   SCHEMA section 2 for a frame that came from a team, where the Council split
-  three to two between that and `co-authored`; `primary_author` stays
-  `jez-humble` to match both live holders, and whether Humble's own 2004
-  credit should move it is Julie's call. So is the filing itself: both live
-  copies stay `co-authored` while this page files the frame `distributed`, so
-  the frame shows two filings for one record until she picks one. Mark
+  three to two between that and `co-authored`. Julie's call on 2026-10-09:
+  `distributed` on all three holders, with `primary_author: dave-farley`
+  on Humble's own 2010 credit of the 2004 idea to Farley and Rickmeier,
+  and Humble a co-originator for the 2006 paper and the book. Mark
   Rickmeier and Sam Newman are in this page's `co_originators` on Humble's
   2010 post and Newman's own 2009 history, and the merge request that adds
   this page adds the same lines to both live copies. Outside uptake of his other frames
@@ -36,8 +35,8 @@ inclusion_rationale: >
   the pipeline, which Humble's own 2010 post contradicts, and the Humble and
   Terhorst-North copies of the frame omitted Farley from `co_originators`;
   that merge request corrects both. The Reactive Manifesto `primary_author` (`jonas-boner`, first
-  in the manifesto's alphabetical list) has no ranking behind it and is also
-  Julie's call.
+  in the manifesto's alphabetical list) has no ranking behind it, and Julie
+  kept it as it is (2026-10-09).
 thinker_type: mixed
 doctrine_mode: mode-a
 has_long_read: false
@@ -117,8 +116,10 @@ named_frames:
       "Deployment Pipeline", and in a 2021 interview he says "I invented the
       term deployment pipeline".
     attribution_kind: distributed
-    primary_author: jez-humble
+    primary_author: dave-farley
     co_originators:
+      - slug: jez-humble
+        role: co-author, "The Deployment Production Line," AGILE 2006, and first author of *Continuous Delivery* (2010)
       - slug: chris-read
         role: co-author, "The Deployment Production Line," AGILE 2006
       - slug: dan-north

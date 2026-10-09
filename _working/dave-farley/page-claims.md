@@ -10,10 +10,11 @@ Reading has its own map in `reading-claims.md`.
 - background [S:1] [S:3] [S:18] [S:2] [S:7] [S:5] [S:6]
 
 - named_frames[0].attribution [S:19] [S:20] [S:35] [S:18] [S:21]
-- named_frames[0].co_originators[0] [S:35]
+- named_frames[0].co_originators[0] [S:35] [S:10]
 - named_frames[0].co_originators[1] [S:35]
-- named_frames[0].co_originators[2] [S:19]
-- named_frames[0].co_originators[3] [S:20] [S:19]
+- named_frames[0].co_originators[2] [S:35]
+- named_frames[0].co_originators[3] [S:19]
+- named_frames[0].co_originators[4] [S:20] [S:19]
 - named_frames[1].attribution [S:12] [S:13] [S:14] [S:15] [S:25]
 - named_frames[2].attribution [S:26] [S:36] [S:11] [S:32] [S:38]
 - named_frames[2].co_originators[0] [S:11] [S:4]
@@ -105,7 +106,7 @@ factual clause in the most-read fields.
 
 ## Cold reader editor notes (2026-10-09)
 
-* `named_frames[0].co_originators[2]` (Mark Rickmeier) rests on `[S:19]`, Humble's "Dave, along with
+* `named_frames[0].co_originators[3]` (Mark Rickmeier) rests on `[S:19]`, Humble's "Dave, along with
   Mark Rickmeier, came up with the idea of deployment pipelines back in 2004". `co_originators[3]`
   (Sam Newman) rests on `[S:20]` for "build pipeline" and January 2005, and on `[S:19]` for Humble
   naming a 2005 Newman entry as the first public documentation. Neither has a page here, which is

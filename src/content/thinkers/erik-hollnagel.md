@@ -36,8 +36,9 @@ thirty_second_take: >
   rare failure against that background. His efficiency-thoroughness
   trade-off, ETTO, names the bargain people strike all day between getting
   work done and checking it, and he treats that bargain as normal. He
-  co-founded resilience engineering with David Woods, Nancy Leveson and
-  others, wrote the joint cognitive systems work with Woods, and built FRAM,
+  co-founded resilience engineering with David Woods and others, co-editing
+  its 2006 anthology with Woods and Nancy Leveson, wrote the joint cognitive
+  systems work with Woods, and built FRAM,
   a method for tracing how the ordinary variability of everyday work can
   resonate into an outcome. Leveson has since argued that the Safety-I he
   describes bears little resemblance to safety engineering as it is
@@ -296,7 +297,7 @@ limits:
       The charge is still aimed squarely at the frame this page leads with,
       and a reader adopting Safety-II is adopting a proposal whose tenets,
       on Cooper's reading, have not been tested.
-  - headline: A co-founder says his account of Safety-I misdescribes safety engineering
+  - headline: A co-editor of the founding anthology says his account of Safety-I misdescribes safety engineering
     severity: structural
     elaboration: >
       Nancy Leveson, who co-edited the field's founding anthology with him,
@@ -376,7 +377,7 @@ adjacent_thinkers:
       founding anthology, written against "Prof. Hollnagel's arguments" and
       proposing a systems approach in their place. His answer, "The Folly of
       Safety-III", exists as an unpublished manuscript.
-    strength: secondary
+    strength: primary
   - target_slug: m-d-cooper
     display_name: M. D. Cooper
     edge_type: critiques

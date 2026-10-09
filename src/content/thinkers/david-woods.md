@@ -331,6 +331,15 @@ adjacent_thinkers:
       robustness to known threats is locally useful and globally fragile.
     strength: secondary
     render_tier: deep
+  - target_slug: nancy-leveson
+    display_name: Nancy Leveson
+    edge_type: parallel
+    edge_label: >
+      Author of STAMP, which analyses an accident through the control
+      structure that should have prevented it, and an editor, with Hollnagel
+      and Woods, of the 2006 resilience engineering anthology.
+    strength: secondary
+    render_tier: deep
 
 further_in:
   start_here: >

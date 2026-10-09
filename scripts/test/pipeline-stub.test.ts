@@ -22,6 +22,7 @@ type Scenario = {
   researchCap?: boolean; // research reports the web-search cap
   scan?: 'clean' | 'hit' | 'blind'; // what scripts/search-cap.ts told the fact audit
   repoPath?: string; // a sandbox path, as an unattended run passes
+  rejectSeats?: number[]; // inclusion seats that vote REJECT
 };
 
 async function run(sc: Scenario) {
@@ -36,7 +37,8 @@ async function run(sc: Scenario) {
     const slug = label.split(':')[1];
     if (label.startsWith('research:')) return { slug, name: slug, uptake_passes: true, uptake_evidence: 'x', corrections: [], frames: [{ name: 'f', attribution_kind: 'original' }], fact_count: 10, recommendation: 'proceed', search_cap_hit: sc.researchCap ?? false, reasoning: 'x' };
     if (label.startsWith('fact-audit:')) return { slug, checked: 10, contradicted: [], unsupported: [], ledger_passes: true, verdict: 'clean', search_cap_hit: false, search_cap_scan: sc.scan ?? 'clean', notes: '' };
-    if (label.startsWith('inclusion:seat-')) return { seat: Number(label.split('-').pop()), candidates: sc.slugs.map((s) => ({ slug: s, verdict: 'ACCEPT' })) };
+    if (label.startsWith('inclusion:seat-')) { const seat = Number(label.split('-').pop()); return { seat, candidates: sc.slugs.map((s) => ({ slug: s, verdict: sc.rejectSeats?.includes(seat) ? 'REJECT' : 'ACCEPT', findings: [`seat ${seat} finding`], risks: [`seat ${seat} risk`] })) }; }
+    if (label === 'inclusion-record') return { posted: sc.slugs.map((_, i) => i + 1), failed: [] };
     if (label.startsWith('draft:')) return { slug, doctrine_mode: mode, ledger_passes: true, gates_pass: true, angle: 'x', return_edges: [], reconciled_claims: [] };
     if (label === 'review-policy') return { plans: sc.slugs.map((s) => ({ slug: s, doctrine_mode: mode, rounds: mode === 'mode-a' ? 3 : 1, transcript_suffix: 'debate', round3_mode: mode === 'mode-a' ? (sc.round3 ?? 'cold-reader') : undefined, seats_by_round: {}, control: { when: 'every page', gates: false } })), rewrite_audit_seats: [3, 5] };
     if (label === 'staleness-queue') return { due: [], parked_due: [] };
@@ -158,4 +160,26 @@ test('in a sandbox every agent is told the unattended rules, and outside one non
   expect(sandboxed.calls.length).toBeGreaterThan(15);
   const local = await run({ slugs: ['dave-farley'] });
   expect(local.calls.some((c) => c.prompt.includes('This run is unattended'))).toBe(false);
+});
+
+test("the inclusion record is posted on the issue, built from every seat's return", async () => {
+  const { calls, logs } = await run({ slugs: ['dave-farley'] });
+  const rec = calls.find((c) => c.label === 'inclusion-record');
+  expect(rec).toBeDefined();
+  expect(rec!.prompt).toContain('bun scripts/issue-note.ts 1 _working/_tmp/inclusion/dave-farley.md');
+  expect(rec!.prompt).toContain('5 accept, 0 reject');
+  for (const n of [1, 2, 3, 4, 5]) expect(rec!.prompt).toContain(`seat ${n} finding`);
+  expect(rec!.prompt).toContain('<summary>Strongest critic: ACCEPT</summary>');
+  expect(rec!.prompt).toContain('Write the summary for a reader who opens this issue cold');
+  expect(rec!.prompt).toMatch(/<!-- inclusion-record\n[\s\S]*"accept": 5[\s\S]*\n-->/);
+  expect(calls.findIndex((c) => c.label === 'inclusion-record')).toBeLessThan(calls.findIndex((c) => c.label.startsWith('draft:')));
+  expect(logs.some((l) => l.includes('Inclusion record posted on 1 issue'))).toBe(true);
+});
+
+test('a candidate parked at inclusion still gets its record, with the reason', async () => {
+  const { calls, labels } = await run({ slugs: ['dave-farley'], rejectSeats: [2, 4] });
+  expect(labels.some((l) => l.startsWith('draft:'))).toBe(false);
+  const rec = calls.find((c) => c.label === 'inclusion-record');
+  expect(rec!.prompt).toContain('3 accept, 2 reject');
+  expect(rec!.prompt).toContain('parked at inclusion');
 });

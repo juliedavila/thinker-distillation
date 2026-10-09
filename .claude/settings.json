@@ -24,7 +24,8 @@
       "Bash(git ls-tree:*)",
       "Bash(git merge-base:*)",
       "Bash(bun scripts/fetch.ts:*)",
-      "Bash(bun scripts/discard.ts:*)"
+      "Bash(bun scripts/discard.ts:*)",
+      "Bash(bun scripts/issue-note.ts:*)"
     ],
     "deny": [
       "Bash(rm -rf:*)",

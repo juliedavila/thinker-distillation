@@ -50,3 +50,18 @@ test('discard refuses directories, paths outside _working/, and a symlinked pare
   expect(check(join(link, 'victim')).refuse).toMatch(/outside/);
   rmSync(outside, { recursive: true, force: true });
 });
+
+test('issue-note takes one issue by number and a non-empty file under _working/, under the cap', async () => {
+  const { checkArgs, MAX_BYTES } = await import('../issue-note');
+  const f = join(TMP, 'record.md');
+  writeFileSync(f, '## Inclusion Council');
+  expect(checkArgs('74', f).issue).toBe('74');
+  expect(() => checkArgs('74; rm x', f)).toThrow(/number/);
+  expect(() => checkArgs('0', f)).toThrow(/number/);
+  expect(() => checkArgs('74', join(ROOT, 'SCHEMA.md'))).toThrow(/outside/);
+  expect(() => checkArgs('74', join(TMP, 'missing.md'))).toThrow(/no such file/);
+  writeFileSync(join(TMP, 'empty.md'), '');
+  expect(() => checkArgs('74', join(TMP, 'empty.md'))).toThrow(/empty/);
+  writeFileSync(join(TMP, 'big.md'), 'x'.repeat(MAX_BYTES + 1));
+  expect(() => checkArgs('74', join(TMP, 'big.md'))).toThrow(/cap/);
+});

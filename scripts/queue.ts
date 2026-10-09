@@ -39,6 +39,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadThinkers, ROOT } from './lib';
+import { pullBy, suggestionsFrom, type Mention } from './queue-signals';
 
 const argv = process.argv.slice(2);
 const json = argv.includes('--json');
@@ -56,21 +57,24 @@ const run = (cmd: string[]) => {
 // --------------------------------------------------------------- graph pull
 const pages = loadThinkers();
 const onSite = new Set(pages.keys());
-const mentions = new Map<string, Set<string>>();
-const noteMention = (slug: string, by: string) => {
+// Each mention carries the frame it came through, so a credit shared by several holders of one frame
+// counts once (queue-signals.ts has the history).
+const mentionList: Mention[] = [];
+const noteMention = (slug: string, by: string, frame?: string) => {
   if (onSite.has(slug)) return; // already has a page; nothing to pull in
-  mentions.set(slug, (mentions.get(slug) ?? new Set()).add(by));
+  mentionList.push({ candidate: slug, page: by, frame });
 };
 for (const [slug, d] of pages) {
   for (const e of (d.adjacent_thinkers ?? []) as Array<Record<string, any>>) noteMention(e.target_slug, slug);
   for (const f of (d.named_frames ?? []) as Array<Record<string, any>>) {
-    for (const c of (f.co_originators ?? []) as Array<Record<string, any>>) noteMention(c.slug, slug);
+    for (const c of (f.co_originators ?? []) as Array<Record<string, any>>) noteMention(c.slug, slug, f.concept_slug);
     // A frame credited to someone else names them as surely as a co-originator does. Missing this left
     // Aaron Rinehart at zero on 2026-09-28 while the Shortridge page filed security chaos engineering
     // under his name. noteMention already ignores the page's own slug when it has a page.
-    if (f.primary_author && f.primary_author !== slug) noteMention(String(f.primary_author), slug);
+    if (f.primary_author && f.primary_author !== slug) noteMention(String(f.primary_author), slug, f.concept_slug);
   }
 }
+const mentions = pullBy(mentionList);
 
 // ------------------------------------------------------------------- issues
 const res = run(['glab', 'api', `projects/${encodeURIComponent(PROJECT)}/issues?state=opened&per_page=100&labels=camila:candidate`]);
@@ -108,20 +112,35 @@ type Row = {
   ready: boolean;
 };
 
+// Council suggestions from the inclusion records posted on issues since 2026-10-05. Only issues
+// updated since then can hold one, which keeps this to a few API calls.
+const RECORDS_SINCE = '2026-10-05T00:00:00Z';
+const recent = run(['glab', 'api', `projects/${encodeURIComponent(PROJECT)}/issues?state=all&per_page=100&labels=camila:candidate&updated_after=${RECORDS_SINCE}`]);
+const noteBodies: string[] = [];
+if (recent.ok) {
+  for (const i of JSON.parse(recent.out) as Array<Record<string, any>>) {
+    const n = run(['glab', 'api', `projects/${encodeURIComponent(PROJECT)}/issues/${i.iid}/notes?per_page=100`]);
+    if (n.ok) for (const note of JSON.parse(n.out) as Array<Record<string, any>>) if (!note.system) noteBodies.push(String(note.body ?? ''));
+  }
+} else console.error('warning: could not read inclusion records; Council counts come from issue bodies only');
+const suggested = new Map<string, Set<string>>();
+for (const [name, by] of suggestionsFrom(noteBodies)) suggested.set(toSlug(name), by);
+
 const now = Date.now();
 const rows: Row[] = issues.map((i) => {
   const name = String(i.title).replace(/^Candidate:\s*/, '').split(/\s+[-—]\s+/)[0].trim();
   const slug = toSlug(name);
   const body = String(i.description ?? '');
   // "Surfaced by the Camille Fournier inclusion Council" and similar.
-  const councils = [...new Set([...body.matchAll(/(?:Surfaced|Named) by the ([A-Z][^(,.]*?) inclusion (?:Council|reviewers)/g)].map((m) => m[1].trim()))];
+  const fromBody = [...body.matchAll(/(?:Surfaced|Named) by the ([A-Z][^(,.]*?) inclusion (?:Council|reviewers)/g)].map((m) => toSlug(m[1].trim()));
+  const councils = [...new Set([...fromBody, ...(suggested.get(slug) ?? [])])];
   const by = mentions.get(slug);
   return {
     issue: Number(i.iid),
     name,
     slug,
-    pull: by?.size ?? 0,
-    pulled_by: [...(by ?? [])],
+    pull: by?.pull ?? 0,
+    pulled_by: by?.pages ?? [],
     councils,
     age_days: Math.floor((now - new Date(i.created_at).getTime()) / 86_400_000),
     ready: (i.labels ?? []).includes('camila:ready-for-review'),

@@ -169,7 +169,9 @@ test("the inclusion record is posted on the issue, built from every seat's retur
   expect(rec!.prompt).toContain('bun scripts/issue-note.ts 1 _working/_tmp/inclusion/dave-farley.md');
   expect(rec!.prompt).toContain('5 accept, 0 reject');
   for (const n of [1, 2, 3, 4, 5]) expect(rec!.prompt).toContain(`seat ${n} finding`);
-  expect(rec!.prompt).toContain('Seat 2, Strongest critic: ACCEPT');
+  expect(rec!.prompt).toContain('<summary>Strongest critic: ACCEPT</summary>');
+  expect(rec!.prompt).toContain('Write the summary for a reader who opens this issue cold');
+  expect(rec!.prompt).toMatch(/<!-- inclusion-record\n[\s\S]*"accept": 5[\s\S]*\n-->/);
   expect(calls.findIndex((c) => c.label === 'inclusion-record')).toBeLessThan(calls.findIndex((c) => c.label.startsWith('draft:')));
   expect(logs.some((l) => l.includes('Inclusion record posted on 1 issue'))).toBe(true);
 });

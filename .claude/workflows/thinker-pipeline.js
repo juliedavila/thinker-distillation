@@ -482,50 +482,101 @@ const accepted = cleared.filter(({ c }) => {
 
 // The inclusion record goes on each candidate's issue (Julie, 2026-10-06). Six runs in a row left
 // no inclusion report anywhere but a 5-0 in inclusion_rationale, so nobody could say which seat
-// argued what, or why a parked candidate was parked. The seats' structured returns already hold
-// everything, so the text is built here, from those returns rather than from any agent's memory of
-// them, and one small agent posts it. It runs for every candidate that reached the Council, parked
-// or not, and never gates: a failed post is logged and the run goes on.
+// argued what, or why a parked candidate was parked. It runs for every candidate that reached the
+// Council, parked or not, and never gates: a failed post is logged and the run goes on.
+//
+// Three parts, for three readers (Julie, 2026-10-09: the first version was "a lot to take in" for
+// anyone opening it cold). On top, a short summary in plain English, which takes judgment, so the
+// posting agent writes it from the seats' returns under rules that forbid adding anything. Below it,
+// folded, the seats' own reports, built here from their returns so nothing is paraphrased. Last, a
+// hidden HTML comment with the structured result, for a later agent; GitLab does not render it.
 const bullets = (items) => (items ?? []).filter(Boolean).map((x) => `- ${x}`).join('\n')
-const inclusionRecord = (c) => {
-  const seats = inclusionReports
+const seatsFor = (c) =>
+  inclusionReports
     .filter(Boolean)
     .map((r) => ({ r, mine: (r.candidates ?? []).find((x) => x.slug === c.slug) }))
     .filter((x) => x.mine)
+    .sort((a, b) => (a.r.seat ?? 0) - (b.r.seat ?? 0))
+const outcomeFor = (c) => {
+  const parkedAt = parked.find((p) => p.issue === c.issue && p.stage === 'inclusion')
+  return parkedAt ? `parked at inclusion: ${parkedAt.why}` : 'cleared; drafting next'
+}
+const inclusionDetail = (c) => {
+  const seats = seatsFor(c)
   const accepts = seats.filter((x) => x.mine.verdict === 'ACCEPT').length
   const rejects = seats.filter((x) => x.mine.verdict === 'REJECT').length
-  const parkedAt = parked.find((p) => p.issue === c.issue && p.stage === 'inclusion')
-  const outcome = parkedAt ? `parked at inclusion: ${parkedAt.why}` : 'cleared; drafting next'
   const seatBlock = ({ r, mine }) => {
     const name = SEATS.find((s) => s.n === r.seat)?.name ?? 'seat'
     const parts = [
       mine.findings?.length ? `**Findings**\n${bullets(mine.findings)}` : '',
       mine.foreground_frames?.length
-        ? `**Frames**\n${bullets(mine.foreground_frames.map((f) => `${f.name}: ${f.attribution_kind}${f.credit_to ? ` (${f.credit_to})` : ''}`))}`
+        ? `**Ideas and who they belong to**\n${bullets(mine.foreground_frames.map((f) => `${f.name}: ${f.attribution_kind}${f.credit_to ? ` (${f.credit_to})` : ''}`))}`
         : '',
-      mine.thinker_type || mine.doctrine_mode ? `**Type**: ${[mine.thinker_type, mine.doctrine_mode].filter(Boolean).join(', ')}` : '',
-      mine.risks?.length ? `**Risks**\n${bullets(mine.risks)}` : '',
-      mine.new_candidates?.length ? `**Named as candidates**\n${bullets(mine.new_candidates.map((n) => `${n.name}: ${n.why}`))}` : '',
+      mine.risks?.length ? `**Risks for the draft**\n${bullets(mine.risks)}` : '',
+      mine.new_candidates?.length ? `**Suggested as future candidates**\n${bullets(mine.new_candidates.map((n) => `${n.name}: ${n.why}`))}` : '',
     ].filter(Boolean)
-    return `<details><summary>Seat ${r.seat}, ${name}: ${mine.verdict}</summary>\n\n${parts.join('\n\n')}\n\n</details>`
+    return `<details><summary>${name}: ${mine.verdict}</summary>\n\n${parts.join('\n\n')}\n\n</details>`
   }
   const crowding = inclusionReports.filter(Boolean).map((r) => r.cross_batch_note).filter(Boolean)
-  return (
-    `## Inclusion Council, ${today}: ${accepts} accept, ${rejects} reject\n\n` +
-    `**Outcome:** ${outcome}.\n\n` +
-    seats.map(seatBlock).join('\n\n') +
-    (crowding.length ? `\n\n<details><summary>Notes on crowding</summary>\n\n${bullets(crowding)}\n\n</details>` : '') +
-    `\n\n_Posted by the pipeline from the seats' own returns, unedited._`
-  )
+  // The machine block sits inside an HTML comment, so no string in it may close the comment.
+  const data = {
+    record: 'inclusion-council',
+    version: 2,
+    slug: c.slug,
+    issue: c.issue,
+    date: today,
+    accept: accepts,
+    reject: rejects,
+    outcome: outcomeFor(c),
+    seats: seats.map(({ r, mine }) => ({ seat: r.seat, role: SEATS.find((s) => s.n === r.seat)?.name, verdict: mine.verdict, thinker_type: mine.thinker_type, doctrine_mode: mine.doctrine_mode })),
+    frames: (seats.find((x) => x.r.seat === 5) ?? seats[0])?.mine.foreground_frames ?? [],
+    new_candidates: [...new Set(seats.flatMap((x) => (x.mine.new_candidates ?? []).map((n) => n.name)))],
+  }
+  return {
+    accepts,
+    rejects,
+    text:
+      `<details><summary>The five reviewers' full reports</summary>\n\n` +
+      `Five reviewers read the research independently and each voted. Each has a fixed job: ` +
+      `${SEATS.map((s) => s.name.toLowerCase()).join(', ')}. Bracketed codes such as [S:14] point to lines ` +
+      `in the source ledger, \`_working/${c.slug}/facts.md\` in the repository; [P:n] codes point to Julie's ` +
+      `published positions.\n\n` +
+      seats.map(seatBlock).join('\n\n') +
+      (crowding.length ? `\n\n<details><summary>Notes on overlap with other pages</summary>\n\n${bullets(crowding)}\n\n</details>` : '') +
+      `\n\n</details>\n\n` +
+      `<!-- inclusion-record\n${JSON.stringify(data, null, 1).replace(/--/g, '- -')}\n-->`,
+  }
 }
-const recorded = cleared.map(({ c }) => ({ c, text: inclusionRecord(c) })).filter(({ text }) => !/: 0 accept, 0 reject/.test(text))
+const SUMMARY_RULES =
+  'Write the summary for a reader who opens this issue cold: Julie months from now with no memory of the ' +
+  'run, or a technical outsider who has never heard of this pipeline. Everything in it comes from the ' +
+  "reviewers' reports given below; add no fact, date, name or judgment they do not contain. Where the " +
+  'reviewers apply the thinker\'s ideas to security, say it is the reviewers\' reading.\n' +
+  'Shape, in this order, under 300 words:\n' +
+  '1. A level-2 heading that states the decision, e.g. "## Jane Doe belongs on the site: all five reviewers ' +
+  'said yes", or "## Jane Doe is parked: two of five reviewers said no".\n' +
+  '2. **Who they are.** Two or three sentences: who, when, the one idea they are best known for, in plain words.\n' +
+  '3. **Why they are in.** (or **Why they were parked.**) Two to four sentences.\n' +
+  '4. **What gave the reviewers pause.** At most three bullets.\n' +
+  '5. **What the page has to get right.** Only for an accepted candidate: the credits that belong to other ' +
+  'people or are shared, in one short paragraph.\n' +
+  '6. **What happens next.** One or two sentences: drafting, or the decision that is now Julie\'s.\n' +
+  'Plain English. Name people in full the first time. No ledger or lens codes ([S:n], [P:n]), no seat ' +
+  'numbers, and none of the pipeline\'s vocabulary (frame, attribution_kind, uptake, doctrine mode, return ' +
+  `edge, grounding pack): say what it means instead. ${VOICE}`
+const recorded = cleared
+  .map(({ c }) => ({ c, ...inclusionDetail(c) }))
+  .filter(({ accepts, rejects }) => accepts + rejects > 0)
 if (recorded.length && !dryRun) {
   const posted = await dispatch(
-    `Post the inclusion Council's record on each candidate's issue, in ${REPO}. For each block below, write the ` +
-      `text between the markers to the named file with the Write tool, exactly as given, then run the command. ` +
-      `Do not edit, summarise or add to the text, and do nothing else.\n\n` +
+    `Post the inclusion Council's record on each candidate's issue, in ${REPO}.\n\n` +
+      `For each candidate below: write a summary by the rules that follow, then write ONE file at the path ` +
+      `given, with the Write tool, holding your summary, a blank line, and then the text between the markers ` +
+      `exactly as given (do not edit, shorten or reorder it). Then run the command given. Do nothing else.\n\n` +
+      `${SUMMARY_RULES}\n\n` +
       recorded
-        .map(({ c, text }) =>
+        .map(({ c, accepts, rejects, text }) =>
+          `CANDIDATE ${c.name}, issue #${c.issue}: ${accepts} accept, ${rejects} reject; outcome: ${outcomeFor(c)}.\n` +
           `FILE _working/_tmp/inclusion/${c.slug}.md, then run \`bun scripts/issue-note.ts ${c.issue} _working/_tmp/inclusion/${c.slug}.md\`\n` +
           `<<<BEGIN\n${text}\nEND>>>`
         )

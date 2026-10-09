@@ -44,9 +44,12 @@ absence claim about the sources and takes no ledger line, unchanged from round 2
 - active_years [S:4] [S:1]
 - background [S:1] [S:2] [S:21] [S:6] [S:18]
 
-- named_frames[0].attribution [S:5] [S:4]
+- named_frames[0].attribution [S:5] [S:4] [S:31]
 - named_frames[0].co_originators[0] [S:4] [S:5]
 - named_frames[0].co_originators[1] [S:4] [S:5] [S:27]
+- named_frames[0].co_originators[2] [S:31] [S:32]
+- named_frames[0].co_originators[3] [S:31]
+- named_frames[0].co_originators[4] [S:33] [S:31]
 - named_frames[1].attribution [S:22] [S:9] [S:23] [S:3]
 - named_frames[1].co_originators[0] [S:3]
 - named_frames[2].attribution [S:7] [S:26] [S:3]
@@ -70,11 +73,24 @@ absence claim about the sources and takes no ledger line, unchanged from round 2
 
 - adjacent_thinkers[6] [S:19]
 
+Dave Farley ship, 2026-10-09. The deployment pipeline gloss no longer says the 2006 paper "first
+describes" the pipeline: Humble's February 2010 post [S:31] credits Dave Farley and Mark Rickmeier
+with the idea in 2004 and a 2005 Sam Newman blog entry with its first public documentation, so the
+gloss now calls the paper an early conference write-up and reports that credit. Farley, Rickmeier
+and Newman join the frame's `co_originators` on [S:31], [S:32] and [S:33], copied from the Farley
+ledger. The Terhorst-North and Chris Read edge labels lose the same priority
+wording ("first wrote up", "whenever"), `limits[2]` adds the 2010 credit, and the Farley edge label is rewritten. `attribution_kind`
+and `primary_author` are unchanged; whether they should change is Julie's call on the Farley
+merge request.
+
 Beyond the required set, so nothing the page asserts in prose is untraceable:
 
 - why_they_matter_as_a_thinker [S:14] [S:6] [S:11] [S:30]
 - adjacent_thinkers[1] [S:13] [S:11] [S:3] [S:10]
 - limits[0] [S:19] [S:20]
 - limits[1] [S:25] [S:20]
-- limits[2] [S:5] [S:8] [S:12] [S:17] [S:3]
+- limits[2] [S:5] [S:8] [S:12] [S:17] [S:3] [S:31]
+- adjacent_thinkers[4] [S:3] [S:31] [S:32] [S:7]
+- adjacent_thinkers[5] [S:4]
+- adjacent_thinkers[7] [S:4] [S:5]
 - limits[3] [S:3]

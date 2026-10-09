@@ -463,6 +463,16 @@ adjacent_thinkers:
       with spending less time remediating security issues.
     strength: secondary
     render_tier: deep
+  - target_slug: dave-farley
+    display_name: Dave Farley
+    edge_type: parallel
+    edge_label: >
+      A practitioner's book built on the stability and throughput model from
+      *Accelerate*. *Modern Software Engineering* (2021), by Farley alone,
+      applies the two measures in a section of its third chapter and names
+      *Accelerate* as the place to read more about them.
+    strength: secondary
+    render_tier: deep
 
 further_in:
   start_here: '*Accelerate* (Forsgren, Humble, Kim, 2018). The keystone.'

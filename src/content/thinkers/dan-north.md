@@ -159,14 +159,21 @@ named_frames:
       Chris Read and Terhorst-North, the third of three authors.
       Terhorst-North's profile calls it "the build pipeline" and gives
       the conference title as "Build Production Line"; the published paper is
-      "The Deployment Production Line."
-    attribution_kind: co-authored
-    primary_author: jez-humble
+      "The Deployment Production Line." Humble's February 2010 post credits
+      Dave Farley and Mark Rickmeier with the idea in 2004.
+    attribution_kind: distributed
+    primary_author: dave-farley
     co_originators:
       - slug: chris-read
         role: co-author, "The Deployment Production Line," AGILE 2006
       - slug: dan-north
         role: co-author, "The Deployment Production Line," AGILE 2006
+      - slug: dave-farley
+        role: came up with the idea with Mark Rickmeier in 2004, per Humble's February 2010 post; used the name "Deployment Pipeline" in his 2007 paper
+      - slug: mark-rickmeier
+        role: came up with the idea with Farley in 2004, per Humble's February 2010 post
+      - slug: sam-newman
+        role: wrote it up as a "build pipeline" in a 2005 blog entry, which Humble's February 2010 post names as its first public documentation
     source_link: https://continuousdelivery.com/wp-content/uploads/2011/04/deployment_production_line.pdf
     render_tier: deep
   - concept_slug: blue-green-deployment
@@ -414,6 +421,16 @@ adjacent_thinkers:
       him, and no source shows a line from one text to the other.
     strength: secondary
     render_tier: deep
+  - target_slug: dave-farley
+    display_name: Dave Farley
+    edge_type: parallel
+    edge_label: >
+      Farley adds the part of the pipeline story that comes before the 2006
+      paper. Humble's own account, in February 2010, puts Farley and Mark
+      Rickmeier at the start of it in 2004, and Farley's single-author 2007
+      paper calls the gated model by the name the practice kept. Whether
+      either write-up drew on the other is unrecorded.
+    strength: secondary
 
 further_in:
   start_here: '"Introducing BDD" (2006), which carries the name, the template and most of the credits.'

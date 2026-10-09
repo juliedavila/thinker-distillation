@@ -552,11 +552,17 @@ const SUMMARY_RULES =
   'run, or a technical outsider who has never heard of this pipeline. Everything in it comes from the ' +
   "reviewers' reports given below; add no fact, date, name or judgment they do not contain. Where the " +
   'reviewers apply the thinker\'s ideas to security, say it is the reviewers\' reading.\n' +
-  'Shape, in this order, under 300 words:\n' +
+  'This summary is written before the page is drafted or reviewed, so it settles no credit. Make no claim ' +
+  'that anyone originated, coined, invented, introduced, named or first did anything; say who credits whom ' +
+  '("Humble credits him with the idea in 2004"), or quote the person. scripts/issue-note.ts refuses a summary ' +
+  'over 300 words, with an em-dash, or with an origin verb outside quotation marks; if it refuses, fix the ' +
+  'summary and run it again.\n' +
+  'Shape, in this order, at most 300 words (heading to the last line before the folded reports):\n' +
   '1. A level-2 heading that states the decision, e.g. "## Jane Doe belongs on the site: all five reviewers ' +
   'said yes", or "## Jane Doe is parked: two of five reviewers said no".\n' +
-  '2. **Who they are.** Two or three sentences: who, when, the one idea they are best known for, in plain words.\n' +
-  '3. **Why they are in.** (or **Why they were parked.**) Two to four sentences.\n' +
+  '2. **Who she is.** / **Who he is.** / **Who they are.** Use the pronoun the sources use for the person. ' +
+  'Two or three sentences: who, when, the one idea they are best known for, in plain words.\n' +
+  '3. **Why she is in.** (with the same pronoun; or **Why she was parked.**) Two to four sentences.\n' +
   '4. **What gave the reviewers pause.** At most three bullets.\n' +
   '5. **What the page has to get right.** Only for an accepted candidate: the credits that belong to other ' +
   'people or are shared, in one short paragraph.\n' +

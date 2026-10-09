@@ -65,3 +65,16 @@ test('issue-note takes one issue by number and a non-empty file under _working/,
   writeFileSync(join(TMP, 'big.md'), 'x'.repeat(MAX_BYTES + 1));
   expect(() => checkArgs('74', join(TMP, 'big.md'))).toThrow(/cap/);
 });
+
+test('issue-note refuses an inclusion summary that is too long, has an em-dash, or settles an origin', async () => {
+  const { summaryProblems } = await import('../issue-note');
+  const tail = '\n\n<details><summary>reports</summary>\n\ncoined invented ' + 'word '.repeat(400) + '\n</details>\n\n<!-- inclusion-record\n{}\n-->';
+  const ok = '## Jane Doe belongs on the site: all five reviewers said yes\n\n**Who she is.** Humble credits her with the idea in 2004. She says "I invented the term".';
+  expect(summaryProblems(ok + tail)).toEqual([]);
+  expect(summaryProblems('word '.repeat(301) + tail)[0]).toMatch(/301 words/);
+  expect(summaryProblems('A line — with a dash' + tail)[0]).toMatch(/em-dash/);
+  expect(summaryProblems('Her 2007 paper first named the pipeline.' + tail)[0]).toMatch(/first named/);
+  expect(summaryProblems('He coined the term.' + tail)[0]).toMatch(/coined/);
+  // Only an inclusion record is checked; any other note posts as written.
+  expect(summaryProblems('He coined the term — ' + 'word '.repeat(500))).toEqual([]);
+});

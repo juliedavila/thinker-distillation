@@ -31,6 +31,26 @@ export function checkArgs(issue: string | undefined, file: string | undefined, c
   return { issue, path };
 }
 
+// An inclusion record's summary is checked before it posts, because the rules in the prompt were not
+// enough: the first automatic one (#40, 2026-10-09) ran 337 words against a 300 cap and said Farley's
+// paper "named" the pipeline, a credit the page's own review later declined. The summary is written
+// before the page is reviewed, so it may report who credits whom but may not settle an origin itself.
+// The summary is everything before the first <details>; quoted text is exempt from the verb check.
+export const SUMMARY_MAX_WORDS = 300;
+const ORIGIN = /\b(coin(?:ed|s)|invent(?:ed|s|or)|introduc(?:ed|es)|originat(?:ed|es|or)|pioneer(?:ed|s)?|first (?:to|described|used|wrote|named|coined|proposed))\b/i;
+export function summaryProblems(body: string): string[] {
+  if (!body.includes('<!-- inclusion-record')) return [];
+  const summary = body.slice(0, body.indexOf('<details') >= 0 ? body.indexOf('<details') : body.length);
+  const problems: string[] = [];
+  const words = summary.replace(/[#*_`>-]+/g, ' ').split(/\s+/).filter((w) => /\w/.test(w)).length;
+  if (words > SUMMARY_MAX_WORDS) problems.push(`summary is ${words} words; the cap is ${SUMMARY_MAX_WORDS}`);
+  if (summary.includes('—')) problems.push('summary contains an em-dash');
+  const unquoted = summary.replace(/"[^"\n]*"|“[^”\n]*”/g, '""');
+  const verb = unquoted.match(ORIGIN);
+  if (verb) problems.push(`summary settles an origin with "${verb[0]}"; say who credits whom, or quote them`);
+  return problems;
+}
+
 if (import.meta.main) {
   let args: { issue: string; path: string };
   try {
@@ -42,6 +62,11 @@ if (import.meta.main) {
     process.exit(2);
   }
   const body = readFileSync(args.path, 'utf8');
+  const problems = summaryProblems(body);
+  if (problems.length) {
+    console.error(`not posted. Fix the summary in ${args.path} and run this again:\n${problems.map((p) => `  - ${p}`).join('\n')}`);
+    process.exit(1);
+  }
   const p = Bun.spawnSync(['glab', 'issue', 'note', args.issue, '--message', body], { cwd: ROOT, timeout: 60_000 });
   const out = (p.stdout.toString() + p.stderr.toString()).trim();
   if (p.exitCode !== 0) {

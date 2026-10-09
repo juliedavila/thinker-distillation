@@ -20,9 +20,12 @@ so the map says what each of them rests on; `reading` and `extension` have their
 - named_frames[1].co_originators[0] [S:15] [S:20]
 - named_frames[2].attribution [S:21] [S:22] [S:40] [S:23] [S:37]
 - named_frames[3].attribution [S:26] [S:27] [S:39] [S:25]
-- named_frames[4].attribution [S:33] [S:34] [S:3]
+- named_frames[4].attribution [S:33] [S:34] [S:3] [S:48]
 - named_frames[4].co_originators[0] [S:33] [S:34]
 - named_frames[4].co_originators[1] [S:33] [S:34]
+- named_frames[4].co_originators[2] [S:48] [S:49]
+- named_frames[4].co_originators[3] [S:48]
+- named_frames[4].co_originators[4] [S:50] [S:48]
 - named_frames[5].attribution [S:35]
 - named_frames[5].co_originators[0] [S:35]
 
@@ -56,6 +59,7 @@ so the map says what each of them rests on; `reading` and `extension` have their
 - adjacent_thinkers[1] [S:20] [S:35]
 - adjacent_thinkers[2] [S:36]
 - adjacent_thinkers[3] [S:15] [S:20]
+- adjacent_thinkers[7] [S:48] [S:49] [S:33]
 - further_in [S:12] [S:20] [S:22] [S:27] [S:9] [S:23] [S:29] [S:37]
 - reading [S:45] [S:46]
 - extension [S:43] [S:44]
@@ -73,3 +77,5 @@ Round 2 editor changes (2026-09-25), no citation added or removed. `named_frames
 Round 3 editor changes (2026-09-25), no citation added or removed. `adjacent_thinkers[1]` sentence 1 now says the bliki recorded "two of" the joint-work credits, where "both" miscounted a set of three; the third, the pipeline, rests on [S:33] [S:34], which this edge does not cite and does not need to. `limits[3].headline` now names second-order ignorance as the older item, where "central term" read as the name Deliberate Discovery, which [S:40] finds no earlier holder of; the headline is carried by the unchanged elaboration's [S:23] [S:22] [S:37] [S:24].
 
 Cold reader editor changes (2026-09-25). `adjacent_thinkers[4]` (Martin) now carries the single responsibility charge and the "far more likely" irony wording, both on [S:45], which also records the absence check behind "does not address BDD". `adjacent_thinkers[5]` adds [S:46] for its target being the talk alone. `reading` gets a line of its own for sentence 7, "neither addresses CUPID or BDD", on [S:45] [S:46]; its other sentences cite pack IDs in `reading-claims.md`. `thirty_second_take` now orders agiledox and the "should" convention before the name and Matts after it, on [S:47]. `body_of_work[5]` and `background` drop "sixth of six" for the alphabetical reason now recorded on [S:9]. `background` marks "first tech employee" as the profile's account [S:5]. `limits[0]` no longer offers author order as evidence against "co-invented" [S:33]. `limits[1].headline` now matches [S:19] (the teaching of TDD). `limits[3].headline`, `inclusion_rationale` and `further_in` now carry the Needham qualifier on Armour [S:23] [S:37]. `still_load_bearing_despite` routes the requirements turn through Matts [S:15]. `thesis` no longer files CUPID under planning [S:27].
+
+Dave Farley ship (2026-10-09). `named_frames[4]` gains Dave Farley, Mark Rickmeier and Sam Newman as `co_originators` on [S:48], [S:49] and [S:50], copied from the Farley ledger, and its gloss adds Humble's February 2010 credit to Farley and Rickmeier [S:48]. `adjacent_thinkers[7]` is the new return edge to Dave Farley, appended at the end, on [S:48] [S:49] [S:33]. `attribution_kind` and `primary_author` are unchanged; whether they should change is Julie's call on the Farley merge request.

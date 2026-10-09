@@ -101,10 +101,12 @@ named_frames:
     one_line_gloss: >
       One automated route from version control to production, in stages, where
       each stage either rejects the change or passes the same artifact along.
-      The paper that first describes it is by Humble, Chris Read and Dan North,
-      all three then at ThoughtWorks, and Humble credits all three by name in
-      the first person. The paper calls it a deployment production line, and
-      the name that stuck arrived later.
+      An early conference write-up is the 2006 paper by Humble, Chris Read and
+      Dan North, all three then at ThoughtWorks, and Humble credits all three
+      by name in the first person. In a February 2010 post he also credits Dave
+      Farley and Mark Rickmeier with the idea in 2004, and names a 2005 blog
+      entry by Sam Newman as its first public documentation. The paper calls
+      it a deployment production line, and the name that stuck arrived later.
     attribution_kind: co-authored
     primary_author: jez-humble
     co_originators:
@@ -112,6 +114,12 @@ named_frames:
         role: co-author, "The Deployment Production Line," AGILE 2006
       - slug: dan-north
         role: co-author, "The Deployment Production Line," AGILE 2006
+      - slug: dave-farley
+        role: came up with the idea with Mark Rickmeier in 2004, per Humble's February 2010 post; used the name "Deployment Pipeline" in his 2007 paper
+      - slug: mark-rickmeier
+        role: came up with the idea with Farley in 2004, per Humble's February 2010 post
+      - slug: sam-newman
+        role: wrote it up as a "build pipeline" in a 2005 blog entry, which Humble's February 2010 post names as its first public documentation
     source_link: https://continuousdelivery.com/wp-content/uploads/2011/04/deployment_production_line.pdf
     render_tier: foreground
   - concept_slug: continuous-delivery
@@ -335,8 +343,9 @@ limits:
     severity: structural
     elaboration: >
       Four books, four sets of co-authors, no solo book. The deployment
-      pipeline is co-authored and he says so himself, naming Dan North and
-      Chris Read. The five principles are credited on his own site to Deming
+      pipeline is shared and he says so himself, naming Dan North and Chris
+      Read for the 2006 paper and, in a 2010 post, Dave Farley and Mark
+      Rickmeier for the idea in 2004. The five principles are credited on his own site to Deming
       and to Toyota. Fowler's credit for the blue-green name is "some foggy
       combination" of Dan North and Jez Humble. The DORA measures come out of
       Nicole Forsgren's research. A sentence that begins "Humble argues" is
@@ -417,17 +426,18 @@ adjacent_thinkers:
     display_name: Dave Farley
     edge_type: parallel
     edge_label: >
-      Co-author of *Continuous Delivery* (2010). The discipline described on
-      this page is the book's, and the book is equally his, including the
-      release-versus-deploy distinction that Humble's own post attributes back
-      to it. Any account that files continuous delivery under one name is
-      missing half of where it came from.
+      Co-author of *Continuous Delivery* (2010), and the person Humble
+      credited in February 2010, with Mark Rickmeier, for the pipeline idea in
+      2004. His single-author 2007 paper set out the gated model three years
+      before the book, under the name the book kept. The book is equally his,
+      including the release-versus-deploy distinction that Humble's own post
+      attributes back to it.
     strength: primary
   - target_slug: dan-north
     display_name: Daniel Terhorst-North
     edge_type: parallel
     edge_label: >
-      Co-author of the 2006 paper that first wrote up the deployment pipeline,
+      Co-author of the 2006 conference paper on the deployment pipeline,
       and the other name in Fowler's hedged credit for blue-green deployment.
       He publishes as Daniel Terhorst-North, which is the name Fowler's
       blue-green credit uses.
@@ -448,8 +458,8 @@ adjacent_thinkers:
     edge_type: parallel
     edge_label: >
       The third author of "The Deployment Production Line" (AGILE 2006), and
-      one of the two names Humble uses whenever he attributes the deployment
-      pipeline in the first person.
+      one of the two co-authors Humble names when he attributes the 2006
+      paper in the first person.
     strength: secondary
     render_tier: deep
   - target_slug: gene-kim

@@ -448,6 +448,15 @@ adjacent_thinkers:
       and Humble.
     strength: secondary
     render_tier: deep
+  - target_slug: dave-farley
+    display_name: Dave Farley
+    edge_type: parallel
+    edge_label: >
+      Farley carries continuous integration past the build. His 2007 paper is
+      subtitled "Extending the range of Continuous Integration", and it takes
+      each check-in on through a series of gates toward release.
+    strength: secondary
+    render_tier: deep
 
 further_in:
   start_here: '`IsQualitySoftwareWorthTheCost` (bliki). The economic-argument keystone.'

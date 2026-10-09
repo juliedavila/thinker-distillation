@@ -488,6 +488,17 @@ adjacent_thinkers:
       "tidy code that works," and it is the one the practice named here declines
       to run. The argument reaches the word and never its author.
     strength: secondary
+  - target_slug: dave-farley
+    display_name: Dave Farley
+    edge_type: parallel
+    edge_label: >
+      Farley's *Modern Software Engineering* (2021) defines the discipline
+      with the word Beck's series is named for: software engineering is "the
+      application of an empirical, scientific approach" to practical problems
+      in software. Which way, if any, the word travelled between the two is
+      unrecorded.
+    strength: secondary
+    render_tier: deep
 
 further_in:
   start_here: '"Options Versus Cash Flows" (2022), four paragraphs holding the whole economic argument.'

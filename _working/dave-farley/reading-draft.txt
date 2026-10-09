@@ -1,0 +1,15 @@
+READING
+Two pieces of Farley's work stand fourteen years apart. [T:thesis]
+The 2007 paper sets out the deployment pipeline: a release candidate started at each check-in and carried through a sequence of gates. [F:deployment-pipeline]
+The idea is older than the paper, and Farley is one of several parents on the record. [F:deployment-pipeline]
+The 2021 book defines software engineering as an empirical, scientific approach to practical problems, and divides the work into learning and managing complexity. [T:working-line] [F:optimize-for-learning-and-complexity]
+Chris James teaches the layered acceptance test, specifications on top and drivers underneath, and credits it to Farley by name; its driver layer already appears in the 2010 book by Humble and Farley. [F:four-layer-acceptance-tests]
+EXTENSION
+A rule like "a suspended account cannot approve a payment" outlives every interface built for it, so a software factory keeping such rules in the spec needs specs that last as long. [P:6]
+The four-layer test has that shape: specifications state behaviour in the problem's terms, and only the drivers know how the system is reached. [F:four-layer-acceptance-tests]
+That holds only while the domain's owners can read the specifications; a rule nobody outside engineering can follow is still code. [F:four-layer-acceptance-tests]
+Chris James explains the split as letting a specification be reused through configurable drivers. [F:four-layer-acceptance-tests]
+The weak point moves into the drivers. [F:four-layer-acceptance-tests]
+A prohibition passes when its driver never reaches the system, or when the attempt fails for some other reason. [F:four-layer-acceptance-tests]
+Each such rule needs a positive control, an active account approving through the same driver, and each refusal traced to the rule; any interface no driver reaches stays unchecked. [F:four-layer-acceptance-tests] [P:6]
+The security use is the site's inference; the structure was taught for acceptance tests. [F:four-layer-acceptance-tests]

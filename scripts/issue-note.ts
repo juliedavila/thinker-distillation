@@ -48,5 +48,6 @@ if (import.meta.main) {
     console.error(`glab failed (${p.exitCode}): ${out.slice(0, 500)}`);
     process.exit(1);
   }
-  console.log(`posted ${body.length} chars to issue #${args.issue}${out ? `: ${out.split('\n').pop()}` : ''}`);
+  const link = out.split('\n').find((l) => l.startsWith('https://'));
+  console.log(`posted ${body.length} chars to issue #${args.issue}${link ? `: ${link}` : ''}`);
 }

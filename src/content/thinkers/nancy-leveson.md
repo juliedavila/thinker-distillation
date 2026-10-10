@@ -300,20 +300,19 @@ reading: >
   Young and Leveson extend STPA to security, treating a loss alike whatever the
   actor intended and deferring the adversary on purpose.
 extension: >
-  Access provisioning is a controller in STPA's terms, and each grant is one of
-  its control actions. Granting access can turn unsafe when the controller's
-  process model of the requester drifts from the requester's actual standing, so
-  that model, and the feedback that sets it, belongs in the spec beside the
-  action. Her Mars Polar Lander example, a system accident in her terms, has
-  that shape: the software took sensor noise for a landing. A nightly employment
-  feed or an approver since reassigned leaves every component within
-  specification while the controller grants what it should refuse, and an
-  attacker who can delay or forge the feedback chooses when the gap opens. The
-  audit record needs the constraint, the feedback that said it held, and who
-  could write that feedback. Hochstein doubts anyone can sketch the whole
-  control structure in a context like his, so the record covers only the
-  provisioning paths someone drew.
-
+  In STPA's terms, access provisioning is a controller and each grant a
+  control action. Her handbook names four ways a control action can be unsafe:
+  not provided; provided when it causes a hazard; provided too early, too late
+  or out of order; stopped too soon or applied too long. An authorization
+  review checks only the second. The other three can occur with every
+  component in specification: a revocation never sent, a grant issued before
+  its check returns, emergency access that outlives the emergency. On this
+  site's reading, her Mars Polar Lander case is a timing failure: the software
+  shut down the descent engines on a false landing signal. Writing all four
+  into the access spec makes each checkable, and an attacker who can delay or
+  forge the feedback can steer the controller into any of them. Hochstein
+  doubts anyone can sketch the whole control structure in a context like his,
+  so the analysis covers only the paths someone drew.
 reading_review:
   protocol: reading-protocol-v1
   date: 2026-10-09
@@ -403,11 +402,11 @@ adjacent_thinkers:
       and that not every hazard can be controlled "in
       the context that I work in."
     strength: secondary
-  - target_slug: ben-treynor-sloss
-    display_name: Ben Treynor Sloss
+  - target_slug: tim-falzone
+    display_name: Tim Falzone
     edge_type: extends
     edge_label: >
-      Second author, after Tim Falzone, of an account of Google SRE adopting
+      First author, with Ben Treynor Sloss, of an account of Google SRE adopting
       STAMP, which describes STPA for hazard analysis and CAST for
       post-incident investigation. The account works a 2021 quota rightsizer incident
       through in STPA terms.

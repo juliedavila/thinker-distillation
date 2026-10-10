@@ -407,6 +407,17 @@ adjacent_thinkers:
       and find Reason's own case studies open to hindsight bias. They keep
       the model and object to its use as a prescriptive technique.
     strength: secondary
+  - target_slug: nancy-leveson
+    display_name: Nancy Leveson
+    edge_type: parallel
+    edge_label: >
+      Leveson's STAMP traces a loss to the controls that should have kept a
+      safety constraint in force. The STPA Handbook, by Leveson and John
+      Thomas, lists Swiss cheese slices with dominos as essentially
+      equivalent pictures of the chain-of-failure-events model that STAMP is
+      offered as an alternative to. Reason himself is not named there.
+    strength: secondary
+    editorial_demote_to: secondary
 
 further_in:
   start_here: '"Human error: models and management" (BMJ, 2000).'

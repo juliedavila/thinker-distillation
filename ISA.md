@@ -2,19 +2,66 @@
 project: thinker-distillation
 effort: E3
 phase: in-progress
-progress: 26 live pages, James Reason merged 2026-10-02; nothing open
-iteration: iter-24-search-cap-guard-and-reason-2026-10-02
+progress: 28 live thinker pages; nothing open; due diligence phase planned
+iteration: iter-27-savepoint-and-diligence-plan-2026-10-10
 mode: project
 started: 2026-05-25
-updated: 2026-10-02
+updated: 2026-10-10
 ---
 
 <!-- RESUME-HEAD v1 -->
-> **Status** · 2026-10-02 — main at `052bc30`, 26 live pages, no merge request open. The web-search cap guard (!56) is live and ran clean on its first run; James Reason (!58, !59) and three workflow prompt fixes (!60) are merged; the cap audit (#88) closed with one fix (!57).
-> **Next** · Camila runs the next thinker once Julie says go: Jens Rasmussen #74, named on four pages, top of the queue.
+> **Status** · 2026-10-10. Main has 28 live thinker pages and 3 concept pages, nothing open. Since 10-02: runs 11 to 13 shipped Rasmussen, Farley and Leveson; unattended runs no longer stall on permission prompts; the inclusion Council's record posts on each candidate's issue, checked before it posts; the queue counts one shared credit once. Thinker runs are paused for a due diligence phase, planned and not started.
+> **Next** · Camila opens the due diligence phase in a fresh session, at its step 0, once Julie answers its five open questions.
 > **Blocked** · Nothing.
-> **Resume** · Read "## Save Point — 2026-10-02" below, then /Users/juliedavila/Camila/thinker-distillation/PIPELINE.md "The web-search cap" and "The cold reader".
+> **Resume** · Read /Users/juliedavila/Camila/thinker-distillation/DILIGENCE.md first (its own resume head), then "## Save Point — 2026-10-10" below.
 <!-- /RESUME-HEAD -->
+
+
+## Save Point — 2026-10-10, three runs, the unattended fixes, and a diligence phase planned
+
+> Current state. The 2026-10-02 block below is history, apart from its carried items, re-ranked here.
+
+### Runs
+
+| Run | Thinker | Agents | Tokens | Time | Notes | MRs |
+|---|---|---|---|---|---|---|
+| 11 | Jens Rasmussen #74 | 26 | 3.9M | page in 81 min, then 7.5 h on a permission prompt overnight | cold reader REVISE, fixed in-run | !62, !63 |
+| 12 | Dave Farley #40 | 27 | 4.1M | 100 min, no stalls | first run with the inclusion record | !66, !67 |
+| 13 | Nancy Leveson #82 | 27 | 4.1M | 92 min, no stalls | summary check refused twice, then posted at 296 words | !70, !71 |
+
+Run 10's 135-minute stall (2026-10-02) and Hollnagel's 18-hour one (2026-09-27) were permission prompts too, not a missing timeout and not sleep. PIPELINE.md "Permission prompts" has the record.
+
+### Machinery changed
+
+- **Unattended runs cannot stall on a prompt (!64).** Global hook `~/.claude/hooks/SandboxGuard.hook.ts` (`869abf3`, `abd0aa5` in `~/.claude`) denies `rm`, `curl`, piping into an interpreter and Python inside a sandbox, naming the replacement, and pre-approves only the guarded scripts (`fetch.ts`, `discard.ts`, `issue-note.ts`) and a candidate-branch push. Every sandbox prompt carries the same rules (`UNATTENDED`, via `dispatch()`).
+- **Two check fixes (!64).** `fact-ledger.ts` accepts only a real antecedent-search record; `search-cap.ts` counts the refusal only inside a WebSearch result.
+- **The inclusion record (!65, !68).** One comment on the candidate's issue: a plain summary under 300 words for a cold reader, the five seats' reports folded, and a hidden structured block. `issue-note.ts` refuses a summary over the cap, with an em-dash, or with an origin verb outside quotation marks.
+- **The queue (!69).** Pages naming someone through one shared frame count as one foothold, and Council support is read from the issue records.
+- **SCHEMA 4.11 "Convergence".** When two thinkers hold the same idea, the page says whether one took it from the other or they got there independently, and "independently" needs a source.
+
+### Decisions (Julie), recorded in the decisions list below
+
+Hosting stays on GitLab Pages, with a public launch some day (#98); domain balance is not a ranking goal; the inclusion record lives on the issue; the deployment pipeline is credited as a team idea with Farley first; STPA stays co-authored with Dulac, on the 2005 paper Julie found.
+
+### Filed
+
+Concept candidates #94 (weaknesses that combine) and #99 (stale authority); public launch #98; candidates #95 Martin Thompson, #96 Sam Newman, #97 Michael Nygard.
+
+### Open, ranked
+
+1. **The due diligence phase**, planned in `DILIGENCE.md`. Thinker runs wait for it; Lorin Hochstein #87 is next after.
+2. The duplicate-point scan and the firstness-verb warning, now step 1 of the phase.
+3. `inbound-claims.ts` matches on the last word of a display name (carried).
+4. The inclusion summary is written before the page is reviewed, so it can carry a credit the review later corrects. The origin-verb check limits the damage; nothing re-posts it after review.
+5. Issues reach Ship without `camila:in-council` (five runs running); the label step in research does not happen.
+6. Carried: cut what Julie reads per page, required reading with a byte ceiling, weekly maintenance in CI, the non-software inclusion filter.
+
+### Environment
+
+Sandboxes destroyed after each run. Worktrees for this session lived in the scratchpad and are removed. The 2005 Leveson and Dulac PDF is in Julie's Downloads, not in the repository.
+
+---
+
 
 
 ## Save Point — 2026-10-02, the search-cap guard and James Reason
@@ -57,6 +104,8 @@ Every round 1 and round 2 across all four was unanimous ACCEPT-WITH-EDITS, and e
 
 ### Decisions (Julie), all recorded where the pipeline reads them
 
+- **Hosting stays on GitLab Pages (2026-10-09).** Considered and declined: serving the whole site as a Claude artifact (it fits at 896 KB and 41 files, and would add in-page comments and link sharing, at the cost of automatic deploys). The direction is to make the distillery **public** at some point, in the spirit of greptalks, from Pages. Do not re-raise artifact hosting; the public launch is its own thread.
+- **Domain balance is not a ranking goal (2026-10-09).** Three security pages out of 27 is fine; do not push security, or any domain, up the queue to even out coverage.
 - **N=1 is the mode.** No multi-candidate batches.
 - **The round 3 adjudicator is dropped** (third sighting counted on Shortridge). A unanimous round 2 ends the rounds and the cold reader is the third read; round 2 dissent still brings five seats back. `round3_mode: adjudication` in `review-policy.ts` restores it. SCHEMA section 7 now defers to the script.
 - **Critic limit plus critic edge is a convention** (SCHEMA 4.11).

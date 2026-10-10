@@ -19,8 +19,9 @@ inclusion_rationale: >
   Rasmussen and Svedung as co-originators, because her 2004 paper says it is
   built on their framework. STPA is filed `co-authored` with Nicolas Dulac
   and John Thomas; the Council split three ways on this frame (original,
-  extended, co-authored), and the 2005 paper with Dulac is behind a paywall
-  and unread, so no first year prints. CAST is `extended` with no date.
+  extended, co-authored). The 2005 paper with Dulac, read on 2026-10-10,
+  settles it: the two write "We have developed a new STAMP-based hazard
+  analysis technique, called STPA". CAST is `extended` with no date.
   STPA-Sec is William Young's as first author. Safety-III sits in the deep
   tier, because her own text says the approach is not new. Software safety
   is a field and gets no frame; the AIAA citation is quoted with
@@ -50,9 +51,9 @@ thirty_second_take: >
   worked as specified but together they created a hazardous system state."
   So the analysis asks why the control structure failed to enforce a
   constraint, and prevention means designing one that will. Two methods
-  rest on the model. STPA, whose acronym a 2022 review finds in a 2005
-  paper with Nicolas Dulac, and which she later wrote up with John Thomas in
-  a 2018 handbook, can look for unsafe control actions from early concept
+  rest on the model. STPA, which she and Nicolas Dulac presented in 2005
+  as "a new STAMP-based hazard analysis technique", and which she later wrote
+  up with John Thomas in a 2018 handbook, can look for unsafe control actions from early concept
   work on.
   CAST, the subject of her 2019 handbook, analyses accidents without trying to assign
   blame. William Young, with her as second author, extended STPA to
@@ -148,15 +149,15 @@ named_frames:
       handbook uses for its internal beliefs about what it controls.
       Feedback may update that model in part, and a process model
       inconsistent with reality can lead to unsafe control actions. It can start in early concept analysis, where it helps
-      identify safety requirements and constraints. A 2022
-      scoping review finds the acronym in a 2005 paper by Leveson and
-      Nicolas Dulac, there derived from "STamP Analysis"; the handbook she
+      identify safety requirements and constraints. Leveson
+      and Nicolas Dulac's 2005 paper calls it "a new STAMP-based hazard
+      analysis technique, called STPA (STamP Analysis)"; the handbook she
       wrote with John Thomas came in 2018.
     attribution_kind: co-authored
     primary_author: nancy-leveson
     co_originators:
       - slug: nicolas-dulac
-        role: 'second author of "Safety and Risk-Based Design in Complex Systems-of-Systems" (AIAA, 2005), where a 2022 review finds hazard analysis under the STPA acronym'
+        role: 'second author of "Safety and Risk-Driven Design in Complex Systems-of-Systems" (AIAA, 2005), whose authors write "We have developed a new STAMP-based hazard analysis technique, called STPA"'
       - slug: john-thomas
         role: co-author of the STPA Handbook (2018)
     source_link: https://web.archive.org/web/20241217151339id_/https://psas.scripts.mit.edu/home/get_file.php?name=STPA_handbook.pdf

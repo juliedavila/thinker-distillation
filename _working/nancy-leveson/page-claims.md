@@ -12,8 +12,8 @@ block; the Editorial Reading has its own map in `reading-claims.md`.
 - named_frames[0].attribution [S:11] [S:12] [S:30] [S:38] [S:39] [S:41]
 - named_frames[0].co_originators[0] [S:12]
 - named_frames[0].co_originators[1] [S:12]
-- named_frames[1].attribution [S:14] [S:15] [S:34] [S:42]
-- named_frames[1].co_originators[0] [S:14]
+- named_frames[1].attribution [S:49] [S:14] [S:15] [S:34] [S:42]
+- named_frames[1].co_originators[0] [S:49] [S:14]
 - named_frames[1].co_originators[1] [S:15]
 - named_frames[1].derived_from [S:14] [S:37]
 - named_frames[2].attribution [S:33] [S:46] [S:14] [S:24] [S:47] [S:25]
@@ -45,11 +45,11 @@ block; the Editorial Reading has its own map in `reading-claims.md`.
 ## Other factual prose, traced (not required by the script)
 
 - tagline [S:11] [S:34] [S:33]
-- thirty_second_take [S:38] [S:35] [S:14] [S:15] [S:34] [S:33] [S:16] [S:19] [S:21]
+- thirty_second_take [S:38] [S:35] [S:49] [S:14] [S:15] [S:34] [S:33] [S:16] [S:19] [S:21]
 - why_they_matter_as_a_thinker [S:38] [S:35] [S:23] [S:24] [S:26] [S:28] [S:43]
 - thesis [S:35] [S:38] [S:12]
 - working_line [S:11] [S:35]
-- inclusion_rationale [S:3] [S:1] [S:23] [S:24] [S:26] [S:12] [S:14] [S:15] [S:16] [S:18] [S:5] [S:9] [S:10] [S:43]
+- inclusion_rationale [S:3] [S:1] [S:23] [S:24] [S:26] [S:12] [S:49] [S:14] [S:15] [S:16] [S:18] [S:5] [S:9] [S:10] [S:43]
 - limits[0] [S:28] [S:43] [S:34] [S:4] [S:13] [S:19] (the closing instruction is the site's reading of Hochstein's objection)
 - limits[1] [S:24] [S:47]
 - limits[2] [S:16] [S:36] [S:40] [S:42] (the last sentence is the site's reading, labelled in the body)

@@ -6,11 +6,11 @@ progress: 28 live thinker pages; nothing open; due diligence phase planned
 iteration: iter-27-savepoint-and-diligence-plan-2026-10-10
 mode: project
 started: 2026-05-25
-updated: 2026-10-10
+updated: 2026-10-14
 ---
 
 <!-- RESUME-HEAD v1 -->
-> **Status** · 2026-10-10. Main has 28 live thinker pages and 3 concept pages, nothing open. Since 10-02: runs 11 to 13 shipped Rasmussen, Farley and Leveson; unattended runs no longer stall on permission prompts; the inclusion Council's record posts on each candidate's issue, checked before it posts; the queue counts one shared credit once. Thinker runs are paused for a due diligence phase, planned and not started.
+> **Status** · 2026-10-14. The site is now public on GitHub Pages at https://juliedavila.github.io/thinker-distillation/, deployed by `.github/workflows/pages.yml` from a GitLab push mirror (SSH deploy key); GitLab stays the system of record and still builds the private copy. 2026-10-10: main has 28 live thinker pages and 3 concept pages, nothing open. Since 10-02: runs 11 to 13 shipped Rasmussen, Farley and Leveson; unattended runs no longer stall on permission prompts; the inclusion Council's record posts on each candidate's issue, checked before it posts; the queue counts one shared credit once. Thinker runs are paused for a due diligence phase, planned and not started.
 > **Next** · Camila opens the due diligence phase in a fresh session, at its step 0, once Julie answers its five open questions.
 > **Blocked** · Nothing.
 > **Resume** · Read /Users/juliedavila/Camila/thinker-distillation/DILIGENCE.md first (its own resume head), then "## Save Point — 2026-10-10" below.

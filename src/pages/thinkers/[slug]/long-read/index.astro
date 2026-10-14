@@ -1,4 +1,5 @@
 ---
+import { href } from '../../../../lib/href';
 import { getCollection } from 'astro:content';
 import Base from '../../../../layouts/Base.astro';
 
@@ -23,7 +24,7 @@ chapters.sort((a, b) => a.data.chapter_number - b.data.chapter_number);
 <Base title={`${t.long_read?.title ?? 'Long read'} — ${t.name}`}>
   <section class="hero">
     <p class="meta-up">
-      <a href={`/thinkers/${t.slug}`}>← {t.name}</a>
+      <a href={href(`/thinkers/${t.slug}`)}>← {t.name}</a>
     </p>
     <h1>{t.long_read?.title ?? 'Long read'}</h1>
     {t.long_read?.summary && <p class="tagline">{t.long_read.summary}</p>}
@@ -39,7 +40,7 @@ chapters.sort((a, b) => a.data.chapter_number - b.data.chapter_number);
           const chapterSlug = c.id.split('/').pop()?.replace(/\.md$/, '');
           return (
             <li>
-              <a href={`/thinkers/${t.slug}/long-read/${chapterSlug}`}>
+              <a href={href(`/thinkers/${t.slug}/long-read/${chapterSlug}`)}>
                 <span class="chapter-title">{c.data.title}</span>
                 {c.data.summary && <span class="chapter-summary">{c.data.summary}</span>}
               </a>

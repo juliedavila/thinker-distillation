@@ -1,4 +1,5 @@
 ---
+import { href } from '../../lib/href';
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Monogram from '../../components/Monogram.astro';
@@ -94,14 +95,14 @@ const STALE_DAYS = 90;
                 {alsoHeld.map((h, i) => (
                   <>
                     {i > 0 && ' · '}
-                    <a href={`/thinkers/${h.thinker_slug}`}>{h.display_name}</a>{' '}
+                    <a href={href(`/thinkers/${h.thinker_slug}`)}>{h.display_name}</a>{' '}
                     <span class="edge-label">({h.edge_label})</span>
                   </>
                 ))}
               </p>
             )}
             {hasConceptPage && (
-              <a class="concept-page-link" href={`/concepts/${frame.concept_slug}`}>
+              <a class="concept-page-link" href={href(`/concepts/${frame.concept_slug}`)}>
                 Open concept page →
               </a>
             )}
@@ -112,7 +113,7 @@ const STALE_DAYS = 90;
         <details class="deep-frames">
           <summary>
             {deepFrames.length} more {deepFrames.length === 1 ? 'frame' : 'frames'} in this thinker's vocabulary
-            {t.long_read && <> (see also the <a href={`/thinkers/${t.slug}/long-read`}>long read</a>)</>}
+            {t.long_read && <> (see also the <a href={href(`/thinkers/${t.slug}/long-read`)}>long read</a>)</>}
           </summary>
           {deepFrames.map((frame) => (
             <div class="frame deep">
@@ -243,7 +244,7 @@ const STALE_DAYS = 90;
         {neighbors.foreground.map((adj) => (
           <div class="adjacent-card">
             <p class="who">
-              {adj.hasPage ? <a href={`/thinkers/${adj.target_slug}`}>{adj.display_name}</a> : adj.display_name}
+              {adj.hasPage ? <a href={href(`/thinkers/${adj.target_slug}`)}>{adj.display_name}</a> : adj.display_name}
             </p>
             <div class="edge-tags">
               <span class="edge-tag">{adj.edge_type}</span>
@@ -294,7 +295,7 @@ const STALE_DAYS = 90;
           <p class="title">{t.long_read.title}</p>
           <p class="summary">{t.long_read.summary}</p>
           <p class="long-read-cta">
-            <a href={`/thinkers/${t.slug}/long-read`}>Read the long version →</a>
+            <a href={href(`/thinkers/${t.slug}/long-read`)}>Read the long version →</a>
           </p>
         </div>
       </section>

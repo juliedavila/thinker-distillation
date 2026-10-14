@@ -1,0 +1,49 @@
+# Thinker Distillery — deploy to GitHub Pages.
+#
+# GitLab stays the system of record: issues, merge requests and the `verify` job all live there,
+# and main reaches this repository through a GitLab push mirror. This workflow only builds and
+# publishes. It serves the site under /thinker-distillation/, so it sets the base the Astro
+# config reads; the GitLab Pages build keeps the defaults and serves from a domain root.
+
+name: pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1
+      - run: bun install --frozen-lockfile
+      - run: bun run build
+        env:
+          SITE_URL: https://juliedavila.github.io
+          SITE_BASE: /thinker-distillation
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

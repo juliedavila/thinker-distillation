@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { href } from '../lib/href';
 
 interface Props {
   title: string;
@@ -31,12 +32,12 @@ const tagline = 'Thinking through the shoulders of giants';
 
     <header class="chrome site-chrome">
       <div class="wrap">
-        <a href="/" class="site-name">Thinker Distillation</a>
+        <a href={href('/')} class="site-name">Thinker Distillation</a>
         <p class="tagline">{tagline}</p>
         <nav aria-label="primary" class="chrome-nav">
-          <a href="/">Thinkers</a>
-          <a href="/concepts/">Concepts</a>
-          <a href="/about">About</a>
+          <a href={href('/')}>Thinkers</a>
+          <a href={href('/concepts/')}>Concepts</a>
+          <a href={href('/about')}>About</a>
         </nav>
       </div>
     </header>
@@ -48,7 +49,7 @@ const tagline = 'Thinking through the shoulders of giants';
     <footer class="chrome">
       <div class="wrap">
         <span>Curated by Julie Davila.</span>
-        <a href="/about">About →</a>
+        <a href={href('/about')}>About →</a>
       </div>
     </footer>
 

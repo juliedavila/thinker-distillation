@@ -1,4 +1,5 @@
 ---
+import { href } from '../../lib/href';
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { buildConceptHoldersWithAttribution } from '../../lib/graph';
@@ -40,7 +41,7 @@ const conceptPagesSet = new Set(concepts.map((cc) => cc.data.slug));
           {holders.map((h) => (
             <li class={`genealogy-item kind-${h.attribution_kind}`}>
               <div class="genealogy-head">
-                <a href={`/thinkers/${h.thinker_slug}`} class="genealogy-name">
+                <a href={href(`/thinkers/${h.thinker_slug}`)} class="genealogy-name">
                   {h.name}
                 </a>
                 <span class="attribution-kind">{h.attribution_kind}</span>
@@ -61,7 +62,7 @@ const conceptPagesSet = new Set(concepts.map((cc) => cc.data.slug));
           {holders.map((h) => (
             <div class={`holder-card kind-${h.attribution_kind}`}>
               <p class="holder-name">
-                <a href={`/thinkers/${h.thinker_slug}`}>{h.name}</a>
+                <a href={href(`/thinkers/${h.thinker_slug}`)}>{h.name}</a>
               </p>
               <p class="holder-attribution">{h.attribution_kind}</p>
               <p class="holder-frame-name">{h.frame_display_name}</p>
@@ -130,7 +131,7 @@ const conceptPagesSet = new Set(concepts.map((cc) => cc.data.slug));
               <div class="adjacent-card">
                 <p class="who">
                   {exists ? (
-                    <a href={`/concepts/${adj.target_slug}`}>{adj.display_name}</a>
+                    <a href={href(`/concepts/${adj.target_slug}`)}>{adj.display_name}</a>
                   ) : (
                     <span class="pending-concept" title="Concept page not yet authored">
                       {adj.display_name}

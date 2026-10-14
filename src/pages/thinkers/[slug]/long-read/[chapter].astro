@@ -1,4 +1,5 @@
 ---
+import { href } from '../../../../lib/href';
 import { getCollection, getEntry, render } from 'astro:content';
 import Base from '../../../../layouts/Base.astro';
 import { buildConceptPageIndex } from '../../../../lib/graph';
@@ -53,9 +54,9 @@ const hasGlossary = glossary.length > 0;
 <Base title={`${chapter.data.title} — ${thinker.data.name}`}>
   <article class="long-read-chapter" data-has-glossary={hasGlossary}>
     <p class="breadcrumb">
-      <a href={`/thinkers/${thinker.data.slug}`}>{thinker.data.name}</a>
+      <a href={href(`/thinkers/${thinker.data.slug}`)}>{thinker.data.name}</a>
       <span class="sep">/</span>
-      <a href={`/thinkers/${thinker.data.slug}/long-read`}>Long read</a>
+      <a href={href(`/thinkers/${thinker.data.slug}/long-read`)}>Long read</a>
       <span class="sep">/</span>
       <span class="current">{chapter.data.title}</span>
     </p>
@@ -75,7 +76,7 @@ const hasGlossary = glossary.length > 0;
                 {g.gloss}
                 {g.concept_slug && conceptPages.has(g.concept_slug) && (
                   <>
-                    {' '}<a href={`/concepts/${g.concept_slug}`} class="glossary-link">Concept page →</a>
+                    {' '}<a href={href(`/concepts/${g.concept_slug}`)} class="glossary-link">Concept page →</a>
                   </>
                 )}
               </dd>
@@ -101,7 +102,7 @@ const hasGlossary = glossary.length > 0;
                   {g.gloss}
                   {g.concept_slug && conceptPages.has(g.concept_slug) && (
                     <>
-                      {' '}<a href={`/concepts/${g.concept_slug}`} class="glossary-link">Concept page →</a>
+                      {' '}<a href={href(`/concepts/${g.concept_slug}`)} class="glossary-link">Concept page →</a>
                     </>
                   )}
                 </dd>
@@ -114,13 +115,13 @@ const hasGlossary = glossary.length > 0;
 
     <nav class="chapter-nav" aria-label="Chapter navigation">
       {prev && prevSlug ? (
-        <a class="prev" href={`/thinkers/${thinker.data.slug}/long-read/${prevSlug}`}>
+        <a class="prev" href={href(`/thinkers/${thinker.data.slug}/long-read/${prevSlug}`)}>
           <span class="dir">← Previous</span>
           <span class="t">{prev.data.title}</span>
         </a>
       ) : <span />}
       {next && nextSlug ? (
-        <a class="next" href={`/thinkers/${thinker.data.slug}/long-read/${nextSlug}`}>
+        <a class="next" href={href(`/thinkers/${thinker.data.slug}/long-read/${nextSlug}`)}>
           <span class="dir">Next →</span>
           <span class="t">{next.data.title}</span>
         </a>

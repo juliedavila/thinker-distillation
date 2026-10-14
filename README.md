@@ -2,7 +2,7 @@
 
 A static site of editorial readings of practitioners whose vocabulary the software, operations, and security fields now use to think. Each thinker gets one page covering their central argument, the named concepts they gave the field, where those concepts break, and who they connect to. Concept pages cover a single idea held by several thinkers. The curator is Julie Davila.
 
-The site is private. It is published to GitLab Pages at https://thinker-distillery-97a9ca.gitlab.io/ and only members of the GitLab project can view it. Pages also carry a `noindex,nofollow` robots tag.
+The site is public at https://juliedavila.github.io/thinker-distillation/ (GitHub Pages). A private copy still builds to GitLab Pages at https://thinker-distillery-97a9ca.gitlab.io/, visible only to members of the GitLab project. Pages carry a `noindex,nofollow` robots tag on both hosts.
 
 ## Where to read next
 
@@ -25,7 +25,7 @@ Files whose names start with `_` are disabled drafts. The build skips them.
 - Astro 6 with content collections, building a fully static site (`output: 'static'`)
 - Bun for installing, building, and running scripts
 - Node 22.12 or newer, required by Astro 6 (`.nvmrc` pins 22)
-- GitLab CI and GitLab Pages for deployment
+- GitLab for issues, merge requests and CI; GitHub Actions and GitHub Pages for the public deploy
 
 ## Commands
 
@@ -50,7 +50,9 @@ bun scripts/reading-gates.ts <thinker-slug>    # prose and citation checks; exit
 
 `.gitlab-ci.yml` runs one job, `pages`, on every commit to the default branch. It uses the `oven/bun:1` image, runs `bun install --frozen-lockfile` and `bun run build`, then moves `dist/` to `public/`, the folder GitLab Pages serves. Branches and merge requests do not deploy. Access control is a GitLab project setting (Pages visible to project members only); the pipeline plays no part in it.
 
-The GitLab project is `gitlab.com/juliedavila/thinker-distillery`. The repo also has a `github` remote, which is not used for deployment.
+`.github/workflows/pages.yml` publishes the public copy. GitLab pushes main to `github.com/juliedavila/thinker-distillation` through a push mirror, and each push there builds with `SITE_URL` and `SITE_BASE` set, because GitHub serves the site under `/thinker-distillation/`. The GitLab build leaves both unset and serves from a domain root. Internal links go through `src/lib/href.ts` so they pick up whichever base is set; a hard-coded `href="/..."` works on GitLab and breaks on GitHub.
+
+The GitLab project is `gitlab.com/juliedavila/thinker-distillery` and remains the system of record. Nothing is pushed to or merged on GitHub directly.
 
 ## Layout
 

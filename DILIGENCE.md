@@ -2,7 +2,7 @@
 
 <!-- RESUME-HEAD v1 -->
 > **Status** · 2026-10-15. Step 1's mechanical half is done ahead of step 0: the template em-dashes are gone, and four report-only tools exist (`scripts/duplicate-points.ts`, `scripts/firstness.ts`, `scripts/rendered-jargon.ts`, `scripts/graph-report.ts`), none wired into verify or CI. Still open in step 1: the rubric, which needs step 0. No prose has been touched.
-> **Next** · Camila: finish the nine ledgers (running), fix the four self-contradictions, run the register pass on corrections. Then Julie reads the three calibration pages (step 0).
+> **Next** · Julie reviews the ledger fixes (!89 to !91), neighbour fixes (!92) and register passes (!84 to !86). After they merge, Camila runs the sourcing pass, then Julie reads the three calibration pages (step 0).
 > **Blocked** · Nothing. Julie answered all five questions and opted in to the audit fan-out on 2026-10-15.
 > **Resume** · Read this file top to bottom, then /Users/juliedavila/Camila/thinker-distillation/SCHEMA.md section 8, then "Prose remediation passes" in /Users/juliedavila/.claude/LIFEOS/USER/CONFIG/OPERATIONAL_RULES.md, then the worked example at /Users/juliedavila/.claude/LIFEOS/MEMORY/WORK/sf2-writing-rules-audit-2026-09/. The #98 launch inventories (local only) are in /Users/juliedavila/Camila/thinker-distillation/_working/_launch/.
 <!-- /RESUME-HEAD -->

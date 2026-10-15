@@ -35,15 +35,7 @@ limits:
     severity: structural
     elaboration: >
       Resilience engineering was built on aviation, healthcare, and
-      nuclear, domains where disturbances are natural, organizational,
-      or accidental, not optimized against the system by an
-      intelligent opponent. Every holder on this concept page extends
-      adaptive capacity to their domain by adding an adversarial
-      overlay (Allspaw on security incident response, Dekker on
-      attacker-exploited work-as-imagined gaps), and each is honest
-      that the original framework does not model it. The cross-thinker
-      consensus is itself the limit: every carrier extends, none of
-      the underlying theory absorbs an opponent who is also adaptive.
+      nuclear, domains where disturbances are natural, organizational or accidental, and no intelligent opponent optimizes against the system. None of the underlying theory absorbs an opponent who is also adaptive.
   - headline: Slack and capacity are confused at the budget table
     severity: local
     elaboration: >

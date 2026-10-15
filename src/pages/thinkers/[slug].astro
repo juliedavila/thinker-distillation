@@ -1,4 +1,5 @@
 ---
+import Inline from '../../components/Inline.astro';
 import { href } from '../../lib/href';
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
@@ -32,6 +33,12 @@ const hostsEdges = t.adjacent_thinkers.filter((a) => a.edge_type === 'hosts' && 
 const liveEdge = t.live_edge_visible ? t.live_edge : undefined;
 const liveEdgeAge = liveEdge ? daysSince(liveEdge.last_observed) : 0;
 const STALE_DAYS = 90;
+
+// Two pages give their long read in Further In as a site path with the title after it, as in
+// "/thinkers/martin-fowler/long-read (*Ways of Fowler*)". Printed as text, a reader saw the raw
+// path and the asterisks. Render that shape as a link; leave any other value as written.
+const depthMatch = t.further_in?.if_you_want_depth?.match(/^(\/\S+)\s*(?:\(\*?([^*)]+)\*?\))?$/);
+const depthLink = depthMatch ? { path: depthMatch[1], title: depthMatch[2] } : null;
 ---
 
 <Base title={`${t.name} · Thinker Distillation`} description={t.tagline}>
@@ -52,26 +59,26 @@ const STALE_DAYS = 90;
       </div>
       <div class="thinker-hero-text">
         <h1>{t.name}</h1>
-        <p class="tagline">{t.tagline}</p>
+        <p class="tagline"><Inline text={t.tagline} /></p>
         <div class="domain-badges">
           {t.primary_domains.map((d) => <span>{d}</span>)}
         </div>
       </div>
-      <p class="thirty-second">{t.thirty_second_take}</p>
+      <p class="thirty-second"><Inline text={t.thirty_second_take} /></p>
     </section>
 
     <section aria-labelledby="who">
       <h2 id="who" class="section-h">Who They Are</h2>
-      <p>{t.background}</p>
-      <p>{t.why_they_matter_as_a_thinker}</p>
+      <p><Inline text={t.background} /></p>
+      <p><Inline text={t.why_they_matter_as_a_thinker} /></p>
     </section>
 
     <section aria-labelledby="pov">
       <h2 id="pov" class="section-h">Core POV</h2>
-      <p>{t.thesis}</p>
+      <p><Inline text={t.thesis} /></p>
       {t.working_line && (
         <blockquote class="what-x-says">
-          <p>{t.working_line}</p>
+          <p><Inline text={t.working_line} /></p>
           <cite>— {t.name}, paraphrased</cite>
         </blockquote>
       )}
@@ -88,7 +95,7 @@ const STALE_DAYS = 90;
               <span class="display-name">{frame.display_name}</span>
               <span class="attribution-kind">{frame.attribution_kind}</span>
             </div>
-            <p class="gloss">{frame.one_line_gloss}</p>
+            <p class="gloss"><Inline text={frame.one_line_gloss} /></p>
             {alsoHeld.length > 0 && (
               <p class="also-held">
                 <strong>also held by:</strong>{' '}
@@ -96,7 +103,7 @@ const STALE_DAYS = 90;
                   <>
                     {i > 0 && ' · '}
                     <a href={href(`/thinkers/${h.thinker_slug}`)}>{h.display_name}</a>{' '}
-                    <span class="edge-label">({h.edge_label})</span>
+                    <span class="edge-label">(<Inline text={h.edge_label} />)</span>
                   </>
                 ))}
               </p>
@@ -121,7 +128,7 @@ const STALE_DAYS = 90;
                 <span class="display-name">{frame.display_name}</span>
                 <span class="attribution-kind">{frame.attribution_kind}</span>
               </div>
-              <p class="gloss">{frame.one_line_gloss}</p>
+              <p class="gloss"><Inline text={frame.one_line_gloss} /></p>
             </div>
           ))}
         </details>
@@ -134,12 +141,12 @@ const STALE_DAYS = 90;
         {t.body_of_work.map((item) => (
           <li>
             <div class="title-line">
-              {item.link ? <a href={item.link}>{item.title}</a> : item.title}
+              {item.link ? <a href={item.link}><Inline text={item.title} /></a> : <Inline text={item.title} />}
               <span class="meta">{item.type}{item.year ? ` · ${item.year}` : ''}</span>
               {item.read_first && <span class="tag">read first</span>}
               {item.canonical && <span class="tag">canonical</span>}
             </div>
-            {item.editorial_note && <p class="editorial-note">{item.editorial_note}</p>}
+            {item.editorial_note && <p class="editorial-note"><Inline text={item.editorial_note} /></p>}
           </li>
         ))}
       </ul>
@@ -150,11 +157,11 @@ const STALE_DAYS = 90;
             {edge.hosted_items!.map((item) => (
               <li>
                 <div class="title-line">
-                  <a href={item.hosted_on_url}>{item.title}</a>
+                  <a href={item.hosted_on_url}><Inline text={item.title} /></a>
                   <span class="meta">{item.kind} · {item.year}</span>
                   <span class="tag host-label">hosted, not authored by {t.name}</span>
                 </div>
-                {item.editorial_framing && <p class="editorial-note">{item.editorial_framing}</p>}
+                {item.editorial_framing && <p class="editorial-note"><Inline text={item.editorial_framing} /></p>}
               </li>
             ))}
           </ul>
@@ -166,13 +173,13 @@ const STALE_DAYS = 90;
       <h2 id="further-in" class="section-h">Further In</h2>
       <dl class="further-in">
         <dt>Start here</dt>
-        <dd>{t.further_in.start_here}</dd>
+        <dd><Inline text={t.further_in.start_here} /></dd>
         {t.further_in.then_read && t.further_in.then_read.length > 0 && (
           <>
             <dt>Then read</dt>
             <dd>
               <ol>
-                {t.further_in.then_read.map((tr) => <li>{tr}</li>)}
+                {t.further_in.then_read.map((tr) => <li><Inline text={tr} /></li>)}
               </ol>
             </dd>
           </>
@@ -180,13 +187,13 @@ const STALE_DAYS = 90;
         {t.further_in.if_you_want_depth && (
           <>
             <dt>If you want depth</dt>
-            <dd>{t.further_in.if_you_want_depth}</dd>
+            <dd>{depthLink ? <a href={href(depthLink.path)}>{depthLink.title ? <em><Inline text={depthLink.title} /></em> : 'The long read'}</a> : <Inline text={t.further_in.if_you_want_depth} />}</dd>
           </>
         )}
         {t.further_in.if_you_want_breadth && (
           <>
             <dt>If you want breadth</dt>
-            <dd>{t.further_in.if_you_want_breadth}</dd>
+            <dd><Inline text={t.further_in.if_you_want_breadth} /></dd>
           </>
         )}
       </dl>
@@ -197,9 +204,9 @@ const STALE_DAYS = 90;
       <div class="julie-lane">
         <p class="lane-mark">The Distillery's reading</p>
         <h3>The reading</h3>
-        <p>{t.reading}</p>
+        <p><Inline text={t.reading} /></p>
         <h3>Where it extends</h3>
-        <p>{t.extension}</p>
+        <p><Inline text={t.extension} /></p>
         {t.margin_note && (
           <>
             <h3>Julie's note</h3>
@@ -225,16 +232,16 @@ const STALE_DAYS = 90;
         {t.limits.map((limit) => (
           <div class="limit-card">
             <div class="limit-head">
-              <span class="headline">{limit.headline}</span>
+              <span class="headline"><Inline text={limit.headline} /></span>
               <span class={`severity ${limit.severity}`}>{limit.severity}</span>
             </div>
-            <p class="elaboration">{limit.elaboration}</p>
+            <p class="elaboration"><Inline text={limit.elaboration} /></p>
           </div>
         ))}
       </div>
       <div class="still-load-bearing">
         <p class="lane-mark">Still load-bearing, despite</p>
-        <p>{t.still_load_bearing_despite}</p>
+        <p><Inline text={t.still_load_bearing_despite} /></p>
       </div>
     </section>
 
@@ -251,7 +258,7 @@ const STALE_DAYS = 90;
               <span class="edge-tag">{adj.effectiveStrength}</span>
               {adj.hasPage && <span class="edge-tag on-site">on this site</span>}
             </div>
-            <p class="edge-label">{adj.edge_label}</p>
+            <p class="edge-label"><Inline text={adj.edge_label} /></p>
           </div>
         ))}
       </div>
@@ -260,7 +267,7 @@ const STALE_DAYS = 90;
           <summary>{neighbors.deep.length} more {neighbors.deep.length === 1 ? 'neighbor' : 'neighbors'}</summary>
           <ul>
             {neighbors.deep.map((adj) => (
-              <li><strong>{adj.display_name}</strong> ({adj.edge_type}): {adj.edge_label}</li>
+              <li><strong>{adj.hasPage ? <a href={href(`/thinkers/${adj.target_slug}`)}>{adj.display_name}</a> : adj.display_name}</strong> ({adj.edge_type}): <Inline text={adj.edge_label} /></li>
             ))}
           </ul>
         </details>
@@ -275,12 +282,12 @@ const STALE_DAYS = 90;
           {liveEdgeAge > STALE_DAYS && <span class="tag refresh-pending">refresh pending</span>}
         </p>
         <p class="live-edge-focus">{liveEdge.current_focus}</p>
-        <p>{liveEdge.summary}</p>
+        <p><Inline text={liveEdge.summary} /></p>
         {liveEdge.recent_work && liveEdge.recent_work.length > 0 && (
           <ul class="live-edge-recent">
             {liveEdge.recent_work.map((w) => (
               <li>
-                <em>{w.title}</em> ({w.year}, {w.kind}{w.with ? `, with ${w.with}` : ''}){w.note && <>: {w.note}</>}
+                <em><Inline text={w.title} /></em> ({w.year}, {w.kind}{w.with ? `, with ${w.with}` : ''}){w.note && <>: <Inline text={w.note} /></>}
               </li>
             ))}
           </ul>
@@ -292,8 +299,8 @@ const STALE_DAYS = 90;
       <section aria-labelledby="long-read">
         <h2 id="long-read" class="section-h">Long Read</h2>
         <div class="long-read">
-          <p class="title">{t.long_read.title}</p>
-          <p class="summary">{t.long_read.summary}</p>
+          <p class="title"><Inline text={t.long_read.title} /></p>
+          <p class="summary"><Inline text={t.long_read.summary} /></p>
           <p class="long-read-cta">
             <a href={href(`/thinkers/${t.slug}/long-read`)}>Read the long version →</a>
           </p>

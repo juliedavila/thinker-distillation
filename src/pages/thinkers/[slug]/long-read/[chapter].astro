@@ -1,4 +1,5 @@
 ---
+import Inline from '../../../../components/Inline.astro';
 import { href } from '../../../../lib/href';
 import { getCollection, getEntry, render } from 'astro:content';
 import Base from '../../../../layouts/Base.astro';
@@ -58,12 +59,12 @@ const hasGlossary = glossary.length > 0;
       <span class="sep">/</span>
       <a href={href(`/thinkers/${thinker.data.slug}/long-read`)}>Long read</a>
       <span class="sep">/</span>
-      <span class="current">{chapter.data.title}</span>
+      <span class="current"><Inline text={chapter.data.title} /></span>
     </p>
 
     <p class="chapter-of-n-eyebrow">Chapter {chapterOfN}</p>
-    <h1>{chapter.data.title}</h1>
-    {chapter.data.summary && <p class="chapter-summary">{chapter.data.summary}</p>}
+    <h1><Inline text={chapter.data.title} /></h1>
+    {chapter.data.summary && <p class="chapter-summary"><Inline text={chapter.data.summary} /></p>}
 
     {hasGlossary && (
       <details class="glossary-mobile">
@@ -117,13 +118,13 @@ const hasGlossary = glossary.length > 0;
       {prev && prevSlug ? (
         <a class="prev" href={href(`/thinkers/${thinker.data.slug}/long-read/${prevSlug}`)}>
           <span class="dir">← Previous</span>
-          <span class="t">{prev.data.title}</span>
+          <span class="t"><Inline text={prev.data.title} /></span>
         </a>
       ) : <span />}
       {next && nextSlug ? (
         <a class="next" href={href(`/thinkers/${thinker.data.slug}/long-read/${nextSlug}`)}>
           <span class="dir">Next →</span>
-          <span class="t">{next.data.title}</span>
+          <span class="t"><Inline text={next.data.title} /></span>
         </a>
       ) : <span />}
     </nav>

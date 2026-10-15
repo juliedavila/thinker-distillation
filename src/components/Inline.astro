@@ -1,0 +1,7 @@
+---
+// A frontmatter prose field, with *title* rendered as italics. See src/lib/inline.ts.
+import { inline } from '../lib/inline';
+
+const { text } = Astro.props as { text?: string | null };
+---
+<Fragment set:html={inline(text ?? '')} />

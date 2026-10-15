@@ -204,7 +204,6 @@ reading_review:
 working_uses:
   - '"Boring Seams" keynote (no-silver-bullet applied to AI-security tooling)'
   - Threat-model writeups (essential vs accidental as the first filter)
-  - Cordon framework (conceptual-integrity argument applied to software-quality dimensions)
 
 limits:
   - headline: The surgical-team prescription dates badly

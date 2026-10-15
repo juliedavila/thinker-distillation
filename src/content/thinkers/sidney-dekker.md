@@ -228,7 +228,6 @@ reading_review:
 working_uses:
   - Security incident response (just-culture framing for engineer-error analysis)
   - '"Boring Seams" keynote (drift-into-failure applied to security architecture)'
-  - Cordon framework (safety-differently as a peer dimension among software quality concerns)
 
 limits:
   - headline: The frame's silence on adversaries shows under security pressure

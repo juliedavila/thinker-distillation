@@ -261,7 +261,6 @@ reading_review:
   dissent: false
 working_uses:
   - '"Boring Seams" keynote (vocabulary-as-instrument applied to security architecture)'
-  - Cordon framework (naming security as a peer dimension among the software-quality ontology)
   - Threat-model writeups (patterns + named distinctions instead of bullet lists)
 
 limits:

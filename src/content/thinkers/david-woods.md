@@ -207,7 +207,6 @@ reading_review:
   dissent: false
 working_uses:
   - '"Boring Seams" keynote (Law of Stretched Systems applied to security operations)'
-  - Cordon framework (graceful extensibility as a software-quality dimension)
   - Security architecture reviews (adaptive capacity as the question, not robustness)
 
 limits:

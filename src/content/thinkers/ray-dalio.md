@@ -208,7 +208,6 @@ reading_review:
 working_uses:
   - Security principles documents (written down, numbered, revisable)
   - Risk-acceptance frameworks (explicit decision algorithm, not tacit)
-  - Cordon framework (software-quality principles as a peer dimension)
 
 limits:
   - headline: The Bridgewater operationalization is contested

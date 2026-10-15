@@ -186,7 +186,6 @@ reading_review:
   dissent: false
 working_uses:
   - '"Boring Seams" keynote (SANS AI Cybersecurity Summit 2026)'
-  - Cordon framework (software-quality ontology)
   - Tinkerers community sizing (engagement-tier design)
 
 limits:

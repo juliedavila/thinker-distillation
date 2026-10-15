@@ -222,7 +222,6 @@ reading_review:
 working_uses:
   - Security incident response (blameless framing applied to breach analysis)
   - '"Boring Seams" keynote (the work-as-imagined / work-as-done gap in security architecture)'
-  - Cordon framework (adaptive capacity as a peer dimension among software-quality concerns)
 
 limits:
   - headline: The "blameless" label gets misapplied

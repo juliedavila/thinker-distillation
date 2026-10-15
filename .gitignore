@@ -42,3 +42,10 @@ _working/_tmp/
 # Launch-readiness inventories (issue #98). Local only: they discuss how pages treat living people,
 # and the GitHub mirror of this repository is public.
 _working/_launch/
+
+# Full copies of sources fetched while building a ledger (papers, transcripts, pages). Local only:
+# the GitHub mirror of this repository is public, and these are other people's documents.
+_working/*/src/
+_working/*/_src/
+_working/*/_fetch/
+_working/*/audit/

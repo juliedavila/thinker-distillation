@@ -217,3 +217,25 @@ date or a career fact was reopened: [S:1] through [S:32], with [S:8] read on a s
   Hollnagel and Dekker each have a fair claim to carrying the pair, and the page can say so.
 - **Kept as written:** the `named_frames[1]` labelling question, the `named_frames[3]` coinage
   caveat, and the Forsgren framing note.
+
+## Remediation, 2026-10-15
+
+The page was corrected under the claim-delta gate; every changed field is in
+`claim-delta-2026-10.md`, with no NEW or WIDENED row. No ledger line was added.
+
+- **All five contradicted fields fixed:** `active_years` to 1997; `background` rewritten to the
+  2009 arrival, the CTO years, "Edited", the Lund MSc and an LFI speaker role; the Howie clause
+  removed from `body_of_work[3]`; the VOID item deleted; the dark-debt role dated 2017 [S:33].
+- **Outside the gate, also fixed:** the working line (now a sentence the 2012 post contains), the
+  "twelve pages" length in two fields, the Dekker and Nora Jones edge labels, and
+  `further_in.then_read` on Howie.
+- **Over-credit narrowed** in `why_they_matter_as_a_thinker`, `thirty_second_take`,
+  `inclusion_rationale`, `tagline`, `body_of_work[0]` and `still_load_bearing_despite`: the
+  "without Allspaw" counterfactual and the "reason your org has a blameless prefix" claims gave
+  way to what the record shows (the SRE book's citation of his post beside its own healthcare and
+  avionics origin [S:14]); dark debt and above-the-line are now credited to the STELLA report
+  [S:17], [S:18], with his 2017 talk and excerpt as his part [S:20], [S:33].
+- **Left as is:** the Forsgren framing, the `named_frames[4]` primary-author question, and the
+  missing *Art of Capacity Planning* (adding it would be a new proposition in a remediation pass).
+- **Still on other pages:** Sidney Dekker's `background` ("advised John Allspaw's PhD work") and
+  its Allspaw edge ("Dekker's PhD student at Lund") contradict [S:9].

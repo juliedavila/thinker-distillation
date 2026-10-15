@@ -19,10 +19,6 @@
 
 alex-komoroske
 camille-fournier
-david-woods
 fred-brooks
-john-allspaw
-martin-fowler
 ray-dalio
 rich-hickey
-sidney-dekker

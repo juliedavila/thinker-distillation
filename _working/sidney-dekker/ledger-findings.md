@@ -208,3 +208,34 @@ These are ungated except the first, which sits inside a gated field that still p
 
 `bun scripts/fact-ledger.ts sidney-dekker` was run at the end of this pass. It fails on the same
 five fields as before and no others, which is the intended state until the page itself is edited.
+
+## Remediation, 2026-10-15
+
+The page was edited to what this ledger supports, under the claim-delta gate; the row-by-row table is
+`claim-delta-2026-10.md`. No ledger line was added. In summary:
+
+- **background:** "Chair of" became "Professor of" [S:1] [S:16]; the Allspaw PhD clause and the
+  "most-translated and most-cited" sentence were deleted [S:3] [S:18]; the flying now reads as the
+  publisher bio gives it, learned after he became a full professor and flown part-time out of
+  Copenhagen [S:1]. The same superlative was deleted from `still_load_bearing_despite`.
+- **Allspaw edge label:** now states the thesis record (a 2015 Lund master's, supervised by Smoker and
+  Bergström, thanking Dekker for his encouragement) [S:3] [S:4].
+- **Drift into failure:** `original` became `extended`, with Woods and Rasmussen named as
+  co-originators in the terms Dekker's own 2013 paper and book give them [S:20] [S:21] [S:22] [S:31].
+- **Field Guide:** the entry is now the 2014 third edition under its current title, with the 2002
+  *Field Guide to Human Error Investigations* named in the note [S:5] [S:6]; the 404 link was replaced
+  with the Routledge page.
+- **Just Culture:** the 2007 entry carries its 2007 subtitle, and the note gives the third edition as
+  2016 [S:9] [S:10].
+- **Work-as-imagined:** the Allspaw co-originator line was deleted [S:27].
+- **Ungated lines:** the just-culture gloss and the matching reading sentence now give the line to
+  Reason and Dekker's question of who draws it [S:11] [S:13]; the Columbia note is narrowed to "one of
+  its cases" [S:7]; *Safety Differently* is described as an update of *Ten Questions* [S:8];
+  "Forty years" became "Over three decades" [S:2] [S:15].
+- **The translator framing** in `thirty_second_take` now states his role on the new view as his 2002
+  paper gives it [S:19], and its closing "Dekker is how the tradition gets out of the academy" was
+  deleted. The Woods edge's "Woods for the theory, Dekker for the application" was deleted, since
+  Dekker's drift writing is theory in its own right [S:20] [S:21].
+
+`bun scripts/fact-ledger.ts sidney-dekker` and `bun scripts/reading-gates.ts sidney-dekker` both PASS
+after the pass.

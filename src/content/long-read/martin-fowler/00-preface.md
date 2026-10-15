@@ -5,26 +5,26 @@ title: 'Preface: Who Is Martin Fowler?'
 summary: >
   Compressed bio, TLDR of what he advocates, key accomplishments named,
   what he is not, where to find him. The on-ramp before Part 1.
-last_updated: 2026-05-23
+last_updated: 2026-10-15
 ---
 
 If you have worked in software for more than five years, you have read Martin Fowler whether you noticed or not.
 
-You read him every time someone on your team says "let's refactor that," because the word in its current meaning is his. You read him every time someone draws the test pyramid on a whiteboard. You read him when someone says *bounded context* or *microservice* or *feature toggle* or *code smell* or *tech debt* or *continuous delivery*. A lot of the vocabulary your engineering org uses to talk about its own work, he either named, popularized, or codified into a form that could be passed around without losing its shape.
+You read him every time someone on your team says "let's refactor that": his 1999 book on the practice is the one he says has had "a high impact on the world of software development". You read him when someone says *bounded context* or *microservice* or *feature toggle* or *code smell* or *tech debt* or *continuous delivery*. A lot of the vocabulary your engineering org uses to talk about its own work, he either popularized or codified into a form that could be passed around without losing its shape.
 
 He has been doing this since roughly 1996. Long enough that most engineers under forty have never worked in a world where his vocabulary was absent.
 
 ## The compressed bio
 
-Martin Fowler is a British software engineer, born in Walsall in 1963, who has spent his career as a working consultant and writer rather than as a working executive or a working academic. He started out in London building enterprise systems in the early 1990s, moved to the United States in the mid-90s, and joined the consultancy ThoughtWorks in 2000. He has been ThoughtWorks's Chief Scientist for over two decades, a role with no executive authority and no operational responsibility, designed expressly to leave him free to think and write.
+Martin Fowler is a British software engineer, born in Walsall in 1963, who has spent his career as a consultant and writer. He worked for Coopers & Lybrand and a small company called Ptech, became an independent consultant in 1991, moved to Massachusetts in 1994, and joined the consultancy ThoughtWorks in 2000. He has been ThoughtWorks's Chief Scientist for over two decades, a title whose irony he says he enjoys: "I'm not chief of anybody and don't do any science". He sees his main role as "helping my colleagues to capture and promulgate what we've learned about software development".
 
 He is one of the seventeen original signatories of the Agile Manifesto (2001).
 
-He is co-author of *Refactoring: Improving the Design of Existing Code* (1999, with Kent Beck, John Brant, William Opdyke, and Don Roberts; 2nd ed solo in 2018), author of *Patterns of Enterprise Application Architecture* (2002), *Analysis Patterns* (1996), *UML Distilled* (multiple editions), *Domain-Specific Languages* (2010, with Rebecca Parsons), *NoSQL Distilled* (2012, with Pramod Sadalage), and co-author of *Planning Extreme Programming* (2000, with Kent Beck). He wrote the forewords to Eric Evans's *Domain-Driven Design* and Jez Humble and Dave Farley's *Continuous Delivery*, two of the most influential industry books of the 2000s, both carried wider by his endorsement.
+He is author of *Refactoring: Improving the Design of Existing Code* (1999, with Kent Beck, John Brant, William Opdyke, and Don Roberts; 2nd ed 2018, with Kent Beck), and of *Patterns of Enterprise Application Architecture* (2002), *Analysis Patterns* (1996), *UML Distilled* (multiple editions), *Domain-Specific Languages* (2010, with Rebecca Parsons), *NoSQL Distilled* (2012, with Pramod Sadalage), and co-author of *Planning Extreme Programming* (2000, with Kent Beck). He wrote the forewords to Eric Evans's *Domain-Driven Design* and Jez Humble and Dave Farley's *Continuous Delivery*.
 
-He coined the term *bliki* (a hybrid of blog and wiki) and has been publishing under that form at `martinfowler.com` since the late 1990s. The bliki is itself part of the corpus, not paratext; he uses it as the medium through which his thinking evolves publicly, marking entries with maturity badges (`growing`, `stable`) so readers can tell whether he is still figuring something out or has settled.
+He has written a bliki (a hybrid of blog and wiki) at `martinfowler.com` since 2003. Ward Cunningham gave his version the name, and by Fowler's own account the word and the form were already in use elsewhere; the site itself started as a home for articles he had written for other purposes. The bliki is itself part of the corpus, not paratext; he uses it as the medium through which his thinking evolves publicly, marking entries with maturity badges (`growing`, `stable`) so readers can tell whether he is still figuring something out or has settled.
 
-He gives keynotes more than he writes new books at this point. The keynote that became most-cited in the last decade is the one that opens the *Microservices* article with James Lewis (2014). The keynote that the next generation of engineers will probably remember is whichever one of his late-career talks on internal quality finally lands as canonical.
+He retired from speaking in 2021 and still writes for and edits `martinfowler.com`.
 
 ## The TLDR of what he advocates
 
@@ -37,36 +37,36 @@ He has spent twenty-five years arguing this six different ways. The economic arg
 ## Key accomplishments, named
 
 - **Agile Manifesto, 2001.** One of seventeen original signatories alongside Kent Beck, Ward Cunningham, Andy Hunt, Dave Thomas, Robert Martin, and others.
-- ***Refactoring*, 1999.** Co-authored with Kent Beck (and Brant, Opdyke, Roberts). The book that gave the word *refactoring* its current technical meaning. Second edition rewritten by Fowler solo in JavaScript, 2018.
-- ***Patterns of Enterprise Application Architecture*, 2002.** The catalog that named *Domain Model*, *Transaction Script*, *Table Module*, *Active Record*, *Data Mapper*, *Unit of Work*, *Service Layer*, *Repository*, and dozens of others. The book that built the vocabulary most enterprise software is still discussed in.
-- ***Continuous Integration*, 2006 article.** The original definitive statement of CI as a named discipline.
-- ***Microservices*, 2014 article with James Lewis.** The defining article. Later self-flagged for being too lenient on operational cost: the public-revision discipline at work.
-- ***Domain-Specific Languages*, 2010.** With Rebecca Parsons. The book that gave the DSL distinction its current shape.
-- **Coined or popularized**: bliki, code smell (with Beck), test pyramid, tech debt quadrant (extending Cunningham's 1992 metaphor), feature toggle (taxonomy with Pete Hodgson), strangler fig application, branch by abstraction, polyglot persistence (with Sadalage), inverse Conway maneuver.
-- **Chief Scientist at ThoughtWorks** since 2000. Author of the ThoughtWorks Technology Radar in collaboration with Rebecca Parsons, James Lewis, and others. One of the most cited working software writers of the last twenty-five years.
+- ***Refactoring*, 1999.** Credited "With Kent Beck, John Brant, William Opdyke, and Don Roberts". The book Fowler says has had "a high impact on the world of software development". The word is older: Fowler places the practice's foundations in the Smalltalk community, reports that its creators did not know where the term came from, and cites Leo Brodie's *Thinking Forth* (1984) as its first known printed use. William Opdyke wrote "the first thesis on refactoring" in 1992. The 2018 second edition, again "with Kent Beck", moved from Java to JavaScript.
+- ***Patterns of Enterprise Application Architecture*, 2002.** Written with Dave Rice, Matthew Foemmel, Edward Hieatt, Robert Mee and Randy Stafford. The catalog that sets out *Domain Model*, *Transaction Script*, *Active Record*, *Data Mapper*, *Unit of Work*, *Service Layer* and *Repository* under those names, among forty or so patterns.
+- ***Continuous Integration*, 2000 article, rewritten 2006 and revised 2024.** Fowler credits the practice to Kent Beck, who "defined the practice" within Extreme Programming in the 1990s.
+- ***Microservices*, 2014 article with James Lewis.** Followed in 2015 by Fowler's bliki entries Microservice Premium, aimed at teams "too eager to embrace microservices", and Monolith First. Neither entry calls itself a correction of the article.
+- ***Domain-Specific Languages*, 2010.** With Rebecca Parsons.
+- **Named, or carried with the originators credited**: strangler fig application (his name and metaphor, for a practice his 2004 post credits to a project Chris Stevenson was involved in), the technical debt quadrant (his division of Ward Cunningham's metaphor), the bliki (named by Cunningham), code smell (coined by Kent Beck), and the inverse Conway maneuver (coined by Jonny LeRoy and Matt Simons; Fowler sets it out as one of three responses to Conway's Law).
+- **Chief Scientist at ThoughtWorks** since 2000.
 
 ## What he is not
 
-He is not a methodology evangelist in the sense of having a branded process he sells. He is not an executive. He does not write production code for a living, though he has and still does.
+He is not a methodology evangelist in the sense of having a branded process he sells. In his words he has "mostly avoided any business leadership responsibilities", and he has served on Thoughtworks's primary global leadership team since 2017. He does not write production code for a living, though he has and still does.
 
-He has been careful, across his entire career, to attribute the ideas he carries: Kent Beck for refactoring and TDD, Ward Cunningham for tech debt and wiki, Christopher Alexander for the pattern-language form, the Gang of Four for the pattern catalog form, Eric Evans for domain-driven design, James Lewis for the microservices definition, Greg Young for CQRS and event sourcing, Jez Humble and Dave Farley for continuous delivery. Reading him without reading them is reading half a conversation.
+He has been careful, across his entire career, to attribute the ideas he carries: Kent Beck for continuous integration, code smell and TDD, William Opdyke and the Smalltalk community for refactoring, Ward Cunningham for tech debt and wiki, Christopher Alexander for the pattern-language form, the Gang of Four for the pattern catalog form, Eric Evans for domain-driven design, James Lewis for the microservices definition, Greg Young for CQRS, Jez Humble and Dave Farley for continuous delivery. Reading him without reading them is reading half a conversation.
 
 The discipline of attribution is itself one of his arguments, not a politeness. Software thinking, in his frame, is a public conversation across generations. Carrying an idea forward without obscuring its origin is part of the work.
 
 ## Where to find him
 
 - **`martinfowler.com`**: the canonical hub. Everything he writes lives here.
-- **`martinfowler.com/bliki/`**: the bliki itself, with maturity badges and public revision history. The entry index is alphabetical; start with `IsQualitySoftwareWorthTheCost`, `StranglerFigApplication`, `BoundedContext`, `FeatureToggle`, or `TechDebtQuadrant`.
-- **`martinfowler.com/articles/`**: the long-form work. *Microservices* (2014), *Continuous Integration* (2006), *Mocks Aren't Stubs* (2007) are the load-bearing ones.
+- **`martinfowler.com/bliki/`**: the bliki itself, with maturity badges and public revision history. The entry index is alphabetical; start with `StranglerFigApplication`, `BoundedContext`, `FeatureFlag` (formerly `FeatureToggle`), or `TechnicalDebtQuadrant`.
+- **`martinfowler.com/articles/`**: the long-form work. *Is High Quality Software Worth the Cost?* (2019), *Microservices* (2014), *Continuous Integration* (2000, rewritten 2006), *Mocks Aren't Stubs* (2007) are the load-bearing ones.
 - **`martinfowler.com/books/`**: bibliography with links to every book.
 - **`martinfowler.com/talks/`**: keynote video links.
-- **`thoughtworks.com`**: his employer. The Tech Radar (`thoughtworks.com/radar`) is one of his ongoing artifacts.
+- **`thoughtworks.com`**: his employer.
 - **YouTube**: search *Martin Fowler keynote*. The *Refactoring* (2018 launch tour), *Software Design in the 21st Century*, and the *Is TDD Dead?* panel series with Kent Beck and DHH are the most-referenced.
-- **GOTO Conferences**: he speaks regularly; the channel has multiple recorded keynotes.
+- **GOTO Conferences**: the channel has multiple recorded keynotes.
 - **`@martinfowler`** on Twitter/X: historically active, largely retired now.
 
 ## What this book is not
 
 This is not a Fowler biography. It is a *concept lattice*: a map of the argument structure under the vocabulary you have probably been using without knowing where most of it came from. The bio above is enough to start. The corpus inventory and the conceptual mapping are where to go for completeness. The long walk in Pass Two is how the argument unfolds in detail.
 
-If you want a single pre-reading recommendation before opening Part 1, it is the bliki entry `IsQualitySoftwareWorthTheCost`. That essay is the keystone. Everything else hangs off it.
+If you want a single pre-reading recommendation before opening Part 1, it is the 2019 article *Is High Quality Software Worth the Cost?*. That article is the keystone. Everything else hangs off it.

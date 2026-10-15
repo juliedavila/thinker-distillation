@@ -193,3 +193,25 @@ reclassified rather than disputed:
 - `adjacent_thinkers[0]` (Kent Beck): "coined code smell with Fowler", as under named_frames[1]
   above.
 
+
+## Remediation, 2026-10-15
+
+Every field listed above as contradicted or unsupported was rewritten to what its lines say, and
+each is now mapped in `page-claims.md`. The before and after of every change, with its class, is
+in `claim-delta-2026-10.md`. Attribution kinds changed only where the record carries the new
+value: bounded context `extended` to `popularized` ([S:3], [S:40]); continuous integration
+`original` by Fowler to `popularized` with Beck as primary author ([S:6], [S:34]); the bliki
+`original` to `distributed` ([S:1], [S:36]). Strangler fig stays `original` for the name and
+metaphor and now names Chris Stevenson and Andy Pols for the practice ([S:32], [S:33]). The same
+claims were lowered in every other field that carried them, including the long-read preface.
+
+Four lines were added, each recording what its source says: [S:43] (the Refactoring book page on
+the book's impact), [S:44] (the second edition moved from Java to JavaScript), [S:45] (the
+preparatory refactoring article quoting Beck's line under his name) and [S:46] (the Technical Debt
+Quadrant entry).
+
+Still open, and left on the page because no line here decides them: the test pyramid limit and
+the `still_load_bearing_despite` reference to it (the page does not credit the pyramid to Fowler,
+and no ledger line covers its origin); `limits[1]`'s "pointed critique" and the claim that the
+2018 edition "responds"; "contributed the two-hat rule" in the Kent Beck label; the maturity
+badges in the bliki gloss and preface.

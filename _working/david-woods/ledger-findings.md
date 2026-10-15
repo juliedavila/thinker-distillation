@@ -158,3 +158,26 @@ What changed:
   which is now quoted in the background finding so the lab's account reads in full.
 
 The gate still fails on five fields, down from six. That is the expected result for this page.
+
+## Remediation, 2026-10-15
+
+The page was brought into line with this record on 2026-10-15; the row-by-row delta is in
+`claim-delta-2026-10.md`, and `fact-ledger.ts` now passes. In brief:
+
+- **active_years** is 1979–present [S:4].
+- **background** states the lab's own account: Woods and Hollnagel founded the field after Three
+  Mile Island, Smith built the first university-based CSE program and laboratory, and Rayo and
+  Woods now run CSEL [S:3]. The REA presidency is dated 2011 to 2013 [S:1] [S:4]. The
+  "investigations" wording and the unsourced list of incident-analysis domains are gone.
+- **Adaptive capacity** is `extended` [S:7] [S:8] [S:5]. The tagline ("named what makes complex
+  systems actually cope") and the inclusion rationale ("Produced the vocabulary") were narrowed in
+  the same pass, as carriers of the coinage.
+- **The new view of human error** is `distributed`, with Woods kept as `primary_author` on this
+  page and the gloss now stating Dekker's 2002 list of sources [S:21]. *Behind Human Error* is no
+  longer called "the foundational text", here or in `further_in`.
+- **body_of_work[4]** is deleted, with its `further_in` carrier narrowed to the lab site [S:18].
+
+Still open, for Julie rather than this pass: whether the Dekker page's `extended` filing and this
+page's `distributed` filing of the new view should be read together; whether Woods should stay
+`primary_author` of a distributed frame; and the unsourced "Co-founded the field of resilience
+engineering" in `inclusion_rationale`.

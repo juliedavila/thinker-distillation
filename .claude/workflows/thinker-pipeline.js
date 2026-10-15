@@ -416,12 +416,15 @@ const researched = await pipeline(
         `Then run \`bun scripts/fact-ledger.ts ${c.slug}\` and report whether the ledger half passes (coverage ` +
         `failures are expected: the page does not exist yet).\n\n` +
         `Set verdict "park" if the thinker's central claim to a page rests on something you could not verify.\n\n` +
-        `If you are NOT parking (verdict not "park", nothing in contradicted, search_cap_scan "clean"), the ` +
-        `inclusion Council convenes next, so run \`glab issue update ${c.issue} --label camila:in-council\`.\n\n` +
         `${SEARCH_CAP}\n\n` +
-        `Last, run \`${SEARCH_CAP_CMD}\` and set search_cap_scan from its exit code: 0 clean, 1 hit, 2 blind. It reads ` +
+        `Then run \`${SEARCH_CAP_CMD}\` and set search_cap_scan from its exit code: 0 clean, 1 hit, 2 blind. It reads ` +
         `this run's transcripts for a refused search by any agent, including the research you are auditing. Paste ` +
         `its output into notes when it is not clean.\n\n` +
+        // This step used to sit above the search-cap step, so its condition named a result the agent had
+        // not produced yet. Six runs in a row reached Ship without the label (calibration.md, labels item).
+        `Only now, with search_cap_scan known: if you are NOT parking (verdict not "park", nothing in ` +
+        `contradicted, search_cap_scan "clean"), the inclusion Council convenes next, so run ` +
+        `\`glab issue update ${c.issue} --label camila:in-council\` as your last command.\n\n` +
         `${NO_GIT}`,
       { label: `fact-audit:${c.slug}`, phase: 'Research', schema: AUDIT }
     ).then((a) => (a ? { c, research: r, audit: a } : null))

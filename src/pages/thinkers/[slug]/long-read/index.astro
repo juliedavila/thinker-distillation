@@ -21,7 +21,7 @@ const chapters = await getCollection(
 chapters.sort((a, b) => a.data.chapter_number - b.data.chapter_number);
 ---
 
-<Base title={`${t.long_read?.title ?? 'Long read'} — ${t.name}`}>
+<Base title={`${t.long_read?.title ?? 'Long read'} · ${t.name}`}>
   <section class="hero">
     <p class="meta-up">
       <a href={href(`/thinkers/${t.slug}`)}>← {t.name}</a>

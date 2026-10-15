@@ -95,7 +95,7 @@ named_frames:
       explicitly designed for. The actual goal of resilience engineering.
     attribution_kind: original
     primary_author: david-woods
-    source_link: https://safety-cube.osu.edu
+    source_link: https://irgc.org/wp-content/uploads/2018/09/Woods-Resilience-as-Graceful-Extensibility-to-Overcome-Brittleness.pdf
   - concept_slug: law-of-stretched-systems
     display_name: The Law of Stretched Systems
     one_line_gloss: >

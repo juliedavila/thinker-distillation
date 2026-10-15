@@ -1,4 +1,5 @@
 ---
+import Inline from '../../../../components/Inline.astro';
 import { href } from '../../../../lib/href';
 import { getCollection } from 'astro:content';
 import Base from '../../../../layouts/Base.astro';
@@ -27,7 +28,7 @@ chapters.sort((a, b) => a.data.chapter_number - b.data.chapter_number);
       <a href={href(`/thinkers/${t.slug}`)}>← {t.name}</a>
     </p>
     <h1>{t.long_read?.title ?? 'Long read'}</h1>
-    {t.long_read?.summary && <p class="tagline">{t.long_read.summary}</p>}
+    {t.long_read?.summary && <p class="tagline"><Inline text={t.long_read.summary} /></p>}
   </section>
 
   <section>
@@ -41,8 +42,8 @@ chapters.sort((a, b) => a.data.chapter_number - b.data.chapter_number);
           return (
             <li>
               <a href={href(`/thinkers/${t.slug}/long-read/${chapterSlug}`)}>
-                <span class="chapter-title">{c.data.title}</span>
-                {c.data.summary && <span class="chapter-summary">{c.data.summary}</span>}
+                <span class="chapter-title"><Inline text={c.data.title} /></span>
+                {c.data.summary && <span class="chapter-summary"><Inline text={c.data.summary} /></span>}
               </a>
             </li>
           );

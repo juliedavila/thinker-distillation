@@ -1,4 +1,5 @@
 ---
+import Inline from '../../components/Inline.astro';
 import { href } from '../../lib/href';
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
@@ -31,7 +32,7 @@ const conceptPagesSet = new Set(concepts.map((cc) => cc.data.slug));
     <header class="concept-hero">
       <p class="concept-eyebrow">Concept</p>
       <h1>{c.display_name}</h1>
-      <p class="concept-gloss">{c.one_line_gloss}</p>
+      <p class="concept-gloss"><Inline text={c.one_line_gloss} /></p>
     </header>
 
     {holders.length > 0 && (
@@ -47,7 +48,7 @@ const conceptPagesSet = new Set(concepts.map((cc) => cc.data.slug));
                 <span class="attribution-kind">{h.attribution_kind}</span>
               </div>
               <p class="genealogy-frame">
-                <em>{h.frame_display_name}</em>: {h.frame_gloss}
+                <em>{h.frame_display_name}</em>: <Inline text={h.frame_gloss} />
               </p>
             </li>
           ))}
@@ -89,7 +90,7 @@ const conceptPagesSet = new Set(concepts.map((cc) => cc.data.slug));
             {c.julie_reading_prompt && (
               <details>
                 <summary>Prompt scaffold</summary>
-                <p class="prompt-text">{c.julie_reading_prompt}</p>
+                <p class="prompt-text"><Inline text={c.julie_reading_prompt} /></p>
               </details>
             )}
           </div>
@@ -105,17 +106,17 @@ const conceptPagesSet = new Set(concepts.map((cc) => cc.data.slug));
           {c.limits.map((limit) => (
             <div class="limit-card">
               <div class="limit-head">
-                <span class="headline">{limit.headline}</span>
+                <span class="headline"><Inline text={limit.headline} /></span>
                 <span class={`severity ${limit.severity}`}>{limit.severity}</span>
               </div>
-              <p class="elaboration">{limit.elaboration}</p>
+              <p class="elaboration"><Inline text={limit.elaboration} /></p>
             </div>
           ))}
         </div>
         {c.still_load_bearing_despite && (
           <div class="still-load-bearing">
             <p class="lane-mark">Still load-bearing, despite</p>
-            <p>{c.still_load_bearing_despite}</p>
+            <p><Inline text={c.still_load_bearing_despite} /></p>
           </div>
         )}
       </section>
@@ -138,7 +139,7 @@ const conceptPagesSet = new Set(concepts.map((cc) => cc.data.slug));
                     </span>
                   )}
                 </p>
-                <p class="edge-label">{adj.edge_label}</p>
+                <p class="edge-label"><Inline text={adj.edge_label} /></p>
               </div>
             );
           })}
@@ -162,8 +163,8 @@ const conceptPagesSet = new Set(concepts.map((cc) => cc.data.slug));
       <section aria-labelledby="long-read">
         <h2 id="long-read" class="section-h">Long Read</h2>
         <div class="long-read">
-          <p class="title">{c.long_read.title}</p>
-          <p class="summary">{c.long_read.summary}</p>
+          <p class="title"><Inline text={c.long_read.title} /></p>
+          <p class="summary"><Inline text={c.long_read.summary} /></p>
         </div>
       </section>
     )}

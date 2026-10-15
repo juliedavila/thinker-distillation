@@ -1,4 +1,5 @@
 ---
+import Inline from '../../components/Inline.astro';
 import { href } from '../../lib/href';
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
@@ -23,7 +24,7 @@ concepts.sort((a, b) => a.data.display_name.localeCompare(b.data.display_name));
       <li>
         <a href={href(`/concepts/${c.data.slug}`)}>
           <p class="name">{c.data.display_name}</p>
-          <p class="tagline">{c.data.one_line_gloss}</p>
+          <p class="tagline"><Inline text={c.data.one_line_gloss} /></p>
         </a>
       </li>
     ))}

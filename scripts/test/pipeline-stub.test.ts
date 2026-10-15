@@ -150,6 +150,8 @@ test('prompts follow SKILL.md: no git checkout, neighbours only at Ship, and the
   expect(prompt('ship:dave-farley')).toContain('git switch -c candidate/dave-farley');
   expect(prompt('editor-cold:dave-farley')).toContain('Do not edit any other page');
   expect(prompt('fact-audit:dave-farley')).toContain('--label camila:in-council');
+  // The label's condition names search_cap_scan, so it must come after the step that produces it.
+  expect(prompt('fact-audit:dave-farley').indexOf('--label camila:in-council')).toBeGreaterThan(prompt('fact-audit:dave-farley').indexOf('scripts/search-cap.ts'));
   expect(prompt('draft:dave-farley')).toContain('--label camila:accepted');
 });
 

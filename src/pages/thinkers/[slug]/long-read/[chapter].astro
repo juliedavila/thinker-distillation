@@ -51,7 +51,7 @@ const glossary = chapter.data.glossary ?? [];
 const hasGlossary = glossary.length > 0;
 ---
 
-<Base title={`${chapter.data.title} — ${thinker.data.name}`}>
+<Base title={`${chapter.data.title} · ${thinker.data.name}`}>
   <article class="long-read-chapter" data-has-glossary={hasGlossary}>
     <p class="breadcrumb">
       <a href={href(`/thinkers/${thinker.data.slug}`)}>{thinker.data.name}</a>

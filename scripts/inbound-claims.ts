@@ -102,7 +102,28 @@ const proseFields = (v: unknown, path: string, out: Array<[string, string]>) => 
     for (const [k, x] of Object.entries(v)) if (!STRUCTURAL.has(k)) proseFields(x, path ? `${path}.${k}` : k, out);
   return out;
 };
-const needle = display.split(/\s+/).pop() ?? display; // surname, which is how the pages refer to people
+// Every surname the roster uses for this person, because pages refer to people by surname. One
+// needle taken from one display name missed people the pages name differently: "Daniel
+// Terhorst-North" became the needle "Terhorst-North", and seven pages that say "Dan North" or
+// "North" reported nothing. So gather the person's own page name and every display name other
+// pages give them, take each one's last word, and add the parts of a hyphenated surname.
+const SUFFIX = /^(jr|sr|ii|iii|iv)\.?$/i;
+const surnames = new Set<string>();
+const names = new Set<string>([display, ...(own?.name ? [own.name as string] : [])]);
+for (const [, d] of thinkers) {
+  for (const e of d.adjacent_thinkers ?? []) if (e.target_slug === slug && e.display_name) names.add(e.display_name as string);
+  for (const f of d.named_frames ?? []) for (const co of f.co_originators ?? []) if (co.slug === slug && co.display_name) names.add(co.display_name as string);
+}
+for (const n of names) {
+  const words = n.replace(/,/g, '').split(/\s+/).filter((w) => w && !SUFFIX.test(w));
+  const last = words.pop();
+  if (!last) continue;
+  surnames.add(last);
+  if (last.includes('-')) for (const part of last.split('-')) if (part.length > 1) surnames.add(part);
+}
+const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const nameRe = new RegExp(`(?<![\\w-])(${[...surnames].map(escape).join('|')})(?![\\w-])`);
+const needle = [...surnames].join('", "');
 const mentions: string[] = [];
 
 const scan = (d: Doc, kind: string) => {
@@ -111,20 +132,20 @@ const scan = (d: Doc, kind: string) => {
   for (const [k, v] of Object.entries(d)) {
     if (HANDLED.has(k) || STRUCTURAL.has(k)) continue;
     for (const [path, text] of proseFields(v, k, [])) {
-      if (new RegExp(`\\b${needle}\\b`).test(oneLine(text))) hits.push(`\`${path}\``);
+      if (nameRe.test(oneLine(text))) hits.push(`\`${path}\``);
     }
   }
   for (const l of d.limits ?? []) {
     const v = `${oneLine(l.headline)} ${oneLine(l.elaboration)}`;
-    if (new RegExp(`\\b${needle}\\b`).test(v)) hits.push(`limit "${oneLine(l.headline)}"`);
+    if (nameRe.test(v)) hits.push(`limit "${oneLine(l.headline)}"`);
   }
   for (const f of d.named_frames ?? []) {
     const v = oneLine(f.one_line_gloss);
-    if (new RegExp(`\\b${needle}\\b`).test(v)) hits.push(`frame _${f.display_name}_`);
+    if (nameRe.test(v)) hits.push(`frame _${f.display_name}_`);
   }
   for (const e of d.adjacent_thinkers ?? []) {
     if (e.target_slug === slug) continue; // already reported as an edge
-    if (new RegExp(`\\b${needle}\\b`).test(oneLine(e.edge_label))) hits.push(`its ${e.target_slug} edge label`);
+    if (nameRe.test(oneLine(e.edge_label))) hits.push(`its ${e.target_slug} edge label`);
   }
   if (hits.length) mentions.push(`- **${d.name ?? d.display_name}** (${kind}): ${hits.join(', ')}`);
 };

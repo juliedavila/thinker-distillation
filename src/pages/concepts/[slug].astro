@@ -26,7 +26,7 @@ const concepts = await getCollection('concepts');
 const conceptPagesSet = new Set(concepts.map((cc) => cc.data.slug));
 ---
 
-<Base title={`${c.display_name} — Thinker Distillation`} description={c.one_line_gloss}>
+<Base title={`${c.display_name} · Thinker Distillation`} description={c.one_line_gloss}>
   <article class="concept-page">
     <header class="concept-hero">
       <p class="concept-eyebrow">Concept</p>
@@ -47,7 +47,7 @@ const conceptPagesSet = new Set(concepts.map((cc) => cc.data.slug));
                 <span class="attribution-kind">{h.attribution_kind}</span>
               </div>
               <p class="genealogy-frame">
-                <em>{h.frame_display_name}</em> — {h.frame_gloss}
+                <em>{h.frame_display_name}</em>: {h.frame_gloss}
               </p>
             </li>
           ))}

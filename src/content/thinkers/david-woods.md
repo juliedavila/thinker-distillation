@@ -220,8 +220,7 @@ limits:
       the disturbances are nature (weather, equipment failure, human
       slip) or accident (ill-formed procedures, attention lapse), not
       intent. The framework holds in security but the adversarial layer
-      is bolted on, not built in. Same gap as Komoroske's gardener-
-      vs-architect frame: silent on actors optimizing against you.
+      is bolted on, not built in. Same gap as Komoroske's gardener-vs-builder frame: silent on actors optimizing against you.
   - headline: Empirical grounding is mostly outside software
     severity: local
     elaboration: >

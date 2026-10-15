@@ -371,8 +371,7 @@ adjacent_thinkers:
     edge_label: >
       Same cartographer move, different domain. Fowler builds named-vocabulary
       instruments for software design, Komoroske builds them for organization
-      design. Coordination headwind, Schelling-point organizations, gardener-
-      vs-architect are the org-design equivalents of refactoring, bounded
+      design. Coordination headwind, Schelling-point organizations and gardener-vs-builder are the org-design equivalents of refactoring, bounded
       context, ubiquitous language.
     strength: primary
   - target_slug: christopher-alexander

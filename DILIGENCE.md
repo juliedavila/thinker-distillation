@@ -2,8 +2,8 @@
 
 <!-- RESUME-HEAD v1 -->
 > **Status** · 2026-10-15. Step 1's mechanical half is done ahead of step 0: the template em-dashes are gone, and four report-only tools exist (`scripts/duplicate-points.ts`, `scripts/firstness.ts`, `scripts/rendered-jargon.ts`, `scripts/graph-report.ts`), none wired into verify or CI. Still open in step 1: the rubric, which needs step 0. No prose has been touched.
-> **Next** · Julie answers the five open questions below, then reads the three calibration pages (step 0). Camila runs the four tools at the start of step 2.
-> **Blocked** · On Julie's answers. Fan-out audit work needs her explicit opt-in to the Workflow tool when it starts.
+> **Next** · Camila: finish the nine ledgers (running), fix the four self-contradictions, run the register pass on corrections. Then Julie reads the three calibration pages (step 0).
+> **Blocked** · Nothing. Julie answered all five questions and opted in to the audit fan-out on 2026-10-15.
 > **Resume** · Read this file top to bottom, then /Users/juliedavila/Camila/thinker-distillation/SCHEMA.md section 8, then "Prose remediation passes" in /Users/juliedavila/.claude/LIFEOS/USER/CONFIG/OPERATIONAL_RULES.md, then the worked example at /Users/juliedavila/.claude/LIFEOS/MEMORY/WORK/sf2-writing-rules-audit-2026-09/. The #98 launch inventories (local only) are in /Users/juliedavila/Camila/thinker-distillation/_working/_launch/.
 <!-- /RESUME-HEAD -->
 
@@ -98,7 +98,17 @@ What the audit finds about the graph mostly needs decisions, not edits: which co
 - Every graph finding has a decision recorded, made by Julie.
 - The defect types found are caught upstream by a gate or checklist item.
 
-## Open questions for Julie, before step 0
+## Julie's answers, 2026-10-15
+
+1. **Batch size:** four pages per merge request, to start; adjust after the first batches.
+2. **Scope:** prose fixes in scope; structural changes (including the raw labels the template prints) come to her as findings with a proposal each.
+3. **Pages with no ledger:** build ledgers for all nine, not only the hubs. Running 2026-10-15 as a workflow, one research agent and one independent auditor per page; every line carries `re-verified`, and contradicted or unsupported fields are listed in `_working/<slug>/ledger-findings.md`, never papered over.
+4. **Workflow opt-in:** yes, for the audit fan-out.
+5. **Calibration set:** Komoroske, Forsgren and Leveson, as proposed.
+
+Two launch decisions taken the same day feed this phase. The four self-contradictions found by the #98 credit inventory are fixed first, in their own merge request, once the Fowler, Allspaw and Dekker ledgers exist. And corrections about living people get a register pass (SCHEMA section 8, "Corrections and disagreement"), in batches of four pages, with no outreach to the people named.
+
+## Open questions for Julie, before step 0 (answered above)
 
 1. **Batch size.** How many pages per merge request? Proposed: three to five.
 2. **Structure or prose only?** Does the pass stop at sentences, or may it propose changes to what a page shows and in what order (for example, moving backstage-feeling sections down, or shortening the longest pages)? Proposed: prose fixes in scope, structural changes as findings for her decision.

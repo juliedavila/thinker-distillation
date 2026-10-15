@@ -476,6 +476,14 @@ All site prose follows Julie's writing-style system, whoever drafts it. Editoria
 
 When a flagged word survives on purpose, the reviewer should be able to see why from the sentence itself.
 
+**Corrections and disagreement.** Many pages correct how an idea is credited, and the people named can read them. The register is diplomatic and exact (Julie, 2026-10-15): honest about the record, without judging anyone, and open to explanations other than the one the page favours. In practice:
+
+- *State the record, attributed.* Say what each source says and when, and let the reader see the gap. "His 2006 essay credits Stevenson, Matts and Evans; his current profile describes him as the inventor" carries the correction. "His profile claims more than his essays do" passes a verdict on him.
+- *No verdicts on motive, standing or character.* Describe what someone wrote or did. Leave out why they did it and whether they were entitled to. Call a review "critical of the book's central claim"; "civility wrapped around an attack" assigns an intent the page cannot know. Judge an essay's argument by its evidence, and leave the author's career out of it.
+- *Name the likely alternative.* When a gap has an ordinary explanation (a marketing listing written by a publisher, a term in common use before anyone wrote it down, a profile summarizing a team's work in one person's name), say so beside the correction.
+- *Keep the facts at full strength.* Diplomacy changes the framing and leaves the claim as strong as its source. Softening a fact until it no longer says what the source says is the failure the claim-delta gate exists to catch, and "hedging as a shield" is on Julie's list of moves to avoid.
+- *Headlines inform.* A limit's headline names the issue, as in "Credit for the pipeline is shared in the record". It makes no charge against the person.
+
 The full rules live in Julie's private writing guides on the maintainer's machine, which are not part of this repo:
 
 - `~/.claude/LIFEOS/USER/CUSTOMIZATIONS/WRITING/WRITINGSTYLE.md`: the complete banned list and its reasoning. Applies to everything.

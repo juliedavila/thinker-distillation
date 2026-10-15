@@ -2,26 +2,27 @@
 slug: camille-fournier
 name: Camille Fournier
 canonical_url: https://www.camilletalk.com/
-active_years: 2015–present
+active_years: 2013–present
 primary_domains:
   - engineering-management
   - platform-engineering
   - organization-design
 status: alive-active
 inclusion_rationale: >
-  More than a decade of sustained writing on engineering leadership, from the
-  2015 essays and one of the first public engineering ladders, through *The
-  Manager's Path* (2017), to *Platform Engineering* (2024, with Ian Nowland).
+  More than a decade of sustained writing on engineering leadership, from her
+  2013 blog posts on the move into management and the engineering ladder she
+  made public in 2015, through *The Manager's Path* (2017), to *Platform
+  Engineering* (2024, with Ian Nowland).
   *The Manager's Path* gave a generation of engineers turning into managers a
   shared map of the roles between tech lead and CTO. The platform book adds
   vocabulary for why internal systems decay ("glue," "the over-general swamp,"
   "shadow platforms"), co-authored with Nowland and still new. Inclusion rests
-  on the management corpus; the platform coinages are too recent to prove they
+  on the management corpus; the platform terms are too recent to prove they
   travel and should be rechecked in 2027. Inclusion Council 4 to 1, 2026-09-16.
 thinker_type: mixed
 doctrine_mode: mode-a
 has_long_read: false
-last_updated: 2026-09-16
+last_updated: 2026-10-15
 
 tagline: The engineering leader who wrote the field guide to the management career, then co-wrote one for internal platforms.
 thirty_second_take: >
@@ -42,9 +43,12 @@ background: >
   Wisconsin–Madison, then a short stint at Microsoft and more than six years at
   Goldman Sachs building distributed systems for risk and firmwide
   infrastructure, rising to vice president of technology. At Rent the Runway she
-  moved from director of engineering to CTO, and in 2015 published one of the
-  first public engineering ladders. She spent more than five years as head of
-  platform engineering at Two Sigma, then joined JPMorgan Chase in 2022 as a
+  moved from director of engineering to CTO, and in 2015 published its
+  engineering ladder, which she later described as one of the first public
+  ladders with a clear split between management and individual-contributor
+  levels and detailed expectations at each level. She spent more than five
+  years as head of platform engineering at Two Sigma, then joined JPMorgan
+  Chase in 2022 as a
   managing director and global head of engineering and architecture for the
   Corporate & Investment Bank. She now leads common services engineering at
   CoreWeave. Along the way she was a committer and PMC member on Apache
@@ -70,9 +74,7 @@ thesis: >
   promoted out of. On the systems side, every team making its own technology
   choices produces integration code that no one owns, and that code slows the
   whole organization over time. The remedy in both cases is deliberate design
-  of the role, or of the platform, around the people who have to live with it
-  (her platform book names this "the accidental complexity of human
-  coordination," in Brooks's vocabulary).
+  of the role, or of the platform, around the people who have to live with it.
 working_line: >
   Standardization via authority isn't enough. (*Platform Engineering*, with Ian
   Nowland, 2024, chapter 1.)
@@ -94,13 +96,14 @@ named_frames:
     display_name: Tech lead as a role
     one_line_gloss: >
       The tech lead is a set of responsibilities a senior engineer takes on,
-      separate from a rung on the ladder. Extends Patrick Kua's earlier framing
-      that becoming a tech lead is a role change and not a promotion.
+      separate from a rung on the ladder. Extends Patrick Kua's earlier *Talking
+      with Tech Leads*, which treats the tech lead role as distinct from the
+      developer role.
     attribution_kind: extended
     primary_author: camille-fournier
     co_originators:
       - slug: patrick-kua
-        role: '*Talking with Tech Leads* (about 2014): "Tech lead is not a promotion. It is a role change."'
+        role: '*Talking with Tech Leads* (2014): "The Tech Lead role is quite distinct from the developer role."'
     source_link: https://www.oreilly.com/library/view/the-managers-path/9781491973882/
     render_tier: foreground
   - concept_slug: manager-as-debugger
@@ -194,14 +197,16 @@ named_frames:
       - slug: dan-mckinley
         role: '"Choose Boring Technology"'
     derived_from: choose-boring-technology
-    source_link: https://www.camilletalk.com/whilefalse
+    source_link: https://www.camilletalk.com/whilefalse/2021/1/31/make-boring-plans
     render_tier: deep
   - concept_slug: public-engineering-ladder
     display_name: The public engineering ladder
     one_line_gloss: >
       Publishing a company's engineering ladder, with separate management and
       technical tracks, as a tool for transparency and fairer promotion.
-      Fournier's 2015 Rent the Runway ladder was one of the first made public.
+      Fournier describes her 2015 Rent the Runway ladder as one of the first
+      public ladders to draw that distinction and spell out what each level
+      requires.
     attribution_kind: popularized
     primary_author: camille-fournier
     source_link: https://skamille.medium.com/10-years-of-engineering-ladders-329d309000cd
@@ -239,7 +244,7 @@ body_of_work:
   - title: Make Boring Plans
     type: essay
     year: 2021
-    link: https://www.camilletalk.com/whilefalse
+    link: https://www.camilletalk.com/whilefalse/2021/1/31/make-boring-plans
     editorial_note: >
       The planning essay that extends McKinley's boring technology argument.
       Short and practical.
@@ -324,10 +329,10 @@ limits:
     severity: local
     elaboration: >
       *Platform Engineering* adopts Evan Bottcher's definition of a platform and
-      works in a field already shaped by *Team Topologies*. Its own coinages
-      (glue, the over-general swamp, shadow platforms) date from 2024 and have
-      not yet shown they travel beyond the book's readers. Treat them as useful
-      names under test.
+      works in a field already shaped by *Team Topologies*. Its own terms (glue,
+      the over-general swamp, shadow platforms) appear in a 2024 book and have
+      not yet shown they travel beyond its readers, and glue widens the older
+      programming term "glue code." Treat them as useful names under test.
 
 still_load_bearing_despite: >
   The management map holds because the underlying observation is right: each
@@ -343,11 +348,13 @@ adjacent_thinkers:
     display_name: Fred Brooks
     edge_type: antecedent
     edge_label: >
-      *Platform Engineering* frames part of its argument as managing "the
-      accidental complexity of human coordination," borrowing Brooks's
-      distinction between essential and accidental complexity and applying it
-      to how teams coordinate around shared systems.
-    strength: primary
+      *Platform Engineering* uses "accidental complexity," a term from Brooks's
+      1986 paper, in a chapter 13 heading, "Managing the Accidental Complexity
+      of Human Coordination," and gives it its own meaning: complexity that a
+      platform moves somewhere else instead of removing. The published excerpt
+      does not name Brooks or draw his distinction between essential and
+      accidental complexity.
+    strength: secondary
   - target_slug: evan-bottcher
     display_name: Evan Bottcher
     edge_type: antecedent
@@ -360,8 +367,9 @@ adjacent_thinkers:
     display_name: Patrick Kua
     edge_type: antecedent
     edge_label: >
-      *Talking with Tech Leads* described the tech lead as a role change several
-      years before *The Manager's Path* gave the tech lead its own chapter.
+      *Talking with Tech Leads* (2014) described the tech lead role as distinct
+      from the developer role, a few years before *The Manager's Path* gave the
+      tech lead its own chapter.
     strength: secondary
     render_tier: deep
   - target_slug: nicole-forsgren

@@ -168,3 +168,23 @@ unmapped field map.
 
 **Added worth-a-look items:** the S:7 subtitle variant, and the Classical Model dating noted
 above.
+
+## Resolved, 2026-10-15 remediation pass
+
+All four findings are applied on the page; `claim-delta-2026-10.md` has the row for each changed
+sentence.
+
+- **background:** "~$150B AUM at peak" is now "about $150B in assets in 2022" (S:3).
+- **named_frames[0]:** filed `extended`. The gloss names Franklin's numbered virtues as the earlier
+  genre and credits Dalio, at the strength S:17 gives, with running a firm against one long, living,
+  published document. The carriers in `inclusion_rationale`, `thirty_second_take`,
+  `why_they_matter_as_a_thinker` and `body_of_work[0].editorial_note` were lowered with it.
+- **named_frames[1]:** filed `extended`. The gloss gives the earlier dated uses of the phrase (S:19)
+  and credits the Bridgewater practice to him. The unsourced 1993 claim stays off the page.
+- **adjacent_thinkers[3]:** now `parallel`, with a label that states the record (S:23 to S:25). The
+  `extension` sentence that read "Taleb's objection" now reads "Taleb's tail-risk argument."
+
+Worth-a-look items applied: the dead `body_of_work[0]` link now points at S:5; `body_of_work[1]`
+carries its full title and its live link (S:8, S:27); the video is 31 minutes in both places it is
+timed (S:10). The Classical Model line for believability weighting was not added to the gloss,
+because adding it would be a new proposition on the page.

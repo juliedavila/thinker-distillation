@@ -4,10 +4,10 @@ chapter_number: 1
 title: 'Part 1: The Diagnosis'
 summary: >
   The slime mold, coordination headwind, the Schelling point underneath,
-  and the heroics smell. The four pieces of the diagnostic stance,
+  and heroics as a symptom. The four pieces of the diagnostic stance,
   enough to ask the right question about why your organization moves
   slower the bigger it gets.
-last_updated: 2026-05-23
+last_updated: 2026-10-15
 ---
 
 ## The slime mold
@@ -18,21 +18,17 @@ You take *Physarum polycephalum*, a yellow slime mold that looks like nothing so
 
 No one is in charge. Every part of the organism is making local decisions. There is no roadmap. There is no project manager. There is no kickoff meeting. The whole thing works.
 
-This is the image Alex Komoroske comes back to. He uses it as a viral hook, which he is the first to admit. He has said openly that a memorable metaphor is not a rigorous proof, and that the slime mold's job is to lodge in the reader's head and start asking questions. The question it asks is the right one.
+This is the image at the center of Alex Komoroske's slide deck *Coordination Headwind: How Organizations Are Like Slime Molds*, whose Tokyo slide shows the experiment.
 
-The question is: *why is this not how most organizations work?*
+The title carries the claim, that organizations are like slime molds. "Many organizations today are basically a slime mold," the deck says, and it sets the slime mold against "the stereotypical example of top-down," a military. Its list for the bottom-up side reads "Unpredictable, Uncontrollable, Individual autonomy, Fluid, Messy, Resilient, Explore."
 
-Most organizations work like the opposite of the slime mold. There is a roadmap. There are quarterly goals. There is a project manager. There is a kickoff meeting. There are status reports going up the chain. There are coordinators coordinating the coordinators. And somehow, despite all of this central planning, the work moves slower the bigger the organization gets. It moves slower than the slime mold, which has none of those things.
-
-Komoroske's claim is that the slime mold is not the exception. The slime mold is the actual baseline of how complex systems work when humans do not interfere. The org chart is the deviation. The roadmap is the deviation. The quarterly OKR cascade is the deviation. And the deviation costs you something real.
-
-The thing it costs you is what he calls coordination headwind.
+That is where the trouble starts. Komoroske's homepage describes the deck as showing "why even when everyone is competent and collaborative, you can still get hurricane-force headwinds." In the deck's words, "The force is the coordination headwind. This force emerges on its own," and it "increases super-linearly as" uncertainty grows, as project teams get larger and more spread out, and with "a more bottom up culture."
 
 ## What coordination headwind is
 
 Coordination headwind is the cost of getting people to agree, in advance and in detail, about what they are going to do. The cost is invisible per interaction (a fifteen-minute meeting, a Slack thread, a doc review), and that invisibility is the trap. The cost compounds, because every new participant multiplies the agreements that have to hold rather than adding to them. Forty people do not have forty times the coordination cost of one person. They have something closer to forty squared.
 
-The original observation is older than Komoroske. Fred Brooks named it in 1975 in *[The Mythical Man-Month](https://en.wikipedia.org/wiki/The_Mythical_Man-Month)*. Adding people to a late software project makes it later, Brooks said, because the new people need ramp-up time and because the number of communication paths between people grows quadratically with team size. [Brooks's Law](https://en.wikipedia.org/wiki/Brooks%27s_law) was a narrow claim about engineering teams under deadline. Komoroske generalized it.
+An overlapping observation is older than Komoroske. Fred Brooks made it in 1975 in *[The Mythical Man-Month](https://en.wikipedia.org/wiki/The_Mythical_Man-Month)*. Adding people to a late software project makes it later, Brooks said, because the new people need ramp-up time and because the number of communication paths between people grows quadratically with team size. [Brooks's Law](https://en.wikipedia.org/wiki/Brooks%27s_law) was a narrow claim about engineering teams under deadline. Komoroske's deck does not mention Brooks, and reading the headwind as a wider version of Brooks's Law is this guide's comparison.
 
 What Komoroske recognized is that headcount is only one input. There are others. Goal ambiguity. Execution uncertainty. Cascading miscommunication. The half-life of context. The number of decisions waiting on someone two layers above. The way every clarification turns into a meeting, every meeting turns into a document, every document turns into a debate. Each of these things has its own exponent. They multiply.
 
@@ -46,9 +42,9 @@ At small scale, when work slows down, the answer is usually that someone is fail
 
 Most large organizations get this exactly backwards. They look at slow output, conclude that the people are the problem, and try to solve the problem with hiring, reorganization, and replacement. This usually makes the problem worse. More people increase the coordination surface. Reorganization increases it during the reorg and often after. Replacement burns the institutional knowledge that was the only thing keeping the coordination tax bearable.
 
-Komoroske's prescription is to be more like the slime mold. Push decisions to where the local information lives. Reduce the number of approvals required to move. Make the coordination loops short. Accept that the slime mold's behavior is messy and that some of its decisions are wrong, and recognize that this is a feature, not a bug, because the recovery time is short.
+Komoroske's prescription is to stop fighting the slime mold: "Instead of trying to fight it, maybe lean into what they're good at." Push decisions to where the local information lives. Reduce the number of approvals required to move. Make the coordination loops short. Accept that the slime mold's behavior is messy and that some of its decisions are wrong, and recognize that this is a feature, not a bug, because the recovery time is short.
 
-He is not naïve about this. He acknowledges that the slime-mold model has its own failure flavors. Duplication. Lost institutional knowledge. The bramble-bush moment where every team has reinvented the same wheel. But his claim is that these failures are recoverable in a way that the military-hierarchy failures are not. When the org chart freezes, it stays frozen. When the slime mold makes a wrong turn, it backs out within hours.
+He is not naïve about this. He acknowledges that the slime-mold model has its own failure flavors. Duplication. Lost institutional knowledge. But his claim is that these failures are recoverable in a way that the military-hierarchy failures are not. When the org chart freezes, it stays frozen. When the slime mold makes a wrong turn, it backs out within hours.
 
 ## The Schelling point underneath
 
@@ -58,7 +54,7 @@ The hidden physics is this. When multiple people have to choose, independently, 
 
 Coordination, in other words, is not about picking the best option. Coordination is about picking the same option.
 
-This is what [Thomas Schelling](https://en.wikipedia.org/wiki/Thomas_Schelling) named in 1960 in *[The Strategy of Conflict](https://en.wikipedia.org/wiki/The_Strategy_of_Conflict)*, and it is what Komoroske borrows when he says coordination is power. The Schelling point is the option that is so obvious, so focal, that everyone independently lands on it without needing to communicate. When you are designing for coordination, you are not designing for optimality. You are designing for focal-ness.
+This is what [Thomas Schelling](https://en.wikipedia.org/wiki/Thomas_Schelling) named in 1960 in *[The Strategy of Conflict](https://en.wikipedia.org/wiki/The_Strategy_of_Conflict)*, and Komoroske's essay takes the term along with Schelling's own example, a meeting at "Noon beneath the clock in Grand Central Terminal." The Schelling point is the option that is so obvious, so focal, that everyone independently lands on it without needing to communicate. When you are designing for coordination, you are not designing for optimality. You are designing for focal-ness.
 
 This explains a lot of organizational behavior that otherwise looks irrational. The team that picks the worse vendor because everyone has already heard of them. The platform that wins not because it is best but because it is the one nobody has to defend choosing. The strategy doc that gets adopted not because it is right but because it is the one in front of everyone at the moment of decision.
 
@@ -66,11 +62,11 @@ Komoroske's working line is that finding the Schelling point is more valuable th
 
 The practical implication: when you are leading a complex organization, your job is not always to figure out the right answer. Sometimes your job is to make a defensible answer obvious enough that everyone picks it without you having to chase them.
 
-## The heroics smell
+## Heroics as a symptom
 
 There is one more piece of the diagnosis, and it is the one most leaders resist.
 
-The piece is this. If your system requires heroics to function, your system is broken.
+The piece is this. In the deck, heroics are a symptom of the headwind and a poor response to it: "All of these heroics and motion create churn and more uncertainty," and "Heroics also tend to make the problem way worse."
 
 Komoroske is direct about this. He has written that heroic tactical work is the lowest-leverage work he could have done. He has said that ninety percent of organizational effort gets wasted in thrash and churn. He has said that the super-linear returns come from insights, not from effort.
 
@@ -120,19 +116,19 @@ The next chapter is what to do when the diagnosis is accepted and the work still
 
 ## Companion sidebar: the murmuration
 
-The slime mold is the most viral image Komoroske uses, but it is not the only system that makes the point. The starling murmuration makes the same point from a different angle.
+The slime mold is the image Komoroske uses, but it is not the only system that makes the point. The starling murmuration makes the same point from a different angle.
 
 If the slime mold is the case for decentralized *problem-solving*, the murmuration is the case for decentralized *coordination*, and coordination is the harder sell because what managers cannot picture is real-time alignment without a coordinator. A flock of starlings turns together because each bird is reading its seven nearest neighbors and following three local rules: stay close, match direction, avoid collision. No bird sees the flock. The flock is a property that emerges from the watching. When you are trying to convince a leadership team that decentralization can produce alignment, this is the image to reach for.
 
 ## Critique sidebar: where the diagnosis breaks
 
-Komoroske is the first to flag that the slime mold is a rhetorical move, not a rigorous one. The critiques worth knowing:
+The critiques worth knowing:
 
 **The military strawman.** Komoroske contrasts the slime mold with a hierarchical military as the worst-case command structure. Modern decentralized military doctrine, particularly the version Ukraine has demonstrated since 2022, looks much closer to the slime mold than to the strawman. The contrast is rhetorically convenient and substantively unfair.
 
 **The false dichotomy.** Decentralized organizations have their own pathologies. Duplicate work. Lost institutional knowledge. The same problem solved badly by ten teams in parallel. [Andy Grove](https://en.wikipedia.org/wiki/Andrew_Grove)'s *[High Output Management](https://en.wikipedia.org/wiki/High_Output_Management)* (Random House, 1983) diagnosed much of this territory forty years earlier, with the operational discipline of someone running Intel through extreme scaling. Grove's organizing claim was that a manager's output equals the output of their organization plus the output of neighboring organizations they influence, which means scaling output is not a question of working harder but of identifying the activities that produce leverage across many outputs at once. He named meeting cost explicitly, classified meetings by type and purpose, and recommended pushing decisions toward what he called task-relevant maturity, giving experienced people more autonomy than inexperienced ones. The structural prescriptions overlap with what Komoroske recommends decades later: smaller decision-making surfaces, fewer mandatory approval loops, decisions pushed toward the people closest to the information. Where Komoroske adds something the older diagnosis did not capture is the multiplicative compounding of multiple coordination loads at once. Grove worked the problem primarily through the lens of meeting cost. Komoroske expands it to a system of variables that all compound on each other. Reading them together is more useful than reading either alone. The slime mold is a hook, not a manual.
 
-**The attribution gap.** The intellectual lineage runs through Brooks, Schelling, Stuart Kauffman, Elinor Ostrom, and the Santa Fe Institute tradition. Komoroske is a synthesizer of an existing literature. Treat him as your entry point, not your endpoint.
+**Where the terms come from.** Some of the vocabulary is older than his use of it, and his own text treats it as established. The Schelling-points essay calls the Grand Central meeting "the canonical example," and the adjacent-possible essay opens its term with "This is sometimes known as your adjacent possible." Neither essay names Thomas Schelling or Stuart Kauffman, whose terms they are. His homepage says the ideas behind the headwind argument started when he was studying "the emergent power dynamics of Wikipedia's user community in undergrad," and were informed by web standards work. Readers who want the older sources can start with Schelling's *The Strategy of Conflict* and Kauffman's work on the adjacent possible.
 
 ## Reflection prompt
 
@@ -143,4 +139,4 @@ Pick one piece of work in your organization that is moving slower than you think
 - Komoroske, *Coordination Headwind* (the slime mold deck), [komoroske.com/slime-mold](https://komoroske.com/slime-mold/)
 - Komoroske, *On Schelling Points in Organizations*, Medium, December 2021
 - Komoroske, *A Dangerous Addiction*, Medium, July 2022
-- Read alongside: Fred Brooks, *The Mythical Man-Month*, 1975 (the original observation; coordination headwind is its generalization)
+- Read alongside: Fred Brooks, *The Mythical Man-Month*, 1975 (an earlier observation about coordination cost in software teams)

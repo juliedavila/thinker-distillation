@@ -248,3 +248,27 @@ credit, which leaves "a fair reader's observation" as the right description.
 - **Bits and Bobs was not searched in the original pass.** It is now (S:34). Nothing it contains
   changes a finding, but it confirms "gardener, not builder" as his consistent wording across the
   deck, the platforms deck, the podcast and his notes.
+
+## Remediation, 2026-10-15
+
+A claim-delta pass applied these findings to the page and the long read. The full table is
+`claim-delta-2026-10.md` (70 rows, none NEW or WIDENED). No ledger line was added or changed.
+`fact-ledger.ts` and `reading-gates.ts` both pass.
+
+- **Contradicted fields, corrected.** `body_of_work[0]` is now the slide deck, filed `talk`, "online
+  by 2021", linked (S:4, S:19); `body_of_work[1]` is 2021 and linked to the working URL (S:9, S:25);
+  `named_frames[3]` is "Gardener vs. builder", `extended`, with Eno and McChrystal as earlier
+  holders (S:8, S:21, S:26, S:27); `named_frames[4]` is "Heroics as a symptom", `extended`, glossed
+  from the deck (S:7, S:28); `background` names Google and Stripe as the bios do (S:3, S:24).
+- **Unsupported fields, narrowed or deleted.** `active_years` is 2015 to present, counting the 2015
+  panel (S:22); Brooks is gone from `named_frames[0].co_originators`, and his edge is `parallel`
+  and labelled as the site's reading beside Komoroske's own account of where the argument started
+  (S:1, S:13); the Kauffman and Johnson edge states the record (S:16, S:18); the Bramble entry is
+  deleted; the talks entry is now Gardening Platforms (S:21).
+- **Outside the gate, also applied.** The `working_line`, `thesis` and long read now follow the deck
+  on where the headwind comes from (S:1, S:4, S:5); the Schelling gloss no longer carries the
+  security application; every frame `source_link` now points at the work it names.
+- **Launch item A16.** The long read's "synthesizer of an existing literature", "first to admit" and
+  "first to flag" are deleted, and the sidebar now sets out where the terms come from, attributed.
+- **Left unused on purpose.** S:23 and S:31 are uncited now because the entries they bounded (the
+  Stripe talks, the Bramble essay) were deleted. They stay as the record of why.

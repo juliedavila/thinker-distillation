@@ -207,3 +207,14 @@ the record goes.
 ### Search budget
 
 Five web searches, none capped.
+
+## Remediation, 2026-10-15
+
+All three open findings are fixed on the page and now mapped: `active_years` reads 2013–present
+([S:35], [S:30]); the Kua role quotes the 2014 book's own line ([S:19]); the Brooks edge says the
+book uses his term and does not name him, at `secondary` strength ([S:14], new [S:38]). The thesis
+parenthetical is deleted. From the audit section: "one of the first" is attributed to her in
+`background`, `inclusion_rationale` and the ladder gloss; "coinages" is gone from `limits[3]` and
+`inclusion_rationale`; the Make Boring Plans links point at the essay. The Brooks page's inbound
+`extends` label still says the book "carries the essential and accidental complexity distinction";
+that page is not edited here. Row-by-row record: `claim-delta-2026-10.md`.

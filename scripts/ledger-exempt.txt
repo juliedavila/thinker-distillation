@@ -17,8 +17,4 @@
 #
 # 9 of 17 live pages, as of 2026-09-22.
 
-alex-komoroske
-camille-fournier
-fred-brooks
-ray-dalio
 rich-hickey

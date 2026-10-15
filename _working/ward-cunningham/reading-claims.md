@@ -9,7 +9,7 @@ One line per sentence of `reading` and `extension`, each with the grounding-pack
 - The wiki applies the same premise to prose, with an editing surface thin enough that people who would not normally author will revise what is there. [F:wikiwikiweb] [T:thesis]
 - What the site takes is the pattern across the vocabulary. [L:2] [T:still-load-bearing]
 - Two phrases he coined reached practitioners with the condition stripped: debt as permission to write bad code, the simplest thing as a command. [L:2] [F:technical-debt] [F:simplest-thing-that-could-possibly-work]
-- Cunningham's Law carries his name and was never his. [L:2]
+- Cunningham's Law carries his name in McGeady's wording. [L:2]
 - He answered the first two on the record, and his own wiki's community posted a warning above the phrase for later arrivals. [L:2] [F:simplest-thing-that-could-possibly-work]
 - The correction reached fewer people than the phrase each time. [L:2]
 - Vocabulary that needs a warning label has stopped belonging to its author. [T:still-load-bearing]

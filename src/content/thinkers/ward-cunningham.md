@@ -279,8 +279,7 @@ reading: >
   not normally author will revise what is there. What the site takes is the
   pattern across the vocabulary. Two phrases he coined reached practitioners
   with the condition stripped: debt as permission to write bad code, the
-  simplest thing as a command. Cunningham's Law carries his name and was never
-  his. He answered the first two on the record, and his own wiki's community posted a
+  simplest thing as a command. Cunningham's Law carries his name in McGeady's wording. He answered the first two on the record, and his own wiki's community posted a
   warning above the phrase for later arrivals. The correction reached fewer
   people than the phrase each time. Vocabulary that needs a warning label has
   stopped belonging to its author.
@@ -336,9 +335,7 @@ limits:
       says makes it complicated, because a team then has to prove a thing is
       simplest. The community on his own wiki had to post a warning above the
       phrase saying its history and therefore its meaning are lost on many people
-      who wield it. Cunningham's Law is a different case: Steven McGeady named
-      it after him, after advice he gave at Tektronix, so the phrase travelling
-      under his name was never a coinage of his at all. Each time his answer was
+      who wield it. Cunningham's Law is a different case: Steven McGeady named and worded it in 2010, crediting advice Cunningham gave him at Tektronix in the early 1980s, so the phrase travelling under his name is McGeady's wording of his advice. Each time his answer was
       to go back on the record, and each
       time the record reached fewer people than the phrase.
   - headline: The metaphor is worked on one side only

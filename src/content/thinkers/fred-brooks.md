@@ -331,12 +331,9 @@ adjacent_thinkers:
 
   - target_slug: camille-fournier
     display_name: Camille Fournier
-    edge_type: extends
+    edge_type: parallel
     edge_label: >
-      *Platform Engineering* (with Ian Nowland, 2024) carries the essential
-      and accidental complexity distinction into internal platforms, framing
-      part of the platform team's job as managing "the accidental complexity
-      of human coordination."
+      *Platform Engineering* (with Ian Nowland, 2024) uses "accidental complexity" with a definition of its own, complexity a platform moves somewhere else, and frames part of the platform team's job as managing "the accidental complexity of human coordination." The published excerpt does not name Brooks.
     strength: secondary
   - target_slug: john-allspaw
     display_name: John Allspaw
@@ -346,11 +343,9 @@ adjacent_thinkers:
     strength: secondary
   - target_slug: rich-hickey
     display_name: Rich Hickey
-    edge_type: extends
+    edge_type: parallel
     edge_label: >
-      Hickey renames accidental complexity "incidental complexity" in "Simple
-      Made Easy" (2011) and places the blame on the tools and constructs a team
-      chooses.
+      Hickey's "incidental complexity" in "Simple Made Easy" (2011) is defined much as Brooks defines accidental complexity, and the talk places the blame on the tools and constructs a team chooses. The talk does not name Brooks.
     strength: secondary
   - target_slug: nicole-forsgren
     display_name: Nicole Forsgren

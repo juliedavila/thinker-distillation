@@ -65,3 +65,5 @@ source without rereading `sources.md`.
 - limits[4] [S:15] [S:20] [S:23] [S:26] [S:29]
 - limits[5] [S:1] [S:4] [S:6] [S:25]
 - further_in [S:8] [S:11] [S:12] [S:13] [S:14] [S:16] [S:20] [S:23] [S:26]
+
+Register pass, 2026-10-15. `[S:24]` no longer opens on its own conclusion ("presents the term as the coinage of"); the line now records what the note says, and `why_they_matter_as_a_thinker` quotes the note instead of characterizing it.

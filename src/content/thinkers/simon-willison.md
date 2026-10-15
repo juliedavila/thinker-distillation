@@ -16,8 +16,7 @@ inclusion_rationale: >
   policy, four and a half months after coinage. A fourteen-author paper across
   Google, Microsoft, IBM, ETH Zurich and EPFL carries the Dual LLM pattern as
   one of six named designs and sources it to him. The strongest signal is a
-  failure to credit: a Cloud Security Alliance research note presents the
-  lethal trifecta as its own authors' coinage with no citation to anyone,
+  failure to credit: a Cloud Security Alliance research note describes "a condition its authors term the 'Lethal Trifecta'" with no citation to anyone,
   which is vocabulary that has escaped its author. The chronicler objection is
   real and the page answers it rather than waving it off: he published 1,044
   items in 2025 and 11.4 percent were entries of his own, so the inclusion
@@ -69,9 +68,7 @@ why_they_matter_as_a_thinker: >
   confuse. What travels is the vocabulary. OWASP ranks prompt injection first
   among risks to LLM applications. Meta credits the lethal trifecta by name in
   its published agent-security policy. A fourteen-author security paper
-  carries the Dual LLM pattern as a named design. And a Cloud Security
-  Alliance note uses the trifecta while crediting its own authors for it,
-  which is the clearest evidence that practitioners now inherit these terms
+  carries the Dual LLM pattern as a named design. And a Cloud Security Alliance note describes "a condition its authors term the 'Lethal Trifecta'" with no citation to him, which is the clearest evidence that practitioners now inherit these terms
   without knowing whose they are.
 
 thesis: >

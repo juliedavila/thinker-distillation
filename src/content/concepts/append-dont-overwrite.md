@@ -65,7 +65,7 @@ adjacent_concepts:
   - target_slug: value-identity-state-time
     display_name: Value, Identity, State and Time
     edge_label: >
-      Hickey's model, drawn from Whitehead, underneath the practice: a value never changes, an
+      Hickey's model (he calls Whitehead "the hero of the talk") underneath the practice: a value never changes, an
       identity is a series of values over time, and state is the value at a
       moment. Appending is what that model looks like in storage.
   - target_slug: accretion-versus-breakage

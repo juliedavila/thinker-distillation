@@ -284,8 +284,7 @@ body_of_work:
     type: book
     year: 1999
     editorial_note: >
-      Fowler's book, with Beck, John Brant, William Opdyke and Don Roberts as
-      co-authors. Listed here because it is where the code smell vocabulary
+      Fowler's book, credited "With Kent Beck, John Brant, William Opdyke, and Don Roberts". Listed here because it is where the code smell vocabulary
       entered circulation, under Fowler's byline and Beck's coinage.
 
 reading: >

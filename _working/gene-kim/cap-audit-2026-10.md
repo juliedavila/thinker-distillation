@@ -1,0 +1,20 @@
+# Gene Kim: web-search cap audit, 2026-10-02
+
+Audit of the claims behind the refused searches listed in issue #88, against the live page
+`src/content/thinkers/gene-kim.md` (working tree identical to `origin/main` at audit time). Every
+source below was reopened during this audit; no web search was refused during this audit.
+
+| # | Refused query | Claim it was after | Page text (field) | Ledger line | Verdict | Evidence URL |
+|---|---|---|---|---|---|---|
+| 1 | `"The Three Ways" DevOps Gene Kim flow feedback continual learning origin 2012 blog post` (2026-09-22) | The Three Ways originate in his August 2012 post, sole byline, with the three definitions | "The Three Ways, published in August 2012 under his name alone, put flow, feedback and a learning culture in that order." (`thirty_second_take`); "Published in August 2012 under his name alone" (`named_frames[0].one_line_gloss`) | [S:5] (post, 2012-08-22, definitions quoted), [S:5a] (antecedent search) | SOURCED. Post reopened: byline Gene Kim, August 22, 2012; all three definitions, the Deming parenthesis and the Mike Orzen sentence match the ledger verbatim. | https://itrevolution.com/articles/the-three-ways-principles-underpinning-devops/ |
+| 2 | `"Five Ideals" Gene Kim "Unicorn Project" locality simplicity "psychological safety" practitioners adopted` (2026-09-22) | The names and order of the Five Ideals, their source book, and practitioner adoption | "The Five Ideals, worked out in *The Unicorn Project* and numbered in a 2020 post, run from locality and simplicity to customer focus, with psychological safety fourth." (`thirty_second_take`); Jon Smart and Geoffrey Moore credits (`named_frames[1]`) | [S:10], [S:11], [S:11a]; Edmondson context at [S:29] | SOURCED for names, order, book, date and the two credits (post reopened: August 4, 2020, all five names and both credit sentences verbatim). The adoption half is NOT ON PAGE: the page claims no practitioner uptake for the Five Ideals. | https://itrevolution.com/articles/five-ideals-of-devops/ |
+| 3 | `"Gene Kim" "co-founder" DORA "DevOps Research and Assessment"` (2026-09-22, fact audit) | He co-founded DORA | "With Nicole Forsgren and Jez Humble he was one of the founders of DORA, which Google acquired in 2018." (`background`) | [S:26a] (DORA announcement, 2018-12-20); [S:26] kept as the record of the gap | SOURCED. Confirms the 2026-09-25 remediation. Announcement reopened: dated December 20, 2018, by The DORA Team, names "Nicole Forsgren, Jez Humble, and Gene Kim" as three of DORA's founders and says DORA was acquired by Google. "One of the founders" matches "three of DORA's founders". | https://dora.dev/news/dora-joins-google-cloud/ |
+| 4 | `PCI DSS v4.0 requirement 11.5.2 change-detection mechanism file integrity monitoring` (2026-09-22, drafting) | A compliance requirement for file integrity monitoring, presumably tying Tripwire to PCI DSS | Not stated. The page names no PCI DSS requirement, no "change-detection" mandate and no compliance standard. | None | NOT ON PAGE | n/a |
+| 5 | `DORA "DevOps Research and Assessment" founded Nicole Forsgren Jez Humble Gene Kim co-founder` (2026-09-22, drafting) | Same as row 3 | As row 3 | [S:26a] | SOURCED (as row 3) | https://dora.dev/news/dora-joins-google-cloud/ |
+| 6 | `NIST SP 800-53 AC-5 separation of duties control definition` (2026-09-23, round 1 edits) | Separation of duties is a standard control that routes work to a second party | Not stated. `extension` carries no separation-of-duties claim; the ledger records that this research underwrote a removal. | [S:28], deliberately cited by no field | NOT ON PAGE | n/a |
+| 7 | `"DORA" "DevOps Research and Assessment" founded by Nicole Forsgren Jez Humble Gene Kim co-founder` (2026-09-24, fact audit) | Same as row 3 | As row 3 | [S:26a] | SOURCED (as row 3) | https://dora.dev/news/dora-joins-google-cloud/ |
+
+**Counts:** SOURCED 5, NOT ON PAGE 2, FIXABLE 0, WRONG 0, UNVERIFIABLE 0.
+
+Note: `inclusion_rationale` still says the DORA claim was "recorded as unsourced during research" and
+was later found sourced; that is accurate history and needs no change.

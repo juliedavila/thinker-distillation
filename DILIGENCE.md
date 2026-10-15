@@ -106,4 +106,4 @@ What the audit finds about the graph mostly needs decisions, not edits: which co
 
 ## Not in scope
 
-New thinker runs (the queue waits; Lorin Hochstein #87 is next when the phase ends), the public launch (#98), hosting (decided: GitLab Pages), and anything in Julie's own slots.
+New thinker runs (the queue waits; Lorin Hochstein #87 is next when the phase ends), the public launch checklist (#98; the site went public on GitHub Pages on 2026-10-14, ahead of it, and its inventories are in `_working/_launch/`), hosting (GitHub Pages, deployed from a GitLab push mirror; README "Deployment"), and anything in Julie's own slots.

@@ -38,3 +38,7 @@ _working/_council/
 
 # Scratch for unattended runs: fetch.ts output and anything an agent needs only for the run.
 _working/_tmp/
+
+# Launch-readiness inventories (issue #98). Local only: they discuss how pages treat living people,
+# and the GitHub mirror of this repository is public.
+_working/_launch/

@@ -6,12 +6,12 @@ progress: 28 live thinker pages; nothing open; due diligence phase planned
 iteration: iter-27-savepoint-and-diligence-plan-2026-10-10
 mode: project
 started: 2026-05-25
-updated: 2026-10-14
+updated: 2026-10-15
 ---
 
 <!-- RESUME-HEAD v1 -->
-> **Status** · 2026-10-14. The site is now public on GitHub Pages at https://juliedavila.github.io/thinker-distillation/, deployed by `.github/workflows/pages.yml` from a GitLab push mirror (SSH deploy key); GitLab stays the system of record and still builds the private copy. 2026-10-10: main has 28 live thinker pages and 3 concept pages, nothing open. Since 10-02: runs 11 to 13 shipped Rasmussen, Farley and Leveson; unattended runs no longer stall on permission prompts; the inclusion Council's record posts on each candidate's issue, checked before it posts; the queue counts one shared credit once. Thinker runs are paused for a due diligence phase, planned and not started.
-> **Next** · Camila opens the due diligence phase in a fresh session, at its step 0, once Julie answers its five open questions.
+> **Status** · 2026-10-15. Maintenance batch merged (!75 to !79): inbound-claims matches every surname the roster uses, the in-council label step now follows the step its condition reads, templates render *titles* and `names` and link collapsed neighbors, no template em-dashes, the Pages workflow is on current action versions, and DILIGENCE step 1's four tools exist. Dependabot PRs are off on the public mirror. ⚠ The site went public on 2026-10-14 before #98's checklist; seven pages name one of Julie's own frameworks in working uses, which she is not yet making public; whether to take the site down meanwhile is her call (see this session's notes in her LifeOS records, not here). 2026-10-14. The site is now public on GitHub Pages at https://juliedavila.github.io/thinker-distillation/, deployed by `.github/workflows/pages.yml` from a GitLab push mirror (SSH deploy key); GitLab stays the system of record and still builds the private copy. 2026-10-10: main has 28 live thinker pages and 3 concept pages, nothing open. Since 10-02: runs 11 to 13 shipped Rasmussen, Farley and Leveson; unattended runs no longer stall on permission prompts; the inclusion Council's record posts on each candidate's issue, checked before it posts; the queue counts one shared credit once. Thinker runs are paused for a due diligence phase, planned and not started.
+> **Next** · Julie decides two things: whether the site stays public while the #98 checklist is open, and the five diligence questions. Then Camila opens the diligence phase at step 0.
 > **Blocked** · Nothing.
 > **Resume** · Read /Users/juliedavila/Camila/thinker-distillation/DILIGENCE.md first (its own resume head), then "## Save Point — 2026-10-10" below.
 <!-- /RESUME-HEAD -->

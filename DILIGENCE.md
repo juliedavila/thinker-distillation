@@ -1,10 +1,10 @@
 # Due diligence pass: readable to an outsider, true to the rules, built for wandering
 
 <!-- RESUME-HEAD v1 -->
-> **Status** · 2026-10-10. Planned, not started. No prose has been touched. The plan below was set with Julie at the 2026-10-10 save point; the work begins in a fresh session, with deep reasoning ("ultrathink") on.
-> **Next** · Camila opens the phase at step 0: Julie reads three calibration pages rendered, as the outsider, and marks where she stalls. Julie answers the five open questions first.
-> **Blocked** · Nothing. Fan-out audit work needs Julie's explicit opt-in to the Workflow tool when it starts.
-> **Resume** · Read this file top to bottom, then /Users/juliedavila/Camila/thinker-distillation/SCHEMA.md section 8, then "Prose remediation passes" in /Users/juliedavila/.claude/LIFEOS/USER/CONFIG/OPERATIONAL_RULES.md, then the worked example at /Users/juliedavila/.claude/LIFEOS/MEMORY/WORK/sf2-writing-rules-audit-2026-09/.
+> **Status** · 2026-10-15. Step 1's mechanical half is done ahead of step 0: the template em-dashes are gone, and four report-only tools exist (`scripts/duplicate-points.ts`, `scripts/firstness.ts`, `scripts/rendered-jargon.ts`, `scripts/graph-report.ts`), none wired into verify or CI. Still open in step 1: the rubric, which needs step 0. No prose has been touched.
+> **Next** · Julie answers the five open questions below, then reads the three calibration pages (step 0). Camila runs the four tools at the start of step 2.
+> **Blocked** · On Julie's answers. Fan-out audit work needs her explicit opt-in to the Workflow tool when it starts.
+> **Resume** · Read this file top to bottom, then /Users/juliedavila/Camila/thinker-distillation/SCHEMA.md section 8, then "Prose remediation passes" in /Users/juliedavila/.claude/LIFEOS/USER/CONFIG/OPERATIONAL_RULES.md, then the worked example at /Users/juliedavila/.claude/LIFEOS/MEMORY/WORK/sf2-writing-rules-audit-2026-09/. The #98 launch inventories (local only) are in /Users/juliedavila/Camila/thinker-distillation/_working/_launch/.
 <!-- /RESUME-HEAD -->
 
 ## What this phase is for
@@ -53,6 +53,8 @@ Julie reads three rendered pages cold and marks every place she stalls: a term s
 Her marks become the outsider rubric, written into this file. Everything after step 0 is judged against her actual reading, not a guess at it.
 
 ### 1. Instrument (mechanical, before any reading)
+
+> **Done 2026-10-15 except the rubric** (!75, !77, !78, !79). First counts, for orientation only: 122 duplicate points across 28 pages at a 0.70 threshold; 41 firstness hits with no antecedent search on the 12 pages the check covers, and 74 more on the 16 exempt ones; jargon is mostly raw enums printed as labels (edge types, strengths, attribution kinds, limit severities) and "frame" as the site's noun. The graph report found 26 collapsed neighbors rendering without links, now fixed (!77). Remaining em-dash: the attribution mark in pull-quote citations, a typography call for Julie.
 
 Build the checks the audit needs, so the agents spend their judgment where a script cannot reach:
 

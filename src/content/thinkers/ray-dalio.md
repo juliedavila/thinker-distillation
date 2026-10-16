@@ -16,9 +16,10 @@ inclusion_rationale: >
   *believability-weighted decision-making*, *idea meritocracy*, and
   *pain + reflection = progress* are the named frames. The argument, the
   way Bridgewater put it into practice, and the management practices
-  are all contested, but the vocabulary moved, and the
-  cartographer move of writing an entire operating philosophy down as
-  numbered principles is itself the contribution.
+  are all contested, but the vocabulary moved. Numbered written
+  principles are an older genre, going back at least to Franklin; what
+  looks like his own is running a whole firm against one long, living,
+  published principles document.
 thinker_type: principles-distiller
 doctrine_mode: mode-b
 has_long_read: false
@@ -26,11 +27,11 @@ last_updated: 2026-05-25
 
 tagline: The hedge fund founder who turned his entire operating philosophy into numbered, public, contestable principles, and asked his industry to do the same.
 thirty_second_take: >
-  Dalio's contribution is not the investing record, though that is what
-  bought him the platform. The contribution is the *principles-distiller*
-  move: write your decision algorithm down, number it, expose it to
-  critique, run your organization on the document, and let the document
-  evolve under public revision. *Principles* (2017) is the corpus.
+  The investing record bought Dalio the platform. His contribution
+  appears to be the *principles-distiller* move at the scale of a
+  whole firm: write your decision algorithm down, number it, expose it
+  to critique, run your organization on the document, and let the
+  document evolve under public revision. *Principles* (2017) is the corpus.
   *Radical transparency* is the working method; *believability-weighted
   decision-making* is the aggregation rule; *idea meritocracy* is the
   cultural target; *pain + reflection = progress* is the personal
@@ -42,8 +43,8 @@ thirty_second_take: >
 background: >
   American investor, born 1949 in Queens. Founded Bridgewater
   Associates in 1975 in his apartment; built it into the largest hedge
-  fund in the world (~$150B AUM at peak). Stepped back from CEO role
-  in 2017 and from active investment leadership in 2022. Author of
+  fund in the world (about $150B in assets in 2022). Stepped back
+  from CEO role in 2017 and from active investment leadership in 2022. Author of
   *Principles: Life and Work* (2017), *Principles for Dealing with
   the Changing World Order* (2021), *Principles for Navigating Big
   Debt Crises* (2018). Has spent the last decade as much a publisher
@@ -53,13 +54,13 @@ why_they_matter_as_a_thinker: >
   Dalio is the working example of the cartographer move applied to
   an entire operating philosophy. Most leaders carry their decision
   algorithm in their heads; Dalio wrote it down, numbered it,
-  published it, defended it, and ran his organization against it for
-  forty years. Whatever you think of the specific principles or the
-  Bridgewater culture they produced, the genre choice is what carried.
-  Engineering orgs writing public engineering principles, security
-  orgs writing public risk-acceptance frameworks, families writing
-  family operating agreements: the move they're making is the
-  Dalio move.
+  published it, defended it, and ran his organization against it.
+  Whatever you think of the specific principles or the Bridgewater
+  culture they produced, the genre choice is what carried. Engineering
+  orgs writing public engineering principles, security orgs writing
+  public risk-acceptance frameworks, families writing family operating
+  agreements: they are making the move Dalio made, in a genre older
+  than he is.
 
 thesis: >
   Most consequential mistakes are made because the decision algorithm
@@ -82,9 +83,12 @@ named_frames:
     one_line_gloss: >
       Numbered, written-down, publicly-defensible decision rules that
       a person or organization commits to, and that evolve under
-      revision when they produce bad outcomes. The genre is the
-      contribution.
-    attribution_kind: original
+      revision when they produce bad outcomes. The genre predates him:
+      Benjamin Franklin kept thirteen numbered virtues, each with a
+      written precept, and revised them. What appears to be Dalio's own
+      is running a whole firm against one long, living, published
+      principles document.
+    attribution_kind: extended
     primary_author: ray-dalio
     source_link: https://www.principles.com
   - concept_slug: radical-transparency
@@ -93,8 +97,11 @@ named_frames:
       The institutional posture of making all meetings, evaluations,
       and decision rationales available to all participants, with the
       argument that information asymmetry is the largest contributor
-      to organizational pathology.
-    attribution_kind: original
+      to organizational pathology. The phrase was in print before his
+      earliest dated use in 2010, in a 2001 *Foreign Affairs* argument
+      and in *Wired* in 2006 and 2007; the Bridgewater practice, with
+      recorded meetings and open evaluations, is his.
+    attribution_kind: extended
     primary_author: ray-dalio
     source_link: https://www.principles.com
   - concept_slug: believability-weighted-decision-making
@@ -130,18 +137,17 @@ body_of_work:
   - title: 'Principles: Life and Work'
     type: book
     year: 2017
-    link: https://www.principles.com/book
+    link: https://www.simonandschuster.com/books/Principles/Ray-Dalio/Principles/9781501124020
     editorial_note: >
       The keystone. Long; the first hundred pages on his personal
       arc are useful context, the rest is the actual principles
-      catalog. Read with the recognition that the form is the
-      contribution as much as the content.
+      catalog. Read it for the form as much as for the content.
     read_first: true
     canonical: true
-  - title: 'Principles for Dealing with the Changing World Order'
+  - title: 'Principles for Dealing with the Changing World Order: Why Nations Succeed and Fail'
     type: book
     year: 2021
-    link: https://www.principles.com/the-changing-world-order
+    link: https://economicprinciples.org/
     editorial_note: >
       Late-career Dalio applying the principles-distiller move to
       macroeconomic history. Useful or not depending on whether you
@@ -160,7 +166,7 @@ body_of_work:
     year: 2013
     link: https://www.economicprinciples.org
     editorial_note: >
-      Thirty-minute animated video explaining the credit cycle in
+      Thirty-one-minute animated video explaining the credit cycle in
       Dalio's framework. The clearest expression of his macro model;
       the form (animated public explainer) is itself a principles-
       distiller move at the medium level.
@@ -193,7 +199,7 @@ extension: >
   with its reasoning and the evidence that would change it. Treating prompt
   injection as architecturally unsolvable, and therefore something to mitigate,
   is a principle of this kind: stated plainly, open to challenge, and revisable
-  if the architecture changes. Taleb's objection lands hard here, since a
+  if the architecture changes. Taleb's tail-risk argument lands hard here, since a
   written principle says nothing about the attack nobody has written a principle
   for yet. The other risk is the compliance theater the page already names,
   where the document survives audits and stops steering decisions.
@@ -210,7 +216,7 @@ working_uses:
   - Risk-acceptance frameworks (explicit decision algorithm, not tacit)
 
 limits:
-  - headline: The Bridgewater operationalization is contested
+  - headline: How Bridgewater ran the principles is contested
     severity: structural
     elaboration: >
       The radical-transparency culture at Bridgewater produced
@@ -237,7 +243,7 @@ limits:
       willingness to revise the document under pressure. In
       organizations where written principles function as
       audit-defense rather than operating doctrine, the form
-      survives but the substance evaporates. The Dalio move
+      survives but the substance evaporates. The move
       requires the org be able to publicly admit a principle was
       wrong; most organizations cannot.
 
@@ -284,13 +290,15 @@ adjacent_thinkers:
     strength: secondary
   - target_slug: nassim-taleb
     display_name: Nassim Taleb
-    edge_type: critiques
+    edge_type: parallel
     edge_label: >
-      Taleb's critique of Dalio's macro framework (over-reliant on
-      stable historical priors, under-modeling tail risk) is the
-      most-cited counterposition. Whether or not you buy Taleb's
-      specific objections, the principles-distiller method does
-      not produce robustness to genuinely-novel regimes.
+      A counterposition by method. Taleb's warnings about reasoning
+      from stable historical priors and under-modeling tail risk sit
+      against the kind of macro modeling Dalio does, though no Taleb
+      essay, book or paper on Dalio's framework has been found; the
+      one exchange found, a 2019 interview, is a disagreement
+      about capitalism. Either way, the principles-distiller method
+      does not produce robustness to genuinely-novel regimes.
     strength: secondary
 
 further_in:
@@ -301,7 +309,7 @@ further_in:
     half.
   then_read:
     - '*Principles for Navigating Big Debt Crises* (the form applied to a professional discipline)'
-    - '*How the Economic Machine Works* (animated, 30 minutes; the macro model in distilled form)'
+    - '*How the Economic Machine Works* (animated, 31 minutes; the macro model in distilled form)'
   if_you_want_breadth: >
     Read Munger's *Poor Charlie's Almanack*, Taleb's *Antifragile*,
     and Kahneman's *Thinking, Fast and Slow* as the working

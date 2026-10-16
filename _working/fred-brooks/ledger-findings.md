@@ -197,3 +197,17 @@ present at its URL, apart from the transcription slips below, and the page's No 
   stronger than the essay, which bounds its claim to "one order-of-magnitude improvement within a
   decade" [S:12] and goes on to recommend attacks on the essence. Not a gated field, and worth the
   same care as the frames.
+
+## Remediation, 2026-10-15
+
+The page was corrected to the record above in a claim-delta pass; the table is
+`_working/fred-brooks/claim-delta-2026-10.md`. All four contradicted fields are now mapped in
+`page-claims.md`: `active_years` is 1956–2020; `background` gives the 1964 founding while still at
+IBM, the 1965 exit, the 2013 (or 2015) retirement and research until 2020, and hedges OS/360 to
+ACM's "perhaps the largest"; essential vs accidental complexity and the surgical team are
+`extended`, crediting Aristotle and Nancy Greenwood Brooks, and Harlan Mills. The carriers of those
+credits in `inclusion_rationale`, `why_they_matter_as_a_thinker`, the surgical-team gloss and
+`limits[0]` were lowered in the same pass. The tagline's two "first" claims, both superlatives,
+the "one-hour" length, the "talk version of the 2010 book" reading and the Komoroske credit
+sentence were removed. The silver-bullet claim now carries the essay's own bound ("within a
+decade") in every field that states it.

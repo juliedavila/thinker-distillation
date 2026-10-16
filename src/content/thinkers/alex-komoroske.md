@@ -2,7 +2,7 @@
 slug: alex-komoroske
 name: Alex Komoroske
 canonical_url: https://komoroske.com
-active_years: 2014–present
+active_years: 2015–present
 primary_domains:
   - organization-design
   - platforms
@@ -10,14 +10,14 @@ primary_domains:
 status: alive-active
 inclusion_rationale: >
   Produced a portable vocabulary for organizational complexity (coordination
-  headwind, Schelling-point organizations, gardener-vs-architect) that
+  headwind, Schelling-point organizations, gardener-vs-builder) that
   practitioners now use to think about their own work. ~10 years across essays,
-  talks, blog, and consulting practice.
+  talks, and blog.
 thinker_type: essay-corpus
 doctrine_mode: mode-c
 has_long_read: true
 long_read_path: /thinkers/alex-komoroske/long-read
-last_updated: 2026-05-25
+last_updated: 2026-10-15
 
 tagline: The systems-thinker who named the hidden physics of why large organizations slow down.
 thirty_second_take: >
@@ -28,36 +28,39 @@ thirty_second_take: >
   headwind is the named cost. Schelling-point engineering is the lever.
 
 background: >
-  Komoroske spent his career inside platforms (Google Chrome and Salesforce
-  platforms, Stripe Climate and identity) with a long arc of writing on Medium
-  that runs parallel to the institutional work. Platforms thinker first,
+  Komoroske spent thirteen years at Google, where he worked on Search and
+  DoubleClick, led Chrome's Open Web Platform and led Augmented Reality in
+  Google Maps. He then served as Head of Corporate Strategy at Stripe, and by
+  2024 he was co-founding a startup. A long arc of writing on Medium runs
+  parallel to the institutional work. Platforms thinker first,
   org-design thinker second, but the two collapse into each other: a platform
   is just an organization in code, and an organization is a platform of humans.
   His instinct is to treat large social systems as physics problems with hidden
   conservation laws.
 why_they_matter_as_a_thinker: >
-  What makes him portable as a thinker is the vocabulary. He names things:
-  coordination headwind, the slime mold, the gardener, the bramble, the
-  Schelling point, adjacent possible. The names lodge. Practitioners
+  What makes him portable as a thinker is the vocabulary: coordination
+  headwind, the slime mold, the gardener, the Schelling point, adjacent
+  possible. Some of the names are his and some he takes from earlier use. The
+  names lodge. Practitioners
   reach for the words when they're diagnosing their own organizations, which
   is the test of a working frame.
 
 thesis: >
-  Complex systems work best when they are gardened, not architected. The
+  Complex systems work best when they are gardened, not built. The
   leader's job is not to plan the optimal answer and propagate it downward;
   the leader's job is to make defensible answers focal enough that local
-  actors converge on them without being told. Organizations that ignore this
-  pay a tax that grows faster than they expect, sooner than they expect.
+  actors converge on them without being told. Large organizations pay a
+  coordination tax that grows faster than they expect, sooner than they
+  expect, even when everyone in them is competent and collaborative.
   This is coordination headwind. The standard responses (more meetings, more
   reorgs, more hiring) make it worse. The fix is to push decisions to where
   local information lives, accept the messiness, and trust that recovery time
   in a self-correcting system is faster than freeze-up time in a centralized
   one.
 working_line: >
-  Most organizations work like the opposite of the slime mold. There is a
-  roadmap. There are quarterly goals. There is a project manager. And somehow,
-  despite all of this central planning, the work moves slower the bigger the
-  organization gets.
+  Many organizations are basically slime molds. Instead of trying to fight
+  that, maybe lean into what slime molds are good at, and think of yourself
+  less as a builder and more as a gardener.
 
 named_frames:
   - concept_slug: coordination-headwind
@@ -67,10 +70,7 @@ named_frames:
       headcount; the cost of every agreement a decision depends on.
     attribution_kind: extended
     primary_author: alex-komoroske
-    co_originators:
-      - slug: fred-brooks
-        role: original 1975 (Brooks's Law for engineering teams under deadline)
-    source_link: https://medium.com/@komorama
+    source_link: https://komoroske.com/slime-mold/
   - concept_slug: slime-mold
     display_name: The slime mold
     one_line_gloss: >
@@ -81,34 +81,39 @@ named_frames:
     co_originators:
       - slug: tero-atsushi
         role: original 2010 experiment
-    source_link: https://medium.com/@komorama
+    source_link: https://komoroske.com/slime-mold/
   - concept_slug: schelling-point-organizations
     display_name: Schelling-point organizations
     one_line_gloss: >
       Convergence engineered through focal-point design rather than directive
-      planning. Make the secure default the obvious one.
+      planning.
     attribution_kind: extended
     primary_author: alex-komoroske
     co_originators:
       - slug: thomas-schelling
         role: original 1960 focal-point theory
-    source_link: https://medium.com/@komorama/on-schelling-points-in-organizations
+    source_link: https://medium.com/@komorama/on-schelling-points-in-organizations-e90647cdd81b
   - concept_slug: gardener-vs-architect
-    display_name: Gardener vs. architect
+    display_name: Gardener vs. builder
     one_line_gloss: >
       Two opposing leadership stances: set conditions and prune (gardener)
-      vs. plan and propagate (architect).
-    attribution_kind: original
+      vs. plan and propagate (builder).
+    attribution_kind: extended
     primary_author: alex-komoroske
-    source_link: https://komoroske.com
+    co_originators:
+      - slug: brian-eno
+        role: earlier architect-to-gardener contrast (Edge, 2011); whether Komoroske drew on it is unrecorded
+      - slug: stanley-mcchrystal
+        role: earlier "leading like a gardener" (*Team of Teams*, 2015); whether Komoroske drew on it is unrecorded
+    source_link: https://komoroske.com/gardening-platforms/
   - concept_slug: heroics-smell
-    display_name: The heroics smell
+    display_name: Heroics as a symptom
     one_line_gloss: >
-      A diagnostic, not a solution. If your system requires heroes to keep
-      working, your system is broken.
-    attribution_kind: original
+      Heroics are a symptom of the headwind and a poor response to it: the
+      churn they create raises the headwind they were meant to overcome.
+    attribution_kind: extended
     primary_author: alex-komoroske
-    source_link: https://medium.com/@komorama
+    source_link: https://komoroske.com/slime-mold/
   - concept_slug: adjacent-possible
     display_name: Adjacent possible
     one_line_gloss: >
@@ -121,49 +126,47 @@ named_frames:
         role: origin in evolutionary biology
       - slug: steven-johnson
         role: popularized in *Where Good Ideas Come From*
-    source_link: https://komoroske.com
+    source_link: https://medium.com/@komorama/the-iterative-adjacent-possible-af3e7038357d
 
 body_of_work:
-  - title: The Coordination Headwind Essay
-    type: essay
-    year: 2018
+  - title: "Coordination Headwind: How Organizations Are Like Slime Molds"
+    type: talk
+    year: online by 2021
+    link: https://komoroske.com/slime-mold/
     editorial_note: >
-      The keystone. If you only read one Komoroske piece, this is it. Names
-      the cost, derives the dynamic, sets up everything else.
+      A slide deck, and the keystone. If you only read one Komoroske piece,
+      this is it. Names the cost, derives the dynamic, sets up everything else.
     read_first: true
     canonical: true
   - title: On Schelling Points in Organizations
     type: essay
-    year: 2019
+    year: 2021
+    link: https://medium.com/@komorama/on-schelling-points-in-organizations-e90647cdd81b
     editorial_note: >
-      The hidden-physics piece. Pairs with the headwind essay; gives you the
+      The hidden-physics piece. Pairs with the headwind deck; gives you the
       prescription once you have the diagnosis.
     canonical: true
-  - title: The Bramble / Slime Mold Essay
-    type: essay
-    editorial_note: >
-      The metaphor piece. Best read after Coordination Headwind so the
-      metaphor lands in context rather than as a curiosity.
-  - title: Platform conference talks (Google, Stripe)
+  - title: Gardening Platforms
     type: talk
+    year: 2023
+    link: https://komoroske.com/gardening-platforms/
     editorial_note: >
-      Adds the verbal hedges the written essays leave out. Useful for seeing
-      him think rather than for citation.
+      A deck, also given as a talk at the Summer of Protocols in 2023, that
+      carries the gardener stance into platform work.
   - title: Blog corpus on komoroske.com
     type: blog-series
     editorial_note: >
       Working ideas tested before they harden into essays. The bramble of
-      half-finished thoughts that the keystone essays grow out of.
+      half-finished thoughts that the keystone pieces grow out of.
 
 reading: >
   Komoroske's central claim is that coordination has a cost most organizations
   never see: every decision depends on agreements, and the drag of those
-  agreements grows faster than headcount. Brooks named the same cost for
-  software teams in 1975, and Komoroske extends it to all collaborative work.
-  His answer is a change of leadership stance, from architect to gardener, in
-  which the leader sets conditions that make good local choices the obvious
-  ones. The heroics smell is the diagnostic that goes with it: a system that
-  needs heroes to keep working is already broken. The frame earns its place by
+  agreements grows faster than headcount. His answer is a change of
+  leadership stance, from builder to gardener, in which the leader sets
+  conditions that make good local choices the obvious ones. Heroics are the
+  symptom that goes with the headwind, and a poor answer to it, because the
+  churn they create raises the drag they were meant to beat. The frame earns its place by
   making costs an organization was paying invisibly show up where they can be
   counted.
 extension: >
@@ -172,7 +175,7 @@ extension: >
   organization can hold both stances by splitting them by audience. Toward its
   own engineers it gardens: the secure path becomes the default nobody has to
   defend choosing, and each new control is judged by how many agreements it
-  adds. Toward adversaries it architects, with boundaries enforced by
+  adds. Toward adversaries it builds, with boundaries enforced by
   infrastructure that hold whether or not anyone converges on them. The split
   has a weak seam, because an adversary can pass as a good-faith insider, so the
   enforced boundaries have to hold against insiders as well.
@@ -232,18 +235,22 @@ still_load_bearing_despite: >
 adjacent_thinkers:
   - target_slug: fred-brooks
     display_name: Fred Brooks
-    edge_type: antecedent
+    edge_type: parallel
     edge_label: >
-      Brooks named the coordination cost in 1975 for engineering teams under
-      deadline. Komoroske generalized the same physics from engineering to
-      all coordination work.
+      Brooks described a coordination cost in 1975 for engineering teams
+      under deadline, and the headwind covers similar ground for all
+      collaborative work. Komoroske's homepage says his argument started when
+      he was studying Wikipedia's user community and was informed by web
+      standards work. His deck and his Schelling-points essay do not mention
+      Brooks, so the pairing is this site's reading.
     strength: primary
   - target_slug: thomas-schelling
     display_name: Thomas Schelling
     edge_type: antecedent
     edge_label: >
       Schelling's 1960 focal-point theory is the hidden physics under
-      Komoroske's coordination work. Komoroske borrows it explicitly.
+      Komoroske's coordination work. His Schelling-points essay borrows the
+      term along with Schelling's own Grand Central example.
     strength: primary
   - target_slug: martin-fowler
     display_name: Martin Fowler
@@ -264,8 +271,10 @@ adjacent_thinkers:
     display_name: Stuart Kauffman / Steven Johnson
     edge_type: antecedent
     edge_label: >
-      Komoroske's use of "adjacent possible" borrows directly from Kauffman
-      via Johnson's *Where Good Ideas Come From*.
+      "Adjacent possible" is Kauffman's term, and Johnson's *Where Good Ideas
+      Come From* (2010) builds on it and cites him. Komoroske presents it as
+      existing usage ("sometimes known as your adjacent possible") and names
+      neither.
     strength: secondary
 
   - target_slug: nicole-forsgren
@@ -281,10 +290,9 @@ adjacent_thinkers:
       The opposite answer to the same problem. Dalio centralizes the decision algorithm and publishes it; Komoroske gardens the conditions for good local decisions.
     strength: secondary
 further_in:
-  start_here: The Coordination Headwind Essay (2018). The keystone.
+  start_here: The Coordination Headwind slide deck (online by 2021). The keystone.
   then_read:
     - On Schelling Points in Organizations
-    - The Bramble / Slime Mold Essay
   if_you_want_depth: /thinkers/alex-komoroske/long-read (*Ways of Komoroske*)
   if_you_want_breadth: >
     Brooks's *Mythical Man-Month* (Ch. 2, Brooks's Law) and Senge's *Fifth
@@ -295,8 +303,8 @@ long_read:
   summary: >
     Power in complex systems is emergent, not authored, so the work at every
     scale is to garden the conditions and resist the pull of central control.
-    Unpacks the diagnosis (slime mold, coordination headwind, heroics smell,
-    Schelling point), the prescription (gardening conditions, focal-point
+    Unpacks the diagnosis (slime mold, coordination headwind, heroics as a
+    symptom, Schelling point), the prescription (gardening conditions, focal-point
     engineering, distributed decision rights), and the limits (regulated
     environments, adversarial actors, jargon collapse).
   source_path: ~/Camila/_archive/ways-of-komoroske-merged-2026-05-27/

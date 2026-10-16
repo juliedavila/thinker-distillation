@@ -16,5 +16,7 @@ Protocol v1. One line per sentence of `reading` and `extension`, each with the g
 - The principles move still transfers when it attaches to decisions instead of people, although what transfers is the written rule, and the track-record weighting that made the frame distinctive stays behind. [F:principles] [F:believability-weighted-decision-making] [L:2]
 - A security organization can write its standing positions as numbered principles, each with its reasoning and the evidence that would change it. [F:principles] [P:1]
 - Treating prompt injection as architecturally unsolvable, and therefore something to mitigate, is a principle of this kind: stated plainly, open to challenge, and revisable if the architecture changes. [P:1] [F:principles]
-- Taleb's objection lands hard here, since a written principle says nothing about the attack nobody has written a principle for yet. [E:out:nassim-taleb]
+- Taleb's tail-risk argument lands hard here, since a written principle says nothing about the attack nobody has written a principle for yet. [E:out:nassim-taleb]
 - The other risk is the compliance theater the page already names, where the document survives audits and stops steering decisions. [L:3]
+
+Change log, 2026-10-15: the Taleb extension sentence changed from "Taleb's objection": the edge is now `parallel`, and no Taleb critique of Dalio's framework is on the ledger, S:23 to S:25. The sentence applies Taleb's general argument; it no longer implies he made it against Dalio. The grounding pack's E:out:nassim-taleb text predates this change and should be regenerated.

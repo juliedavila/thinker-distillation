@@ -20,9 +20,7 @@ inclusion_rationale: >
   cautions carried onto the page. The definition in circulation is Simon
   Willison's sentence, written six weeks after the coinage in a post that
   separates vibe coding from AI-assisted programming at large; the unread code is already in
-  Karpathy's own post. And Software 3.0 is not his: the June 2025 talk carries
-  no such title; the label came from Latent Space's writeup, which credits
-  itself for it, and independent uses predate the talk by two years. It is
+  Karpathy's own post. And Software 3.0 is not his alone: the June 2025 talk proposes the label, Latent Space's writeup says it discussed the label first, and independent uses predate the talk by two years. It is
   therefore not a frame here. LLM OS and
   jagged intelligence are excluded for the same reason twice over: every artifact
   is a post on X that cannot be fetched, and each has a live antecedent question
@@ -181,9 +179,7 @@ body_of_work:
       as "Software in the era of AI." It introduces an autonomy slider for AI
       products, an Iron Man suit figure for tools that offer both augmentation
       and autonomy, and agents as a third consumer of digital information
-      alongside humans and APIs. Widely known as the "Software 3.0" talk; that
-      label comes from Latent Space's writeup, which credits itself for it, and
-      the talk does not carry it.
+      alongside humans and APIs. Widely known as the "Software 3.0" talk, where he says the new paradigm is "worth giving it a new designation of software 3.0". The label is older than the talk: Latent Space's writeup says it first discussed Software 3.0 in an earlier post, and other writers used it in 2023.
   - title: Interview with Dwarkesh Patel
     type: interview
     year: 2025

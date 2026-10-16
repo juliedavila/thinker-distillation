@@ -318,7 +318,7 @@ limits:
       posts that name the Three Ways and the Five Ideals sit on that publisher's
       own site. The handbook analyses case studies from a summit he has
       organized since 2014. The podcast is his. A reader weighing how far this
-      vocabulary has travelled should subtract all of that first, because an
+      vocabulary has travelled can set that circulation aside and look for adoption elsewhere, because an
       author's own press, conference and podcast can circulate a phrase
       indefinitely without anyone else adopting it. What his relationship to
       that press is, past a bio page on its site, is not on the record this page
@@ -344,13 +344,10 @@ limits:
       Five Ideals credit Jon Smart for one phrase and Geoffrey Moore for
       another, and the fourth of the five is called Psychological Safety, an
       existing term of art and the subject of Amy Edmondson's 1999 study of
-      learning in work teams, which the post asserts and credits to nobody. The
+      learning in work teams, which the post uses without a citation. The
       three mechanisms are co-authored with Steven Spear, and both authors send
       the lineage to Spear and Bowen's Toyota article in their own prefaces. The
-      file integrity work is co-authored with Eugene Spafford. A sentence
-      beginning "Kim found" goes past the record for every set here, since each
-      names an antecedent in his own text. What the record supports is that he
-      numbered these sets, named them and carried them.
+      file integrity work is co-authored with Eugene Spafford. Each set names an antecedent in his own text, and what the record supports is that he numbered these sets, named them and carried them.
   - headline: The post that introduces the Three Ways names a collaborator who reached no byline
     severity: local
     elaboration: >

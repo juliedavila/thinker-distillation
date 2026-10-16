@@ -186,8 +186,7 @@ named_frames:
     display_name: Fit
     one_line_gloss: >
       A tool, in the project's own words, for enhancing collaboration in
-      software development. Cunningham created it and James Shore coordinates
-      the project, which makes Shore a coordinator rather than a co-creator. No
+      software development. Cunningham created it and James Shore coordinates the project. No
       year appears beside it because the only date the project site carries is a
       copyright notice on site content.
     attribution_kind: original

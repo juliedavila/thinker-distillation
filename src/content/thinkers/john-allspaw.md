@@ -2,26 +2,25 @@
 slug: john-allspaw
 name: John Allspaw
 canonical_url: https://www.adaptivecapacitylabs.com
-active_years: 2003–present
+active_years: 1997–present
 primary_domains:
   - resilience-engineering
   - incident-analysis
   - sociotechnical-systems
 status: alive-active
 inclusion_rationale: >
-  Took the academic resilience-engineering tradition (Hollnagel, Woods,
-  Cook) and translated it into working ops vocabulary the industry now
-  uses: *blameless postmortem*, *above-the-line / below-the-line*,
-  *dark debt*. Co-founded Adaptive Capacity Labs with Richard Cook and
-  David Woods (2017) as the bridge between the field and practice. The
-  industry's most reliable carrier of the new-view safety lens into the
-  software-ops conversation.
+  Carried the academic resilience-engineering tradition (Hollnagel, Woods,
+  Cook) into working ops vocabulary. His 2012 Etsy post is the text later
+  writing cites for the *blameless postmortem*, and he brought two frames
+  from the 2017 STELLA report, *above-the-line / below-the-line* and *dark
+  debt*, to practitioners. Co-founded Adaptive Capacity Labs with Richard
+  Cook and David Woods (2017) as the bridge between the field and practice.
 thinker_type: mixed
 doctrine_mode: mode-c
 has_long_read: false
-last_updated: 2026-05-25
+last_updated: 2026-10-15
 
-tagline: The translator who turned resilience engineering from an academic field into the working ops vocabulary the industry now uses to learn from incidents.
+tagline: The translator who carried resilience engineering from an academic field into the working ops vocabulary the industry uses to learn from incidents.
 thirty_second_take: >
   Allspaw's career has been a sustained argument that *incidents are the
   most important learning artifact a sociotechnical system produces*,
@@ -29,31 +28,30 @@ thirty_second_take: >
   cause, write the action items, close the ticket) actively destroys the
   learning. The Etsy 2012 blameless postmortem essay is the keystone. The
   Adaptive Capacity Labs work since 2017 with Richard Cook and David Woods
-  is the deeper version. *Above-the-line / below-the-line* and *dark debt*
-  are the named instruments. The argument is that incidents teach you
-  things you cannot learn any other way; the entire job is to set up the
+  is the deeper version. Two frames he carries, *above-the-line /
+  below-the-line* and *dark debt*, come from the 2017 STELLA report, which
+  was prepared under Woods's supervision. The argument is that incidents
+  teach you things you cannot learn any other way; the entire job is to set up the
   conditions where those lessons actually land.
 
 background: >
   American engineer who built his reputation running operations at Flickr
   and then Etsy through the era when "DevOps" was being figured out in
-  public. SVP of Infrastructure and Operations at Etsy (2010–2015),
-  during which Etsy became one of the most-studied production-engineering
-  organizations of the 2010s. Co-author of *Web Operations: Keeping the
-  Data on Time* (2010, O'Reilly) with Jesse Robbins. PhD candidate at
-  Lund University under Sidney Dekker; co-founded Adaptive Capacity Labs
-  with Richard Cook and David Woods in 2017. Hosts the *Learning From
-  Incidents* community alongside Nora Jones.
+  public. Joined Etsy in 2009, led its infrastructure and operations as
+  SVP, and was its CTO from 2015 to 2017. Edited *Web Operations: Keeping
+  the Data on Time* (2010, O'Reilly) with Jesse Robbins. Holds an MSc in
+  Human Factors and Systems Safety from Lund University (2015 thesis);
+  co-founded Adaptive Capacity Labs with Richard Cook and David Woods in
+  2017. A speaker in the *Learning From Incidents* community, which Nora
+  Jones launched in 2019.
 why_they_matter_as_a_thinker: >
-  Without Allspaw, the resilience-engineering tradition (Hollnagel,
-  Woods, Cook, Dekker) would still be a body of work the software
-  industry occasionally glanced at and otherwise ignored. He is the
-  reason your engineering org has a "blameless" prefix on the
-  postmortem template, the reason "dark debt" is a phrase senior staff
-  use, and the reason senior incident response now reaches for
-  *above-the-line / below-the-line* when explaining what humans were
-  actually doing during a failure. The vocabulary moved because he
-  spent a decade moving it.
+  Allspaw is among those who carried the resilience-engineering
+  tradition (Hollnagel, Woods, Cook, Dekker) into software operations.
+  Google's SRE book cites his 2012 Etsy post for the postmortem concept.
+  In 2017 he presented to practitioners *above-the-line / below-the-line*,
+  a frame his colleagues outlined in the STELLA report, and that year he
+  published an excerpt of the report's account of *dark debt*, a term the
+  report credits to a workshop participant it does not name.
 
 thesis: >
   An incident is not a defect to be eliminated; it is a sample drawn
@@ -67,15 +65,15 @@ thesis: >
   *work-as-done*, and treating the human side of the system as the
   primary source of expertise about how the system actually behaves.
 working_line: >
-  Blame is the enemy of safety. (The Etsy postmortem doctrine, 2012.)
+  "Having a Just Culture means that you're making effort to balance safety and accountability." (Blameless PostMortems and a Just Culture, Etsy, 2012.)
 
 named_frames:
   - concept_slug: blameless-postmortem
     display_name: Blameless postmortem
     one_line_gloss: >
-      An incident review whose stated goal is learning, not accountability,
-      conducted under conditions where engineers can be honest about what
-      they thought, did, and decided without career risk.
+      An incident review whose stated goal is learning, conducted under
+      conditions where engineers can be honest about what they thought,
+      did, and decided without career risk.
     attribution_kind: popularized
     primary_author: john-allspaw
     co_originators:
@@ -114,15 +112,15 @@ named_frames:
     primary_author: david-woods
     co_originators:
       - slug: john-allspaw
-        role: explained the term to practitioners from 2018, with excerpts from the report
+        role: explained the term to practitioners from 2017, with excerpts from the report
     source_link: https://snafucatchers.github.io/
   - concept_slug: adaptive-capacity
     display_name: Adaptive capacity
     one_line_gloss: >
-      A system's ability to absorb disturbances and continue functioning,
-      not by being robust to known threats, but by having human and
-      organizational reserves that can recognize and respond to novel
-      ones. The resilience-engineering core concept.
+      A system's ability to absorb disturbances and continue functioning
+      through human and organizational reserves that can recognize and
+      respond to novel threats. Robustness to known threats is a different
+      property. The resilience-engineering core concept.
     attribution_kind: extended
     primary_author: david-woods
     co_originators:
@@ -152,9 +150,8 @@ body_of_work:
     year: 2012
     link: https://www.etsy.com/codeascraft/blameless-postmortems/
     editorial_note: >
-      The keystone essay. Single-handedly moved the industry's default
-      postmortem template from blame-find to learning-oriented. Short,
-      practical, still load-bearing.
+      The keystone essay, and the text later writing on the practice
+      cites. Short, practical, still load-bearing.
     read_first: true
     canonical: true
   - title: 'Web Operations: Keeping the Data on Time'
@@ -179,14 +176,7 @@ body_of_work:
     type: blog-series
     link: https://www.adaptivecapacitylabs.com
     editorial_note: >
-      The ongoing corpus: incident-analysis case studies, methodology
-      writeups, the *Howie* guide to incident analysis (co-authored with
-      Nora Jones).
-  - title: '*The Verica Open Incident Database (VOID)*: annual reports'
-    type: paper
-    editorial_note: >
-      Industry-scale aggregate of public incident reports. Companion
-      artifact to the Adaptive Capacity Labs case-study work.
+      The ongoing corpus: posts and talks on incident analysis.
 
 reading: >
   Allspaw treats an incident as a sample of how a system really operates,
@@ -228,7 +218,7 @@ limits:
     severity: structural
     elaboration: >
       Allspaw's blameless framing is about creating the conditions for
-      honest learning, not about removing accountability. The industry has
+      honest learning while keeping accountability. The industry has
       partially adopted the label without the discipline. "Blameless"
       becomes a euphemism for "no consequences," which produces a
       different failure mode: incidents recur because no one feels
@@ -254,11 +244,9 @@ limits:
       naming the gap when carrying the work.
 
 still_load_bearing_despite: >
-  The Etsy blameless-postmortem essay is the most influential
-  twelve-page essay in operations engineering of the last fifteen
-  years, measured by how many engineering orgs reorganized their
-  incident-response defaults around it. The Adaptive Capacity Labs
-  work is the deeper version that the next decade of incident-response
+  The Etsy blameless-postmortem post, a blog entry of about 1,400 words,
+  is still the text Google's SRE book and later writing on the practice
+  cite. The Adaptive Capacity Labs work is the deeper version that the next decade of incident-response
   practitioners will keep returning to. Carrying Allspaw forward is
   how the resilience-engineering tradition stays in working contact
   with the software industry.
@@ -278,7 +266,7 @@ adjacent_thinkers:
     display_name: Sidney Dekker
     edge_type: extends
     edge_label: >
-      Allspaw's PhD advisor at Lund. The "new view of human error" and
+      The "new view of human error" and
       *just culture* tradition that the blameless postmortem puts
       into practice for software. Same lineage; Dekker is the safety
       side, Allspaw the engineering side.
@@ -296,8 +284,9 @@ adjacent_thinkers:
     display_name: Nora Jones
     edge_type: parallel
     edge_label: >
-      Co-host of *Learning From Incidents*; co-author of the *Howie*
-      method. The next-generation carry of the same tradition into
+      Launched the *Learning From Incidents* community in 2019 and
+      co-wrote the *Howie* post-incident guide, which Allspaw reviewed.
+      The next-generation carry of the same tradition into
       industry incident-analysis practice.
     strength: secondary
   - target_slug: richard-cook
@@ -356,11 +345,12 @@ adjacent_thinkers:
 further_in:
   start_here: >
     The Etsy 2012 *Blameless Postmortems and a Just Culture* essay
-    (twelve pages). The keystone, still the right starting point.
+    (a blog post of about 1,400 words). The keystone, still the right
+    starting point.
   then_read:
     - 'The 2017 SNAFUcatchers STELLA Report (where dark debt and above/below the line enter the literature)'
-    - 'The *Howie* incident-analysis guide (with Nora Jones)'
-    - 'Adaptive Capacity Labs case studies (adaptivecapacitylabs.com)'
+    - 'The *Howie* post-incident guide by Laura Maguire, Nora Jones and Vanessa Huerta Granda, which Allspaw reviewed'
+    - 'Adaptive Capacity Labs posts on incident analysis (adaptivecapacitylabs.com)'
   if_you_want_breadth: >
     Read Woods on graceful extensibility, Dekker's *Field Guide to
     Understanding Human Error*, and Cook's *How Complex Systems Fail*

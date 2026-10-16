@@ -9,45 +9,40 @@ primary_domains:
   - just-culture
 status: alive-active
 inclusion_rationale: >
-  Built the working version of the *new view of human error*, the
-  argument that human error is a symptom, not a cause, and translated
-  it from academic safety science into the vocabulary that aviation,
-  medicine, and (via Allspaw and others) software ops actually use.
-  Author of *The Field Guide to Understanding Human Error*, *Drift Into
-  Failure*, *Just Culture*, and *Safety Differently*. Forty years of
-  consistent body of work, multiple frames practitioners actively use.
+  Extended the *new view of human error*, the argument that human
+  error is a symptom, not a cause, and carried it into the vocabulary
+  that aviation, medicine, and (via Allspaw and others) software ops
+  actually use. Author of *The Field Guide to Understanding Human
+  Error*, *Drift Into Failure*, *Just Culture*, and *Safety
+  Differently*. Over three decades of consistent body of work, multiple
+  frames practitioners actively use.
 thinker_type: book-author
 doctrine_mode: mode-c
 has_long_read: false
-last_updated: 2026-05-25
+last_updated: 2026-10-15
 
 tagline: The safety-science writer who replaced "find the human, fix the human" with "the system created the conditions for the human to fail."
 thirty_second_take: >
-  Dekker took the academic new-view-of-human-error frame from Rasmussen
-  and Woods and turned it into prose working engineers and clinicians
-  could actually use. The core argument: human error is the *symptom*
+  Dekker extended the new view of human error, which his 2002 paper
+  presents as an existing movement, citing Woods, Rasmussen, Reason and
+  others. The core argument: human error is the *symptom*
   of deeper system conditions, never the cause. The standard
   investigation pattern (find the operator, find the moment, find the
   fix) actively destroys the learning the incident is trying to give
   you. *Just Culture* names the institutional move; *Drift Into Failure*
   names the slow-motion process by which systems become unsafe without
   any single error; *Safety Differently* is the operating prescription.
-  Dekker is how the resilience-engineering tradition gets out of the
-  academy and into the working world.
 
 background: >
   Dutch safety scientist. Professor at Griffith University in
-  Queensland, Australia; previously Chair of Human Factors and System
-  Safety at Lund University in Sweden, where he advised John Allspaw's
-  PhD work. Active commercial airline pilot (Boeing 737 ratings) kept
-  current through his academic career. Author of more than a dozen
-  books since 2002. The most-translated and most-cited writer on
-  safety culture working today.
+  Queensland, Australia; previously Professor of Human Factors and
+  System Safety at Lund University in Sweden. After becoming a full
+  professor he learned to fly the Boeing 737 and worked part-time as an
+  airline pilot out of Copenhagen. Author of more than a dozen books
+  since 2002.
 why_they_matter_as_a_thinker: >
   Most engineering organizations that say "blameless" don't realize
-  they are speaking Dekker. His prose is the medium through which the
-  resilience-engineering frame entered the wider professional world.
-  Investigators in aviation, surgeons running mortality conferences,
+  they are speaking Dekker. Investigators in aviation, surgeons running mortality conferences,
   software-ops engineers running incident reviews: when they reach
   for a vocabulary that lets them honor the operator's experience
   while still asking hard questions about the system, they are
@@ -89,9 +84,11 @@ named_frames:
   - concept_slug: just-culture
     display_name: Just culture
     one_line_gloss: >
-      An institutional posture where individuals are accountable for
-      *willful violations* but not for honest mistakes or system-induced
-      failures. The cultural precondition for blameless investigation.
+      An institutional posture in which the line between acceptable and
+      unacceptable behaviour is clearly drawn, in Reason's framing.
+      Dekker's extension asks who gets to draw that line, arguing that
+      culpability does not inhere in the act itself. The cultural
+      precondition for blameless investigation.
     attribution_kind: extended
     primary_author: james-reason
     co_originators:
@@ -107,8 +104,13 @@ named_frames:
       states without any single obviously-wrong decision. Many small
       reasonable choices in the direction of efficiency, until the
       envelope is breached.
-    attribution_kind: original
+    attribution_kind: extended
     primary_author: sidney-dekker
+    co_originators:
+      - slug: david-woods
+        role: 'cited as Woods 2003, beside Dekker 2011, for "a gradual drift towards failure" in Dekker and Pruchnicki (2013)'
+      - slug: jens-rasmussen
+        role: migration toward the boundary (1997), the model the drift account builds on
     derived_from: migration-toward-the-boundary
     source_link: https://sidneydekker.com/drift-into-failure/
   - concept_slug: safety-differently
@@ -134,8 +136,6 @@ named_frames:
         role: popularized the English pair in resilience engineering and safety management; the distinction began in French ergonomics
       - slug: sidney-dekker
         role: carried into practitioner vocabulary
-      - slug: john-allspaw
-        role: carried into software ops
   - concept_slug: adaptive-capacity
     display_name: Adaptive capacity
     one_line_gloss: >
@@ -153,13 +153,15 @@ named_frames:
 body_of_work:
   - title: 'The Field Guide to Understanding "Human Error"'
     type: book
-    year: 2002
-    link: https://sidneydekker.com/field-guide-human-error/
+    year: 2014
+    link: https://www.routledge.com/The-Field-Guide-to-Understanding-Human-Error/Dekker/p/book/9781472439055
     editorial_note: >
-      The keystone book. Third edition 2014. If you only read one
+      The keystone book, here in its third edition. If you only read one
       Dekker, this is it: the operating manual for investigating
       incidents under the new view. Sized to be handed to working
-      investigators, not academics.
+      investigators, not academics. His 2002 *Field Guide to Human
+      Error Investigations* set out the contrast between the old view
+      and the new view of human error.
     read_first: true
     canonical: true
   - title: 'Drift Into Failure: From Hunting Broken Components to Understanding Complex Systems'
@@ -167,15 +169,16 @@ body_of_work:
     year: 2011
     editorial_note: >
       Where the slow-motion-to-disaster framing gets its book-length
-      treatment. The Columbia space shuttle accident reading is the
-      most-cited application.
+      treatment. The Columbia space shuttle accident is one of its
+      cases.
     canonical: true
-  - title: 'Just Culture: Restoring Trust and Accountability in Your Organization'
+  - title: 'Just Culture: Balancing Safety and Accountability'
     type: book
     year: 2007
     link: https://sidneydekker.com/just-culture/
     editorial_note: >
-      Third edition 2017. The book engineering orgs adopting blameless
+      Third edition 2016, subtitled *Restoring Trust and Accountability
+      in Your Organization*. The book engineering orgs adopting blameless
       postmortems should be reading first; explains what just culture
       actually is and how it differs from no-accountability culture.
     canonical: true
@@ -184,8 +187,9 @@ body_of_work:
     year: 2014
     link: https://sidneydekker.com/safety-differently/
     editorial_note: >
-      The prescription. Late-career Dekker laying out an alternative
-      to compliance-centric safety bureaucracy. Read after *Field
+      The prescription. A complete update of his 2005 *Ten Questions
+      About Human Error*, laying out an alternative to compliance-centric
+      safety bureaucracy. Read after *Field
       Guide* and *Drift Into Failure*.
   - title: 'The Safety Anarchist'
     type: book
@@ -199,10 +203,10 @@ reading: >
   Dekker's starting point is that human error is a consequence of system
   conditions, so the investigator's job is to reconstruct how an action made
   sense to the person at the time. If it made sense once, it will make sense to
-  the next person in the same position. Just culture draws the accountability
-  line: people answer for willful violations, while honest mistakes and
-  system-induced failures become material for learning. Drift into failure
-  explains how organizations reach unsafe states through many small, reasonable
+  the next person in the same position. Just culture draws a line between
+  acceptable and unacceptable behaviour, and Dekker's version asks who gets to
+  draw it, since culpability does not inhere in the act itself. Drift into
+  failure explains how organizations reach unsafe states through many small, reasonable
   choices toward efficiency, none of them obviously wrong. The frame works best
   when used surgically, because invoking drift for every incident can close off
   the question of which decisions could have gone differently.
@@ -259,8 +263,7 @@ limits:
       no story for getting management to want what the framework wants.
 
 still_load_bearing_despite: >
-  Dekker is the most-translated safety-culture writer of the last
-  twenty-five years for a reason. *The Field Guide to Understanding
+  *The Field Guide to Understanding
   Human Error* is the manual that anyone running real incident
   investigations, across aviation, medicine, or software, keeps
   coming back to. Every "blameless postmortem" in the software
@@ -275,15 +278,17 @@ adjacent_thinkers:
     edge_label: >
       Co-builder of the new view of human error. Woods is the
       cognitive-systems-engineering side; Dekker is the
-      safety-culture side. Read them together: Woods for the
-      theory, Dekker for the application.
+      safety-culture side. Read them together.
     strength: primary
   - target_slug: john-allspaw
     display_name: John Allspaw
     edge_type: extends
     edge_label: >
-      Dekker's PhD student at Lund and the most successful carrier of
-      the just-culture / new-view tradition into software operations.
+      The most successful carrier of the just-culture / new-view
+      tradition into software operations. Allspaw's 2015 Lund master's
+      thesis in Human Factors and System Safety, supervised by Anthony
+      Smoker and Johan Bergström, thanks Dekker for "his encouragement,
+      patience, and 'thrown in the deep end' approach".
       The blameless-postmortem move is Dekker's just-culture argument
       translated for engineering practice.
     strength: primary

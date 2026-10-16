@@ -2,13 +2,15 @@
 
 Protocol v1. One line per sentence of `reading` and `extension`, each with the grounding-pack IDs it rests on.
 
+Remediation pass 2026-10-15: sentence 3 of `reading` narrowed ("name the moves" to "write the moves down by name"), and the closing sentence restated from the record (it was "undersold the cost of distribution, and later follow-ups had to correct it"). The grounding pack is dated 2026-09-16 and still carries the old `limits[0]` text under [L:1]; the fact lines the new sentence rests on are [S:19] and [S:20] in `facts.md`. `extension` is unchanged.
+
 ## reading
 
 - In Fowler's account, software is a medium for shared understanding, and it decays whenever nobody tends it. [T:thesis]
 - The cost of that decay arrives quickly, in next week's velocity, and his design stamina hypothesis makes a parallel claim that internal quality pays back within weeks. [T:thesis] [F:design-stamina-hypothesis]
-- His method is to name the moves (refactoring, code smell, strangler fig, bounded context), attribute each to its origin, and revise them in public on the bliki. [F:refactoring] [F:code-smell] [F:strangler-fig-application] [F:bounded-context] [F:bliki]
+- His method is to write the moves down by name (refactoring, code smell, strangler fig, bounded context), attribute each to its origin, and revise them in public on the bliki. [F:refactoring] [F:code-smell] [F:strangler-fig-application] [F:bounded-context] [F:bliki]
 - Naming turns tacit design choices into distinctions a team can argue about. [T:still-load-bearing]
-- The method has limits of its own: his 2014 microservices article undersold the cost of distribution, and later follow-ups had to correct it. [L:1]
+- His 2014 microservices article with James Lewis said it was too early for a full judgement, and his 2015 entries warned against teams too eager to adopt; the record supports reading those entries either as a correction of the article or as its stated caution worked out. [L:1]
 
 ## extension
 

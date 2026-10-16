@@ -17,16 +17,23 @@ are in `ledger-findings.md`:
 
 Audited 2026-10-15 (independent pass): mappings rechecked line by line; [S:16] added to the safety-differently attribution and [S:33] (Hollnagel, HindSight 2017) to the work-as-imagined frame. No mapped field was found to rest on a line that fails to support it. See the "Audit, 2026-10-15" section of `ledger-findings.md`.
 
+Remediated 2026-10-15 (claim-delta pass, table in `claim-delta-2026-10.md`): the page was edited to what the record supports, and the five fields above are now mapped. The Allspaw co-originator line on work-as-imagined was deleted rather than mapped.
+
 Interpretation is not listed here. The Editorial Reading has its own map in `reading-claims.md`.
 
 - active_years [S:15] [S:2]
+- background [S:1] [S:2] [S:16] [S:17]
 
 - named_frames[0].attribution [S:19] [S:5]
 - named_frames[0].co_originators[0] [S:19]
 - named_frames[0].co_originators[1] [S:19]
 - named_frames[1].attribution [S:13] [S:12] [S:11]
+- named_frames[1].one_line_gloss [S:11] [S:13]
 - named_frames[1].co_originators[0] [S:12] [S:11]
 - named_frames[1].co_originators[1] [S:11]
+- named_frames[2].attribution [S:22] [S:20] [S:21]
+- named_frames[2].co_originators[0] [S:20] [S:22]
+- named_frames[2].co_originators[1] [S:20] [S:21] [S:31]
 - named_frames[2].derived_from [S:20] [S:21] [S:31]
 - named_frames[3].attribution [S:8] [S:23] [S:16]
 - named_frames[4].attribution [S:24] [S:25] [S:33]
@@ -39,6 +46,14 @@ Interpretation is not listed here. The Editorial Reading has its own map in `rea
 - adjacent_thinkers[2] [S:30] [S:13]
 - adjacent_thinkers[5] [S:20] [S:31]
 
+- body_of_work[0] [S:6] [S:5]
 - body_of_work[1] [S:7]
+- body_of_work[2] [S:10] [S:9] [S:16] [S:1]
 - body_of_work[3] [S:8]
 - body_of_work[4] [S:14] [S:16]
+
+Ungated fields changed in the 2026-10-15 remediation, mapped so each rewrite shows its support:
+
+- inclusion_rationale [S:19] [S:2] [S:15]
+- thirty_second_take [S:19]
+- adjacent_thinkers[1] [S:3] [S:4]

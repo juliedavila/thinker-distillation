@@ -3,43 +3,58 @@
 Which fact carries which factual field on `src/content/thinkers/martin-fowler.md`.
 `scripts/fact-ledger.ts` derives the required list from the page. Format: `- <field path> [S:n] [S:n]`.
 
-Backfilled 2026-10-15 against the shipped page. A field whose claim the record contradicts, or
-does not support, has NO line here, on purpose: citing a line that does not support the field
-would make the gate pass on a claim the sources do not carry. Those fields are listed with the
-reason in `ledger-findings.md`, and the gate fails on each of them, which is the correct result.
-
-Not mapped (see ledger-findings.md): background, named_frames[1].co_originators[0],
-named_frames[2].attribution, named_frames[3].attribution, named_frames[4].attribution,
-named_frames[6].attribution, body_of_work[0], body_of_work[1], body_of_work[2], body_of_work[3],
-body_of_work[4], body_of_work[5]. The audit of 2026-10-15 removed three mappings whose cited
-lines did not carry the field (named_frames[1].co_originators[0], named_frames[2].attribution,
-body_of_work[2]); its section in ledger-findings.md gives the reasons.
+Backfilled 2026-10-15 against the shipped page. The backfill left twelve fields unmapped because
+the record contradicted them or did not carry them (reasons in `ledger-findings.md`). The
+remediation pass of 2026-10-15 rewrote each of those fields to what its lines say, and mapped it
+here; the before and after of every change is in `claim-delta-2026-10.md`. Four lines were added
+in that pass ([S:43] to [S:46]), each recording what its source says.
 
 - active_years [S:12] [S:27] [S:29]
+- background [S:13] [S:27] [S:14] [S:15] [S:28] [S:12] [S:1]
 
 - named_frames[0].attribution [S:10] [S:11] [S:26]
 - named_frames[0].co_originators[0] [S:26] [S:10]
-- named_frames[0].co_originators[1] [S:10] [S:13] [S:39]
+- named_frames[0].co_originators[1] [S:10] [S:13] [S:11] [S:39]
 - named_frames[0].derived_from [S:26] [S:10]
 
 - named_frames[1].attribution [S:2] [S:39]
+- named_frames[1].co_originators[0] [S:2]
 - named_frames[1].co_originators[1] [S:39]
 
+- named_frames[2].attribution [S:3] [S:40]
 - named_frames[2].co_originators[0] [S:3] [S:40]
 
+- named_frames[3].attribution [S:4] [S:33] [S:32]
+- named_frames[3].co_originators[0] [S:32] [S:33]
+- named_frames[3].co_originators[1] [S:33]
+
+- named_frames[4].attribution [S:6] [S:34] [S:5]
 - named_frames[4].co_originators[0] [S:6]
 - named_frames[4].co_originators[1] [S:7] [S:31]
 - named_frames[4].co_originators[2] [S:7] [S:31]
 
 - named_frames[5].attribution [S:18] [S:35]
 
+- named_frames[6].attribution [S:1] [S:36] [S:14]
 - named_frames[6].co_originators[0] [S:1]
 
 - named_frames[7].attribution [S:8] [S:9] [S:37] [S:42]
 - named_frames[7].co_originators[0] [S:37] [S:42]
+
+- body_of_work[0] [S:17] [S:41]
+- body_of_work[1] [S:43] [S:10] [S:26] [S:13] [S:11] [S:44]
+- body_of_work[2] [S:16] [S:12]
+- body_of_work[3] [S:5] [S:6] [S:31]
+- body_of_work[4] [S:19] [S:20]
+- body_of_work[5] [S:22] [S:38] [S:3]
 
 - adjacent_thinkers[1] [S:23] [S:24] [S:1]
 - adjacent_thinkers[4] [S:25] [S:30]
 - adjacent_thinkers[5] [S:21] [S:38]
 - adjacent_thinkers[8] [S:29] [S:21]
 
+Outside the gate, for the record: `why_they_matter_as_a_thinker` [S:43] [S:12]; `working_line`
+[S:45]; `limits[0]` and `reading` sentence 5 [S:19] [S:20]; `adjacent_thinkers[0]` [S:2] [S:11]
+[S:13]; `adjacent_thinkers[2]` [S:3] [S:40]; `further_in.start_here` [S:41]; the long-read
+preface [S:1] [S:2] [S:5] [S:6] [S:10] [S:12] [S:13] [S:14] [S:16] [S:19] [S:20] [S:21] [S:26] [S:27]
+[S:32] [S:38] [S:41] [S:43] [S:44] [S:46] [S:47]. The review of 2026-10-15 added [S:47] (the CQRS entry, crediting Greg Young).

@@ -20,7 +20,7 @@ thinker_type: mixed
 doctrine_mode: mode-c
 has_long_read: true
 long_read_path: /thinkers/martin-fowler/long-read
-last_updated: 2026-05-25
+last_updated: 2026-10-15
 
 tagline: The cartographer of software design. Turned tacit practice into a public catalog of named distinctions the field now uses to think.
 thirty_second_take: >
@@ -34,24 +34,30 @@ thirty_second_take: >
 
 background: >
   British software engineer, born in Walsall in 1963, who built his career as
-  a working consultant and writer rather than an executive or academic. Joined
-  ThoughtWorks in 2000 as Chief Scientist, a role designed expressly to leave
-  him free to think and write. One of the seventeen original signatories of
-  the Agile Manifesto (2001). Co-author of *Refactoring* (1999, with Kent
-  Beck), author of *Patterns of Enterprise Application Architecture* (2002),
+  a consultant and writer. Joined ThoughtWorks in 2000 and holds the title of
+  Chief Scientist, which he calls ironic because he is "not chief of anybody";
+  he describes his main role as "helping my colleagues to capture and
+  promulgate what we've learned about software development". By his own
+  account he has mostly avoided business leadership responsibilities, and he
+  has served on the firm's primary global leadership team since 2017. One of
+  the seventeen original signatories of the Agile Manifesto (2001). Author of
+  *Refactoring* (1999, with Kent Beck, John Brant, William Opdyke and Don
+  Roberts), *Patterns of Enterprise Application Architecture* (2002),
   *Analysis Patterns* (1996), *UML Distilled*, *Domain-Specific Languages*
-  (with Rebecca Parsons), and *NoSQL Distilled* (with Pramod Sadalage).
-  Coined the term *bliki* (a hybrid of blog and wiki) and has been publishing
-  under that form at martinfowler.com since the late 1990s.
+  (with Rebecca Parsons), and *NoSQL Distilled* (with Pramod Sadalage). Has
+  written a bliki (a hybrid of blog and wiki, a name Ward Cunningham gave his
+  version) at martinfowler.com since 2003; the site started as a home for
+  articles he had written for other purposes.
 why_they_matter_as_a_thinker: >
   If you have worked in software for more than five years, you have read
   Fowler whether you noticed or not. You read him every time someone says
-  "let's refactor that," because the word in its current technical meaning is
-  his. You read him every time someone draws the test pyramid, says
-  *bounded context* or *microservice* or *feature toggle* or *code smell* or
-  *tech debt* or *continuous delivery*. A lot of the vocabulary engineering
-  orgs use to talk about their own work, he either named, popularized, or
-  codified into a form that could be passed around without losing its shape.
+  "let's refactor that": his 1999 book on the practice is the one he says has
+  had "a high impact on the world of software development". You
+  read him every time someone says *bounded context* or *microservice* or
+  *feature toggle* or *code smell* or *tech debt* or *continuous delivery*. A
+  lot of the vocabulary engineering orgs use to talk about their own work, he
+  either popularized or codified into a form that could be passed around
+  without losing its shape.
   He has been doing this since 1996, long enough that most engineers under
   forty have never worked in a world where his vocabulary was absent.
 
@@ -67,8 +73,8 @@ thesis: >
   becomes negotiable. The catalog, the bliki entry, the pattern, the named
   refactoring, the smell: these are the cartographer's instruments.
 working_line: >
-  Make change easy, then make the easy change. (Kent Beck, the working
-  motto Fowler quotes more than any other.)
+  Make the change easy, then make the easy change. (Kent Beck's line, which
+  Fowler quotes under Beck's name.)
 
 named_frames:
   - concept_slug: refactoring
@@ -83,7 +89,7 @@ named_frames:
       - slug: william-opdyke
         role: original PhD thesis, 1992
       - slug: kent-beck
-        role: practice + book co-author
+        role: practice; credited on the book, "with Kent Beck"
     source_link: https://refactoring.com
     derived_from: opdyke-thesis-1992
   - concept_slug: code-smell
@@ -95,16 +101,17 @@ named_frames:
     primary_author: kent-beck
     co_originators:
       - slug: kent-beck
-        role: co-coined
+        role: coined the term, in Fowler's account, while helping with *Refactoring*
       - slug: martin-fowler
         role: cataloged in *Refactoring*
     source_link: https://martinfowler.com/bliki/CodeSmell.html
   - concept_slug: bounded-context
     display_name: Bounded context
     one_line_gloss: >
-      A region of the model inside which the language is consistent: the
-      boundary placed where the words change, not where the org chart changes.
-    attribution_kind: extended
+      A region of the model inside which the language is consistent. Fowler's
+      entry explains Eric Evans's pattern and says a different model is needed
+      "when the language changes".
+    attribution_kind: popularized
     primary_author: eric-evans
     co_originators:
       - slug: eric-evans
@@ -117,6 +124,11 @@ named_frames:
       old one can be removed, instead of rewriting from scratch.
     attribution_kind: original
     primary_author: martin-fowler
+    co_originators:
+      - slug: chris-stevenson
+        role: the practice; Fowler's 2004 post credits a project Stevenson was involved in, which published "a first paper on this at XP 2004"; the name and metaphor are Fowler's
+      - slug: andy-pols
+        role: co-author with Stevenson of the XP 2004 paper on the practice
     source_link: https://martinfowler.com/bliki/StranglerFigApplication.html
   - concept_slug: continuous-integration
     display_name: Continuous integration
@@ -124,11 +136,11 @@ named_frames:
       A development practice: integrate work into the mainline at least
       daily, verified by an automated build, so defects surface in hours
       not weeks.
-    attribution_kind: original
-    primary_author: martin-fowler
+    attribution_kind: popularized
+    primary_author: kent-beck
     co_originators:
       - slug: kent-beck
-        role: original XP practice
+        role: original XP practice; Fowler's article says "Kent defined the practice"
       - slug: jez-humble
         role: extended into Continuous Delivery
       - slug: dave-farley
@@ -149,7 +161,9 @@ named_frames:
       A hybrid of blog and wiki: write up an idea while figuring it out,
       post it publicly, keep revising, mark the maturity (`growing`,
       `stable`), attribute origins. The form Fowler's argument evolves in.
-    attribution_kind: original
+      Ward Cunningham named Fowler's version in 2003, and by Fowler's own
+      account the word and the form were already in use elsewhere.
+    attribution_kind: distributed
     primary_author: martin-fowler
     co_originators:
       - slug: ward-cunningham
@@ -162,8 +176,7 @@ named_frames:
       state at any time by replaying the log. Fowler wrote the pattern up in
       draft in 2005 and returned to it in 2017, comparing the event log to a
       git history and to the accounting transactions behind a balance. Greg
-      Young popularized it alongside CQRS from 2007, and neither claims the
-      underlying idea as new.
+      Young popularized it alongside CQRS from 2007.
     attribution_kind: distributed
     primary_author: martin-fowler
     co_originators:
@@ -172,12 +185,12 @@ named_frames:
     source_link: https://martinfowler.com/articles/201701-event-driven.html
 
 body_of_work:
-  - title: Is Quality Software Worth The Cost?
+  - title: Is High Quality Software Worth the Cost?
     type: essay
     year: 2019
     link: https://martinfowler.com/articles/is-quality-worth-cost.html
     editorial_note: >
-      The keystone bliki essay. If you only read one Fowler piece, this is
+      The keystone article. If you only read one Fowler piece, this is
       it. Names the economic argument, makes "internal quality" debatable,
       and turns the design-stamina graph into a tool for the conversation.
     read_first: true
@@ -187,26 +200,33 @@ body_of_work:
     year: 1999
     link: https://martinfowler.com/books/refactoring.html
     editorial_note: >
-      The book that gave the word *refactoring* its current technical meaning.
-      Co-authored with Kent Beck (and Brant, Opdyke, Roberts). Second edition
-      rewritten solo in JavaScript, 2018. The rewrite is itself an argument
-      that the moves are language-independent discipline.
+      The book Fowler says has had "a high impact on the world of software
+      development". The word is older: Fowler places the practice's
+      foundations in the Smalltalk community, reports that its creators did
+      not know where the term came from, and cites Leo Brodie's *Thinking
+      Forth* (1984) as its first known printed use. William Opdyke wrote "the
+      first thesis on refactoring" in 1992. The first edition is credited "With Kent Beck, John Brant,
+      William Opdyke, and Don Roberts"; the 2018 second edition, again "with
+      Kent Beck", moved from Java to JavaScript.
     canonical: true
   - title: Patterns of Enterprise Application Architecture
     type: book
     year: 2002
     link: https://martinfowler.com/books/eaa.html
     editorial_note: >
-      The catalog that named *Domain Model*, *Transaction Script*, *Active
-      Record*, *Data Mapper*, *Unit of Work*, *Service Layer*, *Repository*.
-      The book most enterprise software is still discussed in.
+      The catalog that sets out *Domain Model*, *Transaction Script*, *Active
+      Record*, *Data Mapper*, *Unit of Work*, *Service Layer* and *Repository*
+      under those names, among forty or so patterns. Written with Dave Rice,
+      Matthew Foemmel, Edward Hieatt, Robert Mee and Randy Stafford.
     canonical: true
   - title: Continuous Integration
     type: essay
-    year: 2006
+    year: 2000
     link: https://martinfowler.com/articles/continuousIntegration.html
     editorial_note: >
-      The original definitive statement of CI as a named discipline. Read
+      First published in 2000, rewritten in 2006 and revised in 2024; the
+      link leads to the 2024 text. Fowler credits the practice to Kent Beck,
+      who "defined the practice" within Extreme Programming in the 1990s. Read
       alongside Humble + Farley's *Continuous Delivery*, for which Fowler
       wrote the foreword.
     canonical: true
@@ -215,28 +235,33 @@ body_of_work:
     year: 2014
     link: https://martinfowler.com/articles/microservices.html
     editorial_note: >
-      The defining article. Read it together with `MonolithFirst` (2015) and
-      `MicroservicePremium`: Fowler's own public walking-back of the 2014
-      over-enthusiasm. The public-revision discipline at scale.
+      Read it together with Fowler's 2015 bliki entries Microservice Premium
+      and Monolith First. The 2014 article closes by saying "not enough time
+      has passed for us to make a full judgement"; Microservice Premium takes
+      aim at teams "too eager to embrace microservices". Neither entry calls
+      itself a correction of the article.
   - title: The bliki at martinfowler.com
     type: blog-series
     link: https://martinfowler.com/bliki/
     editorial_note: >
       The corpus medium. Not paratext: the bliki *is* the form Fowler's
       argument evolves in. Start at the alphabetical index; key entries
-      include `BoundedContext`, `FeatureToggle`, `TechDebtQuadrant`,
-      `InverseConwayManeuver`.
+      include `BoundedContext`, `FeatureFlag` (formerly `FeatureToggle`),
+      `TechnicalDebtQuadrant`, and `ConwaysLaw`, whose third response to the
+      law is the inverse Conway maneuver.
 
 reading: >
   In Fowler's account, software is a medium for shared understanding, and it
   decays whenever nobody tends it. The cost of that decay arrives quickly, in
   next week's velocity, and his design stamina hypothesis makes a parallel claim
-  that internal quality pays back within weeks. His method is to name the moves
-  (refactoring, code smell, strangler fig, bounded context), attribute each to
-  its origin, and revise them in public on the bliki. Naming turns tacit design
-  choices into distinctions a team can argue about. The method has limits of its
-  own: his 2014 microservices article undersold the cost of distribution, and
-  later follow-ups had to correct it.
+  that internal quality pays back within weeks. His method is to write the moves
+  down by name (refactoring, code smell, strangler fig, bounded context),
+  attribute each to its origin, and revise them in public on the bliki. Naming
+  turns tacit design choices into distinctions a team can argue about. His 2014
+  microservices article with James Lewis said it was too early for a full
+  judgement, and his 2015 entries warned against teams too eager to adopt; the
+  record supports reading those entries either as a correction of the article
+  or as its stated caution worked out.
 extension: >
   Bounded context places a boundary where the language changes. That line is
   often a sensible place to draw an authority boundary as well, although in
@@ -264,16 +289,20 @@ working_uses:
   - Threat-model writeups (patterns + named distinctions instead of bullet lists)
 
 limits:
-  - headline: The 2014 microservices article was too lenient on operational cost
+  - headline: The 2014 microservices article and its 2015 follow-ups support two readings
     severity: structural
     elaboration: >
-      Fowler's own follow-ups (`MonolithFirst`, `MicroservicePremium`,
-      `MicroservicePrerequisites`) are the public retraction. The article
-      undersold the price of distribution: observability, network reliability,
-      partial-failure modes, the operational tax that does not show up in the
-      modeling argument. Read the follow-ups and Sam Newman's 2nd-edition
-      *Building Microservices* alongside the original article, not as a
-      replacement for it.
+      The article by James Lewis and Fowler closes on its own caution: "not
+      enough time has passed for us to make a full judgement". In 2015
+      Fowler's bliki entry Microservice Premium took aim at teams "too eager
+      to embrace microservices", and Monolith First reported that "Almost
+      all the successful microservice stories have started with a monolith
+      that got too big and was broken up". Neither entry calls itself a
+      correction or a retraction. One reading is that the article undersold
+      the operational cost of distribution and the entries correct it; the
+      other is that they work out the caution the article already stated.
+      Read the follow-ups and Sam Newman's 2nd-edition *Building
+      Microservices* alongside the original article.
   - headline: The catalog form can become an end in itself
     severity: structural
     elaboration: >
@@ -301,23 +330,22 @@ limits:
 
 still_load_bearing_despite: >
   The cartographer move is the most under-acknowledged contribution of the
-  Fowler corpus. Even with the microservices over-enthusiasm, even with the
-  test-pyramid orthodoxy risk, even with the catalog-as-end-in-itself
-  failure mode. Turning tacit design knowledge into named, attributed,
-  debatable distinctions is what makes engineering practice transmissible
-  across companies, generations, and disciplines. The vocabulary you use to
-  think about your code is mostly his. The reason "let's refactor that" is
-  a conversation rather than a fight is mostly his. That doesn't go away
-  when individual chapters age out.
+  Fowler corpus. Even with the open question over the 2014 microservices
+  article, even with the test-pyramid orthodoxy risk, even with the
+  catalog-as-end-in-itself failure mode. Turning tacit design knowledge into
+  named, attributed, debatable distinctions is what makes engineering practice
+  transmissible across companies, generations, and disciplines. That doesn't
+  go away when individual chapters age out.
 
 adjacent_thinkers:
   - target_slug: kent-beck
     display_name: Kent Beck
     edge_type: extends
     edge_label: >
-      The deepest collaborator. Co-authored *Refactoring*, defined TDD,
-      coined code smell with Fowler, contributed the two-hat rule and the
-      "make change easy" motto. Most of what Fowler argues, he argues
+      The deepest collaborator. Credited on both editions of *Refactoring*,
+      defined TDD, coined code smell while helping with that book,
+      contributed the two-hat rule and the
+      "make the change easy" motto. Most of what Fowler argues, he argues
       alongside Beck.
     strength: primary
   - target_slug: ward-cunningham
@@ -332,9 +360,9 @@ adjacent_thinkers:
     display_name: Eric Evans
     edge_type: extends
     edge_label: >
-      Domain-Driven Design's bounded context, ubiquitous language, aggregate
-      root, anti-corruption layer all enter the wider community through
-      Fowler's foreword, bliki carries, and pattern catalog integration.
+      Fowler wrote the foreword to Evans's *Domain-Driven Design* (2003) and
+      explains its bounded context on the bliki, citing the book as "the
+      canonical source".
     strength: primary
     render_tier: deep
   - target_slug: alex-komoroske
@@ -343,8 +371,7 @@ adjacent_thinkers:
     edge_label: >
       Same cartographer move, different domain. Fowler builds named-vocabulary
       instruments for software design, Komoroske builds them for organization
-      design. Coordination headwind, Schelling-point organizations, gardener-
-      vs-architect are the org-design equivalents of refactoring, bounded
+      design. Coordination headwind, Schelling-point organizations and gardener-vs-builder are the org-design equivalents of refactoring, bounded
       context, ubiquitous language.
     strength: primary
   - target_slug: christopher-alexander
@@ -361,8 +388,9 @@ adjacent_thinkers:
     display_name: Melvin Conway
     edge_type: antecedent
     edge_label: >
-      Conway's Law (1968), Fowler taxonomized into the *Inverse Conway
-      Maneuver*. The boundary arc of Fowler's work runs through Conway's
+      Conway's Law (1968), to which Fowler sets out three responses. The third
+      is the *inverse Conway maneuver*, a term he credits to Jonny LeRoy and
+      Matt Simons (2010). The boundary arc of Fowler's work runs through Conway's
       claim that org structure ships in the system structure.
     strength: secondary
     render_tier: deep
@@ -458,10 +486,10 @@ adjacent_thinkers:
     render_tier: deep
 
 further_in:
-  start_here: '`IsQualitySoftwareWorthTheCost` (bliki). The economic-argument keystone.'
+  start_here: '*Is High Quality Software Worth the Cost?* (2019 article). The economic-argument keystone.'
   then_read:
     - 'The bliki entries `RefactoringMalapropism`, `CodeSmell`, `TwoHardThings`'
-    - 'The *Continuous Integration* article (2006) and *Microservices* article (2014, with the MonolithFirst follow-up)'
+    - 'The *Continuous Integration* article (2000, rewritten 2006) and *Microservices* article (2014, with the MonolithFirst follow-up)'
     - '`BoundedContext` bliki + Evans''s *Domain-Driven Design* (Fowler''s foreword)'
   if_you_want_depth: /thinkers/martin-fowler/long-read (*Ways of Fowler*)
   if_you_want_breadth: >
@@ -474,7 +502,7 @@ long_read:
   title: Ways of Fowler
   summary: >
     Internal quality IS speed. The work is keeping software cheap to change.
-    Every Fowler artifact (pattern, refactoring, smell, deployment move,
+    Every artifact Fowler writes up (pattern, refactoring, smell, deployment move,
     bounded context, strangler fig, feature toggle, the bliki itself) is an
     instrument toward that single argument. The book walks the six argument
     arcs (Economic, Vocabulary, Practice, Boundary, Flow, Modeling) plus the

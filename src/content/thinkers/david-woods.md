@@ -2,7 +2,7 @@
 slug: david-woods
 name: David Woods
 canonical_url: https://csel.osu.edu
-active_years: 1980–present
+active_years: 1979–present
 primary_domains:
   - resilience-engineering
   - cognitive-systems-engineering
@@ -15,14 +15,14 @@ inclusion_rationale: >
   collapse in practice, and what the *Law of Stretched Systems* predicts
   about every optimization push. The theoretical foundation that Allspaw,
   Dekker, and the modern software-ops resilience conversation rest on, and
-  that Cook helped write. Produced the vocabulary Allspaw spent a decade carrying into the
+  that Cook helped write. Produced much of the vocabulary Allspaw spent a decade carrying into the
   software industry.
 thinker_type: mixed
 doctrine_mode: mode-c
 has_long_read: false
-last_updated: 2026-05-25
+last_updated: 2026-10-15
 
-tagline: The theorist who named what makes complex systems actually cope, and what makes the coping invisible until it's gone.
+tagline: The theorist of what makes complex systems actually cope, and what makes the coping invisible until it's gone.
 thirty_second_take: >
   Woods spent forty years building the theoretical foundation of
   resilience engineering. The core claim, that *complex systems don't
@@ -38,14 +38,16 @@ thirty_second_take: >
 
 background: >
   American cognitive systems engineer. Professor Emeritus at Ohio State
-  University; founder and former director of the Cognitive Systems
-  Engineering Laboratory (CSEL). Helped build the field of resilience
-  engineering through forty years of writing, much of it co-authored
-  with Erik Hollnagel, Richard Cook, and Sidney Dekker. President of the
-  Resilience Engineering Association. The intellectual lineage runs
-  through Jens Rasmussen's safety-science work, the Three Mile Island
-  cognitive-engineering investigations, and decades of incident analysis
-  across aviation, healthcare, nuclear, and now software domains.
+  University. In the aftermath of Three Mile Island he and Erik Hollnagel
+  founded the field of cognitive systems engineering. The history page of
+  Ohio State's Cognitive Systems Engineering Laboratory (CSEL) credits
+  Phil Smith with building the first university-based CSE program and
+  laboratory, and says the lab is now run by Mike Rayo and Woods. Helped
+  build the field of resilience engineering through forty years of
+  writing, much of it co-authored with Erik Hollnagel, Richard Cook, and
+  Sidney Dekker. President of the Resilience Engineering Association from
+  2011 to 2013. The intellectual lineage runs through Jens Rasmussen's
+  safety-science work.
 why_they_matter_as_a_thinker: >
   Woods is the cited-but-rarely-read theoretical foundation under the
   modern incident-analysis conversation. If you read Allspaw without
@@ -82,7 +84,7 @@ named_frames:
       designed-for operating envelope, supplied by humans, teams, and
       organizational arrangements that are mostly invisible until they
       are needed.
-    attribution_kind: original
+    attribution_kind: extended
     primary_author: david-woods
     source_link: https://csel.osu.edu
   - concept_slug: graceful-extensibility
@@ -93,7 +95,7 @@ named_frames:
       explicitly designed for. The actual goal of resilience engineering.
     attribution_kind: original
     primary_author: david-woods
-    source_link: https://safety-cube.osu.edu
+    source_link: https://irgc.org/wp-content/uploads/2018/09/Woods-Resilience-as-Graceful-Extensibility-to-Overcome-Brittleness.pdf
   - concept_slug: law-of-stretched-systems
     display_name: The Law of Stretched Systems
     one_line_gloss: >
@@ -123,9 +125,10 @@ named_frames:
     one_line_gloss: >
       "Human error" is not a cause; it is a *symptom* of deeper
       system conditions. The diagnosis stops where most postmortems
-      start; the real work is upstream of the operator. Rooted in
-      Rasmussen and carried by Woods and Dekker.
-    attribution_kind: co-authored
+      start; the real work is upstream of the operator. Dekker's 2002
+      paper cites five sources for the view. Woods is an author of two,
+      and the earliest is by Rasmussen and Batstone (1989).
+    attribution_kind: distributed
     primary_author: david-woods
     co_originators:
       - slug: sidney-dekker
@@ -138,9 +141,8 @@ body_of_work:
     type: book
     year: 1994
     editorial_note: >
-      With Cook, Johannesen, Sarter. The foundational text for the new
-      view of human error. The argument from which every blameless-
-      postmortem move ultimately descends.
+      With Cook, Johannesen, Sarter. A source Dekker cites for the new
+      view of human error.
     canonical: true
   - title: 'Joint Cognitive Systems: Foundations of Cognitive Systems Engineering'
     type: book
@@ -167,13 +169,6 @@ body_of_work:
       mean when they say resilient."
     read_first: true
     canonical: true
-  - title: 'Cognitive Systems Engineering Laboratory work + Resilience Engineering Association talks'
-    type: blog-series
-    link: https://csel.osu.edu
-    editorial_note: >
-      The ongoing teaching corpus. CSEL at Ohio State has been the
-      training ground for many of the practitioners now carrying the
-      resilience-engineering frame into industry.
 
 reading: >
   Woods describes complex systems as joint cognitive systems, in which people
@@ -225,8 +220,7 @@ limits:
       the disturbances are nature (weather, equipment failure, human
       slip) or accident (ill-formed procedures, attention lapse), not
       intent. The framework holds in security but the adversarial layer
-      is bolted on, not built in. Same gap as Komoroske's gardener-
-      vs-architect frame: silent on actors optimizing against you.
+      is bolted on, not built in. Same gap as Komoroske's gardener-vs-builder frame: silent on actors optimizing against you.
   - headline: Empirical grounding is mostly outside software
     severity: local
     elaboration: >
@@ -346,9 +340,9 @@ further_in:
     of Resilience Engineering* (2015). The taxonomy paper, shortest
     on-ramp into the substrate.
   then_read:
-    - '*Behind Human Error* (the new view, foundational text)'
+    - '*Behind Human Error* (a source for the new view)'
     - '*Joint Cognitive Systems* (with Hollnagel; the deeper theory)'
-    - 'CSEL papers at csel.osu.edu'
+    - 'The CSEL lab site at csel.osu.edu'
   if_you_want_breadth: >
     Read Cook's *How Complex Systems Fail* (1998, eighteen short
     propositions) and Dekker's *Drift Into Failure* as the working pair to Woods.

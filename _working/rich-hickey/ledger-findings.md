@@ -206,3 +206,12 @@ unmapped, and the gate is still expected to fail on that field alone.
    is one use by a Hickey respondent ([S:31]). A web search for uses outside Clojure turned up
    many, but nearly all are write-ups of Hickey's talk. The attribution is reasonable; the uptake
    evidence is thin and anecdotal, as the page's own inclusion rationale already says.
+
+## Remediation, 2026-10-15
+
+The contradicted field is fixed: situated programs is now `extended`, the name stays credited to
+Hickey, and Lehman's E-type programs are named as the earlier form of the distinction, with a role
+line that marks the parallel as the site's and a gloss that says the record does not show whether
+Hickey knew Lehman's work. Holds items 1 (on this page), 2 (Polya, from "Missed by the backfill"),
+3 and 5 were narrowed to their lines. Items 4 (CTO) and the keynote wording were left as they stand.
+The table is `claim-delta-2026-10.md`.

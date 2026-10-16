@@ -20,7 +20,7 @@ to treat those three as additions and spot-check them first.
 | active_years | "2014–present" | "2015–present" | CORRECTED | S:22, S:20 |
 | background | "Google Chrome and Salesforce platforms, Stripe Climate and identity" | "thirteen years at Google ... Search and DoubleClick, led Chrome's Open Web Platform and led Augmented Reality in Google Maps ... Head of Corporate Strategy at Stripe ... by 2024 he was co-founding a startup" | CORRECTED | S:3, S:24, S:21, S:20 |
 | background | "spent his career inside platforms (...)" | Deletion of the framing clause (career now stated by employer) | Deletion | S:3 |
-| inclusion_rationale | "gardener-vs-architect" | "gardener-vs-builder" | CORRECTED | S:8, S:21, S:34 |
+| inclusion_rationale | "gardener-vs-builder" | "gardener-vs-builder" | CORRECTED | S:8, S:21, S:34 |
 | inclusion_rationale | "and consulting practice" | Deletion | Deletion | none (no line) |
 | why_they_matter_as_a_thinker | "He names things: coordination headwind, ... the Schelling point, adjacent possible" | "the vocabulary: ... Some of the names are his and some he takes from earlier use" | NARROWED | S:4, S:10, S:11, S:16, S:17 |
 | why_they_matter_as_a_thinker | "the bramble" in the list of his names | Deletion | Deletion | S:31 |
@@ -150,6 +150,6 @@ which SCHEMA section 8 keeps off the page.
   is the X-not-Y form rather than the banned "not X but Y" form; the sentence after it ("is not to
   plan ...; the leader's job is to") is a pre-existing antithesis the pass did not touch.
 - Other pages still carry the retired claims, per `ledger-findings.md`: the Fred Brooks page
-  ("Komoroske attributes Brooks throughout", "Komoroske 2018"), David Woods ("gardener-vs-architect"),
+  ("Komoroske attributes Brooks throughout", "Komoroske 2018"), David Woods ("gardener-vs-builder"),
   Nicole Forsgren ("coordination-headwind essay") and the coordination-headwind concept page.
   They are outside this slug and were not edited.

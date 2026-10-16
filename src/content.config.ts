@@ -29,6 +29,7 @@ const sourceType = z.enum([
   'interview',
   'paper',
   'translation',
+  'deck',
 ]);
 
 const severity = z.enum(['local', 'structural']);
@@ -68,7 +69,8 @@ const namedFrame = z.object({
     .array(z.object({ slug: z.string(), role: z.string() }))
     .optional(),
   source_link: z.string().url().optional(),
-  derived_from: z.string().optional(),
+  // A concept_slug, never a person or a work: people go in co_originators.
+  derived_from: z.string().regex(/^[a-z0-9-]+$/, 'derived_from is a concept_slug').optional(),
   render_tier: renderTier.optional(),
 });
 

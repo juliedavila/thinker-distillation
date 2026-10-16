@@ -2,13 +2,13 @@
 
 Protocol v1. One line per sentence of `reading` and `extension`, each with the grounding-pack IDs it rests on.
 
-Revised 2026-10-15 in the claim-delta pass (`claim-delta-2026-10.md`): the Brooks lineage sentence was deleted, the leadership-stance and heroics sentences were corrected to the deck (builder, not architect; heroics as a symptom, per facts S:7 and S:8), and the extension says "builds" for the second stance. The grounding pack predates the pass (2026-09-16), so its `[F:gardener-vs-architect]` and `[F:heroics-smell]` text still carries the old glosses; the IDs are unchanged and will carry the new text once the pack is regenerated.
+Revised 2026-10-15 in the claim-delta pass (`claim-delta-2026-10.md`): the Brooks lineage sentence was deleted, the leadership-stance and heroics sentences were corrected to the deck (builder, not architect; heroics as a symptom, per facts S:7 and S:8), and the extension says "builds" for the second stance. The grounding pack predates the pass (2026-09-16), so its `[F:gardener-vs-builder]` and `[F:heroics-as-a-symptom]` text still carries the old glosses; the IDs are unchanged and will carry the new text once the pack is regenerated.
 
 ## reading
 
 - Komoroske's central claim is that coordination has a cost most organizations never see: every decision depends on agreements, and the drag of those agreements grows faster than headcount. [F:coordination-headwind] [T:thesis]
-- His answer is a change of leadership stance, from builder to gardener, in which the leader sets conditions that make good local choices the obvious ones. [F:gardener-vs-architect] [F:schelling-point-organizations] [T:thesis]
-- Heroics are the symptom that goes with the headwind, and a poor answer to it, because the churn they create raises the drag they were meant to beat. [F:heroics-smell] [F:coordination-headwind]
+- His answer is a change of leadership stance, from builder to gardener, in which the leader sets conditions that make good local choices the obvious ones. [F:gardener-vs-builder] [F:schelling-point-organizations] [T:thesis]
+- Heroics are the symptom that goes with the headwind, and a poor answer to it, because the churn they create raises the drag they were meant to beat. [F:heroics-as-a-symptom] [F:coordination-headwind]
 - The frame earns its place by making costs an organization was paying invisibly show up where they can be counted. [T:still-load-bearing]
 
 ## extension

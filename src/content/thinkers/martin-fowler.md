@@ -72,9 +72,6 @@ thesis: >
   discover it. Quality IS speed. Naming the implicit is how the argument
   becomes negotiable. The catalog, the bliki entry, the pattern, the named
   refactoring, the smell: these are the cartographer's instruments.
-working_line: >
-  Make the change easy, then make the easy change. (Kent Beck's line, which
-  Fowler quotes under Beck's name.)
 
 named_frames:
   - concept_slug: refactoring
@@ -91,7 +88,6 @@ named_frames:
       - slug: kent-beck
         role: practice; credited on the book, "with Kent Beck"
     source_link: https://refactoring.com
-    derived_from: opdyke-thesis-1992
   - concept_slug: code-smell
     display_name: Code smell
     one_line_gloss: >
@@ -290,7 +286,7 @@ working_uses:
 
 limits:
   - headline: The 2014 microservices article and its 2015 follow-ups support two readings
-    severity: structural
+    severity: local
     elaboration: >
       The article by James Lewis and Fowler closes on its own caution: "not
       enough time has passed for us to make a full judgement". In 2015

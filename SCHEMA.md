@@ -171,10 +171,10 @@ The portable vocabulary: the named concepts this thinker holds. Each entry in `n
 | `display_name` | yes | The frame's name as shown |
 | `one_line_gloss` | yes | One-sentence definition |
 | `attribution_kind` | yes | `original`, `extended`, `popularized`, `distributed`, `co-authored`, `translated`, or `community` |
-| `primary_author` | yes | Usually this thinker's slug. May name someone else for a distributed frame. |
+| `primary_author` | yes | The author of this page's framing, usually this thinker's slug. A thinker can be the primary author of a frame they repackaged through their own perspective, even when someone else originated the underlying idea (Julie, 2026-10-16). The originator goes in `co_originators` or `derived_from`: any frame not filed `original` must name one there, and the build warns when it does not. |
 | `co_originators` | no | List of `{ slug, role }` for frames with several originators |
 | `source_link` | no | Where the thinker writes about it (for ancient thinkers, a canonical translation) |
-| `derived_from` | no | `concept_slug` of an earlier frame this one builds on |
+| `derived_from` | no | `concept_slug` of an earlier frame or idea this one builds on. Never a person or a work: people go in `co_originators`. |
 | `render_tier` | no | `foreground` (default) or `deep` |
 
 What the page shows under each frame:
@@ -191,7 +191,7 @@ A curated reading list with editorial notes. It is not a complete bibliography. 
 | Field | Required | Holds |
 |-------|----------|-------|
 | `title` | yes | Title |
-| `type` | yes | `book`, `essay`, `talk`, `blog-series`, `interview`, `paper`, or `translation` |
+| `type` | yes | `book`, `essay`, `talk`, `blog-series`, `interview`, `paper`, `translation`, or `deck` (a slide deck, never presented as a talk) |
 | `year` | no | Number or string |
 | `link` | no | URL; the title links when present |
 | `editorial_note` | no | Why to read it, and when |

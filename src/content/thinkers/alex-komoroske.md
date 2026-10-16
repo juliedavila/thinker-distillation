@@ -79,7 +79,7 @@ named_frames:
     attribution_kind: popularized
     primary_author: alex-komoroske
     co_originators:
-      - slug: tero-atsushi
+      - slug: atsushi-tero
         role: original 2010 experiment
     source_link: https://komoroske.com/slime-mold/
   - concept_slug: schelling-point-organizations
@@ -93,7 +93,7 @@ named_frames:
       - slug: thomas-schelling
         role: original 1960 focal-point theory
     source_link: https://medium.com/@komorama/on-schelling-points-in-organizations-e90647cdd81b
-  - concept_slug: gardener-vs-architect
+  - concept_slug: gardener-vs-builder
     display_name: Gardener vs. builder
     one_line_gloss: >
       Two opposing leadership stances: set conditions and prune (gardener)
@@ -106,7 +106,7 @@ named_frames:
       - slug: stanley-mcchrystal
         role: earlier "leading like a gardener" (*Team of Teams*, 2015); whether Komoroske drew on it is unrecorded
     source_link: https://komoroske.com/gardening-platforms/
-  - concept_slug: heroics-smell
+  - concept_slug: heroics-as-a-symptom
     display_name: Heroics as a symptom
     one_line_gloss: >
       Heroics are a symptom of the headwind and a poor response to it: the
@@ -130,7 +130,7 @@ named_frames:
 
 body_of_work:
   - title: "Coordination Headwind: How Organizations Are Like Slime Molds"
-    type: talk
+    type: deck
     year: online by 2021
     link: https://komoroske.com/slime-mold/
     editorial_note: >

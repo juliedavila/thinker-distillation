@@ -308,7 +308,7 @@ limits:
       new path will the attacker take". The cone, as her posts state it,
       ranks a control by how it fares against a fixed hazard and carries no
       step for where the attacker goes next.
-  - headline: Safety-science terms, and an ordering that parallels safety engineering's, go uncredited in the posts
+  - headline: The cone's ordering and two safety-science terms have earlier sources the posts do not name
     severity: local
     elaboration: >
       The cone's five steps closely parallel the MIL-STD-882E design order of precedence
@@ -319,17 +319,6 @@ limits:
       resilience primers credit Holling and the 2004 Walker paper, and she
       writes that the book "has like nine million citations". Whether the
       book itself credits the cone's ordering is not established here.
-  - headline: The motive SecObs assigns to security teams is argued from a career her bios place outside them
-    severity: structural
-    elaboration: >
-      This limit is the site's reading. Every job in her published bios is on
-      the vendor or banking side: an analyst covering security at Teneo, a
-      startup co-founder, product roles at BAE Systems and SecurityScorecard,
-      product strategy at Capsule8, and at Fastly the security business and
-      then the chief product role. None of them is a job on an in-house
-      security team, and she wrote the SecObs diagnosis of the control and
-      status behind obstruction from a career that, as those bios record it,
-      ran outside those teams.
   - headline: One reviewer finds the 2023 book more aspirational than practical
     severity: local
     elaboration: >

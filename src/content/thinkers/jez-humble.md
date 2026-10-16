@@ -321,12 +321,10 @@ limits:
       threats to validity, the statistics are presented loosely, and neither
       the full survey questions nor the gathered data have been released, so
       the results cannot be evaluated or replicated. He is courteous about it
-      and says he has tried to present the book sympathetically, which is
-      civility wrapped around a sustained attack on its central claim. The
+      and says he has tried to present the book sympathetically. The
       reply, written by Humble with Nicole Forsgren, defends the word choice:
       the results are inferential, so the authors use "drives", "predicts" and
-      "impacts" and avoid "causes." That is a defence of vocabulary and never
-      a concession.
+      "impacts" and avoid "causes."
   - headline: It applies where delivery is the constraint, and the authors say so
     severity: structural
     elaboration: >
@@ -339,7 +337,7 @@ limits:
       corpus with that boundary in place. Rebuilding the route to production is
       a large programme, and the case for it rests on delivery being the thing
       that is actually holding the organization back.
-  - headline: Almost none of it is his alone
+  - headline: Most of it is shared work, and he credits his collaborators
     severity: structural
     elaboration: >
       Four books, four sets of co-authors, no solo book. The deployment
@@ -348,9 +346,7 @@ limits:
       Rickmeier for the idea in 2004. The five principles are credited on his own site to Deming
       and to Toyota. Fowler's credit for the blue-green name is "some foggy
       combination" of Dan North and Jez Humble. The DORA measures come out of
-      Nicole Forsgren's research. A sentence that begins "Humble argues" is
-      misattributing on nearly every claim this page carries, and the accurate
-      reading treats him as the person who wrote the practice down with others
+      Nicole Forsgren's research. Most claims on this page are shared ones, so the accurate reading treats him as the person who wrote the practice down with others
       and kept saying who else was in the room.
   - headline: The route to production is described as machinery and never as a target
     severity: structural

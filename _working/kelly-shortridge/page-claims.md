@@ -52,10 +52,9 @@ Every limit headline that is the site's reading says so in its first sentence.
 - named_frames[5].one_line_gloss [S:51] [S:52]
 - limits[0] [S:29] [S:30] [S:49] [S:46] [S:17]
 - limits[1] [S:29] [S:30] [S:17] [S:19] [S:50] [S:16] [S:22] [S:51] [S:14]
-- limits[2] [S:4] [S:1] [S:3] [S:5] [S:6] [S:2] [S:54] [S:41]
-- limits[5] [S:41]
-- limits[3] [S:36] [S:38]
-- limits[4] [S:49] [S:36] [S:37]
+- limits[4] [S:41]
+- limits[2] [S:36] [S:38]
+- limits[3] [S:49] [S:36] [S:37]
 - still_load_bearing_despite [S:41] [S:20] [S:50]
 - extension [S:41] [S:53] [S:50]
 - adjacent_thinkers[0] [S:23] [S:40]
@@ -64,3 +63,5 @@ Every limit headline that is the site's reading says so in its first sentence.
 - adjacent_thinkers[3] [S:40] [S:51] [S:14]
 - adjacent_thinkers[4] [S:49] [S:12]
 - further_in [S:20] [S:51] [S:12] [S:16] [S:8] [S:9] [S:46] [S:32] [S:52]
+
+Register pass, 2026-10-15 (SCHEMA section 8, "Corrections and disagreement"). The former `limits[2]`, on the SecObs motive and her career, is deleted on Julie's direction: it assessed her standing to make the argument, which the register rules out. `[S:54]` is now uncited for that reason, and later limits moved up one index.

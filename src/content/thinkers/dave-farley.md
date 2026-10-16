@@ -288,25 +288,22 @@ reading_review:
   claims: _working/dave-farley/reading-claims.md
   dissent: false
 limits:
-  - headline: The sole-inventor version of the pipeline comes from a sales listing; his own words claim the term
+  - headline: Calling him the pipeline's inventor comes from his book's listing; his own words claim the term
     severity: local
     elaboration: >
-      The sole-inventor version rests on the Leanpub listing for his book,
+      The description of him as its inventor rests on the Leanpub listing for his book,
       which calls him "the inventor of the Deployment Pipeline"; in his 2021
       interview he claims less, saying he invented the term. Humble credits the idea
       to Farley and Mark Rickmeier together, and the 2007 paper itself says
       "We commonly
       refer to this process, this sequence of gates, as a Deployment
-      Pipeline" and credits no one. A citation of Farley as its inventor is a
-      citation of Farley.
-  - headline: He sells what he writes about
+      Pipeline" and credits no one.
+  - headline: His books, channels and consultancy make one argument
     severity: local
     elaboration: >
       He runs Continuous Delivery Ltd as founder and independent consultant,
       and his company presents him as the creator of two YouTube channels. The books, the channels and the consultancy make the same
-      argument. A
-      reader can accept it and still weigh it knowing that its author is paid
-      when teams adopt it.
+      argument. A reader weighing the argument can take that into account.
   - headline: One argument against pull requests rests on their origin, and a critic finds it flawed
     severity: local
     elaboration: >

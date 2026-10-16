@@ -290,14 +290,13 @@ reading_review:
   dissent: false
 
 limits:
-  - headline: His own profile claims more than his essays do
+  - headline: His profile and his 2006 essay give different accounts of where BDD came from
     severity: structural
     elaboration: >
       The profile says he "invented Behaviour-Driven Development, co-invented
       the build pipeline, and pioneered many of the Continuous Delivery
       practices that software teams now take for granted," and the about page
-      calls him BDD's "originator." The 2006 essay is the better witness against
-      that line. It credits agiledox to Chris Stevenson, presents the "should"
+      calls him BDD's "originator." The 2006 essay credits agiledox to Chris Stevenson, presents the "should"
       convention as something he came across, gives business value and the turn
       to analysis to Chris Matts and ubiquitous language to Eric Evans, and
       closes "BDD evolved with the help of many people." He is a co-author of
@@ -327,13 +326,12 @@ limits:
       roles. Apart from
       the quoted warnings, this limit is the site's reading of his two frames
       together.
-  - headline: As Needham quotes him, Armour named second-order ignorance a decade before Deliberate Discovery, and the frame's record of use is thin
+  - headline: Second-order ignorance has an earlier statement, and the frame's recorded uptake is modest
     severity: local
     elaboration: >
       Phillip G. Armour's "The Five Orders of Ignorance" appeared in
       Communications of the ACM in October 2000, a decade before Terhorst-North's essay,
-      and names, as Mark Needham quotes it, a "2nd Order Ignorance"; the essay
-      uses "second-order ignorance" without citing Armour. Needham came across
+      and names, as Mark Needham quotes it, a "2nd Order Ignorance"; the essay uses "second-order ignorance" without citing Armour. No source shows whether he had read it. Needham came across
       Armour's paper
       within five months, in the comments on Terhorst-North's post. Needham is also
       the one outside practitioner found applying the frame, in 2011. Treat the

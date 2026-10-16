@@ -22,11 +22,10 @@ inclusion_rationale: >
   page does not: the propositional synthesis as a text of its own, going
   solid (efficiency gains coupling distant parts of a system), and an author
   who wrote software at Control Data before medicine and wrote about software
-  operations directly, with Allspaw in 2018 and alone in 2020. Two live Allspaw frame credits do not hold
+  operations directly, with Allspaw in 2018 and alone in 2020. Two Allspaw frame credits did not hold
   against the record, above the line / below the line (Allspaw's own post
   credits the STELLA report) and dark debt (the report credits an unnamed
-  participant); the return edges planned with this page change both, and
-  until they are applied the Allspaw page still carries the old credits. The
+  participant); the Allspaw page now carries both credits the same way. The
   line of representation is filed here `extended`, with primary_author
   david-woods: no source names Cook as a writer of the report, and every
   prose field says only that he presented the frame with Woods and wrote its

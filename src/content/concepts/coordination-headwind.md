@@ -38,8 +38,7 @@ limits:
     severity: local
     elaboration: >
       Brooks's original observation came from project debriefs, not
-      instrumentation. Komoroske's generalization extends the intuition across
-      domains without per-domain empirical grounding. The frame's predictive
+      instrumentation. Komoroske's generalization covers the same ground across domains, without citing Brooks and without per-domain empirical grounding. The frame's predictive
       power is qualitative; using it as a quantitative argument for any
       specific team size threshold is overreach.
 
@@ -59,9 +58,7 @@ adjacent_concepts:
       agreements by reducing the number of designers.
   - target_slug: slime-mold-organization
     display_name: Slime-Mold Organization
-    edge_label: Komoroske's design response to coordination headwind.
-      Distribute decisions to the edge so the headwind never accumulates at a
-      central node.
+    edge_label: Komoroske's account of the same organizations. His deck says many already behave as slime molds, and its advice is to accept that and work with what they do well.
   - target_slug: second-system-effect
     display_name: Second-System Effect
     edge_label: What happens when a team's response to headwind is to build the

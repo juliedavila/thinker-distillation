@@ -40,7 +40,7 @@ and the Councils judge the rest.
 - body_of_work[5] [S:24]
 - body_of_work[6] [S:16]
 - body_of_work[7] [S:42] [S:44]
-- body_of_work[8] [S:12] [S:20]
+- body_of_work[8] [S:12] [S:20] [S:67]
 
 ## Adjacent thinkers
 

@@ -482,8 +482,7 @@ further_in:
     - The most recent State of DevOps report (annual)
   if_you_want_breadth: >
     Poppendieck's *Lean Software Development* and Goldratt's *The Goal* for
-    the lean / theory-of-constraints antecedents; Komoroske's coordination-
-    headwind essay for the upstream cause DORA measures the downstream effect
+    the lean / theory-of-constraints antecedents; Komoroske's coordination-headwind slide deck for the upstream cause DORA measures the downstream effect
     of; Allspaw's writing on time-to-restore for the operability axis.
 
 live_edge:

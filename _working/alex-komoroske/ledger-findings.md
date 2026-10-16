@@ -114,7 +114,7 @@ the source and Julie may want them in view.
   Thomas Schelling or cite *The Strategy of Conflict* (S:10, S:11).
 - **The Tokyo slime-mold experiment.** Supported. The deck credits a 2010 Wired story rather than
   the paper; the paper is Tero et al., *Science* 327 (2010), first author Atsushi Tero (S:6, S:14).
-  The co-originator slug `tero-atsushi` reverses the name order.
+  The co-originator slug `atsushi-tero` reverses the name order.
 - **"Blog corpus on komoroske.com."** Mapped as supported: the Bits and Bobs notes corpus is
   reached at komoroske.com/bits-and-bobs, though it is hosted as a Google Doc (S:2, S:30).
 
@@ -132,7 +132,7 @@ From `bun scripts/inbound-claims.ts alex-komoroske`:
   work is a deck rather than an essay, and with the deck dated to 2021, Forsgren's DORA research
   may predate it, which would make "antecedent" a conceptual ordering rather than a historical
   one. Her dates were not verified in this pass.
-- **David Woods page:** refers to "Komoroske's gardener-vs-architect frame." His own term is
+- **David Woods page:** refers to "Komoroske's gardener-vs-builder frame." His own term is
   gardener versus builder (S:8, S:21).
 - **Martin Fowler and Ray Dalio pages, `parallel` edges:** interpretive comparisons, no factual
   disagreement found.
@@ -240,7 +240,7 @@ credit, which leaves "a fair reader's observation" as the right description.
 
 ### Findings added
 
-- **The Tokyo experiment's co-originator.** The page's slug `tero-atsushi` names the first author,
+- **The Tokyo experiment's co-originator.** The page's slug `atsushi-tero` names the first author,
   which the paper supports (S:14). Wired describes the team as "led by Toshiyuki Nakagaki" (S:32),
   who is the last author and is often cited as the lead on Physarum work. The page is not wrong,
   but "Tero et al." or a Nakagaki mention may serve readers better. The slug's name order is

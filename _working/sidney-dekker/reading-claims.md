@@ -18,5 +18,5 @@ Rewritten 2026-10-15: the just-culture sentence above. The earlier sentence gave
 - Each risk acceptance makes sense on the day it is signed, and the unsafe state appears only in the accumulation. [F:drift-into-failure] [T:thesis]
 - Recording every exception as a structured, auditable object with an owner and an expiry makes that accumulation visible before an incident does. [P:6]
 - An expiry helps only if renewal demands a fresh justification, since routine renewal turns the record into a paper trail of the drift. [F:drift-into-failure]
-- Just culture then shapes the review, which asks how each acceptance made sense at the time while still separating an honest call from a willful violation. [F:just-culture] [T:thesis]
+- Just culture then shapes the review, which asks how each acceptance made sense at the time. [F:just-culture] [T:thesis]
 - The register cannot stop drift by itself, and it does stop the organization from being the last to notice what has accumulated. [F:drift-into-failure] [P:6]

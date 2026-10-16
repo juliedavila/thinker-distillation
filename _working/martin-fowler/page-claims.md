@@ -53,7 +53,7 @@ in that pass ([S:43] to [S:46]), each recording what its source says.
 - adjacent_thinkers[5] [S:21] [S:38]
 - adjacent_thinkers[8] [S:29] [S:21]
 
-Outside the gate, for the record: `why_they_matter_as_a_thinker` [S:43] [S:12]; `working_line`
+Outside the gate, for the record: `why_they_matter_as_a_thinker` [S:43] [S:12]; `working_line` (deleted 2026-10-16: it put Kent Beck's sentence in the slot the template credits to Fowler as "paraphrased")
 [S:45]; `limits[0]` and `reading` sentence 5 [S:19] [S:20]; `adjacent_thinkers[0]` [S:2] [S:11]
 [S:13]; `adjacent_thinkers[2]` [S:3] [S:40]; `further_in.start_here` [S:41]; the long-read
 preface [S:1] [S:2] [S:5] [S:6] [S:10] [S:12] [S:13] [S:14] [S:16] [S:19] [S:20] [S:21] [S:26] [S:27]

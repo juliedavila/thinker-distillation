@@ -217,9 +217,7 @@ extension: >
   auditable object with an owner and an expiry makes that accumulation visible
   before an incident does. An expiry helps only if renewal demands a fresh
   justification, since routine renewal turns the record into a paper trail of
-  the drift. Just culture then shapes the review, which asks how each acceptance
-  made sense at the time while still separating an honest call from a willful
-  violation. The register cannot stop drift by itself, and it does stop the
+  the drift. Just culture then shapes the review, which asks how each acceptance made sense at the time. The register cannot stop drift by itself, and it does stop the
   organization from being the last to notice what has accumulated.
 reading_review:
   protocol: reading-protocol-v1

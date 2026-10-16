@@ -51,6 +51,16 @@ async function check() {
         }
       }
     }
+
+    // A frame the thinker did not originate names who did (Council, 2026-10-16). `primary_author`
+    // is the author of this page's framing, which Julie ruled can differ from the originator, so
+    // the originator has to live in `co_originators` or `derived_from`. Sixteen frames named no
+    // one when the rule arrived. It warns while they are sourced, and becomes an error after.
+    for (const f of d.named_frames) {
+      if (f.attribution_kind === 'original') continue;
+      const named = f.primary_author !== d.slug || !!f.derived_from || (f.co_originators ?? []).some((c) => c.slug !== d.slug);
+      if (!named) warnings.push(`${d.slug}: frame ${f.concept_slug} is ${f.attribution_kind} and names no originator in co_originators or derived_from`);
+    }
   }
 
   // Neighbor caps (SCHEMA 4.11, issue #9): at most 5 foreground neighbors without a page here,
@@ -106,7 +116,6 @@ function creditedElsewhere(n: Neighbor, frames: Thinker['data']['named_frames'])
   return frames.some(
     (f) =>
       f.primary_author === n.target_slug ||
-      f.derived_from === n.target_slug ||
       (f.co_originators ?? []).some((c) => c.slug === n.target_slug),
   );
 }

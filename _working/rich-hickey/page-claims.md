@@ -4,11 +4,13 @@ Which fact carries which factual field. `scripts/fact-ledger.ts` derives the req
 page itself. Format: `- <field path> [S:n] [S:n]`.
 
 Backfilled on 2026-10-15 against the shipped page. A field is mapped only where the cited lines
-support what the page says. One field is deliberately left unmapped because the record contradicts
+support what the page says. At backfill one field was left unmapped because the record contradicted
 it: `named_frames[7].attribution` (situated programs filed as `original`). See `ledger-findings.md`.
-The gate is expected to fail on that field and on nothing else.
+The remediation note below records how it was fixed.
 
-Audited 2026-10-15 by a second reader: [S:43] to [S:49] added and cited above; see the audit section of `ledger-findings.md`. The situated-programs field stays unmapped.
+Audited 2026-10-15 by a second reader: [S:43] to [S:49] added and cited above; see the audit section of `ledger-findings.md`.
+
+Remediated 2026-10-15 (claim-delta table at `claim-delta-2026-10.md`): situated programs is now filed `extended`, with the name credited to Hickey ([S:25]) and Lehman's E-type programs as the earlier form of the distinction ([S:37], [S:39]), so `named_frames[7]` is mapped and nothing is left unmapped. The Polya credit, the Value of Values note, the Lange edge and the two "renames" carriers were narrowed to what their existing lines say.
 
 Interpretation is not listed here. The Editorial Reading has its own map in `reading-claims.md`.
 
@@ -29,6 +31,8 @@ Interpretation is not listed here. The Editorial Reading has its own map in `rea
 - named_frames[5].attribution [S:16] [S:36]
 - named_frames[6].attribution [S:19] [S:20]
 - named_frames[6].co_originators[0] [S:19]
+- named_frames[7].attribution [S:25] [S:37] [S:39]
+- named_frames[7].co_originators[0] [S:37] [S:39]
 - named_frames[8].attribution [S:26] [S:43]
 - named_frames[8].co_originators[0] [S:26] [S:43]
 - named_frames[9].attribution [S:7]
@@ -42,7 +46,7 @@ Interpretation is not listed here. The Editorial Reading has its own map in `rea
 
 - body_of_work[0] [S:12] [S:32] [S:49] [S:8]
 - body_of_work[1] [S:19] [S:20]
-- body_of_work[2] [S:21]
+- body_of_work[2] [S:21] [S:4]
 - body_of_work[3] [S:23]
 - body_of_work[4] [S:25] [S:42]
 - body_of_work[5] [S:8] [S:48] [S:41] [S:6] [S:7]

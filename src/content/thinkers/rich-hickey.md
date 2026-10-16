@@ -16,13 +16,13 @@ inclusion_rationale: >
   Clojure: simple versus easy, and "complect" for what makes software hard to
   change. Uptake evidence is strong but anecdotal, with many practitioner
   write-ups and no systematic count. Several frames are revived or extended
-  words (complect is archaic English; incidental complexity renames Brooks's
-  accidental complexity), so attribution stays close to source. Inclusion
-  Council 5 to 0, 2026-09-16.
+  words (complect is archaic English; incidental complexity is Hickey's name
+  for what Brooks called accidental complexity), so attribution stays close
+  to source. Inclusion Council 5 to 0, 2026-09-16.
 thinker_type: mixed
 doctrine_mode: mode-a
 has_long_read: false
-last_updated: 2026-09-16
+last_updated: 2026-10-15
 
 tagline: The language designer who gave programmers a precise word for what makes software hard to change.
 thirty_second_take: >
@@ -189,9 +189,17 @@ named_frames:
       Programs that run continuously for years, deal mostly with information,
       remember what they did, and face real-world irregularity. The kind of
       system Hickey built for two decades, and the scope within which his
-      arguments about data and types are made.
-    attribution_kind: original
+      arguments about data and types are made. The name is Hickey's. The
+      distinction is older: Meir Lehman's E-type programs (defined in 1974)
+      are software embedded in a real-world activity that must keep changing
+      with it, set against programs written to an exact specification. The
+      talk does not cite Lehman, and the record does not show whether Hickey
+      knew his work.
+    attribution_kind: extended
     primary_author: rich-hickey
+    co_originators:
+      - slug: meir-lehman
+        role: E-type programs (1974; Proc. IEEE, 1980), an earlier form of the distinction; the parallel is the site's
     source_link: https://www.youtube.com/watch?v=2V1FtfBDsLU
     render_tier: deep
   - concept_slug: hammock-driven-development
@@ -200,12 +208,12 @@ named_frames:
       Load a problem into the waking mind with study and writing, then step
       away and let the background mind work on it. A programmer's name for
       the incubation stage of problem solving; the talk credits Polya's *How
-      to Solve It*.
+      to Solve It* for treating problem solving as a practiced skill.
     attribution_kind: extended
     primary_author: rich-hickey
     co_originators:
       - slug: george-polya
-        role: '*How to Solve It* (1945), credited in the talk'
+        role: '*How to Solve It* (1945), credited in the talk for problem solving as a practiced skill'
     source_link: https://www.youtube.com/watch?v=f84n5oFoZBc
     render_tier: deep
   - concept_slug: persistent-data-structures
@@ -250,7 +258,7 @@ body_of_work:
     link: https://www.youtube.com/watch?v=-6BsiVyC1kM
     editorial_note: >
       The shortest route to place-oriented programming and to information as
-      accumulated facts. The talk behind Datomic's design.
+      accumulated facts. It sets out the thinking behind Datomic's design.
   - title: Spec-ulation
     type: talk
     year: 2016
@@ -417,9 +425,9 @@ adjacent_thinkers:
     display_name: Jonathan Lange
     edge_type: critiques
     edge_label: >
-      A direct 2018 response to "Maybe Not," arguing that the talk misstates
-      what sum types and type signatures communicate and ignores the type
-      theory literature.
+      A direct 2018 response to "Maybe Not," arguing that the talk is partly
+      wrong about sum types, understates what type signatures communicate,
+      and ignores the type theory literature.
     strength: secondary
   - target_slug: john-ousterhout
     display_name: John Ousterhout
@@ -462,7 +470,7 @@ further_in:
     Datomic.
   if_you_want_breadth: >
     Brooks's "No Silver Bullet" for the essential and accidental distinction
-    Hickey renames, Ousterhout's *A Philosophy of Software Design* for a rival
-    vocabulary of complexity, and Jonathan Lange's response to "Maybe Not" for
+    that Hickey's incidental complexity mirrors, Ousterhout's *A Philosophy
+    of Software Design* for a rival vocabulary of complexity, and Jonathan Lange's response to "Maybe Not" for
     the strongest case against his view of types.
 ---

@@ -10,8 +10,8 @@ primary_domains:
 status: alive-active
 inclusion_rationale: >
   Produced a portable vocabulary for organizational complexity (coordination
-  headwind, Schelling-point organizations, gardener-vs-builder) that
-  practitioners now use to think about their own work. ~10 years across essays,
+  headwind, Schelling-point organizations, gardener-vs-builder). Lenny's Podcast
+  calls the slime-mold deck that carries the first "popular". ~10 years across essays,
   talks, and blog.
 thinker_type: essay-corpus
 doctrine_mode: mode-c
@@ -40,23 +40,20 @@ background: >
 why_they_matter_as_a_thinker: >
   What makes him portable as a thinker is the vocabulary: coordination
   headwind, the slime mold, the gardener, the Schelling point, adjacent
-  possible. Some of the names are his and some he takes from earlier use. The
-  names lodge. Practitioners
-  reach for the words when they're diagnosing their own organizations, which
-  is the test of a working frame.
+  possible. Some of the names are his and some he takes from earlier use.
 
 thesis: >
   Complex systems work best when they are gardened, not built. The
   leader's job is not to plan the optimal answer and propagate it downward;
   the leader's job is to make defensible answers focal enough that local
   actors converge on them without being told. Large organizations pay a
-  coordination tax that grows faster than they expect, sooner than they
-  expect, even when everyone in them is competent and collaborative.
+  coordination tax that grows super-linearly and stays mostly invisible,
+  even when everyone in them is competent and collaborative.
   This is coordination headwind. The standard responses (more meetings, more
   reorgs, more hiring) make it worse. The fix is to push decisions to where
-  local information lives, accept the messiness, and trust that recovery time
-  in a self-correcting system is faster than freeze-up time in a centralized
-  one.
+  local information lives, accept the messiness, and aim for eventual
+  convergence, because in a complex environment a top-down approach is
+  brittle.
 working_line: >
   Many organizations are basically slime molds. Instead of trying to fight
   that, maybe lean into what slime molds are good at, and think of yourself
@@ -70,12 +67,17 @@ named_frames:
       headcount; the cost of every agreement a decision depends on.
     attribution_kind: extended
     primary_author: alex-komoroske
+    co_originators:
+      - slug: fred-brooks
+        role: earlier observation that the number of communication channels increases rapidly with the number of people (*The Mythical Man-Month*, 1975); whether Komoroske drew on it is unrecorded
+      - slug: v-a-graicunas
+        role: earlier count of a supervisor's relationships growing faster than the number of subordinates (1933); whether Komoroske drew on it is unrecorded
     source_link: https://komoroske.com/slime-mold/
   - concept_slug: slime-mold
     display_name: The slime mold
     one_line_gloss: >
       The working metaphor for distributed, locally-informed decision-making.
-      No central planner; recovery faster than freeze.
+      No central planner; resilient where a top-down approach is brittle.
     attribution_kind: popularized
     primary_author: alex-komoroske
     co_originators:
@@ -113,6 +115,9 @@ named_frames:
       churn they create raises the headwind they were meant to overcome.
     attribution_kind: extended
     primary_author: alex-komoroske
+    co_originators:
+      - slug: mark-paulk
+        role: first author, with Curtis, Chrissis and Weber, of the SEI *Capability Maturity Model for Software* (1993), where "Success in Level 1 organizations depends on the competence and heroics of the people in the organization"; whether Komoroske drew on it is unrecorded
     source_link: https://komoroske.com/slime-mold/
   - concept_slug: adjacent-possible
     display_name: Adjacent possible
@@ -192,15 +197,15 @@ working_uses:
   - Tinkerers community sizing (engagement-tier design)
 
 limits:
-  - headline: Regulated environments shorten the recovery-time advantage
+  - headline: Regulated environments raise the price of messy convergence
     severity: structural
     elaboration: >
-      The slime mold's wrong turns are recoverable only when backing out is
+      The slime mold's wrong turns are affordable only when backing out is
       cheap. In regulated industries (banking, healthcare, defense), wrong
       turns generate audit findings, breach reports, compliance debt that
       does not back out cheaply. The headwind frame is still correct; the
-      "trust the recovery" prescription gets shorter the more the environment
-      punishes recoverable mistakes.
+      deck's advice to "aim for eventual convergence" and waste effort "in a
+      safe way" holds less well the more the environment punishes mistakes.
   - headline: The gardener metaphor has no story for adversarial actors
     severity: structural
     elaboration: >
@@ -265,7 +270,9 @@ adjacent_thinkers:
     edge_type: parallel
     edge_label: >
       Same systems-thinking territory from the learning-organization angle.
-      Komoroske rarely cites him; the absence is interesting.
+      Senge's name does not appear in Komoroske's Coordination Headwind
+      or Gardening Platforms decks, his Schelling-points essay or the recent
+      essays in his Medium feed, so the pairing is this site's reading.
     strength: secondary
   - target_slug: stuart-kauffman
     display_name: Stuart Kauffman / Steven Johnson

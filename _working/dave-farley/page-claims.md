@@ -15,7 +15,8 @@ Reading has its own map in `reading-claims.md`.
 - named_frames[0].co_originators[2] [S:35]
 - named_frames[0].co_originators[3] [S:19]
 - named_frames[0].co_originators[4] [S:20] [S:19]
-- named_frames[1].attribution [S:12] [S:13] [S:14] [S:15] [S:25]
+- named_frames[1].attribution [S:12] [S:13] [S:14] [S:15] [S:25] [S:41]
+- named_frames[1].derived_from [S:41] [S:42]
 - named_frames[2].attribution [S:26] [S:36] [S:11] [S:32] [S:38]
 - named_frames[2].co_originators[0] [S:11] [S:4]
 - named_frames[3].attribution [S:31] [S:30] [S:34] [S:4]
@@ -55,13 +56,15 @@ factual clause in the most-read fields.
 - further_in [S:18] [S:12] [S:19] [S:8] [S:10] [S:20] [S:26] [S:27]
 - still_load_bearing_despite [S:18] [S:13]
 - extension [S:36]
+- inclusion_rationale [S:41] [S:42]
 
 ## Notes for review
 
 * The thesis opens on the site's own synthesis ("Read across the 2007 paper and the 2021 book"),
   labelled as such. "The same binary is meant to run" keeps the paper's "We want" ([S:18]).
-* No antecedent search for the learning and complexity split was run; the frame is `extended` and
-  no field calls it new. `[S:14]` is cited only for "the book cites", never for what it says.
+* The antecedent search for the learning and complexity split ran in the sourcing pass
+  (2026-10-16, `[S:41]`); the frame stays `extended`, now `derived_from:
+  essential-vs-accidental-complexity`, and no field calls it new. `[S:14]` is cited only for "the book cites", never for what it says.
 * `[S:28]` (Burt) is verified and uncited on purpose: it records a rejected critic candidate and
   supports no field.
 * `[S:9]` (the Duke award went to LMAX) is uncited because the page no longer repeats the bios'
@@ -121,3 +124,18 @@ factual clause in the most-read fields.
   in full (chapters 9 to 13) and run on to Part IV. No field depended on the old note.
 * The unused lines are unchanged and each still has its reason above: `[S:9]`, `[S:28]`, `[S:39]`,
   `[S:40]`. This pass made none of them unused and cited none of them.
+
+## Sourcing pass notes (2026-10-16)
+
+* `named_frames[1].derived_from` (Brooks's essential and accidental complexity) rests on `[S:42]`:
+  the book's Part III section titles "Separating Essential and Accidental Complexity" and "Abstract
+  Accidental Complexity", and its six index entries for Brooks. What those pages credit to Brooks is
+  not read, so the derivation covers the complexity half only. `[S:41]` records the search and
+  what it bounds.
+* `inclusion_rationale` now reports the search in place of "No antecedent search ... was run",
+  on `[S:41]` and `[S:42]`. Delta table: `sourcing-delta-2026-10.md`.
+* `[S:43]` (McConnell, 2004) is verified and uncited on purpose: an earlier statement of the
+  complexity half with no recorded route to the 2021 book. It bounds the search result and supports
+  no field. Whether McConnell belongs in `co_originators` is left to Julie.
+* No gloss changed. The frame's gloss already implies no origination: it describes the book's
+  structure and names the sources the book cites.

@@ -14,9 +14,10 @@ and the Councils judge the rest.
 - named_frames[0].co_originators[0] [S:3]
 - named_frames[1].attribution [S:5] [S:6]
 - named_frames[1].co_originators[0] [S:2]
-- named_frames[2].attribution [S:8] [S:5]
+- named_frames[2].attribution [S:8] [S:5] [S:14]
 - named_frames[3].attribution [S:7]
-- named_frames[4].attribution [S:9]
+- named_frames[4].attribution [S:9] [S:13] [S:15]
+- named_frames[4].co_originators[0] [S:13] [S:15]
 - named_frames[5].attribution [S:10]
 
 - body_of_work[0] [S:4]

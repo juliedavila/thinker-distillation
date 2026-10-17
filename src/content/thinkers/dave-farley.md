@@ -27,10 +27,14 @@ inclusion_rationale: >
   this page adds the same lines to both live copies. Outside uptake of his other frames
   comes from readers who credit him by name (Patrick Kua for the 2021 book,
   Chris James for the layered acceptance test, which James takes from a
-  Farley video), so it is uptake and not yet vocabulary. No antecedent search
-  for the two-part
-  learning and complexity split was run, so that frame is `extended` and no
-  field calls it new. Until the merge request that adds this page, the
+  Farley video), so it is uptake and not yet vocabulary. An antecedent search
+  on 2026-10-16 for the learning and complexity split found that two section
+  titles in the book's complexity half (Part III) use Brooks's terms, essential
+  and accidental complexity. It found no earlier holder of the pairing, in
+  an index with no positive control for it, and the book itself calls the
+  learning half's practices well known. That frame stays `extended`, derived
+  from Brooks's idea, and no field calls it new. Until the merge request that
+  adds this page, the
   Humble page's pipeline gloss said the 2006 paper was the first to describe
   the pipeline, which Humble's own 2010 post contradicts, and the Humble and
   Terhorst-North copies of the frame omitted Farley from `co_originators`;
@@ -142,6 +146,7 @@ named_frames:
       Nygard's model of coupling among its sources.
     attribution_kind: extended
     primary_author: dave-farley
+    derived_from: essential-vs-accidental-complexity
     source_link: https://www.informit.com/store/modern-software-engineering-doing-what-works-to-build-9780137314911
     render_tier: foreground
   - concept_slug: four-layer-acceptance-tests

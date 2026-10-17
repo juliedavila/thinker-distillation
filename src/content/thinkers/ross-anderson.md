@@ -205,14 +205,15 @@ named_frames:
     display_name: Security engineering as a discipline
     one_line_gloss: >
       Building dependable systems treated as an engineering discipline with its
-      own body of knowledge, a textbook and named chairs. The phrase predates
-      Anderson and no coiner is established here. What the record supports is
-      the building: the BCS gave him the Lovelace Medal in 2015 "in recognition
+      own body of knowledge, a textbook and named chairs. The phrase does not
+      start with Anderson: a US military standard of 1989 already set
+      requirements for system security engineering programs, and no coiner is
+      established here. What the record supports is his part in the building:
+      the BCS gave him the Lovelace Medal in 2015 "in recognition
       of his many contributions to building security engineering into a
       discipline", Computer Weekly repeats the framing independently, Cambridge
-      and Edinburgh both named chairs for it, and his biographer calls it "the
-      thread that linked his diverse contributions".
-    attribution_kind: popularized
+      and Edinburgh both named chairs for it, and his biographer calls it "the thread that linked his diverse contributions". The frame is filed as shared credit: the discipline had many builders, and his part in the building is what the record supports.
+    attribution_kind: community
     primary_author: ross-anderson
     source_link: https://www.cl.cam.ac.uk/archive/rja14/book.html
     render_tier: deep

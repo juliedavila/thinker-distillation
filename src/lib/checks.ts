@@ -56,8 +56,9 @@ async function check() {
     // is the author of this page's framing, which Julie ruled can differ from the originator, so
     // the originator has to live in `co_originators` or `derived_from`. Sixteen frames named no
     // one when the rule arrived. It warns while they are sourced, and becomes an error after.
-    for (const f of d.named_frames) {
-      if (f.attribution_kind === 'original') continue;
+    for (const f of d.named_frames) {      // `community` is the shared-credit kind (Julie, 2026-10-17): the record gives the frame no single
+      // originator, and the gloss says so instead.
+      if (f.attribution_kind === 'original' || f.attribution_kind === 'community') continue;
       const named = f.primary_author !== d.slug || !!f.derived_from || (f.co_originators ?? []).some((c) => c.slug !== d.slug);
       if (!named) warnings.push(`${d.slug}: frame ${f.concept_slug} is ${f.attribution_kind} and names no originator in co_originators or derived_from`);
     }

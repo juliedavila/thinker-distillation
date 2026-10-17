@@ -239,3 +239,8 @@ The page was corrected under the claim-delta gate; every changed field is in
   missing *Art of Capacity Planning* (adding it would be a new proposition in a remediation pass).
 - **Still on other pages:** Sidney Dekker's `background` ("advised John Allspaw's PhD work") and
   its Allspaw edge ("Dekker's PhD student at Lund") contradict [S:9].
+
+## Sourcing pass, 2026-10-17
+
+- **Forsgren framing, closed.** The edge label's "converge" had no source. It now sets DORA's recovery metric [S:36] beside Allspaw's 2018 post on shallow incident data [S:35], the original of the quotation in [S:31]. The inbound Forsgren → Allspaw edge on `nicole-forsgren.md` still says the two "converge"; that page is outside this pass.
+- **The Art of Capacity Planning, added** as `body_of_work[4]` on [S:37]: O'Reilly, 2008 by the publisher's release, where the Adaptive Capacity Labs bio says 2009 [S:3].

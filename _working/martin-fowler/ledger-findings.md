@@ -215,3 +215,11 @@ the `still_load_bearing_despite` reference to it (the page does not credit the p
 and no ledger line covers its origin); `limits[1]`'s "pointed critique" and the claim that the
 2018 edition "responds"; "contributed the two-hat rule" in the Kent Beck label; the maturity
 badges in the bliki gloss and preface.
+
+## Sourcing pass, 2026-10-17
+
+The items left open above are closed. Each now has a line ([S:48] to [S:54]) or was deleted: the
+test pyramid limit and its `still_load_bearing_despite` reference rest on Fowler's own entries
+([S:48], [S:49]) with Khorikov and Newman removed; the Kerievsky limit describes the book from its
+publisher page ([S:54]) with "pointed critique" and the 2018 "responds" claim deleted; "the two-hat
+rule" and the maturity badges are deleted. Full table: `sourcing-delta-2026-10.md`.

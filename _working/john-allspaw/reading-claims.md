@@ -22,3 +22,7 @@ Protocol v1. One line per sentence of `reading` and `extension`, each with the g
 ## Changes, 2026-10-15
 
 No sentence of `reading` or `extension` changed in the remediation pass. The second reading line no longer cites `[T:working-line]`: the old working line ("Blame is the enemy of safety") does not appear in the 2012 post (facts.md [S:12]) and was replaced with a sentence the post does contain, which is about balancing safety and accountability and does not carry this line's claim. The line still rests on `[T:thesis]` and `[F:blameless-postmortem]`. The grounding pack is a 2026-09-16 snapshot and still shows the old working line and the old frame and edge text.
+
+## Changes, 2026-10-17
+
+No sentence of `reading` or `extension` changed in the sourcing pass, and none cites the Forsgren edge, whose "converge" label was replaced on [S:35] and [S:36] (see `sourcing-delta-2026-10.md`). The grounding pack's `[E:out:nicole-forsgren]` item is a 2026-09-16 snapshot and still shows the old label.

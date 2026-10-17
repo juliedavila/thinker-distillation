@@ -54,6 +54,12 @@ Interpretation is not listed here. The Editorial Reading has its own map in `rea
 
 Ungated fields changed in the 2026-10-15 remediation, mapped so each rewrite shows its support:
 
-- inclusion_rationale [S:19] [S:2] [S:15]
+- inclusion_rationale [S:19] [S:2] [S:15] [S:5] [S:35]
 - thirty_second_take [S:19]
-- adjacent_thinkers[1] [S:3] [S:4]
+- adjacent_thinkers[1] [S:34] [S:3] [S:4]
+
+Sourcing pass 2026-10-17 (table in `sourcing-delta-2026-10.md`): the conduit framing, the Allspaw edge's "most successful carrier" and "translated" clauses, and the tagline's sole-replacement credit were narrowed to [S:5], [S:34] and [S:35]. Ungated fields rewritten in that pass, mapped so each rewrite shows its support:
+
+- tagline [S:5] [S:6]
+- why_they_matter_as_a_thinker [S:5] [S:35] [S:34]
+- still_load_bearing_despite [S:6] [S:35]

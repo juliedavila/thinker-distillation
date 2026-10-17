@@ -58,3 +58,19 @@ Outside the gate, for the record: `why_they_matter_as_a_thinker` [S:43] [S:12]; 
 [S:13]; `adjacent_thinkers[2]` [S:3] [S:40]; `further_in.start_here` [S:41]; the long-read
 preface [S:1] [S:2] [S:5] [S:6] [S:10] [S:12] [S:13] [S:14] [S:16] [S:19] [S:20] [S:21] [S:26] [S:27]
 [S:32] [S:38] [S:41] [S:43] [S:44] [S:46] [S:47]. The review of 2026-10-15 added [S:47] (the CQRS entry, crediting Greg Young).
+
+Sourcing pass of 2026-10-17 (before and after of every change in `sourcing-delta-2026-10.md`).
+Seven lines added, [S:48] to [S:54], each recording what its source says. These fields sit
+outside the gate's required list and are mapped here so the record shows what carries them:
+
+- limits[1] [S:54]
+- limits[2] [S:48] [S:49]
+- still_load_bearing_despite [S:48] [S:49]
+- adjacent_thinkers[0] [S:2] [S:11] [S:13] [S:45]
+
+The long-read preface now also rests on [S:48] (test pyramid, credited to Mike Cohn), [S:50]
+(branch by abstraction, credited to Paul Hammant for the name and Stacy Curl for the technique),
+[S:51] (the microservices article's credit for the term), [S:52] (the Gang of Four form) and
+[S:53] (Mocks Aren't Stubs, first published 2004). Deleted in this pass with no line behind
+them: the bliki maturity badges (gloss and preface, twice) and "the two-hat rule" in the Kent
+Beck label.

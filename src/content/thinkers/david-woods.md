@@ -9,7 +9,7 @@ primary_domains:
   - safety-science
 status: alive-active
 inclusion_rationale: >
-  Co-founded the field of resilience engineering. Forty years of writing on
+  One of the founders of the field of resilience engineering. Forty years of writing on
   how complex systems actually cope with surprise, what *adaptive capacity*
   is and how it gets depleted, why systems that look robust on paper
   collapse in practice, and what the *Law of Stretched Systems* predicts
@@ -20,7 +20,7 @@ inclusion_rationale: >
 thinker_type: mixed
 doctrine_mode: mode-c
 has_long_read: false
-last_updated: 2026-10-15
+last_updated: 2026-10-16
 
 tagline: The theorist of what makes complex systems actually cope, and what makes the coping invisible until it's gone.
 thirty_second_take: >
@@ -86,6 +86,9 @@ named_frames:
       are needed.
     attribution_kind: extended
     primary_author: david-woods
+    co_originators:
+      - slug: lance-gunderson
+        role: 'introduced "adaptive capacity" in ecology in 2000, calling it "a new term"'
     source_link: https://csel.osu.edu
   - concept_slug: graceful-extensibility
     display_name: Graceful extensibility
@@ -108,6 +111,8 @@ named_frames:
     co_originators:
       - slug: jens-rasmussen
         role: 'cited with Hirschhorn and others for the general law of adaptive systems (his 1986 book, in Woods 2002)'
+      - slug: larry-hirschhorn
+        role: 'cited with Rasmussen for the general law of adaptive systems (as quoted in Cook, Woods and Miller 1998, in Woods 2002)'
   - concept_slug: joint-cognitive-system
     display_name: Joint cognitive system
     one_line_gloss: >
@@ -235,20 +240,19 @@ still_load_bearing_despite: >
   extensibility, sustained adaptability) and the Law of Stretched
   Systems are foundational enough that you cannot do serious
   resilience-engineering work in software without internalizing them.
-  Every honest argument about why high-performing engineering orgs
-  end up brittle, why incidents cluster after efficiency pushes, why
-  reorganizations destroy operational knowledge: Woods named the
-  physics underneath them all.
+  Two of those terms, graceful extensibility and the Law of Stretched
+  Systems, are names Woods gave.
 
 adjacent_thinkers:
   - target_slug: john-allspaw
     display_name: John Allspaw
     edge_type: extends
     edge_label: >
-      The carrier into software ops. Allspaw is Woods's most successful
-      industry translator. The resilience-engineering substrate became
-      working ops vocabulary largely through Allspaw's Etsy work and the
-      Adaptive Capacity Labs collaboration.
+      A carrier into software ops. Allspaw's 2012 Etsy post on blameless
+      postmortems quotes *Behind Human Error* on first and second stories;
+      in 2017 he co-founded Adaptive Capacity Labs with Woods and Richard
+      Cook, and in 2020 the two wrote that people are "the unique source of
+      the adaptive capacity" in incident response.
     strength: primary
   - target_slug: sidney-dekker
     display_name: Sidney Dekker

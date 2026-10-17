@@ -22,7 +22,7 @@ He is one of the seventeen original signatories of the Agile Manifesto (2001).
 
 He is author of *Refactoring: Improving the Design of Existing Code* (1999, with Kent Beck, John Brant, William Opdyke, and Don Roberts; 2nd ed 2018, with Kent Beck), and of *Patterns of Enterprise Application Architecture* (2002), *Analysis Patterns* (1996), *UML Distilled* (multiple editions), *Domain-Specific Languages* (2010, with Rebecca Parsons), *NoSQL Distilled* (2012, with Pramod Sadalage), and co-author of *Planning Extreme Programming* (2000, with Kent Beck). He wrote the forewords to Eric Evans's *Domain-Driven Design* and Jez Humble and Dave Farley's *Continuous Delivery*.
 
-He has written a bliki (a hybrid of blog and wiki) at `martinfowler.com` since 2003. Ward Cunningham gave his version the name, and by Fowler's own account the word and the form were already in use elsewhere; the site itself started as a home for articles he had written for other purposes. The bliki is itself part of the corpus, not paratext; he uses it as the medium through which his thinking evolves publicly, marking entries with maturity badges (`growing`, `stable`) so readers can tell whether he is still figuring something out or has settled.
+He has written a bliki (a hybrid of blog and wiki) at `martinfowler.com` since 2003. Ward Cunningham gave his version the name, and by Fowler's own account the word and the form were already in use elsewhere; the site itself started as a home for articles he had written for other purposes. The bliki is itself part of the corpus, not paratext; he uses it as the medium through which his thinking evolves publicly.
 
 He retired from speaking in 2021 and still writes for and edits `martinfowler.com`.
 
@@ -42,22 +42,22 @@ He has spent twenty-five years arguing this six different ways. The economic arg
 - ***Continuous Integration*, 2000 article, rewritten 2006 and revised 2024.** Fowler credits the practice to Kent Beck, who "defined the practice" within Extreme Programming in the 1990s.
 - ***Microservices*, 2014 article with James Lewis.** Followed in 2015 by Fowler's bliki entries Microservice Premium, aimed at teams "too eager to embrace microservices", and Monolith First. Neither entry calls itself a correction of the article.
 - ***Domain-Specific Languages*, 2010.** With Rebecca Parsons.
-- **Named, or carried with the originators credited**: strangler fig application (his name and metaphor, for a practice his 2004 post credits to a project Chris Stevenson was involved in), the technical debt quadrant (his division of Ward Cunningham's metaphor), the bliki (named by Cunningham), code smell (coined by Kent Beck), and the inverse Conway maneuver (coined by Jonny LeRoy and Matt Simons; Fowler sets it out as one of three responses to Conway's Law).
+- **Named, or carried with the originators credited**: strangler fig application (his name and metaphor, for a practice his 2004 post credits to a project Chris Stevenson was involved in), the technical debt quadrant (his division of Ward Cunningham's metaphor), the bliki (named by Cunningham), code smell (coined by Kent Beck), the test pyramid (Mike Cohn's, from *Succeeding with Agile*, 2009; Fowler's 2012 bliki entry describes it, and the etymology he added in 2017 credits Cohn, notes that Cohn first drew it in conversation with Lisa Crispin, and says Jason Huggins reached the same idea independently), branch by abstraction (a technique Fowler says "has been around for a long time"; Paul Hammant introduced the name while arguing for trunk-based development, and Fowler reports that Hammant credits Stacy Curl with "originally coming up with it"), and the inverse Conway maneuver (coined by Jonny LeRoy and Matt Simons; Fowler sets it out as one of three responses to Conway's Law).
 - **Chief Scientist at ThoughtWorks** since 2000.
 
 ## What he is not
 
 He is not a methodology evangelist in the sense of having a branded process he sells. In his words he has "mostly avoided any business leadership responsibilities", and he has served on Thoughtworks's primary global leadership team since 2017. He does not write production code for a living, though he has and still does.
 
-He has been careful, across his entire career, to attribute the ideas he carries: Kent Beck for continuous integration, code smell and TDD, William Opdyke and the Smalltalk community for refactoring, Ward Cunningham for tech debt and wiki, Christopher Alexander for the pattern-language form, the Gang of Four for the pattern catalog form, Eric Evans for domain-driven design, James Lewis for the microservices definition, Greg Young for CQRS, Jez Humble and Dave Farley for continuous delivery. Reading him without reading them is reading half a conversation.
+He has been careful, across his entire career, to attribute the ideas he carries: Kent Beck for continuous integration, code smell and TDD, William Opdyke and the Smalltalk community for refactoring, Ward Cunningham for tech debt and wiki, Christopher Alexander for the pattern-language form, the Gang of Four for the structured pattern form of the book that, in his words, "really launched patterns into the software world", Eric Evans for domain-driven design, the architects who discussed the term microservice at a 2011 workshop near Venice and settled on the name in 2012 (in the article he wrote with James Lewis, which also names Lewis, Fred George, Adrian Cockcroft and others for early work on the style), Greg Young for CQRS, Jez Humble and Dave Farley for continuous delivery. Reading him without reading them is reading half a conversation.
 
 The discipline of attribution is itself one of his arguments, not a politeness. Software thinking, in his frame, is a public conversation across generations. Carrying an idea forward without obscuring its origin is part of the work.
 
 ## Where to find him
 
 - **`martinfowler.com`**: the canonical hub. Everything he writes lives here.
-- **`martinfowler.com/bliki/`**: the bliki itself, with maturity badges and public revision history. The entry index is alphabetical; start with `StranglerFigApplication`, `BoundedContext`, `FeatureFlag` (formerly `FeatureToggle`), or `TechnicalDebtQuadrant`.
-- **`martinfowler.com/articles/`**: the long-form work. *Is High Quality Software Worth the Cost?* (2019), *Microservices* (2014), *Continuous Integration* (2000, rewritten 2006), *Mocks Aren't Stubs* (2007) are the load-bearing ones.
+- **`martinfowler.com/bliki/`**: the bliki itself, with public revision history. The entry index is alphabetical; start with `StranglerFigApplication`, `BoundedContext`, `FeatureFlag` (formerly `FeatureToggle`), or `TechnicalDebtQuadrant`.
+- **`martinfowler.com/articles/`**: the long-form work. *Is High Quality Software Worth the Cost?* (2019), *Microservices* (2014), *Continuous Integration* (2000, rewritten 2006), *Mocks Aren't Stubs* (2004, revised 2007) are the load-bearing ones.
 - **`martinfowler.com/books/`**: bibliography with links to every book.
 - **`martinfowler.com/talks/`**: keynote video links.
 - **`thoughtworks.com`**: his employer.

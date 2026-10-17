@@ -22,7 +22,7 @@ inclusion_rationale: >
 thinker_type: mixed
 doctrine_mode: mode-a
 has_long_read: false
-last_updated: 2026-10-15
+last_updated: 2026-10-16
 
 tagline: The engineering leader who wrote the field guide to the management career, then co-wrote one for internal platforms.
 thirty_second_take: >
@@ -48,9 +48,8 @@ background: >
   ladders with a clear split between management and individual-contributor
   levels and detailed expectations at each level. She spent more than five
   years as head of platform engineering at Two Sigma, then joined JPMorgan
-  Chase in 2022 as a
-  managing director and global head of engineering and architecture for the
-  Corporate & Investment Bank. She now leads common services engineering at
+  Chase in 2022, where she was a managing director and global head of
+  engineering and architecture for the Corporate & Investment Bank. She now leads common services engineering at
   CoreWeave. Along the way she was a committer and PMC member on Apache
   ZooKeeper and a founding member of the CNCF Technical Oversight Committee. The
   trajectory matters: the management book was written by someone still managing,
@@ -90,6 +89,9 @@ named_frames:
       each step a job description.
     attribution_kind: popularized
     primary_author: camille-fournier
+    co_originators:
+      - slug: ram-charan
+        role: '*The Leadership Pipeline* (2001, with Stephen Drotter and James Noel): an earlier general-management model of six transitions, each needing new skills; no located source shows *The Manager''s Path* draws on it'
     source_link: https://www.oreilly.com/library/view/the-managers-path/9781491973882/
     render_tier: foreground
   - concept_slug: tech-lead-as-role
@@ -136,12 +138,15 @@ named_frames:
     one_line_gloss: >
       The book's term for integration code, one-off automation, configuration,
       and management tooling that holds unintegrated building blocks together.
-      Glue gets systems working and makes every later change harder.
+      Glue gets systems working and makes every later change harder. For the
+      human sense, glue work, the book credits Tanya Reilly.
     attribution_kind: co-authored
     primary_author: camille-fournier
     co_originators:
       - slug: ian-nowland
         role: co-author, *Platform Engineering* (2024)
+      - slug: tanya-reilly
+        role: '"Being Glue" (talk and blog post): the human sense of glue work, which the book credits in chapter 13'
     source_link: https://www.oreilly.com/library/view/platform-engineering/9781098153632/
     render_tier: foreground
   - concept_slug: shadow-platforms
@@ -206,9 +211,11 @@ named_frames:
       technical tracks, as a tool for transparency and fairer promotion.
       Fournier describes her 2015 Rent the Runway ladder as one of the first
       public ladders to draw that distinction and spell out what each level
-      requires.
+      requires. The two-track split itself is older: research on engineers
+      was already studying the dual ladder by 1989.
     attribution_kind: popularized
     primary_author: camille-fournier
+    derived_from: dual-ladder
     source_link: https://skamille.medium.com/10-years-of-engineering-ladders-329d309000cd
     render_tier: deep
 

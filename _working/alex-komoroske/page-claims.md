@@ -16,12 +16,16 @@ Audited 2026-10-15 (independent pass): every mapped field was re-read against it
 
 Remediated 2026-10-15 (claim-delta pass, `claim-delta-2026-10.md`): each of the twelve fields was corrected, narrowed or deleted to what the lines below support, and every one is now mapped. `adjacent_thinkers[0]` (Fred Brooks) is now a `parallel` edge, labelled as the site's reading, so the gate no longer requires a line for it; the lines that bound it are noted beside it for the record. The old `body_of_work[2]` (the "Bramble / Slime Mold Essay") was deleted, so the old `body_of_work[3]` and `[4]` are now `[2]` and `[3]`. Two `co_originators` were added to `named_frames[3]` as part of correcting its attribution from `original`; `named_frames[0]` lost its Brooks co-originator.
 
+Sourcing pass 2026-10-16 (`sourcing-delta-2026-10.md`): the two frames that named no originator now do. `named_frames[0]` (coordination headwind) credits Fred Brooks and V. A. Graicunas as earlier holders of the headcount-scaling part, on the antecedent search S:35; `named_frames[4]` (heroics as a symptom) credits Mark Paulk, first author of the 1993 SEI report, on the search S:37 and the report itself, S:38. Both roles say whether Komoroske drew on the earlier work is unrecorded. `adjacent_thinkers[3]` (Senge, `parallel`) needs no line; S:42 is mapped because its label now states a search result. Fields outside the gate that this pass lowered, with their lines: `inclusion_rationale` and `why_they_matter_as_a_thinker` (S:15, S:43), `thesis` (S:4, S:40, S:41), `named_frames[1].one_line_gloss` and `limits[0]` (S:40). In the long read, the heroics paragraph rests on S:39, the "mostly invisible" sentence on S:41, and the slime-mold challenges sentence and the "eventual convergence" clause on S:40.
+
 Interpretation is not listed here. The Editorial Reading has its own map in `reading-claims.md`.
 
 - active_years [S:22] [S:20]
 - background [S:3] [S:24] [S:21] [S:2] [S:20]
 
-- named_frames[0].attribution [S:4] [S:9] [S:12] [S:13] [S:34]
+- named_frames[0].attribution [S:4] [S:9] [S:12] [S:13] [S:34] [S:35]
+- named_frames[0].co_originators[0] [S:12] [S:35]
+- named_frames[0].co_originators[1] [S:36] [S:35]
 - named_frames[1].attribution [S:5] [S:15]
 - named_frames[1].co_originators[0] [S:14] [S:6] [S:32]
 - named_frames[2].attribution [S:9] [S:10] [S:11]
@@ -29,13 +33,15 @@ Interpretation is not listed here. The Editorial Reading has its own map in `rea
 - named_frames[3].attribution [S:8] [S:21] [S:34] [S:26] [S:27]
 - named_frames[3].co_originators[0] [S:26] [S:34]
 - named_frames[3].co_originators[1] [S:27] [S:34]
-- named_frames[4].attribution [S:7] [S:34] [S:28] [S:29]
+- named_frames[4].attribution [S:7] [S:34] [S:28] [S:29] [S:37] [S:38]
+- named_frames[4].co_originators[0] [S:38] [S:37]
 - named_frames[5].attribution [S:16] [S:21] [S:17] [S:18]
 - named_frames[5].co_originators[0] [S:17] [S:18] [S:33]
 - named_frames[5].co_originators[1] [S:18]
 
 - adjacent_thinkers[1] [S:10] [S:11]
 - adjacent_thinkers[4] [S:16] [S:17] [S:18] [S:33]
+- adjacent_thinkers[3] [S:42]
 
 (`adjacent_thinkers[0]`, Fred Brooks, is `parallel` and needs no line. Its label rests on S:12 for Brooks's 1975 observation, S:1 for the route Komoroske gives for his own argument, and S:4, S:9 and S:13 for the absence of any mention of Brooks in the deck and the Schelling-points essay; S:34 finds none in the notes as fetched, which the label no longer states because that view may be partial.)
 
@@ -43,3 +49,11 @@ Interpretation is not listed here. The Editorial Reading has its own map in `rea
 - body_of_work[1] [S:9] [S:25]
 - body_of_work[2] [S:21]
 - body_of_work[3] [S:2] [S:30]
+
+Outside the gate, mapped for the record (2026-10-16):
+
+- inclusion_rationale [S:15] [S:43] [S:9]
+- why_they_matter_as_a_thinker [S:4] [S:10] [S:11] [S:16] [S:17] [S:43]
+- thesis [S:4] [S:40] [S:41]
+- named_frames[1].one_line_gloss [S:40]
+- limits[0] [S:40]

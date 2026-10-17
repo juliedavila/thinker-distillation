@@ -18,3 +18,5 @@ One line per sentence of `reading` and `extension`, each with the grounding-pack
 - Where that team exists, the question is who pays: when it absorbs the cost of a migration, such as moving every service to a new secrets manager, adoption depends less on each team's spare capacity. [F:centralizing-migration-costs]
 - An application team that builds its own scanner shows where the supported path fell short, and the book advises staying aware of such shadow platforms, which in security means knowing what each one can reach. [F:shadow-platforms]
 - A curated security platform earns adoption when it makes the secure path cheaper than the alternative, the same test the book applies to any platform. [F:platform-as-product] [P:2]
+
+Sourcing pass of 2026-10-16: no sentence of `reading` or `extension` changed. The glue, manager's path and public ladder frame edits (`sourcing-delta-2026-10.md`) add credits to all three and a gloss sentence to glue and the public ladder only (corrected in review, 2026-10-16: the manager's path gloss is unchanged), and no reading sentence above claims origination for those frames, so every line stands as written.

@@ -122,9 +122,9 @@ named_frames:
       The fields worth keeping are the ones with many distinct values: user id,
       build id, feature flag, request id. Those are the fields that identify
       which request broke, and the ones metrics tooling drops first because
-      they are expensive to index. Cardinality is an older database term she
-      applied to telemetry design.
-    attribution_kind: extended
+      they are expensive to index. Cardinality is an older database term, and
+      telemetry stores were already using it for fields to avoid indexing before Honeycomb was founded. The frame is filed as shared credit: the term and the warning against such fields came first, and the argument for keeping them is the turn her page records.
+    attribution_kind: community
     primary_author: charity-majors
     source_link: https://www.honeycomb.io/blog/time-to-version-observability-signs-point-to-yes
     render_tier: foreground
@@ -148,10 +148,17 @@ named_frames:
       Staging environments cannot reproduce production, so the honest response
       is to build the guardrails that make testing against real traffic safe:
       feature flags, progressive deployment and instrumentation. The practice
-      predates her; her talk made the argument a position engineers could
-      defend out loud.
+      and the case for it predate her. In 2009 Seth Eliot was arguing on his
+      Microsoft blog for Testing in Production (TiP), because the environment
+      a service runs in "is impossible to model in the lab," and in 2011 he
+      called it "a good thing," with examples from Facebook, Amazon, Google
+      and Microsoft. Her 2018 talk rests on the same point about staging:
+      trying to mirror it to production is, in her words, "a fool's errand."
     attribution_kind: popularized
     primary_author: charity-majors
+    co_originators:
+      - slug: seth-eliot
+        role: argued for Testing in Production (TiP) on his Microsoft blog from 2009, summarising a Microsoft ThinkWeek paper he co-wrote with Ken Johnston and Ravi Vedula
     source_link: https://www.infoq.com/presentations/testing-production-2018/
     render_tier: foreground
   - concept_slug: engineer-manager-pendulum

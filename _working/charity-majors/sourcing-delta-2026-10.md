@@ -1,0 +1,55 @@
+# Charity Majors: sourcing delta, 2026-10
+
+Sourcing pass on the two frames the build flagged as naming no originator. Searches are recorded on the ledger as `[S:13]` (test in production) and `[S:14]` (high cardinality). Fetched copies are under `_working/charity-majors/src/`.
+
+**Outcomes.** Test in production: an earlier holder was found (path a), Seth Eliot, who argued for Testing in Production (TiP) on his Microsoft blog from 2009 (2011 in the pass; moved to 2009 in review), and he is added to `co_originators`. High cardinality: no earlier holder of the frame was found, but the search found that the term was already in telemetry use before Honeycomb, so the priority clause in the gloss is removed and the kind stays `extended` (path c). The page names no one for that frame, so the build still prints its warning. Refiling it `original` was not supported: `[S:14]` searched one index, and Majors credits Scuba with the capability herself `[S:6]`.
+
+| field | before | after | SAME / NARROWED / CORRECTED / ADDITION / Deletion | supporting [S:n] |
+|---|---|---|---|---|
+| `named_frames[2].one_line_gloss`, last sentence (first half) | "Cardinality is an older database term she applied to telemetry design." (credits her with bringing the term into telemetry design) | "Cardinality is an older database term" (no claim about who applied it to telemetry) | CORRECTED (priority clause removed: the term was in telemetry use before 2016) | [S:14] |
+| `named_frames[2].one_line_gloss`, last sentence (second half) | (none) | "and telemetry stores were already using it for fields to avoid indexing before Honeycomb was founded." | ADDITION (new sourced proposition: pre-2016 telemetry use of the term, as a cost) | [S:14] [S:2] |
+| `named_frames[2].attribution_kind` | extended | extended | SAME (path c: origin suspected in Scuba by her own credit, not sourced in the paper) | [S:14] [S:6] |
+| `named_frames[4].one_line_gloss`, "predates" clause | "The practice predates her" | "The practice and the case for it predate her." | ADDITION (widened from the practice to the public argument for it) | [S:13] [S:15] |
+| `named_frames[4].one_line_gloss`, uptake clause | "her talk made the argument a position engineers could defend out loud." | (removed) | Deletion (unsourced effect claim; [S:13] shows the argument was made in public, at Microsoft, in 2011) | [S:13] |
+| `named_frames[4].one_line_gloss`, Eliot sentence | (none) | "In 2009 Seth Eliot was arguing on his Microsoft blog for Testing in Production (TiP), because the environment a service runs in \"is impossible to model in the lab,\" and in 2011 he called it \"a good thing,\" with examples from Facebook, Amazon, Google and Microsoft." (pass version: "in 2011 Seth Eliot was describing Testing in Production (TiP) on his Microsoft blog as a legitimate practice, with examples from Facebook, Amazon, Google and Microsoft.") | ADDITION (newly credited person; review moved the start to 2009 and added his stated reason, both read at source) | [S:13] [S:15] |
+| `named_frames[4].one_line_gloss`, talk sentence | (none in this field; the line is on the page at `body_of_work[3]`) | "Her 2018 talk rests on the same point about staging: trying to mirror it to production is, in her words, \"a fool's errand.\"" (pass version: "Her 2018 talk argues from staging: ...") | ADDITION (restates `body_of_work[3]` inside the gloss, and, since review, says her staging point is the one Eliot made in 2009) | [S:9] [S:15] |
+| `named_frames[4].co_originators` | (none) | `seth-eliot`, role "argued for Testing in Production (TiP) on his Microsoft blog from 2009, summarising a Microsoft ThinkWeek paper he co-wrote with Ken Johnston and Ravi Vedula" (pass version: "... as a legitimate practice on his Microsoft blog (2011)") | ADDITION (newly credited person; review added the 2009 start and the paper's co-authors) | [S:13] [S:15] |
+| `named_frames[4].attribution_kind` | popularized | popularized | SAME | [S:13] |
+| `facts.md` | 12 lines | adds `[S:13]`, `[S:14]` and (in review) `[S:15]`, all dated 2026-10-16 and marked re-verified 2026-10-16; review also amended `[S:13]` and `[S:14]` (see Review) | ADDITION (ledger) | [S:13] [S:14] [S:15] |
+| `page-claims.md` | `named_frames[2].attribution [S:8] [S:5]`; `named_frames[4].attribution [S:9]` | adds `[S:14]` to the first, `[S:13] [S:15]` to the second, and a new row `named_frames[4].co_originators[0] [S:13] [S:15]` (`[S:15]` added in review) | SAME (citation bookkeeping) | [S:13] [S:14] |
+| `grounding-pack.md`, `[F:high-cardinality]` and `[F:test-in-production]` | the old glosses | edited by hand to match the new glosses, plus "with seth-eliot" on the second (not regenerated, so the other IDs the reading cites stay stable) | SAME (carrier sync; review re-synced `[F:test-in-production]` to the review gloss) | [S:13] [S:14] [S:15] |
+| `reading-claims.md` | (unchanged) | (unchanged): no reading or extension sentence rests on either changed clause; "staging cannot reproduce production" is unchanged | SAME | none |
+
+## What each search bounds
+
+- `[S:13]` tested the practice and the public argument for it, on Hacker News before 2018-11-01, plus Eliot's own post. It did not test her staging line as a phrase. Eliot's earlier TiP post "Feeling TiPsy" is linked from the 2011 post; the pass did not read its date, so the pass said 2011. Review read it at source (2009-12-14) and filed it as `[S:15]`.
+- `[S:14]` tested whether "high cardinality" was a telemetry term before 2016 (it was, as a cost to avoid) and whether the Scuba paper uses the word (it does not). It did not test her inversion against any index besides Hacker News, so it cannot support an `original` filing.
+
+## Carriers checked
+
+`rg -i "test(ing)? in production|cardinality|defend out loud"` across this page, its working files, and the eight pages that link here. Other carriers on this page (`thesis`, `inclusion_rationale`, `reading`, `body_of_work[3]`) make no firstness claim for either frame and are unchanged. `why_they_matter_as_a_thinker` says her test "put cardinality ... at the center of what a telemetry system is for", which is an effect claim with no source; it is outside this pass's two frames and is flagged for Julie. No other page carries either changed clause.
+
+## Review, 2026-10-16
+
+An independent check of the pass above, done from the fetched copies under `_working/charity-majors/src/` plus three pages fetched in review (`review-seliot-tipsy.html`, `review-seliot-index.html`, `review-opensource-2017-testing-production.html`). Every page change in the diff against `origin/main` has a row in the table, and every row matched the diff before the review edits.
+
+**What held.** `[S:13]`: the two Hacker News files return 66 and 33 hits under the stated bound; the 2011-09-07 submission of Eliot's post, the 2015-12-03 "Risk vs. Reward" submission, the 2017-08-17 submission and the 2018-03 LaunchDarkly threads are all present. The 2011 post opens with the quoted line, describes A/B testing, ramped deployment under exposure control and shadowing, gives Facebook, Amazon, Google and Microsoft examples, carries the archive date 2011-06-07, and links "Feeling TiPsy". `[S:14]`: 17 hits before 2016 and 72 before 2020, the ELK, InfluxDB and Elasticsearch comments are as quoted, the 2018-08-08 "Charity" summary is as quoted, and the Scuba text has no "cardinality" and does call breaking data down "along multiple dimensions in an ad hoc manner" crucial. The high-cardinality gloss change is supported, and keeping it `extended` rather than refiling it `original` is right: the search bounds one index and her own credit to Scuba [S:6] stands against firstness.
+
+**What review changed.**
+
+1. *Eliot's start date was understated.* The pass left "Feeling TiPsy" undated and said 2011. Read at source, it is dated 2009-12-14, says TiP is a topic he hopes "to return to many times in this blog", and sums up a TiP ThinkWeek paper he co-wrote with Ken Johnston and Ravi Vedula: test services "in the real world" because the environment "is impossible to model in the lab." Saying 2011 softened the record below its source, so the gloss and the `co_originators` role now say 2009, filed as new fact `[S:15]`. The role names the paper's co-authors so the page does not present Eliot as the argument's only holder; neither co-author is added as a co-originator, because their own writing was not read.
+2. *The talk sentence implied a contrast the record does not support.* "Her 2018 talk argues from staging", placed after the Eliot sentence, read as the staging argument being hers. Eliot made the same point in 2009, so the sentence now says her talk "rests on the same point about staging". This is a new proposition (that the two arguments match), filed ADDITION on `[S:9]` and `[S:15]`, which quote the two arguments side by side. The rewrite also removes "argues from staging", which needed a second read.
+3. *The positive control for `[S:13]` was her own article.* The 2017-08-17 submission is Majors's opensource.com piece "Testing in production: Yes, you can (and should)" (bylined "Charity", 2017-08-15). The `[S:13]` line now says so, which strengthens the bound: the index would have shown an earlier public argument of hers. "Her 2018 talk" on the page is still accurate, since the talk is the frame's source; her public case dates from at least 2017.
+4. *One `[S:14]` quotation was filed under the wrong heading.* The 2015-11-13 Elasticsearch comment calls a store suited to high-cardinality dimensions; it does not treat them as a cost to avoid. The ledger line now files it separately and adds the InfluxDB commenter's "not suitable". The page clause rests on the ELK and InfluxDB comments, so it is unchanged.
+
+**Section 8.** The Eliot sentences state what he wrote and when, attributed, with no judgment of anyone; the role shares credit with his co-authors. No fact was softened in the review version. Nothing in the review edits adds a proposition beyond the rows marked ADDITION.
+
+**Checks after review.** `bun scripts/fact-ledger.ts charity-majors` and `bun scripts/reading-gates.ts charity-majors` both exit 0; the page, `facts.md` and this file carry no em-dashes. Still open for Julie, unchanged by review: the unsourced effect claim in `why_they_matter_as_a_thinker` flagged above.
+
+## Julie's direction, 2026-10-17
+
+Frames with no person to credit are filed as shared credit (`community`), with the gloss saying why.
+
+| field | before | after | class | supporting |
+|---|---|---|---|---|
+| named_frames[2].attribution_kind and gloss | `extended`, no originator to name | `community`, plus "The frame is filed as shared credit: the term and the warning against such fields came first, and the argument for keeping them is the turn her page records." | NARROWED (restates the gloss and this pass's search line) | this pass's antecedent-search line |

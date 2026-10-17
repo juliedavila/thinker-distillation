@@ -4,6 +4,8 @@ Protocol v1. One line per sentence of `reading` and `extension`, each with the g
 
 Revised 2026-10-15 in the claim-delta pass (`claim-delta-2026-10.md`): the Brooks lineage sentence was deleted, the leadership-stance and heroics sentences were corrected to the deck (builder, not architect; heroics as a symptom, per facts S:7 and S:8), and the extension says "builds" for the second stance. The grounding pack predates the pass (2026-09-16), so its `[F:gardener-vs-builder]` and `[F:heroics-as-a-symptom]` text still carries the old glosses; the IDs are unchanged and will carry the new text once the pack is regenerated.
 
+Checked 2026-10-16 in the sourcing pass (`sourcing-delta-2026-10.md`): no sentence of `reading` or `extension` changed. The `thesis` that `[T:thesis]` points to was lowered in two clauses ("grows faster than they expect, sooner than they expect" became "grows super-linearly and stays mostly invisible", facts S:4 and S:41; "trust that recovery time ... is faster than freeze-up time" became "aim for eventual convergence, because in a complex environment a top-down approach is brittle", S:40). The first reading sentence ("a cost most organizations never see") is consistent with both. The heroics sentence rests on the deck (S:7), which the new co-originator on that frame (S:38) does not change.
+
 ## reading
 
 - Komoroske's central claim is that coordination has a cost most organizations never see: every decision depends on agreements, and the drag of those agreements grows faster than headcount. [F:coordination-headwind] [T:thesis]

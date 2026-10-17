@@ -18,7 +18,7 @@ inclusion_rationale: >
 thinker_type: mixed
 doctrine_mode: mode-c
 has_long_read: false
-last_updated: 2026-10-15
+last_updated: 2026-10-17
 
 tagline: The translator who carried resilience engineering from an academic field into the working ops vocabulary the industry uses to learn from incidents.
 thirty_second_take: >
@@ -177,6 +177,14 @@ body_of_work:
     link: https://www.adaptivecapacitylabs.com
     editorial_note: >
       The ongoing corpus: posts and talks on incident analysis.
+  - title: 'The Art of Capacity Planning'
+    type: book
+    year: 2008
+    link: https://www.oreilly.com/catalog/9780596518578/
+    editorial_note: >
+      Published by O'Reilly, which described it as a practical guide to
+      planning web infrastructure for growth. Operations at scale, before
+      the resilience-engineering turn.
 
 reading: >
   Allspaw treats an incident as a sample of how a system really operates,
@@ -302,7 +310,14 @@ adjacent_thinkers:
     display_name: Nicole Forsgren
     edge_type: parallel
     edge_label: >
-      DORA's time to restore and resilience engineering converge on the same property from different methods: how fast a team recovers.
+      DORA measures recovery by its duration: failed deployment recovery
+      time, which replaced MTTR, is "the time it takes to recover from a
+      deployment that fails and requires immediate intervention." Allspaw's
+      2018 post on incident data, which does not mention DORA, counts
+      time-to-resolve among the measures that yield "very little insight":
+      "Two incidents of the same length can have dramatically different
+      levels of surprise and uncertainty." DORA counts how long recovery
+      takes; the post asks what an incident's length leaves out.
     strength: secondary
   - target_slug: charity-majors
     display_name: Charity Majors

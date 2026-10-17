@@ -155,8 +155,8 @@ named_frames:
     display_name: The bliki
     one_line_gloss: >
       A hybrid of blog and wiki: write up an idea while figuring it out,
-      post it publicly, keep revising, mark the maturity (`growing`,
-      `stable`), attribute origins. The form Fowler's argument evolves in.
+      post it publicly, keep revising, attribute origins. The form
+      Fowler's argument evolves in.
       Ward Cunningham named Fowler's version in 2003, and by Fowler's own
       account the word and the form were already in use elsewhere.
     attribution_kind: distributed
@@ -302,18 +302,28 @@ limits:
   - headline: The catalog form can become an end in itself
     severity: structural
     elaboration: >
-      Joshua Kerievsky's *Refactoring to Patterns* is both extension and
-      pointed critique: mechanical refactoring without a pattern-target can
-      produce code that is cleaner-but-not-better. The 2nd edition of
-      *Refactoring* (2018) responds, but the critique is live: a named move
-      with no design destination is still motion without direction.
-  - headline: The test pyramid is a heuristic, not a law
+      Joshua Kerievsky's *Refactoring to Patterns* (2004), published in
+      Fowler's own signature series with a foreword by him, builds
+      "pattern-directed refactorings": sequences of low-level refactorings
+      that move a design "to, towards, or away from pattern
+      implementations". The site reads that pairing as pointing at a gap in
+      the catalog form, which names how to change code and leaves the reader
+      to supply where the design should end up. A named move with no design
+      destination is still motion without direction.
+  - headline: Rival test shapes dispute the pyramid's balance
     severity: local
     elaboration: >
-      Vladimir Khorikov, Sam Newman and others argue strict pyramid orthodoxy
-      can starve integration testing where the actual bugs live. Treat the
-      pyramid as the *shape* of a reasonable starting place, not as the
-      answer to where test effort belongs.
+      Fowler's bliki entry on the test pyramid (2012, etymology added 2017)
+      credits it to Mike Cohn, who described it in *Succeeding with Agile*
+      (2009) after first drawing it in conversation with Lisa Crispin, and
+      notes that Jason Huggins reached the same idea independently. In 2021
+      Fowler answered the honeycomb and trophy shapes, which call for few unit
+      tests and mostly integration tests, by arguing that the dispute turns on
+      what each side means by "unit test", and he quoted Justin Searls that
+      debating the percentages is "a distraction". The entry's further
+      reading now mentions writers who prefer "more integration tests and few
+      unit tests" and links to that 2021 article. Treat the pyramid as a reasonable starting shape, and ask what each
+      side means by its terms before weighing their ratios.
   - headline: The discipline-of-attribution scales unevenly to the security world
     severity: local
     elaboration: >
@@ -327,7 +337,7 @@ limits:
 still_load_bearing_despite: >
   The cartographer move is the most under-acknowledged contribution of the
   Fowler corpus. Even with the open question over the 2014 microservices
-  article, even with the test-pyramid orthodoxy risk, even with the
+  article, even with the dispute over the test pyramid's shape, even with the
   catalog-as-end-in-itself failure mode. Turning tacit design knowledge into
   named, attributed, debatable distinctions is what makes engineering practice
   transmissible across companies, generations, and disciplines. That doesn't
@@ -339,9 +349,8 @@ adjacent_thinkers:
     edge_type: extends
     edge_label: >
       The deepest collaborator. Credited on both editions of *Refactoring*,
-      defined TDD, coined code smell while helping with that book,
-      contributed the two-hat rule and the
-      "make the change easy" motto. Most of what Fowler argues, he argues
+      defined TDD, coined code smell while helping with that book, and
+      contributed the "make the change easy" motto. Most of what Fowler argues, he argues
       alongside Beck.
     strength: primary
   - target_slug: ward-cunningham

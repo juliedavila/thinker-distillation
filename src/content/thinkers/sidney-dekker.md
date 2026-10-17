@@ -10,18 +10,18 @@ primary_domains:
 status: alive-active
 inclusion_rationale: >
   Extended the *new view of human error*, the argument that human
-  error is a symptom, not a cause, and carried it into the vocabulary
-  that aviation, medicine, and (via Allspaw and others) software ops
-  actually use. Author of *The Field Guide to Understanding Human
+  error is a symptom, not a cause, and wrote it up as field guides for
+  investigators. One reader, John Allspaw, calls the 2014 edition
+  required reading in software and Internet engineering. Author of *The Field Guide to Understanding Human
   Error*, *Drift Into Failure*, *Just Culture*, and *Safety
   Differently*. Over three decades of consistent body of work, multiple
   frames practitioners actively use.
 thinker_type: book-author
 doctrine_mode: mode-c
 has_long_read: false
-last_updated: 2026-10-15
+last_updated: 2026-10-17
 
-tagline: The safety-science writer who replaced "find the human, fix the human" with "the system created the conditions for the human to fail."
+tagline: The safety-science writer whose field guides set the new view of human error, error as a symptom of trouble deeper in the system, against the old view that makes it the cause.
 thirty_second_take: >
   Dekker extended the new view of human error, which his 2002 paper
   presents as an existing movement, citing Woods, Rasmussen, Reason and
@@ -41,14 +41,13 @@ background: >
   airline pilot out of Copenhagen. Author of more than a dozen books
   since 2002.
 why_they_matter_as_a_thinker: >
-  Most engineering organizations that say "blameless" don't realize
-  they are speaking Dekker. Investigators in aviation, surgeons running mortality conferences,
-  software-ops engineers running incident reviews: when they reach
-  for a vocabulary that lets them honor the operator's experience
-  while still asking hard questions about the system, they are
-  reaching for Dekker. The carry is broad enough that it now reads
-  as common sense; the carry happened because Dekker spent twenty
-  years doing it.
+  Dekker's field guides are written for the people who run
+  investigations. The first, in 2002, was a guide to human error
+  investigations, and the 2014 edition sets out to help its readers
+  "do better investigations". John Allspaw is one reader who took
+  Dekker's vocabulary into software operations, and his endorsement
+  of that edition calls it required reading "in my domain of software
+  and Internet engineering".
 
 thesis: >
   Treat human error as a *consequence*, not a cause. The investigator's
@@ -261,13 +260,11 @@ limits:
       no story for getting management to want what the framework wants.
 
 still_load_bearing_despite: >
-  *The Field Guide to Understanding
-  Human Error* is the manual that anyone running real incident
-  investigations, across aviation, medicine, or software, keeps
-  coming back to. Every "blameless postmortem" in the software
-  industry is downstream of a chain that runs through Dekker. The
-  vocabulary moved because the prose was clear and the argument was
-  right; both still are.
+  *The Field Guide to Understanding Human Error* is a working manual
+  for investigators. Its 2014 third edition reads as a checklist for
+  an incident review, chapter by chapter: the Bad Apple Theory, the
+  hindsight bias, putting data in context, cause as something you
+  construct. The argument holds up under the limits above.
 
 adjacent_thinkers:
   - target_slug: david-woods
@@ -282,13 +279,14 @@ adjacent_thinkers:
     display_name: John Allspaw
     edge_type: extends
     edge_label: >
-      The most successful carrier of the just-culture / new-view
-      tradition into software operations. Allspaw's 2015 Lund master's
-      thesis in Human Factors and System Safety, supervised by Anthony
-      Smoker and Johan Bergström, thanks Dekker for "his encouragement,
-      patience, and 'thrown in the deep end' approach".
-      The blameless-postmortem move is Dekker's just-culture argument
-      translated for engineering practice.
+      Allspaw carried the new view into software operations. His 2012
+      Etsy post "Blameless PostMortems and a Just Culture" sets aside
+      what "Sidney Dekker calls the 'Bad Apple Theory'", and draws as
+      well on Erik Hollnagel, and on *Behind Human Error* for its first
+      and second stories. Allspaw's 2015 Lund master's thesis in Human
+      Factors and System Safety, supervised by Anthony Smoker and Johan
+      Bergström, thanks Dekker for "his encouragement, patience, and
+      'thrown in the deep end' approach".
     strength: primary
   - target_slug: james-reason
     display_name: James Reason

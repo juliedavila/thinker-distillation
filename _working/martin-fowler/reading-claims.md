@@ -21,3 +21,5 @@ Remediation pass 2026-10-15: sentence 3 of `reading` narrowed ("name the moves" 
 - A trust boundary placed at the same seam as a bounded context gives a security team a concrete place to enforce authority at the infrastructure layer. [P:3] [F:bounded-context]
 - The placement secures nothing until enforcement is wired to it, since a named boundary with nothing behind it is only a label. [P:3] [L:2]
 - Security vocabulary drifts faster and is more vendor-driven than design vocabulary, so the naming discipline has to be kept on purpose. [L:4]
+
+Sourcing pass 2026-10-17: `reading` and `extension` unchanged. The grounding pack was regenerated, so [L:2] (Kerievsky limit), [L:3] (test pyramid limit), [F:bliki] (maturity badges removed), [T:still-load-bearing] and [E:out:kent-beck] now carry the page's current text; the facts behind those limits are [S:48], [S:49] and [S:54] in `facts.md`. The extension sentence citing [L:2] still rests on that limit's closing sentence, which is unchanged.

@@ -47,3 +47,8 @@ Interpretation is not listed here. The Editorial Reading has its own map in `rea
 - adjacent_thinkers[3].edge_label [S:30] [S:28]
 - further_in.start_here [S:12]
 - further_in.then_read [S:17] [S:18] [S:28] [S:3] [S:20]
+
+## Added in the 2026-10-17 sourcing pass
+
+- body_of_work[4] [S:37] [S:1] [S:2] [S:9]
+- adjacent_thinkers[5].edge_label [S:36] [S:35]

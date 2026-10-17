@@ -27,15 +27,23 @@ ledger supports, and the four surviving fields are mapped below:
   Error* among the sources [S:12].
 - `body_of_work[4]` (the CSEL + REA talks bundle) was deleted, so the old index no longer exists.
 
+Sourcing pass on 2026-10-16 (table: `sourcing-delta-2026-10.md`): Gunderson is credited on adaptive
+capacity from the new antecedent search [S:22] and his own abstract [S:7]; Hirschhorn is credited on
+the Law of Stretched Systems from Woods's own citation [S:2] [S:23]; and three left-over claims are
+now mapped below (the resilience-engineering founding credit in `inclusion_rationale`, and the
+Allspaw and Hollnagel edges). The Hollnagel edge's last clause rests on [S:28], its 1983 paper on [S:16].
+
 Interpretation is not listed here. The Editorial Reading has its own map in `reading-claims.md`.
 
 - active_years [S:4]
 - background [S:1] [S:3] [S:4] [S:13] [S:14] [S:15] [S:20] [S:2]
 
-- named_frames[0].attribution [S:7] [S:8] [S:5]
+- named_frames[0].attribution [S:7] [S:8] [S:5] [S:22]
+- named_frames[0].co_originators[0] [S:7] [S:22]
 - named_frames[1].attribution [S:5] [S:9] [S:6]
 - named_frames[2].attribution [S:2] [S:11]
 - named_frames[2].co_originators[0] [S:2]
+- named_frames[2].co_originators[1] [S:2] [S:23]
 - named_frames[3].attribution [S:16] [S:14]
 - named_frames[3].co_originators[0] [S:14] [S:16]
 - named_frames[4].attribution [S:21] [S:17] [S:12]
@@ -47,4 +55,8 @@ Interpretation is not listed here. The Editorial Reading has its own map in `rea
 - body_of_work[2] [S:15] [S:20]
 - body_of_work[3] [S:6]
 
+- inclusion_rationale [S:24] [S:15] [S:20]
+- still_load_bearing_despite [S:6] [S:5] [S:9] [S:2] [S:11]
+- adjacent_thinkers[0] [S:26] [S:4] [S:27]
+- adjacent_thinkers[2] [S:16] [S:14] [S:25] [S:28]
 - adjacent_thinkers[4] [S:10] [S:2]

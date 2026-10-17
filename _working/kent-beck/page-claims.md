@@ -15,7 +15,8 @@ and the Councils judge the rest.
 
 ## Frames
 
-- named_frames[0].attribution [S:19] [S:11] [S:17] [S:32]
+- named_frames[0].attribution [S:19] [S:11] [S:17] [S:32] [S:68]
+- named_frames[0].derived_from [S:19] [S:68] [S:69]
 - named_frames[1].attribution [S:9] [S:3] [S:10] [S:10b]
 - named_frames[1].co_originators[0] [S:10b] [S:10]
 - named_frames[2].attribution [S:26] [S:26b]
@@ -64,7 +65,7 @@ source without rereading `sources.md`.
 - why_they_matter_as_a_thinker [S:19] [S:22] [S:23b] [S:23c] [S:26] [S:32] [S:48]
 - thesis [S:26] [S:48] [S:49]
 - working_line [S:48]
-- named_frames[0].one_line_gloss [S:19] [S:17] [S:32]
+- named_frames[0].one_line_gloss [S:19] [S:17] [S:32] [S:69]
 - named_frames[1].one_line_gloss [S:3] [S:9] [S:10] [S:10b]
 - named_frames[2].one_line_gloss [S:26] [S:26b] [S:27]
 - named_frames[3].one_line_gloss [S:48] [S:49]

@@ -103,11 +103,11 @@ named_frames:
       type the expected output tape by hand and program until the real output
       matched, says he tried it after writing the first xUnit framework in
       Smalltalk, and reports older programmers answering "Of course. How else
-      could you program?" His own word for his role is "rediscovering." The book
-      he rediscovered is named nowhere, so no slug can carry the antecedent and
-      this gloss has to.
+      could you program?" His own word for his role is "rediscovering." His
+      account does not name the book.
     attribution_kind: extended
     primary_author: kent-beck
+    derived_from: test-first-development
     source_link: https://www.informit.com/store/test-driven-development-by-example-9780321146533
   - concept_slug: extreme-programming
     display_name: Extreme Programming

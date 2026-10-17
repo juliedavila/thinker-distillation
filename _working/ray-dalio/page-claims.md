@@ -11,8 +11,10 @@ Interpretation is not listed here. The Editorial Reading has its own map in `rea
 - active_years [S:1] [S:26]
 - background [S:2] [S:1] [S:3] [S:27] [S:11] [S:10] [S:12]
 
-- named_frames[0].attribution [S:17] [S:18] [S:13] [S:5]
-- named_frames[1].attribution [S:19] [S:13] [S:11]
+- named_frames[0].attribution [S:31] [S:17] [S:18] [S:13] [S:5]
+- named_frames[0].co_originators[0] [S:31] [S:17]
+- named_frames[1].attribution [S:32] [S:33] [S:19] [S:13] [S:11]
+- named_frames[1].co_originators[0] [S:32]
 - named_frames[2].attribution [S:15] [S:14] [S:20]
 - named_frames[3].attribution [S:14] [S:11] [S:21]
 - named_frames[4].attribution [S:16] [S:22]
@@ -23,7 +25,8 @@ Interpretation is not listed here. The Editorial Reading has its own map in `rea
 - body_of_work[3] [S:10]
 - body_of_work[4] [S:12] [S:11]
 
-- adjacent_thinkers[3] [S:23] [S:24] [S:25] [S:29]
+- adjacent_thinkers[3] [S:35] [S:29] [S:23] [S:24] [S:25]
+- tagline [S:34] [S:12]
 
 Audit, 2026-10-15: `body_of_work[2]` now cites S:27 first, because the principles.com page (S:9) gives
 no publication date and only implies 2018 through "the tenth anniversary of the 2008 financial crisis."
@@ -54,3 +57,21 @@ Review, 2026-10-15: `adjacent_thinkers[3]` adds S:29, the line for Taleb's gener
 historical priors and rare events, which the label's first clause states and S:23 to S:25 do not
 carry. `body_of_work[1]` cites S:30 first, the print edition's catalog page, for the full title with
 "and Fail."
+
+Sourcing pass, 2026-10-16 (`sourcing-delta-2026-10.md`):
+
+- `named_frames[0].attribution` cites S:31 first, the antecedent search that names Benjamin Franklin,
+  now credited in `co_originators`. That search tested the genre only; the firm-scale practice the
+  gloss credits to Dalio still rests on S:17 and S:13.
+- `named_frames[1].attribution` cites S:32, the antecedent search that names Chris Anderson (2006),
+  now credited in `co_originators`, and S:33, Dalio's own principle text, which now carries the
+  gloss's account of his argument, his exceptions and the taped meetings. The 2006 use is a blog
+  post rather than a *Wired* article, and the gloss now says so. "Information asymmetry is the
+  largest contributor to organizational pathology" and "open evaluations" are gone: S:33 carries
+  neither, and no other line does.
+- `adjacent_thinkers[3]` cites S:35, Taleb's own 2008 Edge essay, for the label's account of his
+  general positions, ahead of the secondary S:29.
+- `tagline` is mapped on S:34 ("offered them for anyone to judge and adopt") and S:12. "Asked his
+  industry to do the same" is gone: no line supports it.
+
+Review, 2026-10-16 (`sourcing-delta-2026-10.md` § Review): mappings unchanged. `named_frames[1].co_originators[0]` now reads "a *Wired* blog" in place of "while editor of *Wired*", carried by S:32's quoted page heading. `named_frames[1].one_line_gloss` gives taping as Dalio's example rather than the signature practice and restores "private" and "very rare" from S:33. `tagline` stays on S:34 and S:12, now logged as an ADDITION.

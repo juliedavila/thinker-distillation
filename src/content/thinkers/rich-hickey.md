@@ -22,7 +22,7 @@ inclusion_rationale: >
 thinker_type: mixed
 doctrine_mode: mode-a
 has_long_read: false
-last_updated: 2026-10-15
+last_updated: 2026-10-16
 
 tagline: The language designer who gave programmers a precise word for what makes software hard to change.
 thirty_second_take: >
@@ -105,7 +105,7 @@ named_frames:
       independent, which is where complexity comes from. Its opposite is
       compose, to place together. Overlaps the older ideas of coupling and
       connascence.
-    attribution_kind: popularized
+    attribution_kind: original
     primary_author: rich-hickey
     source_link: https://www.infoq.com/presentations/Simple-Made-Easy/
     render_tier: foreground
@@ -220,12 +220,18 @@ named_frames:
     display_name: Persistent data structures as the default
     one_line_gloss: >
       Immutable collections that share structure so that making a changed
-      copy is cheap, used as the language's everyday data. Clojure's versions
-      build on Phil Bagwell's hash array mapped tries after Okasaki's
-      structures proved too slow for Hickey's needs.
+      copy is cheap, used as the language's everyday data. Driscoll, Sarnak,
+      Sleator and Tarjan (1989) gave generic techniques for making linked
+      structures persistent. Hickey's history says the in-place updating their
+      fat node method needs to reach its advertised bounds made it
+      impractical for multithreaded use. Clojure's versions build on Phil
+      Bagwell's hash array mapped tries after Okasaki's structures proved too
+      slow for Hickey's needs.
     attribution_kind: extended
     primary_author: rich-hickey
     co_originators:
+      - slug: driscoll-sarnak-sleator-tarjan
+        role: '"Making Data Structures Persistent" (1989), the fat node method evaluated in Hickey''s history'
       - slug: phil-bagwell
         role: hash array mapped tries (2001)
       - slug: chris-okasaki

@@ -21,7 +21,8 @@ block; the Editorial Reading has its own map in `reading-claims.md`.
 - named_frames[3].attribution [S:16] [S:36]
 - named_frames[3].co_originators[0] [S:16]
 - named_frames[3].derived_from [S:16]
-- named_frames[4].attribution [S:17] [S:18]
+- named_frames[4].attribution [S:17] [S:18] [S:50]
+- named_frames[4].derived_from [S:18] [S:50]
 
 - body_of_work[0] [S:11] [S:12] [S:35]
 - body_of_work[1] [S:7] [S:37]

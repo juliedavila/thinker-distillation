@@ -49,3 +49,12 @@ runs 28 words against the old 29, so `extension` stays inside the 160-word cap.
 - His repair does not transfer whole: a policy rewritten around the exceptions it granted ratifies whatever pressure produced them, and his setting holds no adversary who benefits from the rewrite. [F:exception-debt]
 - The diagnostic half carries over: read the queue per control and per sponsor. [T:still-load-bearing] [F:exception-debt]
 - Read as a score it teaches people to stop filing, and it never sees the control nobody bothers to except against. [E:out:nicole-forsgren] [F:exception-debt]
+
+## Sourcing pass, 2026-10-16
+
+No sentence of `reading` or `extension` cites [F:staff-plus] or [F:team-sizing-heuristics], and
+none restates either frame's origin, so no line above changed. The two [F:] items in
+`grounding-pack.md` were refreshed by hand to the new glosses (Staff-plus: origin unsettled, no
+originator implied; team sizing: Graicunas and Urwick credited). The pack was not regenerated
+whole, because a full regeneration also pulls in edges added to other pages since 2026-09-17,
+which would change the grounding under sentences this pass did not review.

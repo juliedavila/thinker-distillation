@@ -288,7 +288,7 @@ because the failure mode is the point.
    sponsor."
 
 2. **The sizing heuristics have an antecedent, so they ship `distributed` and deep.** Span-of-control
-   guidance runs back to Graicunas in 1933 and Urwick in 1956, the recommended number varies by
+   guidance runs back at least to Graicunas in 1933 and Urwick in 1956, the recommended number varies by
    author, and Davis (1951) already gave 3 to 8 for managers at higher levels [S:41]. Larson's 6 to 8
    is an iteration inside an unsettled old literature. `original` was never defensible here.
 

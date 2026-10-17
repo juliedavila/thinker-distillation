@@ -37,3 +37,8 @@ the sentence did not move.
 - It also buys false confidence, because a build rule covers the encodings somebody already named. [F:threat-model-was-wrong]
 - Anderson's correction is the cheaper companion: collect how the losses happened, then check the threat model against them. [F:threat-model-was-wrong] [T:still-load-bearing]
 - The next rule comes from asking which of those losses a build rule could have refused. [T:still-load-bearing] [P:3]
+
+Checked in the sourcing pass, 2026-10-16. The frame `[F:security-engineering-as-a-discipline]`
+now cites `[S:61]`, an antecedent search that found a 1989 US military standard for system
+security engineering. The reading sentence that rests on the frame claims a standard textbook and
+the communities, not priority, so it did not change and its IDs did not move.

@@ -24,7 +24,7 @@ inclusion_rationale: >
 thinker_type: mixed
 doctrine_mode: mode-a
 has_long_read: false
-last_updated: 2026-09-17
+last_updated: 2026-10-16
 
 tagline: Catalogued the shapes the staff engineer job takes, and wrote an unsentimental account of where their authority comes from and why written policy erodes.
 thirty_second_take: >
@@ -63,8 +63,8 @@ why_they_matter_as_a_thinker: >
   The archetypes gave a career track its working vocabulary. LeadDev built a
   career-development piece around the four of them in 2024 and credited him in
   the opening sentence, and a 2026 argument against them began by conceding
-  the essay's standing in the field. The label over the titles no longer needs
-  his name:
+  the essay's standing in the field. The label over the titles circulates
+  without his name:
   Gergely Orosz defined Staff+ for his readers in 2023 as ordinary industry
   vocabulary, with no mention of Larson at all. The rest of the corpus is
   portable for a different reason. Exception debt, the four team states and the
@@ -117,9 +117,11 @@ named_frames:
     one_line_gloss: >
       One label over the three titles that sit above senior engineer: Staff,
       Principal and Distinguished. StaffEng collects career stories from all
-      three under the single term. It now
-      circulates without him: Gergely Orosz defined Staff+ for his readers in
-      2023 as established industry vocabulary and did not mention Larson.
+      three under the single term. The label circulates without his name:
+      Gergely Orosz defined Staff+ for his readers in 2023 as established
+      industry vocabulary and did not mention Larson. Where the label started is
+      unsettled in the record; LeadDev reported in 2023 that no one, Tanya Reilly
+      included, seemed able to agree on its origin.
     attribution_kind: popularized
     primary_author: will-larson
     source_link: https://staffeng.com/about/
@@ -193,12 +195,17 @@ named_frames:
       Numbers for organization design: a manager supports six to eight
       engineers, a manager of managers supports four to six managers, an oncall
       rotation wants eight engineers, and a group under four is not a team.
-      Span-of-control ratios are much older than the post, running back to
-      Graicunas in 1933 and Urwick after him, and the recommended number varies
+      Span-of-control ratios are much older than the post, running back at least
+      to Graicunas in 1933 and Urwick after him, and the recommended number varies
       by author. Larson presents his as an iterated framework of his own and
       credits no prior source.
     attribution_kind: distributed
     primary_author: will-larson
+    co_originators:
+      - slug: v-a-graicunas
+        role: '"Relationship in Organization" (1933): counted the relationships a manager must attend to, including those between subordinates, and showed the total rising steeply past the fourth report'
+      - slug: lyndall-urwick
+        role: 'helped Graicunas formulate the 1933 paper, and in "The Manager''s Span of Control" (1956) defended a limit on span of control'
     source_link: https://lethain.com/sizing-engineering-teams/
     render_tier: deep
   - concept_slug: systems-models-for-engineering-decisions

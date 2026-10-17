@@ -12,7 +12,7 @@ inclusion seats asked for specific claims to be traceable.
 - background [S:1] [S:2] [S:3] [S:4] [S:5] [S:6] [S:32] [S:33] [S:34]
 
 - named_frames[0].attribution [S:12] [S:13] [S:39]
-- named_frames[1].attribution [S:14] [S:38] [S:39] [S:56]
+- named_frames[1].attribution [S:14] [S:38] [S:39] [S:56] [S:59]
 - named_frames[2].attribution [S:16] [S:42]
 - named_frames[3].attribution [S:15] [S:40]
 - named_frames[3].co_originators[0] [S:40]
@@ -20,7 +20,9 @@ inclusion seats asked for specific claims to be traceable.
 - named_frames[4].attribution [S:19] [S:20] [S:23] [S:24]
 - named_frames[4].co_originators[0] [S:23] [S:24]
 - named_frames[5].attribution [S:17] [S:47]
-- named_frames[6].attribution [S:18] [S:41]
+- named_frames[6].attribution [S:18] [S:41] [S:60]
+- named_frames[6].co_originators[0] [S:60] [S:61]
+- named_frames[6].co_originators[1] [S:60]
 - named_frames[7].attribution [S:25] [S:10]
 - named_frames[7].co_originators[0] [S:25]
 - named_frames[8].attribution [S:21]
@@ -47,7 +49,7 @@ Recorded beyond the required set:
 - thesis [S:12] [S:15] [S:16] [S:17] [S:20] [S:23] [S:24] [S:40]
 - working_line [S:15]
 - inclusion_rationale [S:12] [S:16] [S:15] [S:21] [S:23] [S:24] [S:27] [S:29] [S:48] [S:51]
-- why_they_matter_as_a_thinker [S:27] [S:29] [S:38] [S:51] [S:52]
+- why_they_matter_as_a_thinker [S:27] [S:29] [S:38] [S:51] [S:52] [S:59]
 - limits[0] [S:12] [S:29] [S:57]
 - limits[1] [S:17] [S:18] [S:32] [S:33] [S:47]
 - limits[2] [S:16] [S:17] [S:18] [S:21] [S:27] [S:38] [S:54]
@@ -93,3 +95,16 @@ The label says Cunningham "supplies the analogy exception debt is built on" and 
 `[S:16]` records that Larson credits no prior source for the name, so nothing here claims he cited
 Cunningham. The derivation is the site's reading, stated as the site's, and the Cunningham page
 makes the same claim in the same terms from the other side.
+
+## Sourcing pass, 2026-10-16
+
+Two frames named no originator. `named_frames[6]` (team sizing heuristics) now credits V. A.
+Graicunas and Lyndall Urwick in `co_originators`, on the antecedent search at [S:60] and the
+second source at [S:61]; its gloss says "running back at least to" Graicunas, because the same
+search found both men citing a 1922 rule of thumb. `named_frames[1]` (Staff-plus) found no
+originator [S:59]: the label's origin is unsettled in the record, so nobody is credited, the kind
+stays `popularized`, and the gloss now says the origin is unsettled instead of implying the label
+started with him. `why_they_matter_as_a_thinker` carried the same implication ("no longer needs
+his name") and was lowered in the same pass. The build still warns on Staff-plus by design: a
+search that found no originator is no licence to name one. Delta table:
+`_working/will-larson/sourcing-delta-2026-10.md`.

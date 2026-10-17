@@ -45,3 +45,11 @@ An independent check of the pass above, done from the fetched copies under `_wor
 **Section 8.** The Eliot sentences state what he wrote and when, attributed, with no judgment of anyone; the role shares credit with his co-authors. No fact was softened in the review version. Nothing in the review edits adds a proposition beyond the rows marked ADDITION.
 
 **Checks after review.** `bun scripts/fact-ledger.ts charity-majors` and `bun scripts/reading-gates.ts charity-majors` both exit 0; the page, `facts.md` and this file carry no em-dashes. Still open for Julie, unchanged by review: the unsourced effect claim in `why_they_matter_as_a_thinker` flagged above.
+
+## Julie's direction, 2026-10-17
+
+Frames with no person to credit are filed as shared credit (`community`), with the gloss saying why.
+
+| field | before | after | class | supporting |
+|---|---|---|---|---|
+| named_frames[2].attribution_kind and gloss | `extended`, no originator to name | `community`, plus "The frame is filed as shared credit: the term and the warning against such fields came first, and the argument for keeping them is the turn her page records." | NARROWED (restates the gloss and this pass's search line) | this pass's antecedent-search line |

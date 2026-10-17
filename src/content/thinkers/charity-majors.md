@@ -123,9 +123,8 @@ named_frames:
       build id, feature flag, request id. Those are the fields that identify
       which request broke, and the ones metrics tooling drops first because
       they are expensive to index. Cardinality is an older database term, and
-      telemetry stores were already using it for fields to avoid indexing
-      before Honeycomb was founded.
-    attribution_kind: extended
+      telemetry stores were already using it for fields to avoid indexing before Honeycomb was founded. The frame is filed as shared credit: the term and the warning against such fields came first, and the argument for keeping them is the turn her page records.
+    attribution_kind: community
     primary_author: charity-majors
     source_link: https://www.honeycomb.io/blog/time-to-version-observability-signs-point-to-yes
     render_tier: foreground

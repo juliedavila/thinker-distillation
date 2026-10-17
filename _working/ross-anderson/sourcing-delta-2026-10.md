@@ -62,3 +62,11 @@ regenerated.
 Final checks after the fixes: (a) every page change is a row and every row matches the diff;
 (b) every ADDITION is supported by the line it cites, reopened in the fetched source; (c) nothing
 is labelled SAME or NARROWED that adds a proposition.
+
+## Julie's direction, 2026-10-17
+
+Frames with no person to credit are filed as shared credit (`community`), with the gloss saying why.
+
+| field | before | after | class | supporting |
+|---|---|---|---|---|
+| named_frames[5].attribution_kind and gloss | `popularized`, no originator to name | `community`, plus "The frame is filed as shared credit: the discipline had many builders, and his part in the building is what the record supports." | NARROWED (the sentence restates the gloss and [S:61]) | [S:61] |

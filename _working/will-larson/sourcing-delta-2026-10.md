@@ -76,3 +76,11 @@ ledger line was added.
   `v-a-graicunas` matches the one `alex-komoroske.md` already uses.
 - **Carriers.** `grounding-pack.md` [F:staff-plus] took the same fix. No other thinker page
   mentions Staff-plus, and the page has no long read.
+
+## Julie's direction, 2026-10-17
+
+Frames with no person to credit are filed as shared credit (`community`), with the gloss saying why.
+
+| field | before | after | class | supporting |
+|---|---|---|---|---|
+| named_frames[1].attribution_kind and gloss | `popularized`, no originator to name | `community`, plus "The frame is filed as shared credit for that reason: the label belongs to the field, and StaffEng is where he gathered it." | NARROWED (restates the gloss's LeadDev and StaffEng sentences) | existing gloss lines |

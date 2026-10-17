@@ -121,8 +121,8 @@ named_frames:
       Gergely Orosz defined Staff+ for his readers in 2023 as established
       industry vocabulary and did not mention Larson. Where the label started is
       unsettled in the record; LeadDev reported in 2023 that no one, Tanya Reilly
-      included, seemed able to agree on its origin.
-    attribution_kind: popularized
+      included, seemed able to agree on its origin. The frame is filed as shared credit for that reason: the label belongs to the field, and StaffEng is where he gathered it.
+    attribution_kind: community
     primary_author: will-larson
     source_link: https://staffeng.com/about/
     render_tier: foreground

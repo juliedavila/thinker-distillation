@@ -10,9 +10,9 @@ updated: 2026-10-17
 ---
 
 <!-- RESUME-HEAD v1 -->
-> **Status** · 2026-10-17. Every live page passes its ledger; ledger-exempt.txt is empty. The 2026-10-16 Council settled primary_author as the author of this page's framing, with any non-original frame required to name its originator (build warning, !94). The sourcing pass on 14 pages is up as !95 to !98: 47 ADDITION rows (new credits and refilings) for Julie, the rest narrow, delete or source. Three frames still warn (Anderson, Larson, Majors): no person to credit.
-> **Next** · Julie reviews !95 to !98 and six calls on https://claude.ai/artifact/YSB737jmR2geqVCmsqfKZv . Camila then merges, does the follow-ups listed there (Forsgren converge edge, Woods adaptive-capacity credits on Allspaw and Dekker, Graicunas on the coordination-headwind concept page), and opens the diligence phase with Julie's calibration read.
-> **Blocked** · On Julie's review of !95 to !98.
+> **Status** · 2026-10-17. Launch cleanup is done and merged (through !100). Every live page passes its ledger; ledger-exempt.txt is empty; every frame not filed original names its originator or is filed community (shared credit, Julie 2026-10-17), and the build now fails otherwise. No open merge requests. One old unmerged branch remains: origin/salvage/run4-unfinished (2026-09-23, unapplied pipeline work), left for Julie.
+> **Next** · Julie: the diligence phase opens with her calibration read of Komoroske, Forsgren and Leveson (DILIGENCE.md step 0). Camila then turns her marks into the rubric and runs the audit (step 2). Retire the GitLab Pages copy once #98 is settled.
+> **Blocked** · On Julie's calibration read.
 > **Resume** · Read /Users/juliedavila/Camila/thinker-distillation/DILIGENCE.md, then the Council transcript at /Users/juliedavila/.claude/LIFEOS/MEMORY/COUNCIL/distillery-open-decisions-20261016-debate/transcript.md, then "## Save Point — 2026-10-10" below.
 <!-- /RESUME-HEAD -->
 

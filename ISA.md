@@ -6,14 +6,14 @@ progress: 28 live thinker pages; nothing open; due diligence phase planned
 iteration: iter-27-savepoint-and-diligence-plan-2026-10-10
 mode: project
 started: 2026-05-25
-updated: 2026-10-15
+updated: 2026-10-17
 ---
 
 <!-- RESUME-HEAD v1 -->
-> **Status** · 2026-10-15, late. Ledgers now exist for all nine pages that shipped without one (!87), each built and then independently audited. Their fixes are up as !89 to !91, which take every page off ledger-exempt.txt, plus neighbour fixes (!92) and the correction-register passes (!84 to !86; rule merged in !83). The adaptive-capacity contradiction is fixed and merged (!88). Every page passes fact-ledger and reading-gates on its branch.
-> **Next** · Julie spot-checks !84, !85, !86, !89, !90, !91 and !92 and answers the open conventions (primary_author, work-as-imagined, three slug renames, a deck type, four credit additions). Camila then merges, runs the sourcing pass on claims the fixes left unsourced, and opens the diligence phase with Julie's calibration read.
-> **Blocked** · On Julie's review of those seven merge requests.
-> **Resume** · Read /Users/juliedavila/Camila/thinker-distillation/DILIGENCE.md first (its own resume head), then "## Save Point — 2026-10-10" below.
+> **Status** · 2026-10-17. Every live page passes its ledger; ledger-exempt.txt is empty. The 2026-10-16 Council settled primary_author as the author of this page's framing, with any non-original frame required to name its originator (build warning, !94). The sourcing pass on 14 pages is up as !95 to !98: 47 ADDITION rows (new credits and refilings) for Julie, the rest narrow, delete or source. Three frames still warn (Anderson, Larson, Majors): no person to credit.
+> **Next** · Julie reviews !95 to !98 and six calls on https://claude.ai/artifact/YSB737jmR2geqVCmsqfKZv . Camila then merges, does the follow-ups listed there (Forsgren converge edge, Woods adaptive-capacity credits on Allspaw and Dekker, Graicunas on the coordination-headwind concept page), and opens the diligence phase with Julie's calibration read.
+> **Blocked** · On Julie's review of !95 to !98.
+> **Resume** · Read /Users/juliedavila/Camila/thinker-distillation/DILIGENCE.md, then the Council transcript at /Users/juliedavila/.claude/LIFEOS/MEMORY/COUNCIL/distillery-open-decisions-20261016-debate/transcript.md, then "## Save Point — 2026-10-10" below.
 <!-- /RESUME-HEAD -->
 
 

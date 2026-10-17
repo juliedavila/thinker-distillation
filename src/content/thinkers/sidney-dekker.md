@@ -145,7 +145,7 @@ named_frames:
     primary_author: david-woods
     co_originators:
       - slug: david-woods
-        role: original resilience-engineering theory
+        role: 'carried adaptive capacity into resilience engineering; Lance Gunderson introduced the term in ecology in 2000, calling it "a new term"'
       - slug: sidney-dekker
         role: carried into safety-culture writing
 

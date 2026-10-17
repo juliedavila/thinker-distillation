@@ -37,8 +37,7 @@ limits:
   - headline: The superlinear curve is asserted, not measured
     severity: local
     elaboration: >
-      Brooks's original observation came from project debriefs, not
-      instrumentation. Komoroske's generalization covers the same ground across domains, without citing Brooks and without per-domain empirical grounding. The frame's predictive
+      Brooks's observation came from project debriefs, and V. A. Graicunas's 1933 span-of-control arithmetic, which counts how relationships multiply as a group grows, came from assumptions about attention rather than measurement. Komoroske's generalization covers the same ground across domains, without citing Brooks and without per-domain empirical grounding. The frame's predictive
       power is qualitative; using it as a quantitative argument for any
       specific team size threshold is overreach.
 

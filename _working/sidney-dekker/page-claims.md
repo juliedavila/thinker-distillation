@@ -63,3 +63,5 @@ Sourcing pass 2026-10-17 (table in `sourcing-delta-2026-10.md`): the conduit fra
 - tagline [S:5] [S:6]
 - why_they_matter_as_a_thinker [S:5] [S:35] [S:34]
 - still_load_bearing_despite [S:6] [S:35]
+
+Follow-up, 2026-10-17. `[S:36]` (copied from david-woods) supports the David Woods co-originator role on adaptive capacity, outside the gate.

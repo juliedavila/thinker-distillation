@@ -111,7 +111,7 @@ named_frames:
     attribution_kind: extended
     primary_author: ray-dalio
     co_originators:
-      - slug: chris-anderson
+      - slug: chris-anderson-wired
         role: '"Radical Transparency" for opening a company''s product development to customer input (*The Long Tail*, a *Wired* blog, 2006), an earlier dated use of the phrase; whether Dalio drew on it is unrecorded'
     source_link: https://www.principles.com
   - concept_slug: believability-weighted-decision-making

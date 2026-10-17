@@ -59,3 +59,9 @@ Independent review of this pass. Every page change in `git diff origin/main` has
 **Checked and left alone.** `derived_from: test-first-development` is supported: [S:19] has Beck building on a technique already written down, and [S:69] shows test-first in use before him. The slug names an idea, as SCHEMA allows, and `checks.ts` accepts it as naming an originator. `attribution_kind: extended` and `primary_author: kent-beck` are SAME and match the revised SCHEMA row. No row labelled SAME or NARROWED adds a proposition, now that the gloss-closing row is restated. The correction register holds under SCHEMA section 8: the new sentence states a dated, attributed record next to Beck's own "rediscovering," passes no verdict, and makes no claim that Beck knew of Mercury. Nothing is softened below its source. The McCracken identification stays off the page, which the hedge in the source requires.
 
 **Still for Julie.** The two ADDITION questions above stand unchanged. One more: if anyone wants the closing sentence back at full width ("He does not name the book"), the 2025 podcast at 35:41 has to be heard first.
+
+## Julie's direction, 2026-10-17
+
+| field | before | after | class | supporting |
+|---|---|---|---|---|
+| named_frames (TDD) gloss | "Test-first work is on record before him: Larman and Basili's 2003 history reports ... Project Mercury ..." | (deleted) | Deletion: the retrospective applies the modern term to late-1950s work; derived_from: test-first-development stays on its ledger line | (deletion) |

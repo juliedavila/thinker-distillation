@@ -104,10 +104,7 @@ named_frames:
       matched, says he tried it after writing the first xUnit framework in
       Smalltalk, and reports older programmers answering "Of course. How else
       could you program?" His own word for his role is "rediscovering." His
-      account does not name the book. Test-first work is on record before him:
-      Larman and Basili's 2003 history reports that the development team on
-      NASA's Project Mercury, working in half-day iterations, planned and wrote
-      tests before each micro-increment.
+      account does not name the book.
     attribution_kind: extended
     primary_author: kent-beck
     derived_from: test-first-development

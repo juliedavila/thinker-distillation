@@ -5,7 +5,7 @@ Page: `src/content/thinkers/ray-dalio.md`. Ledger: `facts.md` in this folder, li
 | field | before | after | SAME / NARROWED / CORRECTED / ADDITION / Deletion | supporting [S:n] |
 |---|---|---|---|---|
 | named_frames[0].co_originators | (none) | `benjamin-franklin`, role "thirteen numbered virtues, each with a written precept, kept and revised (*Autobiography*); an earlier case of the genre, and whether Dalio drew on it is unrecorded" | ADDITION (newly credited person; the gloss already named Franklin, so the page's visible claim is unchanged, but the structured credit is new) | [S:31] [S:17] |
-| named_frames[1].co_originators | (none) | `chris-anderson`, role "\"Radical Transparency\" for opening a company's product development to customer input (*The Long Tail*, a *Wired* blog, 2006), an earlier dated use of the phrase; whether Dalio drew on it is unrecorded" | ADDITION (newly credited person; review 2026-10-16 replaced "while editor of *Wired*", which no line carried) | [S:32] |
+| named_frames[1].co_originators | (none) | `chris-anderson-wired`, role "\"Radical Transparency\" for opening a company's product development to customer input (*The Long Tail*, a *Wired* blog, 2006), an earlier dated use of the phrase; whether Dalio drew on it is unrecorded" | ADDITION (newly credited person; review 2026-10-16 replaced "while editor of *Wired*", which no line carried) | [S:32] |
 | named_frames[1].one_line_gloss | "making all meetings, evaluations, and decision rationales available to all participants" | "opening much more of an organization's problems, and how people are handling them, to its members than is typical" | NARROWED for degree ("all ... to all participants" lowered to Dalio's own "much more transparency than is typical"; "evaluations" and "decision rationales" dropped) and ADDITION for object (problems and how people handle them, from S:33's "the problems that people are dealing with and how they're dealing with them") | [S:33] |
 | named_frames[1].one_line_gloss | (none) | "his example of the practice is taping all of Bridgewater's meetings" | ADDITION (taping is new to the page; the pass first wrote "taped meetings as the signature practice", and review replaced "signature", which ranks the practice beyond S:33's "For example") | [S:33] |
 | named_frames[1].one_line_gloss | "with the argument that information asymmetry is the largest contributor to organizational pathology" | "Dalio's case is that it forces problems to the surface and lets the whole organization work on them" | Deletion of the superlative causal claim, which no source carries, plus ADDITION of the argument Dalio's principle text makes (review relabelled this row from NARROWED: the new clause is a different proposition, not a weaker form of the old one) | [S:33] |
@@ -29,7 +29,7 @@ Grep across the page, `_working/ray-dalio/` and the other thinker and concept pa
 ## For Julie
 
 - Two newly credited people (Franklin, Anderson). After review, the radical-transparency gloss carries four new propositions (what the posture opens, the taping example, Dalio's argument, his exceptions) and the tagline one (he offered the principles for anyone to judge and adopt). All five rest on S:33 or S:34 and need your look.
-- The slug `chris-anderson` is ambiguous with TED's Chris Anderson, who is relevant to this same page through Dalio's TED talk. The role text disambiguates, but a future page for either man would collide.
+- The slug `chris-anderson-wired` is ambiguous with TED's Chris Anderson, who is relevant to this same page through Dalio's TED talk. The role text disambiguates, but a future page for either man would collide.
 - The 2001 *Foreign Affairs* date stays on the page at Wikipedia's strength; Hammond's own text could not be opened.
 
 ## Review, 2026-10-16
@@ -51,4 +51,10 @@ Relabelled: the tagline row and the "Dalio's case" row were NARROWED but each pu
 
 Checked and left: Franklin quotes and the 1733 editor's note match the Gutenberg text; Anderson's date and quotation match the archived post; the Hammond page shows only a summary, as S:32 says; the Taleb quotes and the 9.14.08 date match the Edge page, which never mentions Dalio, so the edge label stays SAME. The S:31 and S:32 bounds are stated honestly: neither search tested the firm-scale practice or the taping practice, and "the Bridgewater practice is his" still rests on S:13, S:17 and S:33 at the strength those give it. Section 8 of SCHEMA: the corrections state the record and attribute it (the 2006 use is a blog post, Hammond's phrase is unconfirmed in his own words), pass no verdict on anyone, and leave Dalio's possible independence open ("whether Dalio drew on it is unrecorded").
 
-Still for Julie: the `chris-anderson` slug collision with TED's Chris Anderson stands as flagged.
+Still for Julie: the `chris-anderson-wired` slug collision with TED's Chris Anderson stands as flagged.
+
+## Julie's direction, 2026-10-17
+
+| field | before | after | class | supporting |
+|---|---|---|---|---|
+| named_frames[1].co_originators slug | `chris-anderson` | `chris-anderson-wired` | SAME (disambiguates from TED's Chris Anderson) | none needed |

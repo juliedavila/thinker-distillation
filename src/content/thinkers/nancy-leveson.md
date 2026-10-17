@@ -206,6 +206,7 @@ named_frames:
       she dates to at least World War II.
     attribution_kind: extended
     primary_author: nancy-leveson
+    derived_from: system-safety
     source_link: https://web.archive.org/web/20240917123041id_/http://sunnyday.mit.edu/safety-3.pdf
     render_tier: deep
 

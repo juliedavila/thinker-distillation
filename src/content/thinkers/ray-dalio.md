@@ -25,7 +25,7 @@ doctrine_mode: mode-b
 has_long_read: false
 last_updated: 2026-05-25
 
-tagline: The hedge fund founder who turned his entire operating philosophy into numbered, public, contestable principles, and asked his industry to do the same.
+tagline: The hedge fund founder who turned his entire operating philosophy into numbered, public, contestable principles, and offered them for anyone to judge and adopt.
 thirty_second_take: >
   The investing record bought Dalio the platform. His contribution
   appears to be the *principles-distiller* move at the scale of a
@@ -90,19 +90,29 @@ named_frames:
       principles document.
     attribution_kind: extended
     primary_author: ray-dalio
+    co_originators:
+      - slug: benjamin-franklin
+        role: thirteen numbered virtues, each with a written precept, kept and revised (*Autobiography*); an earlier case of the genre, and whether Dalio drew on it is unrecorded
     source_link: https://www.principles.com
   - concept_slug: radical-transparency
     display_name: Radical transparency
     one_line_gloss: >
-      The institutional posture of making all meetings, evaluations,
-      and decision rationales available to all participants, with the
-      argument that information asymmetry is the largest contributor
-      to organizational pathology. The phrase was in print before his
-      earliest dated use in 2010, in a 2001 *Foreign Affairs* argument
-      and in *Wired* in 2006 and 2007; the Bridgewater practice, with
-      recorded meetings and open evaluations, is his.
+      The institutional posture of opening much more of an
+      organization's problems, and how people are handling them, to
+      its members than is typical; his example of the practice is
+      taping all of Bridgewater's meetings. Dalio's case is that it
+      forces problems to the surface and lets the whole organization
+      work on them. He allows a few exceptions, such as private health
+      matters and security issues, and says to keep them very rare.
+      The phrase had appeared before his earliest dated use in 2010,
+      in a 2001 *Foreign Affairs* argument, in a 2006 blog post by
+      Chris Anderson and in *Wired* in 2007; the Bridgewater practice
+      is his.
     attribution_kind: extended
     primary_author: ray-dalio
+    co_originators:
+      - slug: chris-anderson
+        role: '"Radical Transparency" for opening a company''s product development to customer input (*The Long Tail*, a *Wired* blog, 2006), an earlier dated use of the phrase; whether Dalio drew on it is unrecorded'
     source_link: https://www.principles.com
   - concept_slug: believability-weighted-decision-making
     display_name: Believability-weighted decision-making

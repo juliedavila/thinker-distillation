@@ -20,3 +20,5 @@ One line per sentence of `reading` and `extension`, each with the grounding-pack
 - Keeping those as accumulated facts would put part of that history in the data model itself, and the history stays honest only if the credentials that write a grant cannot also edit the record of grants. [F:value-identity-state-time] [P:6]
 - The costs are real: teams used to overwriting records pay the relative cost the talk sets aside, and history that never ages out still needs a retention period. [L:3] [L:5]
 - Even a complete fact store proves only that a change happened, so a malicious grant still waits on someone reviewing it to be noticed. [F:value-identity-state-time] [P:6]
+
+Sourcing pass of 2026-10-17 (`sourcing-delta-2026-10.md`): no sentence of `reading` or `extension` changed. The reading's complect sentence ("Hickey locates complexity in complecting") makes no claim about who first used the word, so the refiling of complect as `original` leaves it standing, and no sentence rests on the persistent data structures gloss. The `[F:complect]` and `[F:persistent-data-structures]` lines in the grounding pack were edited by hand to match the page.

@@ -12,14 +12,16 @@ Audited 2026-10-15 by a second reader: [S:43] to [S:49] added and cited above; s
 
 Remediated 2026-10-15 (claim-delta table at `claim-delta-2026-10.md`): situated programs is now filed `extended`, with the name credited to Hickey ([S:25]) and Lehman's E-type programs as the earlier form of the distinction ([S:37], [S:39]), so `named_frames[7]` is mapped and nothing is left unmapped. The Polya credit, the Value of Values note, the Lange edge and the two "renames" carriers were narrowed to what their existing lines say.
 
+Sourced 2026-10-16 (table at `sourcing-delta-2026-10.md`): complect refiled `original` on its antecedent search ([S:50]); Driscoll, Sarnak, Sleator and Tarjan added to the persistent data structures co-originators, listed first by date ([S:51], [S:52]), so the Bagwell and Okasaki entries move to co_originators[1] and [2]; the Cognitect CTO title now has a contemporaneous source ([S:53]); the Strange Loop keynote now has the conference's schedule announcement beside the attendee account ([S:54]).
+
 Interpretation is not listed here. The Editorial Reading has its own map in `reading-claims.md`.
 
 - active_years [S:3] [S:11] [S:40] [S:46]
-- background [S:1] [S:2] [S:3] [S:4] [S:5] [S:9] [S:10] [S:11] [S:40]
+- background [S:1] [S:2] [S:3] [S:4] [S:5] [S:9] [S:53] [S:10] [S:11] [S:40]
 
 - named_frames[0].attribution [S:12] [S:13] [S:34]
 - named_frames[0].co_originators[0] [S:12]
-- named_frames[1].attribution [S:14] [S:30] [S:31]
+- named_frames[1].attribution [S:14] [S:30] [S:31] [S:50]
 - named_frames[2].attribution [S:15] [S:17] [S:18]
 - named_frames[2].co_originators[0] [S:17]
 - named_frames[2].co_originators[1] [S:18] [S:6]
@@ -35,16 +37,17 @@ Interpretation is not listed here. The Editorial Reading has its own map in `rea
 - named_frames[7].co_originators[0] [S:37] [S:39]
 - named_frames[8].attribution [S:26] [S:43]
 - named_frames[8].co_originators[0] [S:26] [S:43]
-- named_frames[9].attribution [S:7]
-- named_frames[9].co_originators[0] [S:7]
+- named_frames[9].attribution [S:7] [S:51] [S:52]
+- named_frames[9].co_originators[0] [S:51] [S:52]
 - named_frames[9].co_originators[1] [S:7]
+- named_frames[9].co_originators[2] [S:7]
 
 - adjacent_thinkers[0] [S:17] [S:15] [S:18]
 - adjacent_thinkers[2] [S:18] [S:6]
 - adjacent_thinkers[3] [S:19] [S:20]
 - adjacent_thinkers[4] [S:27] [S:28] [S:29] [S:45]
 
-- body_of_work[0] [S:12] [S:32] [S:49] [S:8]
+- body_of_work[0] [S:12] [S:32] [S:54] [S:49] [S:8]
 - body_of_work[1] [S:19] [S:20]
 - body_of_work[2] [S:21] [S:4]
 - body_of_work[3] [S:23]

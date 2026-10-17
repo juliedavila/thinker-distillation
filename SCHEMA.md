@@ -171,7 +171,7 @@ The portable vocabulary: the named concepts this thinker holds. Each entry in `n
 | `display_name` | yes | The frame's name as shown |
 | `one_line_gloss` | yes | One-sentence definition |
 | `attribution_kind` | yes | `original`, `extended`, `popularized`, `distributed`, `co-authored`, `translated`, or `community` |
-| `primary_author` | yes | The author of this page's framing, usually this thinker's slug. A thinker can be the primary author of a frame they repackaged through their own perspective, even when someone else originated the underlying idea (Julie, 2026-10-16). The originator goes in `co_originators` or `derived_from`: any frame not filed `original` or `community` must name one there, and the build warns when it does not. `community` is shared credit, for a frame the record gives no single originator; its gloss says why (Julie, 2026-10-17). |
+| `primary_author` | yes | The author of this page's framing, usually this thinker's slug. A thinker can be the primary author of a frame they repackaged through their own perspective, even when someone else originated the underlying idea (Julie, 2026-10-16). The originator goes in `co_originators` or `derived_from`: any frame not filed `original` or `community` must name one there, and the build fails when it does not. `community` is shared credit, for a frame the record gives no single originator; its gloss says why (Julie, 2026-10-17). |
 | `co_originators` | no | List of `{ slug, role }` for frames with several originators |
 | `source_link` | no | Where the thinker writes about it (for ancient thinkers, a canonical translation) |
 | `derived_from` | no | `concept_slug` of an earlier frame or idea this one builds on. Never a person or a work: people go in `co_originators`. |

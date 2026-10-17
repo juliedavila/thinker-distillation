@@ -106,3 +106,5 @@ nothing on the page cites it, and it stays here so the removal is not quietly re
 seat proposing the same neighbour.
 
 [S:32] records the William & Mary professorship as unverified and deliberately unused.
+
+Follow-up, 2026-10-17. `[S:33]` (copied from john-allspaw) supports the rewritten Allspaw edge label and the further_in reading line; both fields sit outside the gate.

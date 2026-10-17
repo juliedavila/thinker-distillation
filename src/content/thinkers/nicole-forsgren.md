@@ -362,10 +362,7 @@ adjacent_thinkers:
     display_name: John Allspaw
     edge_type: parallel
     edge_label: >
-      Allspaw's operability work shares the time-to-restore variable with
-      DORA's stability axis. Resilience engineering and DORA measurement
-      converge on the same system property, how fast the team recovers,
-      from different methodological angles.
+      Both traditions look at recovery from failure, and they read it differently. DORA measures recovery by its duration, now failed deployment recovery time. Allspaw's 2018 post on incident data, which does not mention DORA, counts time-to-resolve among the measures that yield "very little insight", because two incidents of the same length can differ widely in surprise and uncertainty.
     strength: primary
   - target_slug: david-woods
     display_name: David Woods
@@ -483,7 +480,7 @@ further_in:
   if_you_want_breadth: >
     Poppendieck's *Lean Software Development* and Goldratt's *The Goal* for
     the lean / theory-of-constraints antecedents; Komoroske's coordination-headwind slide deck for the upstream cause DORA measures the downstream effect
-    of; Allspaw's writing on time-to-restore for the operability axis.
+    of; Allspaw's 2018 post on incident data for what a recovery time leaves out.
 
 live_edge:
   current_focus: >

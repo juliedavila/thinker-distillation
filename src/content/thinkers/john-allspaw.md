@@ -125,7 +125,7 @@ named_frames:
     primary_author: david-woods
     co_originators:
       - slug: david-woods
-        role: original resilience-engineering theory
+        role: 'carried adaptive capacity into resilience engineering; Lance Gunderson introduced the term in ecology in 2000, calling it "a new term"'
       - slug: john-allspaw
         role: applied to software operations
     source_link: https://www.adaptivecapacitylabs.com

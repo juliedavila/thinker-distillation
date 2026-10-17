@@ -52,3 +52,5 @@ Interpretation is not listed here. The Editorial Reading has its own map in `rea
 
 - body_of_work[4] [S:37] [S:1] [S:2] [S:9]
 - adjacent_thinkers[5].edge_label [S:36] [S:35]
+
+Follow-up, 2026-10-17. `[S:38]` (copied from david-woods) supports the David Woods co-originator role on adaptive capacity, outside the gate.

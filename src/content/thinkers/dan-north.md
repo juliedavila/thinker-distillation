@@ -182,12 +182,13 @@ named_frames:
       Two production environments with traffic switched from one to the other
       to release. Fowler writes that the technique "has been 'out there' for
       ages" and that "some foggy combination" of Terhorst-North and Humble came
-      up with the name, so the credit is for the name and it is hedged.
-    attribution_kind: co-authored
-    primary_author: jez-humble
+      up with the name, so the credit is for the name and it is hedged. The site
+      files it as shared credit for that reason.
+    attribution_kind: community
+    primary_author: dan-north
     co_originators:
-      - slug: dan-north
-        role: named beside Humble in Fowler's hedged credit for the term
+      - slug: jez-humble
+        role: named beside Terhorst-North in Fowler's hedged credit for the term
     source_link: https://martinfowler.com/bliki/BlueGreenDeployment.html
     render_tier: deep
 

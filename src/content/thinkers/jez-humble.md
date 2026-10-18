@@ -164,8 +164,9 @@ named_frames:
       Two production environments, one of them live, with a release performed
       by routing traffic to the other. Fowler wrote the technique up in 2010
       and hedged the credit for the name across "some foggy combination" of
-      Dan North and Jez Humble. The hedge travels with the frame.
-    attribution_kind: co-authored
+      Dan North and Jez Humble. The hedge travels with the frame, which the site
+      files as shared credit for that reason.
+    attribution_kind: community
     primary_author: jez-humble
     co_originators:
       - slug: dan-north

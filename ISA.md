@@ -10,9 +10,9 @@ updated: 2026-10-17
 ---
 
 <!-- RESUME-HEAD v1 -->
-> **Status** · 2026-10-18. Launch cleanup merged (through !100). Non-software filter decided (!103): vocabulary that does work in the reader's domain. Uptake checks done for thirteen candidates (!106, records in _working/<slug>/uptake-2026-10.md). Open for Julie's review: !104 (Hardy credit on three pages, three ADDITION rows) and !105 (blue-green as shared credit, closes #67). Branch origin/salvage/run4-unfinished is still left for Julie.
-> **Next** · Julie: review !104 and !105; answer the remaining decisions on the candidate vetting page (https://claude.ai/artifact/TACu6S9BXzetYBbQZFpkqR), including Rehberger #24 under the Saxe rule; then the calibration read (DILIGENCE.md step 0). Camila then writes the rubric and runs the audit.
-> **Blocked** · On Julie's reviews and calibration read.
+> **Status** · 2026-10-18. Launch cleanup merged (through !100). Non-software filter decided (!103): vocabulary that does work in the reader's domain. Uptake checks done for thirteen candidates (!106, records in _working/<slug>/uptake-2026-10.md). Julie approved and merged !104 (Hardy credit for the confused deputy) and !105 (blue-green as shared credit, #67 closed). Hudson #5 is in with honest limits; Rehberger #24 goes to an ordinary Council (the Saxe flag was an age error, corrected in !107). Branch origin/salvage/run4-unfinished is still left for Julie.
+> **Next** · Julie: answer the remaining decisions on the candidate vetting page (https://claude.ai/artifact/TACu6S9BXzetYBbQZFpkqR); then the calibration read (DILIGENCE.md step 0). Camila then writes the rubric and runs the audit.
+> **Blocked** · On Julie's calibration read.
 > **Resume** · Read /Users/juliedavila/Camila/thinker-distillation/DILIGENCE.md, then the Council transcript at /Users/juliedavila/.claude/LIFEOS/MEMORY/COUNCIL/distillery-open-decisions-20261016-debate/transcript.md, then "## Save Point — 2026-10-10" below.
 <!-- /RESUME-HEAD -->
 

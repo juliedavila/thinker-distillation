@@ -288,8 +288,7 @@ extension: >
   alignment, inside the text every filtering layer reads. So those layers can
   fail together, and counting them overstates the protection. The steadier lever
   is on the latent side: what the agent could reach before any text arrived. A
-  standing permission, the authority a confused deputy needs, works like his
-  resident pathogen, and the attacker supplies the trigger his account leaves to
+  standing permission, the authority a confused deputy needs (Norm Hardy's term, 1988), works like Reason's resident pathogen, and the attacker supplies the trigger his account leaves to
   front-line acts. Removing it narrows what any injection can do, whichever
   layer it slipped past. That fix carries a hazard close to the one his critics
   named: once a review finds the permission, it has a latent condition to blame,

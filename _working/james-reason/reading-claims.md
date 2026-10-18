@@ -18,6 +18,6 @@ One line per sentence of `reading` and `extension`, each with the grounding-pack
 - An injected instruction is written to find the alignment, inside the text every filtering layer reads. [L:4] [P:1]
 - So those layers can fail together, and counting them overstates the protection. [L:4]
 - The steadier lever is on the latent side: what the agent could reach before any text arrived. [F:latent-conditions]
-- A standing permission, the authority a confused deputy needs, works like his resident pathogen, and the attacker supplies the trigger his account leaves to front-line acts. [F:latent-conditions] [T:thesis] [P:7]
+- A standing permission, the authority a confused deputy needs (Norm Hardy's term, 1988), works like Reason's resident pathogen, and the attacker supplies the trigger his account leaves to front-line acts. [F:latent-conditions] [T:thesis] [P:7]
 - Removing it narrows what any injection can do, whichever layer it slipped past. [F:latent-conditions] [P:3]
 - That fix carries a hazard close to the one his critics named: once a review finds the permission, it has a latent condition to blame, and the crafted text can drop out of the account. [L:2]

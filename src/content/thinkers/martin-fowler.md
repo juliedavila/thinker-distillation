@@ -262,7 +262,7 @@ extension: >
   Bounded context places a boundary where the language changes. That line is
   often a sensible place to draw an authority boundary as well, although in
   multi-tenant systems contexts and authority domains can cut across each other.
-  The confused deputy problem is what happens when a request crosses an
+  The confused deputy problem (Norm Hardy, 1988) is what happens when a request crosses an
   authority boundary carrying authority it gathered on the other side. Agent and
   tool integrations make this concrete: an agent working inside one context can
   be steered by text that came from another, and it acts with its own

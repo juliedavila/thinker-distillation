@@ -10,9 +10,9 @@ updated: 2026-10-17
 ---
 
 <!-- RESUME-HEAD v1 -->
-> **Status** · 2026-10-17. Launch cleanup is done and merged (through !100). Every live page passes its ledger; ledger-exempt.txt is empty; every frame not filed original names its originator or is filed community (shared credit, Julie 2026-10-17), and the build now fails otherwise. No open merge requests. One old unmerged branch remains: origin/salvage/run4-unfinished (2026-09-23, unapplied pipeline work), left for Julie.
-> **Next** · Julie: the diligence phase opens with her calibration read of Komoroske, Forsgren and Leveson (DILIGENCE.md step 0). Camila then turns her marks into the rubric and runs the audit (step 2). Retire the GitLab Pages copy once #98 is settled.
-> **Blocked** · On Julie's calibration read.
+> **Status** · 2026-10-18. Launch cleanup merged (through !100). Non-software filter decided (!103): vocabulary that does work in the reader's domain. Uptake checks done for thirteen candidates (!106, records in _working/<slug>/uptake-2026-10.md). Open for Julie's review: !104 (Hardy credit on three pages, three ADDITION rows) and !105 (blue-green as shared credit, closes #67). Branch origin/salvage/run4-unfinished is still left for Julie.
+> **Next** · Julie: review !104 and !105; answer the remaining decisions on the candidate vetting page (https://claude.ai/artifact/TACu6S9BXzetYBbQZFpkqR), including Rehberger #24 under the Saxe rule; then the calibration read (DILIGENCE.md step 0). Camila then writes the rubric and runs the audit.
+> **Blocked** · On Julie's reviews and calibration read.
 > **Resume** · Read /Users/juliedavila/Camila/thinker-distillation/DILIGENCE.md, then the Council transcript at /Users/juliedavila/.claude/LIFEOS/MEMORY/COUNCIL/distillery-open-decisions-20261016-debate/transcript.md, then "## Save Point — 2026-10-10" below.
 <!-- /RESUME-HEAD -->
 

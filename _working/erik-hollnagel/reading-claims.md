@@ -15,7 +15,7 @@ One line per sentence of `reading` and `extension`, each with the grounding-pack
 ## extension
 
 - Read together, his heuristics "Will be checked by someone else" and "Has been checked by someone else" describe a chain in which each stage relies on a check it assumes another made. [F:efficiency-thoroughness-trade-off]
-- Agent pipelines build the same chain: a tool call runs because an upstream step was assumed to validate the request, and that step passed it on because a later one was assumed to check. [P:7] [F:efficiency-thoroughness-trade-off]
-- The result is a confused deputy built from two efficient shortcuts, exercising authority on a judgement no stage made. [P:7]
+- Agent pipelines build the same chain: a tool call runs because an upstream step was assumed to validate the request, and that step passed it on assuming a later one would check. [P:7] [F:efficiency-thoroughness-trade-off]
+- The result is a confused deputy (Norm Hardy, 1988), built from two efficient shortcuts, exercising authority on a judgement no stage made. [P:7]
 - Safety-II's attention to work that went right says where to look: trace which stage checked what on requests that went through cleanly, and find the paths where both heuristics meet, which look like success until someone aims at them. [F:safety-i-and-safety-ii] [L:4]
-- Any added check would face the same trade, so the repair belongs in the structure: the tool call carries the originating requester's authority and nothing more, which requires every stage to pass the requester's identity along. [F:efficiency-thoroughness-trade-off] [P:7] [P:3]
+- Any added check would face the same trade, so the repair belongs in the structure: the tool call carries the originating requester's authority and nothing more, so every stage must pass the requester's identity along. [F:efficiency-thoroughness-trade-off] [P:7] [P:3]

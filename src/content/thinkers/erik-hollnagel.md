@@ -265,14 +265,13 @@ extension: >
   checked by someone else" describe a chain in which each stage relies on a
   check it assumes another made. Agent pipelines build the same chain: a tool
   call runs because an upstream step was assumed to validate the request, and
-  that step passed it on because a later one was assumed to check. The result is
-  a confused deputy built from two efficient shortcuts, exercising authority on
+  that step passed it on assuming a later one would check. The result is a confused deputy (Norm Hardy, 1988), built from two efficient shortcuts, exercising authority on
   a judgement no stage made. Safety-II's attention to work that went right says
   where to look: trace which stage checked what on requests that went through
   cleanly, and find the paths where both heuristics meet, which look like
   success until someone aims at them. Any added check would face the same trade,
   so the repair belongs in the structure: the tool call carries the originating
-  requester's authority and nothing more, which requires every stage to pass the
+  requester's authority and nothing more, so every stage must pass the
   requester's identity along.
 
 reading_review:
